@@ -245,8 +245,111 @@ main {
     linear-gradient(180deg, rgba(5, 7, 13, 0.52), transparent 40%, rgba(5, 7, 13, 0.4));
 }
 
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.48fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+}
+
 .hero-copy {
-  max-width: 850px;
+  max-width: 790px;
+}
+
+.hero-portrait-panel {
+  position: relative;
+  align-self: center;
+  width: min(100%, 360px);
+  margin: 2rem 0 0 auto;
+  padding: 0.72rem;
+  border: 1px solid rgba(101, 243, 255, 0.24);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(101, 243, 255, 0.12), transparent 38%),
+    rgba(5, 7, 13, 0.68);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.34),
+    0 0 52px rgba(101, 243, 255, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.hero-portrait-panel::before,
+.hero-portrait-panel::after {
+  position: absolute;
+  pointer-events: none;
+  content: "";
+}
+
+.hero-portrait-panel::before {
+  inset: 1rem;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.hero-portrait-panel::after {
+  inset: -12%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(125, 255, 167, 0.1), transparent 34%),
+    radial-gradient(circle at 44% 72%, rgba(159, 140, 255, 0.14), transparent 42%);
+}
+
+.hero-portrait-panel__image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.hero-portrait-panel__image::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(180deg, transparent 55%, rgba(5, 7, 13, 0.72)),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 7px);
+  mix-blend-mode: screen;
+  opacity: 0.52;
+}
+
+.hero-portrait-panel img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: saturate(0.94) contrast(1.05);
+}
+
+.hero-portrait-panel figcaption {
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 2;
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  background: rgba(5, 7, 13, 0.76);
+}
+
+.hero-portrait-panel figcaption span,
+.hero-portrait-panel figcaption small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+}
+
+.hero-portrait-panel figcaption span {
+  color: var(--text-main);
+  font-weight: 850;
+}
+
+.hero-portrait-panel figcaption small {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
 }
 
 .eyebrow,
@@ -264,8 +367,8 @@ main {
 .final-cta h2 {
   max-width: 980px;
   margin: 0;
-  font-size: clamp(3rem, 6.4vw, 5.8rem);
-  line-height: 0.96;
+  font-size: clamp(3rem, 5.7vw, 5.15rem);
+  line-height: 0.98;
   letter-spacing: 0;
 }
 
@@ -1164,6 +1267,7 @@ li::marker {
   }
 
   .command-center,
+  .hero-layout,
   .profile-grid,
   .eidos-layout,
   .case-portal--featured,
@@ -1235,9 +1339,18 @@ li::marker {
     padding-top: 7rem;
   }
 
+  .hero-layout {
+    gap: 1.25rem;
+  }
+
   .hero-section h1,
   .final-cta h2 {
     font-size: clamp(2.55rem, 13vw, 3.8rem);
+  }
+
+  .hero-portrait-panel {
+    width: min(100%, 320px);
+    margin: 0;
   }
 
   .command-center__map,
