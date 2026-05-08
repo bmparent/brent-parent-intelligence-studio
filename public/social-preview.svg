@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Brent Parent Intelligence Studio social preview">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#05070d"/>
+      <stop offset=".55" stop-color="#0c111c"/>
+      <stop offset="1" stop-color="#070910"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0" stop-color="#65f3ff"/>
+      <stop offset=".52" stop-color="#ffcc66"/>
+      <stop offset="1" stop-color="#7dffa7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g opacity=".32" stroke="#ffffff" stroke-width="1">
+    <path d="M0 120h1200M0 240h1200M0 360h1200M0 480h1200"/>
+    <path d="M160 0v630M320 0v630M480 0v630M640 0v630M800 0v630M960 0v630"/>
+  </g>
+  <g transform="translate(744 92)" fill="none">
+    <circle cx="168" cy="168" r="132" stroke="#65f3ff" stroke-width="2" opacity=".8"/>
+    <circle cx="168" cy="168" r="92" stroke="#9f8cff" stroke-width="2" opacity=".7"/>
+    <path d="M36 186c68-116 196-116 264 0" stroke="#ffcc66" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="168" cy="168" r="24" fill="#7dffa7"/>
+  </g>
+  <path d="M120 450c160-90 280-40 420-126 110-68 160-128 282-94" fill="none" stroke="url(#line)" stroke-width="4" opacity=".86"/>
+  <text x="90" y="160" fill="#65f3ff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="700">BRENT PARENT INTELLIGENCE STUDIO</text>
+  <text x="90" y="252" fill="#f5f7fb" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="70" font-weight="800">Advanced Web Experiences</text>
+  <text x="90" y="334" fill="#f5f7fb" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="70" font-weight="800">Automation &amp; Operational AI</text>
+  <text x="92" y="406" fill="#9aa7bc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30">Three.js, WordPress, InkSoft, Python, Google Cloud, Eidos Brain</text>
+</svg>
