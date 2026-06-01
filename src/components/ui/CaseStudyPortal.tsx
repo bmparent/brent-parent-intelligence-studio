@@ -1,6 +1,6 @@
 import { ExternalLink, RadioTower } from 'lucide-react'
 import type { CaseStudy } from '../../data/caseStudies'
-import { clearSceneFocus, emitSceneFocus } from '../../three/utils/pointerState'
+import { clearSceneFocus, emitSceneFocus } from '../../babylon/utils/pointerState'
 import { CapabilityTag } from './CapabilityTag'
 import { IncidentCard } from './IncidentCard'
 

@@ -1,6 +1,6 @@
 import { CheckCircle2 } from 'lucide-react'
 import { SectionShell } from '../components/layout/SectionShell'
-import { clearSceneFocus, emitSceneFocus } from '../three/utils/pointerState'
+import { clearSceneFocus, emitSceneFocus } from '../babylon/utils/pointerState'
 
 const steps = ['Discover', 'Map', 'Design', 'Build', 'Deploy', 'Refine']
 

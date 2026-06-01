@@ -2,7 +2,7 @@ import { BadgeCheck, Layers3, Sparkles } from 'lucide-react'
 import { SectionShell } from '../components/layout/SectionShell'
 import { CapabilityTag } from '../components/ui/CapabilityTag'
 import { portraitUrl } from '../data/links'
-import { clearSceneFocus, emitSceneFocus } from '../three/utils/pointerState'
+import { clearSceneFocus, emitSceneFocus } from '../babylon/utils/pointerState'
 
 const proofPoints = [
   'Web development and online marketing since 2010',

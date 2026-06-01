@@ -88,13 +88,13 @@ export const caseStudies: CaseStudy[] = [
     title: 'InkSoft Immersive Storefront Experiences',
     type: 'Advanced web / ecommerce design',
     summary:
-      'Custom storefront experiences for InkSoft stores using branded hero sections, category widgets, Cloudinary-hosted visuals, custom HTML/CSS/JS embeds, and Three.js enhancements.',
+      'Custom storefront experiences for InkSoft stores using branded hero sections, category widgets, Cloudinary-hosted visuals, custom HTML/CSS/JS embeds, and Babylon.js enhancements.',
     capabilities: [
       'InkSoft custom embeds',
       'Advanced frontend development',
       'Responsive design',
       'Cloudinary image workflow',
-      'Three.js animation',
+      'Babylon.js animation',
       'Category experience design',
       'Ecommerce storytelling',
     ],
@@ -120,13 +120,13 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'epcot-storefront',
     title: 'EPCOT Shows Interactive Storefront System',
-    type: 'Three.js / InkSoft / Cloudinary storefront prototype',
+    type: 'Babylon.js / InkSoft / Cloudinary storefront prototype',
     summary:
-      'An advanced storefront concept using layered hero imagery, separated model assets, animated stage lighting, category widgets, and Three.js-driven motion to make the shopping experience feel alive.',
+      'An advanced storefront concept using layered hero imagery, separated model assets, animated stage lighting, category widgets, and Babylon.js-driven motion to make the shopping experience feel alive.',
     capabilities: [
       'Cloudinary asset pipeline',
       'Layered visual composition',
-      'Three.js animation planning',
+      'Babylon.js animation planning',
       'Interactive storefront embeds',
       'Scroll/hover animation',
       'Character/model separation',
@@ -135,7 +135,7 @@ export const caseStudies: CaseStudy[] = [
     visual: 'Layered stage atmosphere with asset-separated performers and responsive category motion.',
     mission: {
       problemSignal: 'A standard storefront can understate the energy of event-driven merch launches.',
-      systemBuilt: 'Layered Cloudinary assets, animated stage direction, category widgets, and Three.js motion planning.',
+      systemBuilt: 'Layered Cloudinary assets, animated stage direction, category widgets, and Babylon.js motion planning.',
       visibleOutcome: 'A more memorable storefront concept with clearer categories and stronger launch impression.',
       status: 'Visual prototype',
     },
@@ -162,12 +162,12 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'animal-kingdom-storefront',
     title: 'Animal Kingdom Shows Storefront Experience',
-    type: 'Advanced InkSoft / Three.js environment concept',
+    type: 'Advanced InkSoft / Babylon.js environment concept',
     summary:
       'An immersive nature/theatrical storefront experience using warm environmental visuals, animated grass, birds, mist, layered transitions, and category tiles that feel part of a living scene.',
     capabilities: [
       'Atmospheric web design',
-      'Three.js grass animation',
+      'Babylon.js environment animation',
       'Transition smoothing',
       'Animated environmental overlays',
       'Custom InkSoft embed problem solving',
@@ -194,7 +194,7 @@ export const caseStudies: CaseStudy[] = [
       'Brand research',
       'Category architecture',
       'Custom storefront layout',
-      'Three.js concept prototyping',
+      'Babylon.js concept prototyping',
       'Interactive navigation',
       'Mobile storefront thinking',
     ],

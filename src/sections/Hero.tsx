@@ -10,7 +10,7 @@ const statusItems = [
   ['Operational Intelligence', 'Human-reviewable', 'amber'],
 ]
 
-const stackItems = ['Vite', 'React', 'GSAP', 'Three.js / Babylon-ready', 'Cloudinary']
+const stackItems = ['Vite', 'React', 'GSAP', 'Babylon.js / WebGPU-ready', 'Cloudinary']
 
 export function Hero() {
   return (

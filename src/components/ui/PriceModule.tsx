@@ -1,6 +1,6 @@
 import { ArrowRight, Gauge } from 'lucide-react'
 import type { PricePackage } from '../../data/pricing'
-import { emitSceneFocus, clearSceneFocus } from '../../three/utils/pointerState'
+import { emitSceneFocus, clearSceneFocus } from '../../babylon/utils/pointerState'
 import { MagneticButton } from './MagneticButton'
 
 type PriceModuleProps = {

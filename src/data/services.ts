@@ -17,7 +17,7 @@ export const services: Service[] = [
     id: 'advanced-web-experiences',
     title: 'Advanced Web Experiences',
     description:
-      'For brands and businesses that need more than a normal website, I build immersive digital experiences using advanced frontend techniques, Three.js, animation, and visual storytelling.',
+      'For brands and businesses that need more than a normal website, I build immersive digital experiences using advanced frontend techniques, Babylon.js, animation, and visual storytelling.',
     outcomes: [
       'Stronger first impression',
       'Premium brand presentation',
@@ -28,7 +28,7 @@ export const services: Service[] = [
     deliverables: [
       'Custom React/Vite frontend',
       'Interactive sections',
-      'Three.js scenes',
+      'Babylon.js scenes',
       'Scroll choreography',
       'Cloudinary image integration',
       'Responsive optimization',

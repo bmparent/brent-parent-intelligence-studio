@@ -1,6 +1,6 @@
 import { ArrowUpRight, Workflow } from 'lucide-react'
 import type { Service } from '../../data/services'
-import { clearSceneFocus, emitSceneFocus } from '../../three/utils/pointerState'
+import { clearSceneFocus, emitSceneFocus } from '../../babylon/utils/pointerState'
 
 type ServiceNodeProps = {
   service: Service

@@ -2,7 +2,7 @@ import { BrainCircuit, GitBranch, ShieldCheck, Waves } from 'lucide-react'
 import { SectionShell } from '../components/layout/SectionShell'
 import { CapabilityTag } from '../components/ui/CapabilityTag'
 import { IncidentCard } from '../components/ui/IncidentCard'
-import { clearSceneFocus, emitSceneFocus } from '../three/utils/pointerState'
+import { clearSceneFocus, emitSceneFocus } from '../babylon/utils/pointerState'
 import { frameworkStack } from '../data/frameworkStack'
 
 const subsystems = [
@@ -151,7 +151,7 @@ export function EidosDeepDive() {
           <p className="micro-label">Build Stack / Creative Engine</p>
           <h3>Framework-aware, without dependency bloat.</h3>
           <p>
-            The current build keeps Three.js/R3F as the stable scene layer while documenting a clean path for Babylon, WebGPU, physics, Spline, Rive, and Astro when real assets or interactions justify them.
+            The current build now runs Babylon.js as the primary scene layer while documenting a clean path for Babylon, WebGPU, physics, Spline, Rive, and Astro when real assets or interactions justify them.
           </p>
         </div>
         <div className="creative-engine__layers">
@@ -175,7 +175,7 @@ export function EidosDeepDive() {
           <p className="micro-label">Interactive incident sequence</p>
           <h3>Signal destabilizes. Memory matches. The card assembles.</h3>
           <p>
-            The Three.js layer mirrors this sequence in the background: normal stream,
+            The Babylon.js layer mirrors this sequence in the background: normal stream,
             anomaly pulse, clustered particles, memory rings, and a stabilized incident
             output.
           </p>

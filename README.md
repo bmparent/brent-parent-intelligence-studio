@@ -2,15 +2,15 @@
 
 Premium business-services showcase and immersive operational-intelligence portfolio for Brent Parent.
 
-This site is built as a deployable static-first website for Cloudflare Pages. It presents Brent's professional services while demonstrating advanced frontend systems, Three.js/WebGL interaction, InkSoft storefront thinking, Printavo workflow automation, Python tools, Google Cloud architecture concepts, AI workflow assistants, and the Eidos Brain / Sentinel intelligence platform vision.
+This site is built as a deployable static-first website for Cloudflare Pages. It presents Brent's professional services while demonstrating advanced frontend systems, Babylon.js/WebGPU-ready interaction, InkSoft storefront thinking, Printavo workflow automation, Python tools, Google Cloud architecture concepts, AI workflow assistants, and the Eidos Brain / Sentinel intelligence platform vision.
 
 ## Stack
 
 - Vite + React + TypeScript
-- Three.js + React Three Fiber + Drei
+- Babylon.js primary scene layer with WebGPU where available and WebGL fallback
 - GSAP + ScrollTrigger
 - Framer Motion
-- Custom GLSL shader modules
+- Babylon mesh, glow, thin-instance particle, and signal-ribbon systems
 - Clean global CSS with design tokens
 - Cloudinary-hosted visual assets
 
@@ -90,7 +90,7 @@ The site includes:
 
 ## Accessibility and Performance
 
-All services, pricing, links, contact information, and Eidos explanations are present in semantic HTML. The Three.js layer is progressive enhancement only.
+All services, pricing, links, contact information, and Eidos explanations are present in semantic HTML. The Babylon.js layer is progressive enhancement only.
 
 Performance safeguards include:
 

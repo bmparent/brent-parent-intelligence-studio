@@ -21,7 +21,7 @@ export const capabilities: Capability[] = [
     title: 'Advanced Web Experiences',
     signal: 'Immersive presentation',
     summary:
-      'Cinematic frontend systems built with Three.js, motion, scroll choreography, shaders, and responsive interaction.',
+      'Cinematic frontend systems built with Babylon.js, motion, scroll choreography, shaders, and responsive interaction.',
     outcomes: [
       'Premium first impression',
       'Interactive storytelling',
@@ -30,12 +30,12 @@ export const capabilities: Capability[] = [
     ],
     deliverables: [
       'React/Vite frontends',
-      'Three.js scenes',
+      'Babylon.js scenes',
       'Shader effects',
       'Scroll-driven interfaces',
       'Cloudinary media integration',
     ],
-    tags: ['Three.js', 'WebGL', 'GSAP', 'Cloudinary', 'React'],
+    tags: ['Babylon.js', 'WebGL', 'GSAP', 'Cloudinary', 'React'],
     preview: {
       input: 'Flat or generic web presence',
       system: 'Interactive frontend / WebGL experience',

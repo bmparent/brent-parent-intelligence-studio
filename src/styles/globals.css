@@ -64,20 +64,20 @@ button {
   color: var(--text-main);
 }
 
-.webgl-shell,
-.webgl-fallback {
+.babylon-shell,
+.babylon-fallback {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
 }
 
-.webgl-shell canvas {
+.babylon-shell canvas {
   opacity: 0.58;
   filter: saturate(0.86) brightness(0.78);
 }
 
-.webgl-fallback {
+.babylon-fallback {
   background:
     linear-gradient(140deg, rgba(101, 243, 255, 0.12), transparent 32%),
     linear-gradient(30deg, rgba(255, 204, 102, 0.1), transparent 44%),
@@ -85,7 +85,7 @@ button {
     var(--bg-deep);
 }
 
-.webgl-label {
+.babylon-engine-label {
   padding: 0.2rem 0.38rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 4px;
@@ -93,28 +93,6 @@ button {
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  letter-spacing: 0;
-  white-space: nowrap;
-}
-
-.incident-webgl-card {
-  width: 190px;
-  padding: 0.55rem;
-  border: 1px solid rgba(255, 204, 102, 0.4);
-  border-radius: 6px;
-  background: rgba(10, 12, 18, 0.72);
-  color: var(--text-main);
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
-}
-
-.incident-webgl-card strong,
-.incident-webgl-card span {
-  display: block;
-}
-
-.incident-webgl-card span {
-  color: var(--text-muted);
 }
 
 .site-header {
@@ -1387,8 +1365,7 @@ li::marker {
     justify-content: flex-start;
   }
 
-  .webgl-label,
-  .incident-webgl-card {
+  .babylon-engine-label {
     display: none;
   }
 }
@@ -1508,7 +1485,7 @@ li::marker {
 }
 
 .site-header { border-color: var(--glass-edge); background: rgba(8, 12, 20, 0.72); }
-.webgl-shell::after {
+.babylon-shell::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -1672,4 +1649,9 @@ li::marker {
 @media (max-width: 680px) {
   .project-signal-dock { display: none; }
   .site-footer { padding-bottom: 3rem; }
+}
+.babylon-shell canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }

@@ -4,7 +4,7 @@ import { Lock, Network, ScanSearch } from 'lucide-react'
 import { capabilities } from '../data/capabilities'
 import { SectionShell } from '../components/layout/SectionShell'
 import { CapabilityTag } from '../components/ui/CapabilityTag'
-import { clearSceneFocus, emitSceneFocus } from '../three/utils/pointerState'
+import { clearSceneFocus, emitSceneFocus } from '../babylon/utils/pointerState'
 
 export function CapabilitiesCommandCenter() {
   const [activeId, setActiveId] = useState(capabilities[0].id)

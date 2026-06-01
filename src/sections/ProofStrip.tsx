@@ -9,7 +9,7 @@ const proofTokens = [
   'WordPress',
   'InkSoft',
   'Printavo',
-  'Three.js',
+  'Babylon.js',
   'GSAP',
   'Cloudinary',
   'AI Systems',

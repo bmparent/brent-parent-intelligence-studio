@@ -25,9 +25,9 @@ export const frameworkStack: FrameworkStackLayer[] = [
   {
     layer: '3D Engine',
     items: [
-      { name: 'Three.js / R3F', role: 'Current atmospheric scene layer', status: 'active' },
-      { name: 'Babylon.js', role: 'Optional advanced engine path', status: 'ready' },
-      { name: 'Babylon WebGPU', role: 'Future GPU upgrade where supported', status: 'future' },
+      { name: 'Babylon.js', role: 'Primary atmospheric scene layer', status: 'active' },
+      { name: 'Babylon WebGPU', role: 'Preferred renderer where browser support is available', status: 'ready' },
+      { name: 'Babylon WebGL', role: 'Reliable fallback renderer for broad device support', status: 'active' },
     ],
   },
   {

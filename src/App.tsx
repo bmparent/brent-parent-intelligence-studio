@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
-import { WebGLCanvas } from './three/WebGLCanvas'
+import { BabylonCanvas } from './babylon/BabylonCanvas'
 import { Hero } from './sections/Hero'
 import { ProofStrip } from './sections/ProofStrip'
 import { PathSelector } from './sections/PathSelector'
@@ -17,7 +17,7 @@ import { Pricing } from './sections/Pricing'
 import { Process } from './sections/Process'
 import { FinalCTA } from './sections/FinalCTA'
 import { ProjectSignalDock } from './components/ui/ProjectSignalDock'
-import { emitSceneSection } from './three/utils/pointerState'
+import { emitSceneSection } from './babylon/utils/pointerState'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -69,7 +69,7 @@ export default function App() {
 
   return (
     <>
-      <WebGLCanvas />
+      <BabylonCanvas />
       <Header />
       <main>
         <Hero />
