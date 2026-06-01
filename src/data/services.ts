@@ -5,6 +5,11 @@ export type Service = {
   outcomes: string[]
   deliverables: string[]
   signal: string
+  flow: {
+    input: string
+    system: string
+    outcome: string
+  }
 }
 
 export const services: Service[] = [
@@ -12,7 +17,7 @@ export const services: Service[] = [
     id: 'advanced-web-experiences',
     title: 'Advanced Web Experiences',
     description:
-      'For brands and businesses that need more than a normal website, I build immersive digital experiences using advanced frontend techniques, Three.js, animation, and visual storytelling.',
+      'For brands and businesses that need more than a normal website, I build immersive digital experiences using advanced frontend techniques, Babylon.js, animation, and visual storytelling.',
     outcomes: [
       'Stronger first impression',
       'Premium brand presentation',
@@ -23,12 +28,17 @@ export const services: Service[] = [
     deliverables: [
       'Custom React/Vite frontend',
       'Interactive sections',
-      'Three.js scenes',
+      'Babylon.js scenes',
       'Scroll choreography',
       'Cloudinary image integration',
       'Responsive optimization',
     ],
     signal: 'WebGL signal layer',
+    flow: {
+      input: 'Flat web presence',
+      system: 'Interactive React/WebGL experience',
+      outcome: 'Stronger first impression',
+    },
   },
   {
     id: 'wordpress-business-websites',
@@ -52,6 +62,11 @@ export const services: Service[] = [
       'Performance cleanup',
     ],
     signal: 'Conversion pathway',
+    flow: {
+      input: 'Unclear business presence',
+      system: 'Clean service pages and conversion structure',
+      outcome: 'More trust and easier inquiries',
+    },
   },
   {
     id: 'inksoft-storefront-experiences',
@@ -75,6 +90,11 @@ export const services: Service[] = [
       'Cloudinary asset integration',
     ],
     signal: 'Storefront module',
+    flow: {
+      input: 'Generic storefront experience',
+      system: 'Branded hero, category flow, and custom embeds',
+      outcome: 'Cleaner shopping path and stronger launch impression',
+    },
   },
   {
     id: 'printavo-inksoft-workflow-automation',
@@ -97,6 +117,11 @@ export const services: Service[] = [
       'Staff-facing documentation',
     ],
     signal: 'Production handoff',
+    flow: {
+      input: 'Missing notes and messy order handoffs',
+      system: 'Sheets/API control layer',
+      outcome: 'Cleaner production visibility',
+    },
   },
   {
     id: 'python-automation-internal-tools',
@@ -120,6 +145,11 @@ export const services: Service[] = [
       'Internal utilities',
     ],
     signal: 'Automation kernel',
+    flow: {
+      input: 'Repetitive manual data work',
+      system: 'Python scripts and utilities',
+      outcome: 'Faster reporting and fewer cleanup steps',
+    },
   },
   {
     id: 'google-cloud-prototypes',
@@ -142,6 +172,11 @@ export const services: Service[] = [
       'AI orchestration concepts',
     ],
     signal: 'Cloud event mesh',
+    flow: {
+      input: 'Local scripts that need scale',
+      system: 'Cloud Run, Pub/Sub, storage, and logging',
+      outcome: 'Event-driven prototype architecture',
+    },
   },
   {
     id: 'ai-workflow-assistants',
@@ -164,6 +199,11 @@ export const services: Service[] = [
       'Workflow Q&A tool',
     ],
     signal: 'Guided answer layer',
+    flow: {
+      input: 'Scattered SOPs and repeated questions',
+      system: 'Guided assistant interface',
+      outcome: 'Faster answers and onboarding',
+    },
   },
   {
     id: 'eidos-operational-intelligence',
@@ -188,5 +228,10 @@ export const services: Service[] = [
       'Memory/domain-adapter concept',
     ],
     signal: 'Sentinel loop',
+    flow: {
+      input: 'Signals spread across workflows',
+      system: 'Monitoring, anomaly detection, and incident cards',
+      outcome: 'Human-reviewable recommendations',
+    },
   },
 ]

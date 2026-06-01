@@ -2,7 +2,7 @@ import { ExternalLink, Image as ImageIcon } from 'lucide-react'
 import { SectionShell } from '../components/layout/SectionShell'
 import { CapabilityTag } from '../components/ui/CapabilityTag'
 import { selectedWork } from '../data/links'
-import { clearSceneFocus, emitSceneFocus } from '../three/utils/pointerState'
+import { clearSceneFocus, emitSceneFocus } from '../babylon/utils/pointerState'
 
 export function SelectedWork() {
   return (

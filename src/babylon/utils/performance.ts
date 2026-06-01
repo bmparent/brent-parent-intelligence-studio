@@ -1,7 +1,7 @@
-export function supportsWebGL() {
+export function supportsBabylonScene() {
   try {
     const canvas = document.createElement('canvas')
-    return Boolean(canvas.getContext('webgl2') ?? canvas.getContext('webgl'))
+    return Boolean(navigator.gpu ?? canvas.getContext('webgl2') ?? canvas.getContext('webgl'))
   } catch {
     return false
   }
@@ -21,8 +21,10 @@ export function getDeviceProfile() {
   return {
     mobile,
     lowPower,
-    particleCount: mobile ? 900 : lowPower ? 1500 : 2600,
-    dpr: lowPower ? [1, 1.35] : [1, 1.8],
-    postprocessing: !lowPower,
+    particleCount: mobile ? 420 : lowPower ? 720 : 1100,
+    dpr: lowPower ? 1.15 : 1.6,
+    antialias: !lowPower,
   }
 }
+
+export type DeviceProfile = ReturnType<typeof getDeviceProfile>

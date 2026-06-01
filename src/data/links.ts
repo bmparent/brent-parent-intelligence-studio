@@ -34,7 +34,7 @@ export const selectedWork: WorkLink[] = [
     href: 'https://stores.inksoft.com/wdw_animal_kingdom',
     image: cloudinaryAssets.animalKingdomBanner,
     note: 'Warm environmental storefront concept with atmospheric category motion and full-width custom sections.',
-    tags: ['InkSoft', 'Three.js', 'Storefront UX', 'Cloudinary'],
+    tags: ['InkSoft', 'Babylon.js', 'Storefront UX', 'Cloudinary'],
   },
   {
     title: 'EPCOT Shows',
@@ -42,7 +42,7 @@ export const selectedWork: WorkLink[] = [
     href: 'https://stores.inksoft.com/epcot_shows',
     image: cloudinaryAssets.epcotBanner,
     note: 'Layered hero, separated model assets, custom embeds, and motion planning for a stage-like shopping experience.',
-    tags: ['InkSoft', 'Three.js', 'Cloudinary', 'Interactive UX'],
+    tags: ['InkSoft', 'Babylon.js', 'Cloudinary', 'Interactive UX'],
   },
   {
     title: 'Liberty Christian Preparatory School',

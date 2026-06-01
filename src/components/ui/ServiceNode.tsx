@@ -1,6 +1,6 @@
 import { ArrowUpRight, Workflow } from 'lucide-react'
 import type { Service } from '../../data/services'
-import { clearSceneFocus, emitSceneFocus } from '../../three/utils/pointerState'
+import { clearSceneFocus, emitSceneFocus } from '../../babylon/utils/pointerState'
 
 type ServiceNodeProps = {
   service: Service
@@ -10,7 +10,7 @@ type ServiceNodeProps = {
 export function ServiceNode({ service, index }: ServiceNodeProps) {
   return (
     <article
-      className="service-node"
+      className="service-node glass-surface glass-surface--interactive"
       onMouseEnter={() => emitSceneFocus(service.id, 0.85)}
       onMouseLeave={clearSceneFocus}
       data-reveal
@@ -25,6 +25,18 @@ export function ServiceNode({ service, index }: ServiceNodeProps) {
         </p>
         <h3>{service.title}</h3>
         <p>{service.description}</p>
+        <div className="service-flow" aria-label="Workflow pipeline preview">
+          {[
+            ['Messy Input', service.flow.input],
+            ['Built System', service.flow.system],
+            ['Business Outcome', service.flow.outcome],
+          ].map(([label, value]) => (
+            <div className="service-flow__step" key={label}>
+              <span>{label}</span>
+              <strong>{value}</strong>
+            </div>
+          ))}
+        </div>
         <div className="service-node__columns">
           <div>
             <h4>Outcomes</h4>
