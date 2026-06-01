@@ -6,12 +6,12 @@ export function Pricing() {
   return (
     <SectionShell
       id="pricing"
-      eyebrow="Service Packages"
-      title="Service Packages & Starting Points"
-      intro="Every project is scoped around business goals, complexity, integrations, and timeline. These are starting points so clients can quickly understand the level of investment."
+      eyebrow="Engagement Modules"
+      title="Choose the clearest engagement path."
+      intro="Pricing starts with the outcome: launch presence, workflow clarity, or a prototype intelligence layer. Each module is scoped around practical business value before technical complexity."
       className="pricing-section"
     >
-      <div className="pricing-grid">
+      <div className="pricing-grid pricing-grid--modules">
         {pricing.map((item, index) => (
           <PriceModule key={item.id} item={item} index={index} />
         ))}

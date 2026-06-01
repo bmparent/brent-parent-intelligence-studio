@@ -6,6 +6,11 @@ export type Capability = {
   outcomes: string[]
   deliverables: string[]
   tags: string[]
+  preview: {
+    input: string
+    system: string
+    output: string
+  }
   relatedCaseStudies: string[]
   accent: 'blue' | 'cyan' | 'violet' | 'amber' | 'green' | 'danger'
 }
@@ -31,6 +36,11 @@ export const capabilities: Capability[] = [
       'Cloudinary media integration',
     ],
     tags: ['Three.js', 'WebGL', 'GSAP', 'Cloudinary', 'React'],
+    preview: {
+      input: 'Flat or generic web presence',
+      system: 'Interactive frontend / WebGL experience',
+      output: 'Stronger first impression and better engagement',
+    },
     relatedCaseStudies: ['EPCOT Storefront', 'Animal Kingdom Storefront', 'Eidos Brain'],
     accent: 'cyan',
   },
@@ -54,6 +64,11 @@ export const capabilities: Capability[] = [
       'Performance cleanup',
     ],
     tags: ['WordPress', 'SEO Structure', 'Responsive UX', 'Business Sites'],
+    preview: {
+      input: 'Unclear business presence',
+      system: 'Clean service pages and conversion structure',
+      output: 'More trust and easier inquiries',
+    },
     relatedCaseStudies: ['Business Site Systems', 'YMCA Category Experience'],
     accent: 'blue',
   },
@@ -78,6 +93,11 @@ export const capabilities: Capability[] = [
       'Cloudinary assets',
     ],
     tags: ['InkSoft', 'Ecommerce UX', 'Custom Embeds', 'Cloudinary'],
+    preview: {
+      input: 'Generic storefront experience',
+      system: 'Branded hero, category flow, and custom embeds',
+      output: 'Cleaner shopping path and stronger launch impression',
+    },
     relatedCaseStudies: ['EPCOT Storefront', 'Animal Kingdom Storefront', 'YMCA Staff Store'],
     accent: 'green',
   },
@@ -101,6 +121,11 @@ export const capabilities: Capability[] = [
       'Production documentation',
     ],
     tags: ['Printavo', 'InkSoft', 'Apps Script', 'Workflow Maps'],
+    preview: {
+      input: 'Manual steps and scattered order details',
+      system: 'Sheets, scripts, APIs, and structured handoffs',
+      output: 'Cleaner operations and fewer repeated mistakes',
+    },
     relatedCaseStudies: ['Print Shop Sentinel', 'Training Assistant'],
     accent: 'amber',
   },
@@ -125,6 +150,11 @@ export const capabilities: Capability[] = [
       'Anomaly experiments',
     ],
     tags: ['Python', 'APIs', 'Reporting', 'Automation'],
+    preview: {
+      input: 'Repetitive manual data work',
+      system: 'Python scripts, connectors, and reporting utilities',
+      output: 'Faster reporting and fewer cleanup steps',
+    },
     relatedCaseStudies: ['Eidos Brain', 'Print Shop Sentinel'],
     accent: 'violet',
   },
@@ -148,6 +178,11 @@ export const capabilities: Capability[] = [
       'Deployment documentation',
     ],
     tags: ['Google Cloud', 'Cloud Run', 'Pub/Sub', 'Observability'],
+    preview: {
+      input: 'Local scripts that need scale',
+      system: 'Cloud Run, Pub/Sub, storage, and logging',
+      output: 'Event-driven prototype architecture',
+    },
     relatedCaseStudies: ['Google Cloud Architecture', 'Eidos Brain'],
     accent: 'blue',
   },
@@ -171,6 +206,11 @@ export const capabilities: Capability[] = [
       'Workflow Q&A tool',
     ],
     tags: ['AI Assistant', 'LLMs', 'SOPs', 'Knowledge Tools'],
+    preview: {
+      input: 'Scattered SOPs and repeated team questions',
+      system: 'Guided assistant with structured knowledge',
+      output: 'Faster answers and smoother onboarding',
+    },
     relatedCaseStudies: ['Training Assistant', 'Eidos Brain'],
     accent: 'green',
   },
@@ -195,6 +235,11 @@ export const capabilities: Capability[] = [
       'Memory and adapter concepts',
     ],
     tags: ['Eidos Brain', 'Sentinel', 'Incident Cards', 'Forecast Mode'],
+    preview: {
+      input: 'Business signals spread across tools',
+      system: 'Monitoring, anomaly logic, and incident cards',
+      output: 'Human-reviewable next actions',
+    },
     relatedCaseStudies: ['Eidos Brain', 'Print Shop Sentinel', 'Google Cloud Architecture'],
     accent: 'danger',
   },

@@ -8,6 +8,12 @@ export type CaseStudy = {
   image?: string
   links?: { label: string; href: string }[]
   note?: string
+  mission?: {
+    problemSignal: string
+    systemBuilt: string
+    visibleOutcome: string
+    status?: string
+  }
   incident?: {
     title: string
     confidence: string
@@ -36,6 +42,12 @@ export const caseStudies: CaseStudy[] = [
       'AI-assisted recommendations',
     ],
     visual: 'Living Eidos Core with signal streams, memory rings, anomaly pulses, and incident-card outputs.',
+    mission: {
+      problemSignal: 'Operational data is usually scattered, noisy, and hard to act on.',
+      systemBuilt: 'Experimental intelligence layer for anomaly detection, signal compression, incident cards, and human review.',
+      visibleOutcome: 'A prototype direction for turning business activity into clearer evidence and next actions.',
+      status: 'Experimental intelligence platform',
+    },
     note:
       'Eidos Brain explores what happens when business operations, data streams, and AI reasoning are treated as a living signal environment. The system watches, compresses, remembers, forecasts, and explains.',
   },
@@ -57,6 +69,12 @@ export const caseStudies: CaseStudy[] = [
       'Operational dashboards',
     ],
     visual: 'Raw webstore orders flowing into structured production-ready cards.',
+    mission: {
+      problemSignal: 'Storefront orders, production notes, and workflow handoffs can lose critical context.',
+      systemBuilt: 'A print-shop intelligence concept that watches order signals and generates reviewable incident cards.',
+      visibleOutcome: 'Earlier visibility into production risks before they become expensive mistakes.',
+      status: 'Concept / prototype',
+    },
     incident: {
       title: 'Potential Production Risk Detected',
       confidence: '87%',
@@ -81,6 +99,12 @@ export const caseStudies: CaseStudy[] = [
       'Ecommerce storytelling',
     ],
     visual: 'Spatial gallery of storefront portals with preview panels and related project notes.',
+    mission: {
+      problemSignal: 'Many online merch stores feel generic and fail to communicate the brand or event.',
+      systemBuilt: 'Custom storefront hero sections, category widgets, Cloudinary assets, and interactive frontend embeds.',
+      visibleOutcome: 'More polished shopping experiences for school, staff, event, and organization stores.',
+      status: 'Portfolio system',
+    },
     image:
       'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1777404633/epcotbanner_mz3b72.png',
     links: [
@@ -109,6 +133,12 @@ export const caseStudies: CaseStudy[] = [
       'Mobile-friendly storefront design',
     ],
     visual: 'Layered stage atmosphere with asset-separated performers and responsive category motion.',
+    mission: {
+      problemSignal: 'A standard storefront can understate the energy of event-driven merch launches.',
+      systemBuilt: 'Layered Cloudinary assets, animated stage direction, category widgets, and Three.js motion planning.',
+      visibleOutcome: 'A more memorable storefront concept with clearer categories and stronger launch impression.',
+      status: 'Visual prototype',
+    },
     image:
       'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1777571651/ChatGPT_Image_Apr_30_2026_01_17_47_PM_keroas.png',
     links: [
@@ -144,6 +174,12 @@ export const caseStudies: CaseStudy[] = [
       'Full-width responsive custom sections',
     ],
     visual: 'Warm environmental storefront concept with living-scene category navigation.',
+    mission: {
+      problemSignal: 'Generic category pages can flatten themed merchandise into a normal shop grid.',
+      systemBuilt: 'Warm environmental visuals, mist, motion concepts, and responsive custom sections.',
+      visibleOutcome: 'A storefront direction that feels branded, navigable, and event-aware.',
+      status: 'Visual prototype',
+    },
     image:
       'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1777483710/animal_kingdom_banner_mttqh4.png',
     links: [{ label: 'Animal Kingdom Shows', href: 'https://stores.inksoft.com/wdw_animal_kingdom' }],
@@ -163,6 +199,12 @@ export const caseStudies: CaseStudy[] = [
       'Mobile storefront thinking',
     ],
     visual: 'Category pathways for instructor tees, lifeguard, staff jackets, polos, learning center, and camper shirts.',
+    mission: {
+      problemSignal: 'Staff apparel categories can become hard to scan when the store lacks structure.',
+      systemBuilt: 'Brand-aligned category architecture, visual direction, and responsive navigation concepts.',
+      visibleOutcome: 'Cleaner category pathways for staff, instructors, lifeguards, and program teams.',
+      status: 'Storefront design',
+    },
     image:
       'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1776783875/ChatGPT_Image_Apr_21_2026_11_04_19_AM_5_gqpeq2.png',
     links: [
@@ -187,6 +229,12 @@ export const caseStudies: CaseStudy[] = [
       'Knowledge base structuring',
     ],
     visual: 'Operational Q&A surface with preset workflows and live job-priority prompts.',
+    mission: {
+      problemSignal: 'SOPs and production knowledge are often buried in documents or repeated verbally.',
+      systemBuilt: 'An assistant concept with preset prompts, operational Q&A, and structured knowledge.',
+      visibleOutcome: 'Faster answers for staff training, job priorities, and recurring workflow questions.',
+      status: 'Assistant concept',
+    },
     note:
       'Instead of burying SOPs and tribal knowledge in documents, this concept turns operational training into an interactive assistant that helps staff learn, search, and act.',
   },
@@ -208,5 +256,11 @@ export const caseStudies: CaseStudy[] = [
       'Risk/quorum/budget gating concepts',
     ],
     visual: 'Cloud system map with event topics, runners, council service, artifact buckets, audit logs, and feedback loops.',
+    mission: {
+      problemSignal: 'Local prototypes need a path toward scalable, auditable, event-driven systems.',
+      systemBuilt: 'Cloud Run, Pub/Sub, storage, logging, and AI orchestration architecture concepts.',
+      visibleOutcome: 'A clearer deployment path for Eidos-style intelligence systems.',
+      status: 'Architecture concept',
+    },
   },
 ]

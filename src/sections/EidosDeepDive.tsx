@@ -3,6 +3,7 @@ import { SectionShell } from '../components/layout/SectionShell'
 import { CapabilityTag } from '../components/ui/CapabilityTag'
 import { IncidentCard } from '../components/ui/IncidentCard'
 import { clearSceneFocus, emitSceneFocus } from '../three/utils/pointerState'
+import { frameworkStack } from '../data/frameworkStack'
 
 const subsystems = [
   {
@@ -142,6 +143,31 @@ export function EidosDeepDive() {
             </div>
           </div>
         ))}
+      </div>
+
+
+      <div className="creative-engine glass-surface" data-reveal>
+        <div>
+          <p className="micro-label">Build Stack / Creative Engine</p>
+          <h3>Framework-aware, without dependency bloat.</h3>
+          <p>
+            The current build keeps Three.js/R3F as the stable scene layer while documenting a clean path for Babylon, WebGPU, physics, Spline, Rive, and Astro when real assets or interactions justify them.
+          </p>
+        </div>
+        <div className="creative-engine__layers">
+          {frameworkStack.map((layer) => (
+            <div className="creative-engine__layer" key={layer.layer}>
+              <span>{layer.layer}</span>
+              <div>
+                {layer.items.map((item) => (
+                  <span className={item.status === 'active' ? 'engine-badge' : 'physics-badge'} title={item.role} key={item.name}>
+                    {item.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="incident-demo" data-reveal>

@@ -21,15 +21,29 @@ export function SceneController({ particleCount, scroll, focus, section }: Scene
 
   useFrame(({ camera, gl, clock }) => {
     gl.setClearColor(clearColor, 0)
+    const sectionMood = {
+      capabilities: 0.18,
+      services: 0.28,
+      'case-studies': -0.18,
+      eidos: 0.42,
+      pricing: -0.1,
+      cta: 0.08,
+    }[section] ?? 0
     const cameraRail = new Vector3(
-      Math.sin(scroll * Math.PI * 1.4) * 1.3,
-      0.25 + Math.sin(scroll * Math.PI * 2.2) * 0.46,
-      7.2 - scroll * 2.15 + Math.sin(clock.elapsedTime * 0.12) * 0.2,
+      Math.sin(scroll * Math.PI * 1.4 + sectionMood) * (1.2 + Math.abs(sectionMood)),
+      0.25 + Math.sin(scroll * Math.PI * 2.2 + sectionMood) * 0.46,
+      7.2 - scroll * 2.15 + Math.sin(clock.elapsedTime * (0.1 + Math.abs(sectionMood) * 0.04)) * 0.2,
     )
 
     if (section === 'eidos') {
       cameraRail.set(0.55, 0.45, 4.6)
       target.set(0.4, 0, -1.1)
+    } else if (section === 'services') {
+      cameraRail.set(-0.65, 0.24, 5.8)
+      target.set(0.75, -0.15, -1.1)
+    } else if (section === 'case-studies') {
+      cameraRail.set(1.15, 0.38, 5.4)
+      target.set(-0.2, 0.05, -1)
     } else if (section === 'pricing') {
       cameraRail.set(-1.2, 0.15, 5.3)
       target.set(0.2, -0.2, -0.9)

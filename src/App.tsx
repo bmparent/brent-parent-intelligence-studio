@@ -5,6 +5,8 @@ import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { WebGLCanvas } from './three/WebGLCanvas'
 import { Hero } from './sections/Hero'
+import { ProofStrip } from './sections/ProofStrip'
+import { PathSelector } from './sections/PathSelector'
 import { CapabilitiesCommandCenter } from './sections/CapabilitiesCommandCenter'
 import { BuilderProfile } from './sections/BuilderProfile'
 import { Services } from './sections/Services'
@@ -14,6 +16,7 @@ import { SelectedWork } from './sections/SelectedWork'
 import { Pricing } from './sections/Pricing'
 import { Process } from './sections/Process'
 import { FinalCTA } from './sections/FinalCTA'
+import { ProjectSignalDock } from './components/ui/ProjectSignalDock'
 import { emitSceneSection } from './three/utils/pointerState'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -70,6 +73,8 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <ProofStrip />
+        <PathSelector />
         <CapabilitiesCommandCenter />
         <BuilderProfile />
         <Services />
@@ -80,6 +85,7 @@ export default function App() {
         <Process />
         <FinalCTA />
       </main>
+      <ProjectSignalDock />
       <Footer />
     </>
   )

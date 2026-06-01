@@ -12,13 +12,15 @@ type CaseStudyPortalProps = {
 export function CaseStudyPortal({ study, featured = false }: CaseStudyPortalProps) {
   return (
     <article
-      className={featured ? 'case-portal case-portal--featured' : 'case-portal'}
+      className={featured ? 'case-portal case-portal--featured case-portal--research glass-surface' : 'case-portal glass-surface'}
       onMouseEnter={() => emitSceneFocus(study.id, featured ? 1 : 0.8)}
       onMouseLeave={clearSceneFocus}
       data-reveal
     >
       <div className="case-portal__visual">
-        {study.image ? <img src={study.image} alt={`${study.title} visual reference`} loading="lazy" /> : null}
+        {study.image ? (
+          <img src={study.image} alt={`${study.title} visual reference`} loading="lazy" width="960" height="540" />
+        ) : null}
         <div className="case-portal__mesh" aria-hidden="true">
           <span />
           <span />
@@ -28,10 +30,20 @@ export function CaseStudyPortal({ study, featured = false }: CaseStudyPortalProp
       <div className="case-portal__content">
         <p className="micro-label">
           <RadioTower size={14} aria-hidden="true" />
-          {study.type}
+          Mission file · {study.type}
         </p>
-        <h3>{study.title}</h3>
+        <div className="case-portal__title-row">
+          <h3>{study.title}</h3>
+          {study.mission?.status ? <span className="engine-badge">{study.mission.status}</span> : null}
+        </div>
         <p>{study.summary}</p>
+        {study.mission ? (
+          <div className="mission-grid" aria-label="Mission metadata">
+            <div><span>Problem Signal</span><strong>{study.mission.problemSignal}</strong></div>
+            <div><span>System Built</span><strong>{study.mission.systemBuilt}</strong></div>
+            <div><span>Visible Outcome</span><strong>{study.mission.visibleOutcome}</strong></div>
+          </div>
+        ) : null}
         <p className="case-portal__visual-copy">{study.visual}</p>
         {study.note ? <p className="case-portal__note">{study.note}</p> : null}
         {study.incident ? <IncidentCard {...study.incident} /> : null}
