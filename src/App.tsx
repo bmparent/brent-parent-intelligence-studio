@@ -1,92 +1,57 @@
-import { useEffect } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Header } from './components/layout/Header'
-import { Footer } from './components/layout/Footer'
-import { BabylonCanvas } from './babylon/BabylonCanvas'
-import { Hero } from './sections/Hero'
-import { ProofStrip } from './sections/ProofStrip'
-import { PathSelector } from './sections/PathSelector'
-import { CapabilitiesCommandCenter } from './sections/CapabilitiesCommandCenter'
-import { BuilderProfile } from './sections/BuilderProfile'
-import { Services } from './sections/Services'
-import { CaseStudies } from './sections/CaseStudies'
-import { EidosDeepDive } from './sections/EidosDeepDive'
-import { SelectedWork } from './sections/SelectedWork'
-import { Pricing } from './sections/Pricing'
-import { Process } from './sections/Process'
-import { FinalCTA } from './sections/FinalCTA'
-import { ProjectSignalDock } from './components/ui/ProjectSignalDock'
-import { emitSceneSection } from './babylon/utils/pointerState'
+import { useReveal } from './hooks/useReveal';
+import { Header } from './components/layout/Header';
+import { Hero } from './sections/Hero';
+import { Capabilities } from './sections/Capabilities';
+import { CaseStudies } from './sections/CaseStudies';
+import { ProjectGallery } from './sections/ProjectGallery';
+import { ProductionIntelligence } from './sections/ProductionIntelligence';
+import { EidosBrain } from './sections/EidosBrain';
+import { Process } from './sections/Process';
+import { ContactCTA } from './sections/ContactCTA';
+import { IntelligenceStudioAgent } from './components/ui/IntelligenceStudioAgent';
 
-gsap.registerPlugin(ScrollTrigger)
-
-export default function App() {
-  useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const revealTargets = gsap.utils.toArray<HTMLElement>('[data-reveal]')
-
-    if (!reduceMotion) {
-      revealTargets.forEach((target) => {
-        gsap.fromTo(
-          target,
-          { autoAlpha: 0, y: 36 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.85,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: target,
-              start: 'top 86%',
-              once: true,
-            },
-          },
-        )
-      })
-    }
-
-    const sceneSections = Array.from(document.querySelectorAll<HTMLElement>('[data-scene]'))
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-        if (visible?.target instanceof HTMLElement) {
-          emitSceneSection(visible.target.dataset.scene ?? visible.target.id)
-        }
-      },
-      { rootMargin: '-25% 0px -45% 0px', threshold: [0.2, 0.45, 0.7] },
-    )
-
-    sceneSections.forEach((section) => observer.observe(section))
-
-    return () => {
-      observer.disconnect()
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
-  }, [])
+function App() {
+  useReveal();
 
   return (
     <>
-      <BabylonCanvas />
       <Header />
       <main>
         <Hero />
-        <ProofStrip />
-        <PathSelector />
-        <CapabilitiesCommandCenter />
-        <BuilderProfile />
-        <Services />
+        <section className="section-shell intro-grid" aria-label="What the studio builds" data-reveal>
+          <article>
+            <span className="section-kicker">Who I am</span>
+            <h2>Brent Parent, building at the edge of design, automation, and intelligence systems.</h2>
+          </article>
+          <article>
+            <h3>What I build</h3>
+            <p>Custom web experiences, premium storefronts, InkSoft embeds, production dashboards, workflow automations, WebGL interface layers, and proof-stage AI/intelligence prototypes.</p>
+          </article>
+          <article>
+            <h3>Why it matters</h3>
+            <p>Businesses do not need more generic screens. They need digital systems that explain the offer, reduce manual friction, support operations, and create confidence quickly.</p>
+          </article>
+        </section>
+        <IntelligenceStudioAgent />
+        <Capabilities />
         <CaseStudies />
-        <EidosDeepDive />
-        <SelectedWork />
-        <Pricing />
+        <ProjectGallery />
+        <ProductionIntelligence />
+        <EidosBrain />
         <Process />
-        <FinalCTA />
+        <ContactCTA />
       </main>
-      <ProjectSignalDock />
-      <Footer />
+      <footer className="site-footer section-shell">
+        <p>Brent Parent / Intelligence Studio</p>
+        <nav aria-label="Footer navigation">
+          <a href="#top">Top</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#case-studies">Case studies</a>
+          <a href="#contact">Start a project</a>
+        </nav>
+      </footer>
     </>
-  )
+  );
 }
+
+export default App;

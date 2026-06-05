@@ -1,110 +1,77 @@
 # Brent Parent Intelligence Studio
 
-Premium business-services showcase and immersive operational-intelligence portfolio for Brent Parent.
+Premium personal freelance portfolio for Brent Parent / Intelligence Studio.
 
-This site is built as a deployable static-first website for Cloudflare Pages. It presents Brent's professional services while demonstrating advanced frontend systems, Babylon.js/WebGPU-ready interaction, InkSoft storefront thinking, Printavo workflow automation, Python tools, Google Cloud architecture concepts, AI workflow assistants, and the Eidos Brain / Sentinel intelligence platform vision.
+This redesign is built for the existing `bmparent/brent-parent-intelligence-studio` Cloudflare Pages repo. It presents Brent as a creative technologist, UI/UX designer, automation builder, storefront systems developer, and experimental intelligence-systems builder.
+
+## What changed
+
+- Reframed the homepage as a personal freelance intelligence studio, not an InkSoft storefront.
+- Added a premium dark / glass intelligence visual system with restrained gold, cyan, and stone accents.
+- Preserved a subtle Babylon.js canvas as progressive enhancement behind the hero.
+- Added GSAP + ScrollTrigger reveal motion with reduced-motion fallback.
+- Added semantic, prerendered public HTML for better crawlability and agent/search readability.
+- Added real case-study framing for all supplied InkSoft stores.
+- Added Cloudinary-hosted responsive image handling for the supplied profile image and gallery mockups.
+- Added DG Printavo Production Reports as a grounded operational-intelligence case study.
+- Added Eidos Brain as a proof-stage experimental intelligence architecture section.
+- Added a real contact path using `1brent.bm@gmail.com` plus a copy-ready project brief.
 
 ## Stack
 
 - Vite + React + TypeScript
-- Babylon.js primary scene layer with WebGPU where available and WebGL fallback
-- GSAP + ScrollTrigger
-- Framer Motion
-- Babylon mesh, glow, thin-instance particle, and signal-ribbon systems
-- Clean global CSS with design tokens
-- Cloudinary-hosted visual assets
+- Babylon.js as a subtle progressive-enhancement layer
+- GSAP + ScrollTrigger for tasteful section reveals
+- Modern CSS with tokens, semantic layout classes, responsive rules, and reduced-motion support
+- Cloudinary-hosted imagery
+- Static prerender step for first-load HTML
 
-## Local Development
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-The development server will print a local URL, usually `http://localhost:5173/`.
-
-## Production Build
+## Validation
 
 ```bash
+npm run typecheck
 npm run build
-npm run preview
+npm run verify:urls
 ```
 
-The production build output is written to:
+## Cloudflare Pages deployment
 
-```text
-dist
-```
+Use the existing Cloudflare Pages project connected to GitHub.
 
-## Cloudflare Pages Deployment
-
-1. Create or push this repository to GitHub as `bmparent/brent-parent-intelligence-studio`.
-2. Log into Cloudflare using the Google-created Cloudflare account.
-3. Go to Workers & Pages.
-4. Select Create Application.
-5. Select Pages.
-6. Choose Connect to Git.
-7. Authorize GitHub if needed.
-8. Select the `brent-parent-intelligence-studio` repo.
-9. Use these build settings:
+Recommended settings:
 
 ```text
 Framework preset: Vite
 Build command: npm run build
 Build output directory: dist
+Node version: 24 LTS
 Production branch: main
 Root directory: /
 ```
 
-1. Deploy.
-2. Use the generated `*.pages.dev` URL as the public website URL.
+The repo includes `.node-version` so Cloudflare Pages uses Node 24 LTS for the build.
+The production build output is written to `dist/`.
 
-## GitHub Search / ChatGPT Index Trigger
-
-After the first commit is pushed, run this GitHub search once to help GitHub index the repository so ChatGPT/Codex connectors can find it more reliably:
-
-```text
-repo:bmparent/brent-parent-intelligence-studio import
-```
-
-Wait several minutes, then verify the repository appears in GitHub search and in the ChatGPT/Codex GitHub connector. If the repo does not appear automatically, update the ChatGPT / Codex GitHub app permissions for the new repository.
-
-## Cloudinary Assets
-
-The site uses remote Cloudinary URLs for Brent's portrait, storefront concepts, and selected visual references. No secrets, databases, serverless functions, custom domains, or paid services are required.
-
-## Content Surface
+## Content and proof surfaces
 
 The site includes:
 
-- Immersive hero with WebGL signal field
-- Capabilities command center
-- Builder profile with portrait treatment
-- Client-facing services
-- Case-study / project-system archive
-- Eidos Brain deep dive
-- Selected work and visual references
-- Pricing modules and starting points
-- Process timeline
-- Final contact CTA
+- Hero with Brent profile image and clear freelance positioning
+- Services / capabilities
+- Seven live InkSoft storefront case studies
+- Cloudinary visual project gallery
+- DG Printavo Production Reports case study
+- Eidos Brain white-paper case study
+- Client process section
+- Final freelance CTA
 
-## Accessibility and Performance
+## Accessibility and performance notes
 
-All services, pricing, links, contact information, and Eidos explanations are present in semantic HTML. The Babylon.js layer is progressive enhancement only.
-
-Performance safeguards include:
-
-- Adaptive pixel ratio
-- Lower particle counts on mobile/low-power devices
-- Paused rendering when the tab is hidden
-- Reduced-motion fallback
-- WebGL availability fallback
-- Responsive canvas sizing
-- Readable contrast and keyboard-accessible links/buttons
-
-## Contact Placeholder
-
-```text
-Email: bmparent@outlook.com
-Location: Central Florida
-```
+Core content is HTML/CSS and remains usable without WebGL. The Babylon.js layer is dynamically imported, hidden for reduced-motion users, and excluded from module preload. Interactive elements use real anchors/buttons, focus states are visible, images include alt text, and mobile layouts are single-column where needed.
