@@ -50,6 +50,8 @@ export function IntelligenceCanvas() {
 
     const begin = () => {
       if (started || !visible) return;
+      const userActivation = navigator.userActivation;
+      if (userActivation && !userActivation.hasBeenActive && !userActivation.isActive) return;
       started = true;
       startTimer = window.setTimeout(() => setShouldStart(true), 300);
     };
