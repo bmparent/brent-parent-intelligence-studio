@@ -8,6 +8,7 @@ import { ProductionIntelligence } from './sections/ProductionIntelligence';
 import { EidosBrain } from './sections/EidosBrain';
 import { Process } from './sections/Process';
 import { ContactCTA } from './sections/ContactCTA';
+import { IntelligenceStudioAgent } from './components/ui/IntelligenceStudioAgent';
 
 function App() {
   useReveal();
@@ -31,6 +32,7 @@ function App() {
             <p>Businesses do not need more generic screens. They need digital systems that explain the offer, reduce manual friction, support operations, and create confidence quickly.</p>
           </article>
         </section>
+        <IntelligenceStudioAgent />
         <Capabilities />
         <CaseStudies />
         <ProjectGallery />

@@ -20,7 +20,7 @@ export function Hero() {
           I design and build premium digital systems for businesses that need clean customer experiences, sharper operations, and interfaces that make complex work easier to act on.
         </p>
         <div className="hero__actions" aria-label="Primary actions">
-          <a className="btn btn--primary" href="mailto:bmparent@outlook.com?subject=Freelance%20project%20inquiry">
+          <a className="btn btn--primary" href="mailto:1brent.bm@gmail.com?subject=Freelance%20project%20inquiry">
             Start a project
           </a>
           <a className="btn btn--secondary" href="#case-studies">

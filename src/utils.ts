@@ -16,5 +16,5 @@ export function externalLinkProps(label: string) {
 
 export const projectBriefText = `Hi Brent - I am interested in building a custom digital system.\n\nProject type: storefront / dashboard / automation / intelligence interface\nBusiness context:\nPrimary goal:\nCurrent tools or platform:\nTimeline:\nWhat would make this project successful:\n`;
 
-export const contactEmail = 'bmparent@outlook.com';
+export const contactEmail = '1brent.bm@gmail.com';
 export const contactMailto = `mailto:${contactEmail}?subject=Freelance%20project%20inquiry&body=${encodeURIComponent(projectBriefText)}`;

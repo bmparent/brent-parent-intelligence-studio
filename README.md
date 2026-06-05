@@ -15,7 +15,7 @@ This redesign is built for the existing `bmparent/brent-parent-intelligence-stud
 - Added Cloudinary-hosted responsive image handling for the supplied profile image and gallery mockups.
 - Added DG Printavo Production Reports as a grounded operational-intelligence case study.
 - Added Eidos Brain as a proof-stage experimental intelligence architecture section.
-- Added a real contact path using `bmparent@outlook.com` plus a copy-ready project brief.
+- Added a real contact path using `1brent.bm@gmail.com` plus a copy-ready project brief.
 
 ## Stack
 
