@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
 type NodePoint = {
@@ -32,10 +32,54 @@ const seedPositions = (): NodePoint[] => {
 
 export function IntelligenceCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [shouldStart, setShouldStart] = useState(false);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (reducedMotion || typeof window === 'undefined') return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    let visible = (() => {
+      const rect = canvas.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
+    })();
+    let started = false;
+    let fallbackTimer = 0;
+    let startTimer = 0;
+
+    const begin = () => {
+      if (started || !visible) return;
+      started = true;
+      startTimer = window.setTimeout(() => setShouldStart(true), 300);
+    };
+
+    const observer =
+      'IntersectionObserver' in window
+        ? new IntersectionObserver(
+            ([entry]) => {
+              visible = Boolean(entry?.isIntersecting);
+            },
+            { rootMargin: '120px' }
+          )
+        : null;
+
+    observer?.observe(canvas);
+
+    const events: Array<keyof WindowEventMap> = ['pointermove', 'scroll', 'touchstart', 'keydown'];
+    events.forEach((eventName) => window.addEventListener(eventName, begin, { once: true, passive: true }));
+    fallbackTimer = window.setTimeout(begin, 12000);
+
+    return () => {
+      observer?.disconnect();
+      events.forEach((eventName) => window.removeEventListener(eventName, begin));
+      window.clearTimeout(fallbackTimer);
+      window.clearTimeout(startTimer);
+    };
+  }, [reducedMotion]);
+
+  useEffect(() => {
+    if (!shouldStart || reducedMotion || typeof window === 'undefined') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const activeCanvas = canvas;
@@ -205,7 +249,7 @@ export function IntelligenceCanvas() {
       disposed = true;
       cleanup();
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, shouldStart]);
 
   if (reducedMotion) return null;
 
