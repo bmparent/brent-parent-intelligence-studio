@@ -66,9 +66,9 @@ export function IntelligenceCanvas() {
 
     observer?.observe(canvas);
 
-    const events: Array<keyof WindowEventMap> = ['pointermove', 'scroll', 'touchstart', 'keydown'];
+    const events: Array<keyof WindowEventMap> = ['pointerdown', 'touchstart', 'keydown'];
     events.forEach((eventName) => window.addEventListener(eventName, begin, { once: true, passive: true }));
-    fallbackTimer = window.setTimeout(begin, 30000);
+    fallbackTimer = window.setTimeout(begin, 60000);
 
     return () => {
       observer?.disconnect();
