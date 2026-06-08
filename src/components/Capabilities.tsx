@@ -23,8 +23,8 @@ export function Capabilities() {
       <SectionHeader
         id="capabilities-title"
         eyebrow="Services / capabilities"
-        title="A freelance studio for premium interfaces and business systems."
-        summary="The work sits at the intersection of storefront design, workflow automation, production reporting, and experimental intelligence interfaces. Each capability is presented around the business problem it solves, not the tool for its own sake."
+        title="Custom storefronts, dashboards, automation, and intelligence prototypes built around real workflows."
+        summary="Eidos Works sits at the intersection of storefront design, graphic systems, workflow automation, production reporting, and applied intelligence. Each capability is framed around the business problem it solves."
       />
 
       <div className="pillar-grid" data-reveal>

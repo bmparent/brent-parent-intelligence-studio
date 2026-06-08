@@ -21,7 +21,7 @@ const modes: Array<{
     id: 'compass',
     label: 'Project Compass',
     eyebrow: 'Find the right build',
-    description: 'A guided diagnostic that maps a visitor to the most useful service path.',
+    description: 'A guided diagnostic that maps a visitor to the most useful Eidos Works path.',
   },
   {
     id: 'concierge',
@@ -92,7 +92,7 @@ function createFallbackResult(mode: IntelligenceMode, local: ReturnType<typeof b
       'What would a useful first version need to prove?',
       'Which tools, sites, forms, or reports already exist?',
     ],
-    tokenNote: 'Local fallback used. The OpenAI call only runs after submit and sends a compact brief plus top matching proof IDs.',
+    tokenNote: 'Local fallback used. The diagnostic can still build a useful brief when the API is unavailable.',
     source: 'local-fallback',
   }
 }
@@ -189,11 +189,10 @@ export function IntelligenceStudioAgent() {
     <section className="intelligence-agent section" id="intelligence-agent" data-reveal data-scene="agent">
       <div className="agent-shell">
         <div className="agent-heading-block">
-          <p className="section-eyebrow">Interactive Intelligence Layer</p>
+          <p className="section-eyebrow">Interactive diagnostic layer</p>
           <h2 className="section-heading">Start with a diagnostic, not a chatbot.</h2>
           <p className="section-lede">
-            A lightweight ChatGPT-powered studio interface that routes visitors to the right proof,
-            service path, and next action while keeping token use intentionally small.
+            A lightweight Eidos Works interface that routes visitors to the right proof, service path, and next action from compact project signals.
           </p>
         </div>
 
@@ -224,7 +223,7 @@ export function IntelligenceStudioAgent() {
                 <span className="agent-kicker">{activeMode.eyebrow}</span>
                 <h3>{activeMode.label}</h3>
               </div>
-              <span className="agent-token-badge">1 compact API call</span>
+              <span className="agent-token-badge">Guided diagnostic</span>
             </div>
 
             <label className="agent-field agent-field-full" htmlFor="agent-prompt">
@@ -333,7 +332,7 @@ export function IntelligenceStudioAgent() {
               <button className="agent-submit" type="submit" disabled={status === 'loading'}>
                 {status === 'loading' ? 'Reading signals...' : 'Generate intelligence brief'}
               </button>
-              <a className="agent-secondary" href="#case-studies">
+              <a className="agent-secondary" href="#work">
                 Browse proof first
               </a>
             </div>

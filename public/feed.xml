@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Eidos Works Insights</title>
+    <link>https://eidosworks.pages.dev/#insights</link>
+    <description>Weekly field notes on storefront UX, production systems, automation, and applied intelligence.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Jun 2026 12:00:00 -0400</lastBuildDate>
+    <item>
+      <title>What Makes a Custom InkSoft Storefront Feel Easier to Shop</title>
+      <link>https://eidosworks.pages.dev/insights/custom-inksoft-storefront-easier-to-shop</link>
+      <guid>https://eidosworks.pages.dev/insights/custom-inksoft-storefront-easier-to-shop</guid>
+      <pubDate>Mon, 08 Jun 2026 12:00:00 -0400</pubDate>
+      <description>A practical look at storefront hierarchy, category framing, product clarity, and mobile decisions.</description>
+    </item>
+    <item>
+      <title>How Production Dashboards Turn Shop Noise Into Action</title>
+      <link>https://eidosworks.pages.dev/insights/production-dashboards-shop-noise-action</link>
+      <guid>https://eidosworks.pages.dev/insights/production-dashboards-shop-noise-action</guid>
+      <pubDate>Mon, 08 Jun 2026 12:00:00 -0400</pubDate>
+      <description>How production teams can use due dates, departments, filters, exceptions, and daily briefs.</description>
+    </item>
+    <item>
+      <title>Why Apparel Mockups Matter Before Launch Day</title>
+      <link>https://eidosworks.pages.dev/insights/why-apparel-mockups-matter-before-launch-day</link>
+      <guid>https://eidosworks.pages.dev/insights/why-apparel-mockups-matter-before-launch-day</guid>
+      <pubDate>Mon, 08 Jun 2026 12:00:00 -0400</pubDate>
+      <description>Why apparel mockups improve buyer confidence and reduce launch friction.</description>
+    </item>
+    <item>
+      <title>Eidos Brain and Sentinel: A Practical Model for Small-Business Intelligence</title>
+      <link>https://eidosworks.pages.dev/insights/eidos-brain-sentinel-small-business-intelligence</link>
+      <guid>https://eidosworks.pages.dev/insights/eidos-brain-sentinel-small-business-intelligence</guid>
+      <pubDate>Mon, 08 Jun 2026 12:00:00 -0400</pubDate>
+      <description>A grounded model for using signals, exceptions, briefs, and human review.</description>
+    </item>
+  </channel>
+</rss>
+

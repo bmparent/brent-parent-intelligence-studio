@@ -17,7 +17,7 @@ export function ContactCTA() {
   return (
     <section id="contact" className="section-shell final-cta" aria-labelledby="contact-title">
       <div className="final-cta__panel" data-reveal>
-        <p className="eyebrow">Freelance inquiries</p>
+        <p className="eyebrow">Eidos Works inquiries</p>
         <h2 id="contact-title">Need a storefront, dashboard, automation, or intelligence interface that actually feels custom?</h2>
         <p>
           Bring the business problem, the platform constraints, and the outcome you want. I'll help turn it into a clear interface, workflow, or working system that looks premium and functions in the real world.
@@ -26,7 +26,7 @@ export function ContactCTA() {
           <a className="btn btn--primary" href={contactMailto}>
             Contact Brent
           </a>
-          <a className="btn btn--secondary" href="#case-studies">
+          <a className="btn btn--secondary" href="#work">
             View case studies
           </a>
           <button className="btn btn--ghost" type="button" onClick={copyBrief} aria-live="polite">

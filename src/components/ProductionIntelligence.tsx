@@ -20,7 +20,7 @@ export function ProductionIntelligence() {
       <SectionHeader
         id="production-title"
         eyebrow="Production intelligence / reporting case study"
-        title="DG Printavo Production Reports — operational visibility for daily planning."
+        title="DG Printavo Production Reports - operational visibility for daily planning."
         summary="A grounded reporting dashboard case study focused on production schedule visibility, department-level filtering, date-range review, work-order scanning, and business decision support."
       />
 
@@ -36,9 +36,14 @@ export function ProductionIntelligence() {
               <span key={signal}>{signal}</span>
             ))}
           </div>
-          <a className="btn btn--primary" href={productionDashboardUrl} {...externalLinkProps('Open DG Printavo Production Reports dashboard')}>
-            Open live dashboard
-          </a>
+          <div className="production-actions">
+            <a className="btn btn--primary" href={productionDashboardUrl} {...externalLinkProps('Open DG Printavo Production Reports dashboard')}>
+              Open live dashboard
+            </a>
+            <a className="btn btn--secondary" href="#start">
+              Request a Dashboard
+            </a>
+          </div>
         </article>
 
         <article className="dashboard-card" aria-label="Production report interface preview" data-reveal>
@@ -52,7 +57,7 @@ export function ProductionIntelligence() {
             {['Late', 'Due Today', 'Due Tomorrow', 'This Week'].map((metric) => (
               <div key={metric}>
                 <small>{metric}</small>
-                <strong>—</strong>
+                <strong>-</strong>
               </div>
             ))}
           </div>

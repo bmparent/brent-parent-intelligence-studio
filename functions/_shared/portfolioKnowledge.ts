@@ -31,10 +31,10 @@ export interface KnowledgeEntry {
 export const portfolioKnowledge: KnowledgeEntry[] = [
   {
     id: 'portfolio-redesign',
-    title: 'Premium Intelligence Studio Portfolio',
+    title: 'Eidos Works Public Site',
     category: 'website',
     tags: ['website', 'portfolio', 'brand', 'conversion', 'ux', 'seo', 'cloudflare', 'react', 'vite'],
-    summary: 'Premium business-services showcase and operational intelligence platform demonstration for Brent Parent.',
+    summary: 'Premium business-services showcase and operational intelligence platform demonstration for Eidos Works by Brent Parent.',
     proof: 'Best when the visitor needs a more credible website, stronger positioning, and a clearer conversion path.',
     recommendedPath: 'Conversion-focused website and positioning sprint',
   },
@@ -45,7 +45,7 @@ export const portfolioKnowledge: KnowledgeEntry[] = [
     tags: ['inksoft', 'storefront', 'apparel', 'school', 'shop', 'merch', 'ecommerce', 'webstore'],
     summary: 'Branded apparel-store experiences and shopping flows for schools, organizations, events, and merch programs.',
     proof: 'Relevant for teams that need a better storefront experience without replacing the commerce platform.',
-    href: '#case-studies',
+    href: '#work',
     recommendedPath: 'Storefront UX upgrade with branded product pathways',
   },
   {
@@ -60,7 +60,7 @@ export const portfolioKnowledge: KnowledgeEntry[] = [
   },
   {
     id: 'eidos-brain',
-    title: 'Eidos Brain / Sentinel Intelligence Platform',
+    title: 'Eidos Brain / Sentinel Intelligence Prototype',
     category: 'ai',
     tags: ['ai', 'knowledge', 'memory', 'agent', 'eidos', 'sentinel', 'research', 'brief', 'assistant'],
     summary: 'A concept for organizing knowledge, signals, decisions, briefs, and operational context into an intelligence interface.',
@@ -185,7 +185,7 @@ export function buildLocalFallback(payload: IntelligencePayload) {
     ],
     cta: {
       label: 'Send this brief to Brent',
-      href: 'mailto:1brent.bm@gmail.com?subject=Project%20brief%20from%20the%20Intelligence%20Studio',
+      href: 'mailto:1brent.bm@gmail.com?subject=Project%20brief%20from%20Eidos%20Works',
     },
     questionsForBrent: [
       'What current system, page, report, or workflow is causing the most friction?',
@@ -193,7 +193,7 @@ export function buildLocalFallback(payload: IntelligencePayload) {
       'Which tools and data sources are already involved?',
     ],
     confidence: payload.prompt || payload.signals?.length ? 'strong' : 'directional',
-    tokenNote: 'Local fallback used because the OpenAI secret was unavailable or the model call failed.',
+    tokenNote: 'Local fallback used because the configured API provider was unavailable or the model call failed.',
     source: 'local-fallback',
   }
 }

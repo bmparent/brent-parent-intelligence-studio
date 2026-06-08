@@ -1,32 +1,16 @@
-# Brent Parent Intelligence Studio
+﻿# Eidos Works
 
-Premium personal freelance portfolio for Brent Parent / Intelligence Studio.
-
-This redesign is built for the existing `bmparent/brent-parent-intelligence-studio` Cloudflare Pages repo. It presents Brent as a creative technologist, UI/UX designer, automation builder, storefront systems developer, and experimental intelligence-systems builder.
-
-## What changed
-
-- Reframed the homepage as a personal freelance intelligence studio, not an InkSoft storefront.
-- Added a premium dark / glass intelligence visual system with restrained gold, cyan, and stone accents.
-- Preserved a subtle Babylon.js canvas as progressive enhancement behind the hero.
-- Added GSAP + ScrollTrigger reveal motion with reduced-motion fallback.
-- Added semantic, prerendered public HTML for better crawlability and agent/search readability.
-- Added real case-study framing for all supplied InkSoft stores.
-- Added Cloudinary-hosted responsive image handling for the supplied profile image and gallery mockups.
-- Added DG Printavo Production Reports as a grounded operational-intelligence case study.
-- Added Eidos Brain as a proof-stage experimental intelligence architecture section.
-- Added a real contact path using `1brent.bm@gmail.com` plus a copy-ready project brief.
+Eidos Works is the public-facing creative technology studio by Brent Parent. It evolved from the Brent Parent Intelligence Studio portfolio and now presents custom storefronts, graphic design and mockups, production dashboards, workflow automation, and Eidos Brain / Sentinel intelligence prototypes.
 
 ## Stack
 
 - Vite + React + TypeScript
-- Babylon.js as a subtle progressive-enhancement layer
-- GSAP + ScrollTrigger for tasteful section reveals
-- Modern CSS with tokens, semantic layout classes, responsive rules, and reduced-motion support
-- Cloudinary-hosted imagery
-- Static prerender step for first-load HTML
+- Babylon.js as progressive enhancement for subtle canvas and glass-edge effects
+- Static prerender step for crawlable first-load HTML
+- Cloudflare Pages Functions for diagnostics and project inquiry delivery
+- Cloudinary-hosted logos, profile imagery, storefront examples, mockups, and campaign assets
 
-## Local development
+## Local Development
 
 ```bash
 npm install
@@ -37,11 +21,12 @@ npm run dev
 
 ```bash
 npm run typecheck
+npm run lint
 npm run build
 npm run verify:urls
 ```
 
-## Cloudflare Pages deployment
+## Cloudflare Pages Deployment
 
 Use the existing Cloudflare Pages project connected to GitHub.
 
@@ -56,22 +41,37 @@ Production branch: main
 Root directory: /
 ```
 
-The repo includes `.node-version` so Cloudflare Pages uses Node 24 LTS for the build.
-The production build output is written to `dist/`.
+The production URL defaults to `https://eidosworks.pages.dev` in metadata and public crawler files. If the final production domain changes, set `VITE_SITE_URL` in Cloudflare Pages and update `public/sitemap.xml`, `public/robots.txt`, and `public/feed.xml` to match.
 
-## Content and proof surfaces
+## Project Inquiry Delivery
 
-The site includes:
+The Start a Project flow posts to `functions/api/project-inquiries.ts`.
 
-- Hero with Brent profile image and clear freelance positioning
-- Services / capabilities
-- Seven live InkSoft storefront case studies
-- Cloudinary visual project gallery
+If no delivery env vars are configured, the UI does not fake a sent state. It returns a generated brief with mailto and copy-to-clipboard fallback.
+
+Optional Cloudflare Pages environment variables:
+
+```text
+CONTACT_EMAIL
+CONTACT_WEBHOOK_URL
+RESEND_API_KEY
+CONTACT_FROM_EMAIL
+```
+
+The existing diagnostic layer can still use:
+
+```text
+OPENAI_API_KEY
+OPENAI_MODEL
+```
+
+## Public Content
+
+- Sticky navigation with Home, Services, Work, Diagnostics, Eidos Brain, Insights, Pricing, and Start a Project
+- Live InkSoft storefront case studies with visit and on-demand preview actions
+- Deduplicated Cloudinary media explorer with category filters, accordion groups, featured strip, and lightbox
 - DG Printavo Production Reports case study
-- Eidos Brain white-paper case study
-- Client process section
-- Final freelance CTA
-
-## Accessibility and performance notes
-
-Core content is HTML/CSS and remains usable without WebGL. The Babylon.js layer is dynamically imported, hidden for reduced-motion users, and excluded from module preload. Interactive elements use real anchors/buttons, focus states are visible, images include alt text, and mobile layouts are single-column where needed.
+- Eidos Brain / Sentinel scenarios
+- Pricing and engagement models with scoped language
+- Insights area with seed articles, RSS feed, sitemap entries, JSON-LD, and llms.txt
+- Real Start a Project intake flow with review-before-submit behavior

@@ -1,0 +1,22 @@
+# Eidos Works
+
+Eidos Works is a creative technology and intelligence studio by Brent Parent. The site covers custom storefront experiences, graphic design and mockups, production dashboards, workflow automation, Eidos Brain/Sentinel prototypes, and practical articles about UI/UX, operations, and applied AI.
+
+Key pages:
+- /
+- /#capabilities
+- /#work
+- /#work-media
+- /#production
+- /#eidos
+- /#insights
+- /#pricing
+- /#start
+
+Primary topics:
+- Custom InkSoft storefronts and apparel commerce UX
+- Graphic design, campaign banners, and apparel mockups
+- Production dashboards and reporting workflows
+- Workflow automation and operational cleanup
+- Eidos Brain and Sentinel intelligence prototypes
+- SEO, article strategy, and agentic-search readiness

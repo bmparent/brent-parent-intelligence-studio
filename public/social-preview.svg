@@ -1,19 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
     <radialGradient id="g" cx="70%" cy="20%" r="65%">
-      <stop offset="0" stop-color="#f1dcae" stop-opacity=".42"/>
-      <stop offset=".45" stop-color="#83e5ff" stop-opacity=".16"/>
-      <stop offset="1" stop-color="#07111f" stop-opacity="0"/>
+      <stop offset="0" stop-color="#e2c6a3" stop-opacity=".44"/>
+      <stop offset=".45" stop-color="#ffffff" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#0f1826" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="1200" height="630" fill="#07111f"/>
-  <rect x="70" y="66" width="1060" height="498" rx="46" fill="url(#g)" stroke="rgba(255,255,255,.18)"/>
-  <text x="110" y="165" fill="#f1dcae" font-family="Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="5">BRENT PARENT / INTELLIGENCE STUDIO</text>
-  <text x="110" y="275" fill="#fff" font-family="Georgia, serif" font-size="76" font-weight="700">Systems, storefronts,</text>
-  <text x="110" y="358" fill="#fff" font-family="Georgia, serif" font-size="76" font-weight="700">automation &amp; intelligence</text>
-  <text x="110" y="430" fill="#b8c7d8" font-family="Arial, sans-serif" font-size="31">Premium digital systems for businesses that need more than a template.</text>
-  <circle cx="950" cy="205" r="5" fill="#83e5ff"/>
-  <circle cx="1005" cy="282" r="7" fill="#f1dcae"/>
-  <circle cx="890" cy="363" r="4" fill="#9cf2d2"/>
-  <path d="M950 205 L1005 282 L890 363 L950 205" fill="none" stroke="#83e5ff" stroke-opacity=".38" stroke-width="2"/>
+  <rect width="1200" height="630" fill="#0f1826"/>
+  <rect x="70" y="66" width="1060" height="498" rx="42" fill="url(#g)" stroke="rgba(255,255,255,.18)"/>
+  <text x="110" y="165" fill="#e2c6a3" font-family="Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="5">EIDOS WORKS</text>
+  <text x="110" y="275" fill="#fff" font-family="Georgia, serif" font-size="82" font-weight="700">Systems, storefronts,</text>
+  <text x="110" y="364" fill="#fff" font-family="Georgia, serif" font-size="82" font-weight="700">dashboards &amp; automation</text>
+  <text x="110" y="438" fill="#dce3ec" font-family="Arial, sans-serif" font-size="31">Creative technology and intelligence prototypes by Brent Parent.</text>
+  <path d="M914 175h128v38h-90v62h74v38h-74v69h94v38H914V175Z" fill="#e2c6a3"/>
+  <path d="M888 150h174v286" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".32"/>
 </svg>

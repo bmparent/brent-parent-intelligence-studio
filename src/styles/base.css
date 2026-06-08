@@ -5,6 +5,7 @@
 html {
   overflow-x: clip;
   scroll-behavior: smooth;
+  scroll-padding-top: 104px;
   background: var(--bg);
 }
 
@@ -86,7 +87,7 @@ h3 {
 }
 
 h1 {
-  max-width: 11.8ch;
+  max-width: 10ch;
   margin-block-end: 1.25rem;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(3.45rem, 8vw, 7.9rem);

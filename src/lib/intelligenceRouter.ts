@@ -132,7 +132,7 @@ export function buildLocalRecommendation(input: {
     ],
     cta: {
       label: 'Send this brief to Brent',
-      href: 'mailto:1brent.bm@gmail.com?subject=Project%20brief%20from%20the%20Intelligence%20Studio',
+      href: 'mailto:1brent.bm@gmail.com?subject=Project%20brief%20from%20Eidos%20Works',
     },
     confidence: prompt || signals.length || Object.values(answers).some(Boolean) ? 'strong' : 'directional',
     context,

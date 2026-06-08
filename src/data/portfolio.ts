@@ -26,6 +26,23 @@ export type Capability = {
   businessValue: string;
 };
 
+export type EngagementModel = {
+  title: string;
+  bestFor: string;
+  deliverables: string[];
+  timeline: string;
+  range: string;
+  priceFactors: string[];
+  cta: string;
+};
+
+export type EidosScenario = {
+  title: string;
+  signal: string;
+  sentinelDetects: string;
+  brainHelps: string;
+};
+
 export const profileImage =
   'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1777664829/ChatGPT_Image_May_1_2026_03_42_06_PM_ipnyby.png';
 
@@ -275,7 +292,123 @@ export const processSteps = [
 
 export const proofStats = [
   { value: '7', label: 'live InkSoft stores referenced' },
-  { value: '4', label: 'Cloudinary visual systems' },
   { value: '1', label: 'production reporting dashboard' },
-  { value: '1', label: 'experimental intelligence architecture' }
+  { value: '6', label: 'Eidos Brain scenarios' },
+  { value: '1', label: 'guided project intake flow' }
 ] as const;
+
+export const engagementModels: EngagementModel[] = [
+  {
+    title: 'Starter Storefront Polish',
+    bestFor: 'Small store improvements, product presentation cleanup, category clarity, banners, and simple custom content.',
+    deliverables: [
+      'Storefront hierarchy audit',
+      'Homepage or category-section polish',
+      'Mockup and banner recommendations',
+      'Mobile and accessibility cleanup notes',
+      'Light launch QA'
+    ],
+    timeline: '1-2 weeks after content is ready.',
+    range: 'From $1,500-$3,500',
+    priceFactors: ['Number of store sections', 'Asset readiness', 'Revision depth', 'InkSoft constraints'],
+    cta: 'Build a Storefront'
+  },
+  {
+    title: 'Custom Storefront Experience',
+    bestFor: 'InkSoft embeds, richer landing pages, sizing guidance, visual merchandising, and branded apparel flows.',
+    deliverables: [
+      'Custom storefront structure',
+      'Branded hero and category system',
+      'Responsive embedded UI patterns',
+      'Sizing or product guidance module',
+      'Launch QA and live-link review'
+    ],
+    timeline: '2-4 weeks depending on scope.',
+    range: 'From $4,500-$9,500',
+    priceFactors: ['Custom embed complexity', 'Number of product paths', 'Media production', 'Launch deadline'],
+    cta: 'Build a Storefront'
+  },
+  {
+    title: 'Systems & Dashboard Build',
+    bestFor: 'Production dashboards, operational reporting, workflow automation, API integrations, or internal tools.',
+    deliverables: [
+      'Workflow and data-source map',
+      'Dashboard or automation prototype',
+      'Responsive interface build',
+      'API/workflow integration where scoped',
+      'Testing notes and handoff documentation'
+    ],
+    timeline: '3-8 weeks for a focused first release.',
+    range: 'From $8,500-$22,000+',
+    priceFactors: ['Data access', 'API reliability', 'User roles', 'Export and reporting needs'],
+    cta: 'Request a Dashboard'
+  },
+  {
+    title: 'Intelligence Prototype / Eidos Brain Sprint',
+    bestFor: 'Sentinel monitoring concepts, AI-assisted workflows, knowledge systems, anomaly/signal prototypes, and applied-intelligence briefs.',
+    deliverables: [
+      'Signal and exception model',
+      'Prototype interface or brief workflow',
+      'Incident receipt / evidence model',
+      'Human-review and fallback plan',
+      'Next-build recommendation'
+    ],
+    timeline: '2-6 weeks for a proof-stage sprint.',
+    range: 'From $6,500-$18,000+',
+    priceFactors: ['Signal sources', 'AI provider requirements', 'Data sensitivity', 'Review workflow complexity'],
+    cta: 'Discuss Eidos Brain'
+  }
+];
+
+export const billingNotes = [
+  'Final quotes follow discovery and scope review.',
+  'Typical payment schedule: 50% deposit, 30% at design/workflow approval, 20% before final delivery or launch.',
+  'Retainers are available for ongoing improvements, monitoring, reporting, and system support.',
+  'Out-of-scope work can be handled as an approved change order or hourly block.',
+  'Advisory/build rate when used: $150/hr, billed in approved blocks.'
+] as const;
+
+export const retainerOptions = [
+  { title: 'Launch Care', range: '$750-$1,500/month' },
+  { title: 'Growth & Operations', range: '$1,500-$3,500/month' },
+  { title: 'Systems Partner', range: '$4,000+/month' }
+] as const;
+
+export const eidosScenarios: EidosScenario[] = [
+  {
+    title: 'Storefront performance intelligence',
+    signal: 'Store structure, campaign timing, product categories, customer questions, and repeated buying friction.',
+    sentinelDetects: 'Missing category clarity, stale launch content, weak product presentation, and pages that need internal links.',
+    brainHelps: 'Generate a store-improvement brief, prioritize fixes, and connect storefront proof to service recommendations.'
+  },
+  {
+    title: 'Production schedule monitoring',
+    signal: 'Due dates, departments, late jobs, completed work, stalled jobs, quantities, and status notes.',
+    sentinelDetects: 'Exceptions, rising backlog, unusually quiet departments, production imbalance, and follow-up risks.',
+    brainHelps: 'Create a daily production brief, explain dashboard changes, and suggest operational follow-ups.'
+  },
+  {
+    title: 'Event or campaign merchandise launch',
+    signal: 'Launch timeline, product readiness, artwork status, preorder volume, and campaign deadlines.',
+    sentinelDetects: 'Launch blockers, missing assets, weak product presentation, and unbalanced demand.',
+    brainHelps: 'Create a launch checklist, draft campaign copy, organize product priorities, and surface risks before launch day.'
+  },
+  {
+    title: 'Brand and design QA',
+    signal: 'Uploaded mockups, logos, color choices, product images, campaign graphics, and approval notes.',
+    sentinelDetects: 'Brand mismatches, missing image assets, low-quality mockups, and inconsistent visual presentation.',
+    brainHelps: 'Summarize what needs correction, recommend hierarchy improvements, and organize asset review.'
+  },
+  {
+    title: 'Workflow automation triage',
+    signal: 'Intake forms, repeated copy-paste work, manual follow-up, spreadsheet cleanup, and handoff delays.',
+    sentinelDetects: 'Repeatable tasks, missing ownership, duplicated data entry, and places where status disappears.',
+    brainHelps: 'Turn the bottleneck into a short automation brief with inputs, outputs, risks, and first-build scope.'
+  },
+  {
+    title: 'SEO and content intelligence',
+    signal: 'Published case studies, blog articles, buyer questions, service pages, and internal-link gaps.',
+    sentinelDetects: 'Content gaps, stale articles, underdeveloped service pages, missing links, and weak page descriptions.',
+    brainHelps: 'Suggest article topics, draft briefs, identify pages that need updates, and connect case studies to services.'
+  }
+];

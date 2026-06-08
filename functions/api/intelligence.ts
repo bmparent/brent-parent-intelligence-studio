@@ -184,7 +184,7 @@ function buildCacheKey(payload: IntelligencePayload) {
 
 function normalizeOpenAIResult(raw: unknown, fallback: ReturnType<typeof buildLocalFallback>) {
   const value = isRecord(raw) ? raw : {}
-  const openAITokenNote = 'OpenAI generated this structured brief from compact visitor signals and selected portfolio context.'
+  const openAITokenNote = 'The diagnostic generated this structured brief from visitor signals and selected portfolio context.'
 
   return {
     ...fallback,
@@ -253,14 +253,14 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
   }))
 
   const systemPrompt = [
-    'You are the compact intelligence layer for Brent Parent Intelligence Studio.',
+    'You are the compact intelligence layer for Eidos Works by Brent Parent.',
     'Your job is to turn a visitor signal into a concise project diagnosis, proof match, and next action.',
     'Do not invent case studies, clients, metrics, timelines, or prices.',
     'Use only the provided portfolio context for proof references.',
     'Keep the language premium, practical, business-facing, and specific.',
     'Prefer short outputs. No markdown. No long chatty paragraphs.',
     'Set source to openai.',
-    'The visitor is evaluating Brent Parent as a creative technologist, automation builder, UI/UX designer, and intelligence-systems developer.',
+    'The visitor is evaluating Eidos Works and Brent Parent as a creative technologist, automation builder, UI/UX designer, and intelligence-systems developer.',
   ].join(' ')
 
   const userContext = {

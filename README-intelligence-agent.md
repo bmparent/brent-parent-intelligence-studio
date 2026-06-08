@@ -1,6 +1,6 @@
-# Intelligence Studio Agent patch
+# Eidos Works Diagnostic Agent
 
-This patch adds a low-token OpenAI-powered intelligence layer to the Brent Parent Intelligence Studio portfolio.
+This patch adds a compact optional OpenAI-powered diagnostic layer to the Eidos Works site.
 
 It adds four visitor-facing modes:
 
@@ -86,7 +86,7 @@ The implementation is intentionally low-token:
 
 After deploying to Cloudflare Pages, check:
 
-- The Intelligence Studio Agent section renders after the studio intro section.
+- The diagnostic section renders after the studio intro section.
 - Guided buttons, select fields, textarea, and focus states work on keyboard.
 - With no secret or with API failure, the local fallback still renders.
 - With `OPENAI_API_KEY` configured, the output label says `Studio AI brief`.

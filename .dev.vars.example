@@ -3,3 +3,9 @@
 # If local Wrangler preview returns OpenAI auth errors, remove the quotes in .dev.vars.
 OPENAI_API_KEY="sk-proj-your-key"
 OPENAI_MODEL="gpt-4o-mini"
+
+# Optional project inquiry delivery. If omitted, the intake flow returns an honest mailto/copy fallback.
+CONTACT_EMAIL="1brent.bm@gmail.com"
+CONTACT_WEBHOOK_URL=""
+RESEND_API_KEY=""
+CONTACT_FROM_EMAIL="Eidos Works <onboarding@resend.dev>"

@@ -15,11 +15,11 @@ export const signalOptions = [
 export const intelligenceKnowledge: LocalKnowledgeEntry[] = [
   {
     id: 'portfolio-redesign',
-    title: 'Premium Intelligence Studio Portfolio',
+    title: 'Eidos Works Public Site',
     category: 'website',
     tags: ['website', 'portfolio', 'brand', 'conversion', 'ux', 'seo', 'cloudflare', 'react', 'vite'],
     summary:
-      'A static-first Vite, React, and TypeScript portfolio positioned around premium business services, interactive proof, and conversion clarity.',
+      'A static-first Vite, React, and TypeScript public site positioned around premium services, interactive proof, and conversion clarity.',
     proof:
       'Useful when a visitor needs a more credible site, clearer offer architecture, better proof hierarchy, and a polished path to contact Brent.',
     recommendedPath: 'Conversion-focused website and positioning sprint',
@@ -33,7 +33,7 @@ export const intelligenceKnowledge: LocalKnowledgeEntry[] = [
       'Custom storefront experiences for apparel, school, event, and organization stores with branded content sections and cleaner shopping paths.',
     proof:
       'Relevant for teams that need a more polished webstore without rebuilding the commerce platform underneath it.',
-    href: '#case-studies',
+    href: '#work',
     recommendedPath: 'Storefront UX upgrade with branded product pathways',
   },
   {
@@ -50,7 +50,7 @@ export const intelligenceKnowledge: LocalKnowledgeEntry[] = [
   },
   {
     id: 'eidos-brain',
-    title: 'Eidos Brain / Sentinel Intelligence Platform',
+    title: 'Eidos Brain / Sentinel Intelligence Prototype',
     category: 'ai',
     tags: ['ai', 'knowledge', 'memory', 'agent', 'eidos', 'sentinel', 'research', 'brief', 'assistant'],
     summary:

@@ -1,5 +1,23 @@
 :root {
   color-scheme: dark;
+  --ew-ink: #0f1826;
+  --ew-ink-2: #192535;
+  --ew-slate: #3c485a;
+  --ew-gold: #b1987a;
+  --ew-gold-light: #e2c6a3;
+  --ew-stone: #eee7e6;
+  --ew-pearl: #f8f6f2;
+  --ew-white: #ffffff;
+  --ew-success: #496a55;
+  --ew-radius-xl: 34px;
+  --ew-radius-2xl: 44px;
+  --ew-shadow-soft: 0 26px 70px rgba(10, 17, 28, 0.18);
+  --ew-shadow-deep: 0 32px 90px rgba(10, 17, 28, 0.28);
+  --ew-focus: 3px solid rgba(226, 198, 163, 0.92);
+  --mx: 58%;
+  --my: 32%;
+  --rx: 0deg;
+  --ry: 0deg;
   --bg: #07111f;
   --bg-2: #0b1728;
   --bg-3: #101f33;

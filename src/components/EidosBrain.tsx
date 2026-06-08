@@ -1,72 +1,168 @@
 import type { CSSProperties } from 'react';
+import { absoluteUrl } from '../config/site';
+import { eidosBrainExamples } from '../data/eidosBrainExamples';
+import { eidosScenarios } from '../data/portfolio';
+import { EidosBrainStreamField } from './EidosBrainStreamField';
+import { GlassPanel } from './GlassPanel';
 import { SectionHeader } from './SectionHeader';
 
-const systemFlow = ['Signal intake', 'Normalization', 'Anomaly detection', 'Case graph', 'Analyst interface', 'Action brief'];
-
-const whitePaperBlocks = [
+const lifecycleSteps = [
   {
-    title: 'Problem',
-    text: 'Most teams do not struggle because they lack data. They struggle because signals are scattered, context is missing, and the interface does not help a human build a clear case from noisy inputs.'
+    title: 'Listen',
+    text: 'Receive live streams from sensors, logs, documents, dashboards, or operational systems.'
   },
   {
-    title: 'System concept',
-    text: 'Eidos Brain explores an intelligence architecture where raw signals become observable events, suspicious patterns become case candidates, and the interface turns machine output into readable evidence.'
+    title: 'Predict',
+    text: 'Build a local expectation for what ordinary movement looks like in that context.'
   },
   {
-    title: 'Interface design',
-    text: 'The UI is designed around progressive disclosure: a calm overview first, then anomaly detail, confidence context, supporting signals, and case-building notes only when the user needs depth.'
+    title: 'Measure surprise',
+    text: 'Compare each new window against the expected rhythm and score what changed.'
   },
   {
-    title: 'Technical approach',
-    text: 'The research direction combines signal processing concepts, anomaly detection, stateful observability, entity relationships, and human-readable intelligence cards rather than a black-box chat surface.'
+    title: 'Compress ordinary',
+    text: 'Summarize routine signal so storage, attention, and compute are not spent on noise.'
   },
   {
-    title: 'Proof-stage research',
-    text: 'This is framed as experimental architecture, not a finished surveillance or production intelligence product. The value is in prototyping the system logic, interface patterns, and reasoning workflow.'
+    title: 'Preserve strange',
+    text: 'Keep the abnormal window, surrounding context, and source references for review.'
   },
   {
-    title: 'What it demonstrates',
-    text: 'Eidos Brain shows the ability to think past normal web design: model a complex system, design for trust and clarity, and make advanced technical workflows understandable to business users.'
+    title: 'Produce receipts',
+    text: 'Create human-readable incident receipts with timestamps, inputs, evidence, and caveats.'
   }
 ];
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Eidos Brain example domains',
+  url: absoluteUrl('/#eidos'),
+  itemListElement: eidosBrainExamples.map((example, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'CreativeWork',
+      name: example.title,
+      url: absoluteUrl(`/#${example.slug}`),
+      description: example.summary
+    }
+  }))
+};
+
 export function EidosBrain() {
   return (
-    <section id="eidos" className="section-shell section-block eidos" aria-labelledby="eidos-title">
+    <section id="eidos" className="section-shell section-block eidos eidos-expanded" aria-labelledby="eidos-title">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <EidosBrainStreamField />
       <SectionHeader
         id="eidos-title"
-        eyebrow="Eidos Brain case study / white paper"
-        title="Experimental Intelligence Architecture for signal, anomaly, and case-building workflows."
-        summary="A more advanced portfolio proof point: not a storefront, but a research-oriented intelligence interface concept for observing signals, detecting anomalies, and making complex system behavior explainable."
+        eyebrow="Eidos Brain / Sentinel"
+        title="Eidos Brain is an anomaly-preserving intelligence codec for live data streams."
+        summary="The proof-stage idea is simple: compress ordinary signal, preserve strange windows, and generate reviewable incident receipts for people who need evidence, not hype."
       />
 
-      <div className="eidos-hero" data-reveal>
+      <GlassPanel className="eidos-feature-card" ariaLabel="Eidos Brain positioning">
         <div>
-          <p className="section-kicker">Eidos Brain / proof-stage research</p>
-          <h3>Calm intelligence UI for messy signal environments.</h3>
+          <p className="section-kicker">Proof-stage sprint</p>
+          <h3>Listen, predict, preserve, and explain.</h3>
           <p>
-            The goal is not to make vague AI claims. The goal is to show how an experimental system can receive signals, identify unusual patterns, preserve context, and help a human assemble a case with traceable evidence.
+            Eidos Brain and Sentinel prototypes are built for live streams where most moments are ordinary but the unusual windows matter. The interface keeps important content in HTML, then uses WebGL only as ambient context.
           </p>
         </div>
-        <div className="eidos-flow" aria-label="Eidos Brain system concept flow">
-          {systemFlow.map((step, index) => (
-            <div key={step}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{step}</strong>
-            </div>
-          ))}
-        </div>
-      </div>
+        <a className="btn btn--primary" href="#start">
+          Discuss Eidos Brain
+        </a>
+      </GlassPanel>
 
-      <div className="whitepaper-grid">
-        {whitePaperBlocks.map((block, index) => (
-          <article className="whitepaper-card" key={block.title} data-reveal style={{ '--delay': `${index * 40}ms` } as CSSProperties}>
+      <div className="stream-lifecycle" aria-label="Eidos Brain stream lifecycle">
+        {lifecycleSteps.map((step, index) => (
+          <article key={step.title} data-reveal style={{ '--delay': `${index * 35}ms` } as CSSProperties}>
             <span>{String(index + 1).padStart(2, '0')}</span>
-            <h3>{block.title}</h3>
-            <p>{block.text}</p>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
           </article>
         ))}
       </div>
+
+      <div className="surprise-pulse" data-reveal aria-label="Surprise pulse concept">
+        <div className="surprise-pulse__line" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <div>
+          <p className="section-kicker">Surprise pulse</p>
+          <h3>Calm signal stays compressed. The strange window becomes a receipt.</h3>
+          <p>
+            The pulse model shows the system moving from routine stream behavior into a highlighted anomaly window. A prototype can attach source context, confidence notes, and next-review prompts to that moment.
+          </p>
+        </div>
+      </div>
+
+      <div className="eidos-example-grid" aria-label="Eidos Brain example domains">
+        {eidosBrainExamples.map((example, index) => (
+          <article id={example.slug} key={example.slug} data-reveal style={{ '--delay': `${index * 25}ms` } as CSSProperties}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{example.title}</h3>
+            <p>{example.summary}</p>
+            <dl>
+              <div>
+                <dt>Stream inputs</dt>
+                <dd>{example.streamInputs.join(', ')}</dd>
+              </div>
+              <div>
+                <dt>What Eidos Brain watches</dt>
+                <dd>{example.watches.join(' ')}</dd>
+              </div>
+              <div>
+                <dt>Preserved anomaly examples</dt>
+                <dd>{example.preservedAnomalies.join(' ')}</dd>
+              </div>
+              <div>
+                <dt>Output / receipt examples</dt>
+                <dd>{example.receiptExamples.join(' ')}</dd>
+              </div>
+            </dl>
+            <strong>{example.valueStatement}</strong>
+            {example.safetyNote ? <p className="eidos-safety-note">{example.safetyNote}</p> : null}
+          </article>
+        ))}
+      </div>
+
+      <div className="scenario-strip" aria-label="Practical Eidos Brain scenarios">
+        {eidosScenarios.map((scenario, index) => (
+          <article key={scenario.title} data-reveal style={{ '--delay': `${index * 35}ms` } as CSSProperties}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{scenario.title}</h3>
+            <dl>
+              <div>
+                <dt>Signal</dt>
+                <dd>{scenario.signal}</dd>
+              </div>
+              <div>
+                <dt>Sentinel detects</dt>
+                <dd>{scenario.sentinelDetects}</dd>
+              </div>
+              <div>
+                <dt>Eidos Brain helps</dt>
+                <dd>{scenario.brainHelps}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
+      </div>
+
+      <aside className="eidos-disclaimer" data-reveal>
+        <h3>Advisory prototypes, not autonomous authority.</h3>
+        <p>
+          Eidos Brain and Sentinel prototypes are review tools. They are not regulated diagnostic, safety, financial, legal, medical, aerospace, or emergency decision systems. Any high-stakes use requires qualified human review, compliance review, testing, and domain-specific validation.
+        </p>
+        <a className="btn btn--secondary" href="#start">
+          Scope a Proof-Stage Sprint
+        </a>
+      </aside>
     </section>
   );
 }

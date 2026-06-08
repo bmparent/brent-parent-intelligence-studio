@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BPI Studio">
-  <rect width="64" height="64" rx="18" fill="#07111f"/>
-  <path d="M16 41V17h15.2c4.9 0 8.4 2.8 8.4 7 0 2.6-1.3 4.6-3.6 5.7 3.2 1 5 3.3 5 6.4 0 4.9-3.8 7.9-9.6 7.9H16Zm7-14.1h7.1c1.8 0 2.9-1 2.9-2.5s-1.1-2.5-2.9-2.5H23v5Zm0 11.1h7.8c2.2 0 3.4-1.1 3.4-2.9s-1.2-2.9-3.4-2.9H23V38Z" fill="#f1dcae"/>
-  <circle cx="48" cy="18" r="3.5" fill="#83e5ff"/>
-  <path d="M44 46c4-5 7-10 8-18" stroke="#83e5ff" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Eidos Works">
+  <rect width="64" height="64" rx="18" fill="#0f1826"/>
+  <path d="M18 17h30v8H27v7h18v7H27v8h22v8H18V17Z" fill="#e2c6a3"/>
+  <path d="M14 14h36v36" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".42"/>
+  <circle cx="47" cy="18" r="4" fill="#b1987a"/>
 </svg>
