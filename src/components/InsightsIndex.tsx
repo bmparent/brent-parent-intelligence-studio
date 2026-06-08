@@ -1,10 +1,34 @@
-import { useMemo, useState } from 'react';
-import { articles } from '../data/articles';
+import { MouseEvent, useEffect, useMemo, useState } from 'react';
+import { articles, getArticleSlugFromPath } from '../data/articles';
 import { SectionHeader } from './SectionHeader';
 
-export function InsightsIndex() {
-  const [activeSlug, setActiveSlug] = useState(articles[0]?.slug ?? '');
+type InsightsIndexProps = {
+  initialSlug?: string;
+};
+
+export function InsightsIndex({ initialSlug }: InsightsIndexProps) {
+  const [activeSlug, setActiveSlug] = useState(initialSlug ?? articles[0]?.slug ?? '');
   const activeArticle = useMemo(() => articles.find((article) => article.slug === activeSlug) ?? articles[0], [activeSlug]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const syncFromPath = () => {
+      const slug = getArticleSlugFromPath(window.location.pathname);
+      if (slug) setActiveSlug(slug);
+    };
+
+    window.addEventListener('popstate', syncFromPath);
+    return () => window.removeEventListener('popstate', syncFromPath);
+  }, []);
+
+  const selectArticle = (event: MouseEvent<HTMLAnchorElement>, slug: string, path: string) => {
+    event.preventDefault();
+    setActiveSlug(slug);
+    if (typeof window !== 'undefined' && window.location.pathname !== path) {
+      window.history.pushState(null, '', path);
+    }
+  };
 
   return (
     <section id="insights" className="section-shell section-block insights" aria-labelledby="insights-title">
@@ -18,19 +42,19 @@ export function InsightsIndex() {
       <div className="insights-layout">
         <div className="article-list" aria-label="Article list">
           {articles.map((article) => (
-            <button
+            <a
               className={article.slug === activeSlug ? 'is-active' : ''}
+              href={article.canonicalPath}
               key={article.slug}
-              type="button"
-              aria-pressed={article.slug === activeSlug}
-              onClick={() => setActiveSlug(article.slug)}
+              aria-current={article.slug === activeSlug ? 'true' : undefined}
+              onClick={(event) => selectArticle(event, article.slug, article.canonicalPath)}
             >
               <span>{article.category}</span>
               <strong>{article.title}</strong>
               <small>
                 {article.updated} - {article.readingTime}
               </small>
-            </button>
+            </a>
           ))}
         </div>
 

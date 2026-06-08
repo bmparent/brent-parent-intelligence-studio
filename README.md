@@ -1,4 +1,4 @@
-﻿# Eidos Works
+# Eidos Works
 
 Eidos Works is the public-facing creative technology studio by Brent Parent. It evolved from the Brent Parent Intelligence Studio portfolio and now presents custom storefronts, graphic design and mockups, production dashboards, workflow automation, and Eidos Brain / Sentinel intelligence prototypes.
 

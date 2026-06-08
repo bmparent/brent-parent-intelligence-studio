@@ -204,3 +204,16 @@ export const articles: Article[] = [
     ]
   }
 ];
+
+export function getArticleBySlug(slug?: string) {
+  if (!slug) return undefined;
+  return articles.find((article) => article.slug === slug);
+}
+
+export function getArticleSlugFromPath(pathname?: string) {
+  if (!pathname) return undefined;
+  const match = pathname.match(/^\/insights\/([^/?#]+)/);
+  if (!match?.[1]) return undefined;
+  const slug = decodeURIComponent(match[1]);
+  return getArticleBySlug(slug)?.slug;
+}

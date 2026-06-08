@@ -13,9 +13,15 @@ import { InsightsIndex } from './components/InsightsIndex';
 import { ProjectIntakeWizard } from './components/ProjectIntakeWizard';
 import { SEOJsonLd } from './components/SEOJsonLd';
 import { siteConfig } from './config/site';
+import { getArticleSlugFromPath } from './data/articles';
 
-function App() {
+type AppProps = {
+  requestPath?: string;
+};
+
+function App({ requestPath }: AppProps) {
   useReveal();
+  const insightSlug = getArticleSlugFromPath(typeof window === 'undefined' ? requestPath : window.location.pathname);
 
   return (
     <>
@@ -45,7 +51,7 @@ function App() {
         <EidosBrain />
         <Process />
         <PricingCards />
-        <InsightsIndex />
+        <InsightsIndex initialSlug={insightSlug} />
         <ProjectIntakeWizard />
       </main>
       <footer className="site-footer section-shell">
