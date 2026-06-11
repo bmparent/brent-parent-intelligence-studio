@@ -1,35 +1,26 @@
-import { contactMailto } from '../utils';
+import { navItems } from '../data/platform';
 
-const links = [
-  { href: '#capabilities', label: 'Capabilities' },
-  { href: '#case-studies', label: 'Case studies' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#production', label: 'Dashboard' },
-  { href: '#eidos', label: 'Eidos Brain' },
-  { href: '#process', label: 'Process' }
-];
-
-export function Header() {
+export function Header({ currentPath = '/' }: { currentPath?: string }) {
   return (
     <header className="site-header" aria-label="Primary navigation">
-      <a className="brand-mark" href="#top" aria-label="Brent Parent Intelligence Studio home">
+      <a className="brand-mark" href="/" aria-label="Eidos Works home">
         <span className="brand-mark__sig" aria-hidden="true">
-          BP
+          EW
         </span>
         <span>
-          <strong>Brent Parent</strong>
-          <small>Intelligence Studio</small>
+          <strong>Eidos Works</strong>
+          <small>by Brent Parent</small>
         </span>
       </a>
-      <nav className="nav-links" aria-label="Portfolio sections">
-        {links.map((link) => (
-          <a key={link.href} href={link.href}>
+      <nav className="nav-links" aria-label="Platform sections">
+        {navItems.slice(0, -1).map((link) => (
+          <a key={link.href} href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
             {link.label}
           </a>
         ))}
       </nav>
-      <a className="header-cta" href={contactMailto}>
-        Start a project
+      <a className="header-cta" href="/work-with-eidos" aria-current={currentPath === '/work-with-eidos' ? 'page' : undefined}>
+        Work With Eidos
       </a>
     </header>
   );

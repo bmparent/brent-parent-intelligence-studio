@@ -1,2 +1,17 @@
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /favicon.svg
+Allow: /social-preview.svg
+
+# AI search crawlers are allowed for discoverability.
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# Training-crawler policy can be changed when Eidos chooses a formal content-licensing stance.
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://brent-parent-intelligence-studio.pages.dev/sitemap.xml

@@ -26,7 +26,7 @@ export function ContactCTA() {
           <a className="btn btn--primary" href={contactMailto}>
             Contact Brent
           </a>
-          <a className="btn btn--secondary" href="#case-studies">
+          <a className="btn btn--secondary" href="/#case-studies">
             View case studies
           </a>
           <button className="btn btn--ghost" type="button" onClick={copyBrief} aria-live="polite">

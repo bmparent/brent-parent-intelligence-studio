@@ -1,55 +1,124 @@
 import { useReveal } from './hooks/useReveal';
 import { Header } from './components/layout/Header';
-import { Hero } from './sections/Hero';
-import { Capabilities } from './sections/Capabilities';
-import { CaseStudies } from './sections/CaseStudies';
-import { ProjectGallery } from './sections/ProjectGallery';
-import { ProductionIntelligence } from './sections/ProductionIntelligence';
-import { EidosBrain } from './sections/EidosBrain';
-import { Process } from './sections/Process';
-import { ContactCTA } from './sections/ContactCTA';
-import { IntelligenceStudioAgent } from './components/ui/IntelligenceStudioAgent';
+import {
+  AuditPage,
+  AdvertisePage,
+  ArticlePage,
+  DisclosuresPage,
+  HomePage,
+  IntelligenceIndexPage,
+  NewsletterPage,
+  NotFoundPage,
+  PrivacyPage,
+  ResourcesPage,
+  SponsorsPage,
+  TermsPage,
+  ToolPage,
+  ToolsIndexPage,
+  TopicPage,
+  WorkWithEidosPage
+} from './components/platform/Pages';
+import {
+  JsonLd
+} from './components/platform/Shared';
+import {
+  buildArticleJsonLd,
+  buildBreadcrumbJsonLd,
+  buildOrganizationJsonLd,
+  buildWebsiteJsonLd
+} from './data/structuredData';
+import {
+  allRoutes,
+  getArticleByPath,
+  navItems,
+  normalizePath,
+  siteConfig
+} from './data/platform';
 
-function App() {
+type AppProps = {
+  initialPath?: string;
+};
+
+function getBrowserPath() {
+  if (typeof window === 'undefined') return '/';
+  return window.location.pathname || '/';
+}
+
+function renderRoute(path: string) {
+  if (path === '/') return <HomePage />;
+  if (path === '/intelligence') return <IntelligenceIndexPage />;
+  if (path === '/ui-ux') return <TopicPage topic="ui-ux" />;
+  if (path === '/agentic-seo') return <TopicPage topic="agentic-seo" />;
+  if (path === '/automation') return <TopicPage topic="automation" />;
+  if (path === '/tools') return <ToolsIndexPage />;
+  if (path.startsWith('/tools/')) return <ToolPage path={path} />;
+  if (path === '/newsletter') return <NewsletterPage />;
+  if (path === '/resources') return <ResourcesPage />;
+  if (path === '/resources/tool-stack') return <ResourcesPage variant="tool-stack" />;
+  if (path === '/resources/templates') return <ResourcesPage variant="templates" />;
+  if (path === '/resources/recommended-tools') return <ResourcesPage variant="recommended-tools" />;
+  if (path === '/sponsors') return <SponsorsPage />;
+  if (path === '/advertise') return <AdvertisePage />;
+  if (path === '/disclosures') return <DisclosuresPage />;
+  if (path === '/privacy') return <PrivacyPage />;
+  if (path === '/terms') return <TermsPage />;
+  if (path === '/work-with-eidos') return <WorkWithEidosPage />;
+  if (path === '/audit') return <AuditPage />;
+  if (getArticleByPath(path)) return <ArticlePage path={path} />;
+  return <NotFoundPage />;
+}
+
+function buildStructuredData(path: string) {
+  const article = getArticleByPath(path);
+  const data: unknown[] = [buildOrganizationJsonLd(), buildWebsiteJsonLd()];
+
+  if (path !== '/') {
+    data.push(buildBreadcrumbJsonLd(path));
+  }
+
+  if (article) {
+    data.push(buildArticleJsonLd(article));
+  }
+
+  return data;
+}
+
+function Footer() {
+  return (
+    <footer className="site-footer section-shell">
+      <p>{siteConfig.name} by Brent Parent</p>
+      <nav aria-label="Footer navigation">
+        {navItems.map((item) => (
+          <a key={item.href} href={item.href}>
+            {item.label}
+          </a>
+        ))}
+        <a href="/disclosures">Disclosures</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </nav>
+    </footer>
+  );
+}
+
+function App({ initialPath }: AppProps) {
+  const path = normalizePath(initialPath ?? getBrowserPath());
+  const isKnownRoute = allRoutes.includes(path);
+  const structuredData = buildStructuredData(isKnownRoute ? path : '/');
+
   useReveal();
 
   return (
     <>
-      <Header />
-      <main>
-        <Hero />
-        <section className="section-shell intro-grid" aria-label="What the studio builds" data-reveal>
-          <article>
-            <span className="section-kicker">Who I am</span>
-            <h2>Brent Parent, building at the edge of design, automation, and intelligence systems.</h2>
-          </article>
-          <article>
-            <h3>What I build</h3>
-            <p>Custom web experiences, premium storefronts, InkSoft embeds, production dashboards, workflow automations, WebGL interface layers, and proof-stage AI/intelligence prototypes.</p>
-          </article>
-          <article>
-            <h3>Why it matters</h3>
-            <p>Businesses do not need more generic screens. They need digital systems that explain the offer, reduce manual friction, support operations, and create confidence quickly.</p>
-          </article>
-        </section>
-        <IntelligenceStudioAgent />
-        <Capabilities />
-        <CaseStudies />
-        <ProjectGallery />
-        <ProductionIntelligence />
-        <EidosBrain />
-        <Process />
-        <ContactCTA />
-      </main>
-      <footer className="site-footer section-shell">
-        <p>Brent Parent / Intelligence Studio</p>
-        <nav aria-label="Footer navigation">
-          <a href="#top">Top</a>
-          <a href="#capabilities">Capabilities</a>
-          <a href="#case-studies">Case studies</a>
-          <a href="#contact">Start a project</a>
-        </nav>
-      </footer>
+      {structuredData.map((data, index) => (
+        <JsonLd data={data} key={index} />
+      ))}
+      <a className="skip-link btn btn--secondary" href="#main">
+        Skip to content
+      </a>
+      <Header currentPath={path} />
+      <main id="main">{renderRoute(path)}</main>
+      <Footer />
     </>
   );
 }
