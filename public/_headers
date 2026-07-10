@@ -1,0 +1,17 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(self)
+
+/snapshot/result/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-store
+  Referrer-Policy: no-referrer
+
+/snapshot/success
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-store
+  Referrer-Policy: no-referrer
+
+/api/*
+  Cache-Control: no-store

@@ -29,10 +29,10 @@ Each scheduled run should publish one article. It should not batch three similar
 2. UI/UX design, accessibility, responsive behavior, and design systems.
 3. Small-business automation and operational efficiency.
 4. Premium e-commerce and custom storefront experiences.
-5. InkSoft, Printavo, production workflows, and related systems.
-6. Web performance, Cloudflare, deployment, and technical architecture.
+5. Hosted storefront platforms, fulfillment, production workflows, and related systems.
+6. Web performance, deployment, and technical architecture.
 7. AI integrations that produce practical business value.
-8. Cloudinary, media optimization, and visual-content workflows.
+8. Media delivery, optimization, and visual-content workflows.
 9. Interactive web experiences, WebGL, Babylon.js, and purposeful motion.
 10. Eidos Works frameworks, experiments, lessons, and original analysis.
 
@@ -64,6 +64,8 @@ Prefer:
 
 If no worthwhile verified news exists for the morning slot, publish timely evergreen analysis instead of manufacturing urgency.
 
+Source retrieval is only a final quality gate for trusted article records. When reviewing an untrusted pull request or draft, run `npm run validate:insights -- --skip-source-fetch` first so contributor-controlled URLs are not fetched. A trusted scheduled or release run must still complete the normal `npm run validate:insights` check before publication whenever an article relies on current external claims.
+
 ## Deduplication
 
 Before adding a topic, inspect `src/data/articles.json` for:
@@ -90,6 +92,7 @@ That command performs:
 - source and schema validation
 - lint
 - production build
+- prerender verification
 - dist HTML validation
 - URL-presence verification
 - run report creation

@@ -1,4 +1,5 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
-
+Disallow: /snapshot/result/
+Disallow: /snapshot/success
 Sitemap: https://eidos-works.com/sitemap.xml

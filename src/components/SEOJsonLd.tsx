@@ -1,156 +1,144 @@
 import { absoluteUrl, siteConfig } from '../config/site';
-import { articles, getArticleBySlug } from '../data/articles';
-import { storeCaseStudies } from '../data/portfolio';
+import { articles } from '../data/articles';
+import { normalizePath } from '../data/pages';
 
-type SEOJsonLdProps = {
-  activeArticleSlug?: string;
-  routePath?: string;
-};
-
-function publisher() {
-  return {
-    '@type': 'Organization',
-    name: siteConfig.name,
-    url: siteConfig.url,
-    logo: {
-      '@type': 'ImageObject',
-      url: siteConfig.logos.icon
-    }
-  };
-}
-
-export function SEOJsonLd({ activeArticleSlug, routePath = '/' }: SEOJsonLdProps) {
-  const activeArticle = getArticleBySlug(activeArticleSlug);
-  const isInsightsHub = routePath === '/insights';
-  const isEditorialPolicy = routePath === '/editorial-policy';
-
-  const organization = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: siteConfig.name,
-    alternateName: siteConfig.legacyName,
-    url: siteConfig.url,
-    logo: siteConfig.logos.horizontal,
-    founder: {
-      '@type': 'Person',
-      name: siteConfig.founder,
-      jobTitle: 'Creative technologist, UI/UX designer, automation builder, and intelligence-systems developer',
-      url: siteConfig.url
+export function SEOJsonLd({ path }: { path: string }) {
+  const normalized = normalizePath(path);
+  const graph: Array<Record<string, unknown>> = [
+    {
+      '@type': 'Organization',
+      '@id': absoluteUrl('/#organization'),
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: siteConfig.logos.horizontal
+      },
+      email: siteConfig.contactEmail,
+      founder: { '@id': absoluteUrl('/#brent-parent') },
+      description: siteConfig.description
     },
-    description: siteConfig.description,
-    areaServed: 'US',
-    serviceType: [
-      'Custom storefront experiences',
-      'Graphic design and mockups',
-      'Production dashboards',
-      'Workflow automation',
-      'Eidos Brain and Sentinel prototypes',
-      'Website and portfolio systems'
-    ]
-  };
+    {
+      '@type': 'Person',
+      '@id': absoluteUrl('/#brent-parent'),
+      name: siteConfig.founder,
+      url: siteConfig.url,
+      jobTitle: 'Founder and creative technologist',
+      worksFor: { '@id': absoluteUrl('/#organization') }
+    },
+    {
+      '@type': 'WebSite',
+      '@id': absoluteUrl('/#website'),
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      publisher: { '@id': absoluteUrl('/#organization') }
+    }
+  ];
 
-  const website = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: siteConfig.name,
-    url: siteConfig.url,
-    description: siteConfig.description,
-    publisher: publisher()
-  };
+  if (normalized === '/services/agentic-seo') {
+    graph.push({
+      '@type': 'Service',
+      '@id': absoluteUrl('/services/agentic-seo#service'),
+      name: 'Agentic SEO & AI-Ready Website Strategy',
+      serviceType: 'Website strategy and search-readiness implementation',
+      provider: { '@id': absoluteUrl('/#organization') },
+      url: absoluteUrl('/services/agentic-seo'),
+      description: 'Structured content, metadata, schema, accessible UX, and measurement for websites that need to be clearer to customers, search engines, and AI assistants.'
+    });
+  }
 
-  const breadcrumbs = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
-      ...(activeArticle || isInsightsHub
-        ? [{ '@type': 'ListItem', position: 2, name: 'Insights', item: absoluteUrl('/insights') }]
-        : []),
-      ...(activeArticle
-        ? [{ '@type': 'ListItem', position: 3, name: activeArticle.title, item: absoluteUrl(activeArticle.canonicalPath) }]
-        : []),
-      ...(isEditorialPolicy
-        ? [{ '@type': 'ListItem', position: 2, name: 'Editorial Policy', item: absoluteUrl('/editorial-policy') }]
-        : [])
-    ]
-  };
-
-  const articleList = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Eidos Works Insights',
-    itemListElement: articles.map((article, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      url: absoluteUrl(article.canonicalPath),
-      name: article.title
-    }))
-  };
-
-  const articleGraph = activeArticle
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: activeArticle.title,
-        description: activeArticle.description,
-        datePublished: activeArticle.publishedAt,
-        dateModified: activeArticle.updatedAt,
-        author: {
-          '@type': 'Organization',
-          name: activeArticle.byline,
-          url: siteConfig.url
-        },
-        publisher: publisher(),
-        image: absoluteUrl(activeArticle.ogImage),
-        mainEntityOfPage: absoluteUrl(activeArticle.canonicalPath),
-        keywords: activeArticle.tags.join(', '),
-        articleSection: activeArticle.category,
-        citation: activeArticle.sources.map((source) => source.url)
+  if (normalized === '/snapshot') {
+    graph.push({
+      '@type': 'Service',
+      '@id': absoluteUrl('/snapshot#service'),
+      name: 'Eidos Snapshot',
+      serviceType: 'AI-assisted website concept and recommendation report',
+      provider: { '@id': absoluteUrl('/#organization') },
+      url: absoluteUrl('/snapshot'),
+      description: 'A visual homepage concept with practical UX, SEO, structure, and AI-search-readiness recommendations.',
+      offers: {
+        '@type': 'Offer',
+        price: '5.00',
+        priceCurrency: 'USD',
+        url: absoluteUrl('/snapshot')
       }
-    : undefined;
+    });
+  }
 
-  const creativeWorks = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Eidos Works case studies',
-    itemListElement: storeCaseStudies.map((study, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@type': 'CreativeWork',
-        name: study.title,
-        url: study.url,
-        creator: {
-          '@type': 'Person',
-          name: siteConfig.founder
-        },
-        description: study.result
-      }
-    }))
-  };
+  const article = articles.find((entry) => entry.canonicalPath === normalized);
+  if (article) {
+    graph.push({
+      '@type': 'BlogPosting',
+      '@id': absoluteUrl(`${article.canonicalPath}#article`),
+      headline: article.title,
+      description: article.description,
+      datePublished: article.publishedAt,
+      dateModified: article.updatedAt,
+      author: article.byline === siteConfig.founder
+        ? { '@id': absoluteUrl('/#brent-parent') }
+        : { '@type': 'Organization', name: article.byline, url: siteConfig.url },
+      publisher: { '@id': absoluteUrl('/#organization') },
+      mainEntityOfPage: absoluteUrl(article.canonicalPath),
+      image: absoluteUrl(article.ogImage),
+      keywords: article.tags.join(', '),
+      articleSection: article.category,
+      citation: article.sources.map((source) => source.url)
+    });
+  }
 
-  const policyPage = isEditorialPolicy
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'WebPage',
-        name: 'Eidos Works Editorial Policy',
-        url: absoluteUrl('/editorial-policy'),
-        publisher: publisher(),
-        description: 'How Eidos Works selects topics, sources current claims, handles corrections, and uses editorial technology.'
-      }
-    : undefined;
+  if (normalized === '/insights') {
+    graph.push({
+      '@type': 'ItemList',
+      name: 'Eidos Works Insights',
+      itemListElement: articles.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.title,
+        url: absoluteUrl(item.canonicalPath)
+      }))
+    });
+  }
 
-  const graph = [organization, website, breadcrumbs, creativeWorks, articleList, articleGraph, policyPage].filter(Boolean);
+  if (normalized === '/editorial-policy') {
+    graph.push({
+      '@type': 'WebPage',
+      name: 'Eidos Works Editorial Policy',
+      url: absoluteUrl('/editorial-policy'),
+      description: 'How Eidos Works selects topics, checks sources, uses editorial tools, and handles corrections for Insights.',
+      publisher: { '@id': absoluteUrl('/#organization') }
+    });
+  }
 
-  return (
-    <>
-      {graph.map((entry, index) => (
-        <script
-          key={index}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(entry) }}
-        />
-      ))}
-    </>
+  const breadcrumbName = article?.title || (
+    normalized === '/insights'
+      ? 'Insights'
+      : normalized === '/snapshot'
+        ? 'Eidos Snapshot'
+        : normalized === '/services/agentic-seo'
+          ? 'Agentic SEO'
+          : normalized === '/editorial-policy'
+            ? 'Editorial Policy'
+            : ''
   );
+
+  if (breadcrumbName) {
+    const items: Array<Record<string, unknown>> = [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') }
+    ];
+    if (article) {
+      items.push({ '@type': 'ListItem', position: 2, name: 'Insights', item: absoluteUrl('/insights') });
+      items.push({ '@type': 'ListItem', position: 3, name: breadcrumbName, item: absoluteUrl(normalized) });
+    } else {
+      items.push({ '@type': 'ListItem', position: 2, name: breadcrumbName, item: absoluteUrl(normalized) });
+    }
+    graph.push({ '@type': 'BreadcrumbList', itemListElement: items });
+  }
+
+  const payload = { '@context': 'https://schema.org', '@graph': graph };
+  const serialized = JSON.stringify(payload)
+    .replace(/</g, '\\u003c')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serialized }} />;
 }

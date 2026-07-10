@@ -1,11 +1,31 @@
-# Copy this to .dev.vars for local Cloudflare Pages Functions testing.
-# Do not commit .dev.vars.
-# If local Wrangler preview returns OpenAI auth errors, remove the quotes in .dev.vars.
-OPENAI_API_KEY="sk-proj-your-key"
-OPENAI_MODEL="gpt-4o-mini"
+# Local Cloudflare Pages Functions development only.
+# Copy to .dev.vars. Never commit the populated file.
 
-# Optional project inquiry delivery. If omitted, the intake flow returns an honest mailto/copy fallback.
-CONTACT_EMAIL="1brent.bm@gmail.com"
+PUBLIC_SITE_URL="https://eidos-works.com"
+PUBLIC_CONTACT_EMAIL="hello@eidos-works.com"
+PUBLIC_PROJECTS_EMAIL="projects@eidos-works.com"
+PUBLIC_SNAPSHOT_EMAIL="snapshot@eidos-works.com"
+PUBLIC_BILLING_EMAIL="billing@eidos-works.com"
+PUBLIC_OPERATOR_EMAIL="bmp@eidos-works.com"
+VITE_SITE_URL="https://eidos-works.com"
+VITE_SNAPSHOT_CHECKOUT_ENABLED="false"
+
+# Snapshot prefers the dedicated key and falls back to the existing site key.
+OPENAI_SNAPSHOT_API_KEY=""
+OPENAI_API_KEY=""
+OPENAI_TEXT_MODEL="gpt-4.1-mini"
+OPENAI_IMAGE_MODEL="gpt-image-1"
+
+STRIPE_SECRET_KEY=""
+STRIPE_WEBHOOK_SECRET=""
+STRIPE_PRICE_ID_SNAPSHOT=""
+SNAPSHOT_PRICE_CENTS="500"
+SNAPSHOT_DEV_BYPASS_PAYMENT="false"
+SNAPSHOT_PUBLIC_ENABLED="false"
+
+# Optional project-inquiry / Command Center delivery.
+GOOGLE_APPS_SCRIPT_WEBHOOK_URL=""
+COMMAND_CENTER_SHARED_SECRET=""
 CONTACT_WEBHOOK_URL=""
-RESEND_API_KEY=""
-CONTACT_FROM_EMAIL="Eidos Works <onboarding@resend.dev>"
+NOTIFICATION_TO_EMAIL=""
+DESTINATION_FORWARD_EMAIL=""

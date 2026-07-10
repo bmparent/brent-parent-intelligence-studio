@@ -1,5 +1,5 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { mkdir, readFile, readdir, unlink, writeFile } from 'node:fs/promises';
+import { resolve, sep } from 'node:path';
 
 const root = process.cwd();
 const siteUrl = (process.env.VITE_SITE_URL || 'https://eidos-works.com').replace(/\/+$/, '');
@@ -7,8 +7,27 @@ const articlesPath = resolve(root, 'src/data/articles.json');
 const publicDir = resolve(root, 'public');
 const ogDir = resolve(publicDir, 'insights-og');
 const reportDir = resolve(root, 'artifacts/insights');
+const insightCategories = new Set([
+  'Website Strategy',
+  'Storefront UX',
+  'Agentic SEO',
+  'Automation',
+  'Dashboards',
+  'AI Prototyping',
+  'Case Notes'
+]);
 
 const rawArticles = JSON.parse(await readFile(articlesPath, 'utf8'));
+if (!Array.isArray(rawArticles)) throw new Error('src/data/articles.json must contain an array.');
+
+for (const article of rawArticles) {
+  if (!article || typeof article !== 'object' || Array.isArray(article)) throw new Error('Every article must be an object.');
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug ?? '')) throw new Error('Article slugs must be lowercase kebab-case.');
+  if (article.canonicalPath !== `/insights/${article.slug}`) throw new Error(`Invalid canonical path for ${article.slug}.`);
+  if (article.ogImage !== `/insights-og/${article.slug}.svg`) throw new Error(`Invalid OG image path for ${article.slug}.`);
+  if (!insightCategories.has(article.category)) throw new Error(`Invalid category for ${article.slug}.`);
+}
+
 const articles = rawArticles
   .filter((article) => !article.draft)
   .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
@@ -61,6 +80,8 @@ function wrapTitle(title) {
 function generateSitemap() {
   const staticPages = [
     { loc: absolute('/'), lastmod: '2026-07-10', priority: '1.0' },
+    { loc: absolute('/snapshot'), lastmod: '2026-07-10', priority: '0.9' },
+    { loc: absolute('/services/agentic-seo'), lastmod: '2026-07-10', priority: '0.9' },
     { loc: absolute('/insights'), lastmod: '2026-07-10', priority: '0.9' },
     { loc: absolute('/editorial-policy'), lastmod: '2026-07-10', priority: '0.5' }
   ];
@@ -94,12 +115,12 @@ function generateFeed() {
     )
     .join('\n');
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>Eidos Works Insights</title>\n    <link>${xmlEscape(absolute('/insights'))}</link>\n    <description>Source-linked articles on storefront UX, automation, AI-ready search, operations, media workflows, and applied systems.</description>\n    <language>en-us</language>\n    <lastBuildDate>${lastBuildDate}</lastBuildDate>\n${items}\n  </channel>\n</rss>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>Eidos Works Insights</title>\n    <link>${xmlEscape(absolute('/insights'))}</link>\n    <description>Practical, source-linked notes on website strategy, storefront UX, automation, dashboards, and AI-ready search.</description>\n    <language>en-us</language>\n    <lastBuildDate>${lastBuildDate}</lastBuildDate>\n${items}\n  </channel>\n</rss>\n`;
 }
 
 function generateLlmsTxt() {
   const articleLines = articles.map((article) => `- [${article.title}](${absolute(article.canonicalPath)}): ${article.description}`);
-  return `# Eidos Works\n\nEidos Works is a creative technology and intelligence studio by Brent Parent. The site covers custom storefront experiences, graphic design and mockups, production dashboards, workflow automation, Eidos Brain/Sentinel prototypes, and practical articles about UI/UX, operations, media workflows, and applied AI.\n\n## Key pages\n- [Home](${absolute('/')})\n- [Insights](${absolute('/insights')})\n- [Editorial Policy](${absolute('/editorial-policy')})\n\n## Primary topics\n- Custom InkSoft storefronts and apparel commerce UX\n- Graphic design, campaign banners, and apparel mockups\n- Production dashboards and reporting workflows\n- Workflow automation and operational cleanup\n- Agentic search, structured data, and AI-ready content systems\n- Eidos Brain and Sentinel intelligence prototypes\n\n## Insights\n${articleLines.join('\n')}\n`;
+  return `# Eidos Works\n\nEidos Works builds premium websites, storefront experiences, dashboards, workflow automation, and AI-ready website strategy for modern businesses.\n\n## Key pages\n- [Home](${absolute('/')})\n- [Eidos Snapshot](${absolute('/snapshot')})\n- [Agentic SEO](${absolute('/services/agentic-seo')})\n- [Insights](${absolute('/insights')})\n- [Editorial Policy](${absolute('/editorial-policy')})\n\n## Primary topics\n- Website and UX redesign\n- Platform-neutral storefront experiences\n- Operational dashboards and workflow automation\n- Agentic SEO, structured content, and AI-search readiness\n- Proof-stage AI and intelligence prototypes with human review\n\n## Insights\n${articleLines.join('\n')}\n\n## Contact\n- hello@eidos-works.com\n- projects@eidos-works.com\n`;
 }
 
 function generateOgSvg(article) {
@@ -136,12 +157,22 @@ function generateOgSvg(article) {
 
 await mkdir(ogDir, { recursive: true });
 await mkdir(reportDir, { recursive: true });
+
+const expectedOgFiles = new Set(articles.map((article) => `${article.slug}.svg`));
+for (const entry of await readdir(ogDir, { withFileTypes: true })) {
+  if (entry.isFile() && entry.name.endsWith('.svg') && !expectedOgFiles.has(entry.name)) {
+    await unlink(resolve(ogDir, entry.name));
+  }
+}
+
 await writeFile(resolve(publicDir, 'sitemap.xml'), generateSitemap());
 await writeFile(resolve(publicDir, 'feed.xml'), generateFeed());
 await writeFile(resolve(publicDir, 'llms.txt'), generateLlmsTxt());
 
 for (const article of articles) {
-  await writeFile(resolve(publicDir, article.ogImage.replace(/^\/+/, '')), generateOgSvg(article));
+  const target = resolve(ogDir, `${article.slug}.svg`);
+  if (!target.startsWith(`${resolve(ogDir)}${sep}`)) throw new Error(`Unsafe OG image target for ${article.slug}.`);
+  await writeFile(target, generateOgSvg(article));
 }
 
 const report = {

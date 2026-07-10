@@ -1,23 +1,643 @@
 [
   {
+    "title": "What Agentic SEO Means for Small Business Websites",
+    "slug": "agentic-seo-small-business-websites",
+    "description": "A plain-language guide to making a small-business website easier for customers, search engines, and AI assistants to understand.",
+    "dek": "Agentic SEO is not a shortcut or a promise of automatic recommendations. It is the work of making your business clear enough to be understood wherever customers search.",
+    "category": "Agentic SEO",
+    "publishedAt": "2026-07-10T12:00:00-04:00",
+    "updatedAt": "2026-07-10T12:00:00-04:00",
+    "author": "Brent Parent",
+    "byline": "Brent Parent",
+    "readingTimeMinutes": 6,
+    "tags": [
+      "Agentic SEO",
+      "AI search",
+      "Small business",
+      "Website strategy"
+    ],
+    "canonicalPath": "/insights/agentic-seo-small-business-websites",
+    "excerpt": "Agentic SEO is not a shortcut or a promise of automatic recommendations. It is the work of making your business clear enough to be understood wherever customers search.",
+    "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
+    "slot": "seed",
+    "format": "evergreen",
+    "searchIntent": "A plain-language guide to making a small-business website easier for customers, search engines, and AI assistants to understand.",
+    "featured": true,
+    "draft": false,
+    "thesis": "Agentic SEO is not a shortcut or a promise of automatic recommendations. It is the work of making your business clear enough to be understood wherever customers search.",
+    "sources": [
+      {
+        "title": "Optimizing your website for generative AI features on Google Search",
+        "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "publisher": "Google Search Central",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-07-10",
+        "type": "official-docs"
+      },
+      {
+        "title": "Build and submit a sitemap",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+        "publisher": "Google Search Central",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-07-10",
+        "type": "official-docs"
+      }
+    ],
+    "takeaways": [
+      "Give every important service its own clear, crawlable explanation.",
+      "Connect claims to visible proof, useful details, and a specific next step.",
+      "Keep titles, descriptions, schema, internal links, and contact information consistent.",
+      "Write for the real questions customers ask before they contact you."
+    ],
+    "relatedSlugs": [
+      "structure-website-people-ai-assistants-understand",
+      "website-snapshot-before-redesign"
+    ],
+    "body": [
+      {
+        "heading": "Search now includes answers, comparisons, and actions",
+        "paragraphs": [
+          "Customers still browse search results, but they also ask assistants to compare providers, explain services, and narrow their options. Those systems rely on the public information they can read and connect.",
+          "A vague homepage gives both people and software too much room to guess. A clear site states what the business does, who it helps, where it works, what proof supports the offer, and how someone can take the next step."
+        ]
+      },
+      {
+        "heading": "The fundamentals still do most of the work",
+        "paragraphs": [
+          "Useful service pages, descriptive headings, strong internal links, accurate metadata, accessible navigation, and structured data are not tricks for an algorithm. They create a reliable map of the business.",
+          "Agentic SEO builds on that map. It also considers whether an assistant can find the answer to a specific question, distinguish one service from another, and point a customer toward a real page instead of inventing context."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Start by testing clarity, not by chasing every new search trend. Can a new visitor tell what you sell within a few seconds? Does each service page answer who it is for, what is included, and what happens next? Can your best proof be found without opening a PDF or decoding a gallery?",
+          "If those answers are uncertain, improve the page structure and content before adding more volume. One useful page with a clear purpose is more valuable than ten thin articles written only to fill a calendar."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works treats search readiness as part of the website architecture. Services, proof, pricing context, articles, and contact paths are organized so a customer can move naturally from a question to a decision.",
+          "The technical layer supports that experience with crawlable pages, canonicals, metadata, schema, sitemaps, and internal links. The goal is not to promise a ranking or citation. It is to give your business a clearer, more trustworthy source of truth."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Explore Agentic SEO",
+      "href": "/services/agentic-seo"
+    },
+    "ogImage": "/insights-og/agentic-seo-small-business-websites.svg"
+  },
+  {
+    "title": "How to Structure a Website So People and AI Assistants Understand It",
+    "slug": "structure-website-people-ai-assistants-understand",
+    "description": "A practical framework for turning a collection of pages into a clear path for visitors, search systems, and AI-assisted discovery.",
+    "dek": "A website becomes easier to understand when every important page has one job, a useful place in the hierarchy, and a clear relationship to the next decision.",
+    "category": "Website Strategy",
+    "publishedAt": "2026-07-10T12:00:00-04:00",
+    "updatedAt": "2026-07-10T12:00:00-04:00",
+    "author": "Brent Parent",
+    "byline": "Brent Parent",
+    "readingTimeMinutes": 7,
+    "tags": [
+      "Information architecture",
+      "Website strategy",
+      "AI search",
+      "Content design"
+    ],
+    "canonicalPath": "/insights/structure-website-people-ai-assistants-understand",
+    "excerpt": "A website becomes easier to understand when every important page has one job, a useful place in the hierarchy, and a clear relationship to the next decision.",
+    "pillar": "Website strategy, information architecture, and content design",
+    "slot": "seed",
+    "format": "evergreen",
+    "searchIntent": "A practical framework for turning a collection of pages into a clear path for visitors, search systems, and AI-assisted discovery.",
+    "featured": false,
+    "draft": false,
+    "thesis": "A website becomes easier to understand when every important page has one job, a useful place in the hierarchy, and a clear relationship to the next decision.",
+    "sources": [
+      {
+        "title": "Optimizing your website for generative AI features on Google Search",
+        "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "publisher": "Google Search Central",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-07-10",
+        "type": "official-docs"
+      },
+      {
+        "title": "Intro to how structured data markup works",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+        "publisher": "Google Search Central",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-07-10",
+        "type": "official-docs"
+      },
+      {
+        "title": "BlogPosting schema",
+        "url": "https://schema.org/BlogPosting",
+        "publisher": "Schema.org",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-07-10",
+        "type": "reference"
+      }
+    ],
+    "takeaways": [
+      "Organize navigation around customer needs rather than internal departments.",
+      "Give each important page one primary question to answer.",
+      "Use descriptive links that explain where they lead.",
+      "Keep essential business facts consistent across the site."
+    ],
+    "relatedSlugs": [
+      "agentic-seo-small-business-websites",
+      "mobile-hierarchy-over-desktop-polish"
+    ],
+    "body": [
+      {
+        "heading": "Build a map before adding more pages",
+        "paragraphs": [
+          "Many websites grow one request at a time. A new service gets a card, a promotion gets a landing page, and company information is repeated wherever it fits. The result may contain all the facts but still feel difficult to navigate.",
+          "A useful structure begins with a small set of customer decisions: understand the offer, see proof, compare an option, learn what it costs, and make contact. Every page should support one of those decisions."
+        ]
+      },
+      {
+        "heading": "Make relationships explicit",
+        "paragraphs": [
+          "People notice relationships through headings, grouping, and navigation. Search systems and assistants also use page titles, link language, semantic markup, breadcrumbs, and repeated context to understand how the pieces fit together.",
+          "A service page should link to relevant examples and guidance. A case study should identify the problem it solved. An article should point to the service or next step it genuinely supports. These connections create a coherent site instead of a stack of isolated pages."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "List your current pages and write one sentence describing the job of each. If two pages have the same job, they may need to be combined. If an important customer question has no natural home, the site may need a focused page for it.",
+          "Then review every major page in sequence: clear title, direct summary, useful evidence, relevant details, and an obvious next action. That pattern helps visitors scan and gives software a cleaner account of what the page is about."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works starts redesigns with the customer path and content model, then shapes the interface around them. Navigation labels, page hierarchy, service explanations, proof, and calls to action are planned as one connected system.",
+          "That structure is carried into semantic headings, internal links, metadata, and schema where appropriate. The visual design can then add personality without hiding the information a customer came to find."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Discuss your website structure",
+      "href": "/#contact"
+    },
+    "ogImage": "/insights-og/structure-website-people-ai-assistants-understand.svg"
+  },
+  {
+    "title": "Storefront UX: Helping Customers Find the Right Product Faster",
+    "slug": "storefront-ux-find-right-product-faster",
+    "description": "How stronger categories, product context, ordering guidance, and mobile paths can make a hosted or custom storefront easier to shop.",
+    "dek": "A storefront feels simple when customers can identify the right category, understand the product, and complete the order without stopping to decode the process.",
+    "category": "Storefront UX",
+    "publishedAt": "2026-07-10T12:00:00-04:00",
+    "updatedAt": "2026-07-10T12:00:00-04:00",
+    "author": "Brent Parent",
+    "byline": "Brent Parent",
+    "readingTimeMinutes": 6,
+    "tags": [
+      "Storefront UX",
+      "Ecommerce",
+      "Merchandise portals",
+      "Mobile design"
+    ],
+    "canonicalPath": "/insights/storefront-ux-find-right-product-faster",
+    "excerpt": "A storefront feels simple when customers can identify the right category, understand the product, and complete the order without stopping to decode the process.",
+    "pillar": "Storefront UX, mobile commerce, and product discovery",
+    "slot": "seed",
+    "format": "evergreen",
+    "searchIntent": "How stronger categories, product context, ordering guidance, and mobile paths can make a hosted or custom storefront easier to shop.",
+    "featured": false,
+    "draft": false,
+    "thesis": "A storefront feels simple when customers can identify the right category, understand the product, and complete the order without stopping to decode the process.",
+    "sources": [
+      {
+        "title": "Web Content Accessibility Guidelines 2.2",
+        "url": "https://www.w3.org/TR/WCAG22/",
+        "publisher": "W3C",
+        "publishedDate": "2023-10-05",
+        "accessedDate": "2026-07-10",
+        "type": "standard"
+      }
+    ],
+    "takeaways": [
+      "Lead with the shopping paths customers actually recognize.",
+      "Put deadlines, eligibility, decoration, and fulfillment details near the decision.",
+      "Use product imagery that answers questions instead of adding visual clutter.",
+      "Test category-to-checkout flow on a narrow phone screen."
+    ],
+    "relatedSlugs": [
+      "mobile-hierarchy-over-desktop-polish",
+      "website-snapshot-before-redesign"
+    ],
+    "body": [
+      {
+        "heading": "Reduce uncertainty before adding decoration",
+        "paragraphs": [
+          "Most storefront friction comes from unanswered questions. A shopper may not know which collection applies to them, whether a logo is included, when an order closes, or how the product will be delivered.",
+          "Strong storefront UX surfaces that context at the point where it matters. The homepage frames the store, category names match the shopper’s language, and product pages explain the details needed to choose with confidence."
+        ]
+      },
+      {
+        "heading": "Treat the platform as the engine, not the experience",
+        "paragraphs": [
+          "A hosted storefront can handle products, carts, and checkout while custom content provides a more useful path into that system. Branded heroes, focused category cards, sizing help, ordering notes, and clear support links make the experience feel intentional.",
+          "Motion and visual effects should reinforce hierarchy, not compete with it. The best interface is often the one that quietly removes a question before the customer has to ask."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Choose a common customer task and follow it from the homepage to checkout on a phone. Count the moments that require guessing, zooming, backtracking, or reading unrelated information. Those moments are the redesign list.",
+          "Prioritize the first category choice, product comparison, sizing, deadlines, fulfillment, and support. Improving those decision points usually matters more than adding another promotional banner."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works designs platform-ready storefront experiences around real ordering paths. The work can include branded entry pages, category systems, product presentation, mobile hierarchy, ordering guidance, and visual assets that fit the existing commerce platform.",
+          "The aim is a clearer bridge between the organization’s brand and the checkout engine—without overstating what the underlying platform or a visual layer can do."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Discuss a storefront path",
+      "href": "/#contact"
+    },
+    "ogImage": "/insights-og/storefront-ux-find-right-product-faster.svg"
+  },
+  {
+    "title": "From Spreadsheet Chaos to Operational Dashboards",
+    "slug": "spreadsheet-chaos-operational-dashboards",
+    "description": "A grounded way to decide when a spreadsheet needs a clearer operational view—and what a useful dashboard should show first.",
+    "dek": "The goal of an operational dashboard is not to display every available number. It is to make the next important decision easier to see.",
+    "category": "Dashboards",
+    "publishedAt": "2026-07-10T12:00:00-04:00",
+    "updatedAt": "2026-07-10T12:00:00-04:00",
+    "author": "Brent Parent",
+    "byline": "Brent Parent",
+    "readingTimeMinutes": 6,
+    "tags": [
+      "Dashboards",
+      "Operations",
+      "Workflow clarity",
+      "Reporting"
+    ],
+    "canonicalPath": "/insights/spreadsheet-chaos-operational-dashboards",
+    "excerpt": "The goal of an operational dashboard is not to display every available number. It is to make the next important decision easier to see.",
+    "pillar": "Dashboards, workflow automation, and operational clarity",
+    "slot": "seed",
+    "format": "evergreen",
+    "searchIntent": "A grounded way to decide when a spreadsheet needs a clearer operational view—and what a useful dashboard should show first.",
+    "featured": false,
+    "draft": false,
+    "thesis": "The goal of an operational dashboard is not to display every available number. It is to make the next important decision easier to see.",
+    "sources": [
+      {
+        "title": "Best Practices for Effective Dashboards",
+        "url": "https://help.tableau.com/current/pro/desktop/en-us/dashboards_best_practices.htm",
+        "publisher": "Tableau Help",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-07-10",
+        "type": "official-docs"
+      }
+    ],
+    "takeaways": [
+      "Define the decisions the dashboard must support before choosing charts.",
+      "Surface exceptions, ownership, and deadlines ahead of totals.",
+      "Keep a path back to the underlying records for verification.",
+      "Design around the daily meeting or handoff where the view will be used."
+    ],
+    "relatedSlugs": [
+      "website-snapshot-before-redesign",
+      "eidos-brain-sentinel-small-business-intelligence"
+    ],
+    "body": [
+      {
+        "heading": "Recognize when a spreadsheet has become a workflow",
+        "paragraphs": [
+          "Spreadsheets are excellent working tools. Trouble starts when several people rely on one file for status, ownership, deadlines, exceptions, and reporting, but each person reads it differently.",
+          "A dashboard becomes useful when it creates a shared operational view. It should answer a few recurring questions quickly: what changed, what is at risk, who owns the next step, and where the source record lives."
+        ]
+      },
+      {
+        "heading": "Start with signals, not charts",
+        "paragraphs": [
+          "A large total can look impressive while hiding the one late order or missing approval that needs attention. Operational views should usually lead with exceptions, due dates, queue health, and unresolved handoffs.",
+          "Filters, search, clear status definitions, and links to source data often create more value than a dense collection of visualizations. Charts should clarify a pattern that affects a decision, not decorate the screen."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "If your website includes a client portal, internal tool, or reporting surface, review it as a working environment. Ask what a person needs to notice in the first minute and what evidence they need before acting.",
+          "For teams still operating from spreadsheets, document the repeated questions and manual handoffs first. That creates a practical dashboard brief and prevents a rebuild from simply reproducing the same clutter in a new interface."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works maps the operating rhythm before designing the dashboard. Data sources, status rules, owners, exceptions, meeting questions, and follow-up actions shape the view.",
+          "The finished interface is designed to remain traceable to the underlying records. Automation can reduce repetitive updates, but the dashboard keeps human review visible wherever a decision has real business consequences."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Discuss an operating dashboard",
+      "href": "/#contact"
+    },
+    "ogImage": "/insights-og/spreadsheet-chaos-operational-dashboards.svg"
+  },
+  {
+    "title": "What a Website Snapshot Can Tell You Before a Redesign",
+    "slug": "website-snapshot-before-redesign",
+    "description": "What an early website concept and focused recommendation report can clarify—and what still requires a full audit, design process, and build.",
+    "dek": "A good Snapshot does not pretend to be a finished redesign. It gives a business owner a concrete direction to react to before the larger decisions begin.",
+    "category": "AI Prototyping",
+    "publishedAt": "2026-07-10T12:00:00-04:00",
+    "updatedAt": "2026-07-10T12:00:00-04:00",
+    "author": "Brent Parent",
+    "byline": "Brent Parent",
+    "readingTimeMinutes": 5,
+    "tags": [
+      "Website redesign",
+      "AI prototyping",
+      "Planning",
+      "Eidos Snapshot"
+    ],
+    "canonicalPath": "/insights/website-snapshot-before-redesign",
+    "excerpt": "A good Snapshot does not pretend to be a finished redesign. It gives a business owner a concrete direction to react to before the larger decisions begin.",
+    "pillar": "Website strategy, AI prototyping, and redesign planning",
+    "slot": "seed",
+    "format": "evergreen",
+    "searchIntent": "What an early website concept and focused recommendation report can clarify—and what still requires a full audit, design process, and build.",
+    "featured": false,
+    "draft": false,
+    "thesis": "A good Snapshot does not pretend to be a finished redesign. It gives a business owner a concrete direction to react to before the larger decisions begin.",
+    "sources": [
+      {
+        "title": "Creating helpful, reliable, people-first content",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "publisher": "Google Search Central",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-07-10",
+        "type": "official-docs"
+      },
+      {
+        "title": "Web Content Accessibility Guidelines 2.2",
+        "url": "https://www.w3.org/TR/WCAG22/",
+        "publisher": "W3C",
+        "publishedDate": "2023-10-05",
+        "accessedDate": "2026-07-10",
+        "type": "standard"
+      }
+    ],
+    "takeaways": [
+      "Use a concept to discuss hierarchy and direction, not to approve finished details.",
+      "Separate visible opportunities from assumptions that need discovery.",
+      "Prioritize recommendations by customer impact and effort.",
+      "Carry the strongest direction into a real content, design, and build plan."
+    ],
+    "relatedSlugs": [
+      "agentic-seo-small-business-websites",
+      "mobile-hierarchy-over-desktop-polish"
+    ],
+    "body": [
+      {
+        "heading": "Make the early conversation concrete",
+        "paragraphs": [
+          "It is difficult to discuss a redesign using only adjectives such as modern, clean, or premium. A visual concept gives those preferences a shape. It can reveal a stronger hero, a clearer call to action, better service grouping, and a more credible first impression.",
+          "A focused recommendation report adds the reasoning: what is unclear now, why it matters to a customer, and which improvements deserve attention first."
+        ]
+      },
+      {
+        "heading": "Know what the concept cannot prove",
+        "paragraphs": [
+          "A Snapshot is not a coded website, a complete technical audit, original brand system, or guarantee of better rankings. It may be based on public page content and a limited view of the current experience.",
+          "Important questions still require discovery: analytics, customer behavior, content ownership, integrations, accessibility, performance, competitive context, and the constraints of the existing platform."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Use an early concept to identify the direction with the most promise. Look for clearer hierarchy, more useful content order, stronger trust signals, and a simpler path to inquiry or purchase—not just a preferred color or visual effect.",
+          "Then turn that direction into a scoped plan. Confirm the pages, content, proof, technical requirements, and success measures before committing to the full build."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Snapshot pairs an AI-assisted homepage concept with concise UX, SEO, structure, and search-readiness notes. It is designed to give a business owner a useful starting point at a small commitment.",
+          "If the direction is right, Eidos Works can translate it into a deeper audit or full project plan. If it is not, the Snapshot still helps clarify what the business does and does not want from a redesign."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Explore Eidos Snapshot",
+      "href": "/snapshot"
+    },
+    "ogImage": "/insights-og/website-snapshot-before-redesign.svg"
+  },
+  {
+    "title": "Why Mobile Hierarchy Matters More Than Desktop Polish",
+    "slug": "mobile-hierarchy-over-desktop-polish",
+    "description": "Why the order, spacing, and priority of information on a small screen often matter more than the most polished desktop presentation.",
+    "dek": "Responsive design is not the act of squeezing a desktop page into one column. It is deciding what deserves attention when space and patience are limited.",
+    "category": "Website Strategy",
+    "publishedAt": "2026-07-10T12:00:00-04:00",
+    "updatedAt": "2026-07-10T12:00:00-04:00",
+    "author": "Brent Parent",
+    "byline": "Brent Parent",
+    "readingTimeMinutes": 5,
+    "tags": [
+      "Mobile UX",
+      "Responsive design",
+      "Website strategy",
+      "Conversion paths"
+    ],
+    "canonicalPath": "/insights/mobile-hierarchy-over-desktop-polish",
+    "excerpt": "Responsive design is not the act of squeezing a desktop page into one column. It is deciding what deserves attention when space and patience are limited.",
+    "pillar": "Mobile UX, accessibility, and responsive hierarchy",
+    "slot": "seed",
+    "format": "evergreen",
+    "searchIntent": "Why the order, spacing, and priority of information on a small screen often matter more than the most polished desktop presentation.",
+    "featured": false,
+    "draft": false,
+    "thesis": "Responsive design is not the act of squeezing a desktop page into one column. It is deciding what deserves attention when space and patience are limited.",
+    "sources": [
+      {
+        "title": "Responsive web design basics",
+        "url": "https://web.dev/articles/responsive-web-design-basics",
+        "publisher": "web.dev",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-07-10",
+        "type": "official-docs"
+      },
+      {
+        "title": "Web Content Accessibility Guidelines 2.2",
+        "url": "https://www.w3.org/TR/WCAG22/",
+        "publisher": "W3C",
+        "publishedDate": "2023-10-05",
+        "accessedDate": "2026-07-10",
+        "type": "standard"
+      }
+    ],
+    "takeaways": [
+      "Place the core offer and primary action before decorative content.",
+      "Use headings, spacing, and grouping to create a scannable rhythm.",
+      "Keep tap targets comfortable and forms short enough to complete.",
+      "Test real tasks on a phone, including navigation, product choice, and contact."
+    ],
+    "relatedSlugs": [
+      "storefront-ux-find-right-product-faster",
+      "structure-website-people-ai-assistants-understand"
+    ],
+    "body": [
+      {
+        "heading": "A small screen exposes weak priorities",
+        "paragraphs": [
+          "A wide desktop layout can place several ideas side by side and make them all feel important. On a phone, those ideas become a long sequence. If the order is weak, customers meet secondary details before they understand the offer.",
+          "Mobile hierarchy decides what appears first, which action stays visible, how sections are grouped, and when supporting detail becomes useful. It is a content decision as much as a styling decision."
+        ]
+      },
+      {
+        "heading": "Design around thumbs, interruptions, and uncertainty",
+        "paragraphs": [
+          "Mobile visitors may be comparing options, standing in a store, or returning to finish a task. Navigation should be predictable, links and controls should be easy to tap, and forms should ask only for information needed at that stage.",
+          "Large effects, oversized headlines, and horizontal card rows can work when carefully designed, but they should never hide the next step or create accidental overflow."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Open your homepage on a phone and stop after the first two screen heights. A customer should understand what the business offers, why it may be relevant, and where to go next. If those answers arrive later, the order needs attention.",
+          "Test complete tasks rather than isolated screenshots. Open the menu, compare a service, read proof, submit the form, and return to the previous page. The awkward moments reveal where responsive layout and content hierarchy need to improve together."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works plans mobile priority alongside the desktop composition. Content order, tap targets, forms, card behavior, media, motion, and navigation are reviewed against the customer’s actual path.",
+          "Desktop design still matters, but it is not allowed to borrow clarity from the smaller experience. The result should feel intentional at both sizes, with the same message and a proportionate level of visual depth."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Discuss a mobile-first redesign",
+      "href": "/#contact"
+    },
+    "ogImage": "/insights-og/mobile-hierarchy-over-desktop-polish.svg"
+  },
+  {
+    "title": "Eidos Brain and Sentinel: A Small-Business Intelligence Model",
+    "slug": "eidos-brain-sentinel-small-business-intelligence",
+    "description": "A grounded case note on using signals, exceptions, readable briefs, and human review to make small-business intelligence useful.",
+    "dek": "Small-business intelligence should not feel like science fiction. It should help a person notice what changed, understand why it matters, and decide what to do next.",
+    "category": "Case Notes",
+    "publishedAt": "2026-06-08T12:00:00-04:00",
+    "updatedAt": "2026-07-10T12:00:00-04:00",
+    "author": "Brent Parent",
+    "byline": "Brent Parent",
+    "readingTimeMinutes": 7,
+    "tags": [
+      "Eidos Brain",
+      "Sentinel",
+      "Decision support",
+      "Human review"
+    ],
+    "canonicalPath": "/insights/eidos-brain-sentinel-small-business-intelligence",
+    "excerpt": "Small-business intelligence should not feel like science fiction. It should help a person notice what changed, understand why it matters, and decide what to do next.",
+    "pillar": "AI prototyping, operational intelligence, and human review",
+    "slot": "seed",
+    "format": "evergreen",
+    "searchIntent": "A grounded case note on using signals, exceptions, readable briefs, and human review to make small-business intelligence useful.",
+    "featured": false,
+    "draft": false,
+    "thesis": "Small-business intelligence should not feel like science fiction. It should help a person notice what changed, understand why it matters, and decide what to do next.",
+    "sources": [
+      {
+        "title": "Eidos Brain and Sentinel case notes",
+        "url": "https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence",
+        "publisher": "Eidos Works",
+        "publishedDate": "2026-06-08",
+        "accessedDate": "2026-07-10",
+        "type": "internal-proof"
+      }
+    ],
+    "takeaways": [
+      "Map the signals people already check before automating a decision.",
+      "Prioritize exceptions and changes over another wall of totals.",
+      "Show the source and reasoning behind every consequential recommendation.",
+      "Keep approval with a person when the next action affects customers, money, or operations."
+    ],
+    "relatedSlugs": [
+      "spreadsheet-chaos-operational-dashboards",
+      "website-snapshot-before-redesign"
+    ],
+    "body": [
+      {
+        "heading": "Begin with signals instead of autonomy",
+        "paragraphs": [
+          "The useful starting point is not a system that tries to run the business. It is a map of signals: production status, customer questions, content gaps, repeated manual decisions, missing information, and unusual changes.",
+          "In this working model, Sentinel monitors those signals for exceptions, imbalance, and missing context. Eidos Brain turns the observations into a readable brief that a person can inspect and act on."
+        ]
+      },
+      {
+        "heading": "Make the reasoning inspectable",
+        "paragraphs": [
+          "A recommendation becomes more useful when it shows what changed, which evidence shaped the conclusion, and where uncertainty remains. That allows the operator to correct the system instead of choosing between blind trust and complete rejection.",
+          "The goal is decision support: reduce the time spent collecting context while preserving the judgment needed to interpret it."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "A customer-facing site can use the same principle on a smaller scale. Analytics, inquiries, search questions, form drop-off, stale content, and repeated support requests are signals that reveal where people are getting stuck.",
+          "Before adding an autonomous assistant, decide which observations would genuinely improve the customer path. A simple alert, dashboard, or weekly brief may solve the problem with less risk and maintenance."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works prototypes intelligence systems around narrow, verifiable jobs. Inputs, rules, exceptions, evidence, and human approval points are defined before a polished interface suggests more certainty than the system has earned.",
+          "Eidos Brain and Sentinel remain research and proof-stage architecture, not a claim of autonomous business management. The work is valuable because it tests how clearer evidence can support better human decisions."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Discuss a proof-stage prototype",
+      "href": "/#contact"
+    },
+    "ogImage": "/insights-og/eidos-brain-sentinel-small-business-intelligence.svg"
+  },
+  {
     "title": "Baseline 2026 Turns Browser Support Into a Design-System Decision",
     "slug": "baseline-2026-browser-support-design-system-decision",
     "description": "How Eidos Works uses Baseline, MDN compatibility signals, and progressive enhancement to decide which modern interface features are ready for production sites.",
     "dek": "Modern CSS and browser APIs are moving quickly. The useful question is not whether a feature is exciting. It is whether the feature is safe enough to build into a customer-facing system without leaving users behind.",
-    "category": "Current Web Standards",
+    "category": "Website Strategy",
     "publishedAt": "2026-07-10T08:00:00-04:00",
     "updatedAt": "2026-07-10T08:00:00-04:00",
     "author": "Eidos Works Editorial",
     "byline": "Eidos Works Editorial",
     "readingTimeMinutes": 7,
-    "tags": ["Baseline", "Web standards", "Design systems", "Progressive enhancement", "UI engineering"],
+    "tags": [
+      "Baseline",
+      "Web standards",
+      "Design systems",
+      "Progressive enhancement",
+      "UI engineering"
+    ],
     "canonicalPath": "/insights/baseline-2026-browser-support-design-system-decision",
     "excerpt": "The browser-support conversation is becoming less about guesswork and more about operating policy.",
     "pillar": "UI/UX design, accessibility, responsive behavior, and design systems",
     "slot": "morning",
     "format": "current-analysis",
     "searchIntent": "Understand how Baseline 2026 should influence web design and frontend implementation decisions.",
-    "featured": true,
+    "featured": false,
     "draft": false,
     "thesis": "Baseline is useful because it turns browser support from a vague argument into a repeatable product decision: what can be default, what needs enhancement, and what should stay experimental.",
     "sources": [
@@ -53,8 +673,8 @@
       "Document support decisions in the design system so future builds inherit the reasoning."
     ],
     "relatedSlugs": [
-      "designing-websites-for-humans-search-engines-ai-assistants",
-      "why-apparel-mockups-matter-before-launch-day"
+      "mobile-hierarchy-over-desktop-polish",
+      "structure-website-people-ai-assistants-understand"
     ],
     "body": [
       {
@@ -86,14 +706,14 @@
         ]
       },
       {
-        "heading": "How Eidos Works Applies This",
+        "heading": "How Eidos Works applies this",
         "paragraphs": [
           "For storefronts, service sites, dashboards, and content hubs, Eidos Works separates the page into proof-critical layers. The HTML content, links, forms, article body, sitemap, feed, and structured data must work plainly. Visual polish can then sit on top as progressive enhancement.",
           "That approach is especially useful for small businesses because it avoids two common mistakes: shipping a generic template that feels dated, or shipping a flashy interface that is fragile. The right middle path is a durable system that can use modern features while preserving the basic promise of the page."
         ]
       },
       {
-        "heading": "What To Do Next",
+        "heading": "What this means for your site",
         "paragraphs": [
           "If your site depends on modern frontend features, make support a documented operating rule. Identify the features that are allowed in core patterns, the features allowed only as enhancements, and the features that need explicit testing before use.",
           "That small discipline makes redesigns easier, keeps future sections consistent, and gives stakeholders a clearer reason for why a feature was used or held back. The result is not less ambitious design. It is ambition with receipts.",
@@ -102,8 +722,8 @@
       }
     ],
     "cta": {
-      "label": "Audit a frontend decision",
-      "href": "/#start"
+      "label": "Review a website decision",
+      "href": "/#contact"
     },
     "ogImage": "/insights-og/baseline-2026-browser-support-design-system-decision.svg"
   },
@@ -112,13 +732,19 @@
     "slug": "practical-source-map-ai-ready-service-pages",
     "description": "How to structure service pages so customers, search engines, and AI-assisted discovery systems can understand the offer.",
     "dek": "AI-ready content starts with the same basics that help a serious buyer: clear entities, visible proof, source-backed claims, useful internal links, and pages that answer the question they promise to answer.",
-    "category": "AI & Agentic Search",
+    "category": "Agentic SEO",
     "publishedAt": "2026-07-10T13:00:00-04:00",
     "updatedAt": "2026-07-10T13:00:00-04:00",
     "author": "Eidos Works Editorial",
     "byline": "Eidos Works Editorial",
     "readingTimeMinutes": 8,
-    "tags": ["AI search", "Structured data", "Service pages", "SEO", "Content systems"],
+    "tags": [
+      "AI search",
+      "Structured data",
+      "Service pages",
+      "SEO",
+      "Content systems"
+    ],
     "canonicalPath": "/insights/practical-source-map-ai-ready-service-pages",
     "excerpt": "The best agentic-search work is usually not a trick. It is a stronger map of what the business does and why it can be trusted.",
     "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
@@ -161,8 +787,8 @@
       "Separate confirmed facts from interpretation when discussing tools or platform behavior."
     ],
     "relatedSlugs": [
-      "designing-websites-for-humans-search-engines-ai-assistants",
-      "weekly-content-rhythm-storefronts-service-businesses"
+      "agentic-seo-small-business-websites",
+      "structure-website-people-ai-assistants-understand"
     ],
     "body": [
       {
@@ -210,11 +836,25 @@
           "The same test should be repeated after launch. Search behavior, customer questions, and sales conversations will show where the page is still vague. The best service pages improve as evidence accumulates, not because the business chases every new search tactic.",
           "For small teams, this is a practical maintenance rhythm: improve the source map when new proof appears, when a recurring question shows up, or when a service changes enough that the old description no longer earns trust. The page stays useful because the evidence stays current."
         ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "A useful service page should let a customer understand the offer, supporting evidence, limits, and next action without decoding internal language. Review the page as a connected path rather than a standalone block of marketing copy.",
+          "When the visible content, internal links, metadata, and structured data describe the same real offer, both human readers and discovery systems have a clearer basis for deciding what the page means."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works maps each service to a customer problem, a visible proof trail, relevant supporting guidance, and one practical next step. Structured data is added only after those relationships are present in the page itself.",
+          "The result is a service page designed to be useful first and machine-readable second, without speculative claims about rankings or AI citations."
+        ]
       }
     ],
     "cta": {
       "label": "Map an AI-ready service page",
-      "href": "/#start"
+      "href": "/services/agentic-seo"
     },
     "ogImage": "/insights-og/practical-source-map-ai-ready-service-pages.svg"
   },
@@ -223,13 +863,19 @@
     "slug": "storefront-proof-loop-ux-assets-operations",
     "description": "A strategic framework for connecting storefront UX, Cloudinary-ready assets, production workflow reality, and post-launch content into one stronger commerce system.",
     "dek": "A storefront is not just a homepage and product grid. It is a loop: the offer shapes the interface, the assets support confidence, operations define what must be clear, and post-launch evidence improves the next campaign.",
-    "category": "Storefront Strategy",
+    "category": "Storefront UX",
     "publishedAt": "2026-07-10T17:00:00-04:00",
     "updatedAt": "2026-07-10T17:00:00-04:00",
     "author": "Eidos Works Editorial",
     "byline": "Eidos Works Editorial",
     "readingTimeMinutes": 7,
-    "tags": ["Storefront UX", "Cloudinary", "Operations", "Content strategy", "E-commerce"],
+    "tags": [
+      "Storefront UX",
+      "Cloudinary",
+      "Operations",
+      "Content strategy",
+      "E-commerce"
+    ],
     "canonicalPath": "/insights/storefront-proof-loop-ux-assets-operations",
     "excerpt": "The strongest storefront work happens when design, media, and operations stop being separate conversations.",
     "pillar": "Premium e-commerce and custom storefront experiences",
@@ -272,9 +918,8 @@
       "Turn each campaign into future proof through articles, case notes, and internal links."
     ],
     "relatedSlugs": [
-      "custom-inksoft-storefront-easier-to-shop",
-      "why-apparel-mockups-matter-before-launch-day",
-      "weekly-content-rhythm-storefronts-service-businesses"
+      "storefront-ux-find-right-product-faster",
+      "spreadsheet-chaos-operational-dashboards"
     ],
     "body": [
       {
@@ -318,374 +963,26 @@
           "That is why the content layer matters. It turns the invisible work behind the storefront into a public trail of decisions, limits, and lessons that future customers can evaluate.",
           "The loop also protects positioning. Instead of claiming every store is premium in the same vague way, the business can point to specific improvements: clearer category paths, reusable assets, better mobile orientation, fewer support questions, and a stronger explanation of what the campaign is for. That evidence is easier to trust for future work."
         ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "A storefront redesign should be reviewed against the whole buying and fulfillment path. Clear navigation, useful product context, responsive media, deadlines, pickup details, and support questions all belong in the same planning conversation.",
+          "That broader view helps the interface reduce uncertainty for shoppers while giving the team reusable patterns and evidence for the next launch."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works connects storefront UX decisions to the assets and operational details that support them. The work stays platform-neutral and focuses on what customers need to understand before they browse, choose, and order.",
+          "After launch, the useful decisions can become case notes, checklists, and related guidance so each project improves the next customer path instead of ending as an isolated design pass."
+        ]
       }
     ],
     "cta": {
-      "label": "Plan a storefront proof loop",
-      "href": "/#start"
+      "label": "Discuss a storefront path",
+      "href": "/#contact"
     },
     "ogImage": "/insights-og/storefront-proof-loop-ux-assets-operations.svg"
-  },
-  {
-    "title": "What Makes a Custom InkSoft Storefront Feel Easier to Shop",
-    "slug": "custom-inksoft-storefront-easier-to-shop",
-    "description": "A practical look at the storefront hierarchy, category framing, product clarity, and mobile decisions that make InkSoft stores easier to use.",
-    "dek": "The best storefront improvements rarely start with decoration. They start by reducing uncertainty for the shopper.",
-    "category": "Storefront UX",
-    "publishedAt": "2026-06-08T12:00:00-04:00",
-    "updatedAt": "2026-06-08T12:00:00-04:00",
-    "author": "Eidos Works Editorial",
-    "byline": "Eidos Works Editorial",
-    "readingTimeMinutes": 5,
-    "tags": ["InkSoft", "Storefront UX", "Apparel stores", "Conversion"],
-    "canonicalPath": "/insights/custom-inksoft-storefront-easier-to-shop",
-    "excerpt": "The best storefront improvements rarely start with decoration. They start by reducing uncertainty for the shopper.",
-    "pillar": "Premium e-commerce and custom storefront experiences",
-    "slot": "seed",
-    "format": "evergreen",
-    "searchIntent": "Learn what makes an InkSoft storefront easier for shoppers to understand and use.",
-    "featured": false,
-    "draft": false,
-    "thesis": "InkSoft storefront UX improves when the page removes shopper uncertainty before adding visual polish.",
-    "sources": [
-      {
-        "title": "Web Content Accessibility Guidelines 2.2",
-        "url": "https://www.w3.org/TR/WCAG22/",
-        "publisher": "W3C",
-        "publishedDate": "2023-10-05",
-        "accessedDate": "2026-07-10",
-        "type": "standard"
-      }
-    ],
-    "takeaways": [
-      "Start with the shopper's decision path.",
-      "Use custom sections to make the template feel intentional.",
-      "Keep mobile category choices obvious."
-    ],
-    "relatedSlugs": ["storefront-proof-loop-ux-assets-operations", "why-apparel-mockups-matter-before-launch-day"],
-    "body": [
-      {
-        "heading": "Start With the Shopper Decision",
-        "paragraphs": [
-          "A custom storefront feels easier when the first screen explains what the store is for, who it serves, and which path a visitor should choose next.",
-          "For school, event, and organization stores, the biggest win is often removing ambiguity: categories, deadlines, pickup context, and product priority all need to be visible without turning the page into a wall of instructions."
-        ]
-      },
-      {
-        "heading": "Make the Template Feel Intentional",
-        "paragraphs": [
-          "InkSoft can handle the commerce engine, but the surrounding presentation still matters. Custom sections, branded imagery, sizing guidance, and direct calls to action help the store feel like a real retail experience instead of a catalog dropped into a page.",
-          "A polished store does not need excessive motion or visual noise. It needs hierarchy, product context, mobile-friendly grouping, and a clear reason to trust the page."
-        ]
-      }
-    ],
-    "cta": {
-      "label": "Explore storefront services",
-      "href": "/#capabilities"
-    },
-    "ogImage": "/insights-og/custom-inksoft-storefront-easier-to-shop.svg"
-  },
-  {
-    "title": "How Production Dashboards Turn Shop Noise Into Action",
-    "slug": "production-dashboards-shop-noise-action",
-    "description": "How production teams can use due dates, departments, filters, exceptions, and daily briefs to make operational work more visible.",
-    "dek": "A useful dashboard does not just display data. It turns the next production conversation into a shorter, clearer one.",
-    "category": "Production Systems",
-    "publishedAt": "2026-06-08T12:00:00-04:00",
-    "updatedAt": "2026-06-08T12:00:00-04:00",
-    "author": "Eidos Works Editorial",
-    "byline": "Eidos Works Editorial",
-    "readingTimeMinutes": 6,
-    "tags": ["Dashboards", "Printavo", "Operations", "Reporting"],
-    "canonicalPath": "/insights/production-dashboards-shop-noise-action",
-    "excerpt": "A useful dashboard does not just display data. It turns the next production conversation into a shorter, clearer one.",
-    "pillar": "Small-business automation and operational efficiency",
-    "slot": "seed",
-    "format": "evergreen",
-    "searchIntent": "Understand how production dashboards help teams turn operational data into daily action.",
-    "featured": false,
-    "draft": false,
-    "thesis": "A production dashboard is useful when it shortens the daily planning conversation and makes exceptions visible.",
-    "sources": [
-      {
-        "title": "DG Printavo Production Reports dashboard",
-        "url": "https://dg-printavo-production-reports.1brent-bm.workers.dev/?range=custom&department=ALL&from=2026-06-04&to=2026-07-09",
-        "publisher": "Eidos Works",
-        "publishedDate": "2026",
-        "accessedDate": "2026-07-10",
-        "type": "internal-proof"
-      }
-    ],
-    "takeaways": [
-      "Dashboards should answer the next planning question.",
-      "Filters and export paths are part of the operating rhythm.",
-      "Visible exceptions create better follow-up."
-    ],
-    "relatedSlugs": ["weekly-content-rhythm-storefronts-service-businesses"],
-    "body": [
-      {
-        "heading": "The Dashboard Has One Job",
-        "paragraphs": [
-          "Production reporting is most useful when it helps a team decide what to look at next. Late work, due-today work, department load, quiet queues, and stalled jobs all need to surface quickly.",
-          "That means filters, searchable tables, CSV export, and date-range context are not extras. They are how the dashboard becomes part of the daily operating rhythm."
-        ]
-      },
-      {
-        "heading": "Design for Meetings and Follow-Up",
-        "paragraphs": [
-          "The best operational interfaces are built around the conversations they support. A production manager should be able to answer what changed, what is at risk, and who needs a follow-up without rebuilding the view from scratch.",
-          "That is where a reporting surface starts to become intelligence: not by guessing, but by organizing the signals that already exist."
-        ]
-      }
-    ],
-    "cta": {
-      "label": "Review dashboard proof",
-      "href": "/#production"
-    },
-    "ogImage": "/insights-og/production-dashboards-shop-noise-action.svg"
-  },
-  {
-    "title": "Why Apparel Mockups Matter Before Launch Day",
-    "slug": "why-apparel-mockups-matter-before-launch-day",
-    "description": "Why apparel mockups improve buyer confidence, reduce launch friction, and help teams catch brand or product issues before a store goes live.",
-    "dek": "Mockups are not just decorative assets. They are one of the fastest ways to find weak product presentation before customers do.",
-    "category": "Design Systems",
-    "publishedAt": "2026-06-08T12:00:00-04:00",
-    "updatedAt": "2026-06-08T12:00:00-04:00",
-    "author": "Eidos Works Editorial",
-    "byline": "Eidos Works Editorial",
-    "readingTimeMinutes": 4,
-    "tags": ["Mockups", "Apparel", "Launch planning", "Cloudinary"],
-    "canonicalPath": "/insights/why-apparel-mockups-matter-before-launch-day",
-    "excerpt": "Mockups are not just decorative assets. They are one of the fastest ways to find weak product presentation before customers do.",
-    "pillar": "Cloudinary, media optimization, and visual-content workflows",
-    "slot": "seed",
-    "format": "evergreen",
-    "searchIntent": "Understand why apparel mockups are useful for storefront launch planning.",
-    "featured": false,
-    "draft": false,
-    "thesis": "Mockups function as a launch QA layer because they make visual, product, and stakeholder decisions visible early.",
-    "sources": [
-      {
-        "title": "Image optimization",
-        "url": "https://cloudinary.com/documentation/image_optimization",
-        "publisher": "Cloudinary",
-        "publishedDate": "unknown",
-        "accessedDate": "2026-07-10",
-        "type": "official-docs"
-      }
-    ],
-    "takeaways": [
-      "Mockups reveal weak product presentation before launch.",
-      "They help non-design stakeholders understand the offer.",
-      "Organized assets can support storefront, social, email, and approval workflows."
-    ],
-    "relatedSlugs": ["storefront-proof-loop-ux-assets-operations", "custom-inksoft-storefront-easier-to-shop"],
-    "body": [
-      {
-        "heading": "Mockups Make Decisions Visible",
-        "paragraphs": [
-          "A flat product list can hide problems until launch day. Mockups reveal whether colors, artwork placement, garment type, and category hierarchy make sense together.",
-          "For schools, events, and fundraisers, the mockup also helps non-design stakeholders understand the offer without interpreting production files or product codes."
-        ]
-      },
-      {
-        "heading": "Use Mockups as a QA Layer",
-        "paragraphs": [
-          "A good mockup pass can catch missing images, inconsistent brand treatment, confusing product titles, and weak hero visuals before the store goes public.",
-          "When the assets are organized through a media workflow, those same visuals can support storefront banners, social posts, email campaigns, and internal approvals."
-        ]
-      }
-    ],
-    "cta": {
-      "label": "View visual work",
-      "href": "/#work-media"
-    },
-    "ogImage": "/insights-og/why-apparel-mockups-matter-before-launch-day.svg"
-  },
-  {
-    "title": "Eidos Brain and Sentinel: A Practical Model for Small-Business Intelligence",
-    "slug": "eidos-brain-sentinel-small-business-intelligence",
-    "description": "A grounded model for using signals, exceptions, briefs, and human review to make small-business intelligence systems useful without hype.",
-    "dek": "Small-business intelligence should not feel like science fiction. It should help a person notice what changed and decide what to do next.",
-    "category": "Eidos Brain",
-    "publishedAt": "2026-06-08T12:00:00-04:00",
-    "updatedAt": "2026-06-08T12:00:00-04:00",
-    "author": "Eidos Works Editorial",
-    "byline": "Eidos Works Editorial",
-    "readingTimeMinutes": 7,
-    "tags": ["Eidos Brain", "Sentinel", "AI workflows", "Small business"],
-    "canonicalPath": "/insights/eidos-brain-sentinel-small-business-intelligence",
-    "excerpt": "Small-business intelligence should not feel like science fiction. It should help a person notice what changed and decide what to do next.",
-    "pillar": "Intelligence prototypes and Eidos Brain research",
-    "slot": "seed",
-    "format": "evergreen",
-    "searchIntent": "Understand Eidos Brain and Sentinel as a practical small-business intelligence model.",
-    "featured": false,
-    "draft": false,
-    "thesis": "Small-business intelligence is strongest when it watches for useful signals and keeps human review in the decision loop.",
-    "sources": [
-      {
-        "title": "Eidos Works Eidos Brain section",
-        "url": "https://eidos-works.com/#eidos",
-        "publisher": "Eidos Works",
-        "publishedDate": "2026",
-        "accessedDate": "2026-07-10",
-        "type": "internal-proof"
-      }
-    ],
-    "takeaways": [
-      "Start with signals before automation.",
-      "Use Sentinel as a monitoring metaphor, not an unsupported autonomous claim.",
-      "Keep human review visible for business consequences."
-    ],
-    "relatedSlugs": ["production-dashboards-shop-noise-action", "practical-source-map-ai-ready-service-pages"],
-    "body": [
-      {
-        "heading": "Signals Before Automation",
-        "paragraphs": [
-          "The useful starting point is not a large autonomous system. It is a map of signals: storefront behavior, production status, customer questions, content gaps, missing assets, and repeated manual decisions.",
-          "Sentinel is the monitoring layer in this model. It watches for exceptions, imbalance, stale content, or missing context. Eidos Brain is the interface layer that turns those observations into a readable brief."
-        ]
-      },
-      {
-        "heading": "Keep Humans in the Loop",
-        "paragraphs": [
-          "A practical intelligence system should show its reasoning, cite the signals it used, and ask for human review when the next action has business consequences.",
-          "That makes the system useful for small teams: it reduces blank-page thinking and follow-up friction without pretending to replace judgment."
-        ]
-      }
-    ],
-    "cta": {
-      "label": "Explore Eidos Brain scenarios",
-      "href": "/#eidos"
-    },
-    "ogImage": "/insights-og/eidos-brain-sentinel-small-business-intelligence.svg"
-  },
-  {
-    "title": "Designing Websites for Humans, Search Engines, and AI Assistants",
-    "slug": "designing-websites-for-humans-search-engines-ai-assistants",
-    "description": "How semantic structure, clear internal links, metadata, article depth, and public content maps help both people and AI-assisted browsers understand a site.",
-    "dek": "Agentic search does not replace fundamentals. It rewards the same clarity that helps a real buyer understand the work.",
-    "category": "AI & Agentic Search",
-    "publishedAt": "2026-06-08T12:00:00-04:00",
-    "updatedAt": "2026-06-08T12:00:00-04:00",
-    "author": "Eidos Works Editorial",
-    "byline": "Eidos Works Editorial",
-    "readingTimeMinutes": 6,
-    "tags": ["SEO", "AI search", "Semantic HTML", "Content strategy"],
-    "canonicalPath": "/insights/designing-websites-for-humans-search-engines-ai-assistants",
-    "excerpt": "Agentic search does not replace fundamentals. It rewards the same clarity that helps a real buyer understand the work.",
-    "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
-    "slot": "seed",
-    "format": "evergreen",
-    "searchIntent": "Learn how website structure helps humans, search engines, and AI assistants understand a business.",
-    "featured": false,
-    "draft": false,
-    "thesis": "AI-ready search work begins with crawlable, human-readable structure and accurate relationships between content, proof, and action.",
-    "sources": [
-      {
-        "title": "Optimizing your website for generative AI features on Google Search",
-        "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
-        "publisher": "Google Search Central",
-        "publishedDate": "unknown",
-        "accessedDate": "2026-07-10",
-        "type": "official-docs"
-      },
-      {
-        "title": "Build and submit a sitemap",
-        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
-        "publisher": "Google Search Central",
-        "publishedDate": "unknown",
-        "accessedDate": "2026-07-10",
-        "type": "official-docs"
-      }
-    ],
-    "takeaways": [
-      "Make the page legible in HTML first.",
-      "Use links to connect services, proof, and related articles.",
-      "Treat AI-search optimization as clearer structure, not a replacement for SEO fundamentals."
-    ],
-    "relatedSlugs": ["practical-source-map-ai-ready-service-pages", "weekly-content-rhythm-storefronts-service-businesses"],
-    "body": [
-      {
-        "heading": "Make the Site Legible First",
-        "paragraphs": [
-          "Clear headings, real links, descriptive alt text, crawlable sections, and useful metadata help search engines, AI assistants, and human visitors build the same mental map.",
-          "Important proof should not live only in canvas effects, hover states, or images. The page should explain the offer in HTML that can be read, searched, and linked."
-        ]
-      },
-      {
-        "heading": "Connect the Proof",
-        "paragraphs": [
-          "Internal links matter because they show relationships. A service page should point to related case studies, articles should reference workflows, and project CTAs should carry enough context to start the next conversation.",
-          "That structure helps a visitor explore proof and helps an AI-assisted browser summarize the business accurately."
-        ]
-      }
-    ],
-    "cta": {
-      "label": "Review AI-ready services",
-      "href": "/#capabilities"
-    },
-    "ogImage": "/insights-og/designing-websites-for-humans-search-engines-ai-assistants.svg"
-  },
-  {
-    "title": "A Simple Weekly Content Rhythm for Storefronts and Service Businesses",
-    "slug": "weekly-content-rhythm-storefronts-service-businesses",
-    "description": "A realistic publishing rhythm for teams that want useful articles, updates, product notes, and case-study fragments without creating a content machine.",
-    "dek": "A weekly rhythm works when it is tied to real operations: launches, customer questions, product decisions, and lessons from the work.",
-    "category": "Case Study Notes",
-    "publishedAt": "2026-06-08T12:00:00-04:00",
-    "updatedAt": "2026-06-08T12:00:00-04:00",
-    "author": "Eidos Works Editorial",
-    "byline": "Eidos Works Editorial",
-    "readingTimeMinutes": 5,
-    "tags": ["Content rhythm", "Storefronts", "Service businesses", "SEO"],
-    "canonicalPath": "/insights/weekly-content-rhythm-storefronts-service-businesses",
-    "excerpt": "A weekly rhythm works when it is tied to real operations: launches, customer questions, product decisions, and lessons from the work.",
-    "pillar": "Eidos Works frameworks, experiments, lessons, and original analysis",
-    "slot": "seed",
-    "format": "evergreen",
-    "searchIntent": "Plan a realistic content rhythm for storefront and service-business publishing.",
-    "featured": false,
-    "draft": false,
-    "thesis": "A content rhythm is sustainable when it turns real operating questions into reusable public context.",
-    "sources": [
-      {
-        "title": "Creating helpful, reliable, people-first content",
-        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
-        "publisher": "Google Search Central",
-        "publishedDate": "unknown",
-        "accessedDate": "2026-07-10",
-        "type": "official-docs"
-      }
-    ],
-    "takeaways": [
-      "Use real work as the source.",
-      "Keep formats repeatable.",
-      "Publish useful context instead of volume for its own sake."
-    ],
-    "relatedSlugs": ["practical-source-map-ai-ready-service-pages", "storefront-proof-loop-ux-assets-operations"],
-    "body": [
-      {
-        "heading": "Use Real Work as the Source",
-        "paragraphs": [
-          "The easiest content rhythm starts with questions the business already answers every week. What should customers know before ordering? What changed in the store? Which product or workflow caused confusion?",
-          "Those observations can become short articles, launch notes, buying guides, case-study fragments, and internal documentation without forcing the team to invent topics from nothing."
-        ]
-      },
-      {
-        "heading": "Keep the Format Repeatable",
-        "paragraphs": [
-          "A practical rhythm might include one useful article, one store update, one product or workflow note, and one proof-oriented case-study detail each week.",
-          "The goal is not volume for its own sake. The goal is a steady trail of useful, searchable context that helps buyers understand the work."
-        ]
-      }
-    ],
-    "cta": {
-      "label": "Plan a content rhythm",
-      "href": "/#start"
-    },
-    "ogImage": "/insights-og/weekly-content-rhythm-storefronts-service-businesses.svg"
   }
 ]

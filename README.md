@@ -1,98 +1,102 @@
 # Eidos Works
 
-Eidos Works is the public-facing creative technology studio by Brent Parent. It evolved from the Brent Parent Intelligence Studio portfolio and now presents custom storefronts, graphic design and mockups, production dashboards, workflow automation, and Eidos Brain / Sentinel intelligence prototypes.
+The production website for **Eidos Works**, Brent Parent's customer-facing web and systems studio. The site presents website and UX redesign, storefront platform experiences, dashboards and automation, agentic SEO, organized Insights, and the $5 Eidos Snapshot product.
+
+Production domain: `https://eidos-works.com`
 
 ## Stack
 
-- Vite + React + TypeScript
-- Babylon.js as progressive enhancement for subtle canvas and glass-edge effects
-- Static prerender step for crawlable first-load HTML
-- Cloudflare Pages Functions for diagnostics and project inquiry delivery
-- Cloudinary-hosted logos, profile imagery, storefront examples, mockups, and campaign assets
+- Vite 8, React 19, and TypeScript
+- Static SSR/prerendering for public discovery pages
+- Cloudflare Pages with Pages Functions
+- Cloudflare KV for durable Snapshot request/report storage
+- Stripe Checkout for the one-time $5 Snapshot payment
+- OpenAI Responses API and Image API for paid Snapshot generation
+- Optional Google Apps Script integration for the private Eidos Works Command Center
+- Existing Cloudinary assets for Eidos Works branding and selected work
 
-## Local Development
+No new paid CMS, CRM, booking system, database, or automation subscription is required.
+
+## Local development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
+
+For Pages Functions:
+
+```bash
+cp .dev.vars.example .dev.vars
+npm run preview:cf
+```
+
+Never commit `.dev.vars`, `.env*`, API keys, Stripe secrets, or client data.
 
 ## Validation
 
 ```bash
-npm run content:generate
-npm run validate:insights
 npm run typecheck
 npm run lint
 npm run build
-npm run validate:insights:dist
+npm run verify:prerender
 npm run verify:urls
+npm run test:snapshot
+npm run validate:insights -- --skip-source-fetch
+npm run validate:insights
+node scripts/setup-google-drive-command-center.ts --check
 ```
 
-## Cloudflare Pages Deployment
+The build creates `dist`, generates article social images, refreshes `sitemap.xml`, `feed.xml`, and `llms.txt`, and prerenders every public route. The source validator performs DNS-aware public-network checks before fetching external references; use `--skip-source-fetch` for untrusted pull-request content.
 
-Use the existing Cloudflare Pages project connected to GitHub.
+## Public routes
 
-Recommended settings:
+- `/` — customer-facing studio homepage
+- `/snapshot` — Eidos Snapshot offer
+- `/snapshot/start` — private intake and checkout start
+- `/snapshot/success` — processing state
+- `/snapshot/result/:resultToken` — private, unguessable report route
+- `/services/agentic-seo` — dedicated Agentic SEO service page
+- `/insights` — centralized knowledge hub
+- `/insights/:slug` — prerendered articles
+- `/editorial-policy` — sourcing, assisted-editing, and correction policy
+
+## Insights publishing
+
+`src/data/articles.json` is the single source for published Insights. A publish run generates social cards and discovery files, validates metadata and source links, builds the site, checks prerendered HTML, and writes a receipt under `artifacts/insights/runs/`.
+
+```bash
+npm run publish:insight-run -- --slot=manual
+npm run verify:production-insight -- --slug=<article-slug>
+```
+
+The scripts do not commit, push, deploy, or schedule themselves. See `docs/insights-automation.md` and `AGENTS.md` for the editorial workflow and external automation expectations.
+
+## Cloudflare Pages
+
+Use the existing GitHub-connected Pages project.
 
 ```text
 Framework preset: Vite
 Build command: npm run build
 Build output directory: dist
-Node version: 24 LTS
+Node version: 24
 Production branch: main
 Root directory: /
+Custom domain: eidos-works.com
 ```
 
-The production URL defaults to `https://eidos-works.com` in metadata and generated crawler files. Set `VITE_SITE_URL` in Cloudflare Pages only if the production domain changes.
+Production Snapshot checkout and the public API remain independently disabled. Keep `VITE_SNAPSHOT_CHECKOUT_ENABLED=false` and `SNAPSHOT_PUBLIC_ENABLED=false` until the durable fulfillment, state ownership, recovery-link, Turnstile/rate-limit, Stripe, and `SNAPSHOT_STORE` checks in `docs/EIDOS_SNAPSHOT.md` pass.
 
-## Project Inquiry Delivery
+## Project inquiries
 
-The Start a Project flow posts to `functions/api/project-inquiries.ts`.
+The contact form posts to `/api/project-inquiries`. When `GOOGLE_APPS_SCRIPT_WEBHOOK_URL` or `CONTACT_WEBHOOK_URL` is configured, the function sends a minimal validated record. Without delivery configuration, it returns an honest `mailto:` fallback to `projects@eidos-works.com`.
 
-If no delivery env vars are configured, the UI does not fake a sent state. It returns a generated brief with mailto and copy-to-clipboard fallback.
+## Documentation
 
-Optional Cloudflare Pages environment variables:
-
-```text
-CONTACT_EMAIL
-CONTACT_WEBHOOK_URL
-RESEND_API_KEY
-CONTACT_FROM_EMAIL
-```
-
-The existing diagnostic layer can still use:
-
-```text
-OPENAI_API_KEY
-OPENAI_MODEL
-```
-
-## Public Content
-
-- Sticky navigation with Home, Services, Work, Diagnostics, Eidos Brain, Insights, Pricing, and Start a Project
-- Live InkSoft storefront case studies with visit and on-demand preview actions
-- Deduplicated Cloudinary media explorer with category filters, accordion groups, featured strip, and lightbox
-- DG Printavo Production Reports case study
-- Eidos Brain / Sentinel scenarios
-- Pricing and engagement models with scoped language
-- Insights area with seed articles, RSS feed, sitemap entries, JSON-LD, and llms.txt
-- Real Start a Project intake flow with review-before-submit behavior
-
-## Insights Automation
-
-Insights content is managed in `src/data/articles.json`. Run this full gate before publishing an article:
-
-```bash
-npm run publish:insight-run -- --slot=manual
-```
-
-The gate regenerates public crawler assets, validates article metadata and sources, runs lint/build checks, validates prerendered article HTML, and writes a run report under `artifacts/insights/runs/`.
-
-Production verification for a deployed article:
-
-```bash
-npm run verify:production-insight -- --slug=<article-slug>
-```
-
-See `docs/insights-automation.md` and `AGENTS.md` for the editorial schedule, topic pillars, source rules, deduplication checks, failure behavior, and Codex automation expectations.
+- `docs/EIDOS_SNAPSHOT.md`
+- `docs/COMMAND_CENTER.md`
+- `docs/EMAIL_ROUTING.md`
+- `docs/AGENTIC_SEO_IMPLEMENTATION.md`
+- `docs/insights-automation.md`
+- `docs/DEPLOYMENT.md`
