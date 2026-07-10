@@ -2,7 +2,7 @@
   name: 'Eidos Works',
   founder: 'Brent Parent',
   legacyName: 'Brent Parent Intelligence Studio',
-  url: (import.meta.env.VITE_SITE_URL || 'https://eidosworks.pages.dev').replace(/\/+$/, ''),
+  url: (import.meta.env.VITE_SITE_URL || 'https://eidos-works.com').replace(/\/+$/, ''),
   description:
     'Eidos Works builds custom storefronts, production dashboards, workflow automation, and intelligence prototypes for teams that need calmer digital systems.',
   contactEmail: '1brent.bm@gmail.com',

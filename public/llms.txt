@@ -1,22 +1,27 @@
 # Eidos Works
 
-Eidos Works is a creative technology and intelligence studio by Brent Parent. The site covers custom storefront experiences, graphic design and mockups, production dashboards, workflow automation, Eidos Brain/Sentinel prototypes, and practical articles about UI/UX, operations, and applied AI.
+Eidos Works is a creative technology and intelligence studio by Brent Parent. The site covers custom storefront experiences, graphic design and mockups, production dashboards, workflow automation, Eidos Brain/Sentinel prototypes, and practical articles about UI/UX, operations, media workflows, and applied AI.
 
-Key pages:
-- /
-- /#capabilities
-- /#work
-- /#work-media
-- /#production
-- /#eidos
-- /#insights
-- /#pricing
-- /#start
+## Key pages
+- [Home](https://eidos-works.com/)
+- [Insights](https://eidos-works.com/insights)
+- [Editorial Policy](https://eidos-works.com/editorial-policy)
 
-Primary topics:
+## Primary topics
 - Custom InkSoft storefronts and apparel commerce UX
 - Graphic design, campaign banners, and apparel mockups
 - Production dashboards and reporting workflows
 - Workflow automation and operational cleanup
+- Agentic search, structured data, and AI-ready content systems
 - Eidos Brain and Sentinel intelligence prototypes
-- SEO, article strategy, and agentic-search readiness
+
+## Insights
+- [The Storefront Proof Loop Connects UX, Assets, and Operations](https://eidos-works.com/insights/storefront-proof-loop-ux-assets-operations): A strategic framework for connecting storefront UX, Cloudinary-ready assets, production workflow reality, and post-launch content into one stronger commerce system.
+- [A Practical Source Map for AI-Ready Service Pages](https://eidos-works.com/insights/practical-source-map-ai-ready-service-pages): How to structure service pages so customers, search engines, and AI-assisted discovery systems can understand the offer.
+- [Baseline 2026 Turns Browser Support Into a Design-System Decision](https://eidos-works.com/insights/baseline-2026-browser-support-design-system-decision): How Eidos Works uses Baseline, MDN compatibility signals, and progressive enhancement to decide which modern interface features are ready for production sites.
+- [What Makes a Custom InkSoft Storefront Feel Easier to Shop](https://eidos-works.com/insights/custom-inksoft-storefront-easier-to-shop): A practical look at the storefront hierarchy, category framing, product clarity, and mobile decisions that make InkSoft stores easier to use.
+- [How Production Dashboards Turn Shop Noise Into Action](https://eidos-works.com/insights/production-dashboards-shop-noise-action): How production teams can use due dates, departments, filters, exceptions, and daily briefs to make operational work more visible.
+- [Why Apparel Mockups Matter Before Launch Day](https://eidos-works.com/insights/why-apparel-mockups-matter-before-launch-day): Why apparel mockups improve buyer confidence, reduce launch friction, and help teams catch brand or product issues before a store goes live.
+- [Eidos Brain and Sentinel: A Practical Model for Small-Business Intelligence](https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence): A grounded model for using signals, exceptions, briefs, and human review to make small-business intelligence systems useful without hype.
+- [Designing Websites for Humans, Search Engines, and AI Assistants](https://eidos-works.com/insights/designing-websites-for-humans-search-engines-ai-assistants): How semantic structure, clear internal links, metadata, article depth, and public content maps help both people and AI-assisted browsers understand a site.
+- [A Simple Weekly Content Rhythm for Storefronts and Service Businesses](https://eidos-works.com/insights/weekly-content-rhythm-storefronts-service-businesses): A realistic publishing rhythm for teams that want useful articles, updates, product notes, and case-study fragments without creating a content machine.

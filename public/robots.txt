@@ -1,4 +1,4 @@
 ﻿User-agent: *
 Allow: /
 
-Sitemap: https://eidosworks.pages.dev/sitemap.xml
+Sitemap: https://eidos-works.com/sitemap.xml

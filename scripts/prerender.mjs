@@ -26,6 +26,7 @@ function withHeadMetadata(html, page) {
   const description = escapeAttribute(page.description ?? '');
   const url = escapeAttribute(page.url ?? '');
   const type = escapeAttribute(page.type ?? 'website');
+  const image = escapeAttribute(page.image ?? '/social-preview.svg');
 
   return html
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
@@ -34,9 +35,11 @@ function withHeadMetadata(html, page) {
     .replace(/<meta property="og:type" content="[^"]*" \/>/, `<meta property="og:type" content="${type}" />`)
     .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeAttribute(page.title ?? 'Eidos Works')}" />`)
     .replace(/<meta\s+property="og:description"\s+content="[^"]*"\s*\/>/s, `<meta property="og:description" content="${description}" />`)
+    .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${image}" />`)
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`)
     .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${escapeAttribute(page.title ?? 'Eidos Works')}" />`)
-    .replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/s, `<meta name="twitter:description" content="${description}" />`);
+    .replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/s, `<meta name="twitter:description" content="${description}" />`)
+    .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${image}" />`);
 }
 
 function outputPathFor(pathname) {

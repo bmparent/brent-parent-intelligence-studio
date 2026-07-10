@@ -10,10 +10,11 @@ import { IntelligenceStudioAgent } from './components/ui/IntelligenceStudioAgent
 import { WorkMediaExplorer } from './components/WorkMediaExplorer';
 import { PricingCards } from './components/PricingCards';
 import { InsightsIndex } from './components/InsightsIndex';
+import { EditorialPolicy } from './components/EditorialPolicy';
 import { ProjectIntakeWizard } from './components/ProjectIntakeWizard';
 import { SEOJsonLd } from './components/SEOJsonLd';
 import { siteConfig } from './config/site';
-import { getArticleSlugFromPath } from './data/articles';
+import { getArticleSlugFromPath, isInsightsPath } from './data/articles';
 
 type AppProps = {
   requestPath?: string;
@@ -21,11 +22,40 @@ type AppProps = {
 
 function App({ requestPath }: AppProps) {
   useReveal();
-  const insightSlug = getArticleSlugFromPath(typeof window === 'undefined' ? requestPath : window.location.pathname);
+  const currentPath = typeof window === 'undefined' ? requestPath ?? '/' : window.location.pathname;
+  const insightSlug = getArticleSlugFromPath(currentPath);
+  const isInsightsRoute = isInsightsPath(currentPath);
+  const isEditorialPolicyRoute = currentPath === '/editorial-policy';
+
+  if (isEditorialPolicyRoute) {
+    return (
+      <>
+        <SEOJsonLd routePath={currentPath} />
+        <Header />
+        <main>
+          <EditorialPolicy />
+        </main>
+        <SiteFooter />
+      </>
+    );
+  }
+
+  if (isInsightsRoute) {
+    return (
+      <>
+        <SEOJsonLd activeArticleSlug={insightSlug} routePath={currentPath} />
+        <Header />
+        <main>
+          <InsightsIndex initialSlug={insightSlug} standalone />
+        </main>
+        <SiteFooter />
+      </>
+    );
+  }
 
   return (
     <>
-      <SEOJsonLd />
+      <SEOJsonLd routePath={currentPath} />
       <Header />
       <main>
         <Hero />
@@ -54,24 +84,31 @@ function App({ requestPath }: AppProps) {
         <InsightsIndex initialSlug={insightSlug} />
         <ProjectIntakeWizard />
       </main>
-      <footer className="site-footer section-shell">
-        <div className="site-footer__brand">
-          <img src={siteConfig.logos.stacked} alt="Eidos Works logo" width="126" height="126" loading="lazy" />
-          <p>
-            <strong>Eidos Works</strong>
-            <span>Systems, storefronts, dashboards, automation, and intelligence prototypes by Brent Parent.</span>
-          </p>
-        </div>
-        <nav aria-label="Footer navigation">
-          <a href="#top">Top</a>
-          <a href="#capabilities">Services</a>
-          <a href="#work">Work</a>
-          <a href="#eidos">Eidos Brain</a>
-          <a href="#insights">Insights</a>
-          <a href="#start">Start a Project</a>
-        </nav>
-      </footer>
+      <SiteFooter />
     </>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="site-footer section-shell">
+      <div className="site-footer__brand">
+        <img src={siteConfig.logos.stacked} alt="Eidos Works logo" width="126" height="126" loading="lazy" />
+        <p>
+          <strong>Eidos Works</strong>
+          <span>Systems, storefronts, dashboards, automation, and intelligence prototypes by Brent Parent.</span>
+        </p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="/#top">Top</a>
+        <a href="/#capabilities">Services</a>
+        <a href="/#work">Work</a>
+        <a href="/#eidos">Eidos Brain</a>
+        <a href="/insights">Insights</a>
+        <a href="/editorial-policy">Editorial Policy</a>
+        <a href="/#start">Start a Project</a>
+      </nav>
+    </footer>
   );
 }
 

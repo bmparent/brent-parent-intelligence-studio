@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { siteConfig } from '../config/site';
 
 const links = [
-  { href: '#top', label: 'Home' },
-  { href: '#capabilities', label: 'Services' },
-  { href: '#work', label: 'Work' },
-  { href: '#intelligence-agent', label: 'Diagnostics' },
-  { href: '#eidos', label: 'Eidos Brain' },
-  { href: '#insights', label: 'Insights' },
-  { href: '#pricing', label: 'Pricing' }
+  { href: '/#top', label: 'Home' },
+  { href: '/#capabilities', label: 'Services' },
+  { href: '/#work', label: 'Work' },
+  { href: '/#intelligence-agent', label: 'Diagnostics' },
+  { href: '/#eidos', label: 'Eidos Brain' },
+  { href: '/insights', label: 'Insights' },
+  { href: '/#pricing', label: 'Pricing' }
 ];
 
 export function Header() {
@@ -27,7 +27,7 @@ export function Header() {
 
   return (
     <header className="site-header" aria-label="Primary navigation">
-      <a className="brand-mark" href="#top" aria-label="Eidos Works home" onClick={() => setOpen(false)}>
+      <a className="brand-mark" href="/" aria-label="Eidos Works home" onClick={() => setOpen(false)}>
         <img src={siteConfig.logos.horizontal} alt="Eidos Works" width="188" height="52" />
         <span>
           <strong>Eidos Works</strong>
@@ -47,7 +47,7 @@ export function Header() {
           </a>
         ))}
       </nav>
-      <a className="header-cta" href="#start" onClick={() => setOpen(false)}>
+      <a className="header-cta" href="/#start" onClick={() => setOpen(false)}>
         Start a Project
       </a>
     </header>

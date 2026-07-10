@@ -11,10 +11,16 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc -b --pretty false",
-    "build": "npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs",
+    "content:generate": "node scripts/generate-insights-assets.mjs",
+    "validate:insights": "node scripts/validate-insights.mjs",
+    "validate:insights:dist": "node scripts/validate-insights.mjs --check-dist --skip-source-fetch",
+    "publish:insight-run": "node scripts/publish-insight-run.mjs",
+    "verify:production-insight": "node scripts/verify-production-insight.mjs",
+    "build": "npm run content:generate && npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview --host 0.0.0.0",
     "verify:urls": "node scripts/verify-urls.mjs",
+    "publish:check": "npm run publish:insight-run -- --slot=manual",
     "preview:cf": "npm run build && npx wrangler pages dev dist"
   },
   "dependencies": {

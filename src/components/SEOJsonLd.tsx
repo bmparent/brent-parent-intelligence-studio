@@ -1,8 +1,29 @@
 import { absoluteUrl, siteConfig } from '../config/site';
-import { articles } from '../data/articles';
+import { articles, getArticleBySlug } from '../data/articles';
 import { storeCaseStudies } from '../data/portfolio';
 
-export function SEOJsonLd() {
+type SEOJsonLdProps = {
+  activeArticleSlug?: string;
+  routePath?: string;
+};
+
+function publisher() {
+  return {
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: {
+      '@type': 'ImageObject',
+      url: siteConfig.logos.icon
+    }
+  };
+}
+
+export function SEOJsonLd({ activeArticleSlug, routePath = '/' }: SEOJsonLdProps) {
+  const activeArticle = getArticleBySlug(activeArticleSlug);
+  const isInsightsHub = routePath === '/insights';
+  const isEditorialPolicy = routePath === '/editorial-policy';
+
   const organization = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
@@ -34,10 +55,7 @@ export function SEOJsonLd() {
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name
-    }
+    publisher: publisher()
   };
 
   const breadcrumbs = {
@@ -45,34 +63,51 @@ export function SEOJsonLd() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: absoluteUrl('/#work') },
-      { '@type': 'ListItem', position: 3, name: 'Insights', item: absoluteUrl('/#insights') },
-      { '@type': 'ListItem', position: 4, name: 'Start a Project', item: absoluteUrl('/#start') }
+      ...(activeArticle || isInsightsHub
+        ? [{ '@type': 'ListItem', position: 2, name: 'Insights', item: absoluteUrl('/insights') }]
+        : []),
+      ...(activeArticle
+        ? [{ '@type': 'ListItem', position: 3, name: activeArticle.title, item: absoluteUrl(activeArticle.canonicalPath) }]
+        : []),
+      ...(isEditorialPolicy
+        ? [{ '@type': 'ListItem', position: 2, name: 'Editorial Policy', item: absoluteUrl('/editorial-policy') }]
+        : [])
     ]
   };
 
-  const articleGraph = articles.map((article) => ({
+  const articleList = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.description,
-    datePublished: article.date,
-    dateModified: article.updated,
-    author: {
-      '@type': 'Person',
-      name: article.author
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: siteConfig.logos.icon
+    '@type': 'ItemList',
+    name: 'Eidos Works Insights',
+    itemListElement: articles.map((article, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: absoluteUrl(article.canonicalPath),
+      name: article.title
+    }))
+  };
+
+  const articleGraph = activeArticle
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: activeArticle.title,
+        description: activeArticle.description,
+        datePublished: activeArticle.publishedAt,
+        dateModified: activeArticle.updatedAt,
+        author: {
+          '@type': 'Organization',
+          name: activeArticle.byline,
+          url: siteConfig.url
+        },
+        publisher: publisher(),
+        image: absoluteUrl(activeArticle.ogImage),
+        mainEntityOfPage: absoluteUrl(activeArticle.canonicalPath),
+        keywords: activeArticle.tags.join(', '),
+        articleSection: activeArticle.category,
+        citation: activeArticle.sources.map((source) => source.url)
       }
-    },
-    mainEntityOfPage: absoluteUrl(article.canonicalPath),
-    keywords: article.tags.join(', ')
-  }));
+    : undefined;
 
   const creativeWorks = {
     '@context': 'https://schema.org',
@@ -94,9 +129,22 @@ export function SEOJsonLd() {
     }))
   };
 
+  const policyPage = isEditorialPolicy
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Eidos Works Editorial Policy',
+        url: absoluteUrl('/editorial-policy'),
+        publisher: publisher(),
+        description: 'How Eidos Works selects topics, sources current claims, handles corrections, and uses editorial technology.'
+      }
+    : undefined;
+
+  const graph = [organization, website, breadcrumbs, creativeWorks, articleList, articleGraph, policyPage].filter(Boolean);
+
   return (
     <>
-      {[organization, website, breadcrumbs, creativeWorks, ...articleGraph].map((entry, index) => (
+      {graph.map((entry, index) => (
         <script
           key={index}
           type="application/ld+json"

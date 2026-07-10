@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-07-10T22:00:52.674Z",
+  "site_url": "https://eidos-works.com",
+  "articles": [
+    {
+      "slug": "storefront-proof-loop-ux-assets-operations",
+      "canonical_url": "https://eidos-works.com/insights/storefront-proof-loop-ux-assets-operations",
+      "og_image": "/insights-og/storefront-proof-loop-ux-assets-operations.svg"
+    },
+    {
+      "slug": "practical-source-map-ai-ready-service-pages",
+      "canonical_url": "https://eidos-works.com/insights/practical-source-map-ai-ready-service-pages",
+      "og_image": "/insights-og/practical-source-map-ai-ready-service-pages.svg"
+    },
+    {
+      "slug": "baseline-2026-browser-support-design-system-decision",
+      "canonical_url": "https://eidos-works.com/insights/baseline-2026-browser-support-design-system-decision",
+      "og_image": "/insights-og/baseline-2026-browser-support-design-system-decision.svg"
+    },
+    {
+      "slug": "custom-inksoft-storefront-easier-to-shop",
+      "canonical_url": "https://eidos-works.com/insights/custom-inksoft-storefront-easier-to-shop",
+      "og_image": "/insights-og/custom-inksoft-storefront-easier-to-shop.svg"
+    },
+    {
+      "slug": "production-dashboards-shop-noise-action",
+      "canonical_url": "https://eidos-works.com/insights/production-dashboards-shop-noise-action",
+      "og_image": "/insights-og/production-dashboards-shop-noise-action.svg"
+    },
+    {
+      "slug": "why-apparel-mockups-matter-before-launch-day",
+      "canonical_url": "https://eidos-works.com/insights/why-apparel-mockups-matter-before-launch-day",
+      "og_image": "/insights-og/why-apparel-mockups-matter-before-launch-day.svg"
+    },
+    {
+      "slug": "eidos-brain-sentinel-small-business-intelligence",
+      "canonical_url": "https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence",
+      "og_image": "/insights-og/eidos-brain-sentinel-small-business-intelligence.svg"
+    },
+    {
+      "slug": "designing-websites-for-humans-search-engines-ai-assistants",
+      "canonical_url": "https://eidos-works.com/insights/designing-websites-for-humans-search-engines-ai-assistants",
+      "og_image": "/insights-og/designing-websites-for-humans-search-engines-ai-assistants.svg"
+    },
+    {
+      "slug": "weekly-content-rhythm-storefronts-service-businesses",
+      "canonical_url": "https://eidos-works.com/insights/weekly-content-rhythm-storefronts-service-businesses",
+      "og_image": "/insights-og/weekly-content-rhythm-storefronts-service-businesses.svg"
+    }
+  ],
+  "files": [
+    "public/sitemap.xml",
+    "public/feed.xml",
+    "public/llms.txt",
+    "public/insights-og/storefront-proof-loop-ux-assets-operations.svg",
+    "public/insights-og/practical-source-map-ai-ready-service-pages.svg",
+    "public/insights-og/baseline-2026-browser-support-design-system-decision.svg",
+    "public/insights-og/custom-inksoft-storefront-easier-to-shop.svg",
+    "public/insights-og/production-dashboards-shop-noise-action.svg",
+    "public/insights-og/why-apparel-mockups-matter-before-launch-day.svg",
+    "public/insights-og/eidos-brain-sentinel-small-business-intelligence.svg",
+    "public/insights-og/designing-websites-for-humans-search-engines-ai-assistants.svg",
+    "public/insights-og/weekly-content-rhythm-storefronts-service-businesses.svg"
+  ]
+}

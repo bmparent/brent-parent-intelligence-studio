@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const urls = [
-  'https://eidosworks.pages.dev',
+  'https://eidos-works.com',
   'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939367/eidods_icon_clukns.png',
   'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939365/eidos_horizontal_bim82e.png',
   'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939364/eidos_Stacked_vzevuu.png',
@@ -44,7 +44,7 @@ const urls = [
   'https://dg-printavo-production-reports.1brent-bm.workers.dev/?range=custom&department=ALL&from=2026-06-04&to=2026-07-09'
 ];
 
-const files = ['src/data/portfolio.ts', 'src/data/media.ts', 'src/config/site.ts', 'index.html', 'public/sitemap.xml', 'public/llms.txt'];
+const files = ['src/data/portfolio.ts', 'src/data/media.ts', 'src/config/site.ts', 'index.html', 'public/sitemap.xml', 'public/feed.xml', 'public/llms.txt'];
 const content = await Promise.all(files.map((file) => readFile(resolve(process.cwd(), file), 'utf8'))).then((parts) => parts.join('\n'));
 const missing = urls.filter((url) => !content.includes(url));
 

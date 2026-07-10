@@ -20,9 +20,12 @@ npm run dev
 ## Validation
 
 ```bash
+npm run content:generate
+npm run validate:insights
 npm run typecheck
 npm run lint
 npm run build
+npm run validate:insights:dist
 npm run verify:urls
 ```
 
@@ -41,7 +44,7 @@ Production branch: main
 Root directory: /
 ```
 
-The production URL defaults to `https://eidosworks.pages.dev` in metadata and public crawler files. If the final production domain changes, set `VITE_SITE_URL` in Cloudflare Pages and update `public/sitemap.xml`, `public/robots.txt`, and `public/feed.xml` to match.
+The production URL defaults to `https://eidos-works.com` in metadata and generated crawler files. Set `VITE_SITE_URL` in Cloudflare Pages only if the production domain changes.
 
 ## Project Inquiry Delivery
 
@@ -75,3 +78,21 @@ OPENAI_MODEL
 - Pricing and engagement models with scoped language
 - Insights area with seed articles, RSS feed, sitemap entries, JSON-LD, and llms.txt
 - Real Start a Project intake flow with review-before-submit behavior
+
+## Insights Automation
+
+Insights content is managed in `src/data/articles.json`. Run this full gate before publishing an article:
+
+```bash
+npm run publish:insight-run -- --slot=manual
+```
+
+The gate regenerates public crawler assets, validates article metadata and sources, runs lint/build checks, validates prerendered article HTML, and writes a run report under `artifacts/insights/runs/`.
+
+Production verification for a deployed article:
+
+```bash
+npm run verify:production-insight -- --slug=<article-slug>
+```
+
+See `docs/insights-automation.md` and `AGENTS.md` for the editorial schedule, topic pillars, source rules, deduplication checks, failure behavior, and Codex automation expectations.
