@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-07-10T18:14:11-04:00",
+  "branch": "main",
+  "commit_sha": "16b16547f0d6108eca0cb19889649123b53d1118",
+  "remote_main_verified": true,
+  "production_verified": false,
+  "production_urls_checked": [
+    "https://eidos-works.com/sitemap.xml",
+    "https://eidos-works.com/insights/baseline-2026-browser-support-design-system-decision",
+    "https://eidos-works.com/feed.xml"
+  ],
+  "production_result": "Production still served the older June 8 build with eidosworks.pages.dev canonical URLs.",
+  "cloudflare_visibility": "Blocked because CLOUDFLARE_API_TOKEN is not configured for wrangler in this local environment.",
+  "secrets_exposed": false,
+  "next_action": "Check Cloudflare Pages deployment for commit 16b16547f0d6108eca0cb19889649123b53d1118 and trigger or retry deployment if needed."
+}
