@@ -40,6 +40,11 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
     description: 'Build a website that is easier for customers, search engines, and AI assistants to understand with structured content, metadata, schema, and accessible UX.',
     type: 'website'
   },
+  '/work/pernr-access-gate': {
+    title: 'Private Storefront PERNR Access Gate Case Study | Eidos Works',
+    description: 'See how Eidos Works connected an InkSoft employee store to a controlled roster for a low-friction PERNR eligibility check.',
+    type: 'website'
+  },
   '/insights': {
     title: 'Insights | Eidos Works',
     description: 'Practical notes on website strategy, storefront UX, automation, dashboards, and AI-ready search from Eidos Works.',
@@ -113,5 +118,5 @@ export function pageMetadata(path = '/'): PageMetadata {
 }
 
 export function prerenderPagePaths() {
-  return ['/', '/snapshot', '/snapshot/start', '/snapshot/success', '/services/agentic-seo', '/insights', '/editorial-policy', ...articles.map((article) => article.canonicalPath)];
+  return ['/', '/snapshot', '/snapshot/start', '/snapshot/success', '/services/agentic-seo', '/work/pernr-access-gate', '/insights', '/editorial-policy', ...articles.map((article) => article.canonicalPath)];
 }

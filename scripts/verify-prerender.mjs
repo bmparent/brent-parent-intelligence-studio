@@ -44,7 +44,8 @@ for (const file of await htmlFiles(root)) {
     if (!required.test(html)) failures.push(`${label}: missing or unsafe required metadata`);
   }
 
-  if (/\.pages\.dev|inksoft|intelligence studio/i.test(html)) {
+  const approvedPlatformCaseStudy = label === 'work/pernr-access-gate/index.html';
+  if (/\.pages\.dev|intelligence studio/i.test(html) || (/inksoft/i.test(html) && !approvedPlatformCaseStudy)) {
     failures.push(`${label}: contains a retired or non-canonical public reference`);
   }
 

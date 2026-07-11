@@ -13,6 +13,7 @@ import {
 import { SEOJsonLd } from './components/SEOJsonLd';
 import { PageMeta } from './components/PageMeta';
 import { EditorialPolicy } from './components/EditorialPolicy';
+import { PernrGateCaseStudy } from './components/PernrGateCaseStudy';
 import { normalizePath } from './data/pages';
 
 type AppProps = {
@@ -43,6 +44,7 @@ function routeFor(path: string) {
   if (path === '/snapshot/start') return <SnapshotStartPage />;
   if (path === '/snapshot/success') return <SnapshotSuccessPage />;
   if (path === '/services/agentic-seo') return <AgenticSeoPage />;
+  if (path === '/work/pernr-access-gate') return <PernrGateCaseStudy />;
   if (path === '/insights') return <InsightsHub currentPath={path} />;
   if (path === '/editorial-policy') return <EditorialPolicy />;
   if (path.startsWith('/insights/')) return <InsightArticle currentPath={path} />;

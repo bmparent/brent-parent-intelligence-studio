@@ -247,6 +247,21 @@ export function HomePage() {
               </a>
             </div>
           </article>
+          <article className="ew-proof-card ew-proof-card--system ew-proof-card--gate">
+            <div className="ew-proof-system" role="img" aria-label="Credential checked against an approved roster before storefront access">
+              <span>Employee credential</span>
+              <i aria-hidden="true">→</i>
+              <strong>Roster check</strong>
+              <i aria-hidden="true">→</i>
+              <span>Private store</span>
+            </div>
+            <div className="ew-proof-card__copy">
+              <span>Private storefront access</span>
+              <h3>Disney PERNR eligibility gate</h3>
+              <p>A low-friction access layer connecting a hosted employee store to a controlled roster—without exposing the employee list in the storefront.</p>
+              <a className="ew-text-link" href="/work/pernr-access-gate">See how the system works <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
         </div>
       </section>
 
