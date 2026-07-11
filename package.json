@@ -21,6 +21,7 @@
     "test:snapshot": "node --import tsx scripts/smoke-snapshot.ts",
     "preview": "vite preview --host 0.0.0.0",
     "verify:prerender": "node scripts/verify-prerender.mjs",
+    "verify:editorial": "node scripts/verify-editorial.mjs",
     "verify:urls": "node scripts/verify-urls.mjs",
     "publish:check": "npm run publish:insight-run -- --slot=manual",
     "preview:cf": "npm run build && npx wrangler pages dev dist"

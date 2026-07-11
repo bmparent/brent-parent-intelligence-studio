@@ -1,21 +1,28 @@
 # Eidos Works
 
-Eidos Works builds premium websites, storefront experiences, dashboards, workflow automation, and AI-ready website strategy for modern businesses.
+Eidos Works designs digital experiences and operational tools for organizations with complicated real-world workflows. Brent Parent is the founder, designer, developer, and operator behind the work.
 
 ## Key pages
 - [Home](https://eidos-works.com/)
+- [Selected Work](https://eidos-works.com/work)
+- [PERNR Access Gate](https://eidos-works.com/work/pernr-access-gate)
+- [Production Dashboard](https://eidos-works.com/work/production-dashboard)
+- [Storefront Experience](https://eidos-works.com/work/storefront-experience)
+- [Services](https://eidos-works.com/services)
+- [About Brent Parent](https://eidos-works.com/about)
+- [Insights](https://eidos-works.com/insights)
+- [Contact](https://eidos-works.com/contact)
+- [Eidos Brain Lab](https://eidos-works.com/lab/eidos-brain)
 - [Eidos Snapshot](https://eidos-works.com/snapshot)
 - [Agentic SEO](https://eidos-works.com/services/agentic-seo)
-- [PERNR Storefront Access Gate Case Study](https://eidos-works.com/work/pernr-access-gate)
-- [Insights](https://eidos-works.com/insights)
 - [Editorial Policy](https://eidos-works.com/editorial-policy)
 
 ## Primary topics
-- Website and UX redesign
-- Platform-neutral storefront experiences
+- Digital experience design and frontend development
+- Hosted storefront and employee access systems
 - Operational dashboards and workflow automation
-- Agentic SEO, structured content, and AI-search readiness
-- Proof-stage AI and intelligence prototypes with human review
+- Structured content and search-readiness
+- Proof-stage Eidos Brain research with human review
 
 ## Insights
 - [The Storefront Proof Loop Connects UX, Assets, and Operations](https://eidos-works.com/insights/storefront-proof-loop-ux-assets-operations): A strategic framework for connecting storefront UX, Cloudinary-ready assets, production workflow reality, and post-launch content into one stronger commerce system.

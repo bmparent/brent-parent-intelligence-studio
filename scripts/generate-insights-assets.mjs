@@ -79,10 +79,20 @@ function wrapTitle(title) {
 
 function generateSitemap() {
   const staticPages = [
-    { loc: absolute('/'), lastmod: '2026-07-10', priority: '1.0' },
-    { loc: absolute('/snapshot'), lastmod: '2026-07-10', priority: '0.9' },
-    { loc: absolute('/services/agentic-seo'), lastmod: '2026-07-10', priority: '0.9' },
+    { loc: absolute('/'), lastmod: '2026-07-11', priority: '1.0' },
+    { loc: absolute('/work'), lastmod: '2026-07-11', priority: '0.9' },
     { loc: absolute('/work/pernr-access-gate'), lastmod: '2026-07-11', priority: '0.8' },
+    { loc: absolute('/work/production-dashboard'), lastmod: '2026-07-11', priority: '0.8' },
+    { loc: absolute('/work/storefront-experience'), lastmod: '2026-07-11', priority: '0.8' },
+    { loc: absolute('/services'), lastmod: '2026-07-11', priority: '0.9' },
+    { loc: absolute('/services/digital-experiences'), lastmod: '2026-07-11', priority: '0.8' },
+    { loc: absolute('/services/storefront-access-systems'), lastmod: '2026-07-11', priority: '0.8' },
+    { loc: absolute('/services/dashboards-workflow-tools'), lastmod: '2026-07-11', priority: '0.8' },
+    { loc: absolute('/services/agentic-seo'), lastmod: '2026-07-11', priority: '0.7' },
+    { loc: absolute('/about'), lastmod: '2026-07-11', priority: '0.7' },
+    { loc: absolute('/contact'), lastmod: '2026-07-11', priority: '0.8' },
+    { loc: absolute('/lab/eidos-brain'), lastmod: '2026-07-11', priority: '0.5' },
+    { loc: absolute('/snapshot'), lastmod: '2026-07-10', priority: '0.9' },
     { loc: absolute('/insights'), lastmod: '2026-07-10', priority: '0.9' },
     { loc: absolute('/editorial-policy'), lastmod: '2026-07-10', priority: '0.5' }
   ];
@@ -121,7 +131,7 @@ function generateFeed() {
 
 function generateLlmsTxt() {
   const articleLines = articles.map((article) => `- [${article.title}](${absolute(article.canonicalPath)}): ${article.description}`);
-  return `# Eidos Works\n\nEidos Works builds premium websites, storefront experiences, dashboards, workflow automation, and AI-ready website strategy for modern businesses.\n\n## Key pages\n- [Home](${absolute('/')})\n- [Eidos Snapshot](${absolute('/snapshot')})\n- [Agentic SEO](${absolute('/services/agentic-seo')})\n- [PERNR Storefront Access Gate Case Study](${absolute('/work/pernr-access-gate')})\n- [Insights](${absolute('/insights')})\n- [Editorial Policy](${absolute('/editorial-policy')})\n\n## Primary topics\n- Website and UX redesign\n- Platform-neutral storefront experiences\n- Operational dashboards and workflow automation\n- Agentic SEO, structured content, and AI-search readiness\n- Proof-stage AI and intelligence prototypes with human review\n\n## Insights\n${articleLines.join('\n')}\n\n## Contact\n- hello@eidos-works.com\n- projects@eidos-works.com\n`;
+  return `# Eidos Works\n\nEidos Works designs digital experiences and operational tools for organizations with complicated real-world workflows. Brent Parent is the founder, designer, developer, and operator behind the work.\n\n## Key pages\n- [Home](${absolute('/')})\n- [Selected Work](${absolute('/work')})\n- [PERNR Access Gate](${absolute('/work/pernr-access-gate')})\n- [Production Dashboard](${absolute('/work/production-dashboard')})\n- [Storefront Experience](${absolute('/work/storefront-experience')})\n- [Services](${absolute('/services')})\n- [About Brent Parent](${absolute('/about')})\n- [Insights](${absolute('/insights')})\n- [Contact](${absolute('/contact')})\n- [Eidos Brain Lab](${absolute('/lab/eidos-brain')})\n- [Eidos Snapshot](${absolute('/snapshot')})\n- [Agentic SEO](${absolute('/services/agentic-seo')})\n- [Editorial Policy](${absolute('/editorial-policy')})\n\n## Primary topics\n- Digital experience design and frontend development\n- Hosted storefront and employee access systems\n- Operational dashboards and workflow automation\n- Structured content and search-readiness\n- Proof-stage Eidos Brain research with human review\n\n## Insights\n${articleLines.join('\n')}\n\n## Contact\n- hello@eidos-works.com\n- projects@eidos-works.com\n`;
 }
 
 function generateOgSvg(article) {

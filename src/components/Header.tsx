@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { siteConfig } from '../config/site';
 
 const links = [
-  { href: '/#work', label: 'Work' },
-  { href: '/#services', label: 'Services' },
-  { href: '/snapshot', label: 'Snapshot' },
-  { href: '/services/agentic-seo', label: 'Agentic SEO' },
+  { href: '/work', label: 'Work' },
+  { href: '/services', label: 'Services' },
+  { href: '/about', label: 'About' },
   { href: '/insights', label: 'Insights' },
-  { href: '/#contact', label: 'Contact' }
+  { href: '/contact', label: 'Contact' }
 ];
 
 export function Header() {
@@ -43,8 +42,6 @@ export function Header() {
           aria-controls="primary-nav"
           onClick={() => setOpen((current) => !current)}
         >
-          <span aria-hidden="true" />
-          <span aria-hidden="true" />
           <strong>{open ? 'Close' : 'Menu'}</strong>
         </button>
 
@@ -61,8 +58,8 @@ export function Header() {
           ))}
         </nav>
 
-        <a className="ew-header__cta" href="/snapshot" onClick={() => setOpen(false)}>
-          {siteConfig.snapshotCheckoutEnabled ? 'Get a $5 Snapshot' : 'Explore $5 Snapshot'}
+        <a className="ew-header__cta" href="/contact" onClick={() => setOpen(false)}>
+          Start a Project
         </a>
       </div>
     </header>

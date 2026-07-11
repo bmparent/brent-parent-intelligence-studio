@@ -3,7 +3,7 @@ export const siteConfig = {
   founder: 'Brent Parent',
   url: (import.meta.env.VITE_SITE_URL || 'https://eidos-works.com').replace(/\/+$/, ''),
   description:
-    'Eidos Works builds premium websites, storefront experiences, dashboards, workflow automation, and AI-ready SEO strategy for modern businesses.',
+    'Eidos Works designs digital experiences and operational tools for organizations with complicated real-world workflows.',
   contactEmail: 'hello@eidos-works.com',
   projectsEmail: 'projects@eidos-works.com',
   snapshotEmail: 'snapshot@eidos-works.com',

@@ -1,6 +1,6 @@
 # Eidos Works
 
-The production website for **Eidos Works**, Brent Parent's customer-facing web and systems studio. The site presents website and UX redesign, storefront platform experiences, dashboards and automation, agentic SEO, organized Insights, and the $5 Eidos Snapshot product.
+The production website for **Eidos Works**, Brent Parent's studio for digital experiences and operational tools. The public site is organized around real workflow problems, three primary case studies, three service families, an edited Insights publication, and a low-friction project conversation.
 
 Production domain: `https://eidos-works.com`
 
@@ -40,6 +40,7 @@ npm run typecheck
 npm run lint
 npm run build
 npm run verify:prerender
+npm run verify:editorial
 npm run verify:urls
 npm run test:snapshot
 npm run validate:insights -- --skip-source-fetch
@@ -51,14 +52,25 @@ The build creates `dist`, generates article social images, refreshes `sitemap.xm
 
 ## Public routes
 
-- `/` — customer-facing studio homepage
+- `/` — concise editorial studio homepage
+- `/work` — selected case-study index
+- `/work/pernr-access-gate` — private storefront roster-gate case study and safe demo
+- `/work/production-dashboard` — production reporting case study
+- `/work/storefront-experience` — hosted storefront transformation case study
+- `/services` — three service families
+- `/services/digital-experiences` — websites and customer-facing UX
+- `/services/storefront-access-systems` — storefront and roster-access work
+- `/services/dashboards-workflow-tools` — reporting, automation, and internal tools
+- `/services/agentic-seo` — dedicated Agentic SEO service page
+- `/about` — Brent Parent and the design/operations background behind Eidos Works
+- `/insights` — edited, source-linked publication
+- `/insights/:slug` — prerendered articles
+- `/contact` — low-friction project inquiry and direct email fallback
+- `/lab/eidos-brain` — proof-stage Eidos Brain research, limits, and maturity
 - `/snapshot` — Eidos Snapshot offer
 - `/snapshot/start` — private intake and checkout start
 - `/snapshot/success` — processing state
 - `/snapshot/result/:resultToken` — private, unguessable report route
-- `/services/agentic-seo` — dedicated Agentic SEO service page
-- `/insights` — centralized knowledge hub
-- `/insights/:slug` — prerendered articles
 - `/editorial-policy` — sourcing, assisted-editing, and correction policy
 
 ## Insights publishing

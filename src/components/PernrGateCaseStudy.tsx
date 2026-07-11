@@ -46,20 +46,18 @@ export function PernrGateCaseStudy() {
           <p className="ew-eyebrow">Storefront access system · case study</p>
           <h1 id="pernr-title">A private-store gate that checks eligibility without making shopping feel difficult.</h1>
           <p>
-            Built for a Disney employee merchandise experience on InkSoft, the PERNR gate verifies an employee identifier or approved name against a controlled roster before allowing the visitor into the store.
+            A private employee storefront needed to verify a roster without requiring new accounts. Brent connected an InkSoft access gate to a controlled Google Sheet through Apps Script, supporting case-insensitive PERNR and name matching while keeping the roster out of the storefront interface.
           </p>
+          <p className="ew-role-disclosure"><strong>Role disclosure</strong> Storefront experience and access-system work completed as part of Data Graphics' client-services workflow. This page does not imply a direct Disney engagement with Eidos Works.</p>
           <div className="ew-actions">
             <a className="ew-button ew-button--primary" href="#gate-demo">Try the safe demo</a>
             <a className="ew-button ew-button--secondary" href="#applications">See other applications</a>
           </div>
         </div>
-        <div className="ew-gate-map" aria-label="Access gate flow">
-          <div><span>01</span><strong>Enter credential</strong><small>PERNR or approved name</small></div>
-          <i aria-hidden="true">→</i>
-          <div><span>02</span><strong>Check roster</strong><small>Server-side lookup</small></div>
-          <i aria-hidden="true">→</i>
-          <div><span>03</span><strong>Route visitor</strong><small>Allow or retry</small></div>
-        </div>
+        <figure className="ew-case-hero__evidence">
+          <img src="/images/case-studies/pernr-access-gate.png" width="1200" height="800" alt="Safe public view of the Eidos Works PERNR access-gate case study." />
+          <figcaption>Public-safe recreation. No employee roster, private endpoint, or real credential is present.</figcaption>
+        </figure>
       </section>
 
       <section id="gate-demo" className="ew-section ew-gate-demo" aria-labelledby="demo-title">
@@ -108,6 +106,18 @@ export function PernrGateCaseStudy() {
           <li><span>03</span><h3>Decide</h3><p>The endpoint returns only the decision needed by the interface. It does not expose the full list or reveal which other records exist.</p></li>
           <li><span>04</span><h3>Continue</h3><p>An approved visitor enters the InkSoft store. An unrecognized visitor receives a clear retry path without seeing private merchandise first.</p></li>
         </ol>
+      </section>
+
+      <section className="ew-section ew-shell ew-pernr-evidence" aria-labelledby="pernr-evidence-title">
+        <div><p className="ew-eyebrow">Architecture and evidence</p><h2 id="pernr-evidence-title">The browser receives a decision—not the employee list.</h2></div>
+        <dl>
+          <div><dt>Input</dt><dd>An employee enters a PERNR or approved name. Whitespace and case are normalized before the check.</dd></div>
+          <div><dt>Controlled source</dt><dd>Google Apps Script checks a restricted Google Sheet roster outside the storefront page.</dd></div>
+          <div><dt>Response</dt><dd>The interface receives only an allow or deny result needed to choose the next screen.</dd></div>
+          <div><dt>Privacy boundary</dt><dd>The full roster, Sheet identifier, deployment URL, tokens, private endpoints, and bypass logic are not shipped publicly.</dd></div>
+          <div><dt>Observed change</dt><dd>Approved employees can enter through a credential they already know; unmatched visitors get a retry and support path.</dd></div>
+          <div><dt>Unproven</dt><dd>No conversion, time-saved, employee-count, or security-certification claim is made.</dd></div>
+        </dl>
       </section>
 
       <section className="ew-section ew-gate-reason" aria-labelledby="why-title">

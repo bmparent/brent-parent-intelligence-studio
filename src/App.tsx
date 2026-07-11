@@ -14,6 +14,17 @@ import { SEOJsonLd } from './components/SEOJsonLd';
 import { PageMeta } from './components/PageMeta';
 import { EditorialPolicy } from './components/EditorialPolicy';
 import { PernrGateCaseStudy } from './components/PernrGateCaseStudy';
+import {
+  AboutPage,
+  ContactPage,
+  EidosBrainLabPage,
+  ProductionDashboardCaseStudy,
+  ServiceDetailPage,
+  ServicesPage,
+  StorefrontExperienceCaseStudy,
+  WorkPage
+} from './components/EditorialPages';
+import type { ServiceSlug } from './data/editorial';
 import { normalizePath } from './data/pages';
 
 type AppProps = {
@@ -44,7 +55,20 @@ function routeFor(path: string) {
   if (path === '/snapshot/start') return <SnapshotStartPage />;
   if (path === '/snapshot/success') return <SnapshotSuccessPage />;
   if (path === '/services/agentic-seo') return <AgenticSeoPage />;
+  if (path === '/services') return <ServicesPage />;
+  if (path.startsWith('/services/')) {
+    const slug = path.slice('/services/'.length) as ServiceSlug;
+    if (['digital-experiences', 'storefront-access-systems', 'dashboards-workflow-tools'].includes(slug)) {
+      return <ServiceDetailPage slug={slug} />;
+    }
+  }
+  if (path === '/work') return <WorkPage />;
   if (path === '/work/pernr-access-gate') return <PernrGateCaseStudy />;
+  if (path === '/work/production-dashboard') return <ProductionDashboardCaseStudy />;
+  if (path === '/work/storefront-experience') return <StorefrontExperienceCaseStudy />;
+  if (path === '/about') return <AboutPage />;
+  if (path === '/contact') return <ContactPage />;
+  if (path === '/lab/eidos-brain') return <EidosBrainLabPage />;
   if (path === '/insights') return <InsightsHub currentPath={path} />;
   if (path === '/editorial-policy') return <EditorialPolicy />;
   if (path.startsWith('/insights/')) return <InsightArticle currentPath={path} />;

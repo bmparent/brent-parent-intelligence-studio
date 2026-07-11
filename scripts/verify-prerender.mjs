@@ -22,7 +22,7 @@ function matches(source, expression) {
 
 for (const file of await htmlFiles(root)) {
   const html = await readFile(file, 'utf8');
-  const label = relative(root, file) || 'index.html';
+  const label = (relative(root, file) || 'index.html').replaceAll('\\', '/');
   const h1Count = matches(html, /<h1(?:\s|>)/gi).length;
   if (h1Count !== 1) failures.push(`${label}: expected one h1, found ${h1Count}`);
 
@@ -44,8 +44,14 @@ for (const file of await htmlFiles(root)) {
     if (!required.test(html)) failures.push(`${label}: missing or unsafe required metadata`);
   }
 
-  const approvedPlatformCaseStudy = label === 'work/pernr-access-gate/index.html';
-  if (/\.pages\.dev|intelligence studio/i.test(html) || (/inksoft/i.test(html) && !approvedPlatformCaseStudy)) {
+  const approvedPlatformPages = new Set([
+    'work/index.html',
+    'work/pernr-access-gate/index.html',
+    'work/storefront-experience/index.html',
+    'services/index.html',
+    'services/storefront-access-systems/index.html'
+  ]);
+  if (/\.pages\.dev|intelligence studio/i.test(html) || (/inksoft/i.test(html) && !approvedPlatformPages.has(label))) {
     failures.push(`${label}: contains a retired or non-canonical public reference`);
   }
 

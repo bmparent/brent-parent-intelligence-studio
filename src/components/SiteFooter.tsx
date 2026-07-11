@@ -6,16 +6,16 @@ export function SiteFooter() {
       <div className="ew-shell ew-footer__grid">
         <div className="ew-footer__brand">
           <img src={siteConfig.logos.horizontal} alt="Eidos Works" width="188" height="52" loading="lazy" />
-          <p>Websites, storefronts, dashboards, automation, and AI-ready search strategy by Brent Parent.</p>
+          <p>Digital experiences and operational tools for organizations with complicated real-world workflows.</p>
         </div>
         <nav aria-label="Footer services">
           <strong>Explore</strong>
-          <a href="/#work">Selected work</a>
-          <a href="/#services">Services</a>
-          <a href="/snapshot">Eidos Snapshot</a>
-          <a href="/services/agentic-seo">Agentic SEO</a>
+          <a href="/work">Selected work</a>
+          <a href="/services">Services</a>
+          <a href="/about">About</a>
           <a href="/insights">Insights</a>
-          <a href="/editorial-policy">Editorial policy</a>
+          <a href="/contact">Contact</a>
+          <a href="/lab/eidos-brain">Lab</a>
         </nav>
         <div>
           <strong>Start a conversation</strong>
@@ -26,7 +26,7 @@ export function SiteFooter() {
       </div>
       <div className="ew-shell ew-footer__bottom">
         <span>© {new Date().getUTCFullYear()} Eidos Works</span>
-        <span>Clear systems. Useful interfaces. Honest expectations.</span>
+        <span>Technology in service of human understanding.</span>
       </div>
     </footer>
   );
