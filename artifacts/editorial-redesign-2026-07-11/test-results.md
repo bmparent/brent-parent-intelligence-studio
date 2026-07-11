@@ -44,4 +44,15 @@ Date: 2026-07-11
 
 - Lighthouse field-style performance metrics were not available in the in-app browser, so LCP, INP, and CLS targets are not claimed as measured.
 - Automated and manual checks do not establish complete WCAG 2.2 AA conformance.
-- Cloudflare preview and production receipts are recorded separately after authenticated deployment.
+- The hosted browser screenshot endpoint failed to capture the preview tab; the exact deployed `dist` build is visually documented with local browser screenshots, and hosted behavior is documented with DOM, console, and HTTP receipts.
+
+## Deployment verification
+
+- Cloudflare Pages project: `eidosworks`
+- Preview deployment: `d5ead3fe-c8bc-4fea-9664-6e957caefac3`
+- Production deployment: `0d34c632-03d1-4ffc-b757-fd0efe2d9791`
+- Deployed source: `7ab12cc1ea6ac2576f235f8aa105d151f70dbc69`
+- Production domain: `https://eidos-works.com`
+- Required production routes: 13 of 13 returned HTTP 200.
+- Production homepage: new hero present, selected-work heading present, `eidos-works.com` canonical present, stale `eidosworks.pages.dev` reference absent.
+- Production browser: 7 sections, 6 H2, 13 H3, 9 article elements, 2 buttons, 31 links, 6 images, no horizontal overflow, and no console warnings/errors.

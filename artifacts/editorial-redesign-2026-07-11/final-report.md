@@ -6,19 +6,21 @@ Date: 2026-07-11
 
 The Studio Ledger direction is implemented in the correct Eidos Works repository on `agent/eidos-editorial-redesign`. The redesign replaces the production site's dense, generalized portfolio presentation with a founder-led editorial system centered on three real work examples, three service families, a short four-step process, a separate Insights publication, and a low-friction contact path.
 
-Deployment status: implementation and local preview verification passed. Cloudflare preview and production deployment remain pending authenticated account access and must not be described as live until the production domain is checked.
+Deployment status: live and verified on the production custom domain.
 
 ## Repository and deployment receipts
 
 - Repository: `https://github.com/bmparent/brent-parent-intelligence-studio.git`
 - Source commit preserved: `eb695212172d2b2b24efc74bb130cbfae5045893`
 - Branch: `agent/eidos-editorial-redesign`
-- Redesign implementation commit: `9c4284e012c5e1f65409cdebb1e34122f95313fd`
-- Cloudflare Pages project indicated by repository documentation: `eidosworks`; live account verification pending
-- Preview URL: pending authenticated Wrangler deployment
-- Production URL: `https://eidos-works.com` (not yet verified with this redesign)
-- Production deployment ID: pending
-- Known mismatch: the live domain was serving a denser older build while `origin/main` contained the newer PERNR work.
+- Deployed commit: `7ab12cc1ea6ac2576f235f8aa105d151f70dbc69`
+- Cloudflare Pages project: `eidosworks`
+- Preview URL: `https://editorial-redesign-preview.eidosworks.pages.dev`
+- Preview deployment ID: `d5ead3fe-c8bc-4fea-9664-6e957caefac3`
+- Production URL: `https://eidos-works.com`
+- Production deployment URL: `https://0d34c632.eidosworks.pages.dev`
+- Production deployment ID: `0d34c632-03d1-4ffc-b757-fd0efe2d9791`
+- Pages connection finding: the `eidosworks` project has no Git provider connection, so GitHub main was not automatically reaching Cloudflare Pages. The verified build was deployed with authenticated Wrangler.
 - Google Drive archive: `G:\My Drive\Eidos_Works\editorial-redesign-2026-07-11` (46 files, 13,168,804 bytes copied)
 
 ## Information architecture
@@ -112,6 +114,5 @@ The new site is better positioned to earn trust, demonstrate Brent's real work, 
 
 ### Remaining uncertainty
 
-- Cloudflare account state, project/repository connection, preview deployment, and production deployment are not yet verified.
-- The production domain has not yet been shown to serve the redesign commit.
+- The hosted browser screenshot endpoint failed to capture the preview tab. Visual screenshots therefore document the exact local `dist` build, while hosted preview verification is documented with browser-rendered DOM, console, canonical, density, and HTTP route receipts.
 - Lighthouse performance targets and complete WCAG conformance are not claimed.
