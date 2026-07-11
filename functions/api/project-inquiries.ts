@@ -1,39 +1,34 @@
+import { isRecord, readJsonBody, RequestBodyError } from '../_shared/snapshot/http';
+
 interface Env {
   CONTACT_WEBHOOK_URL?: string;
-  RESEND_API_KEY?: string;
-  CONTACT_EMAIL?: string;
-  CONTACT_FROM_EMAIL?: string;
+  GOOGLE_APPS_SCRIPT_WEBHOOK_URL?: string;
+  COMMAND_CENTER_SHARED_SECRET?: string;
+  PUBLIC_PROJECTS_EMAIL?: string;
+  NOTIFICATION_TO_EMAIL?: string;
 }
 
-type PagesContext = {
-  request: Request;
-  env: Env;
-};
+type PagesContext = { request: Request; env: Env };
 
 type InquiryPayload = {
   projectType?: string;
   problem?: string;
   currentUrl?: string;
-  tools?: string;
-  inspiration?: string;
-  timeline?: string;
-  budget?: string;
   name?: string;
   company?: string;
   email?: string;
-  phone?: string;
-  preferredContact?: string;
   website?: string;
   brief?: string;
 };
 
 const jsonHeaders = {
   'content-type': 'application/json; charset=utf-8',
-  'cache-control': 'no-store'
+  'cache-control': 'no-store',
+  'x-content-type-options': 'nosniff'
 };
 
-const MAX_REQUEST_BYTES = 12000;
-const DEFAULT_CONTACT_EMAIL = '1brent.bm@gmail.com';
+const MAX_REQUEST_BYTES = 12_000;
+const DEFAULT_PROJECTS_EMAIL = 'projects@eidos-works.com';
 
 function json(value: unknown, init: ResponseInit = {}) {
   return new Response(JSON.stringify(value), {
@@ -50,72 +45,63 @@ function buildBrief(payload: InquiryPayload) {
   return [
     'Eidos Works project inquiry',
     '',
-    `Project type: ${clean(payload.projectType, 120) || 'Not provided'}`,
-    `Problem to solve: ${clean(payload.problem, 1600) || 'Not provided'}`,
-    `Current website/storefront URL: ${clean(payload.currentUrl, 260) || 'Not provided'}`,
-    `Tools involved: ${clean(payload.tools, 400) || 'Not provided'}`,
-    `Examples or inspiration: ${clean(payload.inspiration, 800) || 'Not provided'}`,
-    `Timeline: ${clean(payload.timeline, 120) || 'Not provided'}`,
-    `Budget posture: ${clean(payload.budget, 120) || 'Not provided'}`,
+    `Service: ${clean(payload.projectType, 120) || 'Not provided'}`,
+    `Problem to solve: ${clean(payload.problem, 1_600) || 'Not provided'}`,
+    `Current website: ${clean(payload.currentUrl, 260) || 'Not provided'}`,
     '',
     `Name: ${clean(payload.name, 160) || 'Not provided'}`,
     `Company / organization: ${clean(payload.company, 180) || 'Not provided'}`,
-    `Email: ${clean(payload.email, 260) || 'Not provided'}`,
-    `Phone: ${clean(payload.phone, 80) || 'Not provided'}`,
-    `Preferred contact method: ${clean(payload.preferredContact, 120) || 'Not provided'}`
+    `Email: ${clean(payload.email, 260) || 'Not provided'}`
   ].join('\n');
 }
 
 function validate(payload: InquiryPayload) {
   const errors: Record<string, string> = {};
-  const problem = clean(payload.problem, 1600);
+  const problem = clean(payload.problem, 1_600);
   const projectType = clean(payload.projectType, 120);
   const name = clean(payload.name, 160);
   const email = clean(payload.email, 260);
-  const brief = clean(payload.brief, 5000);
 
-  if (!projectType) errors.projectType = 'Project type is required.';
+  if (!projectType) errors.projectType = 'Choose the kind of help you need.';
   if (problem.length < 20) errors.problem = 'Describe the problem in at least 20 characters.';
-  if (brief.length < 20) errors.brief = 'A generated brief or message is required.';
   if (!name) errors.name = 'Name is required.';
   if (!email || !/^\S+@\S+\.\S+$/.test(email)) errors.email = 'A valid email is required.';
-
   return errors;
 }
 
 function mailto(contactEmail: string, brief: string) {
-  return `mailto:${contactEmail}?subject=${encodeURIComponent('Eidos Works project inquiry')}&body=${encodeURIComponent(brief)}`;
+  return `mailto:${contactEmail}?subject=${encodeURIComponent('Eidos Works Project Inquiry')}&body=${encodeURIComponent(brief)}`;
 }
 
-async function sendWebhook(url: string, payload: InquiryPayload, brief: string) {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ source: 'eidos-works-site', payload, brief })
-  });
-
-  return response.ok;
-}
-
-async function sendResendEmail(env: Env, payload: InquiryPayload, brief: string, contactEmail: string) {
-  if (!env.RESEND_API_KEY) return false;
-
-  const response = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      authorization: `Bearer ${env.RESEND_API_KEY}`,
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      from: env.CONTACT_FROM_EMAIL || 'Eidos Works <onboarding@resend.dev>',
-      to: [contactEmail],
-      reply_to: clean(payload.email, 260),
-      subject: 'Eidos Works project inquiry',
-      text: brief
-    })
-  });
-
-  return response.ok;
+async function sendWebhook(url: string, payload: InquiryPayload, sharedSecret?: string) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8_000);
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      signal: controller.signal,
+      body: JSON.stringify({
+        sharedSecret: sharedSecret || undefined,
+        eventType: 'lead',
+        data: {
+          createdDate: new Date().toISOString(),
+          name: clean(payload.name, 160),
+          email: clean(payload.email, 260),
+          company: clean(payload.company, 180),
+          website: clean(payload.currentUrl, 260),
+          source: 'eidos-works-site',
+          serviceInterest: clean(payload.projectType, 120),
+          notes: clean(payload.problem, 1_600)
+        }
+      })
+    });
+    if (!response.ok) return false;
+    const result = (await response.json().catch(() => null)) as { ok?: boolean } | null;
+    return result?.ok === true;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export const onRequestOptions = () =>
@@ -129,108 +115,60 @@ export const onRequestOptions = () =>
 
 export const onRequestPost = async ({ request, env }: PagesContext) => {
   let payload: InquiryPayload;
-
-  const contentLength = Number(request.headers.get('content-length') ?? 0);
-  if (contentLength > MAX_REQUEST_BYTES) {
-    return json(
-      {
-        state: 'validation_error',
-        submitted: false,
-        message: 'Request body is too large.',
-        errors: { request: 'Request body is too large.' }
-      },
-      { status: 413 }
-    );
-  }
-
   try {
-    payload = (await request.json()) as InquiryPayload;
-  } catch {
-    return json({ state: 'validation_error', submitted: false, message: 'Invalid JSON body.' }, { status: 400 });
+    const body = await readJsonBody(request, MAX_REQUEST_BYTES);
+    if (!isRecord(body)) {
+      return json({ state: 'validation_error', submitted: false, message: 'Invalid form submission.' }, { status: 400 });
+    }
+    payload = body as InquiryPayload;
+  } catch (error) {
+    if (error instanceof RequestBodyError) {
+      return json(
+        { state: 'validation_error', submitted: false, message: error.publicMessage },
+        { status: error.status }
+      );
+    }
+    return json({ state: 'validation_error', submitted: false, message: 'Invalid form submission.' }, { status: 400 });
   }
 
-  const contactEmail = clean(env.CONTACT_EMAIL, 260) || DEFAULT_CONTACT_EMAIL;
+  const contactEmail = clean(env.PUBLIC_PROJECTS_EMAIL, 260) || clean(env.NOTIFICATION_TO_EMAIL, 260) || DEFAULT_PROJECTS_EMAIL;
   const brief = buildBrief(payload);
   const fallbackMailto = mailto(contactEmail, brief);
 
   if (clean(payload.website, 120)) {
-    return json({
-      state: 'fallback',
-      submitted: false,
-      message: 'Your brief is ready. Email it to Eidos Works.',
-      brief,
-      mailto: fallbackMailto
-    });
+    return json({ state: 'fallback', submitted: false, message: 'Your note is ready to email.', brief, mailto: fallbackMailto });
   }
 
   const errors = validate(payload);
   if (Object.keys(errors).length) {
     return json(
-      {
-        state: 'validation_error',
-        submitted: false,
-        message: 'Please complete the required fields.',
-        errors,
-        brief,
-        mailto: fallbackMailto
-      },
+      { state: 'validation_error', submitted: false, message: 'Please complete the required fields.', errors, brief, mailto: fallbackMailto },
       { status: 400 }
     );
   }
 
-  try {
-    const hasResend = Boolean(env.RESEND_API_KEY);
-    const hasWebhook = Boolean(env.CONTACT_WEBHOOK_URL);
-
-    if (hasResend && (await sendResendEmail(env, payload, brief, contactEmail))) {
-      return json({
-        state: 'sent',
-        submitted: true,
-        message: 'Your brief was submitted to Eidos Works.',
-        brief,
-        mailto: fallbackMailto
-      });
-    }
-
-    if (hasWebhook && env.CONTACT_WEBHOOK_URL && (await sendWebhook(env.CONTACT_WEBHOOK_URL, payload, brief))) {
-      return json({
-        state: 'sent',
-        submitted: true,
-        message: 'Your brief was submitted to Eidos Works.',
-        brief,
-        mailto: fallbackMailto
-      });
-    }
-
-    if (hasResend || hasWebhook) {
+  const webhookUrl = clean(env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL, 1_000) || clean(env.CONTACT_WEBHOOK_URL, 1_000);
+  if (webhookUrl) {
+    try {
+      if (await sendWebhook(webhookUrl, payload, env.COMMAND_CENTER_SHARED_SECRET)) {
+        return json({ state: 'sent', submitted: true, message: 'Your project note reached Eidos Works.', brief, mailto: fallbackMailto });
+      }
       return json(
-        {
-          state: 'provider_error',
-          submitted: false,
-          message: 'The delivery provider could not send this brief. Email it to Eidos Works.',
-          brief,
-          mailto: fallbackMailto
-        },
+        { state: 'provider_error', submitted: false, message: 'Delivery was unavailable. Email the prepared note directly.', brief, mailto: fallbackMailto },
+        { status: 502 }
+      );
+    } catch {
+      return json(
+        { state: 'provider_error', submitted: false, message: 'Delivery was unavailable. Email the prepared note directly.', brief, mailto: fallbackMailto },
         { status: 502 }
       );
     }
-  } catch {
-    return json(
-      {
-        state: 'provider_error',
-        submitted: false,
-        message: 'The delivery provider could not send this brief. Email it to Eidos Works.',
-        brief,
-        mailto: fallbackMailto
-      },
-      { status: 502 }
-    );
   }
 
   return json({
     state: 'fallback',
     submitted: false,
-    message: 'Your brief is ready. Email it to Eidos Works.',
+    message: 'Your note is ready. Send it directly to Eidos Works.',
     brief,
     mailto: fallbackMailto
   });

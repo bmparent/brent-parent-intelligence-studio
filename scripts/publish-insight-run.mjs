@@ -13,6 +13,7 @@ const commands = [
   ['npm', ['run', 'validate:insights']],
   ['npm', ['run', 'lint']],
   ['npm', ['run', 'build']],
+  ['npm', ['run', 'verify:prerender']],
   ['npm', ['run', 'validate:insights:dist']],
   ['npm', ['run', 'verify:urls']]
 ];

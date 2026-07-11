@@ -26,7 +26,10 @@ function withHeadMetadata(html, page) {
   const description = escapeAttribute(page.description ?? '');
   const url = escapeAttribute(page.url ?? '');
   const type = escapeAttribute(page.type ?? 'website');
-  const image = escapeAttribute(page.image ?? '/social-preview.svg');
+  const image = escapeAttribute(page.image ?? 'https://eidos-works.com/social-preview.svg');
+
+  const robots = page.noIndex ? 'noindex, nofollow' : 'index, follow';
+  const referrer = page.noReferrer ? 'no-referrer' : 'strict-origin-when-cross-origin';
 
   return html
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
@@ -39,7 +42,9 @@ function withHeadMetadata(html, page) {
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`)
     .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${escapeAttribute(page.title ?? 'Eidos Works')}" />`)
     .replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/s, `<meta name="twitter:description" content="${description}" />`)
-    .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${image}" />`);
+    .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${image}" />`)
+    .replace(/<meta name="robots" content="[^"]*" \/>/, `<meta name="robots" content="${robots}" />`)
+    .replace(/<meta name="referrer" content="[^"]*" \/>/, `<meta name="referrer" content="${referrer}" />`);
 }
 
 function outputPathFor(pathname) {

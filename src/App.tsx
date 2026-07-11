@@ -1,114 +1,78 @@
-import { useReveal } from './hooks/useReveal';
-import { Header } from './components/layout/Header';
-import { Hero } from './sections/Hero';
-import { Capabilities } from './sections/Capabilities';
-import { CaseStudies } from './sections/CaseStudies';
-import { ProductionIntelligence } from './sections/ProductionIntelligence';
-import { EidosBrain } from './sections/EidosBrain';
-import { Process } from './sections/Process';
-import { IntelligenceStudioAgent } from './components/ui/IntelligenceStudioAgent';
-import { WorkMediaExplorer } from './components/WorkMediaExplorer';
-import { PricingCards } from './components/PricingCards';
-import { InsightsIndex } from './components/InsightsIndex';
-import { EditorialPolicy } from './components/EditorialPolicy';
-import { ProjectIntakeWizard } from './components/ProjectIntakeWizard';
+import { Header } from './components/Header';
+import { SiteFooter } from './components/SiteFooter';
+import { HomePage } from './components/HomePage';
+import { AgenticSeoPage } from './components/AgenticSeoPage';
+import { InsightsHub } from './components/InsightsHub';
+import { InsightArticle } from './components/InsightArticle';
+import {
+  SnapshotLandingPage,
+  SnapshotResultPage,
+  SnapshotStartPage,
+  SnapshotSuccessPage
+} from './components/SnapshotPages';
 import { SEOJsonLd } from './components/SEOJsonLd';
-import { siteConfig } from './config/site';
-import { getArticleSlugFromPath, isInsightsPath } from './data/articles';
+import { PageMeta } from './components/PageMeta';
+import { EditorialPolicy } from './components/EditorialPolicy';
+import { normalizePath } from './data/pages';
 
 type AppProps = {
   requestPath?: string;
 };
 
-function App({ requestPath }: AppProps) {
-  useReveal();
-  const currentPath = typeof window === 'undefined' ? requestPath ?? '/' : window.location.pathname;
-  const insightSlug = getArticleSlugFromPath(currentPath);
-  const isInsightsRoute = isInsightsPath(currentPath);
-  const isEditorialPolicyRoute = currentPath === '/editorial-policy';
-
-  if (isEditorialPolicyRoute) {
-    return (
-      <>
-        <SEOJsonLd routePath={currentPath} />
-        <Header />
-        <main>
-          <EditorialPolicy />
-        </main>
-        <SiteFooter />
-      </>
-    );
-  }
-
-  if (isInsightsRoute) {
-    return (
-      <>
-        <SEOJsonLd activeArticleSlug={insightSlug} routePath={currentPath} />
-        <Header />
-        <main>
-          <InsightsIndex initialSlug={insightSlug} standalone />
-        </main>
-        <SiteFooter />
-      </>
-    );
-  }
-
+function NotFoundPage() {
   return (
-    <>
-      <SEOJsonLd routePath={currentPath} />
-      <Header />
-      <main>
-        <Hero />
-        <section className="section-shell intro-grid" aria-label="What the studio builds" data-reveal>
-          <article>
-            <span className="section-kicker">Who Eidos Works is</span>
-            <h2>A creative technology studio led by Brent Parent.</h2>
-          </article>
-          <article>
-            <h3>What I build</h3>
-            <p>Custom storefronts, graphic design and mockups, production dashboards, workflow automation, WebGL interface layers, and Eidos Brain / Sentinel prototypes.</p>
-          </article>
-          <article>
-            <h3>Why it matters</h3>
-            <p>Teams need digital systems that explain the offer, reduce manual friction, support operations, and make the next useful action easier to see.</p>
-          </article>
-        </section>
-        <IntelligenceStudioAgent />
-        <Capabilities />
-        <CaseStudies />
-        <WorkMediaExplorer />
-        <ProductionIntelligence />
-        <EidosBrain />
-        <Process />
-        <PricingCards />
-        <InsightsIndex initialSlug={insightSlug} />
-        <ProjectIntakeWizard />
-      </main>
-      <SiteFooter />
-    </>
+    <section className="ew-page-simple ew-shell" aria-labelledby="not-found-title">
+      <p className="ew-eyebrow">404</p>
+      <h1 id="not-found-title">That page does not exist.</h1>
+      <p>The useful path is still close. Return to Eidos Works, browse Insights, or start with a Snapshot.</p>
+      <div className="ew-actions">
+        <a className="ew-button ew-button--primary" href="/">
+          Return home
+        </a>
+        <a className="ew-button ew-button--secondary" href="/insights">
+          Browse Insights
+        </a>
+      </div>
+    </section>
   );
 }
 
-function SiteFooter() {
+function routeFor(path: string) {
+  if (path === '/') return <HomePage />;
+  if (path === '/snapshot') return <SnapshotLandingPage />;
+  if (path === '/snapshot/start') return <SnapshotStartPage />;
+  if (path === '/snapshot/success') return <SnapshotSuccessPage />;
+  if (path === '/services/agentic-seo') return <AgenticSeoPage />;
+  if (path === '/insights') return <InsightsHub currentPath={path} />;
+  if (path === '/editorial-policy') return <EditorialPolicy />;
+  if (path.startsWith('/insights/')) return <InsightArticle currentPath={path} />;
+  if (path.startsWith('/snapshot/result/')) {
+    try {
+      const token = decodeURIComponent(path.slice('/snapshot/result/'.length));
+      return token ? <SnapshotResultPage token={token} /> : <NotFoundPage />;
+    } catch {
+      return <NotFoundPage />;
+    }
+  }
+
+  return <NotFoundPage />;
+}
+
+function App({ requestPath }: AppProps) {
+  const sourcePath = typeof window === 'undefined' ? requestPath || '/' : window.location.pathname;
+  const path = normalizePath(sourcePath);
+
   return (
-    <footer className="site-footer section-shell">
-      <div className="site-footer__brand">
-        <img src={siteConfig.logos.stacked} alt="Eidos Works logo" width="126" height="126" loading="lazy" />
-        <p>
-          <strong>Eidos Works</strong>
-          <span>Systems, storefronts, dashboards, automation, and intelligence prototypes by Brent Parent.</span>
-        </p>
-      </div>
-      <nav aria-label="Footer navigation">
-        <a href="/#top">Top</a>
-        <a href="/#capabilities">Services</a>
-        <a href="/#work">Work</a>
-        <a href="/#eidos">Eidos Brain</a>
-        <a href="/insights">Insights</a>
-        <a href="/editorial-policy">Editorial Policy</a>
-        <a href="/#start">Start a Project</a>
-      </nav>
-    </footer>
+    <>
+      <PageMeta path={path} />
+      <SEOJsonLd path={path} />
+      <a className="ew-skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <Header />
+      <main id="main-content">{routeFor(path)}</main>
+      <SiteFooter />
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-10T22:00:52.674Z",
+  "generated_at_utc": "2026-07-10T23:45:05.809Z",
   "site_url": "https://eidos-works.com",
   "articles": [
     {
@@ -13,39 +13,44 @@
       "og_image": "/insights-og/practical-source-map-ai-ready-service-pages.svg"
     },
     {
+      "slug": "agentic-seo-small-business-websites",
+      "canonical_url": "https://eidos-works.com/insights/agentic-seo-small-business-websites",
+      "og_image": "/insights-og/agentic-seo-small-business-websites.svg"
+    },
+    {
+      "slug": "structure-website-people-ai-assistants-understand",
+      "canonical_url": "https://eidos-works.com/insights/structure-website-people-ai-assistants-understand",
+      "og_image": "/insights-og/structure-website-people-ai-assistants-understand.svg"
+    },
+    {
+      "slug": "storefront-ux-find-right-product-faster",
+      "canonical_url": "https://eidos-works.com/insights/storefront-ux-find-right-product-faster",
+      "og_image": "/insights-og/storefront-ux-find-right-product-faster.svg"
+    },
+    {
+      "slug": "spreadsheet-chaos-operational-dashboards",
+      "canonical_url": "https://eidos-works.com/insights/spreadsheet-chaos-operational-dashboards",
+      "og_image": "/insights-og/spreadsheet-chaos-operational-dashboards.svg"
+    },
+    {
+      "slug": "website-snapshot-before-redesign",
+      "canonical_url": "https://eidos-works.com/insights/website-snapshot-before-redesign",
+      "og_image": "/insights-og/website-snapshot-before-redesign.svg"
+    },
+    {
+      "slug": "mobile-hierarchy-over-desktop-polish",
+      "canonical_url": "https://eidos-works.com/insights/mobile-hierarchy-over-desktop-polish",
+      "og_image": "/insights-og/mobile-hierarchy-over-desktop-polish.svg"
+    },
+    {
       "slug": "baseline-2026-browser-support-design-system-decision",
       "canonical_url": "https://eidos-works.com/insights/baseline-2026-browser-support-design-system-decision",
       "og_image": "/insights-og/baseline-2026-browser-support-design-system-decision.svg"
     },
     {
-      "slug": "custom-inksoft-storefront-easier-to-shop",
-      "canonical_url": "https://eidos-works.com/insights/custom-inksoft-storefront-easier-to-shop",
-      "og_image": "/insights-og/custom-inksoft-storefront-easier-to-shop.svg"
-    },
-    {
-      "slug": "production-dashboards-shop-noise-action",
-      "canonical_url": "https://eidos-works.com/insights/production-dashboards-shop-noise-action",
-      "og_image": "/insights-og/production-dashboards-shop-noise-action.svg"
-    },
-    {
-      "slug": "why-apparel-mockups-matter-before-launch-day",
-      "canonical_url": "https://eidos-works.com/insights/why-apparel-mockups-matter-before-launch-day",
-      "og_image": "/insights-og/why-apparel-mockups-matter-before-launch-day.svg"
-    },
-    {
       "slug": "eidos-brain-sentinel-small-business-intelligence",
       "canonical_url": "https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence",
       "og_image": "/insights-og/eidos-brain-sentinel-small-business-intelligence.svg"
-    },
-    {
-      "slug": "designing-websites-for-humans-search-engines-ai-assistants",
-      "canonical_url": "https://eidos-works.com/insights/designing-websites-for-humans-search-engines-ai-assistants",
-      "og_image": "/insights-og/designing-websites-for-humans-search-engines-ai-assistants.svg"
-    },
-    {
-      "slug": "weekly-content-rhythm-storefronts-service-businesses",
-      "canonical_url": "https://eidos-works.com/insights/weekly-content-rhythm-storefronts-service-businesses",
-      "og_image": "/insights-og/weekly-content-rhythm-storefronts-service-businesses.svg"
     }
   ],
   "files": [
@@ -54,12 +59,13 @@
     "public/llms.txt",
     "public/insights-og/storefront-proof-loop-ux-assets-operations.svg",
     "public/insights-og/practical-source-map-ai-ready-service-pages.svg",
+    "public/insights-og/agentic-seo-small-business-websites.svg",
+    "public/insights-og/structure-website-people-ai-assistants-understand.svg",
+    "public/insights-og/storefront-ux-find-right-product-faster.svg",
+    "public/insights-og/spreadsheet-chaos-operational-dashboards.svg",
+    "public/insights-og/website-snapshot-before-redesign.svg",
+    "public/insights-og/mobile-hierarchy-over-desktop-polish.svg",
     "public/insights-og/baseline-2026-browser-support-design-system-decision.svg",
-    "public/insights-og/custom-inksoft-storefront-easier-to-shop.svg",
-    "public/insights-og/production-dashboards-shop-noise-action.svg",
-    "public/insights-og/why-apparel-mockups-matter-before-launch-day.svg",
-    "public/insights-og/eidos-brain-sentinel-small-business-intelligence.svg",
-    "public/insights-og/designing-websites-for-humans-search-engines-ai-assistants.svg",
-    "public/insights-og/weekly-content-rhythm-storefronts-service-businesses.svg"
+    "public/insights-og/eidos-brain-sentinel-small-business-intelligence.svg"
   ]
 }

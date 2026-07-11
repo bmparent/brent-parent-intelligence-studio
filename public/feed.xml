@@ -3,7 +3,7 @@
   <channel>
     <title>Eidos Works Insights</title>
     <link>https://eidos-works.com/insights</link>
-    <description>Source-linked articles on storefront UX, automation, AI-ready search, operations, media workflows, and applied systems.</description>
+    <description>Practical, source-linked notes on website strategy, storefront UX, automation, dashboards, and AI-ready search.</description>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Jul 2026 21:00:00 GMT</lastBuildDate>
     <item>
@@ -12,7 +12,7 @@
       <guid>https://eidos-works.com/insights/storefront-proof-loop-ux-assets-operations</guid>
       <pubDate>Fri, 10 Jul 2026 21:00:00 GMT</pubDate>
       <description>A strategic framework for connecting storefront UX, Cloudinary-ready assets, production workflow reality, and post-launch content into one stronger commerce system.</description>
-      <category>Storefront Strategy</category>
+      <category>Storefront UX</category>
     </item>
     <item>
       <title>A Practical Source Map for AI-Ready Service Pages</title>
@@ -20,7 +20,55 @@
       <guid>https://eidos-works.com/insights/practical-source-map-ai-ready-service-pages</guid>
       <pubDate>Fri, 10 Jul 2026 17:00:00 GMT</pubDate>
       <description>How to structure service pages so customers, search engines, and AI-assisted discovery systems can understand the offer.</description>
-      <category>AI &amp; Agentic Search</category>
+      <category>Agentic SEO</category>
+    </item>
+    <item>
+      <title>What Agentic SEO Means for Small Business Websites</title>
+      <link>https://eidos-works.com/insights/agentic-seo-small-business-websites</link>
+      <guid>https://eidos-works.com/insights/agentic-seo-small-business-websites</guid>
+      <pubDate>Fri, 10 Jul 2026 16:00:00 GMT</pubDate>
+      <description>A plain-language guide to making a small-business website easier for customers, search engines, and AI assistants to understand.</description>
+      <category>Agentic SEO</category>
+    </item>
+    <item>
+      <title>How to Structure a Website So People and AI Assistants Understand It</title>
+      <link>https://eidos-works.com/insights/structure-website-people-ai-assistants-understand</link>
+      <guid>https://eidos-works.com/insights/structure-website-people-ai-assistants-understand</guid>
+      <pubDate>Fri, 10 Jul 2026 16:00:00 GMT</pubDate>
+      <description>A practical framework for turning a collection of pages into a clear path for visitors, search systems, and AI-assisted discovery.</description>
+      <category>Website Strategy</category>
+    </item>
+    <item>
+      <title>Storefront UX: Helping Customers Find the Right Product Faster</title>
+      <link>https://eidos-works.com/insights/storefront-ux-find-right-product-faster</link>
+      <guid>https://eidos-works.com/insights/storefront-ux-find-right-product-faster</guid>
+      <pubDate>Fri, 10 Jul 2026 16:00:00 GMT</pubDate>
+      <description>How stronger categories, product context, ordering guidance, and mobile paths can make a hosted or custom storefront easier to shop.</description>
+      <category>Storefront UX</category>
+    </item>
+    <item>
+      <title>From Spreadsheet Chaos to Operational Dashboards</title>
+      <link>https://eidos-works.com/insights/spreadsheet-chaos-operational-dashboards</link>
+      <guid>https://eidos-works.com/insights/spreadsheet-chaos-operational-dashboards</guid>
+      <pubDate>Fri, 10 Jul 2026 16:00:00 GMT</pubDate>
+      <description>A grounded way to decide when a spreadsheet needs a clearer operational view—and what a useful dashboard should show first.</description>
+      <category>Dashboards</category>
+    </item>
+    <item>
+      <title>What a Website Snapshot Can Tell You Before a Redesign</title>
+      <link>https://eidos-works.com/insights/website-snapshot-before-redesign</link>
+      <guid>https://eidos-works.com/insights/website-snapshot-before-redesign</guid>
+      <pubDate>Fri, 10 Jul 2026 16:00:00 GMT</pubDate>
+      <description>What an early website concept and focused recommendation report can clarify—and what still requires a full audit, design process, and build.</description>
+      <category>AI Prototyping</category>
+    </item>
+    <item>
+      <title>Why Mobile Hierarchy Matters More Than Desktop Polish</title>
+      <link>https://eidos-works.com/insights/mobile-hierarchy-over-desktop-polish</link>
+      <guid>https://eidos-works.com/insights/mobile-hierarchy-over-desktop-polish</guid>
+      <pubDate>Fri, 10 Jul 2026 16:00:00 GMT</pubDate>
+      <description>Why the order, spacing, and priority of information on a small screen often matter more than the most polished desktop presentation.</description>
+      <category>Website Strategy</category>
     </item>
     <item>
       <title>Baseline 2026 Turns Browser Support Into a Design-System Decision</title>
@@ -28,55 +76,15 @@
       <guid>https://eidos-works.com/insights/baseline-2026-browser-support-design-system-decision</guid>
       <pubDate>Fri, 10 Jul 2026 12:00:00 GMT</pubDate>
       <description>How Eidos Works uses Baseline, MDN compatibility signals, and progressive enhancement to decide which modern interface features are ready for production sites.</description>
-      <category>Current Web Standards</category>
+      <category>Website Strategy</category>
     </item>
     <item>
-      <title>What Makes a Custom InkSoft Storefront Feel Easier to Shop</title>
-      <link>https://eidos-works.com/insights/custom-inksoft-storefront-easier-to-shop</link>
-      <guid>https://eidos-works.com/insights/custom-inksoft-storefront-easier-to-shop</guid>
-      <pubDate>Mon, 08 Jun 2026 16:00:00 GMT</pubDate>
-      <description>A practical look at the storefront hierarchy, category framing, product clarity, and mobile decisions that make InkSoft stores easier to use.</description>
-      <category>Storefront UX</category>
-    </item>
-    <item>
-      <title>How Production Dashboards Turn Shop Noise Into Action</title>
-      <link>https://eidos-works.com/insights/production-dashboards-shop-noise-action</link>
-      <guid>https://eidos-works.com/insights/production-dashboards-shop-noise-action</guid>
-      <pubDate>Mon, 08 Jun 2026 16:00:00 GMT</pubDate>
-      <description>How production teams can use due dates, departments, filters, exceptions, and daily briefs to make operational work more visible.</description>
-      <category>Production Systems</category>
-    </item>
-    <item>
-      <title>Why Apparel Mockups Matter Before Launch Day</title>
-      <link>https://eidos-works.com/insights/why-apparel-mockups-matter-before-launch-day</link>
-      <guid>https://eidos-works.com/insights/why-apparel-mockups-matter-before-launch-day</guid>
-      <pubDate>Mon, 08 Jun 2026 16:00:00 GMT</pubDate>
-      <description>Why apparel mockups improve buyer confidence, reduce launch friction, and help teams catch brand or product issues before a store goes live.</description>
-      <category>Design Systems</category>
-    </item>
-    <item>
-      <title>Eidos Brain and Sentinel: A Practical Model for Small-Business Intelligence</title>
+      <title>Eidos Brain and Sentinel: A Small-Business Intelligence Model</title>
       <link>https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence</link>
       <guid>https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence</guid>
       <pubDate>Mon, 08 Jun 2026 16:00:00 GMT</pubDate>
-      <description>A grounded model for using signals, exceptions, briefs, and human review to make small-business intelligence systems useful without hype.</description>
-      <category>Eidos Brain</category>
-    </item>
-    <item>
-      <title>Designing Websites for Humans, Search Engines, and AI Assistants</title>
-      <link>https://eidos-works.com/insights/designing-websites-for-humans-search-engines-ai-assistants</link>
-      <guid>https://eidos-works.com/insights/designing-websites-for-humans-search-engines-ai-assistants</guid>
-      <pubDate>Mon, 08 Jun 2026 16:00:00 GMT</pubDate>
-      <description>How semantic structure, clear internal links, metadata, article depth, and public content maps help both people and AI-assisted browsers understand a site.</description>
-      <category>AI &amp; Agentic Search</category>
-    </item>
-    <item>
-      <title>A Simple Weekly Content Rhythm for Storefronts and Service Businesses</title>
-      <link>https://eidos-works.com/insights/weekly-content-rhythm-storefronts-service-businesses</link>
-      <guid>https://eidos-works.com/insights/weekly-content-rhythm-storefronts-service-businesses</guid>
-      <pubDate>Mon, 08 Jun 2026 16:00:00 GMT</pubDate>
-      <description>A realistic publishing rhythm for teams that want useful articles, updates, product notes, and case-study fragments without creating a content machine.</description>
-      <category>Case Study Notes</category>
+      <description>A grounded case note on using signals, exceptions, readable briefs, and human review to make small-business intelligence useful.</description>
+      <category>Case Notes</category>
     </item>
   </channel>
 </rss>

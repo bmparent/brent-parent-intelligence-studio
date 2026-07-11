@@ -24,9 +24,12 @@ npm run content:generate
 npm run validate:insights
 npm run lint
 npm run build
+npm run verify:prerender
 npm run validate:insights:dist
 npm run verify:urls
 ```
+
+For an untrusted pull request or draft, begin with `npm run validate:insights -- --skip-source-fetch` so contributor-controlled source URLs are not requested. The normal trusted publish gate must still run `npm run validate:insights` with source retrieval enabled when current external claims depend on those sources.
 
 5. If the article is deployed, verify production with:
 
