@@ -1,7 +1,9 @@
 # Eidos Works Editorial Redesign — Inventory
 
-Date: 2026-07-11  
-Branch: `agent/eidos-editorial-redesign`  
+Date: 2026-07-11
+
+Branch: `agent/eidos-editorial-redesign`
+
 Source commit: `eb695212172d2b2b24efc74bb130cbfae5045893`
 
 ## Source of truth

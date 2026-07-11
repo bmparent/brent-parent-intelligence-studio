@@ -13,7 +13,7 @@ Deployment status: implementation and local preview verification passed. Cloudfl
 - Repository: `https://github.com/bmparent/brent-parent-intelligence-studio.git`
 - Source commit preserved: `eb695212172d2b2b24efc74bb130cbfae5045893`
 - Branch: `agent/eidos-editorial-redesign`
-- Redesign commit: pending final commit
+- Redesign implementation commit: `9c4284e012c5e1f65409cdebb1e34122f95313fd`
 - Cloudflare Pages project indicated by repository documentation: `eidosworks`; live account verification pending
 - Preview URL: pending authenticated Wrangler deployment
 - Production URL: `https://eidos-works.com` (not yet verified with this redesign)
