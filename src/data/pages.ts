@@ -62,7 +62,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   },
   '/work': {
     title: 'Selected Work | Eidos Works',
-    description: 'Case studies in private storefront access, production reporting, and hosted storefront experience design by Brent Parent.',
+    description: 'Eidos Works case studies in private storefront access, production reporting, and hosted storefront experience design.',
     type: 'website'
   },
   '/work/pernr-access-gate': {
@@ -73,7 +73,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   },
   '/work/production-dashboard': {
     title: 'Production Reporting Dashboard Case Study | Eidos Works',
-    description: 'See how a production schedule became a filterable operating view for date, department, work-order, and exception review.',
+    description: 'See how production teams gained a filterable schedule for late work, due dates, departments, work orders, and exceptions.',
     type: 'website',
     image: absoluteUrl('/images/case-studies/production-dashboard.png')
   },
@@ -84,13 +84,13 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
     image: absoluteUrl('/images/case-studies/storefront-experience-framed.png')
   },
   '/about': {
-    title: 'About Brent Parent | Eidos Works',
-    description: 'Meet Brent Parent and learn how design, storefront development, production operations, reporting, and automation shape Eidos Works.',
+    title: 'About Eidos Works & Brent Parent',
+    description: 'Learn how Brent Parent leads Eidos Works and how design, storefront development, production operations, reporting, collaboration, and automation shape the studio.',
     type: 'website'
   },
   '/contact': {
     title: 'Discuss a Project | Eidos Works',
-    description: 'Tell Brent Parent what customer path, storefront constraint, reporting gap, or repeated manual work you want to improve.',
+    description: 'Tell Eidos Works what customer path, storefront constraint, reporting gap, or repeated manual work you want to improve.',
     type: 'website'
   },
   '/lab/eidos-brain': {

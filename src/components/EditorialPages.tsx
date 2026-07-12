@@ -4,9 +4,9 @@ import { productionDashboardUrl, profileImage } from '../data/portfolio';
 import { featuredMedia } from '../data/media';
 import { cld, cldSrcSet, externalLinkProps } from '../utils';
 
-function EditorialHero({ eyebrow, title, lede, aside }: { eyebrow: string; title: string; lede: string; aside?: string }) {
+function EditorialHero({ eyebrow, title, lede, aside, className = '' }: { eyebrow: string; title: string; lede: string; aside?: string; className?: string }) {
   return (
-    <section className="ew-editorial-hero ew-shell">
+    <section className={`ew-editorial-hero ew-shell ${className}`.trim()}>
       <div>
         <p className="ew-eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
@@ -29,7 +29,7 @@ export function WorkPage() {
       <EditorialHero
         eyebrow="Selected work"
         title="Work that makes a complicated process easier to use."
-        lede="Three primary case studies show the range: controlled storefront access, daily production reporting, and a hosted store shaped around a real audience. Supporting experiments remain available without competing with the finished work."
+        lede="Three primary case studies show the range: controlled storefront access, daily production reporting, and a hosted store shaped around a real audience. Additional concepts and production context stay in a clearly labeled archive."
       />
       <section className="ew-ledger-section ew-shell" aria-label="Primary case studies">
         <div className="ew-work-index">
@@ -50,12 +50,12 @@ export function WorkPage() {
       </section>
       <section className="ew-ledger-section ew-supporting-work">
         <div className="ew-shell ew-supporting-work__grid">
-          <div><p className="ew-eyebrow">Supporting work</p><h2>Other storefront and visual directions remain part of the archive.</h2></div>
+          <div><p className="ew-eyebrow">Concept and context archive</p><h2>Additional directions and production context, clearly separated from finished case-study evidence.</h2></div>
           <div className="ew-supporting-work__images">
             {featuredMedia.slice(0, 3).map((item) => (
               <figure key={item.id}>
                 <img src={cld(item.src, 720)} width="720" height="520" loading="lazy" alt={item.alt} />
-                <figcaption>{item.title} · {item.caption}</figcaption>
+                <figcaption>{item.type === 'operations' ? 'Operational context' : 'Concept direction'} · {item.title} · {item.caption}</figcaption>
               </figure>
             ))}
           </div>
@@ -71,7 +71,7 @@ export function ProductionDashboardCaseStudy() {
       <EditorialHero
         eyebrow="Operational reporting · case study"
         title="A production schedule built for the morning planning decision."
-        lede="The reporting view brings date ranges, departments, work orders, quantities, due dates, exceptions, notes, and exports into one operating surface."
+        lede="Production teams can see what is late, what is due next, and where active work stands without rebuilding the schedule in a spreadsheet."
         aside="Completed as part of Data Graphics' internal production workflow."
       />
       <section className="ew-case-image ew-shell">
@@ -83,14 +83,14 @@ export function ProductionDashboardCaseStudy() {
           <p className="ew-eyebrow">Context and problem</p>
           <h2 id="dashboard-context-title">Daily planning depended on seeing the same schedule from several angles.</h2>
           <p>Production work moves through departments with different due dates, quantities, statuses, tags, links, and notes. A useful view has to answer what is late, what is due, where the work sits, and what deserves attention without turning the morning huddle into a spreadsheet exercise.</p>
-          <h3>What Brent designed and built</h3>
-          <p>Brent mapped the review workflow, designed the responsive reporting interface, implemented date and department filtering, added searchable work-order visibility, exposed an include-completed control, and kept CSV export and data refresh close to the decision.</p>
+          <h3>What the project brought together</h3>
+          <p>The work mapped the daily review, made the reporting interface responsive, added date and department filtering, exposed searchable work orders and completed-work controls, and kept CSV export and data refresh available during the planning review.</p>
           <h3>How the system works</h3>
           <ol className="ew-flow-ledger">
             <li><span>01</span><strong>Source</strong><p>Production schedule data is retrieved from the existing operating source.</p></li>
             <li><span>02</span><strong>Normalize</strong><p>Dates, departments, statuses, quantities, notes, and links are shaped into a consistent record.</p></li>
-            <li><span>03</span><strong>Review</strong><p>Filters and search create a planning-ready view for the current department and time window.</p></li>
-            <li><span>04</span><strong>Decide</strong><p>A human operator uses the view to plan, follow up, export, or refresh.</p></li>
+            <li><span>03</span><strong>Review</strong><p>Teams filter the schedule by department and date, then search for the work order that needs attention.</p></li>
+            <li><span>04</span><strong>Act</strong><p>The team can plan the next run, follow up on an exception, export the schedule, or refresh the data.</p></li>
           </ol>
         </div>
         <aside className="ew-case-facts">
@@ -98,14 +98,14 @@ export function ProductionDashboardCaseStudy() {
           <dl>
             <div><dt>People affected</dt><dd>Production planners and department leads.</dd></div>
             <div><dt>Constraints</dt><dd>Live operational data, wide tables, changing date windows, and department-specific review.</dd></div>
-            <div><dt>Observed change</dt><dd>A single filtering and export surface now supports the daily planning review.</dd></div>
+            <div><dt>Observed change</dt><dd>One filterable schedule now supports the daily planning review.</dd></div>
             <div><dt>Unknown</dt><dd>No time-saved, revenue, or productivity percentage has been claimed.</dd></div>
           </dl>
           <a className="ew-button ew-button--secondary" href={productionDashboardUrl} {...externalLinkProps('Open the public production dashboard')}>Open public dashboard</a>
         </aside>
       </section>
-      <CaseLearning
-        learned="Operational dashboards work best when they begin with the decision and expose only the data needed to support it."
+      <CaseOutcome
+        result="Production teams can review late work, upcoming due dates, department status, and active exceptions in one schedule."
         next="Add documented refresh health, stronger empty and error receipts, and a reviewed mobile summary if the daily operating workflow calls for it."
       />
     </>
@@ -113,13 +113,12 @@ export function ProductionDashboardCaseStudy() {
 }
 
 export function StorefrontExperienceCaseStudy() {
-  const supporting = featuredMedia.find((item) => item.id === 'cl-classroom-kids');
   return (
     <>
       <EditorialHero
         eyebrow="Hosted storefront UX · case study"
         title="A hosted school store made to feel intentional before the product grid."
-        lede="The storefront uses a scoped presentation layer to clarify the audience, product paths, sizing guidance, and ordering context without replacing InkSoft's commerce system."
+        lede="Families enter through a branded school experience that points them to the right apparel, sizing information, and ordering details before they reach the product grid."
         aside="Storefront presentation completed within Data Graphics' client-services workflow."
       />
       <section className="ew-case-image ew-shell">
@@ -131,41 +130,38 @@ export function StorefrontExperienceCaseStudy() {
           <p className="ew-eyebrow">Context and problem</p>
           <h2 id="store-context-title">Families needed an official path into everyday school apparel.</h2>
           <p>A default hosted-store entrance can make every product feel equally important. This project needed a warmer opening, visible category choices, product guidance, deadline and pickup context where relevant, and mobile behavior that still makes the first decision easy.</p>
-          <h3>What Brent designed and built</h3>
-          <p>Brent designed the custom storefront presentation, scoped the embed so it would not leak into InkSoft navigation or cart surfaces, prepared Cloudinary-backed visual assets, organized the primary product paths, and accounted for restrictive hosted-page behavior and small screens.</p>
+          <h3>What the project included</h3>
+          <p>Within Data Graphics' client-services workflow, the project brought together storefront strategy, interface development, production-aware content, Cloudinary-backed assets, clearer product paths, and responsive behavior for restrictive hosted pages.</p>
+          <p>Brent contributed storefront strategy, interface development, operational context, and implementation as part of that broader client-services workflow.</p>
           <h3>What changed</h3>
           <p>The public store now opens with a deliberate branded entrance instead of asking shoppers to interpret a generic catalog first. The interface points families toward polos, layers, and sizing guidance while leaving product, cart, and checkout behavior with the platform.</p>
-          {supporting ? (
-            <figure className="ew-case-supporting-image">
-              <img src={cld(supporting.src, 960)} srcSet={cldSrcSet(supporting.src, [480, 720, 960])} sizes="(max-width: 760px) 92vw, 680px" width="960" height="720" loading="lazy" alt={supporting.alt} />
-              <figcaption>Supporting campaign imagery prepared for the early-learning storefront context.</figcaption>
-            </figure>
-          ) : null}
+          <h3>Platform constraint</h3>
+          <p>The custom entrance works inside InkSoft. It improves the path into the catalog while InkSoft continues to handle products, accounts, cart behavior, and checkout.</p>
         </div>
         <aside className="ew-case-facts">
           <RoleDisclosure> Completed within Data Graphics' client-services workflow. Eidos Works does not claim a direct client relationship or ownership of the school's identity.</RoleDisclosure>
           <dl>
             <div><dt>People affected</dt><dd>Parents and families shopping for early-learning apparel.</dd></div>
-            <div><dt>Constraints</dt><dd>Hosted platform markup, existing cart and account surfaces, responsive embeds, and client-owned branding.</dd></div>
+            <div><dt>Constraints</dt><dd>Hosted platform markup, existing cart and account pages, responsive embeds, and client-owned branding.</dd></div>
             <div><dt>Observed change</dt><dd>The store now presents a guided, branded entrance with clearer product paths.</dd></div>
             <div><dt>Unknown</dt><dd>No conversion, traffic, revenue, or testimonial claim is made.</dd></div>
           </dl>
         </aside>
       </section>
-      <CaseLearning
-        learned="A hosted storefront can feel authored without fighting the commerce platform when scope, hierarchy, and fallbacks are decided first."
-        next="Review product-level analytics and customer questions before adding more modules; the next improvement should respond to evidence, not fill space."
+      <CaseOutcome
+        result="Families reach a branded school-store entrance with clearer product paths, sizing guidance, and ordering context before they enter the catalog."
+        next="Review product-level analytics and recurring customer questions before deciding whether the store needs additional guidance."
       />
     </>
   );
 }
 
-function CaseLearning({ learned, next }: { learned: string; next: string }) {
+function CaseOutcome({ result, next }: { result: string; next: string }) {
   return (
     <section className="ew-case-learning">
       <div className="ew-shell">
-        <div><p className="ew-eyebrow">What was learned</p><h2>{learned}</h2></div>
-        <div><p className="ew-eyebrow">What improves next</p><p>{next}</p><a className="ew-button ew-button--light" href="/contact">Discuss a related project</a></div>
+        <div><p className="ew-eyebrow">Result</p><h2>{result}</h2></div>
+        <div><p className="ew-eyebrow">Next opportunity</p><p>{next}</p><a className="ew-button ew-button--light" href="/contact">Discuss a related project</a></div>
       </div>
     </section>
   );
@@ -174,19 +170,23 @@ function CaseLearning({ learned, next }: { learned: string; next: string }) {
 export function ServicesPage() {
   return (
     <>
-      <EditorialHero eyebrow="Services" title="Design and development around a specific operating problem." lede="Eidos Works is not a full-service agency menu. These three service families cover the customer-facing and operating surfaces Brent is unusually equipped to build." />
+      <EditorialHero className="ew-editorial-hero--services" eyebrow="Services" title="Design and development for the problem getting in people's way." lede="Bring us the website people struggle to understand, the private store that needs better access, or the workflow your team still manages by hand. Eidos Works designs and builds a focused solution around the way the work actually happens." />
       <section className="ew-ledger-section ew-shell">
         <div className="ew-service-index">
           {serviceFamilies.map((service) => (
             <article key={service.slug}>
               <span>{service.number}</span>
+              <figure className={`ew-service-index__image ew-service-index__image--${service.slug}`}>
+                <img src={service.image} width="1200" height="800" loading="lazy" alt={service.imageAlt} />
+                <figcaption>{service.imageCaption}</figcaption>
+              </figure>
               <div><h2>{service.title}</h2><p>{service.summary}</p><ul>{service.includes.map((item) => <li key={item}>{item}</li>)}</ul></div>
               <a className="ew-button ew-button--secondary" href={`/services/${service.slug}`}>Explore service</a>
             </article>
           ))}
         </div>
       </section>
-      <section className="ew-engagement-note"><div className="ew-shell"><p className="ew-eyebrow">Engagement shape</p><h2>Start with the smallest surface that can prove the workflow.</h2><p>Scope and price depend on content readiness, data access, platform constraints, integrations, and review depth. A project conversation establishes those facts before a proposal.</p><a className="ew-button ew-button--light" href="/contact">Tell me what needs to work better</a></div></section>
+      <section className="ew-engagement-note"><div className="ew-shell"><p className="ew-eyebrow">Starting point</p><h2>Start with the problem that is costing the most time or creating the most confusion.</h2><p>Scope and price depend on content readiness, data access, platform constraints, integrations, and review depth. A project conversation establishes those facts before a proposal.</p><a className="ew-button ew-button--light" href="/contact">Tell us what needs to work better</a></div></section>
     </>
   );
 }
@@ -208,13 +208,17 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
     'dashboards-workflow-tools': {
       forWhom: 'Operations teams reviewing schedules, exceptions, handoffs, spreadsheets, repeated reports, or manual follow-up.',
       constraints: 'Data availability, API reliability, permissions, field consistency, export needs, operator habits, and failure recovery.',
-      proof: 'A working operating view, filters and states tied to decisions, repeatable tests, and clear handling of missing or stale data.'
+      proof: 'A working dashboard, filters and states tied to decisions, repeatable tests, and clear handling of missing or stale data.'
     }
   };
   const detail = context[slug];
   return (
     <>
       <EditorialHero eyebrow={`Service ${service.number}`} title={service.title} lede={service.summary} />
+      <figure className={`ew-service-evidence ew-shell ew-service-evidence--${slug}`}>
+        <img src={service.image} width="1200" height="800" alt={service.imageAlt} />
+        <figcaption>{service.imageCaption}</figcaption>
+      </figure>
       <section className="ew-ledger-section ew-shell ew-service-detail">
         <div><p className="ew-eyebrow">Who it is for</p><h2>{detail.forWhom}</h2></div>
         <div className="ew-service-detail__facts">
@@ -234,15 +238,16 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
 export function AboutPage() {
   return (
     <>
-      <EditorialHero eyebrow="About" title="I design closer to the work than the brief usually starts." lede="Eidos Works is the public studio of Brent Parent—a designer and developer whose experience includes storefronts, decorated-apparel production, shipping, fulfillment, reporting, and automation." />
+      <EditorialHero eyebrow="About" title="A studio led by operational experience." lede="Brent Parent founded and leads Eidos Works, bringing design judgment, hands-on technical contribution, and experience from the work behind storefronts, production, fulfillment, reporting, and automation." />
       <section className="ew-about-profile ew-shell">
-        <img src={cld(profileImage, 820)} srcSet={cldSrcSet(profileImage, [480, 640, 820])} sizes="(max-width: 760px) 90vw, 420px" width="820" height="1025" alt="Portrait of Brent Parent." />
+        <img src={cld(profileImage, 820)} srcSet={cldSrcSet(profileImage, [480, 640, 820])} sizes="(max-width: 760px) 90vw, 420px" width="820" height="1025" alt="Illustrated portrait of Brent Parent, founder and principal of Eidos Works." />
         <div>
           <p className="ew-eyebrow">Brent Parent · Central Florida</p>
           <h2>Design and operations belong in the same conversation.</h2>
-          <p>I have worked with the realities behind customer-facing stores: product setup, embroidery, decorated-apparel production, fulfillment, shipping, deadlines, exceptions, and the reports people use to keep work moving.</p>
-          <p>That background sits beside UI/UX, React and frontend development, Google Cloud Platform knowledge, Google Apps Script, reporting, and focused automation. Data Graphics contributed substantial practical experience, but Eidos Works is broader than any one employer or project.</p>
-          <p>I am interested in applied intelligence when it produces an inspectable receipt and leaves authority with the person responsible for the decision. That work lives in the Lab—not at the center of every client conversation.</p>
+          <p>Brent's experience includes product setup, embroidery, decorated-apparel production, fulfillment, shipping, logistics, deadlines, exceptions, and the reports people use to keep work moving.</p>
+          <p>That background sits beside UI/UX, React and frontend development, Google Cloud Platform, Google Apps Script, reporting, and focused automation. Data Graphics contributed substantial practical knowledge, but it did not solely inspire or define Eidos Works.</p>
+          <p>Eidos Works can collaborate with client teams, specialists, platforms, automation, AI-assisted workflows, and other technical resources appropriate to the project. Brent leads the studio and contributes directly without claiming to perform every discipline or implementation task alone.</p>
+          <p>Eidos Works is also exploring how AI can help people recognize patterns and make better decisions without hiding how an answer was reached. Eidos Brain is that proof-stage research initiative; Sentinel is a monitoring concept within it, not the primary identity of the studio.</p>
           <a className="ew-button ew-button--primary" href="/contact">Discuss a project</a>
         </div>
       </section>
@@ -253,8 +258,8 @@ export function AboutPage() {
 
 export function ContactPage() {
   return (
-    <section className="ew-contact-page ew-shell">
-      <div className="ew-contact-page__intro"><p className="ew-eyebrow">Contact</p><h1>Tell me what you are trying to improve.</h1><p>Share the customer path, storefront constraint, reporting gap, or repeated manual work. You do not need a finished brief.</p><p>Email directly: <a href="mailto:projects@eidos-works.com">projects@eidos-works.com</a></p></div>
+      <section className="ew-contact-page ew-shell">
+       <div className="ew-contact-page__intro"><p className="ew-eyebrow">Contact</p><h1>Tell Eidos Works what you are trying to improve.</h1><p>Share the customer path, storefront constraint, reporting gap, or repeated manual work. You do not need a finished brief.</p><p>Email directly: <a href="mailto:projects@eidos-works.com">projects@eidos-works.com</a></p></div>
       <ContactForm />
     </section>
   );
@@ -263,7 +268,7 @@ export function ContactPage() {
 export function EidosBrainLabPage() {
   return (
     <>
-      <EditorialHero eyebrow="Lab · proof-stage research" title="Eidos Brain explores how a streaming system can preserve meaningful change without pretending to be autonomous authority." lede="The research combines prediction error, surprise handling, anomaly receipts, and human review. It remains a proof-stage architecture experiment, separate from the primary Eidos Works service offer." />
+      <EditorialHero eyebrow="Lab · proof-stage research" title="Eidos Brain explores how streaming data can reveal meaningful change." lede="The research tests prediction, unusual changes, human-readable incident records, and human review. It remains separate from the primary Eidos Works studio offer." />
       <section className="ew-lab-status">
         <div className="ew-shell ew-lab-status__grid">
           <div><p className="ew-eyebrow">Current maturity</p><h2>Research with receipts. Not a finished commercial platform.</h2></div>

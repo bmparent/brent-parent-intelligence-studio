@@ -59,6 +59,13 @@ if (density.sections > 10) failures.push(`home: ${density.sections} sections exc
 if (density.h2 > 8) failures.push(`home: ${density.h2} h2 headings exceeds the editorial limit of 8`);
 if (density.articles > 12) failures.push(`home: ${density.articles} article containers exceeds the editorial limit of 12`);
 if (density.buttons > 10) failures.push(`home: ${density.buttons} buttons exceeds the editorial limit of 10`);
+if (/Portrait of Brent Parent|ChatGPT_Image_May_1_2026_03_42_06_PM_ipnyby/i.test(home)) {
+  failures.push('home: founder portrait is still present');
+}
+for (const evidence of ['production-dashboard.png', 'storefront-experience-framed.png', 'pernr-access-gate.png']) {
+  if (!home.includes(evidence)) failures.push(`home: studio work composition is missing ${evidence}`);
+}
+if (!home.includes('Founded by Brent Parent in Central Florida.')) failures.push('home: subtle founder attribution is missing');
 
 for (const label of ['Work', 'Services', 'About', 'Insights', 'Contact']) {
   if (!home.includes(`>${label}</a>`)) failures.push(`home: primary navigation is missing ${label}`);
@@ -71,6 +78,31 @@ for (const route of ['/work/pernr-access-gate', '/work/production-dashboard', '/
   const html = await readFile(routeFile(route), 'utf8');
   if (!/role disclosure/i.test(html)) failures.push(`${route}: role disclosure is missing`);
   if (!/unproven|unknown/i.test(html)) failures.push(`${route}: remaining uncertainty is missing`);
+}
+
+const services = await readFile(routeFile('/services'), 'utf8');
+for (const image of ['digital-experiences.png', 'storefront-experience-framed.png', 'production-dashboard.png']) {
+  if (!services.includes(image)) failures.push(`/services: matched service image is missing: ${image}`);
+}
+
+const about = await readFile(routeFile('/about'), 'utf8');
+if (!/Illustrated portrait of Brent Parent/i.test(about)) failures.push('/about: founder portrait is missing');
+if (!/collaborate with client teams/i.test(about)) failures.push('/about: collaborative studio language is missing');
+
+const prohibitedPrimaryCopy = [
+  'service families',
+  'operating surface',
+  'presentation layer',
+  'planning-ready view',
+  'a human operator uses the view',
+  'notes from implementation, not a content machine',
+  'what brent designed and built'
+];
+for (const route of ['/', '/services', '/work/production-dashboard', '/work/storefront-experience']) {
+  const html = (await readFile(routeFile(route), 'utf8')).toLowerCase();
+  for (const phrase of prohibitedPrimaryCopy) {
+    if (html.includes(phrase)) failures.push(`${route}: prohibited primary copy remains: ${phrase}`);
+  }
 }
 
 const sitemap = await readFile(resolve(root, 'dist/sitemap.xml'), 'utf8');
@@ -88,6 +120,11 @@ for (const image of ['pernr-access-gate.png', 'production-dashboard.png', 'store
   } catch {
     failures.push(`case evidence image is missing: ${image}`);
   }
+}
+try {
+  await access(resolve(root, 'dist/images/services/digital-experiences.png'));
+} catch {
+  failures.push('service evidence image is missing: digital-experiences.png');
 }
 
 if (failures.length) {

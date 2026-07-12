@@ -1,13 +1,11 @@
 import { ContactForm } from './ContactForm';
 import { articles, featuredArticle } from '../data/articles';
 import { primaryCaseStudies, serviceFamilies } from '../data/editorial';
-import { profileImage } from '../data/portfolio';
-import { cld, cldSrcSet } from '../utils';
 
 const process = [
   ['01', 'Understand the problem', 'Start with the customer decision or operating problem—not a list of requested features.'],
   ['02', 'Map the real workflow', 'Document the people, platforms, handoffs, constraints, and exceptions around the work.'],
-  ['03', 'Design and build the useful surface', 'Make the smallest interface that gives the next person a reliable next step.'],
+  ['03', 'Design and build the right system', 'Create the website, storefront, dashboard, or automation that gives the next person a reliable next step.'],
   ['04', 'Test, launch, and improve', 'Verify the route, responsive behavior, accessibility, and live delivery before calling it finished.']
 ] as const;
 
@@ -24,30 +22,28 @@ export function HomePage() {
           <h1 id="home-title">Digital experiences and operational tools for complicated real-world workflows.</h1>
           <span className="ew-rule" aria-hidden="true" />
           <p className="ew-ledger-hero__lede">
-            Brent Parent designs storefronts, access systems, dashboards, and focused automation for organizations whose digital tools have to work in the real world.
+            Eidos Works designs storefronts, access systems, dashboards, and focused automation for organizations whose digital tools have to work in the real world.
           </p>
           <div className="ew-actions">
             <a className="ew-button ew-button--primary" href="#work">View Selected Work</a>
             <a className="ew-button ew-button--secondary" href="/contact">Discuss a Project</a>
           </div>
+          <p className="ew-founder-byline">Founded by Brent Parent in Central Florida.</p>
         </div>
 
-        <div className="ew-founder-lockup">
-          <img
-            src={cld(profileImage, 640)}
-            srcSet={cldSrcSet(profileImage, [360, 520, 640, 760])}
-            sizes="(max-width: 760px) 72vw, 280px"
-            width="640"
-            height="800"
-            alt="Portrait of Brent Parent, founder of Eidos Works."
-            fetchPriority="high"
-          />
-          <div className="ew-founder-lockup__note">
-            <p className="ew-eyebrow">Founder / designer / developer</p>
-            <strong>Brent Parent</strong>
-            <span>Eidos Works</span>
-            <span>Central Florida</span>
-          </div>
+        <div className="ew-studio-work-composition" aria-label="Examples of Eidos Works storefront, access, and reporting interfaces">
+          <figure className="ew-studio-work-composition__main">
+            <img src="/images/case-studies/production-dashboard.png" width="1200" height="800" alt="Production dashboard with date, department, and schedule controls." fetchPriority="high" />
+            <figcaption>Workflow tools</figcaption>
+          </figure>
+          <figure>
+            <img src="/images/case-studies/storefront-experience-framed.png" width="1200" height="800" alt="Branded early-learning storefront entrance." fetchPriority="high" />
+            <figcaption>Storefronts</figcaption>
+          </figure>
+          <figure>
+            <img src="/images/case-studies/pernr-access-gate.png" width="1200" height="800" alt="Public-safe private-store eligibility check." fetchPriority="high" />
+            <figcaption>Access systems</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -55,7 +51,7 @@ export function HomePage() {
         <div className="ew-shell">
           <div className="ew-case-rail__header">
             <p className="ew-eyebrow">Selected work</p>
-            <h2 id="selected-work-title">Three systems built around a real constraint.</h2>
+            <h2 id="selected-work-title">See how Eidos Works solves real access, storefront, and workflow problems.</h2>
             <a className="ew-text-link ew-text-link--light" href="/work">View all work</a>
           </div>
           <div className="ew-case-rail__grid">
@@ -78,8 +74,8 @@ export function HomePage() {
       <section id="services" className="ew-ledger-section ew-shell" aria-labelledby="services-title">
         <header className="ew-ledger-heading">
           <p className="ew-eyebrow">Services</p>
-          <h2 id="services-title">Three ways to make complicated work easier to use.</h2>
-          <p>Projects can begin with one customer path, one private store, or one operating view.</p>
+          <h2 id="services-title">Make your website, storefront, or workflow easier to use.</h2>
+          <p>Start with the customer path, private store, or repeated task that is creating the most friction.</p>
         </header>
         <div className="ew-service-ledger">
           {serviceFamilies.map((service) => (
@@ -95,18 +91,18 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="ew-ledger-section ew-ledger-about" aria-labelledby="why-brent-title">
+      <section className="ew-ledger-section ew-ledger-about" aria-labelledby="studio-context-title">
         <div className="ew-shell ew-ledger-about__grid">
           <div>
-            <p className="ew-eyebrow">Why Brent</p>
-            <h2 id="why-brent-title">Design informed by the work behind the screen.</h2>
+            <p className="ew-eyebrow">Studio context</p>
+            <h2 id="studio-context-title">Digital systems shaped by an understanding of the work behind them.</h2>
           </div>
           <div>
             <p>
-              Brent works across UI/UX, custom storefront development, decorated-apparel production, shipping, fulfillment, reporting, and automation. That operating context changes the questions asked before a screen is designed.
+              Eidos Works is led by Brent Parent, whose experience spans UI/UX, storefront development, decorated-apparel production, shipping, fulfillment, reporting, and automation.
             </p>
             <p>
-              Eidos Works combines that practical experience with frontend development, Google Cloud Platform knowledge, and a bias toward tools that a customer or operator can understand without a tour.
+              The studio combines that practical context with frontend development, Google Cloud Platform knowledge, appropriate collaborators, and client teams to build tools people can understand without a tour.
             </p>
             <a className="ew-text-link" href="/about">About Brent and Eidos Works</a>
           </div>
@@ -116,7 +112,7 @@ export function HomePage() {
       <section className="ew-ledger-section ew-shell" aria-labelledby="process-title">
         <header className="ew-ledger-heading ew-ledger-heading--compact">
           <p className="ew-eyebrow">Working together</p>
-          <h2 id="process-title">Map first. Build second.</h2>
+          <h2 id="process-title">From a difficult workflow to a system people can actually use.</h2>
         </header>
         <ol className="ew-process-ledger">
           {process.map(([number, title, description]) => (
@@ -133,7 +129,7 @@ export function HomePage() {
         <div className="ew-shell">
           <header className="ew-ledger-heading">
             <p className="ew-eyebrow">Insights</p>
-            <h2 id="home-insights-title">Notes from implementation, not a content machine.</h2>
+            <h2 id="home-insights-title">Practical ideas for better websites, storefronts, and operations.</h2>
             <a className="ew-text-link" href="/insights">Browse Insights</a>
           </header>
           <div className="ew-insight-ledger">
@@ -152,7 +148,7 @@ export function HomePage() {
         <div className="ew-contact__intro">
           <p className="ew-eyebrow">Discuss a project</p>
           <h2 id="home-contact-title">What are you trying to improve?</h2>
-          <p>Share the awkward customer path, private-store requirement, reporting gap, or repeated manual work. You will get a direct reply from Brent.</p>
+          <p>Share the awkward customer path, private-store requirement, reporting gap, or repeated manual work. You will hear directly from Eidos Works.</p>
         </div>
         <ContactForm />
       </section>
