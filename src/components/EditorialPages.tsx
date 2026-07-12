@@ -3,6 +3,8 @@ import { primaryCaseStudies, serviceBySlug, serviceFamilies, type ServiceSlug } 
 import { productionDashboardUrl, profileImage } from '../data/portfolio';
 import { featuredMedia } from '../data/media';
 import { cld, cldSrcSet, externalLinkProps } from '../utils';
+import { emailMailto, siteConfig } from '../config/site';
+import { EmailAddress } from './EmailAddress';
 
 function EditorialHero({ eyebrow, title, lede, aside, className = '' }: { eyebrow: string; title: string; lede: string; aside?: string; className?: string }) {
   return (
@@ -259,7 +261,7 @@ export function AboutPage() {
 export function ContactPage() {
   return (
       <section className="ew-contact-page ew-shell">
-       <div className="ew-contact-page__intro"><p className="ew-eyebrow">Contact</p><h1>Tell Eidos Works what you are trying to improve.</h1><p>Share the customer path, storefront constraint, reporting gap, or repeated manual work. You do not need a finished brief.</p><p>Email directly: <a href="mailto:projects@eidos-works.com">projects@eidos-works.com</a></p></div>
+       <div className="ew-contact-page__intro"><p className="ew-eyebrow">Contact</p><h1>Tell Eidos Works what you are trying to improve.</h1><p>Share the customer path, storefront constraint, reporting gap, or repeated manual work. You do not need a finished brief.</p><p>Email directly: <a href={emailMailto(siteConfig.projectsEmail)}><EmailAddress address={siteConfig.projectsEmail} /></a></p></div>
       <ContactForm />
     </section>
   );

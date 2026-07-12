@@ -44,6 +44,10 @@ for (const file of await htmlFiles(root)) {
     if (!required.test(html)) failures.push(`${label}: missing or unsafe required metadata`);
   }
 
+  if (/href="mailto:[^"]*@/i.test(html)) {
+    failures.push(`${label}: mailto href exposes a literal address that Cloudflare may rewrite before hydration`);
+  }
+
   const approvedPlatformPages = new Set([
     'work/index.html',
     'work/pernr-access-gate/index.html',

@@ -25,5 +25,10 @@ export function absoluteUrl(path = '/') {
 }
 
 export function projectMailto(subject = 'Eidos Works Project Inquiry') {
-  return `mailto:${siteConfig.projectsEmail}?subject=${encodeURIComponent(subject)}`;
+  return `mailto:${encodeURIComponent(siteConfig.projectsEmail)}?subject=${encodeURIComponent(subject)}`;
+}
+
+export function emailMailto(address: string, subject?: string) {
+  const base = `mailto:${encodeURIComponent(address)}`;
+  return subject ? `${base}?subject=${encodeURIComponent(subject)}` : base;
 }
