@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
-import { emailMailto, projectMailto, siteConfig } from '../config/site';
-import { EmailAddress } from './EmailAddress';
+import { projectMailto, siteConfig } from '../config/site';
+import { EmailAddress, SafeEmailLink } from './EmailAddress';
 
 type FormState = {
   name: string;
@@ -179,9 +179,9 @@ export function ContactForm() {
         <button className="ew-button ew-button--primary" type="submit" disabled={submitState.status === 'sending'}>
           {submitState.status === 'sending' ? 'Sending…' : 'Send project note'}
         </button>
-        <a className="ew-text-link" href={emailMailto(siteConfig.projectsEmail)}>
+        <SafeEmailLink className="ew-text-link" address={siteConfig.projectsEmail}>
           Or email <EmailAddress address={siteConfig.projectsEmail} />
-        </a>
+        </SafeEmailLink>
       </div>
 
       {submitState.status !== 'idle' && submitState.status !== 'sending' ? (

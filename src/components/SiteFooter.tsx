@@ -1,5 +1,5 @@
-import { emailMailto, siteConfig } from '../config/site';
-import { EmailAddress } from './EmailAddress';
+import { siteConfig } from '../config/site';
+import { EmailAddress, SafeEmailLink } from './EmailAddress';
 
 export function SiteFooter() {
   return (
@@ -20,8 +20,8 @@ export function SiteFooter() {
         </nav>
         <div>
           <strong>Start a conversation</strong>
-          <a href={emailMailto(siteConfig.projectsEmail)}><EmailAddress address={siteConfig.projectsEmail} /></a>
-          <a href={emailMailto(siteConfig.contactEmail)}><EmailAddress address={siteConfig.contactEmail} /></a>
+          <SafeEmailLink address={siteConfig.projectsEmail}><EmailAddress address={siteConfig.projectsEmail} /></SafeEmailLink>
+          <SafeEmailLink address={siteConfig.contactEmail}><EmailAddress address={siteConfig.contactEmail} /></SafeEmailLink>
           <p>Based in Central Florida · available for focused remote work.</p>
         </div>
       </div>
