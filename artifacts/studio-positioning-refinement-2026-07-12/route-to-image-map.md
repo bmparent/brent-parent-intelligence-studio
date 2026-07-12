@@ -39,3 +39,12 @@ This map records the current production image use before the positioning refinem
 ## New imagery decision
 
 No generative imagery is required. The refinement will reuse existing authentic interface assets and capture one authentic Eidos Works page/interface screenshot for Digital Experiences.
+
+## Implemented outcome
+
+- Homepage portrait removed and replaced with a studio-work composition using the production dashboard, storefront, and public-safe access-gate images.
+- Services index and all three service detail routes now use matched, authentic evidence images.
+- The Digital Experiences image is a current Eidos Works Agentic SEO page screenshot captured from production; it is not generated imagery.
+- The uncertain classroom graphic was removed from the finished storefront narrative. Concept imagery remains only in the explicitly labeled supporting archive.
+- The founder illustration remains only on About.
+- No new generative image was created.
