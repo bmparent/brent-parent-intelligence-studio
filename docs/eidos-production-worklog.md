@@ -40,7 +40,7 @@ No production release or integration activation is claimed by these initial chec
 - Starter package generation now normalizes text newlines so Windows and Linux create the same ZIP payload.
 
 
-## Deployed validation — 2026-09-05
+## Deployed validation - 2026-09-05
 
 The earlier access limitations were resolved. The user approved the marketplace/Turso terms; two free Starter databases were provisioned, with separate production and preview credentials. Both additive migrations passed. Production remote storage survived a fresh child process; three clients making 30 atomic reservations respected the cap and a failed batch rolled back.
 
@@ -61,3 +61,7 @@ A private Cloudflare email Worker is bound to Pages. A labeled inquiry reached t
 Final website verification: 17 platform tests, one analytics test, Snapshot smoke, lint, build, prerender, editorial, Insights distribution, URL checks, and Functions compilation all passed. Lab: 21 tests, lint/typecheck and build passed. A reply acknowledgement regression discovered in browser checks was fixed and covered by a focused test.
 
 Release is still pending at this checkpoint. Live Stripe restricted-key creation requires completion of its email verification; Chrome reported an extension popup blocking the Gmail tab, and the user was asked to dismiss it. Production deployment, final responsive checks and final Drive receipts will be recorded in the release handoff after completion.
+
+## Production release verified - final checkpoint
+
+The backend and website are now merged and deployed. Production AI, GA4 Realtime, inquiry delivery and hourly maintenance passed. The Contact spacing correction is live. Purchasing remains disabled pending Stripe email verification. See [the final handoff](eidos-production-handoff.md) for the exact production commits, deployment IDs, evidence and remaining action. Earlier pending statements above are historical checkpoints.

@@ -22,8 +22,36 @@
   "afterGrantScriptCount": 1,
   "afterRegrantScriptCount": 1,
   "limitations": [
-    "QA events are not production sales.",
-    "User-agent traffic classification is heuristic; registered agent API contributions emit no browser conversion events.",
-    "Production receipt remains to be checked."
-  ]
+    "All observed purchases are Stripe TEST transactions.",
+    "Production release QA may classify as human in a normal browser; use this release window and receipts to exclude it from business interpretation.",
+    "User-agent classification is heuristic; registered agent API requests emit no browser conversion events.",
+    "Custom dimension reports can take time to populate; Realtime receipt is already verified."
+  ],
+  "productionVerification": {
+    "observed_utc": "2026-09-05T23:13:31.737Z",
+    "source": "Authenticated GA4 Realtime UI",
+    "page_view": 3,
+    "assistant_open": 1,
+    "assistant_question": 1,
+    "assistant_ai_request": 1,
+    "generate_lead": 1,
+    "leadPageLocation": "https://eidos-works.com/contact/",
+    "keyEvents": [
+      "generate_lead",
+      "purchase"
+    ],
+    "leadDefaultMonetaryValue": null,
+    "leadCounting": "once per event",
+    "customDimension": {
+      "name": "Traffic type",
+      "scope": "Event",
+      "parameter": "traffic_type"
+    },
+    "productionConsent": {
+      "beforeConsentTags": 0,
+      "afterDeclineTags": 0,
+      "afterGrantTags": 1
+    },
+    "note": "Release QA on the production hostname is not organic audience, a customer inquiry, or revenue. The lead was observed before its key-event setting was added; that setting applies prospectively."
+  }
 }
