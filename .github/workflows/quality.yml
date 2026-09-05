@@ -1,0 +1,28 @@
+name: Site quality
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run test:platform
+      - run: npm run test:analytics
+      - run: npm run test:snapshot
+      - run: npm run build
+      - run: npm run verify:prerender
+      - run: npm run verify:editorial
+      - run: npm run validate:insights -- --skip-source-fetch
+      - run: npm run validate:insights:dist
+      - run: npm run verify:urls
+      - run: npm run build:functions

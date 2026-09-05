@@ -1,22 +1,28 @@
 export const siteConfig = {
   name: 'Eidos Works',
   founder: 'Brent Parent',
-  url: (import.meta.env.VITE_SITE_URL || 'https://eidos-works.com').replace(/\/+$/, ''),
+  url: (import.meta.env.VITE_SITE_URL || 'https://eidos-works.com').replace(
+    /\/+$/,
+    '',
+  ),
   description:
-    'Eidos Works builds premium websites, storefront experiences, dashboards, workflow automation, and AI-ready SEO strategy for modern businesses.',
+    'Eidos Works is an independent studio for creative web development, custom storefronts, intelligent tools, and AI-assisted experiences.',
   contactEmail: 'hello@eidos-works.com',
   projectsEmail: 'projects@eidos-works.com',
   snapshotEmail: 'snapshot@eidos-works.com',
   billingEmail: 'billing@eidos-works.com',
   operatorEmail: 'bmp@eidos-works.com',
   snapshotPrice: '$5',
-  snapshotCheckoutEnabled: import.meta.env.VITE_SNAPSHOT_CHECKOUT_ENABLED === 'true',
+  snapshotCheckoutEnabled:
+    import.meta.env.VITE_SNAPSHOT_CHECKOUT_ENABLED === 'true',
   logos: {
     icon: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939367/eidods_icon_clukns.png',
-    horizontal: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939365/eidos_horizontal_bim82e.png',
-    stacked: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939364/eidos_Stacked_vzevuu.png'
+    horizontal:
+      'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939365/eidos_horizontal_bim82e.png',
+    stacked:
+      'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939364/eidos_Stacked_vzevuu.png',
   },
-  socialImage: '/social-preview.svg'
+  socialImage: '/social-preview.svg',
 } as const;
 
 export function absoluteUrl(path = '/') {
@@ -25,5 +31,10 @@ export function absoluteUrl(path = '/') {
 }
 
 export function projectMailto(subject = 'Eidos Works Project Inquiry') {
-  return `mailto:${siteConfig.projectsEmail}?subject=${encodeURIComponent(subject)}`;
+  return `mailto:${encodeURIComponent(siteConfig.projectsEmail)}?subject=${encodeURIComponent(subject)}`;
+}
+
+export function emailMailto(address: string, subject?: string) {
+  const base = `mailto:${encodeURIComponent(address)}`;
+  return subject ? `${base}?subject=${encodeURIComponent(subject)}` : base;
 }

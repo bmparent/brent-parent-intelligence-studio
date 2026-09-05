@@ -22,17 +22,28 @@ function matches(source, expression) {
 
 for (const file of await htmlFiles(root)) {
   const html = await readFile(file, 'utf8');
-  const label = relative(root, file) || 'index.html';
+  // The runnable product preview intentionally uses the unbranded downloadable template.
+  if (relative(root, file).replaceAll('\\', '/').startsWith('kit-preview/')) {
+    if (!/<meta name="robots" content="noindex, follow"/.test(html))
+      failures.push('kit-preview: missing noindex directive');
+    continue;
+  }
+  const label = (relative(root, file) || 'index.html').replaceAll('\\', '/');
   const h1Count = matches(html, /<h1(?:\s|>)/gi).length;
-  if (h1Count !== 1) failures.push(`${label}: expected one h1, found ${h1Count}`);
+  if (h1Count !== 1)
+    failures.push(`${label}: expected one h1, found ${h1Count}`);
 
   const ids = matches(html, /\sid="([^"]+)"/gi).map((match) => match[1]);
-  const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
-  if (duplicateIds.length) failures.push(`${label}: duplicate ids: ${duplicateIds.join(', ')}`);
+  const duplicateIds = [
+    ...new Set(ids.filter((id, index) => ids.indexOf(id) !== index)),
+  ];
+  if (duplicateIds.length)
+    failures.push(`${label}: duplicate ids: ${duplicateIds.join(', ')}`);
 
   const images = matches(html, /<img\b[^>]*>/gi).map((match) => match[0]);
   for (const image of images) {
-    if (!/\salt="[^"]*"/i.test(image)) failures.push(`${label}: image without alt text`);
+    if (!/\salt="[^"]*"/i.test(image))
+      failures.push(`${label}: image without alt text`);
   }
 
   for (const required of [
@@ -41,15 +52,38 @@ for (const file of await htmlFiles(root)) {
     /<link\s+rel="canonical"\s+href="https:\/\/eidos-works\.com(?:\/[^"#?]*)?"/i,
     /<meta\s+property="og:url"\s+content="https:\/\/eidos-works\.com(?:\/[^"#?]*)?"/i,
   ]) {
-    if (!required.test(html)) failures.push(`${label}: missing or unsafe required metadata`);
+    if (!required.test(html))
+      failures.push(`${label}: missing or unsafe required metadata`);
   }
 
-  const approvedPlatformCaseStudy = label === 'work/pernr-access-gate/index.html';
-  if (/\.pages\.dev|intelligence studio/i.test(html) || (/inksoft/i.test(html) && !approvedPlatformCaseStudy)) {
-    failures.push(`${label}: contains a retired or non-canonical public reference`);
+  if (/href="mailto:[^"]*@/i.test(html)) {
+    failures.push(
+      `${label}: mailto href exposes a literal address that Cloudflare may rewrite before hydration`,
+    );
   }
 
-  const schemaBlocks = matches(html, /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi);
+  const approvedPlatformPages = new Set([
+    'work/index.html',
+    'work/nighttime-spectaculars/index.html',
+    'work/holidays-in-hollywood/index.html',
+    'work/pernr-access-gate/index.html',
+    'work/storefront-experience/index.html',
+    'services/index.html',
+    'services/storefront-access-systems/index.html',
+  ]);
+  if (
+    /\.pages\.dev|intelligence studio/i.test(html) ||
+    (/inksoft/i.test(html) && !approvedPlatformPages.has(label))
+  ) {
+    failures.push(
+      `${label}: contains a retired or non-canonical public reference`,
+    );
+  }
+
+  const schemaBlocks = matches(
+    html,
+    /<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi,
+  );
   for (const [, json] of schemaBlocks) {
     try {
       JSON.parse(json.replaceAll('&quot;', '"'));
@@ -58,11 +92,21 @@ for (const file of await htmlFiles(root)) {
     }
   }
 
-  const privatePage = label === 'snapshot/success/index.html';
-  if (privatePage && !/<meta\s+name="robots"\s+content="noindex, nofollow"/i.test(html)) {
+  const privatePage = [
+    'snapshot/success/index.html',
+    'shop/success/index.html',
+    'community/moderate/index.html',
+  ].includes(label);
+  if (
+    privatePage &&
+    !/<meta\s+name="robots"\s+content="noindex, nofollow"/i.test(html)
+  ) {
     failures.push(`${label}: private page must be noindex, nofollow`);
   }
-  if (privatePage && !/<meta\s+name="referrer"\s+content="no-referrer"/i.test(html)) {
+  if (
+    privatePage &&
+    !/<meta\s+name="referrer"\s+content="no-referrer"/i.test(html)
+  ) {
     failures.push(`${label}: private page must prevent referrer leakage`);
   }
 }
@@ -72,4 +116,6 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('Prerender verification passed: headings, metadata, private-page directives, image alternatives, IDs, and JSON-LD are valid.');
+console.log(
+  'Prerender verification passed: headings, metadata, private-page directives, image alternatives, IDs, and JSON-LD are valid.',
+);

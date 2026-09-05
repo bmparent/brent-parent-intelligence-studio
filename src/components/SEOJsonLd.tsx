@@ -48,6 +48,33 @@ export function SEOJsonLd({ path }: { path: string }) {
     });
   }
 
+  const serviceNames: Record<string, { name: string; description: string }> = {
+    '/services/digital-experiences': {
+      name: 'Digital Experiences',
+      description: 'Website, service-page, campaign-page, and accessible frontend design and development.'
+    },
+    '/services/storefront-access-systems': {
+      name: 'Storefront and Access Systems',
+      description: 'Hosted storefront UX, employee-store access gates, roster checks, product paths, and ordering guidance.'
+    },
+    '/services/dashboards-workflow-tools': {
+      name: 'Dashboards and Workflow Tools',
+      description: 'Operational reporting, workflow visibility, focused automation, and internal tools.'
+    }
+  };
+  const service = serviceNames[normalized];
+  if (service) {
+    graph.push({
+      '@type': 'Service',
+      '@id': absoluteUrl(`${normalized}#service`),
+      name: service.name,
+      serviceType: service.name,
+      provider: { '@id': absoluteUrl('/#organization') },
+      url: absoluteUrl(normalized),
+      description: service.description
+    });
+  }
+
   if (normalized === '/snapshot') {
     graph.push({
       '@type': 'Service',
@@ -110,17 +137,24 @@ export function SEOJsonLd({ path }: { path: string }) {
     });
   }
 
-  const breadcrumbName = article?.title || (
-    normalized === '/insights'
-      ? 'Insights'
-      : normalized === '/snapshot'
-        ? 'Eidos Snapshot'
-        : normalized === '/services/agentic-seo'
-          ? 'Agentic SEO'
-          : normalized === '/editorial-policy'
-            ? 'Editorial Policy'
-            : ''
-  );
+  const breadcrumbNames: Record<string, string> = {
+    '/work': 'Work',
+    '/work/pernr-access-gate': 'PERNR Access Gate',
+    '/work/production-dashboard': 'Production Dashboard',
+    '/work/storefront-experience': 'Storefront Experience',
+    '/services': 'Services',
+    '/services/digital-experiences': 'Digital Experiences',
+    '/services/storefront-access-systems': 'Storefront and Access Systems',
+    '/services/dashboards-workflow-tools': 'Dashboards and Workflow Tools',
+    '/services/agentic-seo': 'Agentic SEO',
+    '/about': 'About',
+    '/insights': 'Insights',
+    '/contact': 'Contact',
+    '/lab/eidos-brain': 'Eidos Brain Lab',
+    '/snapshot': 'Eidos Snapshot',
+    '/editorial-policy': 'Editorial Policy'
+  };
+  const breadcrumbName = article?.title || breadcrumbNames[normalized] || '';
 
   if (breadcrumbName) {
     const items: Array<Record<string, unknown>> = [
@@ -128,6 +162,12 @@ export function SEOJsonLd({ path }: { path: string }) {
     ];
     if (article) {
       items.push({ '@type': 'ListItem', position: 2, name: 'Insights', item: absoluteUrl('/insights') });
+      items.push({ '@type': 'ListItem', position: 3, name: breadcrumbName, item: absoluteUrl(normalized) });
+    } else if (normalized.startsWith('/work/')) {
+      items.push({ '@type': 'ListItem', position: 2, name: 'Work', item: absoluteUrl('/work') });
+      items.push({ '@type': 'ListItem', position: 3, name: breadcrumbName, item: absoluteUrl(normalized) });
+    } else if (normalized.startsWith('/services/')) {
+      items.push({ '@type': 'ListItem', position: 2, name: 'Services', item: absoluteUrl('/services') });
       items.push({ '@type': 'ListItem', position: 3, name: breadcrumbName, item: absoluteUrl(normalized) });
     } else {
       items.push({ '@type': 'ListItem', position: 2, name: breadcrumbName, item: absoluteUrl(normalized) });

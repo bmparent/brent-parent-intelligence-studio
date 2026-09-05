@@ -1,31 +1,24 @@
-# Local Cloudflare Pages Functions development only.
-# Copy to .dev.vars. Never commit the populated file.
-
-PUBLIC_SITE_URL="https://eidos-works.com"
-PUBLIC_CONTACT_EMAIL="hello@eidos-works.com"
-PUBLIC_PROJECTS_EMAIL="projects@eidos-works.com"
-PUBLIC_SNAPSHOT_EMAIL="snapshot@eidos-works.com"
-PUBLIC_BILLING_EMAIL="billing@eidos-works.com"
-PUBLIC_OPERATOR_EMAIL="bmp@eidos-works.com"
-VITE_SITE_URL="https://eidos-works.com"
-VITE_SNAPSHOT_CHECKOUT_ENABLED="false"
-
-# Snapshot prefers the dedicated key and falls back to the existing site key.
-OPENAI_SNAPSHOT_API_KEY=""
-OPENAI_API_KEY=""
-OPENAI_TEXT_MODEL="gpt-4.1-mini"
-OPENAI_IMAGE_MODEL="gpt-image-1"
-
-STRIPE_SECRET_KEY=""
-STRIPE_WEBHOOK_SECRET=""
-STRIPE_PRICE_ID_SNAPSHOT=""
-SNAPSHOT_PRICE_CENTS="500"
-SNAPSHOT_DEV_BYPASS_PAYMENT="false"
-SNAPSHOT_PUBLIC_ENABLED="false"
-
-# Optional project-inquiry / Command Center delivery.
-GOOGLE_APPS_SCRIPT_WEBHOOK_URL=""
-COMMAND_CENTER_SHARED_SECRET=""
-CONTACT_WEBHOOK_URL=""
-NOTIFICATION_TO_EMAIL=""
-DESTINATION_FORWARD_EMAIL=""
+# Cloudflare Pages runtime variables. Never commit a populated .dev.vars file.
+PUBLIC_SITE_URL=https://eidos-works.com
+GA_MEASUREMENT_ID=
+TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
+# Generate independent random secrets, at least 32 characters each.
+EIDOS_RATE_SECRET=
+EIDOS_ADMIN_TOKEN=
+EIDOS_MAINTENANCE_TOKEN=
+# Optional model follow-up: published-source answers need no provider key.
+EIDOS_AI_ENABLED=false
+OPENAI_API_KEY=
+EIDOS_ASSISTANT_MODEL=
+EIDOS_AI_DAILY_TOKENS=20000
+EIDOS_PROACTIVE_ENABLED=false
+# First paid product, separate from the older Snapshot experiment.
+EIDOS_SHOP_ENABLED=false
+STRIPE_SECRET_KEY=
+EIDOS_KIT_WEBHOOK_SECRET=
+# Local Wrangler only. NEVER set true in a hosted environment.
+EIDOS_LOCAL_TEST=false
+# New platform backend runs on Sentinel Lab. Configure these two values in Pages.
+EIDOS_PLATFORM_URL=https://eidos-sentinel-lab.vercel.app
+EIDOS_PLATFORM_TOKEN=

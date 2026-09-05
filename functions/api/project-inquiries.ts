@@ -1,6 +1,7 @@
 import { isRecord, readJsonBody, RequestBodyError } from '../_shared/snapshot/http';
 
 interface Env {
+  EIDOS_INQUIRY_MAILER?: { fetch: typeof fetch };
   CONTACT_WEBHOOK_URL?: string;
   GOOGLE_APPS_SCRIPT_WEBHOOK_URL?: string;
   COMMAND_CENTER_SHARED_SECRET?: string;
@@ -114,6 +115,10 @@ export const onRequestOptions = () =>
   });
 
 export const onRequestPost = async ({ request, env }: PagesContext) => {
+  const origin = request.headers.get('origin');
+  if (!origin || origin !== new URL(request.url).origin) {
+    return json({ state: 'validation_error', submitted: false, message: 'Submit this form from Eidos Works.' }, { status: 403 });
+  }
   let payload: InquiryPayload;
   try {
     const body = await readJsonBody(request, MAX_REQUEST_BYTES);
@@ -145,6 +150,24 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
       { state: 'validation_error', submitted: false, message: 'Please complete the required fields.', errors, brief, mailto: fallbackMailto },
       { status: 400 }
     );
+  }
+
+  if (env.EIDOS_INQUIRY_MAILER) {
+    try {
+      const response = await env.EIDOS_INQUIRY_MAILER.fetch('https://inquiry.internal/inquiry', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', 'x-eidos-inquiry-client': request.headers.get('cf-connecting-ip') || 'unknown' },
+        body: JSON.stringify({ brief, email: clean(payload.email, 260) }),
+        signal: AbortSignal.timeout(8_000),
+      });
+      const result = await response.json().catch(() => null) as { ok?: boolean; receipt?: string } | null;
+      if (response.ok && result?.ok === true && typeof result.receipt === 'string') {
+        return json({ state: 'sent', submitted: true, message: 'Your project note reached Eidos Works.', receipt: result.receipt, brief, mailto: fallbackMailto });
+      }
+      return json({ state: 'provider_error', submitted: false, message: 'Delivery was unavailable. Email the prepared note directly.', brief, mailto: fallbackMailto }, { status: response.status === 429 ? 429 : 502 });
+    } catch {
+      return json({ state: 'provider_error', submitted: false, message: 'Delivery was unavailable. Email the prepared note directly.', brief, mailto: fallbackMailto }, { status: 502 });
+    }
   }
 
   const webhookUrl = clean(env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL, 1_000) || clean(env.CONTACT_WEBHOOK_URL, 1_000);

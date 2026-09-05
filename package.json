@@ -16,14 +16,21 @@
     "validate:insights:dist": "node scripts/validate-insights.mjs --check-dist --skip-source-fetch",
     "publish:insight-run": "node scripts/publish-insight-run.mjs",
     "verify:production-insight": "node scripts/verify-production-insight.mjs",
-    "build": "node scripts/clean-build-output.mjs && npm run content:generate && npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs",
+    "build": "node scripts/clean-build-output.mjs && npm run kit:build && npm run content:generate && npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs",
     "lint": "eslint .",
     "test:snapshot": "node --import tsx scripts/smoke-snapshot.ts",
     "preview": "vite preview --host 0.0.0.0",
     "verify:prerender": "node scripts/verify-prerender.mjs",
+    "verify:editorial": "node scripts/verify-editorial.mjs",
     "verify:urls": "node scripts/verify-urls.mjs",
     "publish:check": "npm run publish:insight-run -- --slot=manual",
-    "preview:cf": "npm run build && npx wrangler pages dev dist"
+    "preview:cf": "npm run build && npx wrangler pages dev dist",
+    "kit:build": "node scripts/build-kit.mjs",
+    "platform:dev": "wrangler pages dev dist --ip 127.0.0.1 --port 8788",
+    "platform:migrate:local": "wrangler d1 migrations apply eidos-platform-local --local",
+    "test:platform": "node --import tsx --test scripts/test-platform.ts scripts/test-relay.ts scripts/test-relay-runtime.mjs scripts/test-inquiries.ts scripts/test-thread-form.mjs",
+    "test:analytics": "node --import tsx --test scripts/test-analytics.ts",
+    "build:functions": "wrangler pages functions build functions --outfile .wrangler/eidos-functions.js"
   },
   "dependencies": {
     "@babylonjs/core": "^9.10.1",

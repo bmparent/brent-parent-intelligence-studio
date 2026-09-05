@@ -89,7 +89,7 @@ function buildBrief(form: IntakeState) {
 }
 
 function buildMailto(brief: string) {
-  return `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent('Eidos Works project inquiry')}&body=${encodeURIComponent(brief)}`;
+  return `mailto:${encodeURIComponent(siteConfig.contactEmail)}?subject=${encodeURIComponent('Eidos Works project inquiry')}&body=${encodeURIComponent(brief)}`;
 }
 
 export function ProjectIntakeWizard() {

@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { projectMailto, siteConfig } from '../config/site';
+import { siteConfig } from '../config/site';
+import { SafeEmailLink } from './EmailAddress';
 
 const deliverables = [
   'A homepage redesign concept image',
@@ -72,10 +73,6 @@ function statusName(status: SnapshotStatus) {
 }
 
 export function SnapshotLandingPage() {
-  const startHref = siteConfig.snapshotCheckoutEnabled
-    ? '/snapshot/start'
-    : `mailto:${siteConfig.snapshotEmail}?subject=${encodeURIComponent('Eidos Snapshot launch notice')}`;
-
   return (
     <>
       <section className="ew-page-hero ew-page-hero--snapshot">
@@ -87,12 +84,14 @@ export function SnapshotLandingPage() {
               Paste your current website and get a visual redesign concept plus practical SEO and UX recommendations. Built for business owners who want a clearer direction before committing to a full redesign.
             </p>
             <div className="ew-actions">
-              <a className="ew-button ew-button--primary" href={startHref}>
-                {siteConfig.snapshotCheckoutEnabled ? 'Generate my Snapshot — $5' : 'Get a launch notice'}
-              </a>
-              <a className="ew-button ew-button--secondary" href={projectMailto('Eidos Works Full Website Build')}>
+              {siteConfig.snapshotCheckoutEnabled ? (
+                <a className="ew-button ew-button--primary" href="/snapshot/start">Generate my Snapshot — $5</a>
+              ) : (
+                <SafeEmailLink className="ew-button ew-button--primary" address={siteConfig.snapshotEmail} subject="Eidos Snapshot launch notice">Get a launch notice</SafeEmailLink>
+              )}
+              <SafeEmailLink className="ew-button ew-button--secondary" address={siteConfig.projectsEmail} subject="Eidos Works Full Website Build">
                 Ask about a full build
-              </a>
+              </SafeEmailLink>
             </div>
             {!siteConfig.snapshotCheckoutEnabled ? (
               <p className="ew-availability-note">Secure checkout stays hidden until Stripe and durable report storage are enabled in production.</p>
@@ -248,9 +247,9 @@ export function SnapshotStartPage() {
           The intake and generation system is ready for configuration, but Eidos Works will not display a payment button until Stripe, webhook verification, and durable report storage are all enabled.
         </p>
         <div className="ew-actions">
-          <a className="ew-button ew-button--primary" href={`mailto:${siteConfig.snapshotEmail}?subject=${encodeURIComponent('Notify me when Eidos Snapshot opens')}`}>
+          <SafeEmailLink className="ew-button ew-button--primary" address={siteConfig.snapshotEmail} subject="Notify me when Eidos Snapshot opens">
             Notify me when it opens
-          </a>
+          </SafeEmailLink>
           <a className="ew-button ew-button--secondary" href="/snapshot">
             Back to Snapshot
           </a>
@@ -421,8 +420,8 @@ export function SnapshotSuccessPage() {
           View my Snapshot
         </a>
       ) : null}
-      {!token ? <p className="ew-form-result ew-form-result--error">The private result token is missing. Contact {siteConfig.snapshotEmail} with your checkout email.</p> : null}
-      {failed ? <p className="ew-form-result ew-form-result--error">No private provider details are shown here; contact {siteConfig.snapshotEmail} for help.</p> : null}
+      {!token ? <p className="ew-form-result ew-form-result--error">The private result token is missing. Use the Contact page and include your checkout email.</p> : null}
+      {failed ? <p className="ew-form-result ew-form-result--error">No private provider details are shown here; use the Contact page for help.</p> : null}
     </section>
   );
 }
@@ -464,9 +463,9 @@ export function SnapshotResultPage({ token }: { token: string }) {
         <p className="ew-eyebrow">Eidos Snapshot</p>
         <h1 id="result-loading-title">{statusName(status) === 'failed' ? 'This Snapshot could not be opened.' : 'Your Snapshot is still being prepared.'}</h1>
         <p>{status.message || 'Return to the processing page in a few minutes, or contact Eidos Works if this link continues to wait.'}</p>
-        <a className="ew-button ew-button--secondary" href={`mailto:${siteConfig.snapshotEmail}`}>
+        <SafeEmailLink className="ew-button ew-button--secondary" address={siteConfig.snapshotEmail}>
           Contact Snapshot support
-        </a>
+        </SafeEmailLink>
       </section>
     );
   }
@@ -569,9 +568,9 @@ export function SnapshotResultPage({ token }: { token: string }) {
         <p className="ew-eyebrow">Recommended next step</p>
         <h2 id="next-step-title">{report.nextStepRecommendation.label}</h2>
         <p>{report.nextStepRecommendation.reason}</p>
-        <a className="ew-button ew-button--light" href={projectMailto(`Snapshot follow-up: ${status.businessName || 'website project'}`)}>
+        <SafeEmailLink className="ew-button ew-button--light" address={siteConfig.projectsEmail} subject={`Snapshot follow-up: ${status.businessName || 'website project'}`}>
           {report.nextStepRecommendation.cta || 'Ask Eidos Works about the build'}
-        </a>
+        </SafeEmailLink>
       </section>
     </article>
   );

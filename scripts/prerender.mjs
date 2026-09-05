@@ -55,7 +55,11 @@ function outputPathFor(pathname) {
 
 for (const page of pages) {
   const appHtml = render(page.path);
-  const html = withHeadMetadata(template.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`), page);
+  const rootedTemplate = template.replace(
+    /<div id="root">[\s\S]*<\/div>\s*<\/body>/,
+    `<div id="root">${appHtml}</div>\n  </body>`
+  );
+  const html = withHeadMetadata(rootedTemplate, page);
   const outputPath = outputPathFor(page.path);
   await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(outputPath, html);

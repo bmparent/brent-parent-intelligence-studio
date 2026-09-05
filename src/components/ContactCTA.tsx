@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { contactMailto, projectBriefText } from '../utils';
+import { projectBriefText } from '../utils';
+import { siteConfig } from '../config/site';
+import { SafeEmailLink } from './EmailAddress';
 
 export function ContactCTA() {
   const [copied, setCopied] = useState(false);
@@ -23,9 +25,9 @@ export function ContactCTA() {
           Bring the business problem, the platform constraints, and the outcome you want. I'll help turn it into a clear interface, workflow, or working system that looks premium and functions in the real world.
         </p>
         <div className="final-cta__actions">
-          <a className="btn btn--primary" href={contactMailto}>
+          <SafeEmailLink className="btn btn--primary" address={siteConfig.contactEmail} subject="Eidos Works project inquiry">
             Contact Brent
-          </a>
+          </SafeEmailLink>
           <a className="btn btn--secondary" href="#work">
             View case studies
           </a>

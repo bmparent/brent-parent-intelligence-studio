@@ -46,20 +46,18 @@ export function PernrGateCaseStudy() {
           <p className="ew-eyebrow">Storefront access system · case study</p>
           <h1 id="pernr-title">A private-store gate that checks eligibility without making shopping feel difficult.</h1>
           <p>
-            Built for a Disney employee merchandise experience on InkSoft, the PERNR gate verifies an employee identifier or approved name against a controlled roster before allowing the visitor into the store.
+            A private employee storefront needed an easier way to confirm eligibility without requiring another account. The project connected an InkSoft access gate to a controlled Google Sheet through Apps Script, supporting case-insensitive PERNR and name matching while keeping the roster out of the public storefront.
           </p>
+          <p className="ew-role-disclosure"><strong>Role disclosure</strong> Completed within Data Graphics' client-services workflow. Brent contributed storefront strategy, interface development, operational context, and implementation. This was not a direct Disney engagement with Eidos Works.</p>
           <div className="ew-actions">
             <a className="ew-button ew-button--primary" href="#gate-demo">Try the safe demo</a>
             <a className="ew-button ew-button--secondary" href="#applications">See other applications</a>
           </div>
         </div>
-        <div className="ew-gate-map" aria-label="Access gate flow">
-          <div><span>01</span><strong>Enter credential</strong><small>PERNR or approved name</small></div>
-          <i aria-hidden="true">→</i>
-          <div><span>02</span><strong>Check roster</strong><small>Server-side lookup</small></div>
-          <i aria-hidden="true">→</i>
-          <div><span>03</span><strong>Route visitor</strong><small>Allow or retry</small></div>
-        </div>
+        <figure className="ew-case-hero__evidence">
+          <img src="/images/case-studies/pernr-access-gate.png" width="1200" height="800" alt="Safe public view of the Eidos Works PERNR access-gate case study." />
+          <figcaption>Public-safe recreation. No employee roster, private endpoint, or real credential is present.</figcaption>
+        </figure>
       </section>
 
       <section id="gate-demo" className="ew-section ew-gate-demo" aria-labelledby="demo-title">
@@ -100,7 +98,7 @@ export function PernrGateCaseStudy() {
       <section className="ew-section ew-shell" aria-labelledby="how-title">
         <header className="ew-section-heading">
           <div><p className="ew-eyebrow">How it works</p><h2 id="how-title">A small interface connected to a controlled source of truth.</h2></div>
-          <p>The visitor sees a simple prompt. The operational logic stays outside the storefront presentation layer.</p>
+          <p>The visitor sees a simple prompt. The roster and decision logic stay outside the public storefront page.</p>
         </header>
         <ol className="ew-gate-steps">
           <li><span>01</span><h3>Collect</h3><p>The gate accepts a PERNR or approved name and normalizes spacing and capitalization to reduce avoidable entry errors.</p></li>
@@ -110,9 +108,21 @@ export function PernrGateCaseStudy() {
         </ol>
       </section>
 
+      <section className="ew-section ew-shell ew-pernr-evidence" aria-labelledby="pernr-evidence-title">
+        <div><p className="ew-eyebrow">Architecture and evidence</p><h2 id="pernr-evidence-title">The browser receives a decision—not the employee list.</h2></div>
+        <dl>
+          <div><dt>Input</dt><dd>An employee enters a PERNR or approved name. Whitespace and case are normalized before the check.</dd></div>
+          <div><dt>Controlled source</dt><dd>Google Apps Script checks a restricted Google Sheet roster outside the storefront page.</dd></div>
+          <div><dt>Response</dt><dd>The interface receives only an allow or deny result needed to choose the next screen.</dd></div>
+          <div><dt>Privacy boundary</dt><dd>The full roster, Sheet identifier, deployment URL, tokens, private endpoints, and bypass logic are not shipped publicly.</dd></div>
+          <div><dt>Observed change</dt><dd>Approved employees can enter through a credential they already know; unmatched visitors get a retry and support path.</dd></div>
+          <div><dt>Unproven</dt><dd>No conversion, time-saved, employee-count, or security-certification claim is made.</dd></div>
+        </dl>
+      </section>
+
       <section className="ew-section ew-gate-reason" aria-labelledby="why-title">
         <div className="ew-shell ew-gate-reason__grid">
-          <div><p className="ew-eyebrow">Why it works</p><h2 id="why-title">The control matches the actual risk and the shopper’s context.</h2></div>
+          <div><p className="ew-eyebrow">Why it works</p><h2 id="why-title">Private-store access stays simple without exposing the roster.</h2></div>
           <div className="ew-gate-reason__cards">
             <article><h3>Low friction</h3><p>Employees can use a credential they already know instead of creating and remembering another storefront account.</p></article>
             <article><h3>Maintainable roster</h3><p>Authorized staff can update one Sheet without rebuilding the store or editing the embed whenever eligibility changes.</p></article>
@@ -129,7 +139,7 @@ export function PernrGateCaseStudy() {
       <section id="applications" className="ew-section ew-shell" aria-labelledby="applications-title">
         <header className="ew-section-heading">
           <div><p className="ew-eyebrow">Reusable pattern</p><h2 id="applications-title">The same logic can open the right experience for many kinds of groups.</h2></div>
-          <p>The interface, source roster, decision rules, and destination can all be adapted to the organization.</p>
+          <p>The same access model can protect employee stores, school programs, event merchandise, partner portals, and other private resources.</p>
         </header>
         <div className="ew-application-grid">
           {applications.map((application) => <article key={application.title}><h3>{application.title}</h3><p>{application.text}</p></article>)}
@@ -139,7 +149,7 @@ export function PernrGateCaseStudy() {
       <section className="ew-section ew-case-cta">
         <div className="ew-shell">
           <p className="ew-eyebrow">Have a restricted storefront or portal?</p>
-          <h2>Build the smallest access system that responsibly fits the job.</h2>
+          <h2>Use the right level of access for the people, platform, and risk involved.</h2>
           <p>Eidos Works can map the roster, access rules, platform constraints, exception path, and customer experience before choosing the technology.</p>
           <a className="ew-button ew-button--light" href="/#contact">Discuss an access workflow</a>
         </div>

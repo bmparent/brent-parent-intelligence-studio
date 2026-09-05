@@ -59,10 +59,12 @@ export function InsightsHub({
             <span>{featuredArticle.category}</span>
           </div>
           <div>
-            <h3 id={`featured-${featuredArticle.slug}`}>{featuredArticle.title}</h3>
+            <h2 id={`featured-${featuredArticle.slug}`}>{featuredArticle.title}</h2>
             <p>{featuredArticle.description}</p>
             <div className="insights-hub__meta">
-              <time dateTime={featuredArticle.updated}>{formatArticleDate(featuredArticle.updated)}</time>
+              <span>{featuredArticle.byline}</span>
+              <time dateTime={featuredArticle.date}>Published {formatArticleDate(featuredArticle.date)}</time>
+              <time dateTime={featuredArticle.updated}>Updated {formatArticleDate(featuredArticle.updated)}</time>
               <span>{featuredArticle.readingTime}</span>
             </div>
           </div>
@@ -80,7 +82,7 @@ export function InsightsHub({
       <div className="insights-hub__browse" data-reveal>
         <div>
           <p className="eyebrow">Browse the library</p>
-          <h3>Choose a topic or start with the latest practical guide.</h3>
+          <h2>Choose a topic or start with the latest practical guide.</h2>
         </div>
         <div className="insights-hub__filters" role="group" aria-label="Filter insights by category">
           {(['All', ...insightCategories] as const).map((option) => (
@@ -108,7 +110,11 @@ export function InsightsHub({
                 </div>
                 <h3 id={`card-${article.slug}`}>{article.title}</h3>
                 <p>{article.description}</p>
-                <time dateTime={article.updated}>Updated {formatArticleDate(article.updated)}</time>
+                <p className="insights-hub__byline">By {article.byline}</p>
+                <div className="insights-hub__dates">
+                  <time dateTime={article.date}>Published {formatArticleDate(article.date)}</time>
+                  <time dateTime={article.updated}>Updated {formatArticleDate(article.updated)}</time>
+                </div>
                 <a
                   className="insights-hub__link"
                   href={article.canonicalPath}

@@ -1,5 +1,3 @@
-import { siteConfig } from '../config/site';
-
 const policies = [
   {
     title: 'Topic selection',
@@ -26,7 +24,7 @@ const policies = [
     title: 'Corrections and updates',
     paragraphs: [
       'Material revisions receive an updated date and, when useful, a visible update note. If a source changes or no longer supports the article, the article should be revised or unpublished.',
-      `Correction requests can be sent to ${siteConfig.contactEmail} with the article URL, the issue, and the evidence that supports the correction.`
+      'Correction requests can be sent through the Contact page with the article URL, the issue, and the evidence that supports the correction.'
     ]
   }
 ];

@@ -1,6 +1,8 @@
 # Eidos Works
 
-The production website for **Eidos Works**, Brent Parent's customer-facing web and systems studio. The site presents website and UX redesign, storefront platform experiences, dashboards and automation, agentic SEO, organized Insights, and the $5 Eidos Snapshot product.
+See [redesign release and operations](docs/eidos-platform-release.md) for the new platform, account setup, token budgets, payment fulfillment, and deployment gates.
+
+The production website for **Eidos Works**, Brent Parent's studio for digital experiences and operational tools. The public site combines cinematic project showcases, studio services, an edited Insights publication, a separately hosted Sentinel Lab, moderated community questions, a token-conscious Eidos assistant, and a first paid starter package.
 
 Production domain: `https://eidos-works.com`
 
@@ -9,9 +11,11 @@ Production domain: `https://eidos-works.com`
 - Vite 8, React 19, and TypeScript
 - Static SSR/prerendering for public discovery pages
 - Cloudflare Pages with Pages Functions
-- Cloudflare KV for durable Snapshot request/report storage
-- Stripe Checkout for the one-time $5 Snapshot payment
-- OpenAI Responses API and Image API for paid Snapshot generation
+- One D1 database for community records, assistant quotas, and purchase entitlements
+- Cloudflare KV for the separately gated legacy Snapshot request/report storage
+- Stripe Checkout for the $29 Cinematic Starter download (legacy Snapshot remains independently gated)
+- Published-source Eidos answers by default, with an optional capped OpenAI follow-up
+- Existing OpenAI Responses/Image API integration for the independently gated Snapshot experiment
 - Optional Google Apps Script integration for the private Eidos Works Command Center
 - Existing Cloudinary assets for Eidos Works branding and selected work
 
@@ -40,6 +44,7 @@ npm run typecheck
 npm run lint
 npm run build
 npm run verify:prerender
+npm run verify:editorial
 npm run verify:urls
 npm run test:snapshot
 npm run validate:insights -- --skip-source-fetch
@@ -51,14 +56,25 @@ The build creates `dist`, generates article social images, refreshes `sitemap.xm
 
 ## Public routes
 
-- `/` — customer-facing studio homepage
+- `/` — concise editorial studio homepage
+- `/work` — selected case-study index
+- `/work/pernr-access-gate` — private storefront roster-gate case study and safe demo
+- `/work/production-dashboard` — production reporting case study
+- `/work/storefront-experience` — hosted storefront transformation case study
+- `/services` — three service families
+- `/services/digital-experiences` — websites and customer-facing UX
+- `/services/storefront-access-systems` — storefront and roster-access work
+- `/services/dashboards-workflow-tools` — reporting, automation, and internal tools
+- `/services/agentic-seo` — dedicated Agentic SEO service page
+- `/about` — Brent Parent and the design/operations background behind Eidos Works
+- `/insights` — edited, source-linked publication
+- `/insights/:slug` — prerendered articles
+- `/contact` — low-friction project inquiry and direct email fallback
+- `/lab/eidos-brain` — proof-stage Eidos Brain research, limits, and maturity
 - `/snapshot` — Eidos Snapshot offer
 - `/snapshot/start` — private intake and checkout start
 - `/snapshot/success` — processing state
 - `/snapshot/result/:resultToken` — private, unguessable report route
-- `/services/agentic-seo` — dedicated Agentic SEO service page
-- `/insights` — centralized knowledge hub
-- `/insights/:slug` — prerendered articles
 - `/editorial-policy` — sourcing, assisted-editing, and correction policy
 
 ## Insights publishing

@@ -1,0 +1,326 @@
+/* Change these five variables to make the starter yours. */
+:root {
+  --night: #071d29;
+  --ink: #112b32;
+  --paper: #f3f4ee;
+  --accent: #a5e4d6;
+  --glass: rgba(27, 56, 68, 0.65);
+  font-family: Inter, 'Segoe UI', Arial, sans-serif;
+  color: var(--paper);
+  background: var(--night);
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 30px;
+}
+body {
+  margin: 0;
+  min-width: 280px;
+}
+a {
+  color: inherit;
+}
+button {
+  font: inherit;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+}
+.skip {
+  position: absolute;
+  top: -90px;
+  left: 20px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 12px;
+  z-index: 20;
+}
+.skip:focus {
+  top: 10px;
+}
+header {
+  position: absolute;
+  top: 24px;
+  left: 5%;
+  width: 90%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 26px;
+  border-radius: 20px;
+  border: 1px solid #b2d3d642;
+  background: var(--glass);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow:
+    inset 0 1px 0 #ffffff1a,
+    0 12px 40px #00111c33;
+}
+.wordmark {
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  line-height: 1;
+}
+.wordmark span {
+  font-size: 8px;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 8px;
+  font-weight: 400;
+}
+nav {
+  display: flex;
+  gap: 35px;
+}
+nav a {
+  text-decoration: none;
+  font-size: 12px;
+  padding: 8px 0;
+}
+nav a:last-child {
+  color: var(--accent);
+}
+.menu {
+  display: none;
+}
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  min-height: 800px;
+  min-height: max(730px, 100svh);
+  padding: 190px 7% 0;
+  overflow: hidden;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent);
+  margin: 0 0 30px;
+}
+h1 {
+  font-weight: 400;
+  font-size: clamp(3.5rem, 7.8vw, 8rem);
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+  margin: 0 0 30px;
+}
+em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: var(--accent);
+}
+.intro {
+  max-width: 45ch;
+  color: #bfd5da;
+  font-size: 15px;
+  line-height: 1.85;
+  margin: 0 0 30px;
+}
+.button {
+  border: 1px solid #f3fffa66;
+  background: var(--paper);
+  color: var(--ink);
+  display: inline-flex;
+  gap: 45px;
+  align-items: center;
+  padding: 16px 24px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.hero-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #bbd7e133;
+  width: 100%;
+  padding: 25px 0;
+  margin-top: auto;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: #b5cdd5;
+}
+.hero-foot a {
+  text-decoration: none;
+}
+.ambient {
+  position: absolute;
+  inset: 0;
+  min-height: max(730px, 100svh);
+  height: 800px;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 80% 75%, #25637366, transparent 55%),
+    linear-gradient(120deg, #051522, var(--night));
+}
+.orbit {
+  position: absolute;
+  width: 40vw;
+  height: 58vw;
+  max-height: 800px;
+  right: 1%;
+  top: 9%;
+  border: 2px solid #a9e1e45c;
+  border-radius: 50%;
+  transform: rotate(25deg);
+  box-shadow:
+    inset 12px 0 45px #bef5ec19,
+    inset -6px 0 15px #cbf7f43b,
+    4px 0 4px #d3eaff40,
+    14px 0 50px #62b6c93b;
+  background: linear-gradient(100deg, transparent 60%, #b5f2df09);
+}
+.orbit.second {
+  transform: rotate(-28deg);
+  right: -10%;
+  top: 12%;
+  opacity: 0.45;
+}
+.content {
+  position: relative;
+  padding: 95px 7%;
+  background: var(--paper);
+  color: var(--ink);
+  border-bottom: 1px solid #b7c6bf;
+}
+.content .eyebrow {
+  color: #37726c;
+}
+.content h2 {
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+  margin: 0 0 30px;
+}
+.content em {
+  color: #37726c;
+}
+.content p:last-child {
+  max-width: 55ch;
+  line-height: 1.8;
+  color: #51636a;
+}
+footer {
+  padding: 35px 7%;
+  font-size: 11px;
+  color: #a9c6c9;
+}
+@media (max-width: 700px) {
+  header {
+    top: 16px;
+    left: 4%;
+    width: 92%;
+    padding: 16px 20px;
+    border-radius: 16px;
+  }
+  .menu {
+    display: block;
+    min-height: 40px;
+    padding: 8px 15px;
+    border-radius: 99px;
+    border: 1px solid #bddbd566;
+    background: transparent;
+    color: var(--paper);
+    font-size: 11px;
+  }
+  nav {
+    display: none;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    width: 100%;
+    background: #142f3bf5;
+    border: 1px solid #c0e0d43b;
+    border-radius: 16px;
+    padding: 15px 22px;
+    max-height: calc(100dvh - 125px);
+    overflow: auto;
+  }
+  nav.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  nav a {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+  .hero {
+    padding: 160px 7% 0;
+    min-height: 780px;
+  }
+  h1 {
+    font-size: clamp(3.3rem, 10vw, 5.8rem);
+  }
+  .eyebrow {
+    font-size: 9px;
+  }
+  .intro {
+    font-size: 13px;
+  }
+  .orbit {
+    width: 75vw;
+    height: 115vw;
+    right: -30%;
+    top: 28%;
+    opacity: 0.65;
+  }
+  .orbit.second {
+    right: -44%;
+    top: 32%;
+  }
+  .hero-foot {
+    font-size: 9px;
+    gap: 10px;
+  }
+  .hero-foot span:last-child {
+    display: none;
+  }
+  .content {
+    padding-block: 65px;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: 700px;
+  }
+  nav.is-open {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+@media (forced-colors: active) {
+  .ambient {
+    display: none;
+  }
+  header,
+  .button {
+    border: 1px solid CanvasText;
+  }
+}

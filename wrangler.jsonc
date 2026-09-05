@@ -1,0 +1,14 @@
+{
+  // Local development only. Intentionally omit pages_build_output_dir so this
+  // fixture never replaces the existing Pages dashboard's production bindings.
+  "name": "eidosworks",
+  "compatibility_date": "2026-09-01",
+  "d1_databases": [
+    {
+      "binding": "EIDOS_DB",
+      "database_name": "eidos-platform-local",
+      "database_id": "00000000-0000-0000-0000-000000000001",
+      "migrations_dir": "migrations",
+    },
+  ],
+}
