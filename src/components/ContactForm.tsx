@@ -1,3 +1,4 @@
+import { track } from '../lib/analytics';
 import { FormEvent, useState } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
 import { EmailAddress, SafeEmailLink } from './EmailAddress';
@@ -19,17 +20,24 @@ const initialForm: FormState = {
   service: 'Website & UX Redesign',
   currentUrl: '',
   problem: '',
-  website: ''
+  website: '',
 };
 
 type SubmitState =
   | { status: 'idle'; message: '' }
   | { status: 'sending'; message: string }
-  | { status: 'success' | 'fallback' | 'error'; message: string; mailto?: string };
+  | {
+      status: 'success' | 'fallback' | 'error';
+      message: string;
+      mailto?: string;
+    };
 
 export function ContactForm() {
   const [form, setForm] = useState(initialForm);
-  const [submitState, setSubmitState] = useState<SubmitState>({ status: 'idle', message: '' });
+  const [submitState, setSubmitState] = useState<SubmitState>({
+    status: 'idle',
+    message: '',
+  });
 
   const brief = [
     'Eidos Works project inquiry',
@@ -40,7 +48,7 @@ export function ContactForm() {
     `Company: ${form.company || 'Not provided'}`,
     `Current website: ${form.currentUrl || 'Not provided'}`,
     '',
-    form.problem
+    form.problem,
   ].join('\n');
 
   const fallbackMailto = `${projectMailto()}&body=${encodeURIComponent(brief)}`;
@@ -51,7 +59,10 @@ export function ContactForm() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitState({ status: 'sending', message: 'Sending your project note…' });
+    setSubmitState({
+      status: 'sending',
+      message: 'Sending your project note…',
+    });
 
     try {
       const response = await fetch('/api/project-inquiries', {
@@ -65,8 +76,8 @@ export function ContactForm() {
           email: form.email,
           company: form.company,
           website: form.website,
-          brief
-        })
+          brief,
+        }),
       });
       const data = (await response.json()) as {
         state?: string;
@@ -78,31 +89,42 @@ export function ContactForm() {
       if (response.ok && (data.submitted || data.state === 'sent')) {
         setSubmitState({
           status: 'success',
-          message: data.message || 'Your project note reached Eidos Works. Expect a personal reply.'
+          message:
+            data.message ||
+            'Your project note reached Eidos Works. Expect a personal reply.',
         });
+        track('generate_lead');
         setForm(initialForm);
         return;
       }
 
-      if (data.mailto || data.state === 'fallback' || data.state === 'provider_error') {
+      if (
+        data.mailto ||
+        data.state === 'fallback' ||
+        data.state === 'provider_error'
+      ) {
         setSubmitState({
           status: 'fallback',
-          message: data.message || 'Your note is ready. Use the email button to send it directly.',
-          mailto: data.mailto || fallbackMailto
+          message:
+            data.message ||
+            'Your note is ready. Use the email button to send it directly.',
+          mailto: data.mailto || fallbackMailto,
         });
         return;
       }
 
       setSubmitState({
         status: 'error',
-        message: data.message || 'Please check the required fields and try again.',
-        mailto: fallbackMailto
+        message:
+          data.message || 'Please check the required fields and try again.',
+        mailto: fallbackMailto,
       });
     } catch {
       setSubmitState({
         status: 'fallback',
-        message: 'The form could not connect, but your project note is ready to email.',
-        mailto: fallbackMailto
+        message:
+          'The form could not connect, but your project note is ready to email.',
+        mailto: fallbackMailto,
       });
     }
   }
@@ -134,11 +156,20 @@ export function ContactForm() {
         </label>
         <label>
           <span>Company or organization</span>
-          <input type="text" maxLength={180} autoComplete="organization" value={form.company} onChange={(event) => update('company', event.target.value)} />
+          <input
+            type="text"
+            maxLength={180}
+            autoComplete="organization"
+            value={form.company}
+            onChange={(event) => update('company', event.target.value)}
+          />
         </label>
         <label>
           <span>What can we help with?</span>
-          <select value={form.service} onChange={(event) => update('service', event.target.value)}>
+          <select
+            value={form.service}
+            onChange={(event) => update('service', event.target.value)}
+          >
             <option>Website &amp; UX Redesign</option>
             <option>Storefront Platform Experiences</option>
             <option>Dashboards &amp; Automation</option>
@@ -171,30 +202,53 @@ export function ContactForm() {
         </label>
         <label className="ew-honeypot" aria-hidden="true">
           <span>Website</span>
-          <input type="text" maxLength={120} tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => update('website', event.target.value)} />
+          <input
+            type="text"
+            maxLength={120}
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.website}
+            onChange={(event) => update('website', event.target.value)}
+          />
         </label>
       </div>
 
       <div className="ew-form-actions">
-        <button className="ew-button ew-button--primary" type="submit" disabled={submitState.status === 'sending'}>
+        <button
+          className="ew-button ew-button--primary"
+          type="submit"
+          disabled={submitState.status === 'sending'}
+        >
           {submitState.status === 'sending' ? 'Sending…' : 'Send project note'}
         </button>
-        <SafeEmailLink className="ew-text-link" address={siteConfig.projectsEmail}>
+        <SafeEmailLink
+          className="ew-text-link"
+          address={siteConfig.projectsEmail}
+        >
           Or email <EmailAddress address={siteConfig.projectsEmail} />
         </SafeEmailLink>
       </div>
 
       {submitState.status !== 'idle' && submitState.status !== 'sending' ? (
-        <div className={`ew-form-result ew-form-result--${submitState.status}`} role="status">
+        <div
+          className={`ew-form-result ew-form-result--${submitState.status}`}
+          role="status"
+        >
           <p>{submitState.message}</p>
           {submitState.mailto ? (
-            <a className="ew-button ew-button--secondary" href={submitState.mailto}>
+            <a
+              className="ew-button ew-button--secondary"
+              href={submitState.mailto}
+            >
               Email this note
             </a>
           ) : null}
         </div>
       ) : (
-        <p className="ew-form-note">Your note is used only to respond to this inquiry. If delivery is unavailable, we give you a direct email fallback.</p>
+        <p className="ew-form-note">
+          Your note is used only to respond to this inquiry. If delivery is
+          unavailable, we give you a direct email fallback.
+        </p>
       )}
     </form>
   );

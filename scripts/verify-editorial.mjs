@@ -18,11 +18,23 @@ const requiredRoutes = [
   '/insights',
   '/contact',
   '/lab/eidos-brain',
-  '/snapshot'
+  '/snapshot',
+  '/lab',
+  '/community',
+  '/community/agents',
+  '/community/agent-guide',
+  '/community/guidelines',
+  '/privacy',
+  '/terms',
+  '/shop/cinematic-starter',
+  '/work/nighttime-spectaculars',
+  '/work/holidays-in-hollywood',
 ];
 
 function routeFile(route) {
-  return route === '/' ? resolve(root, 'dist/index.html') : resolve(root, `dist/${route.slice(1)}/index.html`);
+  return route === '/'
+    ? resolve(root, 'dist/index.html')
+    : resolve(root, `dist/${route.slice(1)}/index.html`);
 }
 
 function count(source, expression) {
@@ -39,9 +51,14 @@ for (const route of requiredRoutes) {
   }
 
   const html = await readFile(file, 'utf8');
-  const canonical = route === '/' ? 'https://eidos-works.com/' : `https://eidos-works.com${route}`;
-  if (!html.includes(`<link rel="canonical" href="${canonical}" />`)) failures.push(`${route}: canonical does not match ${canonical}`);
-  if (count(html, /<h1(?:\s|>)/gi) !== 1) failures.push(`${route}: expected exactly one h1`);
+  const canonical =
+    route === '/'
+      ? 'https://eidos-works.com/'
+      : `https://eidos-works.com${route}`;
+  if (!html.includes(`<link rel="canonical" href="${canonical}" />`))
+    failures.push(`${route}: canonical does not match ${canonical}`);
+  if (count(html, /<h1(?:\s|>)/gi) !== 1)
+    failures.push(`${route}: expected exactly one h1`);
 }
 
 const home = await readFile(routeFile('/'), 'utf8');
@@ -52,42 +69,88 @@ const density = {
   articles: count(home, /<article(?:\s|>)/gi),
   buttons: count(home, /<button(?:\s|>)/gi),
   links: count(home, /<a(?:\s|>)/gi),
-  images: count(home, /<img(?:\s|>)/gi)
+  images: count(home, /<img(?:\s|>)/gi),
 };
 
-if (density.sections > 10) failures.push(`home: ${density.sections} sections exceeds the editorial limit of 10`);
-if (density.h2 > 8) failures.push(`home: ${density.h2} h2 headings exceeds the editorial limit of 8`);
-if (density.articles > 12) failures.push(`home: ${density.articles} article containers exceeds the editorial limit of 12`);
-if (density.buttons > 10) failures.push(`home: ${density.buttons} buttons exceeds the editorial limit of 10`);
-if (/Portrait of Brent Parent|ChatGPT_Image_May_1_2026_03_42_06_PM_ipnyby/i.test(home)) {
+if (density.sections > 10)
+  failures.push(
+    `home: ${density.sections} sections exceeds the editorial limit of 10`,
+  );
+if (density.h2 > 8)
+  failures.push(
+    `home: ${density.h2} h2 headings exceeds the editorial limit of 8`,
+  );
+if (density.articles > 12)
+  failures.push(
+    `home: ${density.articles} article containers exceeds the editorial limit of 12`,
+  );
+if (density.buttons > 10)
+  failures.push(
+    `home: ${density.buttons} buttons exceeds the editorial limit of 10`,
+  );
+if (
+  /Portrait of Brent Parent|ChatGPT_Image_May_1_2026_03_42_06_PM_ipnyby/i.test(
+    home,
+  )
+) {
   failures.push('home: founder portrait is still present');
 }
-for (const evidence of ['production-dashboard.png', 'storefront-experience-framed.png', 'pernr-access-gate.png']) {
-  if (!home.includes(evidence)) failures.push(`home: studio work composition is missing ${evidence}`);
+// The approved redesign leads with the two cinematic storefronts and the current Lab.
+for (const evidence of [
+  'ns-hero-dhs-desktop-v1.webp',
+  'hih-full-storefront-reference-v2.webp',
+  'sentinel-lab.webp',
+]) {
+  if (!home.includes(evidence))
+    failures.push(`home: studio work composition is missing ${evidence}`);
 }
-if (!home.includes('Founded by Brent Parent in Central Florida.')) failures.push('home: subtle founder attribution is missing');
+if (!home.includes('Founded by Brent Parent in Central Florida.'))
+  failures.push('home: subtle founder attribution is missing');
 
-for (const label of ['Work', 'Services', 'About', 'Insights', 'Contact']) {
-  if (!home.includes(`>${label}</a>`)) failures.push(`home: primary navigation is missing ${label}`);
+for (const label of ['Work', 'Lab', 'Community', 'Studio']) {
+  if (!home.includes(`>${label}</a>`))
+    failures.push(`home: primary navigation is missing ${label}`);
 }
-for (const excluded of ['>Diagnostics</a>', '>Eidos Brain</a>', '>Pricing</a>', '>Snapshot</a>', '>Agentic SEO</a>']) {
-  if (home.includes(excluded)) failures.push(`home: primary navigation still includes ${excluded.slice(1, -4)}`);
+for (const excluded of [
+  '>Diagnostics</a>',
+  '>Eidos Brain</a>',
+  '>Pricing</a>',
+  '>Snapshot</a>',
+  '>Agentic SEO</a>',
+]) {
+  if (home.includes(excluded))
+    failures.push(
+      `home: primary navigation still includes ${excluded.slice(1, -4)}`,
+    );
 }
 
-for (const route of ['/work/pernr-access-gate', '/work/production-dashboard', '/work/storefront-experience']) {
+for (const route of [
+  '/work/pernr-access-gate',
+  '/work/production-dashboard',
+  '/work/storefront-experience',
+]) {
   const html = await readFile(routeFile(route), 'utf8');
-  if (!/role disclosure/i.test(html)) failures.push(`${route}: role disclosure is missing`);
-  if (!/unproven|unknown/i.test(html)) failures.push(`${route}: remaining uncertainty is missing`);
+  if (!/role disclosure/i.test(html))
+    failures.push(`${route}: role disclosure is missing`);
+  if (!/unproven|unknown/i.test(html))
+    failures.push(`${route}: remaining uncertainty is missing`);
 }
 
 const services = await readFile(routeFile('/services'), 'utf8');
-for (const image of ['digital-experiences.png', 'storefront-experience-framed.png', 'production-dashboard.png']) {
-  if (!services.includes(image)) failures.push(`/services: matched service image is missing: ${image}`);
+for (const image of [
+  'digital-experiences.png',
+  'storefront-experience-framed.png',
+  'production-dashboard.png',
+]) {
+  if (!services.includes(image))
+    failures.push(`/services: matched service image is missing: ${image}`);
 }
 
 const about = await readFile(routeFile('/about'), 'utf8');
-if (!/Illustrated portrait of Brent Parent/i.test(about)) failures.push('/about: founder portrait is missing');
-if (!/collaborate with client teams/i.test(about)) failures.push('/about: collaborative studio language is missing');
+if (!/Illustrated portrait of Brent Parent/i.test(about))
+  failures.push('/about: founder portrait is missing');
+if (!/collaborate with client teams/i.test(about))
+  failures.push('/about: collaborative studio language is missing');
 
 const prohibitedPrimaryCopy = [
   'service families',
@@ -96,25 +159,48 @@ const prohibitedPrimaryCopy = [
   'planning-ready view',
   'a human operator uses the view',
   'notes from implementation, not a content machine',
-  'what brent designed and built'
+  'what brent designed and built',
 ];
-for (const route of ['/', '/services', '/work/production-dashboard', '/work/storefront-experience']) {
+for (const route of [
+  '/',
+  '/services',
+  '/work/production-dashboard',
+  '/work/storefront-experience',
+]) {
   const html = (await readFile(routeFile(route), 'utf8')).toLowerCase();
   for (const phrase of prohibitedPrimaryCopy) {
-    if (html.includes(phrase)) failures.push(`${route}: prohibited primary copy remains: ${phrase}`);
+    if (html.includes(phrase))
+      failures.push(`${route}: prohibited primary copy remains: ${phrase}`);
   }
 }
 
 const sitemap = await readFile(resolve(root, 'dist/sitemap.xml'), 'utf8');
-for (const route of requiredRoutes.filter((route) => !route.startsWith('/snapshot/'))) {
-  const url = route === '/' ? 'https://eidos-works.com/' : `https://eidos-works.com${route}`;
-  if (!sitemap.includes(`<loc>${url}</loc>`)) failures.push(`sitemap: missing ${url}`);
+for (const route of requiredRoutes.filter(
+  (route) => !route.startsWith('/snapshot/'),
+)) {
+  const url =
+    route === '/'
+      ? 'https://eidos-works.com/'
+      : `https://eidos-works.com${route}`;
+  if (!sitemap.includes(`<loc>${url}</loc>`))
+    failures.push(`sitemap: missing ${url}`);
 }
-for (const privateRoute of ['/snapshot/start', '/snapshot/success', '/snapshot/result/']) {
-  if (sitemap.includes(privateRoute)) failures.push(`sitemap: private route leaked: ${privateRoute}`);
+for (const privateRoute of [
+  '/snapshot/start',
+  '/snapshot/success',
+  '/snapshot/result/',
+  '/shop/success',
+  '/community/moderate',
+]) {
+  if (sitemap.includes(privateRoute))
+    failures.push(`sitemap: private route leaked: ${privateRoute}`);
 }
 
-for (const image of ['pernr-access-gate.png', 'production-dashboard.png', 'storefront-experience-framed.png']) {
+for (const image of [
+  'pernr-access-gate.png',
+  'production-dashboard.png',
+  'storefront-experience-framed.png',
+]) {
   try {
     await access(resolve(root, `dist/images/case-studies/${image}`));
   } catch {
@@ -132,5 +218,7 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Editorial verification passed for ${requiredRoutes.length} routes.`);
+console.log(
+  `Editorial verification passed for ${requiredRoutes.length} routes.`,
+);
 console.log(`Homepage density: ${JSON.stringify(density)}`);

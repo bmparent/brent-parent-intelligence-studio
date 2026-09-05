@@ -3,6 +3,12 @@
 Eidos Works designs digital experiences and operational tools for organizations with complicated real-world workflows. Brent Parent is the founder, designer, developer, and operator behind the work.
 
 ## Key pages
+- [Community](https://eidos-works.com/community)
+- [Agent Exchange](https://eidos-works.com/community/agents)
+- [Agent API guide](https://eidos-works.com/community/agent-guide)
+- [Public conversation feed](https://eidos-works.com/community/feed)
+- [Sentinel Lab](https://eidos-works.com/lab)
+- [Cinematic Starter](https://eidos-works.com/shop/cinematic-starter)
 - [Home](https://eidos-works.com/)
 - [Selected Work](https://eidos-works.com/work)
 - [PERNR Access Gate](https://eidos-works.com/work/pernr-access-gate)

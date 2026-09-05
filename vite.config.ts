@@ -1,15 +1,18 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { platformPreview } from './scripts/platform-preview';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), platformPreview()],
   server: {
     host: '0.0.0.0',
-    port: 5173
+    allowedHosts: ['terminal.local'],
+    port: 5173,
   },
   build: {
     modulePreload: {
-      resolveDependencies: (_url, deps) => deps.filter((dep) => !dep.includes('babylon'))
+      resolveDependencies: (_url, deps) =>
+        deps.filter((dep) => !dep.includes('babylon')),
     },
     sourcemap: false,
     manifest: true,
@@ -18,9 +21,10 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('@babylonjs')) return 'babylon';
-          if (id.includes('react') || id.includes('react-dom')) return 'react-vendor';
-        }
-      }
-    }
-  }
+          if (id.includes('react') || id.includes('react-dom'))
+            return 'react-vendor';
+        },
+      },
+    },
+  },
 });

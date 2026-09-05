@@ -1,0 +1,10 @@
+Eidos Cinematic Starter 1.0 — Commercial project license
+Copyright 2026 Brent Parent / Eidos Works.
+
+A completed purchase grants the purchaser permission to edit and use this package in one finished website for the purchaser or one client, including commercial use. That finished website may be hosted, maintained, and transferred to the client. The license is perpetual for that finished website. No public attribution is required.
+
+The package itself may not be redistributed, resold, sublicensed, or offered as a competing template, starter kit, or component library. Purchase another license for another finished website. Viewing source in the public preview or repository does not grant a commercial project license.
+
+Third-party names and materials shown elsewhere in the Eidos portfolio are not included in this license. The buyer is responsible for rights to any replacement content added to the template. Custom implementation, hosting, and ongoing support are separate services.
+
+Questions and download problems: billing@eidos-works.com.

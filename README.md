@@ -1,6 +1,8 @@
 # Eidos Works
 
-The production website for **Eidos Works**, Brent Parent's studio for digital experiences and operational tools. The public site is organized around real workflow problems, three primary case studies, three service families, an edited Insights publication, and a low-friction project conversation.
+See [redesign release and operations](docs/eidos-platform-release.md) for the new platform, account setup, token budgets, payment fulfillment, and deployment gates.
+
+The production website for **Eidos Works**, Brent Parent's studio for digital experiences and operational tools. The public site combines cinematic project showcases, studio services, an edited Insights publication, a separately hosted Sentinel Lab, moderated community questions, a token-conscious Eidos assistant, and a first paid starter package.
 
 Production domain: `https://eidos-works.com`
 
@@ -9,9 +11,11 @@ Production domain: `https://eidos-works.com`
 - Vite 8, React 19, and TypeScript
 - Static SSR/prerendering for public discovery pages
 - Cloudflare Pages with Pages Functions
-- Cloudflare KV for durable Snapshot request/report storage
-- Stripe Checkout for the one-time $5 Snapshot payment
-- OpenAI Responses API and Image API for paid Snapshot generation
+- One D1 database for community records, assistant quotas, and purchase entitlements
+- Cloudflare KV for the separately gated legacy Snapshot request/report storage
+- Stripe Checkout for the $29 Cinematic Starter download (legacy Snapshot remains independently gated)
+- Published-source Eidos answers by default, with an optional capped OpenAI follow-up
+- Existing OpenAI Responses/Image API integration for the independently gated Snapshot experiment
 - Optional Google Apps Script integration for the private Eidos Works Command Center
 - Existing Cloudinary assets for Eidos Works branding and selected work
 

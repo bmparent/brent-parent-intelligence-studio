@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://eidos-works.com/</loc><lastmod>2026-07-11</lastmod><priority>1.0</priority></url>
-  <url><loc>https://eidos-works.com/work</loc><lastmod>2026-07-11</lastmod><priority>0.9</priority></url>
+  <url><loc>https://eidos-works.com/work/nighttime-spectaculars</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/work/holidays-in-hollywood</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/lab</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/community</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/community/agents</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/community/agent-guide</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/community/guidelines</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/privacy</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/terms</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/shop/cinematic-starter</loc><lastmod>2026-09-05</lastmod><priority>0.7</priority></url>
+  <url><loc>https://eidos-works.com/</loc><lastmod>2026-09-05</lastmod><priority>1.0</priority></url>
+  <url><loc>https://eidos-works.com/work</loc><lastmod>2026-09-05</lastmod><priority>0.9</priority></url>
   <url><loc>https://eidos-works.com/work/pernr-access-gate</loc><lastmod>2026-07-11</lastmod><priority>0.8</priority></url>
   <url><loc>https://eidos-works.com/work/production-dashboard</loc><lastmod>2026-07-11</lastmod><priority>0.8</priority></url>
   <url><loc>https://eidos-works.com/work/storefront-experience</loc><lastmod>2026-07-11</lastmod><priority>0.8</priority></url>

@@ -1,65 +1,81 @@
 import { useEffect, useRef, useState } from 'react';
-import { siteConfig } from '../config/site';
-
 const links = [
   { href: '/work', label: 'Work' },
-  { href: '/services', label: 'Services' },
-  { href: '/about', label: 'About' },
-  { href: '/insights', label: 'Insights' },
-  { href: '/contact', label: 'Contact' }
+  { href: '/lab', label: 'Lab' },
+  { href: '/community', label: 'Community' },
+  { href: '/about', label: 'Studio' },
 ];
-
 export function Header() {
   const [open, setOpen] = useState(false);
-  const firstLink = useRef<HTMLAnchorElement | null>(null);
-  const toggle = useRef<HTMLButtonElement | null>(null);
-
+  const toggle = useRef<HTMLButtonElement>(null);
+  const nav = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!open) return;
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const close = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setOpen(false);
         toggle.current?.focus();
       }
     };
-    document.addEventListener('keydown', handleKeyDown);
-    firstLink.current?.focus();
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    const outside = (event: PointerEvent) => {
+      if (
+        !nav.current?.contains(event.target as Node) &&
+        !toggle.current?.contains(event.target as Node)
+      )
+        setOpen(false);
+    };
+    document.addEventListener('keydown', close);
+    document.addEventListener('pointerdown', outside);
+    return () => {
+      document.removeEventListener('keydown', close);
+      document.removeEventListener('pointerdown', outside);
+    };
   }, [open]);
-
   return (
-    <header className="ew-header" aria-label="Primary navigation">
+    <header className="ew-header ew-glass-header">
       <div className="ew-header__inner">
-        <a className="ew-brand" href="/" aria-label="Eidos Works home" onClick={() => setOpen(false)}>
-          <img src={siteConfig.logos.horizontal} alt="Eidos Works" width="188" height="52" />
+        <a className="ew-brand" href="/" aria-label="Eidos Works home">
+          <span className="ew-brand-mark" aria-hidden="true">
+            e
+          </span>
+          <span>
+            eidos<span className="ew-brand-works">works</span>
+          </span>
         </a>
-
         <button
           ref={toggle}
           className="ew-menu-toggle"
           type="button"
           aria-expanded={open}
           aria-controls="primary-nav"
-          onClick={() => setOpen((current) => !current)}
+          onClick={() => setOpen(!open)}
         >
-          <strong>{open ? 'Close' : 'Menu'}</strong>
+          {open ? 'Close' : 'Menu'}{' '}
+          <span aria-hidden="true">{open ? '−' : '+'}</span>
         </button>
-
-        <nav id="primary-nav" className={`ew-nav${open ? ' is-open' : ''}`} aria-label="Site navigation">
-          {links.map((link, index) => (
-            <a
-              ref={index === 0 ? firstLink : undefined}
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-            >
+        <nav
+          ref={nav}
+          id="primary-nav"
+          className={`ew-nav${open ? ' is-open' : ''}`}
+          aria-label="Main navigation"
+        >
+          {links.map((link) => (
+            <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
               {link.label}
             </a>
           ))}
+          <a className="ew-nav-mobile-extra" href="/services">
+            Services
+          </a>
+          <a className="ew-nav-mobile-extra" href="/insights">
+            Insights
+          </a>
+          <a className="ew-nav-mobile-extra" href="/contact">
+            Let’s build ↗
+          </a>
         </nav>
-
-        <a className="ew-header__cta" href="/contact" onClick={() => setOpen(false)}>
-          Start a Project
+        <a className="ew-header__cta" href="/contact">
+          Let’s build <span aria-hidden="true">↗</span>
         </a>
       </div>
     </header>
