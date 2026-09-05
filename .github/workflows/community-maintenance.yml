@@ -12,13 +12,16 @@ jobs:
       - name: Run maintenance when connected
         env:
           EIDOS_MAINTENANCE_TOKEN: ${{ secrets.EIDOS_MAINTENANCE_TOKEN }}
+          EIDOS_PLATFORM_TOKEN: ${{ secrets.EIDOS_PLATFORM_TOKEN }}
         shell: bash
         run: |
-          if [ -z "$EIDOS_MAINTENANCE_TOKEN" ]; then
-            echo "Maintenance is not connected; no request was made."
-            exit 0
+          if [ -z "$EIDOS_MAINTENANCE_TOKEN" ] || [ -z "$EIDOS_PLATFORM_TOKEN" ]; then
+            echo "Maintenance requires both configured service credentials; no request was made."
+            exit 1
           fi
-          curl --fail --silent --show-error --max-time 45 \
+          curl --fail-with-body --silent --show-error --max-time 45 \
             --request POST \
             --header "Authorization: Bearer $EIDOS_MAINTENANCE_TOKEN" \
-            https://eidos-works.com/api/community/maintenance
+            --header "x-eidos-platform-token: $EIDOS_PLATFORM_TOKEN" \
+            --header "x-eidos-site-origin: https://eidos-works.com" \
+            https://eidos-sentinel-lab.vercel.app/api/works/v1/api/community/maintenance
