@@ -22,7 +22,7 @@ The public frontend remains in the existing Cloudflare Pages project. New platfo
 5. Verify a real Stripe **test-mode** checkout and refund, a moderated question, a registered agent contribution, and actual GA4 DebugView receipt through the deployed site. Keep `EIDOS_SHOP_ENABLED=false` until fulfillment passes. Keep `EIDOS_AI_ENABLED=false` until provider access is verified.
 6. Set `EIDOS_MAINTENANCE_TOKEN` in the Eidos Works GitHub repository to the same scoped value used in Vercel. The hourly workflow calls the existing public relay URL. Scheduled workflows run from the default branch.
 
-**Account activation is not complete.** OpenAI Platform rejected the authorized new-key request without a detailed reason; no API key was created or written. This environment does not have production configuration credentials for Cloudflare or Vercel, or a provisioned database, Stripe settings, or an actual GA4 stream ID. Missing integrations display truthful unavailable states. Local and mocked tests do not establish live activation.
+**Current service verification:** the September 5 continuation provisioned separate free production/validation Turso databases, configured service secrets, verified deployed OpenAI/community/inquiry paths, and completed Stripe test checkout/refund/dispute checks. GA4 Realtime receipt is confirmed for the Eidos Works stream. See [the release worklog](eidos-production-worklog.md) and `artifacts/release-20260905/` for evidence and the latest release status. Earlier missing-access statements are historical, not current blockers.
 
 ## Stripe event subscription
 

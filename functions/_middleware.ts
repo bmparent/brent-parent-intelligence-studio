@@ -2,7 +2,7 @@ import { HttpError, json, readText } from './_shared/platform/core';
 
 interface RelayContext {
   request: Request;
-  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string };
+  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string };
   next(): Promise<Response>;
 }
 const routes = new Set([
@@ -36,14 +36,22 @@ export async function onRequest({ request, env, next }: RelayContext) {
       if (value) headers.set(name, value);
     }
     headers.set('x-eidos-platform-token', env.EIDOS_PLATFORM_TOKEN);
+    // Optional project-scoped Vercel automation credential, configured only on Pages previews.
+    if (env.EIDOS_PLATFORM_PREVIEW_BYPASS) headers.set('x-vercel-protection-bypass', env.EIDOS_PLATFORM_PREVIEW_BYPASS);
     headers.set('x-eidos-site-origin', url.origin);
     headers.set('x-eidos-client-ip', request.headers.get('CF-Connecting-IP') || 'unknown');
     const payload = ['GET', 'HEAD'].includes(request.method) ? undefined :
       await readText(request, path === '/api/shop/webhook' ? 64000 : 12000);
     const response = await fetch(target, {
       method: request.method, headers, body: payload,
-      redirect: 'error', signal: AbortSignal.timeout(24000),
+      redirect: 'manual', signal: AbortSignal.timeout(24000),
     });
+    // Workers supports manual/follow only. Reject redirects before returning any
+    // Location header or forwarding credentials to a second host.
+    if (response.status >= 300 && response.status < 400) {
+      await response.body?.cancel();
+      throw new HttpError(503, 'The studio connection is temporarily unavailable.');
+    }
     const output = new Headers(response.headers);
     output.delete('set-cookie');
     output.set('cache-control', 'no-store');

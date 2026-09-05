@@ -66,6 +66,7 @@ export function InsightsIndex({ initialSlug, standalone = false }: InsightsIndex
     setActiveSlug(slug);
     if (typeof window !== 'undefined' && window.location.pathname !== path) {
       window.history.pushState(null, '', path);
+      window.dispatchEvent(new Event('eidos:navigation'));
     }
   };
 

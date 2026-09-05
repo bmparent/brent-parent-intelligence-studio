@@ -21,7 +21,8 @@ const local = [],
   central = [];
 let offset = 0;
 for (const name of names) {
-  const file = await readFile('products/cinematic-starter/' + name);
+  // Text sources must yield the same purchased bytes on Windows and Linux.
+  const file = Buffer.from((await readFile('products/cinematic-starter/' + name, 'utf8')).replace(/\r\n/g, '\n'));
   const data = deflateRawSync(file);
   const filename = Buffer.from('eidos-cinematic-starter/' + name);
   const crc = crc32(file);

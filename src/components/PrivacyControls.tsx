@@ -5,6 +5,7 @@ import {
   startAnalytics,
   stopAnalytics,
   track,
+  pageView,
 } from '../lib/analytics';
 import { usePublicConfig } from '../lib/platform';
 export function PrivacyControls() {
@@ -28,6 +29,8 @@ export function PrivacyControls() {
     };
   }, [config]);
   useEffect(() => {
+    window.addEventListener('popstate', pageView);
+    window.addEventListener('eidos:navigation', pageView);
     const click = (event: MouseEvent) => {
       const link = (event.target as Element).closest?.('a');
       if (!link) return;
@@ -40,7 +43,11 @@ export function PrivacyControls() {
         track('select_project', { item_id: url.pathname.split('/')[2] });
     };
     document.addEventListener('click', click);
-    return () => document.removeEventListener('click', click);
+    return () => {
+      document.removeEventListener('click', click);
+      window.removeEventListener('popstate', pageView);
+      window.removeEventListener('eidos:navigation', pageView);
+    };
   }, []);
   if (!show) return null;
   return (
@@ -69,11 +76,8 @@ export function PrivacyControls() {
         <button
           type="button"
           onClick={() => {
-            const wasDenied = consent() === 'denied';
             setConsent('granted');
             setShow(false);
-            if (wasDenied && window.__eidosAnalyticsId)
-              window.location.reload();
           }}
         >
           Allow analytics

@@ -23,9 +23,17 @@ declare global {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
     __eidosAnalyticsId?: string;
+    __eidosLastPage?: string;
   }
 }
 const key = 'eidos.analytics.v1';
+function trafficDetails() {
+  const preview = window.location.hostname !== 'eidos-works.com';
+  return {
+    traffic_type: preview ? 'qa' : /(?:bot|crawler|spider|headless)/i.test(navigator.userAgent) ? 'agent' : 'human',
+    ...(preview ? { debug_mode: true } : {}),
+  };
+}
 export function consent() {
   try {
     return localStorage.getItem(key);
@@ -51,10 +59,18 @@ export function safePagePath() {
 export function startAnalytics(id: string) {
   if (
     consent() !== 'granted' ||
-    !/^G-[A-Z0-9]{5,20}$/.test(id) ||
-    window.__eidosAnalyticsId
+    !/^G-[A-Z0-9]{5,20}$/.test(id)
   )
     return;
+  const flags = window as unknown as Record<string, unknown>;
+  if (window.__eidosAnalyticsId) {
+    if (window.__eidosAnalyticsId === id && flags['ga-disable-' + id]) {
+      flags['ga-disable-' + id] = false;
+      window.gtag?.('consent', 'update', { analytics_storage: 'granted' });
+      pageView();
+    }
+    return;
+  }
   // No tag, cookies, or queued analytics before consent. Never send query strings or user text.
   window.__eidosAnalyticsId = id;
   window.dataLayer = window.dataLayer || [];
@@ -75,24 +91,36 @@ export function startAnalytics(id: string) {
     allow_ad_personalization_signals: false,
     page_location: window.location.origin + safePagePath(),
     page_referrer: '',
+    ...trafficDetails(),
   });
   const script = document.createElement('script');
   script.async = true;
   script.id = 'eidos-google-tag';
   script.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
   document.head.appendChild(script);
-  if (safePagePath() !== '/private')
-    window.gtag('event', 'page_view', {
-      page_location: window.location.origin + safePagePath(),
-      page_title:
-        safePagePath() === '/' ? 'Eidos Works' : safePagePath().split('/')[1],
+  pageView();
+}
+/** Call after navigation; suppress duplicate notifications and all private routes. */
+export function pageView() {
+  const id = window.__eidosAnalyticsId;
+  if (consent() !== 'granted' || !id ||
+      (window as unknown as Record<string, unknown>)['ga-disable-' + id]) return;
+  const path = safePagePath();
+  if (path === window.__eidosLastPage) return;
+  window.__eidosLastPage = path;
+  if (path !== '/private' && path !== '/community/thread')
+    window.gtag?.('event', 'page_view', {
+      page_location: window.location.origin + path,
+      page_title: path === '/' ? 'Eidos Works' : path.split('/')[1],
       page_referrer: '',
+      ...trafficDetails(),
     });
 }
 export function stopAnalytics() {
   const id = window.__eidosAnalyticsId;
   if (!id) return;
   (window as unknown as Record<string, unknown>)['ga-disable-' + id] = true;
+  delete window.__eidosLastPage;
   window.gtag?.('consent', 'update', {
     analytics_storage: 'denied',
     ad_storage: 'denied',
@@ -113,8 +141,8 @@ export function stopAnalytics() {
 export function track(event: EidosEvent, details: EventDetails = {}) {
   if (consent() !== 'granted' || !window.__eidosAnalyticsId) return;
   const safe: EventDetails = {};
-  if (details.mode) safe.mode = details.mode;
-  if (details.category) safe.category = details.category;
+  if (details.mode === 'sources' || details.mode === 'ai') safe.mode = details.mode;
+  if (details.category === 'build' || details.category === 'design' || details.category === 'agents') safe.category = details.category;
   if (details.item_id && /^[a-z0-9-]{1,60}$/.test(details.item_id))
     safe.item_id = details.item_id;
   if (details.transaction_id && /^[a-f0-9-]{36}$/.test(details.transaction_id))
@@ -123,6 +151,7 @@ export function track(event: EidosEvent, details: EventDetails = {}) {
   if (details.currency === 'USD') safe.currency = 'USD';
   window.gtag?.('event', event, {
     ...safe,
+    ...trafficDetails(),
     page_location: window.location.origin + safePagePath(),
     page_referrer: '',
   });

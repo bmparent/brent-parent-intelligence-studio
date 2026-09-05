@@ -21,5 +21,7 @@ for (const file of files) {
   await mkdir(resolve(vendor, file, '..'), { recursive: true });
   await cp(resolve(file), resolve(vendor, file), { recursive: true });
 }
-await writeFile(resolve(vendor, 'README.md'), `# Eidos Works platform source\n\nVendored from bmparent/brent-parent-intelligence-studio. Refresh with its scripts/export-sentinel-platform.mjs, passing this app directory. Changes originate in that repository and are verified in both runtimes. No research executor is imported.\n\nSchema SHA-256: ${createHash('sha256').update(await readFile('migrations/0001_eidos_platform.sql')).digest('hex')}\n`);
+const schema = (await readFile('migrations/0001_eidos_platform.sql', 'utf8')).replace(/\r\n/g, '\n');
+await writeFile(resolve(vendor, 'migrations/0001_eidos_platform.sql'), schema);
+await writeFile(resolve(vendor, 'README.md'), `# Eidos Works platform source\n\nVendored from bmparent/brent-parent-intelligence-studio. Refresh with its scripts/export-sentinel-platform.mjs, passing this app directory. Changes originate in that repository and are verified in both runtimes. No research executor is imported.\n\nSchema SHA-256 (UTF-8 LF): ${createHash('sha256').update(schema).digest('hex')}\n`);
 console.log('Exported Eidos Works platform to Sentinel Lab.');
