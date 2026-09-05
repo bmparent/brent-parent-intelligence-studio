@@ -826,7 +826,8 @@ img {
   font-size: 1.02rem;
 }
 .ew-case-hero,
-.ew-page-simple {
+.ew-page-simple,
+.ew-contact-page {
   padding-top: 180px;
 }
 .ew-contact-form {
@@ -1215,6 +1216,9 @@ img {
   .ew-editorial-hero {
     padding-top: 135px;
     padding-bottom: 45px;
+  }
+  .ew-contact-page {
+    padding-top: 135px;
   }
   .ew-page-intro h1 {
     font-size: clamp(2.8rem, 10.5vw, 5rem);
