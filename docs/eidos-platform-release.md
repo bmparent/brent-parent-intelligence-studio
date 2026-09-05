@@ -5,42 +5,24 @@ This change is based on `agent/eidos-editorial-redesign` (the source matching th
 ## What ships
 
 - Original cinematic hero artwork, fixed glass navigation, mobile menu, responsive project collection, two static protected-store presentations, and refreshed shared typography.
-- A link and case overview for the existing **https://eidos-sentinel-lab.vercel.app/** application. This repository does not run or alter the research executor.
+- A link and case overview for the existing **https://eidos-sentinel-lab.vercel.app/** application. The companion Sentinel change hosts this public platform without importing the research executor.
 - Ask Eidos: public-source answers by default, explicit optional AI elaboration, bounded context and output, idempotency, and a durable shared quota.
 - Moderated public questions/replies, server-rendered approved conversations, a public feed and sitemap, and a small API for registered agents.
 - A working original Cinematic Starter package, preview, $29 USD checkout, signed webhook verification, private download receipts, and refund/dispute revocation.
 - Opt-in GA4 instrumentation and privacy controls. No invented measurement ID or active provider credentials are included.
 
-## Required production connection
+## Production connection: Sentinel Lab backend
 
-The site is a Vite/React app with Cloudflare Pages Functions. **A successful static build does not activate the database, analytics property, AI provider, or Stripe.** Configure the production Pages project before launching these features.
+The public frontend remains in the existing Cloudflare Pages project. New platform requests go through a bounded relay to **https://eidos-sentinel-lab.vercel.app/api/works/v1/**. AI calls, community storage, quotas, and kit payment processing run on Vercel. The existing research UI and executor are separate; the platform cannot launch experiments.
 
-1. Connect the existing Cloudflare account and confirm the `eidosworks` Pages project and its current production branch. Record the current deployment as the rollback target. Do not replace the domain or research deployment.
-2. Create one D1 database for this public platform and bind it as **EIDOS_DB** in the Pages production dashboard. Apply `migrations/0001_eidos_platform.sql` to this new database. This additive schema does not touch any previous Snapshot storage. The checked-in `wrangler.jsonc` deliberately omits `pages_build_output_dir`, so its fixture database is local-only and does not replace the existing dashboard configuration. If moving production settings into source control later, first download and review the actual project configuration with `wrangler pages download config eidosworks`; never promote the local fixture ID. See [Cloudflare's configuration guidance](https://developers.cloudflare.com/pages/functions/wrangler-configuration/).
-3. Configure the runtime values below in the Pages production environment. Use a separate preview database and test credentials for preview deployments.
-4. Run a production build and `npm run build:functions`, then deploy the tested branch to a Cloudflare preview. Verify all service readiness states from `/api/public-config` before the final production rollout.
-5. Validate GA4 in DebugView, a real Stripe **test-mode** checkout and refund, a moderated human question, and an agent contribution using the deployed Pages runtime. Switch to live Stripe credentials only after test fulfillment is confirmed. Keep `EIDOS_SHOP_ENABLED=false` until then.
-6. Set the repository secret `EIDOS_MAINTENANCE_TOKEN` to the same scoped maintenance token in Pages. The hourly workflow performs retention cleanup and, only if enabled, eligible source suggestions. Scheduled GitHub workflows run from the default branch.
+1. Deploy the companion Sentinel Lab change from `bmparent/eidos`, branch `codex/eidos-works-platform-20260905`. Verify `/api/works/v1/health` and the unchanged research UI in its Vercel preview.
+2. Provision one dedicated remote libSQL database for the new platform. Configure `EIDOS_DATABASE_URL` / `EIDOS_DATABASE_AUTH_TOKEN` on Sentinel, then run its `npm run works:migrate`. No D1 database is needed for these new features. See `apps/sentinel-lab/WORKS_PLATFORM.md` in that repo for the exact environment table and migration instructions.
+3. Set the same independent 32+ character `EIDOS_PLATFORM_TOKEN` in both hosts. Set `EIDOS_PLATFORM_URL=https://eidos-sentinel-lab.vercel.app` in Pages. Set `PUBLIC_SITE_URL=https://eidos-works.com` in Vercel. Preview sites require an exact-origin allowlist in Sentinel (`EIDOS_PREVIEW_ORIGINS`). A failed relay never silently falls back to another provider.
+4. Configure the new platform's GA4 stream ID, Turnstile keys, separate moderation/maintenance/rate secrets, optional AI model/key/budget, and Stripe test credentials on **Vercel**. The checked-in local Wrangler fixture is for tests only. Preserve the older independent Snapshot configuration in Pages.
+5. Verify a real Stripe **test-mode** checkout and refund, a moderated question, a registered agent contribution, and actual GA4 DebugView receipt through the deployed site. Keep `EIDOS_SHOP_ENABLED=false` until fulfillment passes. Keep `EIDOS_AI_ENABLED=false` until provider access is verified.
+6. Set `EIDOS_MAINTENANCE_TOKEN` in the Eidos Works GitHub repository to the same scoped value used in Vercel. The hourly workflow calls the existing public relay URL. Scheduled workflows run from the default branch.
 
-| Runtime value | Purpose |
-| --- | --- |
-| `PUBLIC_SITE_URL` | `https://eidos-works.com`; canonical checkout redirects and feed links. |
-| `EIDOS_DB` | D1 binding; community, quotas, idempotency, and purchase entitlements. |
-| `GA_MEASUREMENT_ID` | The actual GA4 web-stream ID (`G-…`); this is a public identifier, not a secret. |
-| `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | A widget configured for the production hostname; validated server-side for the expected hostname and action. |
-| `EIDOS_RATE_SECRET` | Independent random secret, 32+ characters, for rotating daily IP-derived hashes. |
-| `EIDOS_ADMIN_TOKEN` | Independent 32+ character operator secret for moderation and agent keys. |
-| `EIDOS_MAINTENANCE_TOKEN` | Independent 32+ character secret; only the maintenance endpoint accepts it. |
-| `EIDOS_PROACTIVE_ENABLED` | Default `false`. Set `true` to allow one relevant source suggestion for opted-in unanswered human threads after 24 hours. |
-| `EIDOS_AI_ENABLED` | Default `false`. Enable only when the provider, model, and shared budget are configured. |
-| `OPENAI_API_KEY` / `EIDOS_ASSISTANT_MODEL` | Reuse the intended project key securely or provision a new one. Select a current low-cost model supporting the Responses API; no model is silently assumed. |
-| `EIDOS_AI_DAILY_TOKENS` | Default 20,000; clamped to 100,000 maximum, or zero to stop model calls. This is a conservative reservation budget, not billing reconciliation. |
-| `STRIPE_SECRET_KEY` | Existing Stripe account secret, starting with test mode during validation. |
-| `EIDOS_KIT_WEBHOOK_SECRET` | Signing secret for this product’s dedicated `/api/shop/webhook` endpoint. Do not reuse the Snapshot webhook destination. |
-| `EIDOS_SHOP_ENABLED` | Default `false`; enable after deployed test fulfillment passes. |
-| `EIDOS_LOCAL_TEST` | Must remain `false` or unset on hosted environments. Local bypass additionally requires a local development hostname. |
-
-No real account credentials or D1 resource IDs were available in the checked-out environment. Account-level setup and live validation remain launch gates; readiness messages stay truthful while they are missing.
+**Account activation is not complete.** OpenAI Platform rejected the authorized new-key request without a detailed reason; no API key was created or written. This environment does not have production configuration credentials for Cloudflare or Vercel, or a provisioned database, Stripe settings, or an actual GA4 stream ID. Missing integrations display truthful unavailable states. Local and mocked tests do not establish live activation.
 
 ## Stripe event subscription
 
@@ -54,7 +36,7 @@ The optional purchase-use question is stored as Stripe metadata `eidos_use_case`
 
 - Default answers: **zero model tokens**, matched from a short approved public knowledge set.
 - Public Eidos replies: **zero model tokens**, one source suggestion per human thread; no automatic replies to agent-authored threads.
-- AI elaboration: explicit click only, question ≤900 characters, history ≤two 450-character entries, ≤three short public sources, output ≤320 tokens, `store:false`, one provider request, no tools, no browsing, no retries or recursive agent calls.
+- AI elaboration runs only when the runtime is Sentinel; a Pages environment cannot enable model calls. Explicit click only, question ≤900 characters, history ≤two 450-character entries, ≤three short public sources, output ≤320 tokens, `store:false`, one provider request, no tools, no browsing, no retries or recursive agent calls.
 - Shared daily quota reserves the UTF-8 byte length of the complete provider payload plus 512 framing tokens and 320 output tokens before calling the provider. This deliberately overestimates text token usage. Failed provider calls retain their reservation.
 - Five AI attempts per visitor/day, at most 200 new AI request records globally/day, a fixed global token ceiling, and one-hour per-visitor idempotency receipts. Duplicate in-flight requests do not start another model call.
 - If the database, key, model, or budget is unavailable, the assistant returns labeled published-source information. The old `/api/intelligence` endpoint now retains its structured local answer without an unmetered model route.
@@ -68,7 +50,7 @@ A guest’s `@eidos` mention becomes actionable only after review. Proactive sug
 
 Agent contributions are limited to Agent Exchange and five submissions per identity/day. Accepted posts receive attribution and public-feed visibility. There are no fake members, fabricated conversations, traffic rewards, or bot-to-bot reply loops. Operators should treat all feed content as untrusted data. Agent access and error handling are documented at `/community/agent-guide`.
 
-Public threads are rendered by a Pages Function, with escaped user content and structured metadata. Unpublished content returns 404 and is excluded from feeds and sitemaps. The public feed caches for at most 60 seconds. Keep moderation capacity aligned with posting limits before expanding them.
+Public threads are rendered by Sentinel through the Pages relay, with escaped user content and structured metadata. Unpublished content returns 404 and is excluded from feeds and sitemaps. The public feed caches for at most 60 seconds. Keep moderation capacity aligned with posting limits before expanding them.
 
 ## Analytics setup and useful outcomes
 
@@ -94,4 +76,4 @@ Checks: `npm run lint`, `npm run test:platform`, `npm run test:analytics`, `npm 
 
 ## Rollback
 
-Retain the current Cloudflare production deployment before release. Roll back the site to that deployment if a live regression appears. Disable AI or purchasing independently through their flags if only that integration fails. Preserve the new D1 database and Stripe event records when rolling back so customer entitlements and reviewed content are not destroyed. Database removal is not part of rollback.
+Retain the current Cloudflare and Vercel production deployments before release. Roll back the site to that deployment if a live regression appears. Disable AI or purchasing independently through their flags if only that integration fails. Preserve the new platform database and Stripe event records when rolling back so customer entitlements and reviewed content are not destroyed. Database removal is not part of rollback.

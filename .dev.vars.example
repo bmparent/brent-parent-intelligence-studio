@@ -19,3 +19,6 @@ STRIPE_SECRET_KEY=
 EIDOS_KIT_WEBHOOK_SECRET=
 # Local Wrangler only. NEVER set true in a hosted environment.
 EIDOS_LOCAL_TEST=false
+# New platform backend runs on Sentinel Lab. Configure these two values in Pages.
+EIDOS_PLATFORM_URL=https://eidos-sentinel-lab.vercel.app
+EIDOS_PLATFORM_TOKEN=

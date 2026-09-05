@@ -77,6 +77,7 @@ function setup(overrides: Partial<PlatformEnv> = {}) {
     },
   };
   const env: PlatformEnv = {
+    EIDOS_RUNTIME: 'sentinel',
     EIDOS_DB: db,
     EIDOS_LOCAL_TEST: 'true',
     EIDOS_RATE_SECRET: 'test-rate-secret-with-at-least-32-characters',

@@ -9,6 +9,7 @@ export interface Database {
   batch(statements: Statement[]): Promise<unknown[]>;
 }
 export interface PlatformEnv {
+  EIDOS_RUNTIME?: 'sentinel';
   EIDOS_DB?: Database;
   EIDOS_ADMIN_TOKEN?: string;
   EIDOS_RATE_SECRET?: string;

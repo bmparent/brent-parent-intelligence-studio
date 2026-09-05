@@ -7,6 +7,7 @@ export const onRequestGet = guarded(async ({ request, env }) =>
     turnstileSiteKey: env.TURNSTILE_SITE_KEY || '',
     communityReady: communityAvailable(request,env),
     aiReady: Boolean(
+      env.EIDOS_RUNTIME === 'sentinel' &&
       env.EIDOS_AI_ENABLED === 'true' &&
         env.OPENAI_API_KEY &&
         env.EIDOS_ASSISTANT_MODEL &&

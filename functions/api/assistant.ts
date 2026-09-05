@@ -21,6 +21,7 @@ export const onRequestPost = guarded(async ({ request, env }) => {
   // Published knowledge is the default. A model runs only on a separate, explicit request.
   if (
     input.enhanced !== true ||
+    env.EIDOS_RUNTIME !== 'sentinel' ||
     env.EIDOS_AI_ENABLED !== 'true' ||
     !env.OPENAI_API_KEY ||
     !env.EIDOS_ASSISTANT_MODEL ||
