@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { showcase, labUrl, type ShowcaseProject } from '../data/showcase';
+import { useState } from "react";
+import StorefrontDemo, { StorefrontPreview } from "./StorefrontDemo";
+import { storefrontThemes, type StorefrontTheme } from "../data/storefrontDemo";
+import { showcase, labUrl, type ShowcaseProject } from "../data/showcase";
 export function ProjectTile({
   project,
   index = 0,
@@ -11,20 +13,24 @@ export function ProjectTile({
     <article className="ew-project-tile">
       <a href={project.href}>
         <div className={`ew-project-image ew-project-image--${project.slug}`}>
-          <img
-            src={project.image}
-            alt={project.alt}
-            width="1200"
-            height="760"
-            loading="lazy"
-          />
+          {project.slug in storefrontThemes ? (
+            <StorefrontPreview slug={project.slug as StorefrontTheme} />
+          ) : (
+            <img
+              src={project.image}
+              alt={project.alt}
+              width="1200"
+              height="760"
+              loading="lazy"
+            />
+          )}
           <span className="ew-project-open" aria-hidden="true">
             ↗
           </span>
         </div>
         <div className="ew-project-meta">
           <span>
-            {String(index + 1).padStart(2, '0')} / {project.status}
+            {String(index + 1).padStart(2, "0")} / {project.status}
           </span>
           <span>{project.category}</span>
         </div>
@@ -35,9 +41,9 @@ export function ProjectTile({
   );
 }
 export function ShowcasePage() {
-  const [filter, setFilter] = useState('All work');
+  const [filter, setFilter] = useState("All work");
   const projects = showcase.filter(
-    (project) => filter === 'All work' || project.category === filter,
+    (project) => filter === "All work" || project.category === filter,
   );
   return (
     <>
@@ -60,7 +66,7 @@ export function ShowcasePage() {
           role="group"
           aria-label="Filter projects"
         >
-          {['All work', 'Storefronts', 'Systems', 'Experiments'].map(
+          {["All work", "Storefronts", "Systems", "Experiments"].map(
             (label) => (
               <button
                 key={label}
@@ -84,10 +90,10 @@ export function ShowcasePage() {
         <div className="ew-collection-note">
           <h2>More than the first impression.</h2>
           <p>
-            Explore the{' '}
+            Explore the{" "}
             <a href="/work/production-dashboard">
               production reporting case study
-            </a>{' '}
+            </a>{" "}
             for a look at the operational side of the work.
           </p>
           <p>
@@ -114,17 +120,20 @@ export function StorefrontShowcase({ slug }: { slug: string }) {
         <h1>{project.title}</h1>
         <p>{project.description}</p>
       </section>
-      <figure className="ew-showcase-hero ew-shell">
-        <img src={project.image} width="1500" height="940" alt={project.alt} />
-        <figcaption>
-          Saved project artwork and design reference. This is a static portfolio
-          presentation, not a live view of the protected store.
-        </figcaption>
-      </figure>
+      <div className="ew-shell sd-demo-intro">
+        <p className="ew-eyebrow">Try the experience</p>
+        <h2>Step inside the storefront.</h2>
+        <p>
+          Explore the animated entrance, browse the collection, and try a
+          product’s options. This self-contained reconstruction uses saved
+          project artwork; the original employee store stays private.
+        </p>
+      </div>
+      <StorefrontDemo slug={slug as StorefrontTheme} />
       <section className="ew-showcase-story ew-shell">
         <div>
-          <p className="ew-eyebrow">The thinking behind the experience</p>
-          <h2>A storefront with a sense of occasion.</h2>
+          <p className="ew-eyebrow">From entrance to selection</p>
+          <h2>A complete journey, with a sense of occasion.</h2>
           <p>
             The entrance sets the mood, makes the collection easy to understand,
             and gives shoppers a clear way forward. Cinematic artwork does the
@@ -133,11 +142,20 @@ export function StorefrontShowcase({ slug }: { slug: string }) {
           </p>
           <h3>How it was built</h3>
           <p>
-            The custom experience fits inside InkSoft’s hosted storefront.
-            Scoped styles and responsive layout rules shape the header, hero,
-            and collection paths while the platform continues to own product
-            selection, cart, accounts, and checkout.
+            The original custom experience fits inside InkSoft’s hosted
+            storefront. Scoped styles and responsive layout rules shape the
+            header, hero, and collection paths while the platform continues to
+            own product selection, cart, accounts, and checkout.
           </p>
+          <h3>What you can try here</h3>
+          <p>
+            The portfolio version rebuilds the interface in React: collection
+            filters, search, product detail inspection, size selection,
+            quantity, and a temporary demo bag. Animated light, layered apparel,
+            and a glass header carry the design across each view. All demo
+            actions stay here, with no checkout or account required.
+          </p>
+          <h3>Built for different screens</h3>
           <p>
             Layouts need to accommodate narrow screens, landscape phones, long
             labels, and the platform’s existing markup. Static imagery is paired
