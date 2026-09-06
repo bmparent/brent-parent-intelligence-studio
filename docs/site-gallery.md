@@ -14,7 +14,7 @@ The Amazon Product Momentum draft has no saved version, live URL, or screenshot,
 
 ## Customer accounts follow-up
 
-The requested sign-in methods are Google and email/password with email password recovery. Clerk's free Hobby plan was selected through the existing Sentinel Vercel project. Installation requires the account owner to accept Clerk's marketplace terms before provider setup and account integration can proceed. No custom password tables or recovery-code system are included in this gallery change. Account-owned agent keys and authenticated discussion attribution remain part of that follow-up, using the current backend and moderation controls.
+The requested sign-in methods are Google and email/password with email password recovery. Clerk's free Hobby plan was selected through the existing Sentinel Vercel project. The owner accepted the marketplace terms. The eidos-works-community application is provisioned through Vercel; its two application and three email CNAME records are verified in Clerk. Provider configuration and account integration are still in progress. No custom password tables or recovery-code system are included in this gallery change. Account-owned agent keys and authenticated discussion attribution remain part of that follow-up, using the current backend and moderation controls.
 
 ## Production release
 
@@ -40,8 +40,10 @@ Five saved InkSoft homepage captures sit alongside the published apps: Liberty C
 
 Three full interactive reconstructions are also available in the Work collection: `/work/disney-villains`, `/work/beauty-and-the-beast`, and `/work/jingle-bell-jingle-bam`. They use saved project artwork and illustrative catalog labels/options. These pages are separate from the historical screenshots in the gallery.
 
-## EmbroideryCalc Pro
+## EmbroideryCalc
 
-The first gallery record features the Cloudflare calculator at `https://embroiderycalc-pro.pages.dev/`. This release also retains the separate, publicly accessible `embroiderycalc-preview` Site so visitors can use every published Sites app. The combined gallery has 17 entries: 11 Sites apps, EmbroideryCalc Pro, and five saved InkSoft references. The calculator appears among the six featured homepage cards. Its full and thumbnail WebP files use a fresh September 6 capture of the live homepage with a synthetic estimate: 10,000 stitches, 12 garments, 3 colors, 800 RPM, and one head. Operator/job identifiers were blank; no production order was searched or imported and no actual finish was logged. The local run timer was paused after the check. The screenshot is an interface example, not a validated production-time claim.
+The first record links to the standalone public calculator at https://embroiderycalc-public.pages.dev/. The full and thumbnail WebP files come from a September 6, 2026 production homepage capture, after deployment of calculator commit 249c73c1307a06f4c05ea7f562d2b65ad9a41a3f. The calculator at /calculator/ supports browser-local estimates, DST analysis, artwork palettes, Madeira thread matching, history, and calibration. No account, ERP connection, AI service, or runtime secret is required. Optional analytics are disabled.
 
-The live Cloudflare interface differs from `bmparent/emb-calc` main at `a3f088c3551cfaae0b859bdd8c8376860ca76700`: live shows the older Printavo/AI interface; main documents an Astro site with a browser-local standalone calculator at `/calculator/`. This gallery change does not migrate or deploy the calculator. Reconcile the deployment in the authenticated Cloudflare environment and refresh these images if the public interface changes. See `docs/codex-gallery-release-handoff.md`.
+The gallery retains all 17 records: 11 public Sites apps, this standalone calculator, and five saved InkSoft references. The separate embroiderycalc-preview Site remains accessible. The stable calculator slug and image filenames are retained.
+
+The older embroiderycalc-pro Cloudflare project retains its June 10 Printavo/AI deployment c27e2636-e7b8-40c3-a99f-c405a5d92a0d and existing runtime settings. Its automatic production builds are paused so the current standalone repository cannot replace the operational interface. The public project is a separate static direct upload. No private order search or paid AI call was used for release verification.

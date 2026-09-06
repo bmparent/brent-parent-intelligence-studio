@@ -1,5 +1,27 @@
 # Codex handoff: calculator and Eidos gallery release
 
+## September 6 reconciliation result
+
+The standalone calculator is now deployed separately at
+`https://embroiderycalc-public.pages.dev/` (tool route `/calculator/`), from
+merged calculator PR #4, commit `249c73c1307a06f4c05ea7f562d2b65ad9a41a3f`.
+Deployment: `e9d621ec-3245-41c0-b59d-74e65cc1de58`. All 38 unit tests,
+type checks, the 22-page build, and 21 production browser checks passed.
+The browser checks cover 1440, 390, and 320 pixels with synthetic input only.
+
+The existing `embroiderycalc-pro` project still serves deployment
+`c27e2636-e7b8-40c3-a99f-c405a5d92a0d`; its manual upload has no source commit
+metadata. Its Printavo/AI runtime configuration is preserved, and automatic
+production builds are paused to keep repository changes from replacing it.
+Its public client assets were archived with hashes. No private order lookup or
+paid AI call was made. The standalone project has no runtime credentials.
+
+The gallery now contains 17 entries, preserves all 11 public Sites apps, and
+features a genuine capture of the new calculator homepage. The older findings
+below explain the original deployment mismatch; their 15-entry count and old
+calculator link have been superseded. Portfolio publishing remains a direct
+upload; complete the checks and live verification below for each release.
+
 Complete the remaining Cloudflare deployment work for Eidos Works. The user has approved going live, adding the working embroidery calculator to the gallery, and fixing issues found during verification. Use the existing authenticated Cloudflare/GitHub environment; preserve unrelated work and existing services. Carry the work through verification and report the actual deployment result.
 
 ## Sources and completed work

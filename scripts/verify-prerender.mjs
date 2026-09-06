@@ -77,7 +77,7 @@ for (const file of await htmlFiles(root)) {
   // The gallery may link to this separately hosted calculator. Keep the
   // retired-host guard for every other reference and all canonical metadata.
   const referenceHtml = ['index.html', 'work/index.html'].includes(label)
-    ? html.replaceAll('href="https://embroiderycalc-pro.pages.dev/"', '')
+    ? html.replaceAll('href="https://embroiderycalc-public.pages.dev/"', '')
     : html;
   if (
     /\.pages\.dev|intelligence studio/i.test(referenceHtml) ||
