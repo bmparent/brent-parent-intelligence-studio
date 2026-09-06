@@ -1,5 +1,15 @@
 [
   {
+    "slug": "embroiderycalc-pro",
+    "title": "EmbroideryCalc Pro",
+    "category": "Tools",
+    "description": "Estimate embroidery production time from stitch counts, garments, machine speed, and heads, with a breakdown of the run. Preview shows a sample job.",
+    "image": "/images/site-gallery/embroiderycalc-pro.webp",
+    "thumbnail": "/images/site-gallery/embroiderycalc-pro-thumb.webp",
+    "date": "2026-09-06",
+    "url": "https://embroiderycalc-pro.pages.dev/"
+  },
+  {
     "slug": "portal-pocket-ar",
     "title": "Pocket Portal · AR Game",
     "category": "Games",
@@ -62,16 +72,6 @@
     "image": "/images/site-gallery/los-santos-anomaly-explorer.webp",
     "thumbnail": "/images/site-gallery/los-santos-anomaly-explorer-thumb.webp",
     "date": "2026-07-31"
-  },
-  {
-    "slug": "embroiderycalc-preview",
-    "title": "EmbroideryCalc Preview",
-    "category": "Tools",
-    "description": "An embroidery calculator preview for exploring stitch counts and production estimates.",
-    "image": "/images/site-gallery/embroiderycalc-preview.webp",
-    "thumbnail": "/images/site-gallery/embroiderycalc-preview-thumb.webp",
-    "date": "2026-07-20",
-    "url": "https://embroiderycalc-preview.bmparent.chatgpt.site"
   },
   {
     "slug": "disney-villains-inksoft-preview",
