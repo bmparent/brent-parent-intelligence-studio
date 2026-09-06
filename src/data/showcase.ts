@@ -35,6 +35,57 @@ export const showcase = [
     ],
   },
   {
+    slug: 'disney-villains',
+    title: 'Disney Villains',
+    category: 'Storefronts',
+    description:
+      'An enchanted mirror, a darker palette, and a cast-and-crew collection with character.',
+    image:
+      'https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1500/v1782237353/new_villains_hero_rwdigj.png',
+    alt: 'Disney Villains storefront artwork with an ornate mirror and violet forest light.',
+    status: 'Interactive design reconstruction',
+    href: '/work/disney-villains',
+    details: [
+      'Saved InkSoft artwork and theatrical art direction',
+      'Illustrated category paths and consistent product styling',
+      'Keyboard-friendly browsing and a temporary demo bag',
+    ],
+  },
+  {
+    slug: 'beauty-and-the-beast',
+    title: 'Beauty and the Beast',
+    category: 'Storefronts',
+    description:
+      'A gilded theatre entrance, anniversary artwork, and a collection that carries the story beyond the stage.',
+    image:
+      'https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1500/v1788284155/batb30-home-hero-desktop-v1.png',
+    alt: 'Beauty and the Beast theatre artwork with a rose beneath stage lights.',
+    status: 'Interactive design reconstruction',
+    href: '/work/beauty-and-the-beast',
+    details: [
+      'A theatre-led entrance using saved anniversary artwork',
+      'Gilded framing and an editorial collection layout',
+      'Responsive product inspection and example selections',
+    ],
+  },
+  {
+    slug: 'jingle-bell-jingle-bam',
+    title: 'Jingle Bell, Jingle BAM!',
+    category: 'Storefronts',
+    description:
+      'A festive theatre, falling snow, and snow-globe collection paths with front-and-back product inspection.',
+    image:
+      'https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1500/v1788535387/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/core/jbjb-hero-theatre-base-desktop-v1.webp',
+    alt: 'Jingle Bell, Jingle BAM holiday theatre artwork.',
+    status: 'Interactive design reconstruction',
+    href: '/work/jingle-bell-jingle-bam',
+    details: [
+      'Layered holiday scenes and animated snow',
+      'Snow-globe category navigation',
+      'Saved front-and-back product artwork',
+    ],
+  },
+  {
     slug: 'sentinel-lab',
     title: 'Eidos / Sentinel Lab',
     category: 'Experiments',
