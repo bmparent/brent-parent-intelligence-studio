@@ -1,0 +1,94 @@
+[
+  {
+    "slug": "portal-pocket-ar",
+    "title": "Pocket Portal · AR Game",
+    "category": "Games",
+    "description": "Catch drifting energy fragments around a marker-anchored portal, or jump into practice mode.",
+    "image": "/images/site-gallery/portal-pocket-ar.webp",
+    "thumbnail": "/images/site-gallery/portal-pocket-ar-thumb.webp",
+    "date": "2026-09-05"
+  },
+  {
+    "slug": "little-house-big-adventures",
+    "title": "Little House · Big Adventures",
+    "category": "Games",
+    "description": "The illustrated edition: an explorable dollhouse with room challenges and mini-games.",
+    "image": "/images/site-gallery/little-house-big-adventures.webp",
+    "thumbnail": "/images/site-gallery/little-house-big-adventures-thumb.webp",
+    "date": "2026-09-04"
+  },
+  {
+    "slug": "tidal-field",
+    "title": "Tidal",
+    "category": "Experiments",
+    "description": "An interactive field of particles shaped by motion, flow, and your cursor.",
+    "image": "/images/site-gallery/tidal-field.webp",
+    "thumbnail": "/images/site-gallery/tidal-field-thumb.webp",
+    "date": "2026-09-04"
+  },
+  {
+    "slug": "afterlight-observatory",
+    "title": "AFTERLIGHT",
+    "category": "Experiments",
+    "description": "An atmospheric observatory for exploring light, space, and interaction.",
+    "image": "/images/site-gallery/afterlight-observatory.webp",
+    "thumbnail": "/images/site-gallery/afterlight-observatory-thumb.webp",
+    "date": "2026-08-26"
+  },
+  {
+    "slug": "sayward",
+    "title": "Sayward",
+    "category": "Tools",
+    "description": "A browser-local tool for preparing a clear script for difficult conversations.",
+    "image": "/images/site-gallery/sayward.webp",
+    "thumbnail": "/images/site-gallery/sayward-thumb.webp",
+    "date": "2026-08-28",
+    "url": "https://sayward.bmparent.chatgpt.site"
+  },
+  {
+    "slug": "dgpromo-platform-review",
+    "title": "DG Promo Website Platform Review",
+    "category": "Tools",
+    "description": "A comparative website platform review for the DG Promo project.",
+    "image": "/images/site-gallery/dgpromo-platform-review.webp",
+    "thumbnail": "/images/site-gallery/dgpromo-platform-review-thumb.webp",
+    "date": "2026-08-04"
+  },
+  {
+    "slug": "los-santos-anomaly-explorer",
+    "title": "Los Santos Anomaly Explorer",
+    "category": "Games",
+    "description": "An interactive exploration of anomalies across a Los Santos-inspired map.",
+    "image": "/images/site-gallery/los-santos-anomaly-explorer.webp",
+    "thumbnail": "/images/site-gallery/los-santos-anomaly-explorer-thumb.webp",
+    "date": "2026-07-31"
+  },
+  {
+    "slug": "embroiderycalc-preview",
+    "title": "EmbroideryCalc Preview",
+    "category": "Tools",
+    "description": "An embroidery calculator preview for exploring stitch counts and production estimates.",
+    "image": "/images/site-gallery/embroiderycalc-preview.webp",
+    "thumbnail": "/images/site-gallery/embroiderycalc-preview-thumb.webp",
+    "date": "2026-07-20",
+    "url": "https://embroiderycalc-preview.bmparent.chatgpt.site"
+  },
+  {
+    "slug": "disney-villains-inksoft-preview",
+    "title": "Disney Villains InkSoft Preview",
+    "category": "Storefronts",
+    "description": "An early Disney Villains storefront design preview, exploring theatrical atmosphere within InkSoft.",
+    "image": "/images/site-gallery/disney-villains-inksoft-preview.webp",
+    "thumbnail": "/images/site-gallery/disney-villains-inksoft-preview-thumb.webp",
+    "date": "2026-07-13"
+  },
+  {
+    "slug": "eidos-works-proof-lab",
+    "title": "Eidos Works Proof Lab",
+    "category": "Experiments",
+    "description": "An early interactive showroom for exploring Eidos Works services and project examples.",
+    "image": "/images/site-gallery/eidos-works-proof-lab.webp",
+    "thumbnail": "/images/site-gallery/eidos-works-proof-lab-thumb.webp",
+    "date": "2026-07-11"
+  }
+]

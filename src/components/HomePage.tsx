@@ -1,3 +1,4 @@
+import { SiteGallery } from './SiteGallery';
 import { showcase, labUrl } from '../data/showcase';
 import { articles } from '../data/articles';
 import { ProjectTile } from './ShowcasePages';
@@ -169,6 +170,7 @@ export function HomePage() {
           </a>
         </div>
       </section>
+      <SiteGallery compact />
       <section className="ew-open-studio ew-shell">
         <div className="ew-section-heading">
           <div>

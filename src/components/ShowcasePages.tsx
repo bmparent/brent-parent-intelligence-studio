@@ -1,3 +1,4 @@
+import { SiteGallery } from './SiteGallery';
 import { useState } from "react";
 import StorefrontDemo, { StorefrontPreview } from "./StorefrontDemo";
 import { storefrontThemes, type StorefrontTheme } from "../data/storefrontDemo";
@@ -104,6 +105,7 @@ export function ShowcasePage() {
           </p>
         </div>
       </section>
+      <SiteGallery />
       <BuildCTA />
     </>
   );

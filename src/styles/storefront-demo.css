@@ -674,3 +674,8 @@
     display: none;
   }
 }
+
+/* Keep host typography legible inside the themed demo. */
+.sd-demo h2, .sd-demo h3, .sd-demo p { color: var(--sd-ink); }
+.sd-demo .sd-kicker, .sd-demo .sd-status { color: var(--sd-accent); }
+.sd-demo .sd-sample { color: #c6d2dc; }

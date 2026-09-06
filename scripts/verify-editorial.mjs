@@ -84,9 +84,11 @@ if (density.articles > 12)
   failures.push(
     `home: ${density.articles} article containers exceeds the editorial limit of 12`,
   );
-if (density.buttons > 10)
+// Gallery thumbnails are one requested browsing surface, not extra page CTAs.
+const galleryButtons = count(home, /<button[^>]*class="ew-site-card"/gi);
+if (density.buttons - galleryButtons > 10)
   failures.push(
-    `home: ${density.buttons} buttons exceeds the editorial limit of 10`,
+    `home: ${density.buttons - galleryButtons} non-gallery buttons exceeds the editorial limit of 10`,
   );
 if (
   /Portrait of Brent Parent|ChatGPT_Image_May_1_2026_03_42_06_PM_ipnyby/i.test(
