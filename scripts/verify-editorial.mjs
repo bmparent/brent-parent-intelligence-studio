@@ -98,7 +98,13 @@ if (
 // The approved redesign leads with the two cinematic storefronts and the current Lab.
 for (const evidence of [
   'ns-hero-dhs-desktop-v1.webp',
-  'hih-full-storefront-reference-v2.webp',
+  'hih-hero-boulevard-blue-hour-desktop-v1.webp',
+  'hih-vector-title-v3.png',
+  'hih-hero-cast-left-decorated-v2.png',
+  'hih-hero-cast-right-decorated-v2.png',
+  'dhs-nighttime-full-back-logo-v1.png',
+  'ns-model-j333-black-v1.webp',
+  'ns-model-l333-black-v1.webp',
   'sentinel-lab.webp',
 ]) {
   if (!home.includes(evidence))
