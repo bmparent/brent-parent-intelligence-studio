@@ -1,13 +1,13 @@
 [
   {
     "slug": "embroiderycalc-pro",
-    "title": "EmbroideryCalc Pro",
+    "title": "EmbroideryCalc",
     "category": "Tools",
-    "description": "Estimate embroidery production time from stitch counts, garments, machine speed, and heads, with a breakdown of the run. Preview shows a sample job.",
+    "description": "Estimate embroidery production time, inspect DST files, and match artwork colors to Madeira threads. Files, history, and calibration stay in your browser.",
     "image": "/images/site-gallery/embroiderycalc-pro.webp",
     "thumbnail": "/images/site-gallery/embroiderycalc-pro-thumb.webp",
     "date": "2026-09-06",
-    "url": "https://embroiderycalc-pro.pages.dev/"
+    "url": "https://embroiderycalc-public.pages.dev/"
   },
   {
     "slug": "small-hours",
