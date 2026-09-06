@@ -77,3 +77,9 @@ Checks: `npm run lint`, `npm run test:platform`, `npm run test:analytics`, `npm 
 ## Rollback
 
 Retain the current Cloudflare and Vercel production deployments before release. Roll back the site to that deployment if a live regression appears. Disable AI or purchasing independently through their flags if only that integration fails. Preserve the new platform database and Stripe event records when rolling back so customer entitlements and reviewed content are not destroyed. Database removal is not part of rollback.
+
+## LIVE purchasing activation - 2026-09-06T00:03:43.024Z
+
+Production purchasing is enabled in LIVE mode. The dedicated restricted key and separate webhook we_1UCTRjKC8pRG5Tr9KUpT4H8F serve https://eidos-works.com/api/shop/webhook with checkout.session.completed, checkout.session.async_payment_succeeded, charge.refunded and charge.dispute.created. Test/live keys, signing secrets and databases remain separate. The deployed browser opened the correct one-website license at $29.00 USD. Authenticated Stripe readback confirmed 2,900 cents, USD, card payment, and unpaid status; the durable order remained pending. The browser cancel link returned to the product. The verification session was then expired, and download returned 403 before and after expiration. No real-money payment was made. A synthetic ignored event signed with the live secret returned 200; unsigned and test-secret-signed requests returned 400 and created no entitlement or event record. This checks the production relay and signing configuration, not a provider-generated live payment event.
+
+Activation deployment: dpl_79c6nau9dEzs6bWhCPasUx2nQJME, source 4de48cf149e07d25195130b20e0b52a36533ee09. See ../artifacts/release-20260905/stripe-live-browser-receipt.json and backend-live-production-receipt.json. Earlier pending statements are historical checkpoints; the current release is complete. No application or research behavior changed in this final configuration step.
