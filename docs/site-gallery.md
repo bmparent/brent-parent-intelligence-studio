@@ -8,7 +8,7 @@ Add a genuine homepage screenshot as `public/images/site-gallery/<slug>.webp` an
 
 ## Image provenance
 
-The September 6, 2026 gallery covers all ten built Sites returned by the account inventory. Seven images use the Sites-provided screenshot. Proof Lab and Disney Villains were recaptured from their saved React source because the supplied screenshots showed raw code or incomplete artwork. Little House uses its illustrated dollhouse route; its WebGL edition could not initialize in the capture browser. The description labels that edition explicitly. The Villains design and Proof Lab are historical previews, not statements about current production pricing or capabilities.
+The September 6, 2026 gallery covers all ten built Sites returned by the account inventory. Eight images use a Sites-provided screenshot. Proof Lab and Disney Villains were recaptured from their saved React source because the supplied screenshots showed raw code or incomplete artwork. Little House uses the saved version 1 screenshot of its illustrated dollhouse; its current local preview could not start in the capture environment. The description labels that edition explicitly. The Villains design and Proof Lab are historical previews, not statements about current production pricing or capabilities.
 
 The Amazon Product Momentum draft had no saved version, live URL, or screenshot, so it is not included. No Sites sharing settings or source projects were changed. The gallery stores image files locally, not expiring signed screenshot URLs.
 
