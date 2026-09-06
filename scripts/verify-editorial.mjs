@@ -29,6 +29,9 @@ const requiredRoutes = [
   '/shop/cinematic-starter',
   '/work/nighttime-spectaculars',
   '/work/holidays-in-hollywood',
+  '/work/disney-villains',
+  '/work/beauty-and-the-beast',
+  '/work/jingle-bell-jingle-bam',
 ];
 
 function routeFile(route) {

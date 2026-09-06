@@ -92,12 +92,27 @@ function generateSitemap() {
   const staticPages = [
     {
       loc: absolute('/work/nighttime-spectaculars'),
-      lastmod: '2026-09-05',
+      lastmod: '2026-09-06',
       priority: '0.7',
     },
     {
       loc: absolute('/work/holidays-in-hollywood'),
-      lastmod: '2026-09-05',
+      lastmod: '2026-09-06',
+      priority: '0.7',
+    },
+    {
+      loc: absolute('/work/disney-villains'),
+      lastmod: '2026-09-06',
+      priority: '0.7',
+    },
+    {
+      loc: absolute('/work/beauty-and-the-beast'),
+      lastmod: '2026-09-06',
+      priority: '0.7',
+    },
+    {
+      loc: absolute('/work/jingle-bell-jingle-bam'),
+      lastmod: '2026-09-06',
       priority: '0.7',
     },
     { loc: absolute('/lab'), lastmod: '2026-09-05', priority: '0.7' },

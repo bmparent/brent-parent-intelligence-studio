@@ -108,5 +108,50 @@
     "thumbnail": "/images/site-gallery/eidos-works-proof-lab-thumb.webp",
     "date": "2026-07-11",
     "url": "https://eidos-works-proof-lab.bmparent.chatgpt.site"
+  },
+  {
+    "slug": "liberty-christian-prep",
+    "title": "Liberty Christian Prep",
+    "category": "Storefronts",
+    "description": "A saved InkSoft homepage with a green-and-gold school identity and clear apparel categories.",
+    "image": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1600/v1780932556/liberty_christian_snip_obghnd.png",
+    "thumbnail": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_640/v1780932556/liberty_christian_snip_obghnd.png",
+    "previewLabel": "InkSoft homepage · Saved design reference"
+  },
+  {
+    "slug": "liberty-early-learning",
+    "title": "Liberty Christian Early Learning",
+    "category": "Storefronts",
+    "description": "An editorial school storefront entrance with warm classroom imagery and calm navigation.",
+    "image": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1600/v1780932552/early_learning_snip_mlsxqm.png",
+    "thumbnail": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_640/v1780932552/early_learning_snip_mlsxqm.png",
+    "previewLabel": "InkSoft homepage · Saved design reference"
+  },
+  {
+    "slug": "mdca-uniforms",
+    "title": "MDCA Uniforms",
+    "category": "Storefronts",
+    "description": "A saved uniform-store entrance built around clear ordering and sizing guidance.",
+    "image": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1600/v1780932549/mdca_snip_qbsoup.png",
+    "thumbnail": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_640/v1780932549/mdca_snip_qbsoup.png",
+    "previewLabel": "InkSoft homepage · Saved design reference"
+  },
+  {
+    "slug": "disney-junior",
+    "title": "Disney Junior",
+    "category": "Storefronts",
+    "description": "A colorful cast-member storefront entrance pairing show imagery with clear collection paths.",
+    "image": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1600/v1780932554/disney_jr_snip_s6r08w.png",
+    "thumbnail": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_640/v1780932554/disney_jr_snip_s6r08w.png",
+    "previewLabel": "InkSoft homepage · Saved design reference"
+  },
+  {
+    "slug": "ymca-uniforms",
+    "title": "YMCA Employee Uniforms",
+    "category": "Storefronts",
+    "description": "A saved InkSoft homepage with bright team imagery and a recognizable uniform-store identity.",
+    "image": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1600/v1780932547/ymca_snip_jtuphb.png",
+    "thumbnail": "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_640/v1780932547/ymca_snip_jtuphb.png",
+    "previewLabel": "InkSoft homepage · Saved design reference"
   }
 ]

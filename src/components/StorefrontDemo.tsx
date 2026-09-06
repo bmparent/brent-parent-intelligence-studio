@@ -1,12 +1,26 @@
-import { useRef, useState, type CSSProperties } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type CSSProperties,
+} from "react";
 import { storefrontThemes, type StorefrontTheme } from "../data/storefrontDemo";
+import { StorefrontFireworks } from "./StorefrontFireworks";
 import "../styles/storefront-demo.css";
+
+const motionQuery = "(prefers-reduced-motion: reduce)";
+function subscribeMotion(callback: () => void) {
+  const media = window.matchMedia(motionQuery);
+  media.addEventListener("change", callback);
+  return () => media.removeEventListener("change", callback);
+}
 
 export function StorefrontPreview({ slug }: { slug: StorefrontTheme }) {
   const theme = storefrontThemes[slug];
   return (
     <div
-      className="sd-preview"
+      className={`sd-preview sd-${theme.style}`}
       aria-label={`${theme.title} composed storefront preview`}
     >
       <img
@@ -15,15 +29,28 @@ export function StorefrontPreview({ slug }: { slug: StorefrontTheme }) {
         alt=""
         loading="lazy"
       />
-      <img className="sd-preview-left" src={theme.left} alt="" loading="lazy" />
-      <img
-        className="sd-preview-right"
-        src={theme.right}
-        alt=""
-        loading="lazy"
-      />
+      {theme.left && (
+        <img
+          className="sd-preview-left"
+          src={theme.left}
+          alt=""
+          loading="lazy"
+        />
+      )}
+      {theme.right && (
+        <img
+          className="sd-preview-right"
+          src={theme.right}
+          alt=""
+          loading="lazy"
+        />
+      )}
       <div className="sd-preview-title">
-        <img src={theme.logo} alt={theme.title} loading="lazy" />
+        {theme.logo ? (
+          <img src={theme.logo} alt={theme.title} loading="lazy" />
+        ) : (
+          <strong>{theme.title}</strong>
+        )}
         <span>Explore the interactive storefront →</span>
       </div>
     </div>
@@ -31,6 +58,7 @@ export function StorefrontPreview({ slug }: { slug: StorefrontTheme }) {
 }
 
 type View = "Home" | "All products" | "Product" | "Bag";
+type BagItem = { index: number; size: string; quantity: number };
 export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
   const theme = storefrontThemes[slug];
   const [view, setView] = useState<View>("Home");
@@ -39,61 +67,133 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
   const [selected, setSelected] = useState(0);
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [detail, setDetail] = useState(false);
+  const [side, setSide] = useState<"front" | "back">("front");
+  const [zoom, setZoom] = useState(false);
   const [paused, setPaused] = useState(false);
   const [message, setMessage] = useState("");
-  const [bag, setBag] = useState<
-    { name: string; size: string; quantity: number }[]
-  >([]);
+  const [bag, setBag] = useState<BagItem[]>([]);
   const root = useRef<HTMLElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
+  const sizes = useRef<HTMLFieldSetElement>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const navigationFrame = useRef(0);
+  const reduced = useSyncExternalStore(
+    subscribeMotion,
+    () => window.matchMedia(motionQuery).matches,
+    () => false,
+  );
   const product = theme.products[selected];
+  const currentImage =
+    side === "back" && product.back ? product.back : product.image;
   const categories = ["All", ...new Set(theme.products.map((p) => p.category))];
   const filtered = theme.products
     .map((p, index) => ({ ...p, index }))
     .filter(
       (p) =>
         (category === "All" || p.category === category) &&
-        p.name.toLowerCase().includes(search.toLowerCase()),
+        `${p.name} ${p.category}`
+          .toLowerCase()
+          .includes(search.trim().toLowerCase()),
     );
+  const count = bag.reduce((sum, item) => sum + item.quantity, 0);
+
+  useEffect(() => {
+    const el = root.current;
+    if (!el) return;
+    let visible = false;
+    const sync = () => {
+      el.dataset.visible = String(visible && !document.hidden);
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    });
+    observer.observe(el);
+    document.addEventListener("visibilitychange", sync);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+      cancelAnimationFrame(navigationFrame.current);
+    };
+  }, []);
+  useEffect(() => {
+    if (zoom && !dialog.current?.open) dialog.current?.showModal();
+  }, [zoom]);
+
   function navigate(next: View) {
     setView(next);
     setMessage("");
-    requestAnimationFrame(() => {
+    cancelAnimationFrame(navigationFrame.current);
+    navigationFrame.current = requestAnimationFrame(() => {
       heading.current?.focus({ preventScroll: true });
       root.current?.scrollIntoView({ behavior: "instant", block: "start" });
     });
+  }
+  function collection(cat = "All") {
+    setCategory(cat);
+    setSearch("");
+    navigate("All products");
   }
   function openProduct(index: number) {
     setSelected(index);
     setSize("");
     setQuantity(1);
-    setDetail(false);
+    setSide("front");
+    setZoom(false);
     navigate("Product");
   }
-  const count = bag.reduce((sum, item) => sum + item.quantity, 0);
+  function addToBag() {
+    if (!size) {
+      setMessage("Choose an example size before adding to the demo bag.");
+      sizes.current?.focus({ preventScroll: true });
+      return;
+    }
+    setBag((items) => {
+      const existing = items.find(
+        (item) => item.index === selected && item.size === size,
+      );
+      return existing
+        ? items.map((item) =>
+            item === existing
+              ? { ...item, quantity: item.quantity + quantity }
+              : item,
+          )
+        : [...items, { index: selected, size, quantity }];
+    });
+    setMessage(
+      `${quantity} × ${product.name}, ${size}, added to the demo bag.`,
+    );
+  }
   return (
     <section
       ref={root}
-      className={`sd-demo ${slug === "holidays-in-hollywood" ? "sd-holiday" : ""} ${paused ? "sd-paused" : ""}`}
+      className={`sd-demo sd-${theme.style} ${paused || reduced ? "sd-paused" : ""}`}
+      style={{ "--sd-scene": `url("${theme.background}")` } as CSSProperties}
       aria-label={`${theme.title} interactive demo`}
     >
       <div className="sd-notice">
         <span>Interactive design demo · No orders or payments</span>
-        <button onClick={() => setPaused(!paused)} aria-pressed={paused}>
-          {paused ? "Resume motion" : "Pause motion"}
-        </button>
+        {reduced ? (
+          <span>Reduced motion on</span>
+        ) : (
+          <button onClick={() => setPaused(!paused)} aria-pressed={paused}>
+            {paused ? "Resume motion" : "Pause motion"}
+          </button>
+        )}
       </div>
       <nav className="sd-nav" aria-label="Demo storefront">
         <button className="sd-brand" onClick={() => navigate("Home")}>
           {theme.title}
+          <small>CAST & CREW COLLECTION</small>
         </button>
         <div>
           {(["Home", "All products", "Product", "Bag"] as const).map(
             (label) => (
               <button
                 key={label}
-                onClick={() => navigate(label)}
+                onClick={() =>
+                  label === "All products" ? collection() : navigate(label)
+                }
                 aria-current={view === label ? "page" : undefined}
               >
                 {label === "Bag" ? `Bag (${count})` : label}
@@ -113,27 +213,12 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
       </h2>
       {view === "Home" && (
         <>
-          <div
-            className="sd-hero"
-            onPointerMove={(event) => {
-              if (
-                paused ||
-                window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-                event.pointerType === "touch"
-              )
-                return;
-              const box = event.currentTarget.getBoundingClientRect();
-              event.currentTarget.style.setProperty(
-                "--glow-x",
-                `${((event.clientX - box.left) / box.width) * 100}%`,
-              );
-            }}
-          >
+          <div className="sd-hero">
             <img className="sd-backdrop" src={theme.background} alt="" />
             <div className="sd-atmosphere" aria-hidden="true">
               <i className="sd-beam" />
               <i className="sd-beam sd-beam-two" />
-              {Array.from({ length: 26 }, (_, i) => (
+              {Array.from({ length: 24 }, (_, i) => (
                 <i
                   key={i}
                   className="sd-star"
@@ -141,54 +226,70 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
                     {
                       "--x": `${(i * 37 + 9) % 100}%`,
                       "--y": `${(i * 19 + 7) % 72}%`,
-                      "--delay": `${-i * 0.37}s`,
+                      "--delay": `${-i * 0.73}s`,
                     } as CSSProperties
                   }
                 />
               ))}
-              {slug === "nighttime-spectaculars" && (
-                <>
-                  <i className="sd-firework" />
-                  <i className="sd-firework sd-firework-two" />
-                </>
-              )}
             </div>
-            <img
-              className="sd-cast sd-cast-left"
-              src={theme.left}
-              alt="Collection apparel, left model"
-            />
-            <img
-              className="sd-cast sd-cast-right"
-              src={theme.right}
-              alt="Collection apparel, right model"
-            />
+            {theme.style === "night" && <StorefrontFireworks paused={paused} />}
+            {theme.left && (
+              <img
+                className="sd-cast sd-cast-left"
+                src={theme.left}
+                alt="Collection apparel, left model"
+              />
+            )}
+            {theme.right && (
+              <img
+                className="sd-cast sd-cast-right"
+                src={theme.right}
+                alt={
+                  theme.style === "jingle"
+                    ? "Wayne and Lanny holiday artwork"
+                    : "Collection apparel, right model"
+                }
+              />
+            )}
             <div className="sd-hero-copy">
-              <img src={theme.logo} alt={theme.title} />
+              <p className="sd-kicker">{theme.eyebrow}</p>
+              {theme.logo ? (
+                <img src={theme.logo} alt={theme.title} />
+              ) : (
+                <h3>{theme.headline}</h3>
+              )}
               <p>{theme.intro}</p>
-              <button
-                className="sd-primary"
-                onClick={() => navigate("All products")}
-              >
+              <button className="sd-primary" onClick={() => collection()}>
                 Explore the collection ↗
               </button>
             </div>
             <div className="sd-wave" aria-hidden="true" />
           </div>
-          <div className="sd-collection">
-            <p className="sd-kicker">Made for the moment</p>
-            <h3>{theme.short}</h3>
+          <div className="sd-collection sd-home-collection">
+            <div className="sd-section-heading">
+              <div>
+                <p className="sd-kicker">Made for the moment</p>
+                <h3>{theme.short}</h3>
+              </div>
+              <p>{theme.story}</p>
+            </div>
             <div className="sd-categories">
               {categories.slice(1).map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => {
-                    setCategory(cat);
-                    setSearch("");
-                    navigate("All products");
-                  }}
-                >
-                  {cat} <span>↗</span>
+                <button key={cat} onClick={() => collection(cat)}>
+                  <span className="sd-category-art">
+                    <img
+                      src={
+                        theme.categoryImages?.[cat] ||
+                        theme.products.find((p) => p.category === cat)!.image
+                      }
+                      alt=""
+                      loading="lazy"
+                    />
+                  </span>
+                  <span className="sd-category-label">
+                    {cat}
+                    <span aria-hidden="true">↗</span>
+                  </span>
                 </button>
               ))}
             </div>
@@ -197,6 +298,13 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
       )}
       {view === "All products" && (
         <div className="sd-collection">
+          <div className="sd-section-heading">
+            <div>
+              <p className="sd-kicker">{theme.eyebrow}</p>
+              <h3>{theme.short}</h3>
+            </div>
+            <p>{theme.story}</p>
+          </div>
           <div className="sd-tools">
             <label>
               Find an item
@@ -218,10 +326,18 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
                 ))}
               </select>
             </label>
+            <button
+              onClick={() => {
+                setSearch("");
+                setCategory("All");
+              }}
+            >
+              Reset filters
+            </button>
           </div>
-          <p role="status">
+          <p className="sd-results" role="status">
             {filtered.length} {filtered.length === 1 ? "item" : "items"} ·
-            Sample collection
+            Illustrative collection
           </p>
           <div className="sd-grid">
             {filtered.map((p) => (
@@ -230,18 +346,22 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
                 className="sd-card"
                 onClick={() => openProduct(p.index)}
               >
-                <div>
+                <div className="sd-item-art">
                   <img
                     src={p.image}
                     alt={`${p.name} collection mockup`}
                     loading="lazy"
                   />
+                  {p.back && (
+                    <span className="sd-image-note">Front + back views</span>
+                  )}
                 </div>
                 <span>{p.category}</span>
                 <h3>
-                  {p.name} <span>↗</span>
+                  {p.name}
+                  <span aria-hidden="true">↗</span>
                 </h3>
-                <p>Explore options</p>
+                <p>Take a closer look</p>
               </button>
             ))}
           </div>
@@ -261,110 +381,136 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
         </div>
       )}
       {view === "Product" && (
-        <div className="sd-product">
-          <div className={`sd-product-image ${detail ? "sd-detail" : ""}`}>
-            <img
-              src={product.image}
-              alt={`${product.name} ${detail ? "detail" : "full"} mockup`}
-            />
-            <button onClick={() => setDetail(!detail)} aria-pressed={detail}>
-              {detail ? "Show full view" : "Inspect detail"}
-            </button>
-          </div>
-          <div className="sd-options">
-            <p className="sd-kicker">
-              {theme.title} / {product.category}
-            </p>
-            <h3>{product.name}</h3>
-            <p>
-              A closer look at the collection. Choose an example size and
-              quantity to try the ordering interaction.
-            </p>
-            <p className="sd-sample">
-              Illustrative options · Not a live product listing
-            </p>
-            <fieldset>
-              <legend>Size</legend>
-              {["S", "M", "L", "XL", "2XL"].map((s) => (
-                <button
-                  key={s}
-                  aria-pressed={size === s}
-                  onClick={() => {
-                    setSize(s);
-                    setMessage("");
-                  }}
-                >
-                  {s}
+        <div className="sd-product-wrap">
+          <button className="sd-back" onClick={() => navigate("All products")}>
+            ← Back to collection
+          </button>
+          <div className="sd-product">
+            <div className="sd-product-gallery">
+              <div className="sd-product-image">
+                <span className="sd-stage-name" aria-hidden="true">
+                  {theme.title}
+                </span>
+                <img
+                  src={currentImage}
+                  alt={`${product.name}${product.back ? `, ${side}` : ""} mockup`}
+                />
+                <button onClick={() => setZoom(true)} aria-haspopup="dialog">
+                  Inspect detail ＋
                 </button>
-              ))}
-            </fieldset>
-            <label>
-              Quantity
-              <select
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-              >
-                {[1, 2, 3, 4, 5].map((n) => (
-                  <option key={n}>{n}</option>
-                ))}
-              </select>
-            </label>
-            <button
-              className="sd-primary"
-              onClick={() => {
-                if (!size) {
-                  setMessage("Choose a size before adding to the demo bag.");
-                  return;
-                }
-                setBag((items) => {
-                  const existing = items.find(
-                    (item) => item.name === product.name && item.size === size,
-                  );
-                  return existing
-                    ? items.map((item) =>
-                        item === existing
-                          ? { ...item, quantity: item.quantity + quantity }
-                          : item,
-                      )
-                    : [...items, { name: product.name, size, quantity }];
-                });
-                setMessage(
-                  `${quantity} × ${product.name}, size ${size}, added to the demo bag.`,
-                );
-              }}
-            >
-              Add to demo bag
-            </button>
-            <button className="sd-secondary" onClick={() => navigate("Bag")}>
-              View demo bag ({count})
-            </button>
-            <details>
-              <summary>About this preview</summary>
-              <p>
-                Saved project artwork is used to demonstrate browsing,
-                filtering, product inspection, and option selection. Sizes are
-                examples. This demo does not connect to inventory, customer
-                accounts, or checkout.
+              </div>
+              {product.back && (
+                <div
+                  className="sd-image-switch"
+                  role="group"
+                  aria-label="Product image view"
+                >
+                  {(["front", "back"] as const).map((value) => (
+                    <button
+                      key={value}
+                      aria-pressed={side === value}
+                      onClick={() => setSide(value)}
+                    >
+                      <img
+                        src={value === "back" ? product.back : product.image}
+                        alt=""
+                      />
+                      <span>{value === "front" ? "Front" : "Back"}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+              <p className="sd-caption">
+                Saved collection artwork ·{" "}
+                {product.back
+                  ? "Select a view to inspect the decoration."
+                  : "Illustrative styling mockup."}
               </p>
-            </details>
+            </div>
+            <div className="sd-options">
+              <p className="sd-kicker">
+                {theme.title} / {product.category}
+              </p>
+              <h3>{product.name}</h3>
+              <p>{product.description}</p>
+              <p className="sd-sample">
+                Design preview · Example options, no live inventory
+              </p>
+              <fieldset ref={sizes} tabIndex={-1}>
+                <legend>Example size{size && <span> / {size}</span>}</legend>
+                {product.sizes.map((s) => (
+                  <button
+                    key={s}
+                    aria-pressed={size === s}
+                    onClick={() => {
+                      setSize(s);
+                      setMessage("");
+                    }}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </fieldset>
+              <label>
+                Quantity
+                <select
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                >
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <option key={n}>{n}</option>
+                  ))}
+                </select>
+              </label>
+              <button className="sd-primary" onClick={addToBag}>
+                Add to demo bag <span aria-hidden="true">＋</span>
+              </button>
+              <p className="sd-status" role="status">
+                {message}
+              </p>
+              <button className="sd-secondary" onClick={() => navigate("Bag")}>
+                View demo bag ({count}) →
+              </button>
+              <details>
+                <summary>The collection story</summary>
+                <p>{theme.story}</p>
+              </details>
+              <details>
+                <summary>About this preview</summary>
+                <p>
+                  Saved project artwork demonstrates browsing, product
+                  inspection, and selection. Names and sizes are illustrative.
+                  Selections stay here and clear on reload.
+                </p>
+              </details>
+            </div>
           </div>
         </div>
       )}
       {view === "Bag" && (
-        <div className="sd-collection">
+        <div className="sd-collection sd-bag">
+          <p className="sd-kicker">{theme.title}</p>
+          <h3>A little of the show, selected.</h3>
           <p>Your selections stay in this preview and clear when you reload.</p>
           {bag.length ? (
             <>
               {bag.map((item, index) => (
-                <div className="sd-bag-row" key={`${item.name}-${item.size}`}>
+                <div className="sd-bag-row" key={`${item.index}-${item.size}`}>
+                  <button
+                    className="sd-bag-art"
+                    onClick={() => openProduct(item.index)}
+                    aria-label={`Inspect ${theme.products[item.index].name}`}
+                  >
+                    <img src={theme.products[item.index].image} alt="" />
+                  </button>
                   <div>
-                    <h3>{item.name}</h3>
+                    <h3>{theme.products[item.index].name}</h3>
                     <p>
-                      Size {item.size} · Quantity {item.quantity}
+                      {item.size} · Quantity {item.quantity}
                     </p>
                   </div>
                   <button
-                    aria-label={`Remove ${item.name} size ${item.size}`}
+                    aria-label={`Remove ${theme.products[item.index].name} ${item.size}`}
                     onClick={() =>
                       setBag((items) => items.filter((_, i) => i !== index))
                     }
@@ -378,22 +524,51 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
               </p>
             </>
           ) : (
-            <h3>Your demo bag is empty.</h3>
+            <div className="sd-empty">
+              <h3>Your demo bag is empty.</h3>
+              <p>Find a look you like and try the options.</p>
+            </div>
           )}
-          <button
-            className="sd-primary"
-            onClick={() => navigate("All products")}
-          >
-            Continue exploring
+          <button className="sd-primary" onClick={() => collection()}>
+            Continue exploring ↗
           </button>
         </div>
       )}
-      <p className="sd-status" role="status">
-        {message}
-      </p>
+      <dialog
+        ref={dialog}
+        className="sd-zoom"
+        aria-label={`${product.name} artwork detail`}
+        onClose={() => setZoom(false)}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) dialog.current?.close();
+        }}
+      >
+        {zoom && (
+          <>
+            <div className="sd-zoom-toolbar">
+              <span>{product.name} · Artwork detail</span>
+              <button
+                onClick={() => dialog.current?.close()}
+                aria-label="Close artwork detail"
+              >
+                Close ×
+              </button>
+            </div>
+            <div className="sd-zoom-scroll">
+              <img
+                src={currentImage}
+                alt={`${product.name} enlarged ${side} artwork`}
+              />
+            </div>
+          </>
+        )}
+      </dialog>
       <footer className="sd-footer">
-        Portfolio reconstruction by Eidos Works · Original storefront work
-        within Data Graphics’ client-services workflow.
+        <span>{theme.title}</span>
+        <p>
+          Portfolio reconstruction by Eidos Works · Original storefront work
+          within Data Graphics’ client-services workflow.
+        </p>
       </footer>
     </section>
   );

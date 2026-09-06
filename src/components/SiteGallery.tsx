@@ -5,6 +5,14 @@ import '../styles/site-gallery.css';
 const categories = ['All', 'Games', 'Tools', 'Experiments', 'Storefronts'];
 type Site = (typeof sites)[number];
 
+function Thumbnail({ site }: { site: Site }) {
+  return <>
+    <span className="ew-site-browser" aria-hidden="true"><i /><i /><i /></span>
+    <img className={site.previewLabel ? 'ew-site-reference-image' : undefined} src={site.thumbnail} alt={`${site.title} homepage preview`} width="640" height="480" loading="lazy" />
+    <span className="ew-site-view" aria-hidden="true">{site.url ? 'Open app ↗' : 'View preview ↗'}</span>
+  </>;
+}
+
 export function SiteGallery({ compact = false }: { compact?: boolean }) {
   const [category, setCategory] = useState('All');
   const [query, setQuery] = useState('');
@@ -50,15 +58,12 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
       <div className="ew-site-grid">
         {visible.map((site) => (
           <article className="ew-site-card" key={site.slug}>
-            <a className="ew-site-window" href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${site.title} (new tab)`}>
-              <span className="ew-site-browser" aria-hidden="true"><i /><i /><i /></span>
-              <img src={site.thumbnail} alt={`${site.title} homepage preview`} width="640" height="480" loading="lazy" />
-              <span className="ew-site-view" aria-hidden="true">Open app ↗</span>
-            </a>
+            {site.url ? <a className="ew-site-window" href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${site.title} (new tab)`}><Thumbnail site={site} /></a>
+              : <button className="ew-site-window ew-site-reference" type="button" aria-label={`View image: ${site.title}`} aria-haspopup="dialog" onClick={() => setSelected(site)}><Thumbnail site={site} /></button>}
             <span className="ew-site-category">{site.category}</span>
             <h3 className="ew-site-title">{site.title}</h3>
             <div className="ew-site-actions">
-              <a href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`Open app: ${site.title} (new tab)`}>Open app ↗</a>
+              {site.url && <a href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`Open app: ${site.title} (new tab)`}>Open app ↗</a>}
               <button className="ew-site-preview" type="button" aria-label={`Preview ${site.title}`} aria-haspopup="dialog" onClick={() => setSelected(site)}>Preview</button>
             </div>
           </article>
@@ -70,7 +75,7 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
           <div className="ew-site-dialog-heading"><p className="ew-eyebrow">{selected.category} / Site preview</p><button type="button" aria-label="Close site preview" onClick={() => dialog.current?.close()}>Close ×</button></div>
           <img className="ew-site-full-image" src={selected.image} alt={`${selected.title} homepage`} width="1440" height="1100" />
           <div className="ew-site-dialog-copy"><h3 id="site-preview-title">{selected.title}</h3><p>{selected.description}</p>
-            <a className="ew-text-link" href={selected.url} target="_blank" rel="noopener noreferrer">Open app ↗</a>
+            {selected.url ? <a className="ew-text-link" href={selected.url} target="_blank" rel="noopener noreferrer">Open app ↗</a> : <span className="ew-site-private">{selected.previewLabel || 'Saved design reference'}</span>}
           </div>
         </div>}
       </dialog>
