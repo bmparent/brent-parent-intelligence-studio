@@ -74,8 +74,13 @@ for (const file of await htmlFiles(root)) {
     'services/index.html',
     'services/storefront-access-systems/index.html',
   ]);
+  // The gallery may link to this separately hosted calculator. Keep the
+  // retired-host guard for every other reference and all canonical metadata.
+  const referenceHtml = ['index.html', 'work/index.html'].includes(label)
+    ? html.replaceAll('href="https://embroiderycalc-pro.pages.dev/"', '')
+    : html;
   if (
-    /\.pages\.dev|intelligence studio/i.test(html) ||
+    /\.pages\.dev|intelligence studio/i.test(referenceHtml) ||
     (/inksoft/i.test(html) && !approvedPlatformPages.has(label))
   ) {
     failures.push(
