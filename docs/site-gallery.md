@@ -29,3 +29,9 @@ node node_modules/wrangler/bin/wrangler.js pages deploy dist --project-name eido
 ```
 
 Preserve the existing platform bindings, runtime variables, backend relay, and payment configuration. Verify `/`, `/work#site-gallery`, `/work/nighttime-spectaculars`, and `/work/holidays-in-hollywood` after deployment. Exercise gallery filtering and preview dismissal, and demo collection/product/bag navigation. The storefront bags are temporary examples and do not submit orders.
+
+## Additional InkSoft references
+
+Five saved InkSoft homepage captures extend the gallery to 15 entries: Liberty Christian Prep, Liberty Christian Early Learning, MDCA Uniforms, Disney Junior, and YMCA Employee Uniforms. These are saved design references, not live store links. Their Cloudinary URLs are versioned public assets in the existing project account; thumbnails request a 640px rendition, larger previews request 1600px. `previewLabel` supplies the appropriate reference label. `date` is optional when the original project date has not been established.
+
+Three full interactive reconstructions are also available in the Work collection: `/work/disney-villains`, `/work/beauty-and-the-beast`, and `/work/jingle-bell-jingle-bam`. They use saved project artwork and illustrative catalog labels/options. These pages are separate from the historical screenshots in the gallery.

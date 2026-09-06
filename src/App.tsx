@@ -36,6 +36,7 @@ import { StarterPage, PurchaseSuccess } from './components/ShopPages';
 import { PolicyPage } from './components/PolicyPages';
 import type { ServiceSlug } from './data/editorial';
 import { normalizePath } from './data/pages';
+import { storefrontThemes } from './data/storefrontDemo';
 
 type AppProps = {
   requestPath?: string;
@@ -96,11 +97,10 @@ function routeFor(path: string) {
   if (path === '/work') return <ShowcasePage />;
   if (path === '/lab') return <LabPage />;
   if (
-    ['/work/nighttime-spectaculars', '/work/holidays-in-hollywood'].includes(
-      path,
-    )
+    path.startsWith('/work/') &&
+    Object.hasOwn(storefrontThemes, path.slice('/work/'.length))
   )
-    return <StorefrontShowcase slug={path.split('/').pop()!} />;
+    return <StorefrontShowcase slug={path.slice('/work/'.length)} />;
   if (path === '/work/pernr-access-gate') return <PernrGateCaseStudy />;
   if (path === '/work/production-dashboard')
     return <ProductionDashboardCaseStudy />;

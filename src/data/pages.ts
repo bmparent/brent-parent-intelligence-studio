@@ -15,13 +15,31 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/work/nighttime-spectaculars': {
     title: 'Nighttime Spectaculars Storefront | Eidos Works',
     description:
-      'A cinematic Hollywood Studios collection entrance, built within InkSoft. Static project presentation and implementation notes.',
+      'A cinematic Hollywood Studios collection entrance, built within InkSoft. Interactive fireworks, collection browsing, and product design preview.',
     type: 'website',
   },
   '/work/holidays-in-hollywood': {
     title: 'Holidays in Hollywood Storefront | Eidos Works',
     description:
       'A theatrical cast-and-crew storefront design with custom artwork, collection hierarchy, and responsive development.',
+    type: 'website',
+  },
+  '/work/disney-villains': {
+    title: 'Disney Villains Storefront | Eidos Works',
+    description:
+      'An enchanted mirror, a darker palette, and a cast-and-crew collection with character.',
+    type: 'website',
+  },
+  '/work/beauty-and-the-beast': {
+    title: 'Beauty and the Beast Storefront | Eidos Works',
+    description:
+      'A gilded theatre entrance, anniversary artwork, and a collection that carries the story beyond the stage.',
+    type: 'website',
+  },
+  '/work/jingle-bell-jingle-bam': {
+    title: 'Jingle Bell, Jingle BAM! Storefront | Eidos Works',
+    description:
+      'A festive theatre, falling snow, and snow-globe collection paths with front-and-back product inspection.',
     type: 'website',
   },
   '/lab': {
@@ -282,6 +300,9 @@ export function prerenderPagePaths() {
   return [
     '/work/nighttime-spectaculars',
     '/work/holidays-in-hollywood',
+    '/work/disney-villains',
+    '/work/beauty-and-the-beast',
+    '/work/jingle-bell-jingle-bam',
     '/lab',
     '/community',
     '/community/agents',

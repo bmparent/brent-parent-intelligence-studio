@@ -1,4 +1,4 @@
-import { SiteGallery } from './SiteGallery';
+import { SiteGallery } from "./SiteGallery";
 import { useState } from "react";
 import StorefrontDemo, { StorefrontPreview } from "./StorefrontDemo";
 import { storefrontThemes, type StorefrontTheme } from "../data/storefrontDemo";
@@ -128,7 +128,8 @@ export function StorefrontShowcase({ slug }: { slug: string }) {
         <p>
           Explore the animated entrance, browse the collection, and try a
           product’s options. This self-contained reconstruction uses saved
-          project artwork; the original employee store stays private.
+          project artwork; the original stores stay private. Example product
+          names and options illustrate the design; they are not a live catalog.
         </p>
       </div>
       <StorefrontDemo slug={slug as StorefrontTheme} />
@@ -153,9 +154,9 @@ export function StorefrontShowcase({ slug }: { slug: string }) {
           <p>
             The portfolio version rebuilds the interface in React: collection
             filters, search, product detail inspection, size selection,
-            quantity, and a temporary demo bag. Animated light, layered apparel,
-            and a glass header carry the design across each view. All demo
-            actions stay here, with no checkout or account required.
+            quantity, and a temporary demo bag. Each collection carries its own
+            palette, typography, imagery, and atmosphere across the journey. All
+            demo actions stay here, with no checkout or account required.
           </p>
           <h3>Built for different screens</h3>
           <p>
