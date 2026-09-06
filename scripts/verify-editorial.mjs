@@ -85,7 +85,7 @@ if (density.articles > 12)
     `home: ${density.articles} article containers exceeds the editorial limit of 12`,
   );
 // Gallery thumbnails are one requested browsing surface, not extra page CTAs.
-const galleryButtons = count(home, /<button[^>]*class="ew-site-card"/gi);
+const galleryButtons = count(home, /<button[^>]*class="ew-site-preview"/gi);
 if (density.buttons - galleryButtons > 10)
   failures.push(
     `home: ${density.buttons - galleryButtons} non-gallery buttons exceeds the editorial limit of 10`,

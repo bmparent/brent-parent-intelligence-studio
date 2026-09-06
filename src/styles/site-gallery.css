@@ -19,6 +19,11 @@
 .ew-site-category { display: block; margin-top: 16px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #647b71; }
 .ew-site-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 7px; font-size: 17px; font-weight: 500; line-height: 1.4; }
 .ew-site-title > span { font-size: 15px; color: #607b70; }
+.ew-site-title { margin-bottom: 8px; }
+.ew-site-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; }
+.ew-site-actions a,.ew-site-actions button { display: inline-flex; align-items: center; min-height: 44px; color: #23483f; font: inherit; font-size: 14px; }
+.ew-site-actions a { font-weight: 600; }
+.ew-site-actions button { padding: 0; border: 0; background: transparent; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
 .ew-site-gallery button:focus-visible,.ew-site-gallery input:focus-visible,.ew-site-gallery a:focus-visible { outline: 3px solid #529884; outline-offset: 5px; }
 .ew-gallery-empty { padding: 50px 20px; text-align: center; border: 1px dashed #b9c7bf; border-radius: 12px; }
 .ew-site-dialog { width: min(1020px,calc(100vw - 40px)); max-width: none; max-height: calc(100dvh - 40px); margin: auto; padding: 0; overflow: auto; border: 1px solid #d9e0d8; border-radius: 16px; background: #faf9f2; color: #193e34; box-shadow: 0 30px 100px #0005; }

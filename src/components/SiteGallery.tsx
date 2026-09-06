@@ -49,15 +49,19 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
       {!compact && <p className="ew-gallery-count" role="status">{visible.length} {visible.length === 1 ? 'site' : 'sites'}</p>}
       <div className="ew-site-grid">
         {visible.map((site) => (
-          <button className="ew-site-card" key={site.slug} type="button" aria-label={`Preview ${site.title}`} aria-haspopup="dialog" onClick={() => setSelected(site)}>
-            <span className="ew-site-window">
+          <article className="ew-site-card" key={site.slug}>
+            <a className="ew-site-window" href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${site.title} (new tab)`}>
               <span className="ew-site-browser" aria-hidden="true"><i /><i /><i /></span>
               <img src={site.thumbnail} alt={`${site.title} homepage preview`} width="640" height="480" loading="lazy" />
-              <span className="ew-site-view" aria-hidden="true">View preview ↗</span>
-            </span>
+              <span className="ew-site-view" aria-hidden="true">Open app ↗</span>
+            </a>
             <span className="ew-site-category">{site.category}</span>
-            <span className="ew-site-title">{site.title}<span aria-hidden="true">↗</span></span>
-          </button>
+            <h3 className="ew-site-title">{site.title}</h3>
+            <div className="ew-site-actions">
+              <a href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`Open app: ${site.title} (new tab)`}>Open app ↗</a>
+              <button className="ew-site-preview" type="button" aria-label={`Preview ${site.title}`} aria-haspopup="dialog" onClick={() => setSelected(site)}>Preview</button>
+            </div>
+          </article>
         ))}
       </div>
       {visible.length === 0 && <div className="ew-gallery-empty"><p>No sites match your search.</p><button type="button" onClick={reset}>Show all sites</button></div>}
@@ -66,7 +70,7 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
           <div className="ew-site-dialog-heading"><p className="ew-eyebrow">{selected.category} / Site preview</p><button type="button" aria-label="Close site preview" onClick={() => dialog.current?.close()}>Close ×</button></div>
           <img className="ew-site-full-image" src={selected.image} alt={`${selected.title} homepage`} width="1440" height="1100" />
           <div className="ew-site-dialog-copy"><h3 id="site-preview-title">{selected.title}</h3><p>{selected.description}</p>
-            {selected.url ? <a className="ew-text-link" href={selected.url} target="_blank" rel="noopener noreferrer">Visit site ↗</a> : <span className="ew-site-private">Private project · Design preview</span>}
+            <a className="ew-text-link" href={selected.url} target="_blank" rel="noopener noreferrer">Open app ↗</a>
           </div>
         </div>}
       </dialog>

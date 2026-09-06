@@ -1,12 +1,23 @@
 [
   {
+    "slug": "small-hours",
+    "title": "Small Hours",
+    "category": "Tools",
+    "description": "A visual day planner with time fitting and a quiet focus timer. Your plan stays in this browser.",
+    "image": "/images/site-gallery/small-hours.png",
+    "thumbnail": "/images/site-gallery/small-hours-thumb.png",
+    "date": "2026-09-06",
+    "url": "https://small-hours.bmparent.chatgpt.site"
+  },
+  {
     "slug": "portal-pocket-ar",
     "title": "Pocket Portal · AR Game",
     "category": "Games",
     "description": "Catch drifting energy fragments around a marker-anchored portal, or jump into practice mode.",
     "image": "/images/site-gallery/portal-pocket-ar.webp",
     "thumbnail": "/images/site-gallery/portal-pocket-ar-thumb.webp",
-    "date": "2026-09-05"
+    "date": "2026-09-05",
+    "url": "https://portal-pocket-ar.bmparent.chatgpt.site"
   },
   {
     "slug": "little-house-big-adventures",
@@ -15,7 +26,8 @@
     "description": "The illustrated edition: an explorable dollhouse with room challenges and mini-games.",
     "image": "/images/site-gallery/little-house-big-adventures.webp",
     "thumbnail": "/images/site-gallery/little-house-big-adventures-thumb.webp",
-    "date": "2026-09-04"
+    "date": "2026-09-04",
+    "url": "https://little-house-big-adventures.bmparent.chatgpt.site"
   },
   {
     "slug": "tidal-field",
@@ -24,7 +36,8 @@
     "description": "An interactive field of particles shaped by motion, flow, and your cursor.",
     "image": "/images/site-gallery/tidal-field.webp",
     "thumbnail": "/images/site-gallery/tidal-field-thumb.webp",
-    "date": "2026-09-04"
+    "date": "2026-09-04",
+    "url": "https://tidal-field.bmparent.chatgpt.site"
   },
   {
     "slug": "afterlight-observatory",
@@ -33,7 +46,8 @@
     "description": "An interactive observatory for imagined moments, shaped by gravity, light, and atmosphere.",
     "image": "/images/site-gallery/afterlight-observatory.webp",
     "thumbnail": "/images/site-gallery/afterlight-observatory-thumb.webp",
-    "date": "2026-08-26"
+    "date": "2026-08-26",
+    "url": "https://afterlight-observatory.bmparent.chatgpt.site"
   },
   {
     "slug": "sayward",
@@ -52,7 +66,8 @@
     "description": "A comparative website platform review for the DG Promo project.",
     "image": "/images/site-gallery/dgpromo-platform-review.webp",
     "thumbnail": "/images/site-gallery/dgpromo-platform-review-thumb.webp",
-    "date": "2026-08-04"
+    "date": "2026-08-04",
+    "url": "https://dgpromo-platform-review.bmparent.chatgpt.site"
   },
   {
     "slug": "los-santos-anomaly-explorer",
@@ -61,7 +76,8 @@
     "description": "An interactive exploration of anomalies across a Los Santos-inspired map.",
     "image": "/images/site-gallery/los-santos-anomaly-explorer.webp",
     "thumbnail": "/images/site-gallery/los-santos-anomaly-explorer-thumb.webp",
-    "date": "2026-07-31"
+    "date": "2026-07-31",
+    "url": "https://los-santos-anomaly-explorer.bmparent.chatgpt.site"
   },
   {
     "slug": "embroiderycalc-preview",
@@ -80,7 +96,8 @@
     "description": "An early Disney Villains storefront design preview, exploring theatrical atmosphere within InkSoft.",
     "image": "/images/site-gallery/disney-villains-inksoft-preview.webp",
     "thumbnail": "/images/site-gallery/disney-villains-inksoft-preview-thumb.webp",
-    "date": "2026-07-13"
+    "date": "2026-07-13",
+    "url": "https://disney-villains-inksoft-preview.bmparent.chatgpt.site"
   },
   {
     "slug": "eidos-works-proof-lab",
@@ -89,6 +106,7 @@
     "description": "An early interactive showroom for exploring Eidos Works services and project examples.",
     "image": "/images/site-gallery/eidos-works-proof-lab.webp",
     "thumbnail": "/images/site-gallery/eidos-works-proof-lab-thumb.webp",
-    "date": "2026-07-11"
+    "date": "2026-07-11",
+    "url": "https://eidos-works-proof-lab.bmparent.chatgpt.site"
   }
 ]
