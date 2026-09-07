@@ -984,5 +984,127 @@
       "href": "/#contact"
     },
     "ogImage": "/insights-og/storefront-proof-loop-ux-assets-operations.svg"
+  },
+  {
+    "title": "What Bing AI Citations Can Tell You About Business Value",
+    "slug": "bing-ai-citations-measure-business-value",
+    "description": "Use Bing AI citation reports to choose better page improvements while keeping visibility, website visits, qualified inquiries, and revenue separate.",
+    "dek": "AI citations can show which pages deserve a closer look. Deciding what to fund still requires evidence about the customer actions that follow.",
+    "category": "Agentic SEO",
+    "publishedAt": "2026-09-07T08:00:00-04:00",
+    "updatedAt": "2026-09-07T08:00:00-04:00",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 5,
+    "tags": [
+      "Bing Webmaster Tools",
+      "AI measurement",
+      "Citation reporting",
+      "Marketing attribution"
+    ],
+    "canonicalPath": "/insights/bing-ai-citations-measure-business-value",
+    "excerpt": "Before expanding an AI search budget, separate being cited from being visited, contacted, and paid. Each signal answers a different business question.",
+    "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
+    "slot": "morning",
+    "format": "evergreen",
+    "searchIntent": "How should a small business use Bing AI citation reporting to decide which website improvements to fund?",
+    "featured": false,
+    "draft": false,
+    "thesis": "Use AI citation reports to select page improvements, and use separately verified customer outcomes to evaluate business value.",
+    "sources": [
+      {
+        "title": "Introducing AI Performance in Bing Webmaster Tools Public Preview",
+        "url": "https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview",
+        "publisher": "Bing Webmaster Blog",
+        "publishedDate": "2026-02-10",
+        "accessedDate": "2026-09-07",
+        "type": "primary"
+      },
+      {
+        "title": "AI features and your website",
+        "url": "https://developers.google.com/search/docs/appearance/ai-features",
+        "publisher": "Google Search Central",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-09-07",
+        "type": "official-docs"
+      },
+      {
+        "title": "Overview of OpenAI Crawlers",
+        "url": "https://developers.openai.com/api/docs/bots",
+        "publisher": "OpenAI",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-09-07",
+        "type": "official-docs"
+      }
+    ],
+    "takeaways": [
+      "Use citation activity to prioritize a page review, then check whether the page answers a buying question.",
+      "Keep citations, referrals, qualified inquiries, and paid conversions in separate reporting fields.",
+      "Record unavailable data as unknown and exclude identifiable team or QA traffic.",
+      "Improve one useful page, record the change, and compare equivalent periods without claiming causation."
+    ],
+    "relatedSlugs": [
+      "practical-source-map-ai-ready-service-pages",
+      "agentic-seo-small-business-websites"
+    ],
+    "body": [
+      {
+        "heading": "The decision is which page to improve next",
+        "paragraphs": [
+          "Use AI citation reports to select page improvements, and use separately verified customer outcomes to evaluate business value. A citation is evidence of visibility within a reporting system. It does not establish that a potential customer visited your website or bought anything.",
+          "This distinction matters when a business is deciding whether to commission more articles, rewrite a service page, or increase an AI search budget. Our recommendation is to start with a page and a customer question you can inspect. A rising visibility number alone is too incomplete to choose among those investments."
+        ]
+      },
+      {
+        "heading": "What Bing actually announced",
+        "paragraphs": [
+          "On February 10, 2026, Microsoft introduced AI Performance in Bing Webmaster Tools as a public preview. The announcement describes citation reporting across Microsoft Copilot, AI-generated Bing summaries, and selected partner integrations. This is an analysis of that documented capability, not an announcement of a new September release.",
+          "The described report includes citation totals, daily average unique cited pages, activity by URL, and sampled grounding query phrases used to retrieve cited content. Microsoft explicitly distinguishes citation counts from page ranking or placement in an answer. The sample of grounding phrases is not a complete list of customer questions.",
+          "For a small business, the useful starting point is the cited URL. Open that page and ask whether its explanation helps the intended buyer make a decision. Access and available reporting should be checked in your own verified property; this article does not report results from an Eidos or client account."
+        ]
+      },
+      {
+        "heading": "Keep four kinds of evidence separate",
+        "paragraphs": [
+          "Eidos recommends a simple record for each priority page. Save the reporting period, source system, page URL, known gaps, and the date of any content change. Keep these four observations in separate fields:"
+        ],
+        "bullets": [
+          "Citation activity: what the platform reports about use of the page as a source. Keep each platform and reporting scope identifiable.",
+          "Website visits: referrals or sessions your analytics can actually observe. Remove identifiable team checks and QA visits before interpretation.",
+          "Qualified inquiries: contacts that meet a written business definition, such as a relevant service need and a reachable prospect. A form submission alone may not qualify.",
+          "Paid conversions: confirmed purchases or paid engagements linked by available records. An unpaid checkout, test payment, or proposal is a different event."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Consider a hypothetical uniform supplier whose ordering guide is cited while its store setup page receives few inquiries. That does not prove the guide is commercially successful or that the service page has failed. Readers may only need sizing advice, and attribution may miss a later phone call.",
+          "First inspect the guide. Does it explain who the service fits, ordering deadlines, minimums, and the next step? If those details are missing, add the relevant answers and a contextual link to the actual service. Keep a dated copy of the before and after content.",
+          "Then compare equal reporting windows and note promotions, seasonality, tracking changes, and unusually low volume. If qualified inquiries increase, describe the observed change and its limits. Do not assign a citation-to-sale conversion rate when the systems cannot connect those events.",
+          "The tradeoff is patience: a focused edit yields less activity than publishing a large batch, but gives the team a clearer change to evaluate. If traffic is too sparse to interpret, customer interviews or inquiry reviews may reveal more than another percentage chart."
+        ]
+      },
+      {
+        "heading": "Google and ChatGPT need their own interpretation",
+        "paragraphs": [
+          "Google says AI Overviews and AI Mode traffic is included in Search Console’s Web performance reporting. That is a different reporting scope from Bing’s citation dashboard. Combining their numbers into one AI visibility score would require a definition and assumptions the raw totals do not supply.",
+          "Google also says eligibility for supporting links requires an indexed page eligible for a search snippet. Existing SEO practices still apply; special AI files or schema are not required. Technical eligibility does not promise inclusion.",
+          "OpenAI documents OAI-SearchBot for search and GPTBot for potential model-training content, with independent controls. A crawler visit is not a citation or a customer visit. Check your actual crawler and hosting settings with the responsible site owner before proposing changes."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "If citation reporting or analytics is unavailable, write unknown rather than zero. If attribution is incomplete, keep the inquiry in the business total while leaving its discovery source unknown. This preserves useful evidence without inventing a complete customer journey.",
+          "For the next review, choose one buying question, its best existing page, the specific uncertainty to remove, and the customer action worth measuring. Review visibility alongside that action, with the limits still visible. The result should be a reason to keep, revise, or stop an improvement, not a promise of rankings, citations, leads, or revenue.",
+          "If your service pages need a clearer connection between customer questions, evidence, and the next step, explore Eidos Works’ Agentic SEO service below."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Explore Agentic SEO website strategy",
+      "href": "/services/agentic-seo"
+    },
+    "ogImage": "/insights-og/bing-ai-citations-measure-business-value.svg"
   }
 ]

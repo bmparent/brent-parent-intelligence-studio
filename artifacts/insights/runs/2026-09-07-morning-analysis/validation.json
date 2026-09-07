@@ -1,0 +1,86 @@
+[
+  {
+    "finishedAt": "2026-09-07T19:19:56.8244612Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/content-generate.log",
+    "startedAt": "2026-09-07T19:19:54.8789850Z",
+    "exitCode": 0,
+    "command": "npm run content:generate"
+  },
+  {
+    "finishedAt": "2026-09-07T19:20:06.9341988Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/validate-insights.log",
+    "startedAt": "2026-09-07T19:19:56.9706856Z",
+    "exitCode": 0,
+    "command": "npm run validate:insights"
+  },
+  {
+    "finishedAt": "2026-09-07T19:21:27.3436226Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/lint.log",
+    "startedAt": "2026-09-07T19:20:06.9456672Z",
+    "exitCode": 0,
+    "command": "npm run lint"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:02.3529907Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/build.log",
+    "startedAt": "2026-09-07T19:21:27.3507959Z",
+    "exitCode": 0,
+    "command": "npm run build"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:04.1030458Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/verify-prerender.log",
+    "startedAt": "2026-09-07T19:22:02.3585183Z",
+    "exitCode": 0,
+    "command": "npm run verify:prerender"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:05.6824924Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/validate-insights-dist.log",
+    "startedAt": "2026-09-07T19:22:04.1095627Z",
+    "exitCode": 0,
+    "command": "npm run validate:insights:dist"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:07.1584741Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/verify-urls.log",
+    "startedAt": "2026-09-07T19:22:05.6959666Z",
+    "exitCode": 0,
+    "command": "npm run verify:urls"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:08.9996134Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/verify-editorial.log",
+    "startedAt": "2026-09-07T19:22:07.1643889Z",
+    "exitCode": 0,
+    "command": "npm run verify:editorial"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:25.1127526Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/test-platform.log",
+    "startedAt": "2026-09-07T19:22:09.0060564Z",
+    "exitCode": 0,
+    "command": "npm run test:platform"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:28.4699689Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/test-analytics.log",
+    "startedAt": "2026-09-07T19:22:25.1248118Z",
+    "exitCode": 0,
+    "command": "npm run test:analytics"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:30.8343899Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/test-snapshot.log",
+    "startedAt": "2026-09-07T19:22:28.4774951Z",
+    "exitCode": 0,
+    "command": "npm run test:snapshot"
+  },
+  {
+    "finishedAt": "2026-09-07T19:22:43.0958555Z",
+    "log": "artifacts/insights/runs/2026-09-07-morning-analysis/build-functions.log",
+    "startedAt": "2026-09-07T19:22:30.8408352Z",
+    "exitCode": 0,
+    "command": "npm run build:functions"
+  }
+]

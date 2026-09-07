@@ -31,6 +31,7 @@ Eidos Works designs digital experiences and operational tools for organizations 
 - Proof-stage Eidos Brain research with human review
 
 ## Insights
+- [What Bing AI Citations Can Tell You About Business Value](https://eidos-works.com/insights/bing-ai-citations-measure-business-value): Use Bing AI citation reports to choose better page improvements while keeping visibility, website visits, qualified inquiries, and revenue separate.
 - [The Storefront Proof Loop Connects UX, Assets, and Operations](https://eidos-works.com/insights/storefront-proof-loop-ux-assets-operations): A strategic framework for connecting storefront UX, Cloudinary-ready assets, production workflow reality, and post-launch content into one stronger commerce system.
 - [A Practical Source Map for AI-Ready Service Pages](https://eidos-works.com/insights/practical-source-map-ai-ready-service-pages): How to structure service pages so customers, search engines, and AI-assisted discovery systems can understand the offer.
 - [What Agentic SEO Means for Small Business Websites](https://eidos-works.com/insights/agentic-seo-small-business-websites): A plain-language guide to making a small-business website easier for customers, search engines, and AI assistants to understand.
