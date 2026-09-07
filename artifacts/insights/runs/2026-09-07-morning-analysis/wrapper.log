@@ -1,0 +1,22 @@
+
+> brent-parent-intelligence-studio@1.1.0 publish:insight-run
+> node scripts/publish-insight-run.mjs --slot=morning
+
+0e8ef0709c7c9c23105877c08579d2be31be7f8e
+node:internal/child_process:421
+    throw new ErrnoException(err, 'spawn');
+          ^
+
+Error: spawn EINVAL
+    at ChildProcess.spawn (node:internal/child_process:421:11)
+    at spawn (node:child_process:796:9)
+    at file:///C:/Users/bmpar/codex-worktrees/insights-monday-20260907/scripts/publish-insight-run.mjs:25:19
+    at new Promise (<anonymous>)
+    at runCommand (file:///C:/Users/bmpar/codex-worktrees/insights-monday-20260907/scripts/publish-insight-run.mjs:23:10)
+    at file:///C:/Users/bmpar/codex-worktrees/insights-monday-20260907/scripts/publish-insight-run.mjs:73:24 {
+  errno: -4071,
+  code: 'EINVAL',
+  syscall: 'spawn'
+}
+
+Node.js v24.14.0

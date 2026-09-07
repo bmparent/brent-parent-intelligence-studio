@@ -1,0 +1,333 @@
+{
+  "slot": "morning",
+  "date": "2026-09-07",
+  "week": "2026-09-07/2026-09-13",
+  "status": "validated-awaiting-release",
+  "title": "What Bing AI Citations Can Tell You About Business Value",
+  "slug": "bing-ai-citations-measure-business-value",
+  "thesis": "Use AI citation reports to select page improvements, and use separately verified customer outcomes to evaluate business value.",
+  "searchIntent": "How should a small business use Bing AI citation reporting to decide which website improvements to fund?",
+  "audience": "Small-business owner evaluating AI search spend",
+  "format": "evergreen",
+  "formatReason": "Evergreen analysis of February announcement; no fabricated September news",
+  "sources": [
+    {
+      "title": "Introducing AI Performance in Bing Webmaster Tools Public Preview",
+      "url": "https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview",
+      "publisher": "Bing Webmaster Blog",
+      "publishedDate": "2026-02-10",
+      "accessedDate": "2026-09-07",
+      "type": "primary"
+    },
+    {
+      "title": "AI features and your website",
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "publisher": "Google Search Central",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-07",
+      "type": "official-docs"
+    },
+    {
+      "title": "Overview of OpenAI Crawlers",
+      "url": "https://developers.openai.com/api/docs/bots",
+      "publisher": "OpenAI",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-07",
+      "type": "official-docs"
+    }
+  ],
+  "sourceEvidence": {
+    "bing": "Citation totals, cited URLs, sampled grounding phrases; counts do not establish rankings or placement",
+    "google": "Web reporting includes AI features; indexed snippet eligibility and ordinary SEO fundamentals",
+    "openai": "Independent search and training crawler controls"
+  },
+  "cta": {
+    "label": "Explore Agentic SEO website strategy",
+    "href": "/services/agentic-seo"
+  },
+  "deduplication": {
+    "reviewed": [
+      {
+        "title": "What Agentic SEO Means for Small Business Websites",
+        "slug": "agentic-seo-small-business-websites",
+        "tags": [
+          "Agentic SEO",
+          "AI search",
+          "Small business",
+          "Website strategy"
+        ],
+        "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
+        "searchIntent": "A plain-language guide to making a small-business website easier for customers, search engines, and AI assistants to understand.",
+        "thesis": "Agentic SEO is not a shortcut or a promise of automatic recommendations. It is the work of making your business clear enough to be understood wherever customers search.",
+        "sources": [
+          "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+        ]
+      },
+      {
+        "title": "How to Structure a Website So People and AI Assistants Understand It",
+        "slug": "structure-website-people-ai-assistants-understand",
+        "tags": [
+          "Information architecture",
+          "Website strategy",
+          "AI search",
+          "Content design"
+        ],
+        "pillar": "Website strategy, information architecture, and content design",
+        "searchIntent": "A practical framework for turning a collection of pages into a clear path for visitors, search systems, and AI-assisted discovery.",
+        "thesis": "A website becomes easier to understand when every important page has one job, a useful place in the hierarchy, and a clear relationship to the next decision.",
+        "sources": [
+          "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+          "https://schema.org/BlogPosting"
+        ]
+      },
+      {
+        "title": "Storefront UX: Helping Customers Find the Right Product Faster",
+        "slug": "storefront-ux-find-right-product-faster",
+        "tags": [
+          "Storefront UX",
+          "Ecommerce",
+          "Merchandise portals",
+          "Mobile design"
+        ],
+        "pillar": "Storefront UX, mobile commerce, and product discovery",
+        "searchIntent": "How stronger categories, product context, ordering guidance, and mobile paths can make a hosted or custom storefront easier to shop.",
+        "thesis": "A storefront feels simple when customers can identify the right category, understand the product, and complete the order without stopping to decode the process.",
+        "sources": [
+          "https://www.w3.org/TR/WCAG22/"
+        ]
+      },
+      {
+        "title": "From Spreadsheet Chaos to Operational Dashboards",
+        "slug": "spreadsheet-chaos-operational-dashboards",
+        "tags": [
+          "Dashboards",
+          "Operations",
+          "Workflow clarity",
+          "Reporting"
+        ],
+        "pillar": "Dashboards, workflow automation, and operational clarity",
+        "searchIntent": "A grounded way to decide when a spreadsheet needs a clearer operational view—and what a useful dashboard should show first.",
+        "thesis": "The goal of an operational dashboard is not to display every available number. It is to make the next important decision easier to see.",
+        "sources": [
+          "https://help.tableau.com/current/pro/desktop/en-us/dashboards_best_practices.htm"
+        ]
+      },
+      {
+        "title": "What a Website Snapshot Can Tell You Before a Redesign",
+        "slug": "website-snapshot-before-redesign",
+        "tags": [
+          "Website redesign",
+          "AI prototyping",
+          "Planning",
+          "Eidos Snapshot"
+        ],
+        "pillar": "Website strategy, AI prototyping, and redesign planning",
+        "searchIntent": "What an early website concept and focused recommendation report can clarify—and what still requires a full audit, design process, and build.",
+        "thesis": "A good Snapshot does not pretend to be a finished redesign. It gives a business owner a concrete direction to react to before the larger decisions begin.",
+        "sources": [
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+          "https://www.w3.org/TR/WCAG22/"
+        ]
+      },
+      {
+        "title": "Why Mobile Hierarchy Matters More Than Desktop Polish",
+        "slug": "mobile-hierarchy-over-desktop-polish",
+        "tags": [
+          "Mobile UX",
+          "Responsive design",
+          "Website strategy",
+          "Conversion paths"
+        ],
+        "pillar": "Mobile UX, accessibility, and responsive hierarchy",
+        "searchIntent": "Why the order, spacing, and priority of information on a small screen often matter more than the most polished desktop presentation.",
+        "thesis": "Responsive design is not the act of squeezing a desktop page into one column. It is deciding what deserves attention when space and patience are limited.",
+        "sources": [
+          "https://web.dev/articles/responsive-web-design-basics",
+          "https://www.w3.org/TR/WCAG22/"
+        ]
+      },
+      {
+        "title": "Eidos Brain and Sentinel: A Small-Business Intelligence Model",
+        "slug": "eidos-brain-sentinel-small-business-intelligence",
+        "tags": [
+          "Eidos Brain",
+          "Sentinel",
+          "Decision support",
+          "Human review"
+        ],
+        "pillar": "AI prototyping, operational intelligence, and human review",
+        "searchIntent": "A grounded case note on using signals, exceptions, readable briefs, and human review to make small-business intelligence useful.",
+        "thesis": "Small-business intelligence should not feel like science fiction. It should help a person notice what changed, understand why it matters, and decide what to do next.",
+        "sources": [
+          "https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence"
+        ]
+      },
+      {
+        "title": "Baseline 2026 Turns Browser Support Into a Design-System Decision",
+        "slug": "baseline-2026-browser-support-design-system-decision",
+        "tags": [
+          "Baseline",
+          "Web standards",
+          "Design systems",
+          "Progressive enhancement",
+          "UI engineering"
+        ],
+        "pillar": "UI/UX design, accessibility, responsive behavior, and design systems",
+        "searchIntent": "Understand how Baseline 2026 should influence web design and frontend implementation decisions.",
+        "thesis": "Baseline is useful because it turns browser support from a vague argument into a repeatable product decision: what can be default, what needs enhancement, and what should stay experimental.",
+        "sources": [
+          "https://web.dev/baseline/2026",
+          "https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility",
+          "https://www.w3.org/TR/WCAG22/"
+        ]
+      },
+      {
+        "title": "A Practical Source Map for AI-Ready Service Pages",
+        "slug": "practical-source-map-ai-ready-service-pages",
+        "tags": [
+          "AI search",
+          "Structured data",
+          "Service pages",
+          "SEO",
+          "Content systems"
+        ],
+        "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
+        "searchIntent": "Learn how to structure service pages for human readers, search engines, and AI-assisted discovery.",
+        "thesis": "A service page becomes AI-ready when its claims, entities, proof, and next actions are explicit enough for both people and machines to verify.",
+        "sources": [
+          "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+          "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+          "https://schema.org/BlogPosting"
+        ]
+      },
+      {
+        "title": "The Storefront Proof Loop Connects UX, Assets, and Operations",
+        "slug": "storefront-proof-loop-ux-assets-operations",
+        "tags": [
+          "Storefront UX",
+          "Cloudinary",
+          "Operations",
+          "Content strategy",
+          "E-commerce"
+        ],
+        "pillar": "Premium e-commerce and custom storefront experiences",
+        "searchIntent": "Understand how storefront design, media assets, and production operations should work together.",
+        "thesis": "A storefront becomes more trustworthy when its UX, asset system, and operational rules all explain the same buying reality.",
+        "sources": [
+          "https://cloudinary.com/documentation/image_optimization",
+          "https://cloudinary.com/documentation/responsive_images",
+          "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+        ]
+      }
+    ],
+    "sameSlot": 0,
+    "weekCountBefore": 0,
+    "openPRs": "Only unrelated PR #4",
+    "pendingBranches": "No Insights publishing branch before this run",
+    "liveHubFeedSitemap": "Fetched successfully; no September 7 article",
+    "decision": "Measurement and budget decision intent differs from existing readiness/source-map articles"
+  },
+  "analytics": "unknown; no account reports accessed",
+  "limits": [
+    "No customer results or performance claim",
+    "No policy changes",
+    "Existing July residue preserved in shared checkout"
+  ],
+  "createdAt": "2026-09-07T19:18:22.256Z",
+  "baseCommit": "0e8ef0709c7c9c23105877c08579d2be31be7f8e",
+  "validation": [
+    {
+      "finishedAt": "2026-09-07T19:19:56.8244612Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/content-generate.log",
+      "startedAt": "2026-09-07T19:19:54.8789850Z",
+      "exitCode": 0,
+      "command": "npm run content:generate"
+    },
+    {
+      "finishedAt": "2026-09-07T19:20:06.9341988Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/validate-insights.log",
+      "startedAt": "2026-09-07T19:19:56.9706856Z",
+      "exitCode": 0,
+      "command": "npm run validate:insights"
+    },
+    {
+      "finishedAt": "2026-09-07T19:21:27.3436226Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/lint.log",
+      "startedAt": "2026-09-07T19:20:06.9456672Z",
+      "exitCode": 0,
+      "command": "npm run lint"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:02.3529907Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/build.log",
+      "startedAt": "2026-09-07T19:21:27.3507959Z",
+      "exitCode": 0,
+      "command": "npm run build"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:04.1030458Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/verify-prerender.log",
+      "startedAt": "2026-09-07T19:22:02.3585183Z",
+      "exitCode": 0,
+      "command": "npm run verify:prerender"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:05.6824924Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/validate-insights-dist.log",
+      "startedAt": "2026-09-07T19:22:04.1095627Z",
+      "exitCode": 0,
+      "command": "npm run validate:insights:dist"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:07.1584741Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/verify-urls.log",
+      "startedAt": "2026-09-07T19:22:05.6959666Z",
+      "exitCode": 0,
+      "command": "npm run verify:urls"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:08.9996134Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/verify-editorial.log",
+      "startedAt": "2026-09-07T19:22:07.1643889Z",
+      "exitCode": 0,
+      "command": "npm run verify:editorial"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:25.1127526Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/test-platform.log",
+      "startedAt": "2026-09-07T19:22:09.0060564Z",
+      "exitCode": 0,
+      "command": "npm run test:platform"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:28.4699689Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/test-analytics.log",
+      "startedAt": "2026-09-07T19:22:25.1248118Z",
+      "exitCode": 0,
+      "command": "npm run test:analytics"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:30.8343899Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/test-snapshot.log",
+      "startedAt": "2026-09-07T19:22:28.4774951Z",
+      "exitCode": 0,
+      "command": "npm run test:snapshot"
+    },
+    {
+      "finishedAt": "2026-09-07T19:22:43.0958555Z",
+      "log": "artifacts/insights/runs/2026-09-07-morning-analysis/build-functions.log",
+      "startedAt": "2026-09-07T19:22:30.8408352Z",
+      "exitCode": 0,
+      "command": "npm run build:functions"
+    }
+  ],
+  "corrections": [
+    "Wrapper spawn EINVAL: authorized PowerShell fallback",
+    "Added the two mandatory section headings; full gate rerun passed"
+  ],
+  "deploymentWorkflow": "Cloudflare eidosworks is direct-upload; confirmed API and docs/site-gallery.md. Existing documented Wrangler path required after merge.",
+  "rollbackDeployment": "caa40a4c-4579-499b-85a6-808c4e1e36ff",
+  "updatedAt": "2026-09-07T19:23:42.965Z"
+}

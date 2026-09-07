@@ -1,0 +1,7 @@
+
+> brent-parent-intelligence-studio@1.1.0 validate:insights
+> node scripts/validate-insights.mjs
+
+Insights validation failed:
+- bing-ai-citations-measure-business-value: missing required section "what this means for your site".
+- bing-ai-citations-measure-business-value: missing required section "how eidos works applies this".

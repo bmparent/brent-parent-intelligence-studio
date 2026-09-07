@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-09-05T19:27:14.066Z",
+  "generated_at_utc": "2026-09-07T19:21:32.195Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "bing-ai-citations-measure-business-value",
+      "canonical_url": "https://eidos-works.com/insights/bing-ai-citations-measure-business-value",
+      "og_image": "/insights-og/bing-ai-citations-measure-business-value.svg"
+    },
     {
       "slug": "storefront-proof-loop-ux-assets-operations",
       "canonical_url": "https://eidos-works.com/insights/storefront-proof-loop-ux-assets-operations",
@@ -57,6 +62,7 @@
     "public/sitemap.xml",
     "public/feed.xml",
     "public/llms.txt",
+    "public/insights-og/bing-ai-citations-measure-business-value.svg",
     "public/insights-og/storefront-proof-loop-ux-assets-operations.svg",
     "public/insights-og/practical-source-map-ai-ready-service-pages.svg",
     "public/insights-og/agentic-seo-small-business-websites.svg",
