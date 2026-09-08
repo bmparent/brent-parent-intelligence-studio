@@ -20,6 +20,10 @@ const requiredRoutes = [
   '/lab/eidos-brain',
   '/snapshot',
   '/lab',
+  '/lab/access',
+  '/account',
+  '/account/verify',
+  '/account/unsubscribe',
   '/community',
   '/community/agents',
   '/community/agent-guide',
@@ -187,7 +191,7 @@ for (const route of [
 
 const sitemap = await readFile(resolve(root, 'dist/sitemap.xml'), 'utf8');
 for (const route of requiredRoutes.filter(
-  (route) => !route.startsWith('/snapshot/'),
+  (route) => !route.startsWith('/snapshot/') && !route.startsWith('/account'),
 )) {
   const url =
     route === '/'
@@ -202,6 +206,8 @@ for (const privateRoute of [
   '/snapshot/result/',
   '/shop/success',
   '/community/moderate',
+  '/account',
+  '/members/',
 ]) {
   if (sitemap.includes(privateRoute))
     failures.push(`sitemap: private route leaked: ${privateRoute}`);

@@ -3,7 +3,9 @@ const links = [
   { href: '/work', label: 'Work' },
   { href: '/lab', label: 'Lab' },
   { href: '/community', label: 'Community' },
+  { href: '/insights', label: 'Insights' },
   { href: '/about', label: 'Studio' },
+  { href: '/account', label: 'Account' },
 ];
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -66,9 +68,6 @@ export function Header() {
           ))}
           <a className="ew-nav-mobile-extra" href="/services">
             Services
-          </a>
-          <a className="ew-nav-mobile-extra" href="/insights">
-            Insights
           </a>
           <a className="ew-nav-mobile-extra" href="/contact">
             Let’s build ↗

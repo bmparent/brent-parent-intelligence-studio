@@ -14,8 +14,8 @@ const files = [
   'functions/_shared/platform',
   'functions/_shared/snapshot/stripe.ts', 'functions/_shared/snapshot/http.ts', 'functions/_shared/snapshot/types.ts',
   'functions/api/assistant.ts', 'functions/api/public-config.ts',
-  'functions/api/community', 'functions/api/shop', 'functions/community',
-  'migrations/0001_eidos_platform.sql',
+  'functions/api/community', 'functions/api/members', 'functions/api/shop', 'functions/community',
+  'migrations',
 ];
 for (const file of files) {
   await mkdir(resolve(vendor, file, '..'), { recursive: true });

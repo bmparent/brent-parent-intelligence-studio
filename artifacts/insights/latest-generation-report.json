@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-07T19:21:32.195Z",
+  "generated_at_utc": "2026-09-08T21:05:16.784Z",
   "site_url": "https://eidos-works.com",
   "articles": [
     {
@@ -61,6 +61,7 @@
   "files": [
     "public/sitemap.xml",
     "public/feed.xml",
+    "public/insights-feed.json",
     "public/llms.txt",
     "public/insights-og/bing-ai-citations-measure-business-value.svg",
     "public/insights-og/storefront-proof-loop-ux-assets-operations.svg",

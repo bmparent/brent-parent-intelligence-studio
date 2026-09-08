@@ -71,6 +71,7 @@ export function LabAccessRequest() {
       const response = await fetch('/api/project-inquiries', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
+        signal: AbortSignal.timeout(20000),
         body: JSON.stringify({
           projectType: `Eidos / Sentinel access — ${form.track}`,
           problem: `${form.useCase}\n\nData acknowledgement confirmed.`,
@@ -137,11 +138,11 @@ export function LabAccessRequest() {
     >
       <div className="ew-lab-access__intro">
         <p className="ew-eyebrow">Limited full-engine access</p>
-        <h2 id="lab-access-title">Request a Sentinel test key.</h2>
+        <h2 id="lab-access-title">Message Brent for an access code.</h2>
         <p>
-          The quick demo is open to everyone. Full-engine experiments use
-          isolated compute, so launch keys are reviewed, scoped to an agreed
-          test window, and revocable.
+          Describe what you’d like to try and send your message below. Brent
+          will reply by email with the next step and, when approved, an access
+          code for the full engine. The quick demo is open to everyone.
         </p>
         <ol>
           <li>

@@ -37,6 +37,8 @@ import { PolicyPage } from './components/PolicyPages';
 import type { ServiceSlug } from './data/editorial';
 import { normalizePath } from './data/pages';
 import { storefrontThemes } from './data/storefrontDemo';
+import { AccountPage, VerifyAccountPage, UnsubscribePage, MemberProfile } from './components/MemberPages';
+import { LabAccessRequest } from './components/LabAccessRequest';
 
 type AppProps = {
   requestPath?: string;
@@ -67,6 +69,11 @@ function NotFoundPage() {
 }
 
 function routeFor(path: string) {
+  if (path === '/account') return <AccountPage />;
+  if (path === '/account/verify') return <VerifyAccountPage />;
+  if (path === '/account/unsubscribe') return <UnsubscribePage />;
+  if (/^\/members\/[a-z][a-z0-9_]{2,23}$/.test(path)) return <MemberProfile username={path.slice('/members/'.length)} />;
+  if (path === '/lab/access') return <><section className="ew-page-intro ew-shell"><p className="ew-eyebrow">Eidos / Sentinel Lab</p><h1>A question for<br/><em>the full engine.</em></h1><p>Message Brent to request an access code. Tell us what you want to test and we’ll reply to your email.</p></section><LabAccessRequest /></>;
   if (path === '/') return <HomePage />;
   if (path === '/community') return <CommunityPage />;
   if (path === '/community/agents') return <CommunityPage agentsOnly />;

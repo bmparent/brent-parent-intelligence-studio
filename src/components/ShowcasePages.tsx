@@ -1,3 +1,4 @@
+import { JingleStorefront } from './JingleStorefront';
 import { SiteGallery } from "./SiteGallery";
 import { useState } from "react";
 import StorefrontDemo, { StorefrontPreview } from "./StorefrontDemo";
@@ -127,13 +128,12 @@ export function StorefrontShowcase({ slug }: { slug: string }) {
         <p className="ew-eyebrow">Try the experience</p>
         <h2>Step inside the storefront.</h2>
         <p>
-          Explore the animated entrance, browse the collection, and try a
-          product’s options. This self-contained reconstruction uses saved
-          project artwork; the original stores stay private. Example product
-          names and options illustrate the design; they are not a live catalog.
+          {slug === 'jingle-bell-jingle-bam'
+            ? 'Explore the original holiday artwork, snow-globe collections, and all five garment styles. Inspect each decorated front and back, choose your options, and try the demo cart.'
+            : 'Explore the animated entrance, browse the collection, and try a product’s options. This self-contained reconstruction uses saved project artwork. Example product names and options illustrate the design; they are not a live catalog.'}
         </p>
       </div>
-      <StorefrontDemo slug={slug as StorefrontTheme} />
+      {slug === 'jingle-bell-jingle-bam' ? <JingleStorefront /> : <StorefrontDemo slug={slug as StorefrontTheme} />}
       <section className="ew-showcase-story ew-shell">
         <div>
           <p className="ew-eyebrow">From entrance to selection</p>
@@ -213,8 +213,8 @@ export function LabPage() {
           >
             Open the live lab ↗
           </a>
-          <a className="ew-button ew-button--secondary" href="#request-access">
-            Request a test key ↓
+          <a className="ew-button ew-button--secondary" href="/lab/access">
+            Message Brent for access →
           </a>
         </div>
       </section>

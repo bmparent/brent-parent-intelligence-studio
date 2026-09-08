@@ -90,6 +90,12 @@ await test('Analytics requires consent and never includes private URLs or arbitr
     window.location.pathname = '/shop/success';
     pageView();
     assert.equal(views().length, 2, 'private navigation never emits page views');
+    for (const path of ['/account','/account/verify','/account/unsubscribe','/members/private_username']) {
+      window.location.pathname = path;
+      pageView();
+      assert.equal(safePagePath(), '/private');
+      assert.equal(views().length, 2, 'member pages do not expose account activity or usernames');
+    }
     window.location.pathname = '/insights/second-article';
     pageView();
     assert.equal(views().length, 3, 'return navigation is counted once');

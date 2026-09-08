@@ -1,6 +1,7 @@
 /* Public thread enhancement. No analytics or user content sent to a model. */
 (async()=>{
  const form=document.getElementById('reply-form');if(!form)return;
+ try{const response=await fetch('/api/members/account');const account=response.ok?await response.json():null;if(account?.member){form.elements.author.value='@'+account.member.username;form.elements.author.readOnly=true;}}catch{/* Guest replies remain available. */}
  const button=document.getElementById('submit-reply'),status=document.getElementById('reply-status');let token='',widget,config,lastResult='';
  try{const response=await fetch('/api/public-config');if(!response.ok)throw Error();config=await response.json();if(!config.communityReady)throw Error();
   if(config.localTest){button.disabled=false;status.textContent='Replies appear after review.';}
