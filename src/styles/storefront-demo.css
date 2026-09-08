@@ -136,11 +136,13 @@
   justify-content: space-between;
   gap: 16px;
   padding: 8px 24px;
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 1.5;
   color: #d8e2ec;
   background: #08111b;
 }
 .sd-demo .sd-notice button {
+  flex-shrink: 0;
   color: #d8e2ec;
   border-color: #d8e2ec50;
   padding: 8px 12px;
@@ -1345,9 +1347,10 @@
     padding: 12px 4px;
   }
   .sd-demo .sd-notice {
+    flex-wrap: wrap;
     padding: 8px 12px;
     gap: 10px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .sd-demo .sd-notice button {
     font-size: 10px;

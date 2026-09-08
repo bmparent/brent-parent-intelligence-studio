@@ -85,6 +85,14 @@ export function ShowcasePage() {
         <p className="ew-sr-only" role="status">
           {projects.length} projects shown
         </p>
+        {(filter === "All work" || filter === "Storefronts") && (
+          <p className="ew-gallery-intro">
+            <strong>About the storefront demos.</strong> These are public
+            recreations of private, password-protected stores, created to
+            showcase their design and browsing experience. Products and options
+            are illustrative; the demos do not accept orders or payments.
+          </p>
+        )}
         <div className="ew-project-grid">
           {projects.map((project, index) => (
             <ProjectTile key={project.slug} project={project} index={index} />

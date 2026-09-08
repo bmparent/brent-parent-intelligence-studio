@@ -277,7 +277,12 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
       aria-label={`${theme.title} interactive demo`}
     >
       <div className="sd-notice">
-        <span>Interactive design demo · No orders or payments</span>
+        <span>
+          <strong>Storefront recreation.</strong> The original store is private
+          and password-protected. Explore this public demo of its design and
+          browsing experience. Products and options are illustrative; no orders
+          or payments are accepted.
+        </span>
         {reduced ? (
           <span>Reduced motion on</span>
         ) : (

@@ -66,8 +66,9 @@ export function HomePage() {
         </div>
         <div className="ew-work-footnote">
           <p>
-            Custom storefront experiences, shaped within real platforms and real
-            constraints.
+            Public storefront recreations. The original stores are private and
+            password-protected; these demos showcase their design and browsing
+            experience.
           </p>
           <span>Art direction / Development / Commerce</span>
         </div>
