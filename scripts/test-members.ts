@@ -56,10 +56,16 @@ class Query implements Statement {
 function fixture() {
   const sql = new DatabaseSync(':memory:');
   sql.exec('PRAGMA foreign_keys=ON;');
+  // Production retains these earlier Clerk records. The email-account schema
+  // must coexist with them without changing identity or losing data.
+  sql.exec("CREATE TABLE eidos_members(id TEXT PRIMARY KEY, display_name TEXT NOT NULL, created_at TEXT NOT NULL); INSERT INTO eidos_members VALUES('legacy-user','Existing member','2026-09-07')");
   for (const migration of ['0001_eidos_platform.sql', '0002_members.sql'])
     sql.exec(readFileSync('migrations/' + migration, 'utf8'));
   // Reapplying the additive migrations is safe for existing installations.
   sql.exec(readFileSync('migrations/0002_members.sql', 'utf8'));
+  assert.deepEqual({ ...sql.prepare('SELECT * FROM eidos_members').get() }, {
+    id: 'legacy-user', display_name: 'Existing member', created_at: '2026-09-07',
+  });
   const db: Database = {
     prepare: (q) => new Query(sql, q),
     batch: async (statements) => {
@@ -143,7 +149,7 @@ await test('Email verification is required, single-use, expiring, and creates pr
   );
   const link = (await request.json()).localVerificationUrl;
   const token = new URLSearchParams(new URL(link).hash.slice(1)).get('token')!;
-  assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_members').get()?.n, 0);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_email_members').get()?.n, 0);
   assert.equal(
     sql.prepare('SELECT token_hash FROM eidos_signin_links').get()?.token_hash,
     await hash(token),
@@ -625,7 +631,7 @@ await test('Opt-in delivery sends full papers once, normalizes dates, and suppor
   await signup(env, 'bob');
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10),
     before = yesterday + 'T15:00:00.000Z';
-  sql.prepare('UPDATE eidos_members SET newsletter_after=?').run(before);
+  sql.prepare('UPDATE eidos_email_members SET newsletter_after=?').run(before);
   const sending = {
     ...env,
     EIDOS_ACCOUNTS_ENABLED: 'true',
@@ -661,7 +667,7 @@ await test('Opt-in delivery sends full papers once, normalizes dates, and suppor
     assert.equal(
       sql
         .prepare(
-          "SELECT newsletter_after FROM eidos_members WHERE username='alice'",
+          "SELECT newsletter_after FROM eidos_email_members WHERE username='alice'",
         )
         .get()?.newsletter_after,
       yesterday + 'T16:00:00.000Z',
@@ -717,7 +723,7 @@ await test('Failed or uncertain mail never advances delivery or resends beyond t
   await signup(env, 'alice', 'person', true);
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   sql
-    .prepare('UPDATE eidos_members SET newsletter_after=?')
+    .prepare('UPDATE eidos_email_members SET newsletter_after=?')
     .run('2020-01-01T00:00:00.000Z');
   const sending = {
     ...env,
@@ -741,7 +747,7 @@ await test('Failed or uncertain mail never advances delivery or resends beyond t
   try {
     assert.equal((await deliverNewsletters(sending)).sent, 0);
     assert.equal(
-      sql.prepare('SELECT newsletter_after FROM eidos_members').get()
+      sql.prepare('SELECT newsletter_after FROM eidos_email_members').get()
         ?.newsletter_after,
       '2020-01-01T00:00:00.000Z',
     );
