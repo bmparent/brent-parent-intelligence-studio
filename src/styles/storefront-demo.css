@@ -12,6 +12,8 @@
   --sd-nav: #102233ed;
   --sd-nav-ink: #e6f4ff;
   --sd-serif: Georgia, "Times New Roman", serif;
+  --sd-card-radius: 16px;
+  --sd-card-shadow: 0 18px 45px #020b1424;
 }
 .sd-demo.sd-holiday,
 .sd-preview.sd-holiday {
@@ -25,6 +27,8 @@
   --sd-stage: #e7d8b7;
   --sd-nav: #123b32f5;
   --sd-nav-ink: #fff3d4;
+  --sd-card-radius: 18px;
+  --sd-card-shadow: 0 20px 44px #2846371c;
 }
 .sd-demo.sd-villains,
 .sd-preview.sd-villains {
@@ -38,6 +42,8 @@
   --sd-stage: #d2c4b6;
   --sd-nav: #201d2cf5;
   --sd-nav-ink: #e9d9b2;
+  --sd-card-radius: 4px;
+  --sd-card-shadow: 0 22px 46px #1d13282b;
 }
 .sd-demo.sd-anniversary,
 .sd-preview.sd-anniversary {
@@ -51,6 +57,8 @@
   --sd-stage: #d8c9ae;
   --sd-nav: #0a1c31f5;
   --sd-nav-ink: #efd69f;
+  --sd-card-radius: 5px;
+  --sd-card-shadow: 0 20px 42px #142a3a20;
 }
 .sd-demo.sd-jingle,
 .sd-preview.sd-jingle {
@@ -64,11 +72,15 @@
   --sd-stage: #34526b;
   --sd-nav: #082133f5;
   --sd-nav-ink: #fff0c8;
+  --sd-card-radius: 22px;
+  --sd-card-shadow: 0 26px 60px #020c1f47;
 }
 .sd-demo {
   color: var(--sd-ink);
   background: var(--sd-bg);
-  border-radius: 18px;
+  border: 1px solid var(--sd-line);
+  border-radius: 22px;
+  box-shadow: 0 32px 90px #0b1b2424;
   isolation: isolate;
   overflow: clip;
   margin: 0 auto 70px;
@@ -212,6 +224,7 @@
   background: linear-gradient(0deg, #05101f77, transparent 35%);
 }
 .sd-demo .sd-atmosphere,
+.sd-preview .sd-atmosphere,
 .sd-demo .sd-fireworks {
   position: absolute;
   inset: 0;
@@ -222,6 +235,9 @@
 }
 .sd-demo .sd-atmosphere {
   z-index: 1;
+}
+.sd-preview .sd-atmosphere {
+  z-index: 2;
 }
 .sd-demo .sd-fireworks {
   z-index: 3;
@@ -302,7 +318,8 @@
   letter-spacing: 0.17em;
   color: var(--sd-accent);
 }
-.sd-demo .sd-beam {
+.sd-demo .sd-beam,
+.sd-preview .sd-beam {
   position: absolute;
   bottom: 0;
   left: 15%;
@@ -313,24 +330,115 @@
   clip-path: polygon(47% 100%, 0 0, 100% 0, 53% 100%);
   animation: sd-sweep 9s ease-in-out infinite alternate;
 }
-.sd-demo .sd-beam-two {
+.sd-demo .sd-beam-two,
+.sd-preview .sd-beam-two {
   left: 65%;
   animation-delay: -5s;
 }
-.sd-demo .sd-star {
+.sd-demo .sd-night-stars,
+.sd-preview .sd-night-stars,
+.sd-demo .sd-marquee-glints,
+.sd-preview .sd-marquee-glints,
+.sd-demo .sd-mirror-motes,
+.sd-preview .sd-mirror-motes,
+.sd-demo .sd-rose-glitter,
+.sd-preview .sd-rose-glitter,
+.sd-demo .sd-hero-snow,
+.sd-preview .sd-hero-snow {
+  position: absolute;
+  inset: 0;
+}
+.sd-demo .sd-night-star,
+.sd-preview .sd-night-star {
   position: absolute;
   left: var(--x);
   top: var(--y);
-  width: 3px;
-  height: 3px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: #eaf8ff;
+  box-shadow: 0 0 10px #c4efff;
+  animation: sd-night-twinkle var(--duration) var(--delay) infinite ease-in-out;
+}
+.sd-demo .sd-marquee-glints,
+.sd-preview .sd-marquee-glints {
+  inset: 6% 7% 12%;
+}
+.sd-demo .sd-marquee-glint,
+.sd-preview .sd-marquee-glint {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: calc(var(--size) + 3px);
+  height: calc(var(--size) + 3px);
+  background: #fff1b8;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  filter: drop-shadow(0 0 7px #ffd878);
+  animation: sd-marquee-glint var(--duration) var(--delay) infinite ease-in-out;
+}
+.sd-demo .sd-mirror-motes,
+.sd-preview .sd-mirror-motes {
+  inset: 14% 13% 14% 50%;
+  transform: rotate(-4deg);
+}
+.sd-demo .sd-mirror-mote,
+.sd-preview .sd-mirror-mote {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: calc(var(--size) + 2px);
+  height: calc(var(--size) + 2px);
+  border-radius: 50%;
+  background: #c8f58e;
+  box-shadow: 0 0 14px #8be052;
+  animation: sd-mirror-drift var(--duration) var(--delay) infinite ease-in-out alternate;
+}
+.sd-demo .sd-mirror-mote:nth-child(3n),
+.sd-preview .sd-mirror-mote:nth-child(3n) {
+  background: #c6a5ff;
+  box-shadow: 0 0 14px #8750ce;
+}
+.sd-demo .sd-rose-glitter,
+.sd-preview .sd-rose-glitter {
+  inset: 30% 16% 17% 61%;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 7px #ffcd72);
+}
+.sd-demo .sd-rose-spark,
+.sd-preview .sd-rose-spark {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: calc(var(--size) + 2px);
+  height: calc(var(--size) + 2px);
+  background: #ffe6a3;
+  clip-path: polygon(50% 0, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0 50%, 41% 41%);
+  animation: sd-rose-shimmer var(--duration) var(--delay) infinite ease-in-out;
+}
+.sd-demo .sd-rose-spark:nth-child(4n),
+.sd-preview .sd-rose-spark:nth-child(4n) {
+  background: #fff;
+}
+.sd-demo .sd-rose-spark:nth-child(5n),
+.sd-preview .sd-rose-spark:nth-child(5n) {
+  background: #df6770;
+  filter: blur(0.4px);
+}
+.sd-demo .sd-hero-snow,
+.sd-preview .sd-hero-snow {
+  inset: -18% 0 0;
+}
+.sd-demo .sd-snowflake,
+.sd-preview .sd-snowflake {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 9px #fff;
-  animation: sd-twinkle 3s var(--delay) infinite alternate;
-}
-.sd-demo.sd-holiday .sd-star,
-.sd-demo.sd-jingle .sd-star {
-  animation: sd-snow 10s var(--delay) infinite linear;
+  box-shadow: 0 0 7px #d6efff;
+  animation: sd-hero-snowfall var(--duration) var(--delay) infinite linear;
 }
 .sd-demo .sd-wave {
   position: absolute;
@@ -348,6 +456,20 @@
 .sd-demo.sd-jingle .sd-wave {
   border-color: #ffe6ad;
   box-shadow: 0 5px 12px #a4dbaa;
+}
+.sd-demo.sd-holiday .sd-wave {
+  height: 18px;
+  border-bottom: 3px dotted #ffe2a0;
+  box-shadow: 0 7px 14px #347966;
+  animation: sd-garland 6s ease-in-out infinite alternate;
+}
+.sd-demo.sd-jingle .sd-wave {
+  bottom: -4px;
+  height: 34px;
+  border: 0;
+  background: linear-gradient(180deg, #eef9ff, #bad9ed);
+  box-shadow: 0 -5px 20px #d7f2ff55;
+  animation: sd-snowbank 7s ease-in-out infinite alternate;
 }
 .sd-demo .sd-collection {
   padding: 44px clamp(20px, 4vw, 60px) 52px;
@@ -379,6 +501,8 @@
   overflow: hidden;
   background: var(--sd-surface);
   text-align: left;
+  border-radius: var(--sd-card-radius);
+  box-shadow: var(--sd-card-shadow);
 }
 .sd-demo .sd-category-art {
   height: 230px;
@@ -390,6 +514,15 @@
     var(--sd-surface)
   );
   overflow: hidden;
+}
+.sd-demo .sd-category-art::after,
+.sd-demo .sd-item-art::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--sd-line) 72%, transparent);
+  border-radius: max(0px, calc(var(--sd-card-radius) - 7px));
 }
 .sd-demo .sd-category-art img {
   width: 100%;
@@ -449,9 +582,14 @@
 .sd-demo .sd-card {
   text-align: left;
   padding: 0 0 22px;
-  border-radius: 7px;
+  border-radius: var(--sd-card-radius);
   overflow: hidden;
   background: var(--sd-surface);
+  box-shadow: var(--sd-card-shadow);
+}
+.sd-demo .sd-card:hover,
+.sd-demo .sd-categories > button:hover {
+  transform: translateY(-4px);
 }
 .sd-demo .sd-item-art {
   position: relative;
@@ -781,17 +919,9 @@
   color: #fff3d6;
   border-color: #45315b;
 }
-.sd-demo.sd-villains .sd-beam {
-  background: linear-gradient(0deg, #87dbff00, #b895ed25);
-}
 .sd-demo.sd-villains .sd-wave,
 .sd-demo.sd-anniversary .sd-wave {
   display: none;
-}
-.sd-demo.sd-villains .sd-star {
-  background: #c5f3a0;
-  box-shadow: 0 0 14px #b0ef71;
-  animation: sd-drift 8s var(--delay) infinite alternate;
 }
 .sd-demo.sd-villains .sd-product-image {
   background-image: linear-gradient(#24132d40, #15101ca6), var(--sd-scene);
@@ -804,16 +934,6 @@
   font-size: clamp(38px, 4.6vw, 66px);
   color: #f3d99f;
   margin: 12px 0 24px;
-}
-.sd-demo.sd-anniversary .sd-beam {
-  left: 60%;
-  width: 9%;
-  background: linear-gradient(0deg, #edb77100, #edb77122);
-  animation-duration: 16s;
-}
-.sd-demo.sd-anniversary .sd-star {
-  background: #efc981;
-  box-shadow: 0 0 8px #efc981;
 }
 .sd-demo.sd-anniversary .sd-card,
 .sd-demo.sd-anniversary .sd-categories button {
@@ -828,6 +948,16 @@
   border: 3px double #e5c98b;
   border-radius: 50% 50% 12px 12px / 24% 24% 12px 12px;
   background: #112d2dde;
+}
+.sd-demo.sd-holiday .sd-beam,
+.sd-preview.sd-holiday .sd-beam {
+  background: linear-gradient(0deg, #fff7d500, #ffe8a830 60%, #ffefbd12);
+  filter: blur(1px);
+  animation-duration: 12s;
+}
+.sd-demo.sd-holiday .sd-beam-two,
+.sd-preview.sd-holiday .sd-beam-two {
+  animation-duration: 14s;
 }
 .sd-demo.sd-holiday .sd-category-art {
   background: #eee3ce;
@@ -860,9 +990,32 @@
   background: transparent;
   height: 270px;
 }
+.sd-demo.sd-jingle .sd-globe-snow {
+  position: absolute;
+  z-index: 2;
+  top: 8%;
+  right: 21%;
+  bottom: 29%;
+  left: 21%;
+  overflow: hidden;
+  border-radius: 50% 50% 43% 43%;
+  filter: drop-shadow(0 0 5px #fff8);
+}
+.sd-demo.sd-jingle .sd-globe-snow i {
+  position: absolute;
+  top: -12%;
+  left: var(--x);
+  width: calc(var(--size) + 1px);
+  height: calc(var(--size) + 1px);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px #d9f4ff;
+  animation: sd-globe-snowfall var(--duration) var(--delay) infinite linear;
+}
 .sd-demo.sd-jingle .sd-categories > button {
   background: transparent;
   border: none;
+  box-shadow: none;
 }
 .sd-demo.sd-jingle .sd-category-label {
   justify-content: center;
@@ -890,22 +1043,48 @@
   inset: 0;
   overflow: hidden;
   background: #0a182b;
+  isolation: isolate;
+}
+.sd-preview::before,
+.sd-preview::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.sd-preview::before {
+  z-index: 1;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 36%, transparent 25%, #02081138 72%),
+    linear-gradient(0deg, #030b17a3, transparent 42%);
+}
+.sd-preview::after {
+  z-index: 6;
+  inset: 12px;
+  border: 1px solid #fff5d95c;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 5px #0815212b;
 }
 .sd-preview .sd-preview-bg {
   position: absolute;
+  z-index: 0;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .sd-preview .sd-preview-left,
 .sd-preview .sd-preview-right {
   position: absolute;
+  z-index: 3;
   bottom: -5%;
   height: 90%;
   width: 40%;
   object-fit: contain;
   object-position: bottom;
+  filter: drop-shadow(0 14px 22px #0007);
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .sd-preview .sd-preview-left {
   left: -5%;
@@ -915,21 +1094,31 @@
 }
 .sd-preview .sd-preview-title {
   position: absolute;
+  z-index: 4;
   inset: 15% 24% 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  background: #061424b8;
-  border: 1px solid #ffffff30;
-  border-radius: 15px;
-  padding: 12px;
-  backdrop-filter: blur(4px);
+  gap: 12px;
+  background: linear-gradient(140deg, #061424dc, #0614249e);
+  border: 1px solid #e8f7ff59;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 24px 50px #02071173;
+  backdrop-filter: blur(7px);
+}
+.sd-preview .sd-preview-title small {
+  color: #d9ebf4;
+  font-size: clamp(7px, 0.65vw, 10px);
+  line-height: 1.35;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
 }
 .sd-preview .sd-preview-title img {
   width: 100%;
-  height: 70%;
+  height: 62%;
   object-fit: contain;
 }
 .sd-preview .sd-preview-title > span {
@@ -940,30 +1129,71 @@
 }
 .sd-preview .sd-preview-title strong {
   color: #efddbd;
-  font: 32px/1.1 var(--sd-serif);
+  font: clamp(23px, 2.4vw, 38px) / 1.05 var(--sd-serif);
   text-align: center;
+}
+.sd-preview.sd-night .sd-preview-title {
+  border-radius: 22px;
+  background: linear-gradient(145deg, #071827df, #10253ab3);
+}
+.sd-preview.sd-holiday .sd-preview-title {
+  inset: 9% 25% 14%;
+  border: 3px double #f2d79b;
+  border-radius: 48% 48% 14px 14px / 24% 24% 14px 14px;
+  background: #13372fdf;
+  box-shadow: 0 24px 55px #07191480;
+}
+.sd-preview.sd-holiday .sd-preview-title small,
+.sd-preview.sd-holiday .sd-preview-title > span {
+  color: #fff3d5;
 }
 .sd-preview.sd-villains .sd-preview-title,
 .sd-preview.sd-anniversary .sd-preview-title {
-  inset: 15% 49% 18% 6%;
+  inset: 13% 51% 16% 6%;
   border-radius: 3px;
 }
 .sd-preview.sd-villains .sd-preview-title {
-  background: #e4d7c0e3;
+  background: linear-gradient(125deg, #eee3cee8, #d8c7aae0);
   border-color: #bc9c68;
+  box-shadow: 0 24px 50px #140b1f80;
 }
 .sd-preview.sd-villains .sd-preview-title strong,
-.sd-preview.sd-villains .sd-preview-title > span {
+.sd-preview.sd-villains .sd-preview-title > span,
+.sd-preview.sd-villains .sd-preview-title small {
   color: #302438;
 }
+.sd-preview.sd-anniversary .sd-preview-title {
+  background: linear-gradient(110deg, #07192be8, #0d2942c2);
+  border: 1px solid #e0bb7382;
+  box-shadow:
+    inset 0 0 0 5px #07111c54,
+    0 24px 50px #03091373;
+}
+.sd-preview.sd-anniversary::after {
+  border-color: #edce906b;
+}
 .sd-preview.sd-jingle .sd-preview-title {
-  inset: 12% 46% 12% 6%;
-  border: none;
-  background: #0b2430aa;
+  inset: 11% 49% 13% 5%;
+  border: 1px solid #e8d6a45e;
+  border-radius: 46% 46% 16px 16px / 18% 18% 16px 16px;
+  background: radial-gradient(ellipse at center, #0b2d3de8, #071e2db0 70%);
+  box-shadow: 0 24px 60px #02091787;
 }
 .sd-preview.sd-jingle .sd-preview-right {
   right: 2%;
   height: 82%;
+}
+.sd-preview.sd-jingle::after {
+  border-color: #d8edf47a;
+}
+.ew-project-tile a:hover .sd-preview-bg {
+  transform: scale(1.035);
+}
+.ew-project-tile a:hover .sd-preview-left {
+  transform: translateX(-2%);
+}
+.ew-project-tile a:hover .sd-preview-right {
+  transform: translateX(2%);
 }
 @keyframes sd-sweep {
   from {
@@ -973,27 +1203,78 @@
     transform: rotate(24deg);
   }
 }
-@keyframes sd-twinkle {
-  from {
-    opacity: 0.2;
-    transform: scale(0.6);
+@keyframes sd-night-twinkle {
+  0%,
+  100% {
+    opacity: 0.16;
+    transform: scale(0.65);
   }
-  to {
-    opacity: 0.9;
-    transform: scale(1.2);
+  48% {
+    opacity: 0.88;
+    transform: scale(1.35);
   }
 }
-@keyframes sd-snow {
-  from {
-    transform: translateY(-160px);
-    opacity: 0;
+@keyframes sd-marquee-glint {
+  0%,
+  78%,
+  100% {
+    opacity: 0.16;
+    transform: rotate(0deg) scale(0.7);
   }
-  20% {
-    opacity: 0.85;
+  85% {
+    opacity: 0.95;
+    transform: rotate(45deg) scale(1.35);
+  }
+}
+@keyframes sd-mirror-drift {
+  from {
+    opacity: 0.12;
+    transform: translate3d(0, var(--drift), 0) scale(0.7);
   }
   to {
-    transform: translate(35px, 480px);
+    opacity: 0.78;
+    transform: translate3d(var(--drift), calc(-1 * var(--drift)), 0) scale(1.2);
+  }
+}
+@keyframes sd-rose-shimmer {
+  0%,
+  100% {
     opacity: 0;
+    transform: rotate(var(--turn)) scale(0.45);
+  }
+  42% {
+    opacity: 0.9;
+    transform: rotate(calc(var(--turn) + 35deg)) scale(1.35);
+  }
+  68% {
+    opacity: 0.28;
+    transform: translateY(calc(-1 * var(--drift))) rotate(calc(var(--turn) + 70deg)) scale(0.8);
+  }
+}
+@keyframes sd-hero-snowfall {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -40px, 0) rotate(0deg);
+  }
+  14% {
+    opacity: 0.88;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(var(--drift), 680px, 0) rotate(240deg);
+  }
+}
+@keyframes sd-globe-snowfall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+  14% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), 180px, 0);
   }
 }
 @keyframes sd-wave {
@@ -1001,14 +1282,19 @@
     transform: translateY(8px) rotate(-1deg);
   }
 }
-@keyframes sd-drift {
+@keyframes sd-garland {
   from {
-    opacity: 0.2;
-    transform: translate(0, 30px);
+    filter: brightness(0.8);
+    transform: translateY(0) rotate(0.2deg);
   }
   to {
-    opacity: 0.8;
-    transform: translate(25px, -40px);
+    filter: brightness(1.25);
+    transform: translateY(3px) rotate(-0.2deg);
+  }
+}
+@keyframes sd-snowbank {
+  to {
+    transform: translateY(6px) scaleX(1.015);
   }
 }
 @media (max-width: 900px) {
@@ -1195,6 +1481,12 @@
   .sd-demo.sd-anniversary .sd-backdrop {
     object-position: 75% center;
   }
+  .sd-demo.sd-anniversary .sd-rose-glitter {
+    inset: 18% 5% 46% 58%;
+  }
+  .sd-demo.sd-villains .sd-mirror-motes {
+    inset: 10% 3% 42% 58%;
+  }
   .sd-demo.sd-villains .sd-hero-copy,
   .sd-demo.sd-anniversary .sd-hero-copy {
     width: 90%;
@@ -1231,6 +1523,12 @@
   }
   .sd-demo.sd-jingle .sd-category-art {
     height: 190px;
+  }
+  .sd-demo.sd-jingle .sd-globe-snow {
+    top: 9%;
+    right: 18%;
+    bottom: 28%;
+    left: 18%;
   }
   .sd-preview .sd-preview-title {
     inset: 12% 22% 15%;

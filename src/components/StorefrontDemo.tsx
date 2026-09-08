@@ -5,7 +5,11 @@ import {
   useSyncExternalStore,
   type CSSProperties,
 } from "react";
-import { storefrontThemes, type StorefrontTheme } from "../data/storefrontDemo";
+import {
+  storefrontThemes,
+  type DemoTheme,
+  type StorefrontTheme,
+} from "../data/storefrontDemo";
 import { StorefrontFireworks } from "./StorefrontFireworks";
 import "../styles/storefront-demo.css";
 
@@ -14,6 +18,105 @@ function subscribeMotion(callback: () => void) {
   const media = window.matchMedia(motionQuery);
   media.addEventListener("change", callback);
   return () => media.removeEventListener("change", callback);
+}
+
+function particleStyle(index: number, count: number) {
+  return {
+    "--x": `${(index * 37 + 9) % 100}%`,
+    "--y": `${(index * 23 + 11) % 78}%`,
+    "--delay": `${-index * 0.67}s`,
+    "--duration": `${7 + (index % 5) * 1.4}s`,
+    "--size": `${2 + (index % 4)}px`,
+    "--drift": `${12 + ((index * 11) % 30)}px`,
+    "--turn": `${((index * 47) % 90) - 45}deg`,
+    "--index": `${index / count}`,
+  } as CSSProperties;
+}
+
+function ThemeAtmosphere({
+  style,
+  compact = false,
+}: {
+  style: DemoTheme["style"];
+  compact?: boolean;
+}) {
+  const count = compact ? 14 : 26;
+
+  return (
+    <div className="sd-atmosphere" aria-hidden="true">
+      {(style === "night" || style === "holiday") && (
+        <>
+          <i className="sd-beam" />
+          <i className="sd-beam sd-beam-two" />
+        </>
+      )}
+      {style === "night" && (
+        <div className="sd-night-stars">
+          {Array.from({ length: count }, (_, index) => (
+            <i
+              key={index}
+              className="sd-night-star"
+              style={particleStyle(index, count)}
+            />
+          ))}
+        </div>
+      )}
+      {style === "holiday" && (
+        <div className="sd-marquee-glints">
+          {Array.from({ length: compact ? 10 : 18 }, (_, index) => (
+            <i
+              key={index}
+              className="sd-marquee-glint"
+              style={particleStyle(index, count)}
+            />
+          ))}
+        </div>
+      )}
+      {style === "villains" && (
+        <div className="sd-mirror-motes">
+          {Array.from({ length: count }, (_, index) => (
+            <i
+              key={index}
+              className="sd-mirror-mote"
+              style={particleStyle(index, count)}
+            />
+          ))}
+        </div>
+      )}
+      {style === "anniversary" && (
+        <div className="sd-rose-glitter">
+          {Array.from({ length: count + 6 }, (_, index) => (
+            <i
+              key={index}
+              className="sd-rose-spark"
+              style={particleStyle(index, count + 6)}
+            />
+          ))}
+        </div>
+      )}
+      {style === "jingle" && (
+        <div className="sd-hero-snow">
+          {Array.from({ length: count + 8 }, (_, index) => (
+            <i
+              key={index}
+              className="sd-snowflake"
+              style={particleStyle(index, count + 8)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function GlobeSnow() {
+  return (
+    <span className="sd-globe-snow" aria-hidden="true">
+      {Array.from({ length: 16 }, (_, index) => (
+        <i key={index} style={particleStyle(index, 16)} />
+      ))}
+    </span>
+  );
 }
 
 export function StorefrontPreview({ slug }: { slug: StorefrontTheme }) {
@@ -45,7 +148,9 @@ export function StorefrontPreview({ slug }: { slug: StorefrontTheme }) {
           loading="lazy"
         />
       )}
+      <ThemeAtmosphere style={theme.style} compact />
       <div className="sd-preview-title">
+        <small>{theme.eyebrow}</small>
         {theme.logo ? (
           <img src={theme.logo} alt={theme.title} loading="lazy" />
         ) : (
@@ -215,23 +320,7 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
         <>
           <div className="sd-hero">
             <img className="sd-backdrop" src={theme.background} alt="" />
-            <div className="sd-atmosphere" aria-hidden="true">
-              <i className="sd-beam" />
-              <i className="sd-beam sd-beam-two" />
-              {Array.from({ length: 24 }, (_, i) => (
-                <i
-                  key={i}
-                  className="sd-star"
-                  style={
-                    {
-                      "--x": `${(i * 37 + 9) % 100}%`,
-                      "--y": `${(i * 19 + 7) % 72}%`,
-                      "--delay": `${-i * 0.73}s`,
-                    } as CSSProperties
-                  }
-                />
-              ))}
-            </div>
+            <ThemeAtmosphere style={theme.style} />
             {theme.style === "night" && <StorefrontFireworks paused={paused} />}
             {theme.left && (
               <img
@@ -285,6 +374,7 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
                       alt=""
                       loading="lazy"
                     />
+                    {theme.style === "jingle" && <GlobeSnow />}
                   </span>
                   <span className="sd-category-label">
                     {cat}
@@ -421,10 +511,13 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
                 </div>
               )}
               <p className="sd-caption">
-                Saved collection artwork ·{" "}
-                {product.back
-                  ? "Select a view to inspect the decoration."
-                  : "Illustrative styling mockup."}
+                {theme.style === "jingle"
+                  ? "Blank apparel reference · Select a view to inspect the garment."
+                  : `Saved collection artwork · ${
+                      product.back
+                        ? "Select a view to inspect the decoration."
+                        : "Illustrative styling mockup."
+                    }`}
               </p>
             </div>
             <div className="sd-options">

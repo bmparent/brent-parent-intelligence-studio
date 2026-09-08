@@ -1,6 +1,7 @@
 import { SiteGallery } from "./SiteGallery";
 import { useState } from "react";
 import StorefrontDemo, { StorefrontPreview } from "./StorefrontDemo";
+import { LabAccessRequest } from "./LabAccessRequest";
 import { storefrontThemes, type StorefrontTheme } from "../data/storefrontDemo";
 import { showcase, labUrl, type ShowcaseProject } from "../data/showcase";
 export function ProjectTile({
@@ -203,14 +204,19 @@ export function LabPage() {
           review. Follow the engineering and inspect the boundaries of what has
           been demonstrated.
         </p>
-        <a
-          className="ew-button ew-button--primary"
-          href={labUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open the live lab ↗
-        </a>
+        <div className="ew-lab-hero-actions">
+          <a
+            className="ew-button ew-button--primary"
+            href={labUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open the live lab ↗
+          </a>
+          <a className="ew-button ew-button--secondary" href="#request-access">
+            Request a test key ↓
+          </a>
+        </div>
       </section>
       <figure className="ew-showcase-hero ew-shell">
         <a href={labUrl} target="_blank" rel="noopener noreferrer">
@@ -259,6 +265,7 @@ export function LabPage() {
           </p>
         </div>
       </section>
+      <LabAccessRequest />
       <BuildCTA />
     </>
   );

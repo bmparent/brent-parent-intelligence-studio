@@ -27,6 +27,22 @@ test('inquiry requires same origin and confirmed private-provider delivery', asy
   assert.equal(fallback.submitted, false);
 });
 
+test('lab access requests receive a clearly labeled review brief', async () => {
+  const response = await onRequestPost({
+    request: request('https://eidos-works.com', {
+      ...input,
+      projectType: 'Eidos / Sentinel access — Guided full-engine trial',
+    }),
+    env: {},
+  });
+  const body = await response.json();
+  assert.match(body.brief, /^Eidos Brain \/ Sentinel test-access request/);
+  assert.match(
+    decodeURIComponent(body.mailto),
+    /subject=Eidos Brain \/ Sentinel Test Access/,
+  );
+});
+
 test('private mailer fixes destination, bounds input, enforces rate limit, and requires provider receipt', async () => {
   let sent = 0;
   let permitted = true;

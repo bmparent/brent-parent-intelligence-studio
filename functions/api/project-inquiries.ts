@@ -31,6 +31,16 @@ const jsonHeaders = {
 const MAX_REQUEST_BYTES = 12_000;
 const DEFAULT_PROJECTS_EMAIL = 'projects@eidos-works.com';
 
+function isLabAccessRequest(payload: InquiryPayload) {
+  return clean(payload.projectType, 120).startsWith('Eidos / Sentinel access');
+}
+
+function inquiryTitle(payload: InquiryPayload) {
+  return isLabAccessRequest(payload)
+    ? 'Eidos Brain / Sentinel test-access request'
+    : 'Eidos Works project inquiry';
+}
+
 function json(value: unknown, init: ResponseInit = {}) {
   return new Response(JSON.stringify(value), {
     ...init,
@@ -44,7 +54,7 @@ function clean(value: unknown, maxLength: number) {
 
 function buildBrief(payload: InquiryPayload) {
   return [
-    'Eidos Works project inquiry',
+    inquiryTitle(payload),
     '',
     `Service: ${clean(payload.projectType, 120) || 'Not provided'}`,
     `Problem to solve: ${clean(payload.problem, 1_600) || 'Not provided'}`,
@@ -70,8 +80,11 @@ function validate(payload: InquiryPayload) {
   return errors;
 }
 
-function mailto(contactEmail: string, brief: string) {
-  return `mailto:${contactEmail}?subject=${encodeURIComponent('Eidos Works Project Inquiry')}&body=${encodeURIComponent(brief)}`;
+function mailto(contactEmail: string, brief: string, payload: InquiryPayload) {
+  const subject = isLabAccessRequest(payload)
+    ? 'Eidos Brain / Sentinel Test Access'
+    : 'Eidos Works Project Inquiry';
+  return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(brief)}`;
 }
 
 async function sendWebhook(url: string, payload: InquiryPayload, sharedSecret?: string) {
@@ -138,7 +151,7 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
 
   const contactEmail = clean(env.PUBLIC_PROJECTS_EMAIL, 260) || clean(env.NOTIFICATION_TO_EMAIL, 260) || DEFAULT_PROJECTS_EMAIL;
   const brief = buildBrief(payload);
-  const fallbackMailto = mailto(contactEmail, brief);
+  const fallbackMailto = mailto(contactEmail, brief, payload);
 
   if (clean(payload.website, 120)) {
     return json({ state: 'fallback', submitted: false, message: 'Your note is ready to email.', brief, mailto: fallbackMailto });
