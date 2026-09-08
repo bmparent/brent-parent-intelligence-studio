@@ -3,6 +3,7 @@ export interface PublicConfig {
   gaMeasurementId: string;
   turnstileSiteKey: string;
   communityReady: boolean;
+  accountsReady: boolean;
   aiReady: boolean;
   shopReady: boolean;
   localTest: boolean;
@@ -11,6 +12,7 @@ const fallback: PublicConfig = {
   gaMeasurementId: '',
   turnstileSiteKey: '',
   communityReady: false,
+  accountsReady: false,
   aiReady: false,
   shopReady: false,
   localTest: false,

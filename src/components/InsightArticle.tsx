@@ -1,4 +1,5 @@
 import type { MouseEvent } from 'react';
+import { SaveArticle } from './MemberPages';
 import { getArticleBySlug, getArticleSlugFromPath } from '../data/articles';
 
 export type InsightArticleProps = {
@@ -72,6 +73,7 @@ export function InsightArticle({ currentPath, slug, onBack }: InsightArticleProp
             ))}
           </div>
         </header>
+        <SaveArticle slug={article.slug} />
 
         <aside className="insight-article__takeaways" aria-labelledby={`${article.slug}-takeaways`}>
           <h2 id={`${article.slug}-takeaways`}>Practical takeaways</h2>

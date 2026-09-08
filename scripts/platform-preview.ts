@@ -47,6 +47,7 @@ export function platformPreview(): Plugin {
       connection.exec(
         readFileSync('migrations/0001_eidos_platform.sql', 'utf8'),
       );
+      connection.exec(readFileSync('migrations/0002_members.sql', 'utf8'));
       const database: Database = {
         prepare: (sql) => new LocalStatement(connection!, sql),
         batch: async (statements) => {
@@ -105,6 +106,10 @@ export function platformPreview(): Plugin {
         let modulePath: string | undefined;
         let params: Record<string, string> | undefined;
         const routes: Record<string, string> = {
+          '/api/members/auth': 'functions/api/members/auth.ts',
+          '/api/members/account': 'functions/api/members/account.ts',
+          '/api/members/directory': 'functions/api/members/directory.ts',
+          '/api/members/unsubscribe': 'functions/api/members/unsubscribe.ts',
           '/api/public-config': 'functions/api/public-config.ts',
           '/api/assistant': 'functions/api/assistant.ts',
           '/api/intelligence': 'functions/api/intelligence.ts',

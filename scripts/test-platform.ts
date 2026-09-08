@@ -61,6 +61,7 @@ function setup(overrides: Partial<PlatformEnv> = {}) {
   const sql = new DatabaseSync(':memory:');
   sql.exec('PRAGMA foreign_keys=ON;');
   sql.exec(readFileSync('migrations/0001_eidos_platform.sql', 'utf8'));
+  sql.exec(readFileSync('migrations/0002_members.sql', 'utf8'));
   const db: Database = {
     prepare: (q) => new SQLiteStatement(sql, q),
     batch: async (statements) => {

@@ -116,6 +116,7 @@ function generateSitemap() {
       priority: '0.7',
     },
     { loc: absolute('/lab'), lastmod: '2026-09-05', priority: '0.7' },
+    { loc: absolute('/lab/access'), lastmod: '2026-09-08', priority: '0.5' },
     { loc: absolute('/community'), lastmod: '2026-09-05', priority: '0.7' },
     {
       loc: absolute('/community/agents'),
@@ -292,6 +293,10 @@ for (const entry of await readdir(ogDir, { withFileTypes: true })) {
 
 await writeFile(resolve(publicDir, 'sitemap.xml'), generateSitemap());
 await writeFile(resolve(publicDir, 'feed.xml'), generateFeed());
+await writeFile(resolve(publicDir, 'insights-feed.json'), JSON.stringify({
+  version: 1,
+  items: articles.map(({slug,title,publishedAt,byline,excerpt,body,sources}) => ({slug,title,publishedAt,byline,excerpt,body,sources})),
+}) + '\n');
 await writeFile(resolve(publicDir, 'llms.txt'), generateLlmsTxt());
 
 for (const article of articles) {
@@ -312,6 +317,7 @@ const report = {
   files: [
     'public/sitemap.xml',
     'public/feed.xml',
+    'public/insights-feed.json',
     'public/llms.txt',
     ...articles.map((article) => `public${article.ogImage}`),
   ],

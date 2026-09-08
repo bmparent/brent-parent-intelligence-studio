@@ -16,6 +16,15 @@
 /api/*
   Cache-Control: no-store
 
+/account*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: private, no-store
+  Referrer-Policy: no-referrer
+
+/members/*
+  X-Robots-Tag: noindex, nofollow
+  Referrer-Policy: no-referrer
+
 /shop/success*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: private, no-store

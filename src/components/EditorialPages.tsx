@@ -253,7 +253,12 @@ export function AboutPage() {
           <a className="ew-button ew-button--primary" href="/contact">Discuss a project</a>
         </div>
       </section>
-      <section className="ew-ledger-section ew-about-principles"><div className="ew-shell"><p className="ew-eyebrow">Working principles</p><ul><li>Understand the real workflow before choosing the interface.</li><li>Use technology where it removes confusion or repeated work.</li><li>Keep ownership and evidence clear.</li><li>Test the thing people will actually use.</li></ul></div></section>
+      <section className="ew-ledger-section ew-about-principles"><div className="ew-shell"><p className="ew-eyebrow">Working principles</p><ul>
+<li><strong>Understand the real workflow before choosing the interface.</strong><p>Every interface is an interpretation of someone’s world. We start by listening, because a useful answer depends on seeing the question clearly.</p></li>
+<li><strong>Use technology where it removes confusion or repeated work.</strong><p>Attention is a finite part of a person’s life. A good tool gives some of it back, leaving more room for judgment, curiosity, and the work that matters.</p></li>
+<li><strong>Keep ownership and evidence clear.</strong><p>Trust grows when people can see what a claim rests on and who stands behind a decision. Uncertainty belongs in the conversation; it is where better questions begin.</p></li>
+<li><strong>Test the thing people will actually use.</strong><p>An idea meets its meaning in use. We let real experience challenge our assumptions, because being willing to revise is part of taking the work seriously.</p></li>
+</ul></div></section>
     </>
   );
 }
@@ -286,7 +291,7 @@ export function EidosBrainLabPage() {
         <p className="ew-eyebrow">Research method</p><h2 id="lab-method-title">Learn the expected stream, measure the residual, preserve the part that changes meaning.</h2>
         <div><article><span>01</span><h3>Observe</h3><p>Process a time-ordered stream and maintain a compact internal state.</p></article><article><span>02</span><h3>Predict</h3><p>Estimate the next signal and measure the residual between prediction and observation.</p></article><article><span>03</span><h3>Review surprise</h3><p>Compare error with recent error behavior so unusual change can be inspected.</p></article><article><span>04</span><h3>Emit receipts</h3><p>Keep raw and calibrated metrics visible beside human-readable evidence.</p></article></div>
       </section>
-      <section className="ew-ledger-section ew-lab-limit"><div className="ew-shell"><p className="ew-eyebrow">Limits and next experiment</p><h2>The work does not prove general intelligence, consciousness, universal prediction, or autonomous decision-making.</h2><p>Current research value comes from reproducible domain proofs, false-positive discipline, compression and anomaly-preservation measurements, and incident explanations. The next experiment should be chosen from a documented proof gap, not a broader claim.</p><div className="ew-lab-limit__links"><a className="ew-text-link ew-text-link--light" href="/insights/eidos-brain-sentinel-small-business-intelligence">Read the public case note</a><a className="ew-text-link ew-text-link--light" href="/lab#request-access">Request a full-engine test key</a></div></div></section>
+      <section className="ew-ledger-section ew-lab-limit"><div className="ew-shell"><p className="ew-eyebrow">Limits and next experiment</p><h2>The work does not prove general intelligence, consciousness, universal prediction, or autonomous decision-making.</h2><p>Current research value comes from reproducible domain proofs, false-positive discipline, compression and anomaly-preservation measurements, and incident explanations. The next experiment should be chosen from a documented proof gap, not a broader claim.</p><div className="ew-lab-limit__links"><a className="ew-text-link ew-text-link--light" href="/insights/eidos-brain-sentinel-small-business-intelligence">Read the public case note</a><a className="ew-text-link ew-text-link--light" href="/lab/access">Request a full-engine test key</a></div></div></section>
     </>
   );
 }

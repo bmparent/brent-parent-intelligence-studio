@@ -7,6 +7,7 @@ interface RelayContext {
 }
 const routes = new Set([
   '/api/assistant', '/api/public-config',
+  '/api/members/auth', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
   '/api/community/moderate', '/api/community/maintenance',
   '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook',
@@ -35,6 +36,8 @@ export async function onRequest({ request, env, next }: RelayContext) {
       const value = request.headers.get(name);
       if (value) headers.set(name, value);
     }
+    const session = (request.headers.get('cookie') || '').split(';').map(s=>s.trim()).find(s=>/^__Host-eidos_session=[a-f0-9]{64}$/.test(s));
+    if (session) headers.set('cookie',session);
     headers.set('x-eidos-platform-token', env.EIDOS_PLATFORM_TOKEN);
     // Optional project-scoped Vercel automation credential, configured only on Pages previews.
     if (env.EIDOS_PLATFORM_PREVIEW_BYPASS) headers.set('x-vercel-protection-bypass', env.EIDOS_PLATFORM_PREVIEW_BYPASS);
@@ -53,7 +56,9 @@ export async function onRequest({ request, env, next }: RelayContext) {
       throw new HttpError(503, 'The studio connection is temporarily unavailable.');
     }
     const output = new Headers(response.headers);
+    const setCookie = output.get('set-cookie');
     output.delete('set-cookie');
+    if (['/api/members/auth','/api/members/account'].includes(path) && setCookie && /^__Host-eidos_session=(?:[a-f0-9]{64})?; Path=\/; HttpOnly; SameSite=Lax; Max-Age=(?:0|2592000); Secure$/.test(setCookie)) output.set('set-cookie',setCookie);
     output.set('cache-control', 'no-store');
     output.set('x-content-type-options', 'nosniff');
     return new Response(response.body, { status: response.status, headers: output });

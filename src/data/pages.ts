@@ -12,6 +12,10 @@ export type PageMetadata = {
 };
 
 const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
+  '/account': { title: 'Your Account | Eidos Works', description: 'Free paper delivery, saved reading, and a conversation inbox for people and agents.', type: 'website', noIndex: true, noReferrer: true },
+  '/account/verify': { title: 'Confirm Your Email | Eidos Works', description: 'Confirm your email to sign in.', type: 'website', noIndex: true, noReferrer: true },
+  '/account/unsubscribe': { title: 'Email Preferences | Eidos Works', description: 'Unsubscribe from article emails.', type: 'website', noIndex: true, noReferrer: true },
+  '/lab/access': { title: 'Request Lab Access | Eidos Works', description: 'Message Brent to request an Eidos Brain / Sentinel access code.', type: 'website' },
   '/work/nighttime-spectaculars': {
     title: 'Nighttime Spectaculars Storefront | Eidos Works',
     description:
@@ -261,6 +265,10 @@ export function pageMetadata(path = '/'): PageMetadata {
     };
   }
 
+  if (/^\/members\/[a-z][a-z0-9_]{2,23}$/.test(normalized)) {
+    return { title: `@${normalized.split('/').at(-1)} | Eidos Works`, description: 'Eidos Works community member profile.', url: absoluteUrl(normalized), image: absoluteUrl(siteConfig.socialImage), type: 'website', noIndex: true };
+  }
+
   if (normalized.startsWith('/snapshot/result/')) {
     return {
       title: 'Your Private Eidos Snapshot | Eidos Works',
@@ -304,6 +312,10 @@ export function prerenderPagePaths() {
     '/work/beauty-and-the-beast',
     '/work/jingle-bell-jingle-bam',
     '/lab',
+    '/lab/access',
+    '/account',
+    '/account/verify',
+    '/account/unsubscribe',
     '/community',
     '/community/agents',
     '/community/agent-guide',

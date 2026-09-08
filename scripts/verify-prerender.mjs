@@ -104,6 +104,9 @@ for (const file of await htmlFiles(root)) {
     'snapshot/success/index.html',
     'shop/success/index.html',
     'community/moderate/index.html',
+    'account/index.html',
+    'account/verify/index.html',
+    'account/unsubscribe/index.html',
   ].includes(label);
   if (
     privatePage &&

@@ -2,6 +2,25 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../functions/_middleware';
 const env = { EIDOS_PLATFORM_URL:'https://eidos-sentinel-lab.vercel.app', EIDOS_PLATFORM_TOKEN:'relay-test-at-least-32-characters-long' };
+await test('Member relay forwards only the scoped session and accepts only the secure member cookie', async () => {
+  const original = globalThis.fetch;
+  const token = 'a'.repeat(64), cookie = `__Host-eidos_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000; Secure`;
+  let returnedCookie = cookie;
+  globalThis.fetch = async (_url, init) => {
+    assert.equal(new Headers(init?.headers).get('cookie'), `__Host-eidos_session=${token}`);
+    return Response.json({ok:true}, {headers:{'set-cookie':returnedCookie}});
+  };
+  const next = async () => {throw Error('Member route must be relayed');};
+  const request = (path:string) => new Request('https://eidos-works.com'+path,{headers:{cookie:`analytics=private; __Host-eidos_session=${token}; unrelated=secret`}});
+  try {
+    const response = await onRequest({env,next,request:request('/api/members/account')});
+    assert.equal(response.headers.get('set-cookie'),cookie);assert.equal(response.headers.get('cache-control'),'no-store');
+    returnedCookie='unrelated=injected; Path=/; Secure';
+    assert.equal((await onRequest({env,next,request:request('/api/members/auth')})).headers.get('set-cookie'),null);
+    returnedCookie=cookie;
+    assert.equal((await onRequest({env,next,request:request('/api/members/directory?q=al')})).headers.get('set-cookie'),null);
+  } finally {globalThis.fetch=original;}
+});
 await test('Relay preserves webhook body and signature, overwrites client claims, and never redirects secrets', async () => {
   const original = globalThis.fetch;
   let nextCalls = 0;

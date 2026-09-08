@@ -1521,3 +1521,6 @@ img {
 }
 /* Classic scrollbars must not make a 320px viewport overflow. */
 body { min-width: 0; }
+
+.ew-about-principles li strong {display:block;font-weight:500;}
+.ew-about-principles li p {font-family:var(--font-body,Arial,sans-serif);font-size:17px;line-height:1.75;font-weight:400;max-width:750px;color:#52616a;letter-spacing:normal;margin:14px 0 0;}
