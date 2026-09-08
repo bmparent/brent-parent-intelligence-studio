@@ -296,51 +296,51 @@ export const storefrontThemes: Record<StorefrontTheme, DemoTheme> = {
         name: "J333",
         category: "Jackets",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535469/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/j333-front-v1.webp",
+          "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533870/jbjb-source-j333-front.png",
         description:
-          "Explore the saved J333 mockup. Switch between the front and back to take a closer look at the collection artwork.",
+          "A clean J333 garment reference. Switch between front and back to inspect the silhouette without a misplaced decoration.",
         sizes: ["S", "M", "L", "XL", "2XL"],
-        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535467/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/j333-back-v1.webp",
+        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533897/jbjb-source-j333-back.png",
       },
       {
         name: "L333",
         category: "Jackets",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535536/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/l333-front-v1.webp",
+          "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533895/jbjb-source-l333-front.png",
         description:
-          "Explore the saved L333 mockup. Switch between the front and back to take a closer look at the collection artwork.",
+          "A clean L333 garment reference. Switch between front and back to inspect the silhouette without a misplaced decoration.",
         sizes: ["S", "M", "L", "XL", "2XL"],
-        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535472/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/l333-back-v1.webp",
+        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533892/jbjb-source-l333-back.png",
       },
       {
         name: "J717",
         category: "Layers",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535438/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/j717-front-v1.webp",
+          "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533759/j717-deep-black-flat-front-source.png",
         description:
-          "Explore the saved J717 mockup. Switch between the front and back to take a closer look at the collection artwork.",
+          "A clean J717 garment reference. Switch between front and back to inspect the silhouette without a misplaced decoration.",
         sizes: ["S", "M", "L", "XL", "2XL"],
-        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535445/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/j717-back-v1.webp",
+        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533866/jbjb-source-j717-back.png",
       },
       {
         name: "L717",
         category: "Layers",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535447/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/l717-front-v1.webp",
+          "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533864/jbjb-source-l717-front.png",
         description:
-          "Explore the saved L717 mockup. Switch between the front and back to take a closer look at the collection artwork.",
+          "A clean L717 garment reference. Switch between front and back to inspect the silhouette without a misplaced decoration.",
         sizes: ["S", "M", "L", "XL", "2XL"],
-        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535465/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/l717-back-v1.webp",
+        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533868/jbjb-source-l717-back.png",
       },
       {
         name: "DT800",
         category: "T-shirts",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535440/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/dt800-front-v1.webp",
+          "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533901/jbjb-source-dt800-front.png",
         description:
-          "Explore the saved DT800 mockup. Switch between the front and back to take a closer look at the collection artwork.",
+          "A clean DT800 garment reference. Switch between front and back to inspect the silhouette without a misplaced decoration.",
         sizes: ["S", "M", "L", "XL", "2XL"],
-        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1788535442/hollywood-studios-shows/jingle-bell-jingle-bam/visual-assets-v1/products/dt800-back-v1.webp",
+        back: "https://res.cloudinary.com/dhcmpzn9e/image/upload/e_background_removal/f_png/q_auto/c_limit,w_900/v1788533899/jbjb-source-dt800-back.png",
       },
     ],
     categoryImages: {

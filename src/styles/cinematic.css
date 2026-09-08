@@ -379,17 +379,17 @@ img {
   border-radius: 10px;
   background: #173540;
 }
-.ew-project-image img {
+.ew-project-image > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.ew-project-tile a:hover .ew-project-image img {
+.ew-project-tile a:hover .ew-project-image > img {
   transform: scale(1.035);
 }
-.ew-project-image--holidays-in-hollywood img {
+.ew-project-image--holidays-in-hollywood > img {
   object-position: center top;
 }
 .ew-project-image--pernr-access-gate img,
@@ -411,6 +411,7 @@ img {
   color: white;
   backdrop-filter: blur(15px);
   font-size: 20px;
+  z-index: 10;
 }
 .ew-project-meta {
   display: flex;
@@ -723,6 +724,12 @@ img {
 .ew-page-intro > .ew-text-link {
   margin-bottom: 30px;
 }
+.ew-lab-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
 .ew-work-collection {
   padding-bottom: 65px;
 }
@@ -799,6 +806,62 @@ img {
 .ew-showcase-story li,
 .ew-lab-details li {
   padding-bottom: 15px;
+}
+.ew-lab-access {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(42px, 8vw, 110px);
+  align-items: start;
+  padding-block: 90px 110px;
+  border-top: 1px solid var(--ew-line);
+  scroll-margin-top: 120px;
+}
+.ew-lab-access__intro h2 {
+  max-width: 9ch;
+  margin: 14px 0 24px;
+  font-size: clamp(2.9rem, 5vw, 5.2rem);
+  line-height: 0.98;
+}
+.ew-lab-access__intro > p:not(.ew-eyebrow) {
+  max-width: 54ch;
+  color: var(--ew-muted);
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+.ew-lab-access__intro ol {
+  padding: 0;
+  margin: 35px 0 24px;
+  list-style: none;
+  border-top: 1px solid var(--ew-ink);
+}
+.ew-lab-access__intro li {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--ew-line);
+  color: var(--ew-ink-soft);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+.ew-lab-access__intro li span {
+  color: var(--ew-teal);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.ew-lab-access__form {
+  position: relative;
+  box-shadow: 0 24px 70px rgba(15, 40, 46, 0.09);
+}
+.ew-lab-access__form .ew-consent {
+  margin-top: 0;
+}
+.ew-lab-limit__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 34px;
+  margin-top: 28px;
 }
 .ew-build-cta {
   background: var(--ew-ink);
@@ -1235,6 +1298,22 @@ img {
     grid-template-columns: 1fr;
     gap: 25px;
     padding-bottom: 60px;
+  }
+  .ew-lab-access {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding-block: 60px 75px;
+    scroll-margin-top: 95px;
+  }
+  .ew-lab-access__intro h2 {
+    max-width: 12ch;
+  }
+  .ew-lab-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .ew-lab-hero-actions .ew-button {
+    justify-content: center;
   }
   .ew-showcase-story h2,
   .ew-lab-details h2 {
