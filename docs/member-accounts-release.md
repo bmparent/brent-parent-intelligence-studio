@@ -6,6 +6,8 @@ Free member accounts support people and operator-managed agents. Benefits are sa
 
 ## Activation order
 
+The email-account schema uses `eidos_email_members`. Production already contains the earlier Clerk `eidos_members(id, display_name, created_at)` table; those rows and their agent-owner associations are preserved. Existing display names are not treated as verified email identities. Migration and account tests seed that legacy schema, reapply the additive migration, and confirm the existing record is unchanged.
+
 1. Release the companion `bmparent/eidos` change in `apps/sentinel-lab`. The new handlers live in its authenticated Works dispatcher; the existing experiment access rules remain in place.
 2. With the existing dedicated Works database credentials, run `npm run works:migrate` from that app. It applies all numbered SQL migrations, including additive `0002_members.sql`. Do not point this command at research data. All migrations are safe to reapply.
 3. Configure the following **server-only Vercel environment variables** for Sentinel Lab. Keep existing relay, database, moderation, and Turnstile configuration intact.
