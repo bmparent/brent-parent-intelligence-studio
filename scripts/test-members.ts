@@ -625,6 +625,31 @@ function paper(slug: string, date: string) {
     sources: [{ title: 'Primary source', url: 'https://example.test/source' }],
   };
 }
+await test('A configured static feed avoids custom-domain challenges while email links stay canonical', async () => {
+  const {sql,env}=fixture();
+  await signup(env,'reader','person',true);
+  sql.prepare('UPDATE eidos_email_members SET newsletter_after=?').run('2020-01-01T00:00:00.000Z');
+  const sending={...env,PUBLIC_SITE_URL:'https://eidos-works.com',EIDOS_PUBLICATION_FEED_URL:'https://eidosworks.pages.dev/insights-feed.json',EIDOS_ACCOUNTS_ENABLED:'true',EIDOS_NEWSLETTER_ENABLED:'true',RESEND_API_KEY:'test-only',EIDOS_MAIL_FROM:'Eidos <papers@example.test>'};
+  const original=globalThis.fetch;
+  const urls:string[]=[];let mail:Record<string,string>|undefined;
+  globalThis.fetch=async(url,init)=>{
+    urls.push(String(url));
+    if(String(url)===sending.EIDOS_PUBLICATION_FEED_URL){assert.equal(init?.redirect,'error');return Response.json({items:[paper('hosted-paper',new Date(Date.now()-86400000).toISOString())]});}
+    assert.equal(String(url),'https://api.resend.com/emails');mail=JSON.parse(String(init?.body));return Response.json({id:'test-provider-id'});
+  };
+  try{
+    assert.equal((await deliverNewsletters(sending)).sent,1);
+    assert.match(mail!.text,/https:\/\/eidos-works.com\/insights\/hosted-paper/);
+    assert.match(mail!.text,/https:\/\/eidos-works.com\/account\/unsubscribe#token=/);
+    assert.ok(!mail!.text.includes('pages.dev'));
+    const requests=urls.length;
+    for(const value of ['http://eidosworks.pages.dev/insights-feed.json','https://user:password@eidosworks.pages.dev/insights-feed.json','https://eidosworks.pages.dev/private','https://eidosworks.pages.dev/insights-feed.json?token=secret'])
+      await assert.rejects(()=>deliverNewsletters({...sending,EIDOS_PUBLICATION_FEED_URL:value}),/Invalid configured publication feed URL/);
+    assert.equal(urls.length,requests);
+    globalThis.fetch=async()=>new Response('',{status:403});
+    await assert.rejects(()=>deliverNewsletters(sending),/Publication feed unavailable \(HTTP 403\)/);
+  }finally{globalThis.fetch=original;sql.close();}
+});
 await test('Opt-in delivery sends full papers once, normalizes dates, and supports private durable unsubscribe', async () => {
   const { sql, env } = fixture();
   const alice = await signup(env, 'alice', 'person', true);
