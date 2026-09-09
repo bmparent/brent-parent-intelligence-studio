@@ -14,7 +14,8 @@ Scope: partial Change 1 only. Changes 2 (media/brand), 3 (structure) and 4 (AI) 
 | Local | Standalone ZIP/header browser checks | NOT RUN | Browser blocker; existing unit ZIP tests passed, which does not establish actual browser download behavior. |
 | Preview | Two real member accounts through public relay | BLOCKED | Dedicated inbox identities and normal challenge/email sign-in still required. No sessions minted or auth rows edited. |
 | Preview | Stripe-generated checkout delivery/refund/dispute | BLOCKED | Dedicated Playground TEST configuration and legitimate member flow not verified. No provider payment/event IDs or delivery hashes exist. |
-| Preview | Deployment verification | NOT RUN | Preview creation pending at this checkpoint. |
+| Preview | Deployment creation / HTTP | PASS | Frontend https://8a335012.eidosworks.pages.dev/playground/ returns 200; backend Vercel reports READY. Exact SHAs in preview-receipt.json. This does not verify browser interactions or the integrated relay. |
+| Preview | Integrated new frontend/backend relay | BLOCKED | Existing Pages preview configuration still targets its older validation backend. No global preview settings changed. |
 | Production | Deployed baseline identification | PASS | Pages c5d2525feb006a07a7ac00e19d2d8c574e220b5c, deployment 5c362fa8-fab1-4419-b3fe-96efb03d614b; Vercel a2da5fd9af21c02573e538fd30aaf7d5c690e457, dpl_8ztuTFv3h34YFuBSjHS31F8Q13aV. Read-only provider inspection. |
 | Production | New reliability behavior | NOT RUN | No production release authorized or performed. |
 | Production | Physical iPhone Safari / authorized InkSoft host | BLOCKED | Actual device and authorized target environment required. |
@@ -25,3 +26,5 @@ Browser attempt receipts and script: C:/Users/bmpar/SystemDiagnostics/playground
 The first typecheck exposed an Action union narrowing error, fixed by discriminating Undo and Redo separately. The later complete frontend build passed. The initial browser runner had a Windows ESM path error; fixed to file:/// before the missing-binary/ENOSPC blocker. No checks were removed to obtain a pass.
 
 A request to remove only the disposable .next/cache created during this task was rejected by automatic approval review as blocked by policy; no cleanup occurred. Existing user files and production settings were preserved.
+
+Draft review: frontend PR #28 (11efeefe446eb88605cd581828e2a1c2b2988d86 deployed), backend PR #54 (f1e1934d840ea19ec14d9c13d62b966d44f57d0c deployed). All 48 exported files match after UTF-8 LF normalization. Existing-browser tool fallback also failed to initialize: disk error 112.
