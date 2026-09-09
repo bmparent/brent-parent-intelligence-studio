@@ -10,7 +10,7 @@ export function Inspector({
 }: {
   project: Project;
   selected: SectionType;
-  edit: (p: Project, group?: string) => void;
+  edit: (p: Project | ((current: Project) => Project), group?: string) => void;
   notify: (message: string) => void;
 }) {
   const [tab, setTab] = useState<"content" | "appearance">("appearance");
@@ -137,7 +137,10 @@ export function Inspector({
                       if (!file) return;
                       try {
                         const data = await imageData(file);
-                        section("image", data);
+                        edit(current => current.template !== p.template ? current : ({
+                          ...current,
+                          sections: current.sections.map(v => v.id === selected ? { ...v, image: data } : v),
+                        }));
                         notify(
                           "Image added. It will travel with your project and export.",
                         );

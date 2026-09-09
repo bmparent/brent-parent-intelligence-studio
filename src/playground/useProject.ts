@@ -9,7 +9,7 @@ type State = {
   time: number;
 };
 type Action =
-  | { type: "edit"; project: Project; group?: string; time: number }
+  | { type: "edit"; project: Project | ((current: Project) => Project); group?: string; time: number }
   | { type: "undo" | "redo" }
   | { type: "load"; project: Project };
 function reducer(s: State, a: Action): State {
@@ -37,7 +37,7 @@ function reducer(s: State, a: Action): State {
       : s;
   if (a.type === "edit")
     return {
-      current: a.project,
+      current: typeof a.project === "function" ? a.project(s.current) : a.project,
       past:
         a.group && a.group === s.group && a.time - s.time < 900
           ? s.past
@@ -131,7 +131,7 @@ export function useProject() {
           ? "Saving…"
           : "Saved on this device"),
     storageError,
-    edit: (project: Project, group?: string) =>
+    edit: (project: Project | ((current: Project) => Project), group?: string) =>
       dispatch({ type: "edit", project, group, time: Date.now() }),
     undo: () => dispatch({ type: "undo" }),
     redo: () => dispatch({ type: "redo" }),

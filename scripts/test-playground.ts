@@ -59,21 +59,21 @@ test("exports use identical markup and package uploaded image bytes", () => {
   assert.deepEqual(JSON.parse(decode("project.json")), p);
   assert.ok(!decode("index.html").includes("playground-ready"));
   assert.ok(decode("AI-HANDOFF.md").includes("fully glass at 72px"));
-  p.sections[1].image = "data:image/png;base64,aGVsbG8=";
+  p.sections[1].image = "data:image/png;base64,iVBORw0KGgo=";
   p.sections[1].alt = "Test asset";
   const withImage = exportFiles(p);
   assert.equal(
     new TextDecoder().decode(
       withImage.find((f) => f.name === "assets/hero.png")!.data,
     ),
-    "hello",
+    "�PNG\r\n\u001a\n",
   );
   assert.ok(
     new TextDecoder()
       .decode(withImage[0].data)
       .includes('src="assets/hero.png"'),
   );
-  assert.equal(p.sections[1].image, "data:image/png;base64,aGVsbG8=");
+  assert.equal(p.sections[1].image, "data:image/png;base64,iVBORw0KGgo=");
 });
 test("stored ZIP carries central directory and correct file count", () => {
   const files = exportFiles(createProject()),
@@ -90,4 +90,12 @@ test("contrast and visibility produce accessible baseline content", () => {
   const html = pageMarkup(p);
   assert.ok(!html.includes('href="#services"'));
   assert.ok(!html.includes('class="pg-services"'));
+});
+
+test("imports reject malformed base64 and mismatched image signatures", () => {
+  for (const image of ["data:image/png;base64,a", "data:image/png;base64,aGVsbG8=", "data:image/webp;base64,iVBORw0KGgo=", "data:image/png;base64,iVBORw0KGgo==="]) {
+    const project = createProject();
+    project.sections[1].image = image;
+    assert.throws(() => validateProject(project));
+  }
 });

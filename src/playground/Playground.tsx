@@ -43,7 +43,7 @@ export default function Playground() {
     const t = setTimeout(() => setNotice(""), 6500);
     return () => clearTimeout(t);
   }, [notice]);
-  const change = (p: Project, group?: string) => {
+  const change = (p: Project | ((current: Project) => Project), group?: string) => {
     if (!ready) return;
     setComparison(null);
     edit(p, group);
@@ -72,6 +72,7 @@ export default function Playground() {
     }
   }
   async function exportZip() {
+    if (comparison || !ready) return;
     setExporting(true);
     try {
       const data = zipFiles(exportFiles(project));
@@ -395,7 +396,7 @@ export default function Playground() {
               ? "Click a section to make it yours"
               : "Visitor preview"}
         </span>
-        <button onClick={() => dialog.current?.showModal()}>
+        <button disabled={!ready || !!comparison} onClick={() => dialog.current?.showModal()}>
           {warnings.length
             ? `${warnings.length} publishing notes`
             : "Ready to export"}{" "}
@@ -447,7 +448,7 @@ export default function Playground() {
         )}
         <button
           className="pg-primary"
-          disabled={exporting || !ready}
+          disabled={exporting || !ready || !!comparison}
           onClick={() => void exportZip()}
         >
           {exporting ? "Preparing package…" : "Download page package"}

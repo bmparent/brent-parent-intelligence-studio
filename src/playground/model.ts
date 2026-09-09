@@ -215,6 +215,15 @@ export function validateProject(input: unknown): Project {
       !/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+=*$/.test(image)
     )
       throw new Error("Images must be embedded PNG, JPEG, or WebP files.");
+    if (image) {
+      const encoded = image.slice(image.indexOf(",") + 1);
+      let bytes: string;
+      try { bytes = atob(encoded); } catch { throw new Error("Image data is malformed. Your current design is unchanged."); }
+      const valid = image.startsWith("data:image/png;") ? bytes.startsWith("\x89PNG\r\n\x1a\n")
+        : image.startsWith("data:image/jpeg;") ? bytes.startsWith("\xff\xd8\xff")
+          : bytes.startsWith("RIFF") && bytes.slice(8, 12) === "WEBP";
+      if (!valid || btoa(bytes) !== encoded) throw new Error("Image data does not match its image type.");
+    }
     const href = string(s.href, 1000);
     if (href && safeHref(href) === "#" && href !== "#")
       throw new Error(
