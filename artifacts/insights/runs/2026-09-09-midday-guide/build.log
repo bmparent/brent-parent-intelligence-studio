@@ -1,0 +1,50 @@
+
+> brent-parent-intelligence-studio@1.1.0 build
+> node scripts/clean-build-output.mjs && npm run kit:build && npm run content:generate && npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs
+
+Cleared generated build output.
+
+> brent-parent-intelligence-studio@1.1.0 kit:build
+> node scripts/build-kit.mjs
+
+Packaged cinematic starter: 6012 bytes, 5 files.
+
+> brent-parent-intelligence-studio@1.1.0 content:generate
+> node scripts/generate-insights-assets.mjs
+
+Generated sitemap, feed, llms.txt, and 12 article OG images for https://eidos-works.com.
+
+> brent-parent-intelligence-studio@1.1.0 typecheck
+> tsc -b --pretty false
+
+vite v8.0.16 building client environment for production...
+(node:35820) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2K
+transforming...✓ 66 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/.vite/manifest.json                    0.54 kB │ gzip:  0.22 kB
+dist/index.html                             2.81 kB │ gzip:  0.91 kB
+dist/assets/index-B0zzRKoG.css            155.91 kB │ gzip: 32.08 kB
+dist/assets/rolldown-runtime-D9-fqq9M.js    0.08 kB │ gzip:  0.08 kB
+dist/assets/react-vendor-P0Lkgw2L.js      190.21 kB │ gzip: 59.82 kB
+dist/assets/index-BD6LMvrW.js             336.83 kB │ gzip: 89.99 kB
+
+[PLUGIN_TIMINGS] Your build spent significant time in plugins. Here is a breakdown:
+  - vite:css (84%)
+  - vite:css-post (11%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+
+✓ built in 3.19s
+vite v8.0.16 building ssr environment for production...
+(node:28408) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2K
+transforming...✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist-ssr/.vite/manifest.json    0.21 kB │ gzip:   0.13 kB
+dist-ssr/entry-server.js      447.86 kB │ gzip: 104.67 kB
+
+✓ built in 817ms

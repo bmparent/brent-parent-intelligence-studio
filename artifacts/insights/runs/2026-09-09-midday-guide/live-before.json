@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-09T17:08:25.186Z",
+  "hubStatus": 200,
+  "hubUrl": "https://eidos-works.com/insights/",
+  "mondayArticlePresent": true,
+  "wednesdayArticlePresent": false,
+  "robotsStatus": 200,
+  "robots": "User-agent: *\r\nAllow: /\r\nDisallow: /snapshot/result/\r\nDisallow: /snapshot/success\r\nSitemap: https://eidos-works.com/sitemap.xml\r\n\r\nDisallow: /community/moderate\r\nDisallow: /shop/success\r\nDisallow: /api/\r\nSitemap: https://eidos-works.com/community/sitemap.xml\r\n",
+  "indexing": "unknown",
+  "analytics": "unknown"
+}
