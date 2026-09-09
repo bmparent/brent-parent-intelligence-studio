@@ -1,0 +1,68 @@
+/* Approved edge-light v4; a fully opaque, useful header is the no-JS default. */
+.ew-glass-header .ew-header__inner {
+  --ew-liquid: 0;
+  position: relative;
+  border: 0;
+  border-radius: var(--ew-glass-radius, 29px);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 12px 26px -17px #122a3848, 0 2px 5px #18383a14;
+  touch-action: pan-y;
+}
+.ew-liquid-layers, .ew-liquid-optics, .ew-liquid-solid, .ew-liquid-rim, .ew-liquid-light {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+/* No opacity/filter on the wrapper: that would isolate the live backdrop. */
+.ew-liquid-layers { z-index: 0; }
+.ew-liquid-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ew-liquid-optics {
+  background: linear-gradient(155deg, var(--ew-glass-top, #ffffff26), transparent 52%, var(--ew-glass-bottom, #d1e9e412));
+  backdrop-filter: blur(var(--ew-glass-frost, 1.2px)) saturate(var(--ew-glass-saturation, 1.2));
+  -webkit-backdrop-filter: blur(var(--ew-glass-frost, 1.2px)) saturate(var(--ew-glass-saturation, 1.2));
+}
+.ew-header__inner:not([data-glass-state]) .ew-liquid-optics,
+.ew-header__inner[data-glass-state="solid"] .ew-liquid-optics { visibility: hidden; }
+.ew-liquid-solid {
+  background: var(--ew-glass-solid, #0f2530);
+  opacity: calc(1 - var(--ew-liquid));
+  box-shadow: inset 0 0 0 1px #b9d3da47, inset 0 1px 0 #ffffff19;
+}
+.ew-liquid-rim {
+  opacity: var(--ew-liquid);
+  background: linear-gradient(175deg, #ffffff0d, transparent 45%, #112e3510);
+  box-shadow: inset 0 1px 1px #ffffff40, inset 0 -1px 1px #17313920;
+}
+.ew-liquid-rim::before {
+  content: ''; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
+  opacity: var(--ew-rim-energy, .42);
+  background: conic-gradient(from 135deg, #ffffffd9, #ffffff15 16%, #5d87784d 27%, #ffffff10 40%, #ffffffe8 52%, #ffffff20 65%, #283d4d66 79%, #ffffff15 90%, #ffffffd9);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+.ew-liquid-light { width: 100%; height: 100%; opacity: 0; }
+.ew-glass-header .ew-brand, .ew-glass-header .ew-menu-toggle, .ew-glass-header .ew-header__cta { position: relative; z-index: 1; }
+.ew-glass-header .ew-nav { z-index: 1; }
+.ew-glass-header .ew-nav a { position: relative; }
+.ew-glass-header .ew-header__inner a, .ew-glass-header .ew-menu-toggle { touch-action: pan-y; }
+.ew-glass-header .ew-header__inner [data-glass-tone="light"] { color: #163435; text-shadow: 0 1px 3px #ffffffb0; }
+.ew-glass-header .ew-header__inner [data-glass-tone="dark"] { color: #f3faf8; text-shadow: 0 1px 3px #07121bdb; }
+.ew-glass-header .ew-header__cta[data-glass-tone="light"] { background: #173b3cf2; color: #f1faf5; text-shadow: none; }
+.ew-glass-header .ew-header__cta[data-glass-tone="dark"] { background: #f4faf1f2; color: #17383a; text-shadow: none; }
+.ew-glass-header .ew-menu-toggle[data-glass-tone="light"] { border-color: #173b3c66; }
+@media (max-width: 760px) {
+  .ew-glass-header .ew-header__inner { border-radius: var(--ew-glass-mobile-radius, 23px); }
+  .ew-glass-header .ew-nav { top: calc(100% + 10px); left: 0; right: 0; }
+  .ew-glass-header .ew-nav.is-open { background: #102b37; }
+}
+@media (prefers-reduced-motion: reduce) { .ew-liquid-light { display: none; } }
+@media (forced-colors: active) {
+  .ew-glass-header .ew-header__inner { background: Canvas; border: 1px solid CanvasText; }
+  .ew-liquid-layers { display: none; }
+  .ew-glass-header .ew-header__inner [data-glass-tone] { color: LinkText; text-shadow: none; }
+}
