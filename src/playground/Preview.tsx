@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Project, SectionType } from "./model";
-import { pageDocument, pageMarkup, runtimeConfig, tokensCss } from "./renderer";
-import { pageStyles } from "./pageStyles";
+import { pageDocument, pageMarkup, runtimeConfig, tokensCss, renderedStyles } from "./renderer";
 export function Preview({
   project,
   editing,
@@ -41,16 +40,18 @@ export function Preview({
     return () => window.removeEventListener("message", message);
   }, [onSelect, onLink, project.sections]);
   useEffect(() => {
-    if (loaded)
+    if (!loaded) return;
+    const update = requestAnimationFrame(() =>
       frame.current?.contentWindow?.postMessage(
         {
           type: "playground-update",
           html: pageMarkup(project),
-          css: tokensCss(project) + pageStyles,
+          css: tokensCss(project) + renderedStyles(project),
           config: runtimeConfig(project, editing, selected, true),
         },
         "*",
-      );
+      ));
+    return () => cancelAnimationFrame(update);
   }, [project, editing, selected, loaded]);
   return (
     <iframe

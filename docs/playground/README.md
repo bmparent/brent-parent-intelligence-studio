@@ -1,3 +1,5 @@
+Current product update: see [product-release.md](product-release.md) for the original glass integration, account projects, test checkout configuration, and header exports. The notes below describe the original preview release.
+
 # Eidos Playground
 
 A client-only visual editor at `/playground`, linked from the Eidos Works footer. This preview release is free and does not add a payment flow or claim cloud project storage.

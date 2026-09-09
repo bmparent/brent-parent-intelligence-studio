@@ -1,9 +1,12 @@
-import preset from './preset.json';
+import approved from './preset.json';
 import { advanceSpring, clamp, scrollProgress, smoothstep, surfacePoint, type Spring } from './math';
 import { createContactMap, createLensMaps, createRimRenderer } from './optics';
 
 /** The controller owns transient optics only; React continues to own navigation. */
-export function mountLiquidGlass(surface: HTMLElement) {
+export type GlassOptions = { [K in keyof typeof approved]?: Partial<(typeof approved)[K]> } & { disabled?: boolean; reducedMotion?: boolean };
+export function mountLiquidGlass(surface: HTMLElement, options: GlassOptions = {}) {
+  const preset = { ...approved, lens: { ...approved.lens, ...options.lens }, light: { ...approved.light, ...options.light }, contact: { ...approved.contact, ...options.contact }, springs: { ...approved.springs, ...options.springs }, scroll: { ...approved.scroll, ...options.scroll }, site: { ...approved.site, ...options.site } };
+  const progressAt = (y: number) => options.disabled ? 0 : scrollProgress(y, preset.site);
   const outer = surface.closest('header')!;
   const query = <T extends Element>(selector: string) => surface.querySelector<T>(selector)!;
   const filter = query<SVGFilterElement>('filter');
@@ -19,7 +22,7 @@ export function mountLiquidGlass(surface: HTMLElement) {
   let native = /Chrome|Chromium|Edg\//.test(navigator.userAgent) && !/iPhone|iPad|iPod/.test(navigator.userAgent) && CSS.supports('backdrop-filter', `url(#${filter.id})`);
   const abort = new AbortController();
   const passive = { passive: true, signal: abort.signal };
-  const rim = createRimRenderer(canvas);
+  const rim = createRimRenderer(canvas, preset);
   const keys = Object.keys(preset.springs) as (keyof typeof preset.springs)[];
   const states = Object.fromEntries(keys.map(key => [key, { x: key === 'x' ? .3 : key === 'y' ? .5 : 0, v: 0 }])) as Record<typeof keys[number], Spring>;
   const targets = Object.fromEntries(keys.map(key => [key, states[key].x])) as Record<typeof keys[number], number>;
@@ -28,7 +31,7 @@ export function mountLiquidGlass(surface: HTMLElement) {
   let pointer: { x: number; y: number; kind: string } | null = null;
   let activePointer: number | null = null, keyboardTarget: HTMLElement | null = null, keyboardPressed = false;
   let itemTones: { el: HTMLElement; brightness: number }[] = [];
-  const initial = scrollProgress(previousScroll);
+  const initial = progressAt(previousScroll);
   surface.style.setProperty('--ew-liquid', String(initial));
   surface.style.setProperty('--ew-glass-frost', `${preset.lens.frostPx}px`);
   surface.style.setProperty('--ew-glass-saturation', String(preset.lens.saturation));
@@ -95,7 +98,7 @@ export function mountLiquidGlass(surface: HTMLElement) {
     rim?.resize(w, h, radius);
     if (native) {
       try {
-        const maps = createLensMaps(w, h, radius); baseScale = maps.scale;
+        const maps = createLensMaps(w, h, radius, preset); baseScale = maps.scale;
         filter.setAttribute('width', String(w)); filter.setAttribute('height', String(h));
         for (const el of [lens, mask]) { el.setAttribute('width', String(w)); el.setAttribute('height', String(h)); }
         lens.setAttribute('href', maps.lens); mask.setAttribute('href', maps.mask);
@@ -107,7 +110,7 @@ export function mountLiquidGlass(surface: HTMLElement) {
     resizeNeeded = false; readMaterial(rect);
   }
   function render(rect: DOMRect, progress: number) {
-    const effects = !motion.matches && !forced.matches;
+    const effects = !motion.matches && !options.reducedMotion && !forced.matches;
     const light = effects ? clamp(states.light.x) * progress : 0;
     const press = effects ? clamp(states.press.x) : 0;
     const flow = effects ? clamp(states.flow.x, -1, 1) : 0;
@@ -141,15 +144,15 @@ export function mountLiquidGlass(surface: HTMLElement) {
     const rect = surface.getBoundingClientRect();
     if (resizeNeeded) resize(rect); else if (materialDirty) readMaterial(rect);
     updateContact(rect);
-    const y = Math.max(0, window.scrollY), progress = scrollProgress(y);
+    const y = Math.max(0, window.scrollY), progress = progressAt(y);
     targets.flow = Math.tanh((y - previousScroll) / Math.max(1 / 120, dt) / preset.scroll.velocityScale); previousScroll = y;
-    if (motion.matches || forced.matches || progress === 0) {
+    if (motion.matches || options.reducedMotion || forced.matches || progress === 0) {
       for (const key of keys) { states[key].x = targets[key]; states[key].v = 0; }
       states.light.x = 0; states.hover.x = 0; states.press.x = 0; states.flow.x = 0;
     } else for (const key of keys) advanceSpring(states[key], targets[key], preset.springs[key], dt);
     render(rect, progress);
-    const moving = progress > 0 && !motion.matches && !forced.matches && keys.some(key => Math.abs(states[key].x - targets[key]) > .0001 || Math.abs(states[key].v) > .001);
-    const finishScroll = progress > 0 && !motion.matches && !forced.matches && Math.abs(targets.flow) > .0001;
+    const moving = progress > 0 && !motion.matches && !options.reducedMotion && !forced.matches && keys.some(key => Math.abs(states[key].x - targets[key]) > .0001 || Math.abs(states[key].v) > .001);
+    const finishScroll = progress > 0 && !motion.matches && !options.reducedMotion && !forced.matches && Math.abs(targets.flow) > .0001;
     if (moving || finishScroll) frame = requestAnimationFrame(tick);
   }
   function release(clear = false) {

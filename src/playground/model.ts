@@ -1,6 +1,7 @@
 import approved from "./approved-glass-preset.json";
 export const VERSION = 1;
-export const RENDERER = "eidos-portable-glass-1.0.0";
+export const LEGACY_RENDERER = "eidos-portable-glass-1.0.0";
+export const RENDERER = "eidos-original-glass-2.0.0";
 export const sectionTypes = [
   "header",
   "hero",
@@ -142,11 +143,15 @@ export function createProject(
     ],
   };
   if (template === "homepage") {
+    p.tokens = {...p.tokens,...palettes.Ink,font:'modern',spacing:100};
+    p.glass.solid = palettes.Ink.background;
     p.name = "Studio homepage";
     p.sections[1].title = "A little different.\nBy design.";
     p.sections[1].layout = "center";
   }
   if (template === "portfolio") {
+    p.tokens = {...p.tokens,...palettes.Clay,spacing:120,radius:4};
+    p.glass.solid = palettes.Clay.background;
     p.name = "Design portfolio";
     p.sections[1].title = "Thoughtful work.\nLasting impressions.";
     p.sections[2].visible = false;
@@ -195,7 +200,7 @@ export function safeHref(value: string): string {
 }
 export function validateProject(input: unknown): Project {
   const p = record(input);
-  if (p.schemaVersion !== VERSION || p.rendererVersion !== RENDERER)
+  if (p.schemaVersion !== VERSION || ![RENDERER, LEGACY_RENDERER].includes(String(p.rendererVersion)))
     throw new Error(
       "This project needs a different Playground version. Your current design is unchanged.",
     );
@@ -245,7 +250,7 @@ export function validateProject(input: unknown): Project {
     throw new Error("Header and footer must stay at the ends of the page.");
   return {
     schemaVersion: 1,
-    rendererVersion: RENDERER,
+    rendererVersion: String(p.rendererVersion),
     template: choice(p.template, ["landing", "homepage", "portfolio"] as const),
     name: string(p.name, 100),
     tokens: {

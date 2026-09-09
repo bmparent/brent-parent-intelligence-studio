@@ -1,4 +1,4 @@
-import preset from './preset.json';
+import approved from './preset.json';
 import { clamp, smoothstep, surfacePoint } from './math';
 
 function canvas2d(w: number, h: number) {
@@ -7,7 +7,7 @@ function canvas2d(w: number, h: number) {
   if (!ctx) throw new Error('Canvas unavailable');
   return { canvas, ctx, pixels: ctx.createImageData(w, h) };
 }
-export function createLensMaps(w: number, h: number, radius: number) {
+export function createLensMaps(w: number, h: number, radius: number, preset = approved) {
   const map = canvas2d(w, h), mask = canvas2d(w, h);
   const { edgeBend: amount, magnification: mag } = preset.lens;
   const scale = Math.max(64, (95 * (1 - 1 / mag) + amount + 5) * 2.05);
@@ -27,7 +27,7 @@ export function createLensMaps(w: number, h: number, radius: number) {
   return { lens: map.canvas.toDataURL(), mask: mask.canvas.toDataURL(), scale };
 }
 export function createContactMap() {
-  const size = preset.contact.textureSize, { canvas, ctx, pixels } = canvas2d(size, size);
+  const size = approved.contact.textureSize, { canvas, ctx, pixels } = canvas2d(size, size);
   for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
     const nx = (x + .5 - size / 2) / (size / 2), ny = (y + .5 - size / 2) / (size / 2);
     const falloff = Math.exp(-(nx * nx + ny * ny) * 4) * 1.65 * Math.pow(Math.max(0, 1 - Math.max(nx * nx, ny * ny)), 2);
@@ -35,7 +35,7 @@ export function createContactMap() {
   }
   ctx.putImageData(pixels, 0, 0); return canvas.toDataURL();
 }
-export function createRimRenderer(canvas: HTMLCanvasElement) {
+export function createRimRenderer(canvas: HTMLCanvasElement, preset = approved) {
   const ctx = canvas.getContext('2d');
   if (!ctx) return null;
   const p = preset.light;

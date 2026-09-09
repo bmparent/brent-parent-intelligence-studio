@@ -16,7 +16,7 @@
     "validate:insights:dist": "node scripts/validate-insights.mjs --check-dist --skip-source-fetch",
     "publish:insight-run": "node scripts/publish-insight-run.mjs",
     "verify:production-insight": "node scripts/verify-production-insight.mjs",
-    "build": "node scripts/clean-build-output.mjs && npm run kit:build && npm run content:generate && npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs",
+    "build": "npm run playground:glass && node scripts/clean-build-output.mjs && npm run kit:build && npm run content:generate && npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs",
     "lint": "eslint .",
     "test:snapshot": "node --import tsx scripts/smoke-snapshot.ts",
     "preview": "vite preview --host 0.0.0.0",
@@ -29,10 +29,11 @@
     "platform:dev": "wrangler pages dev dist --ip 127.0.0.1 --port 8788",
     "platform:migrate:local": "wrangler d1 migrations apply eidos-platform-local --local",
     "test:platform": "node --import tsx --test scripts/test-platform.ts scripts/test-members.ts scripts/test-relay.ts scripts/test-relay-runtime.mjs scripts/test-inquiries.ts scripts/test-thread-form.mjs",
-    "test:playground": "node --import tsx --test scripts/test-playground.ts",
+    "test:playground": "npm run playground:glass && node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts",
     "test:analytics": "node --import tsx --test scripts/test-analytics.ts",
     "test:glass": "node --import tsx --test scripts/test-liquid-glass.ts",
-    "build:functions": "wrangler pages functions build functions --outfile .wrangler/eidos-functions.js"
+    "build:functions": "wrangler pages functions build functions --outfile .wrangler/eidos-functions.js",
+    "playground:glass": "node scripts/build-playground-glass.mjs"
   },
   "dependencies": {
     "@babylonjs/core": "^9.10.1",
@@ -46,6 +47,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "esbuild": "^0.27.3",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",

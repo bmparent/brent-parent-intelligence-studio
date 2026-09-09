@@ -2,12 +2,26 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   createProject,
+  LEGACY_RENDERER,
+  RENDERER,
   validateProject,
   safeHref,
   contrast,
 } from "../src/playground/model";
 import { pageDocument, pageMarkup } from "../src/playground/renderer";
-import { exportFiles, zipFiles } from "../src/playground/export";
+import { exportFiles, headerFiles, zipFiles } from "../src/playground/export";
+
+test('Legacy projects stay legacy and component exports require explicit upgrade', () => {
+  const original=createProject(),legacy={...original,rendererVersion:LEGACY_RENDERER};
+  assert.equal(validateProject(legacy).rendererVersion,LEGACY_RENDERER);
+  assert.match(pageDocument(original),/ew-liquid-optics/);
+  assert.doesNotMatch(pageMarkup(legacy),/ew-liquid-optics/);
+  assert.throws(()=>headerFiles(legacy),/Upgrade/);
+  assert.equal(original.rendererVersion,RENDERER);
+  const files=headerFiles(original);assert.ok(files.some(f=>f.name==='eidos-header.js'));
+  const readme=new TextDecoder().decode(exportFiles(original).find(f=>f.name==='README.md')!.data);
+  assert.ok(readme.includes(RENDERER));assert.doesNotMatch(readme,/is not included/);
+});
 
 test("all starter projects round trip and reject incompatible versions", () => {
   for (const template of ["landing", "homepage", "portfolio"] as const) {
