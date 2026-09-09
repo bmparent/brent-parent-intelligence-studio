@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { LiquidGlassSurface } from './LiquidGlassSurface';
 const links = [
   { href: '/work', label: 'Work' },
   { href: '/lab', label: 'Lab' },
@@ -36,6 +37,7 @@ export function Header() {
   return (
     <header className="ew-header ew-glass-header">
       <div className="ew-header__inner">
+        <LiquidGlassSurface />
         <a className="ew-brand" href="/" aria-label="Eidos Works home">
           <span className="ew-brand-mark" aria-hidden="true">
             e

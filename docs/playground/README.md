@@ -23,6 +23,8 @@ Projects pin schema version 1 and renderer `eidos-portable-glass-1.0.0`. Unknown
 
 The unchanged `approved-glass-preset.json` is the approved reference. The original SVG displacement controller was not present in the source repository or glass-named branches when this was built. The current renderer is a separately identified frosted-backdrop/canvas approximation. It does not claim identical live SVG refraction or native Apple rendering. Real iPhone/Safari verification remains outstanding.
 
+Publication update: main subsequently received the approved SVG implementation in PRs #24 and #25. Those changes are now merged into this branch. The source is available at `src/lib/liquid-glass/{controller,optics,math}.ts`, `src/components/LiquidGlassSurface.tsx`, and `src/styles/liquid-glass.css`. It is not yet wired into the portable Playground preview/export renderer; integrating it consistently into both is the first follow-up task.
+
 ## Run and verify
 
 - `npm ci`
@@ -41,4 +43,4 @@ The production bundle was tested in clean headless Chromium at 1536×1024 and 39
 
 ## Next release
 
-Cloud projects and accounts; authenticated purchase entitlements and immutable paid-export revisions; original SVG optics integration when source becomes available; component-only and platform-specific exports; additional templates and user testing. The current standalone export is not an InkSoft or CMS embed.
+Cloud projects and accounts; authenticated purchase entitlements and immutable paid-export revisions; integration of the now-available original SVG optics; component-only and platform-specific exports; additional templates and user testing. The current standalone export is not an InkSoft or CMS embed.
