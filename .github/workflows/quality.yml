@@ -17,6 +17,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run lint
       - run: npm run test:platform
+      - run: npm run test:playground
       - run: npm run test:analytics
       - run: npm run test:snapshot
       - run: npm run build

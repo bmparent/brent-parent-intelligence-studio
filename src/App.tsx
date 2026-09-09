@@ -1,3 +1,5 @@
+import { lazy, Suspense, useSyncExternalStore } from 'react';
+const Playground = lazy(() => import('./playground/Playground'));
 import { Header } from './components/Header';
 import { SiteFooter } from './components/SiteFooter';
 import { HomePage } from './components/HomePage';
@@ -39,6 +41,16 @@ import { normalizePath } from './data/pages';
 import { storefrontThemes } from './data/storefrontDemo';
 import { AccountPage, VerifyAccountPage, UnsubscribePage, MemberProfile } from './components/MemberPages';
 import { LabAccessRequest } from './components/LabAccessRequest';
+
+const subscribeToClient = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
+
+function PlaygroundRoute() {
+  const mounted = useSyncExternalStore(subscribeToClient, clientSnapshot, serverSnapshot);
+  const opening = <main className="ew-shell"><h1>Eidos Playground</h1><p>Opening your design workspace…</p><noscript>Enable JavaScript to edit and export your page.</noscript></main>;
+  return mounted ? <Suspense fallback={opening}><Playground /></Suspense> : opening;
+}
 
 type AppProps = {
   requestPath?: string;
@@ -138,6 +150,7 @@ function App({ requestPath }: AppProps) {
       ? requestPath || '/'
       : window.location.pathname;
   const path = normalizePath(sourcePath);
+  if (path === '/playground') return <><PageMeta path={path} /><PlaygroundRoute /></>;
 
   return (
     <>

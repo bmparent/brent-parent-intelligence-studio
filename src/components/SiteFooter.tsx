@@ -30,6 +30,7 @@ export function SiteFooter() {
             <a href="/contact">Contact</a>
           </nav>
           <nav aria-label="Explore links">
+            <a href="/playground">Playground</a>
             <a href="/lab">Lab</a>
             <a href="/community">Community</a>
             <a href="/community/agents">Agent Exchange</a>
