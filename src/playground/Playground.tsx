@@ -11,8 +11,9 @@ import {
 import { useProject } from "./useProject";
 import { Preview } from "./Preview";
 import { Inspector } from "./Inspector";
+import { CloudProjects } from './CloudProjects';
 import { Icon } from "./Controls";
-import { download, exportFiles, zipFiles } from "./export";
+import { download, exportFiles, headerFiles, zipFiles } from "./export";
 import "./editor.css";
 export default function Playground() {
   const {
@@ -185,9 +186,9 @@ export default function Playground() {
               );
             }}
           >
-            <option value="landing">Landing page</option>
-            <option value="homepage">Homepage</option>
-            <option value="portfolio">Portfolio</option>
+            <option value="landing">Landing · Moss / editorial split</option>
+            <option value="homepage">Homepage · Ink / centered studio</option>
+            <option value="portfolio">Portfolio · Clay / spacious work</option>
           </select>
           <div className="pg-section-list">
             {project.sections.map((s, i) => (
@@ -328,6 +329,7 @@ export default function Playground() {
               </div>
             ))}
           </details>
+          <CloudProjects project={project} load={change} disabled={!ready || !!comparison} />
           <div
             className={`pg-save-status ${storageError ? "error" : ""}`}
             role="status"
@@ -455,6 +457,7 @@ export default function Playground() {
           <Icon name="export" />
         </button>
         <small>Free during the preview release. No account required.</small>
+        <button disabled={exporting || !ready || !!comparison} onClick={()=>{try{download(zipFiles(headerFiles(project)),'eidos-header.zip','application/zip');setNotice('Header component downloaded with installation instructions.');}catch(e){setNotice((e as Error).message);}}}>Download header component</button>
       </dialog>
     </div>
   );

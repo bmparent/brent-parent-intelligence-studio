@@ -1,3 +1,5 @@
+Current product update: see [product-release.md](product-release.md) for the original glass integration, account projects, test checkout configuration, and header exports. The notes below describe the original preview release.
+
 # Eidos Playground — first release
 
 Design: white three-panel editor, charcoal UI typography, fine cool-gray dividers, lime #d5f87b selection and primary action. 64px toolbar; 216px section rail; flexible canvas; 264px inspector. Editor controls use the system sans family at 12–14px. Preview uses Georgia editorial display and system sans text, an olive #292e18 background, cream #f4f4e7 type, and line-based concentric SVG studies. The sample brand is fictional FORMA. No fabricated client claims.

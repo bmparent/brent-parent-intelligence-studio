@@ -2,7 +2,7 @@ import preset from './preset.json';
 
 export const clamp = (n: number, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, n));
 export const smoothstep = (n: number) => { const t = clamp(n); return t * t * (3 - 2 * t); };
-export const scrollProgress = (y: number) => smoothstep((y - preset.site.solidThroughPx) / (preset.site.fullyLiquidAtPx - preset.site.solidThroughPx));
+export const scrollProgress = (y: number, site = preset.site) => smoothstep((y - site.solidThroughPx) / (site.fullyLiquidAtPx - site.solidThroughPx));
 export type Spring = { x: number; v: number };
 export function advanceSpring(state: Spring, target: number, omega: number, dt: number) {
   const delta = state.x - target, j = state.v + omega * delta, decay = Math.exp(-omega * dt);

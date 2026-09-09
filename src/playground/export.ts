@@ -1,14 +1,29 @@
 import {
   validateProject,
-  projectWarnings,
   RENDERER,
+  projectWarnings,
   type Project,
 } from "./model";
-import { pageDocument, runtimeScript, tokensCss } from "./renderer";
-import { pageStyles } from "./pageStyles";
+import { pageDocument, pageMarkup, runtimeScript, tokensCss, renderedStyles } from "./renderer";
+import { glassScript } from './glassBundle';
 import approved from "./approved-glass-preset.json";
 export type ExportFile = { name: string; data: Uint8Array };
 const encode = (value: string) => new TextEncoder().encode(value);
+export function headerFiles(input: Project): ExportFile[] {
+  const p=validateProject(input);
+  if (p.rendererVersion!==RENDERER) throw new Error('Upgrade to original glass in the header controls before exporting a header component.');
+  if (!p.sections[0].visible) throw new Error('Show the header before exporting it.');
+  const markup=pageMarkup(p).match(/<header\b[\s\S]*?<\/header>/)?.[0];
+  if(!markup) throw new Error('Header is unavailable.');
+  const css=tokensCss(p).replace(':root',':host')+renderedStyles(p)+':host{display:block;position:sticky;top:16px;z-index:50;color:var(--header-text);font:16px/1.6 Arial,sans-serif}.pg-header{margin:0;top:0;width:100%;max-width:none}';
+  const script=glassScript+`;if(!customElements.get('eidos-glass-header'))customElements.define('eidos-glass-header',class extends HTMLElement{connectedCallback(){if(this.cleanup)return;const root=this.shadowRoot||this.attachShadow({mode:'open'});root.innerHTML=${JSON.stringify('<style>'+css+'</style>'+markup)};const stop=EidosGlass.mount(${JSON.stringify(p.glass)},root);const menu=root.querySelector('.pg-menu'),nav=root.querySelector('.pg-nav');const abort=new AbortController();const close=()=>{nav?.classList.remove('open','is-open');menu?.setAttribute('aria-expanded','false')};menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');nav.classList.toggle('is-open',open);menu.setAttribute('aria-expanded',String(open))},{signal:abort.signal});root.addEventListener('keydown',e=>{if(e.key==='Escape'){close();menu?.focus()}},{signal:abort.signal});root.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;close();if(a.hash&&a.origin===location.origin&&a.pathname===location.pathname){const target=document.getElementById(decodeURIComponent(a.hash.slice(1)));if(target){e.preventDefault();target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});target.focus({preventScroll:true})}}},{signal:abort.signal});this.cleanup=()=>{stop();abort.abort()}}disconnectedCallback(){this.cleanup?.();this.cleanup=null}});`;
+  return Object.entries({
+    'eidos-header.js':script,
+    'index.html':'<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Header installation example</title><style>body{margin:24px;background:#f5f5ef}main{min-height:200vh;padding-top:80px}</style><eidos-glass-header></eidos-glass-header><main id="hero" tabindex="-1"><h1>Your page content</h1><p>Scroll to try your exported header.</p></main><script src="eidos-header.js" defer></script></html>',
+    'project.json':JSON.stringify(p,null,2),
+    'README.md':'# Eidos header component\n\nCopy eidos-header.js to your site. Add <eidos-glass-header></eidos-glass-header> where the header belongs, then load <script src="eidos-header.js" defer></script> once. Serve from your own origin. Styles are isolated in a Shadow DOM. The host is sticky; avoid overflow containers that prevent sticky positioning. Its scroll transition follows the window.\n\nUse project.json to edit and re-export. Supply real destination elements for fragment links or set full page links before export. Include one header per page. Review your CSP for scripts, inline component styles, SVG filters, and data images. Test in your host page and target browsers. Without JavaScript this custom element does not render; supply your own fallback navigation when required.\n\nThis is a vanilla HTML component, not a validated InkSoft or CMS integration. Those require separate platform validation.\n',
+  }).map(([name,value])=>({name,data:encode(value)}));
+}
 export function exportFiles(input: Project): ExportFile[] {
   const p = validateProject(input),
     project = structuredClone(p),
@@ -24,7 +39,7 @@ export function exportFiles(input: Project): ExportFile[] {
       s.image = name;
     }
   const warnings = projectWarnings(p);
-  const readme = `# ${p.name}\n\nOpen index.html in a browser. No build step, API key, CDN, or subscription is required. Upload all files together to a static host.\n\n## Included\n- index.html, styles.css, tokens.css, script.js: the same page renderer used by the preview.\n- project.json: editable source, including embedded images; import into Eidos Playground.\n- approved-glass-preset.json: unchanged source reference.\n- assets/: locally packaged uploaded images. No remote image dependencies.\n- AI-HANDOFF.md: design-specific extension instructions.\n\n## Before publishing\n${warnings.length ? warnings.map((v) => "- " + v).join("\n") : "- Review your content and destinations."}\n- Review links, keyboard navigation, and actual mobile devices.\n- Contact links open the visitor’s email app; this package does not include a form backend.\n- Fonts are system Arial/Helvetica and Georgia; no font license files are required.\n- Built-in abstract SVG studies are included. You must have rights to uploaded images and supplied brand content.\n\n## Glass\nRenderer: ${RENDERER}. Uses frosted backdrop and pointer-driven canvas edge lighting. The approved preset is a reference; the site’s separate SVG refraction implementation is not included. Browser rendering varies. Reduced motion and forced colors have fallbacks; no JavaScript leaves a solid header.\n\n## Integration\nThis is a complete standalone page, not a platform-specific embed. Existing site CSS and script policies require separate integration. Do not paste the whole document into a CMS content field.\n`;
+  const readme = `# ${p.name}\n\nOpen index.html in a browser. No build step, API key, CDN, or subscription is required. Upload all files together to a static host.\n\n## Included\n- index.html, styles.css, tokens.css, script.js: the same page renderer used by the preview.\n- project.json: editable source, including embedded images; import into Eidos Playground.\n- approved-glass-preset.json: unchanged source reference.\n- assets/: locally packaged uploaded images. No remote image dependencies.\n- AI-HANDOFF.md: design-specific extension instructions.\n\n## Before publishing\n${warnings.length ? warnings.map((v) => "- " + v).join("\n") : "- Review your content and destinations."}\n- Review links, keyboard navigation, and actual mobile devices.\n- Contact links open the visitor’s email app; this package does not include a form backend.\n- Fonts are system Arial/Helvetica and Georgia; no font license files are required.\n- Built-in abstract SVG studies are included. You must have rights to uploaded images and supplied brand content.\n\n## Glass\nRenderer: ${p.rendererVersion}. New projects use the original Eidos SVG optics and edge lighting shared with the site. Legacy projects retain their portable renderer until explicitly upgraded in Playground. Browser rendering varies. Reduced motion and forced colors have fallbacks; no JavaScript leaves a solid header.\n\n## Integration\nThis is a complete standalone page, not a platform-specific embed. Existing site CSS and script policies require separate integration. Do not paste the whole document into a CMS content field.\n`;
   const handoff = `# Extend this design\n\nUse index.html as the working visual reference and project.json / tokens.css as the source of truth.\n\nProject: ${p.name}\nTemplate: ${p.template}\nSchema: ${p.schemaVersion}\nRenderer: ${p.rendererVersion}\n\nPreserve section order: ${p.sections
     .filter((s) => s.visible)
     .map((s) => s.id)
@@ -34,7 +49,7 @@ export function exportFiles(input: Project): ExportFile[] {
   return [
     ...Object.entries({
       "index.html": pageDocument(project, { external: true }),
-      "styles.css": pageStyles,
+      "styles.css": renderedStyles(p),
       "tokens.css": tokensCss(p),
       "script.js": runtimeScript(p),
       "project.json": JSON.stringify(p, null, 2),

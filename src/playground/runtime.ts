@@ -4,14 +4,17 @@ type RuntimeConfig = {
   editing: boolean;
   selected: string;
   bridge: boolean;
+  originalGlass: boolean;
 };
+declare const EidosGlass: { mount: (glass: Project['glass']) => () => void };
 // Deliberately self-contained: the exact compiled function also runs in standalone exports.
 export function pageRuntime(initial: RuntimeConfig) {
   let config = initial;
   let dispose = () => {};
   function mount() {
     dispose();
-    const header = document.querySelector<HTMLElement>(".pg-header");
+    const disposeGlass = config.originalGlass ? EidosGlass.mount(config.glass) : () => {};
+    const header = config.originalGlass ? null : document.querySelector<HTMLElement>(".pg-header");
     const canvas = header?.querySelector<HTMLCanvasElement>("canvas");
     const context = canvas?.getContext("2d");
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
@@ -252,12 +255,14 @@ export function pageRuntime(initial: RuntimeConfig) {
     const nav = document.querySelector<HTMLElement>(".pg-nav");
     const closeMenu = () => {
       nav?.classList.remove("open");
+      nav?.classList.remove("is-open");
       menu?.setAttribute("aria-expanded", "false");
     };
     menu?.addEventListener(
       "click",
       () => {
         const open = nav?.classList.toggle("open");
+        nav?.classList.toggle("is-open", !!open);
         menu.setAttribute("aria-expanded", String(!!open));
       },
       options,
@@ -322,6 +327,7 @@ export function pageRuntime(initial: RuntimeConfig) {
       );
     scroll();
     dispose = () => {
+      disposeGlass();
       abort.abort();
       observer.disconnect();
       cancelAnimationFrame(frame);

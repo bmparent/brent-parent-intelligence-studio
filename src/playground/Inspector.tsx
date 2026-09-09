@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { labels, createProject, type Project, type SectionType } from "./model";
+import { labels, createProject, RENDERER, type Project, type SectionType } from "./model";
 import { Color, Destination, Field, Range, Toggle } from "./Controls";
 import { imageData } from "./storage";
 export function Inspector({
@@ -176,6 +176,7 @@ export function Inspector({
           <>
             {selected === "header" ? (
               <>
+                {p.rendererVersion !== RENDERER && <div><p>This project uses the earlier glass renderer.</p><button onClick={() => edit({ ...p, rendererVersion: RENDERER })}>Upgrade to original glass</button><small>Undo restores the previous renderer.</small></div>}
                 <Toggle
                   label="Glass after scrolling"
                   checked={p.glass.enabled}

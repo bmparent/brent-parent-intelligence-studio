@@ -1,6 +1,7 @@
 import { type Project, onColor, safeHref, RENDERER } from "./model";
 import { pageStyles } from "./pageStyles";
 import { pageRuntime } from "./runtime";
+import { glassScript, glassStyles, glassMarkup } from './glassBundle';
 export const escapeHtml = (v: string) =>
   v.replace(
     /[&<>"']/g,
@@ -33,7 +34,7 @@ export function pageMarkup(p: Project): string {
         return '<main id="page-main" tabindex="-1">';
       if (s.id === "footer" && !s.visible) return "</main>";
       if (s.id === "header")
-        return `<header class="pg-header" ${attrs}><canvas aria-hidden="true"></canvas><a class="pg-logo" href="#page-main">${esc(s.title)}</a><button class="pg-menu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="page-nav">Menu</button><nav class="pg-nav" id="page-nav" aria-label="Page navigation">${s.description
+        return `<header class="pg-header${p.rendererVersion === RENDERER ? ' ew-glass-header' : ''}" ${attrs}>${p.rendererVersion === RENDERER ? `<div class="ew-header__inner">${glassMarkup}` : '<canvas aria-hidden="true"></canvas>'}<a class="pg-logo ew-brand" href="#page-main">${esc(s.title)}</a><button class="pg-menu ew-menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="page-nav">Menu</button><nav class="pg-nav ew-nav" id="page-nav" aria-label="Page navigation">${s.description
           .split("|")
           .slice(0, 2)
           .map((v, i) =>
@@ -43,7 +44,7 @@ export function pageMarkup(p: Project): string {
           )
           .join(
             "",
-          )}${button(s, true)}</nav></header><main id="page-main" tabindex="-1">`;
+          )}${button(s, true)}</nav>${p.rendererVersion === RENDERER ? '</div>' : ''}</header><main id="page-main" tabindex="-1">`;
       if (s.id === "hero")
         return `<section class="pg-hero ${s.layout}" ${attrs}><div class="pg-copy"><h1>${esc(s.title)}</h1><p>${esc(s.description)}</p>${button(s)}</div>${s.image ? `<img class="pg-image" src="${esc(s.image)}" alt="${esc(s.alt)}">` : art()}</section>`;
       if (s.id === "services")
@@ -70,7 +71,7 @@ export function runtimeConfig(
   selected = "",
   bridge = false,
 ) {
-  return { glass: p.glass, editing, selected, bridge };
+  return { glass: p.glass, editing, selected, bridge, originalGlass: p.rendererVersion === RENDERER };
 }
 export function runtimeScript(
   p: Project,
@@ -78,8 +79,16 @@ export function runtimeScript(
   selected = "",
   bridge = false,
 ): string {
-  return `(${pageRuntime.toString()})(${JSON.stringify(runtimeConfig(p, editing, selected, bridge)).replace(/</g, "\\u003c")});`;
+  return `${glassScript}\n(${pageRuntime.toString()})(${JSON.stringify(runtimeConfig(p, editing, selected, bridge)).replace(/</g, "\\u003c")});`;
 }
+export function renderedStyles(p: Project) { return pageStyles + (p.rendererVersion === RENDERER ? glassStyles + `
+.pg-header.ew-glass-header{padding:0;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;isolation:auto;box-shadow:none}
+.pg-header.ew-glass-header:before{display:none}
+.pg-header .ew-header__inner{width:100%;display:flex;align-items:center;justify-content:space-between;padding:18px 28px;min-height:64px}
+.pg-header canvas.ew-liquid-light{z-index:auto}
+.pg-header .pg-nav.open{background:var(--solid)}
+@media(max-width:640px){.pg-header .ew-header__inner{padding:14px 18px}.pg-header .pg-nav{position:absolute}}
+` : ''); }
 export function pageDocument(
   p: Project,
   options: {
@@ -89,5 +98,5 @@ export function pageDocument(
     external?: boolean;
   } = {},
 ): string {
-  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="${RENDERER}"><title>${escapeHtml(p.name)}</title>${options.external ? '<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="styles.css">' : `<style id="page-style">${tokensCss(p)}${pageStyles}</style>`}</head><body data-reduced="${p.glass.reducedMotion}"><div id="page-root">${pageMarkup(p)}</div>${options.external ? '<script src="script.js" defer></script>' : `<script>${runtimeScript(p, options.editing, options.selected, options.bridge)}</script>`}</body></html>`;
+  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="${p.rendererVersion}"><title>${escapeHtml(p.name)}</title>${options.external ? '<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="styles.css">' : `<style id="page-style">${tokensCss(p)}${renderedStyles(p)}</style>`}</head><body data-reduced="${p.glass.reducedMotion}"><div id="page-root">${pageMarkup(p)}</div>${options.external ? '<script src="script.js" defer></script>' : `<script>${runtimeScript(p, options.editing, options.selected, options.bridge)}</script>`}</body></html>`;
 }
