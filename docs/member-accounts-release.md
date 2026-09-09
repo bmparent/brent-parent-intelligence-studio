@@ -20,6 +20,7 @@ The email-account schema uses `eidos_email_members`. Production already contains
 | `EIDOS_ACCOUNTS_ENABLED` | `true` after the migration and delivery check. Until configured, the page explains that sign-in is being connected. |
 | `EIDOS_NEWSLETTER_ENABLED` | `true` after testing full-text delivery and unsubscribe. |
 | `PUBLIC_SITE_URL` | `https://eidos-works.com`. Mail links always use this canonical origin. |
+| `EIDOS_PUBLICATION_FEED_URL` | Optional server-only HTTPS URL for the same static `insights-feed.json`. Production uses `https://eidosworks.pages.dev/insights-feed.json` because the custom domain's Bot Fight Mode challenges Vercel requests. All customer links remain canonical. |
 
 Account readiness also requires the existing database, 32+ character `EIDOS_RATE_SECRET`, and both Turnstile keys. Preview origins require the existing exact allowlist. No additional account secrets belong in Cloudflare Pages; its relay passes only the scoped secure session cookie.
 
