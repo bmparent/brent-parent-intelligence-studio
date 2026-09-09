@@ -1,7 +1,7 @@
 import { build } from 'esbuild';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createRequire } from 'node:module';
-const schema = await readFile('migrations/0003_playground.sql','utf8');
+const schema = (await readFile('migrations/0003_playground.sql','utf8')).replace(/\r\n/g,'\n');
 await writeFile('functions/_shared/platform/playgroundSchema.ts','// Generated from migration 0003 by playground:glass.\nexport default '+JSON.stringify(schema)+';\n');
 const result = await build({entryPoints:['src/playground/glassEntry.ts'],bundle:true,write:false,format:'iife',globalName:'EidosGlass',target:'es2022',minify:true});
 await mkdir('.wrangler',{recursive:true});

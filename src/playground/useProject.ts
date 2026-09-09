@@ -1,61 +1,12 @@
 import { useEffect, useReducer, useState } from "react";
 import { createProject, type Project } from "./model";
 import { loadWorkspace, saveWorkspace, type Snapshot } from "./storage";
-type State = {
-  current: Project;
-  past: Project[];
-  future: Project[];
-  group: string;
-  time: number;
-};
-type Action =
-  | { type: "edit"; project: Project | ((current: Project) => Project); group?: string; time: number }
-  | { type: "undo" | "redo" }
-  | { type: "load"; project: Project };
-function reducer(s: State, a: Action): State {
-  if (a.type === "load")
-    return { current: a.project, past: [], future: [], group: "", time: 0 };
-  if (a.type === "undo")
-    return s.past.length
-      ? {
-          current: s.past[s.past.length - 1],
-          past: s.past.slice(0, -1),
-          future: [s.current, ...s.future],
-          group: "",
-          time: 0,
-        }
-      : s;
-  if (a.type === "redo")
-    return s.future.length
-      ? {
-          current: s.future[0],
-          past: [...s.past, s.current],
-          future: s.future.slice(1),
-          group: "",
-          time: 0,
-        }
-      : s;
-  if (a.type === "edit")
-    return {
-      current: typeof a.project === "function" ? a.project(s.current) : a.project,
-      past:
-        a.group && a.group === s.group && a.time - s.time < 900
-          ? s.past
-          : [...s.past, s.current].slice(-30),
-      future: [],
-      group: a.group || "",
-      time: a.time,
-    };
-  return s;
-}
+import { useRef } from "react";
+import { workspace, workspaceReducer, type SaveTarget } from "./workspace";
 export function useProject() {
-  const [state, dispatch] = useReducer(reducer, undefined, () => ({
-    current: createProject(),
-    past: [],
-    future: [],
-    group: "",
-    time: 0,
-  }));
+  const [state, dispatch] = useReducer(workspaceReducer, undefined, () => workspace(createProject(), crypto.randomUUID()));
+  const generation = useRef(0);
+  const guard = () => { const captured = generation.current; return () => captured === generation.current; };
   const [ready, setReady] = useState(false),
     [snapshots, setSnapshots] = useState<Snapshot[]>([]),
     [savedState, setSavedState] = useState<{
@@ -69,7 +20,7 @@ export function useProject() {
       .then((saved) => {
         if (cancelled) return;
         if (saved) {
-          dispatch({ type: "load", project: saved.project });
+          dispatch({ type: "load", project: saved.project, documentId: crypto.randomUUID() });
           setSnapshots(saved.snapshots);
         }
         setReady(true);
@@ -86,7 +37,7 @@ export function useProject() {
       cancelled = true;
     };
   }, []);
-  const project = state.current;
+  const project = state.current.project;
   useEffect(() => {
     if (!ready || storageError) return;
     let cancelled = false;
@@ -120,7 +71,7 @@ export function useProject() {
     return () => window.removeEventListener("beforeunload", beforeUnload);
   }, [dirty]);
   return {
-    project: state.current,
+    project: state.current.project,
     ready,
     snapshots,
     status:
@@ -131,10 +82,20 @@ export function useProject() {
           ? "Saving…"
           : "Saved on this device"),
     storageError,
-    edit: (project: Project | ((current: Project) => Project), group?: string) =>
-      dispatch({ type: "edit", project, group, time: Date.now() }),
-    undo: () => dispatch({ type: "undo" }),
-    redo: () => dispatch({ type: "redo" }),
+    target: state.current.target,
+    documentId: state.current.documentId,
+    guard,
+    replace: (project: Project, target?: SaveTarget | null) => {
+      generation.current++;
+      dispatch({type: 'replace', project, target, documentId: crypto.randomUUID()});
+    },
+    acknowledge: (documentId: string, target: SaveTarget) => dispatch({type:'saved',documentId,target}),
+    edit: (project: Project | ((current: Project) => Project), group?: string) => {
+      generation.current++;
+      dispatch({ type: "edit", project, group, time: Date.now() });
+    },
+    undo: () => { generation.current++; dispatch({ type: "undo" }); },
+    redo: () => { generation.current++; dispatch({ type: "redo" }); },
     canUndo: !!state.past.length,
     canRedo: !!state.future.length,
     saveSnapshot: (name: string) =>
@@ -143,7 +104,7 @@ export function useProject() {
           {
             id: crypto.randomUUID(),
             name,
-            project: state.current,
+            project: state.current.project,
             savedAt: new Date().toISOString(),
           },
           ...v,
