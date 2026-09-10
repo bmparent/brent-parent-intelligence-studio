@@ -1,0 +1,96 @@
+name: Playground editor release
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: playground-editor-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  local-editor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run playground:glass
+      - name: Local editing, export and server/client cloud boundary tests
+        run: node --import tsx --test scripts/test-playground-composition.ts scripts/test-playground-composition-integration.ts scripts/test-playground-media.ts scripts/test-playground-structure.ts scripts/test-playground-workspace.ts scripts/test-playground-editor-release.ts scripts/test-playground-editor-review.ts
+      - run: npm run build
+      - name: Install isolated browser test tools (no repository dependency changes)
+        run: |
+          npm install --prefix "$RUNNER_TEMP/pg-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/pg-browser/node_modules/.bin/playwright" install --with-deps chromium firefox webkit
+      - name: Actual React editor acceptance in three engines and two widths
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
+          PG_EVIDENCE_DIR: ${{ runner.temp }}/pg-evidence
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done
+          node scripts/verify-playground-editor-browser.mjs
+      - name: Repeat full site gates before a production upload
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          npm run lint
+          npm run test:platform
+          npm run test:playground
+          npm run test:analytics
+          npm run test:glass
+          npm run test:snapshot
+          npm run verify:prerender
+          npm run verify:editorial
+          npm run validate:insights -- --skip-source-fetch
+          npm run validate:insights:dist
+          npm run verify:urls
+          npm run build:functions
+      - name: Deploy only this verified main commit to the existing Pages project
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo '::error::Production upload blocked: configure CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as repository Actions secrets, or deploy this verified main commit from the existing authenticated laptop. No token was created and no production settings were changed.'
+            exit 1
+          fi
+          CURRENT_MAIN=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')
+          if [ "$CURRENT_MAIN" != "$GITHUB_SHA" ]; then
+            echo '::error::A newer main commit exists; refusing to deploy an older build.'
+            exit 1
+          fi
+          node scripts/playground-pages-release.mjs preflight
+          npx --no-install wrangler pages deploy dist --project-name=eidosworks --branch=main --commit-hash="$GITHUB_SHA" --commit-message='Verified Playground local editor release' --commit-dirty=true
+          node scripts/playground-pages-release.mjs verify
+      - name: Read back the actual custom-domain editor after deployment
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
+          PG_EVIDENCE_DIR: ${{ runner.temp }}/pg-production-evidence
+          PG_BASE_URL: https://eidos-works.com
+          PG_ENGINES: chromium
+        run: node scripts/verify-playground-editor-browser.mjs
+      - name: Retain browser and build evidence even when a check fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playground-editor-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/pg-evidence
+            ${{ runner.temp }}/pg-production-evidence
+            ${{ runner.temp }}/pg-preview.log
+            ${{ runner.temp }}/pg-pages-receipt.json
+            dist
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,5 +1,6 @@
 import { clean, db, hash, HttpError, type PlatformEnv } from './core';
 import { validateProject, type Project } from '../../../src/playground/model';
+import { supportsProductionCloud, CLOUD_FORMAT_NOTICE } from '../../../src/playground/releaseBoundary';
 import schema from './playgroundSchema';
 import type { Database } from './core';
 const initialized = new WeakMap<Database,Promise<unknown>>();
@@ -36,9 +37,12 @@ export async function projectRevision(env: PlatformEnv, owner: string, projectId
   return { project, revision, document: validateProject(document) };
 }
 export async function saveProject(env: PlatformEnv, owner: string, input: Record<string, unknown>) {
-  const database = db(env);
   let document: Project;
   try { document = validateProject(input.document); } catch (error) { throw new HttpError(400, (error as Error).message); }
+  // Fail closed before any database access: the local editor must not implicitly
+  // enable a newer cloud protocol by sharing its validator with Pages Functions.
+  if (!supportsProductionCloud(document)) throw new HttpError(409, CLOUD_FORMAT_NOTICE);
+  const database = db(env);
   if (new TextEncoder().encode(JSON.stringify(document)).length > 2_000_000) throw new HttpError(413, 'Cloud projects must be under 2 MB. Use smaller images; your local copy is safe.');
   const now = new Date().toISOString(), revisionId = crypto.randomUUID();
   const project = input.id ? await ownedProject(env, owner, input.id) : null;
