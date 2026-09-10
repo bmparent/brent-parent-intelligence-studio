@@ -1,0 +1,232 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "checks": [
+      "React app loaded and workspace ready",
+      "placement background",
+      "placement left",
+      "placement right",
+      "placement above",
+      "placement below",
+      "placement inline",
+      "Below heading inserts inside hero",
+      "Undo and Redo controls operate",
+      "empty content handles inspected",
+      "Try page removes editor handles and empty-slot spacing"
+    ],
+    "errors": [],
+    "console": [],
+    "network": [],
+    "emptySlots": [
+      {
+        "part": "description",
+        "height": 44,
+        "handleTop": 696.84375,
+        "handleBottom": 728.84375
+      },
+      {
+        "part": "cta",
+        "height": 44,
+        "handleTop": 764.84375,
+        "handleBottom": 796.84375
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "checks": [
+      "React app loaded and workspace ready",
+      "placement background",
+      "placement left",
+      "placement right",
+      "placement above",
+      "placement below",
+      "placement inline",
+      "Below heading inserts inside hero",
+      "Undo and Redo controls operate",
+      "empty content handles inspected",
+      "Try page removes editor handles and empty-slot spacing"
+    ],
+    "errors": [],
+    "console": [],
+    "network": [],
+    "emptySlots": [
+      {
+        "part": "description",
+        "height": 48,
+        "handleTop": 640,
+        "handleBottom": 684
+      },
+      {
+        "part": "cta",
+        "height": 48,
+        "handleTop": 712,
+        "handleBottom": 756
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "checks": [
+      "React app loaded and workspace ready",
+      "placement background",
+      "placement left",
+      "placement right",
+      "placement above",
+      "placement below",
+      "placement inline",
+      "Below heading inserts inside hero",
+      "Undo and Redo controls operate",
+      "empty content handles inspected",
+      "Try page removes editor handles and empty-slot spacing"
+    ],
+    "errors": [],
+    "console": [
+      {
+        "type": "warning",
+        "text": "[JavaScript Warning: \"The resource at “https://eidos-pg-preview-20260910.pages.dev/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"https://eidos-pg-preview-20260910.pages.dev/playground/\" line: 0}]"
+      }
+    ],
+    "network": [],
+    "emptySlots": [
+      {
+        "part": "description",
+        "height": 44,
+        "handleTop": 696.88330078125,
+        "handleBottom": 728.88330078125
+      },
+      {
+        "part": "cta",
+        "height": 44,
+        "handleTop": 764.88330078125,
+        "handleBottom": 796.88330078125
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "engine": "firefox",
+    "width": 390,
+    "checks": [
+      "React app loaded and workspace ready",
+      "placement background",
+      "placement left",
+      "placement right",
+      "placement above",
+      "placement below",
+      "placement inline",
+      "Below heading inserts inside hero",
+      "Undo and Redo controls operate",
+      "empty content handles inspected",
+      "Try page removes editor handles and empty-slot spacing"
+    ],
+    "errors": [],
+    "console": [
+      {
+        "type": "warning",
+        "text": "[JavaScript Warning: \"The resource at “https://eidos-pg-preview-20260910.pages.dev/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"https://eidos-pg-preview-20260910.pages.dev/playground/\" line: 0}]"
+      }
+    ],
+    "network": [],
+    "emptySlots": [
+      {
+        "part": "description",
+        "height": 48,
+        "handleTop": 640.0333251953125,
+        "handleBottom": 684.0333251953125
+      },
+      {
+        "part": "cta",
+        "height": 48,
+        "handleTop": 712.0333251953125,
+        "handleBottom": 756.0333251953125
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "width": 1440,
+    "checks": [
+      "React app loaded and workspace ready",
+      "placement background",
+      "placement left",
+      "placement right",
+      "placement above",
+      "placement below",
+      "placement inline",
+      "Below heading inserts inside hero",
+      "Undo and Redo controls operate",
+      "empty content handles inspected",
+      "Try page removes editor handles and empty-slot spacing"
+    ],
+    "errors": [],
+    "console": [
+      {
+        "type": "warning",
+        "text": "The resource https://eidos-pg-preview-20260910.pages.dev/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+      }
+    ],
+    "network": [],
+    "emptySlots": [
+      {
+        "part": "description",
+        "height": 44,
+        "handleTop": 696.84375,
+        "handleBottom": 728.84375
+      },
+      {
+        "part": "cta",
+        "height": 44,
+        "handleTop": 764.84375,
+        "handleBottom": 796.84375
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "checks": [
+      "React app loaded and workspace ready",
+      "placement background",
+      "placement left",
+      "placement right",
+      "placement above",
+      "placement below",
+      "placement inline",
+      "Below heading inserts inside hero",
+      "Undo and Redo controls operate",
+      "empty content handles inspected",
+      "Try page removes editor handles and empty-slot spacing"
+    ],
+    "errors": [],
+    "console": [
+      {
+        "type": "warning",
+        "text": "The resource https://eidos-pg-preview-20260910.pages.dev/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+      }
+    ],
+    "network": [],
+    "emptySlots": [
+      {
+        "part": "description",
+        "height": 48,
+        "handleTop": 640,
+        "handleBottom": 684
+      },
+      {
+        "part": "cta",
+        "height": 48,
+        "handleTop": 712,
+        "handleBottom": 756
+      }
+    ],
+    "status": "PASS"
+  }
+]

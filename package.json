@@ -29,7 +29,7 @@
     "platform:dev": "wrangler pages dev dist --ip 127.0.0.1 --port 8788",
     "platform:migrate:local": "wrangler d1 migrations apply eidos-platform-local --local",
     "test:platform": "node --import tsx --test scripts/test-platform.ts scripts/test-members.ts scripts/test-relay.ts scripts/test-relay-runtime.mjs scripts/test-inquiries.ts scripts/test-thread-form.mjs",
-    "test:playground": "npm run playground:glass && node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts scripts/test-playground-workspace.ts scripts/test-playground-media.ts scripts/test-playground-structure.ts scripts/test-playground-ai.ts",
+    "test:playground": "npm run playground:glass && node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts scripts/test-playground-workspace.ts scripts/test-playground-media.ts scripts/test-playground-structure.ts scripts/test-playground-ai.ts scripts/test-playground-composition.ts scripts/test-playground-composition-integration.ts",
     "test:analytics": "node --import tsx --test scripts/test-analytics.ts",
     "test:glass": "node --import tsx --test scripts/test-liquid-glass.ts",
     "build:functions": "wrangler pages functions build functions --outfile .wrangler/eidos-functions.js",

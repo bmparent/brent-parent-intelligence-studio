@@ -1,0 +1,12 @@
+{
+  "time": "2026-09-10T22:32:47.079Z",
+  "backend": {
+    "id": "dpl_96YMr1rpT7kXQJdTogtbip9CcorR",
+    "url": "eidos-sentinel-7g7a8uojr-1brentbm-1876s-projects.vercel.app",
+    "state": "READY",
+    "sha": "9e13fdda4cf38eeaa1a9e9784483f6900f0bda0e",
+    "branch": "codex/playground-spatial-composition-backend-20260910"
+  },
+  "frontend": "https://eidos-pg-preview-20260910.pages.dev",
+  "productionChanged": false
+}

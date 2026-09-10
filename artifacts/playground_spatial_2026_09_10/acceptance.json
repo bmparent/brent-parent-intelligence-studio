@@ -1,0 +1,838 @@
+{
+  "timestamp": "2026-09-10T22:40:22.832Z",
+  "frontend": "6ab8a5a6f3932329a800fb4e0b92e696ef5d248c",
+  "backend": "9e13fdda4cf38eeaa1a9e9784483f6900f0bda0e",
+  "localBrowser": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 44,
+          "handleTop": 696.84375,
+          "handleBottom": 728.84375
+        },
+        {
+          "part": "cta",
+          "height": 44,
+          "handleTop": 764.84375,
+          "handleBottom": 796.84375
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 48,
+          "handleTop": 640,
+          "handleBottom": 684
+        },
+        {
+          "part": "cta",
+          "height": 48,
+          "handleTop": 712,
+          "handleBottom": 756
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5190/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 44,
+          "handleTop": 696.84375,
+          "handleBottom": 728.84375
+        },
+        {
+          "part": "cta",
+          "height": 44,
+          "handleTop": 764.84375,
+          "handleBottom": 796.84375
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5190/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 48,
+          "handleTop": 640,
+          "handleBottom": 684
+        },
+        {
+          "part": "cta",
+          "height": 48,
+          "handleTop": 712,
+          "handleBottom": 756
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5190/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5190/playground\" line: 0}]"
+        }
+      ],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 44,
+          "handleTop": 696.88330078125,
+          "handleBottom": 728.88330078125
+        },
+        {
+          "part": "cta",
+          "height": 44,
+          "handleTop": 764.88330078125,
+          "handleBottom": 796.88330078125
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5190/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5190/playground\" line: 0}]"
+        }
+      ],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 48,
+          "handleTop": 640.0333251953125,
+          "handleBottom": 684.0333251953125
+        },
+        {
+          "part": "cta",
+          "height": 48,
+          "handleTop": 712.0333251953125,
+          "handleBottom": 756.0333251953125
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "hostedBrowser": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 44,
+          "handleTop": 696.84375,
+          "handleBottom": 728.84375
+        },
+        {
+          "part": "cta",
+          "height": 44,
+          "handleTop": 764.84375,
+          "handleBottom": 796.84375
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 48,
+          "handleTop": 640,
+          "handleBottom": 684
+        },
+        {
+          "part": "cta",
+          "height": 48,
+          "handleTop": 712,
+          "handleBottom": 756
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “https://eidos-pg-preview-20260910.pages.dev/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"https://eidos-pg-preview-20260910.pages.dev/playground/\" line: 0}]"
+        }
+      ],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 44,
+          "handleTop": 696.88330078125,
+          "handleBottom": 728.88330078125
+        },
+        {
+          "part": "cta",
+          "height": 44,
+          "handleTop": 764.88330078125,
+          "handleBottom": 796.88330078125
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “https://eidos-pg-preview-20260910.pages.dev/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"https://eidos-pg-preview-20260910.pages.dev/playground/\" line: 0}]"
+        }
+      ],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 48,
+          "handleTop": 640.0333251953125,
+          "handleBottom": 684.0333251953125
+        },
+        {
+          "part": "cta",
+          "height": 48,
+          "handleTop": 712.0333251953125,
+          "handleBottom": 756.0333251953125
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource https://eidos-pg-preview-20260910.pages.dev/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 44,
+          "handleTop": 696.84375,
+          "handleBottom": 728.84375
+        },
+        {
+          "part": "cta",
+          "height": 44,
+          "handleTop": 764.84375,
+          "handleBottom": 796.84375
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "checks": [
+        "React app loaded and workspace ready",
+        "placement background",
+        "placement left",
+        "placement right",
+        "placement above",
+        "placement below",
+        "placement inline",
+        "Below heading inserts inside hero",
+        "Undo and Redo controls operate",
+        "empty content handles inspected",
+        "Try page removes editor handles and empty-slot spacing"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource https://eidos-pg-preview-20260910.pages.dev/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "network": [],
+      "emptySlots": [
+        {
+          "part": "description",
+          "height": 48,
+          "handleTop": 640,
+          "handleBottom": 684
+        },
+        {
+          "part": "cta",
+          "height": 48,
+          "handleTop": 712,
+          "handleBottom": 756
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "regression": {
+    "status": "PASS",
+    "checks": [
+      "one move equals one Undo; Redo exact order",
+      "actual JSON download preserves schema 3",
+      "comparison removes editor handles and restores editing",
+      "variation restores composition",
+      "device autosave survives reload",
+      "Escape inside iframe cancels pointer gesture",
+      "pointercancel cancels gesture",
+      "blur cancels gesture",
+      "JSON import preserves composition and image",
+      "crop focal point alt and image bytes survive composition move",
+      "maximum text scale at mobile width has no horizontal overflow",
+      "actual page ZIP downloaded"
+    ],
+    "errors": []
+  },
+  "races": {
+    "status": "PASS",
+    "checks": [
+      "pending decode rejected after edit",
+      "pending decode rejected after undo",
+      "pending decode rejected after template",
+      "pending decode rejected after import",
+      "foreign-window source rejected",
+      "stale stamp rejected",
+      "invalid section target rejected",
+      "duplicate valid messages produce only one Undo",
+      "invalid image MIME rejected"
+    ]
+  },
+  "layoutEdges": {
+    "status": "PASS",
+    "checks": [
+      "background CTA click reaches work anchor",
+      "long content at mobile width does not overflow",
+      "all explicit mobile placement overrides applied",
+      "section reorder and Undo preserve pinned header/footer",
+      "bounded desktop transforms reset on mobile"
+    ]
+  },
+  "standalone": [
+    {
+      "engine": "chromium",
+      "mode": "normal",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "mode": "no-js",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "mode": "csp",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "mode": "reduced-motion",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "mode": "normal",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "mode": "no-js",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "mode": "csp",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "firefox",
+      "mode": "reduced-motion",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "mode": "normal",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "mode": "no-js",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "mode": "csp",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "mode": "reduced-motion",
+      "status": "PASS",
+      "external": [],
+      "errors": []
+    }
+  ],
+  "frontendCommands": {
+    "side": "frontend",
+    "sha": "b4e418f1a2a6c1646c523faf68b9082fd5c986ee",
+    "cwd": "C:/Users/bmpar/codex-worktrees/playground-spatial-frontend-20260910",
+    "started": "2026-09-10T22:20:39.040Z",
+    "commands": [
+      {
+        "command": "npm run typecheck",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 51.1,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-typecheck.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run lint",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 73.17,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-lint.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run test:playground",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 11.89,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-test-playground.log",
+        "tests": [
+          43
+        ],
+        "passes": [
+          43
+        ]
+      },
+      {
+        "command": "npm run test:platform",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 13.9,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-test-platform.log",
+        "tests": [
+          28
+        ],
+        "passes": [
+          28
+        ]
+      },
+      {
+        "command": "npm run test:glass",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 5.29,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-test-glass.log",
+        "tests": [
+          3
+        ],
+        "passes": [
+          3
+        ]
+      },
+      {
+        "command": "npm run test:analytics",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 8.55,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-test-analytics.log",
+        "tests": [
+          1
+        ],
+        "passes": [
+          1
+        ]
+      },
+      {
+        "command": "npm run build",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 235.31,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-build.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run build:functions",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 65.69,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-build-functions.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run verify:prerender",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 7.7,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-verify-prerender.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run validate:insights:dist",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 4.95,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-validate-insights-dist.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run verify:urls",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 5.74,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-verify-urls.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run verify:editorial",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 5.24,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-verify-editorial.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run test:snapshot",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 6.56,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-test-snapshot.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm run validate:insights",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 14.52,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation-final\\frontend-validate-insights.log",
+        "tests": [],
+        "passes": []
+      }
+    ],
+    "finished": "2026-09-10T22:29:08.764Z"
+  },
+  "backendCommands": {
+    "side": "backend",
+    "sha": "b5275b587439b1e2a6cd7ac203f51de2154216c7",
+    "cwd": "C:/Users/bmpar/codex-worktrees/playground-spatial-backend-20260910",
+    "started": "2026-09-10T21:56:21.869Z",
+    "commands": [
+      {
+        "command": "npm --prefix apps/sentinel-lab run lint",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 83.07,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation\\backend-lint.log",
+        "tests": [],
+        "passes": []
+      },
+      {
+        "command": "npm --prefix apps/sentinel-lab run test",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 120.24,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation\\backend-test.log",
+        "tests": [
+          16,
+          49
+        ],
+        "passes": [
+          16,
+          49
+        ]
+      },
+      {
+        "command": "npm --prefix apps/sentinel-lab run build",
+        "status": "PASS",
+        "exitCode": 0,
+        "seconds": 205.31,
+        "log": "C:\\Users\\bmpar\\SystemDiagnostics\\playground-spatial-20260910\\validation\\backend-build.log",
+        "tests": [],
+        "passes": []
+      }
+    ],
+    "finished": "2026-09-10T22:03:10.526Z"
+  },
+  "vendorHashes": [
+    {
+      "file": "compositionSchema.ts",
+      "equal": true,
+      "sha256": "7e4daf5880dfb2328065720af9c9d645acdef2e16dc300b3186f21b37107dbde"
+    },
+    {
+      "file": "composition.ts",
+      "equal": true,
+      "sha256": "4895dbf69032705734681f79b2a3f3ab9b6b5665e6dc6c7c47456aa03c208639"
+    },
+    {
+      "file": "compositionRenderer.ts",
+      "equal": true,
+      "sha256": "1795d5b167c13702f28a458f958cc2d7507c53e45aebb38a1bc375dbf8fe13c6"
+    },
+    {
+      "file": "compositionRuntime.ts",
+      "equal": true,
+      "sha256": "10f628b912dcba93a3d5e5305830cebd6fc7b6bf087e50f10054f83b4430b4b8"
+    },
+    {
+      "file": "model.ts",
+      "equal": true,
+      "sha256": "cf2f7ad9b429ea7f38af5018249e8ce5a635d1fe0a844d23e38e8bdbad52dc15"
+    },
+    {
+      "file": "renderer.ts",
+      "equal": true,
+      "sha256": "5c0beca7e10501b4ac0f1438bdd31c0ffebc071a5960344cd8b8ed9f43f70b41"
+    },
+    {
+      "file": "aiOperations.ts",
+      "equal": true,
+      "sha256": "f3e0dba4707bc9dd493e2ca1042ed7a768d6b34aebbc4b281d766743dd649599"
+    }
+  ],
+  "productionReleased": false,
+  "inksoft": "removed from scope by user",
+  "remaining": [
+    "Real hosted account signup/login/change/reset, Google consent/linking and mail delivery require preview credentials.",
+    "Credential browser actions timed out twice; tab recovery returned Debugger unattached. No key/client was created; no action-time approval could be presented.",
+    "Hosted account project reopen, revision restore, expected-head conflicts, cross-owner denial and cloud-load image races remain unverified for schema 3.",
+    "Physical iPhone Safari not run.",
+    "Stripe TEST delivery/refund/dispute not run; no dedicated Playground test credentials.",
+    "AI/image provider evaluation not run; no new bounded-spend authorization under this handoff.",
+    "Native touch dragging and a physical hidden-tab transition remain unverified. Headless Chromium kept document.hidden=false when another tab was foregrounded; emulated touch scrolling, outside-iframe release, text scale and crop/focal preservation passed."
+  ]
+}
