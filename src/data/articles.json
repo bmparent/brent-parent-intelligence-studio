@@ -1236,7 +1236,7 @@
     ],
     "cta": {
       "label": "Discuss your storefront’s customer path",
-      "href": "/#contact"
+      "href": "/contact"
     },
     "ogImage": "/insights-og/accessible-quote-form-errors-recovery.svg"
   }

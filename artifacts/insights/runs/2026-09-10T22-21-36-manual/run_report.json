@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-09-10T22-21-36-manual",
+  "slot": "manual",
+  "started_at_utc": "2026-09-10T22:21:36.717Z",
+  "cwd": "C:\\Users\\bmpar\\codex-worktrees\\insights-publishing-recovery-20260910",
+  "git_commit_before": "9f02030d1f2cf03a4bdd98f4c6d312b37583565a",
+  "commands": [
+    {
+      "command": "npm run content:generate",
+      "code": 0,
+      "started_at_utc": "2026-09-10T22:21:36.888Z",
+      "finished_at_utc": "2026-09-10T22:21:39.184Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 content:generate\n> node scripts/generate-insights-assets.mjs\n\nGenerated sitemap, feed, llms.txt, and 12 article OG images for https://eidos-works.com.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run validate:insights",
+      "code": 0,
+      "started_at_utc": "2026-09-10T22:21:39.184Z",
+      "finished_at_utc": "2026-09-10T22:21:51.753Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 validate:insights\n> node scripts/validate-insights.mjs\n\nInsights validation passed for 12 published articles.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run lint",
+      "code": 0,
+      "started_at_utc": "2026-09-10T22:21:51.753Z",
+      "finished_at_utc": "2026-09-10T22:23:06.925Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 lint\n> eslint .\n\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run build",
+      "code": 0,
+      "started_at_utc": "2026-09-10T22:23:06.926Z",
+      "finished_at_utc": "2026-09-10T22:26:48.791Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 build\n> npm run playground:glass && node scripts/clean-build-output.mjs && npm run kit:build && npm run content:generate && npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs\n\n\n> brent-parent-intelligence-studio@1.1.0 playground:glass\n> node scripts/build-playground-glass.mjs\n\nCleared generated build output.\n\n> brent-parent-intelligence-studio@1.1.0 kit:build\n> node scripts/build-kit.mjs\n\nPackaged cinematic starter: 6012 bytes, 5 files.\n\n> brent-parent-intelligence-studio@1.1.0 content:generate\n> node scripts/generate-insights-assets.mjs\n\nGenerated sitemap, feed, llms.txt, and 12 article OG images for https://eidos-works.com.\n\n> brent-parent-intelligence-studio@1.1.0 typecheck\n> tsc -b --pretty false\n\nvite v8.0.16 building client environment for production...\n\u001b[2K\rtransforming...✓ 88 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/.vite/manifest.json                    0.91 kB │ gzip:  0.30 kB\ndist/index.html                             2.81 kB │ gzip:  0.91 kB\ndist/assets/Playground-OH-aOWRl.css        13.37 kB │ gzip:  3.51 kB\ndist/assets/index-BEIL50Vo.css            159.33 kB │ gzip: 32.89 kB\ndist/assets/rolldown-runtime-D9-fqq9M.js    0.08 kB │ gzip:  0.08 kB\ndist/assets/Playground-5tT2GeNR.js         78.20 kB │ gzip: 26.87 kB\ndist/assets/react-vendor-P0Lkgw2L.js      190.21 kB │ gzip: 59.82 kB\ndist/assets/index-DezinlUu.js             352.72 kB │ gzip: 96.40 kB\n\n✓ built in 11.14s\nvite v8.0.16 building ssr environment for production...\n\u001b[2K\rtransforming...✓ 75 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist-ssr/.vite/manifest.json              0.52 kB │ gzip:   0.22 kB\ndist-ssr/assets/Playground-DJILO0I9.js  106.22 kB │ gzip:  31.64 kB\ndist-ssr/entry-server.js                473.10 kB │ gzip: 111.70 kB\n\n✓ built in 11.11s\n",
+      "stderr": "(node:14416) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:20248) ExperimentalWarning: SQLite is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n\u001b[33m[PLUGIN_TIMINGS] \u001b[0mYour build spent significant time in plugins. Here is a breakdown:\n  - vite:css (55%)\n  - vite:css-post (41%)\nSee https://rolldown.rs/options/checks#plugintimings for more details.\n\n"
+    },
+    {
+      "command": "npm run verify:prerender",
+      "code": 0,
+      "started_at_utc": "2026-09-10T22:26:48.791Z",
+      "finished_at_utc": "2026-09-10T22:26:57.859Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 verify:prerender\n> node scripts/verify-prerender.mjs\n\nPrerender verification passed: headings, metadata, private-page directives, image alternatives, IDs, and JSON-LD are valid.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run validate:insights:dist",
+      "code": 0,
+      "started_at_utc": "2026-09-10T22:26:57.859Z",
+      "finished_at_utc": "2026-09-10T22:27:08.523Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 validate:insights:dist\n> node scripts/validate-insights.mjs --check-dist --skip-source-fetch\n\nInsights validation passed for 12 published articles.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run verify:urls",
+      "code": 0,
+      "started_at_utc": "2026-09-10T22:27:08.523Z",
+      "finished_at_utc": "2026-09-10T22:27:15.597Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 verify:urls\n> node scripts/verify-urls.mjs\n\nVerified 13 public source files against 18 required and 8 forbidden references.\n",
+      "stderr": ""
+    }
+  ],
+  "status": "passed",
+  "failure": null,
+  "finished_at_utc": "2026-09-10T22:27:15.597Z",
+  "git_status_after": "M artifacts/insights/latest-generation-report.json\n M artifacts/insights/runs/2026-09-10-recovery/recovery.md\n M artifacts/insights/runs/2026-09-10-recovery/verify_live.py\n M functions/_shared/platform/kitArchive.ts\n M functions/_shared/platform/playgroundSchema.ts\n M src/data/articles.json\n M src/playground/glassBundle.ts\n?? artifacts/insights/runs/2026-09-10-recovery/cta-validation.log\n?? artifacts/insights/runs/2026-09-10-recovery/deployment-retry.log\n?? artifacts/insights/runs/2026-09-10-recovery/deployment.log\n?? artifacts/insights/runs/2026-09-10-recovery/full-verification-initial.log\n?? artifacts/insights/runs/2026-09-10-recovery/full-verification.log\n?? artifacts/insights/runs/2026-09-10-recovery/production-verifier.log\n?? artifacts/insights/runs/2026-09-10-recovery/provider-after.json"
+}

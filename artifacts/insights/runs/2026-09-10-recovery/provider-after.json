@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "configFingerprint": "2b8fc78f6e22f925c58e26705f3912c615e927046a5bb6259234ea8ac8933e27",
+  "productionBranch": "main",
+  "domains": [
+    "eidosworks.pages.dev",
+    "eidos-works.com"
+  ],
+  "deployment": {
+    "id": "c01a8a64-7ce0-41fe-8f93-5a7be7e7763b",
+    "status": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-09-10T22:19:47.662118Z",
+      "status": "success"
+    },
+    "trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "9f02030d1f2cf03a4bdd98f4c6d312b37583565a",
+        "commit_message": "Merge pull request #23 from bmparent/codex/insights-wednesday-20260909\r\n\r\nPublish quote-form guide and repair scheduled Insights completion",
+        "commit_dirty": false
+      }
+    }
+  },
+  "envNames": [
+    "EIDOS_PLATFORM_TOKEN",
+    "EIDOS_PLATFORM_URL"
+  ]
+}
