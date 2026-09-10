@@ -7,7 +7,7 @@ import { MemberWorkspace, MemberSecurity } from './MemberWorkspace';
 import '../styles/members.css';
 
 export function AccountPage() {
-  const { account, error: loadError, refresh } = useAccount();
+  const { account, error: loadError, refresh, clear } = useAccount();
   const [busy, setBusy] = useState(false), [message, setMessage] = useState(''), [error, setError] = useState(''), [key, setKey] = useState('');
   async function change(action: string, values: Record<string, unknown> = {}) {
     setBusy(true);
@@ -33,6 +33,7 @@ export function AccountPage() {
     try {
       await post('/api/members/auth', { action: 'logout' });
       setKey('');
+      clear();
       refresh();
     } catch {
       setError('Sign out could not complete. Please try again.');
@@ -97,7 +98,7 @@ export function AccountPage() {
           </div>
           <div className="ew-member-dashboard">
             <MemberWorkspace key={member.username} username={member.username} email={member.email} />
-            <MemberSecurity />
+            <MemberSecurity key={member.username} />
             <section className="ew-member-card">
               <p className="ew-eyebrow">Your reading shelf</p>
               <h2>Saved for a quieter moment.</h2>
@@ -276,16 +277,21 @@ function FragmentAction({ unsubscribe = false }: { unsubscribe?: boolean }) {
     [error, setError] = useState('');
   useEffect(() => {
     let active = true;
-    queueMicrotask(() => {
+    const readLink = () => {
       if (active) {
         const params = new URLSearchParams(location.hash.slice(1));
+        if (!params.get('token')) return;
         setToken(params.get('token') || '');
         setIntent(params.get('intent') || '');
+        setMessage(''); setError('');
         history.replaceState(null, '', location.pathname);
       }
-    });
+    };
+    queueMicrotask(readLink);
+    window.addEventListener('hashchange', readLink);
     return () => {
       active = false;
+      window.removeEventListener('hashchange', readLink);
     };
   }, []);
   async function confirm() {

@@ -53,7 +53,7 @@ export async function onRequest({ request, env, next }: RelayContext) {
     // Workers supports manual/follow only. Reject redirects before returning any
     // Location header or forwarding credentials to a second host.
     const oauthRedirect = path === '/api/members/google' && request.method === 'GET' && response.status === 303 &&
-      /^\/account\?oauth=(success|choose-username|link-required|collision|error)$/.test((response.headers.get('location') || '').replace(url.origin, '')) &&
+      /^\/account\?oauth=(success|choose-username|link-required|signup-required|collision|error)$/.test((response.headers.get('location') || '').replace(url.origin, '')) &&
       (response.headers.get('location') || '').startsWith(url.origin + '/account?');
     if (response.status >= 300 && response.status < 400 && !oauthRedirect) {
       await response.body?.cancel();

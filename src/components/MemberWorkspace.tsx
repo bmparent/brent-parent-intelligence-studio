@@ -48,6 +48,16 @@ export function MemberSecurity() {
   const config = usePublicConfig();
   const [security, setSecurity] = useState<{ hasPassword: boolean; googleLinked: boolean } | null>(null), [current, setCurrent] = useState(''), [password, setPassword] = useState(''), [busy, setBusy] = useState(false), [error, setError] = useState(''), [message, setMessage] = useState('');
   useEffect(() => {
+    const oauth = new URLSearchParams(location.search).get('oauth');
+    if (!oauth) return;
+    queueMicrotask(() => {
+      if (oauth === 'success') setMessage('Google sign-in is connected. Your existing account and projects are unchanged.');
+      if (oauth === 'collision') setError('Google could not be linked because these identities belong to different accounts. Your existing account is unchanged.');
+      if (oauth === 'error') setError('Google linking could not finish. Please try again.');
+      history.replaceState(null, '', location.pathname);
+    });
+  }, []);
+  useEffect(() => {
     if (!config?.passwordsReady) return;
     const controller = new AbortController();
     fetch('/api/members/credentials', { signal: controller.signal, cache: 'no-store' }).then(async r => { if (!r.ok) throw Error('Security settings could not load. Reload to try again.'); return r.json(); }).then(setSecurity).catch(e => { if (!controller.signal.aborted) setError(e.message); });
@@ -60,11 +70,11 @@ export function MemberSecurity() {
   }
   async function link() {
     setBusy(true); setError('');
-    try { const result = await post<{ authorizeUrl: string }>('/api/members/google', { action: 'link', currentPassword: current }); const url = new URL(result.authorizeUrl); if (url.origin !== 'https://accounts.google.com') throw Error('Google sign-in could not start.'); location.assign(url.href); }
+    try { const result = await post<{ authorizeUrl: string }>('/api/members/google', { action: 'link', currentPassword: current }); const url = new URL(result.authorizeUrl); if (url.origin !== 'https://accounts.google.com' || url.pathname !== '/o/oauth2/v2/auth') throw Error('Google sign-in could not start.'); location.assign(url.href); }
     catch (e) { setError((e as Error).message); setBusy(false); }
   }
   return <section className="ew-member-card"><p className="ew-eyebrow">Account security</p><h2>Sign in your way.</h2>
-    {security?.hasPassword ? <form className="ew-form-stack" onSubmit={change} aria-busy={busy}><PasswordField label="Current password" value={current} onChange={setCurrent} current /><PasswordField label="New password" value={password} onChange={setPassword} /><button className="ew-button ew-button--secondary" disabled={busy}>Change password</button></form> : <p>Use <a href="/account/reset">password recovery</a> after requesting a reset email from the sign-in page to set your first password.</p>}
+    {!security && config?.passwordsReady && !error ? <p role="status">Loading security settings…</p> : security?.hasPassword ? <form className="ew-form-stack" onSubmit={change} aria-busy={busy}><PasswordField label="Current password" value={current} onChange={setCurrent} current /><PasswordField label="New password" value={password} onChange={setPassword} /><button className="ew-button ew-button--secondary" disabled={busy}>Change password</button></form> : config?.passwordsReady && <p>Use <a href="/account/reset">password recovery</a> to request an email and set your first password.</p>}
     {security?.googleLinked ? <p>Google is linked to this account.</p> : config?.googleReady ? <><p>{security?.hasPassword ? 'Enter your current password above, then link your Google account.' : 'Link Google while signed in to keep your existing username and projects.'}</p><button className="ew-button ew-button--secondary" disabled={busy} onClick={() => void link()}>Link Google account</button></> : <p>Google sign-in is being connected.</p>}
     {message && <p role="status">{message}</p>}{error && <p role="alert">{error}</p>}
   </section>;

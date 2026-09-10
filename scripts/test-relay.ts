@@ -19,6 +19,11 @@ await test('OAuth relay keeps separate secure cookies and allows only the exact 
     const response = await onRequest({env,next,request:request()});
     assert.equal(response.status,303);
     assert.deepEqual(response.headers.getSetCookie(),[session,clear]);
+    for (const status of ['choose-username', 'link-required', 'signup-required', 'collision', 'error']) {
+      location='https://eidos-works.com/account?oauth='+status;
+      const accepted=await onRequest({env,next,request:request()});
+      assert.equal(accepted.status,303);assert.equal(accepted.headers.get('location'),location);
+    }
     for (const invalid of ['https://eidos-works.com.attacker.example/account?oauth=success','https://eidos-works.com/account?oauth=success&next=https://attacker.example','/account?oauth=success']) {
       location=invalid;
       const rejected=await onRequest({env,next,request:request()});

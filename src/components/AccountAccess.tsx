@@ -1,14 +1,15 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useId, useState, type FormEvent } from 'react';
 import { post, usePublicConfig } from '../lib/platform';
 import { Turnstile } from './Turnstile';
 
 type Mode = 'signup' | 'signin' | 'reset' | 'email' | 'google-username';
 export function PasswordField({ label = 'Password', value, onChange, current = false }: { label?: string; value: string; onChange: (value: string) => void; current?: boolean }) {
   const [visible, setVisible] = useState(false);
-  return <label className="ew-field">{label}<span className="ew-password-field">
-    <input type={visible ? 'text' : 'password'} autoComplete={current ? 'current-password' : 'new-password'} value={value} onChange={e => onChange(e.target.value)} required minLength={current ? undefined : 15} maxLength={128} spellCheck={false} autoCapitalize="none" />
+  const id = useId();
+  return <div className="ew-field"><label htmlFor={id}>{label}</label><span className="ew-password-field">
+    <input id={id} aria-describedby={current ? undefined : id + '-help'} type={visible ? 'text' : 'password'} autoComplete={current ? 'current-password' : 'new-password'} value={value} onChange={e => onChange(e.target.value)} required minLength={current ? undefined : 15} maxLength={128} spellCheck={false} autoCapitalize="none" />
     <button type="button" aria-label={(visible ? 'Hide ' : 'Show ') + label.toLowerCase()} aria-pressed={visible} onClick={() => setVisible(!visible)}>{visible ? 'Hide' : 'Show'}</button>
-  </span>{!current && <small>15–128 characters. A few memorable words work well.</small>}</label>;
+  </span>{!current && <small id={id + '-help'}>15–128 characters. A few memorable words work well.</small>}</div>;
 }
 export function AccountAccess({ onSuccess }: { onSuccess: () => void }) {
   const config = usePublicConfig();
@@ -23,6 +24,7 @@ export function AccountAccess({ onSuccess }: { onSuccess: () => void }) {
       if (oauth === 'error') setError('Google sign-in could not finish. Please try again.');
       if (oauth === 'collision') setError('These identities belong to different accounts. Sign in to the account you want to keep and link Google from Security.');
       if (oauth === 'link-required') { setMode('email'); setMessage('Confirm this email with an Eidos sign-in link, then link Google from Security. This protects accounts that use a non-Google email provider.'); }
+      if (oauth === 'signup-required') { setMode('signup'); setMessage('Create an Eidos account with this email to confirm it, then link Google from Security. This protects addresses managed by a non-Google email provider.'); }
       history.replaceState(null, '', location.pathname);
     });
   }, []);
@@ -44,7 +46,7 @@ export function AccountAccess({ onSuccess }: { onSuccess: () => void }) {
       const action = mode === 'google-username' ? 'complete-signup' : mode === 'reset' ? 'request-reset' : mode === 'signin' ? (usePassword ? 'login' : 'signin') : mode === 'email' ? 'signin' : 'signup';
       const result = await post<{ message?: string; localVerificationUrl?: string; member?: unknown; ok?: boolean }>(endpoint, { action, email, identifier: email, username: name, password, kind, newsletter, challenge: verification, website: new FormData(event.currentTarget).get('website') });
       if ((mode === 'signin' && usePassword) || mode === 'google-username') { setPassword(''); onSuccess(); }
-      else { setMessage(result.message || 'Check your email.'); if (config?.localTest && result.localVerificationUrl) setLocalLink(result.localVerificationUrl); }
+      else { setPassword(''); setMessage(result.message || 'Check your email.'); if (config?.localTest && result.localVerificationUrl) setLocalLink(result.localVerificationUrl); }
     } catch (e) { setError((e as Error).message); }
     finally { setBusy(false); setVerification(''); setReset(n => n + 1); }
   }
@@ -92,7 +94,18 @@ export function ResetPasswordPage() {
   const config = usePublicConfig();
   const [email, setEmail] = useState(''), [verification, setVerification] = useState(''), [challengeReset, setChallengeReset] = useState(0), [localLink, setLocalLink] = useState('');
   const [token, setToken] = useState(''), [password, setPassword] = useState(''), [busy, setBusy] = useState(false), [message, setMessage] = useState(''), [error, setError] = useState('');
-  useEffect(() => { let active = true; queueMicrotask(() => { if (active) { setToken(new URLSearchParams(location.hash.slice(1)).get('token') || ''); history.replaceState(null, '', location.pathname); } }); return () => { active = false; }; }, []);
+  useEffect(() => {
+    let active = true;
+    const readLink = () => {
+      const value = new URLSearchParams(location.hash.slice(1)).get('token');
+      if (!active || !value) return;
+      setToken(value); setMessage(''); setError(''); setPassword('');
+      history.replaceState(null, '', location.pathname);
+    };
+    queueMicrotask(readLink);
+    window.addEventListener('hashchange', readLink);
+    return () => { active = false; window.removeEventListener('hashchange', readLink); };
+  }, []);
   async function submit(event: FormEvent) {
     event.preventDefault(); setBusy(true); setError('');
     try { const result = await post<{ message: string; localVerificationUrl?: string }>('/api/members/credentials', token ? { action: 'reset', token, password } : { action: 'request-reset', email, challenge: verification }); setPassword(''); setToken(''); setMessage(result.message); if (config?.localTest && result.localVerificationUrl) setLocalLink(result.localVerificationUrl); }

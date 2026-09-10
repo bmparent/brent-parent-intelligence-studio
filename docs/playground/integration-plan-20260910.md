@@ -1,6 +1,6 @@
 # Playground final integration — September 10, 2026
 
-Status: in progress. Production, live Playground sales and public AI remain unchanged. This file is the working gate ledger; a passing local fixture is never a real-provider result.
+Status: integration and controlled verification are implemented; hosted account/provider gates remain pending. Production, live Playground sales and public AI remain unchanged. A passing local fixture is never a real-provider result. The final external receipt is saved under the evidence directory below.
 
 ## Baseline and integration path
 
@@ -14,7 +14,7 @@ Status: in progress. Production, live Playground sales and public AI remain unch
 
 ## Execution plan and gates
 
-1. Complete baseline/provider inspection and isolate work. **PASS** for stack and worktree inspection; finish exact Pages metadata capture.
+1. Complete baseline/provider inspection and isolate work. **PASS**, including exact Pages and Vercel deployment metadata.
 2. Implement additive password credentials, signup/login/recovery, safe Google OIDC linking, compatible member sessions and a useful account dashboard. Preserve existing member IDs, usernames, projects, agent keys and newsletters.
 3. Integrate all #29 behavior and verify 390/760/761/768/850/980/981/1100/1440 widths.
 4. Provision a dedicated preview database and matching frontend/backend configuration; migrate preview only. Record exact deployed SHAs and provider IDs.
@@ -31,3 +31,14 @@ Status: in progress. Production, live Playground sales and public AI remain unch
 External browser artifacts: `C:/Users/bmpar/SystemDiagnostics/playground-integration-20260910/`. Durable backend gate metadata will be recorded under `artifacts/playground_integration_2026_09_10/`. Record failures and reruns; no secrets, raw session cookies or private credentials in receipts. Research/model logic is outside this task.
 
 Browser plugin skill is absent in this session; regular Playwright is the test path for the required three browser engines. This environment also exposes CUA for interactive browser tasks.
+
+## Reviewable integration and preview
+
+- Frontend integration PR: https://github.com/bmparent/brent-parent-intelligence-studio/pull/34
+- Backend integration PR: https://github.com/bmparent/eidos/pull/58
+- Both target main and preserve the original stack ancestry. The old PRs remain open; the integration PRs propose superseding them after acceptance.
+- Isolated frontend: https://eidos-pg-preview-20260910.pages.dev
+- Its backend uses the branch-specific `EIDOS_PG_INTEGRATION` Turso binding and an exact frontend-origin allowlist. Deployment receipts identify each immutable frontend/backend URL and SHA.
+- The isolated database received additive migrations 0001–0006. Production database/bindings were not changed.
+- Dedicated preview Google OAuth and domain-restricted mail credential forms are prepared. Creation requires the browser tool's action-time credential approval. Hosted signup/reset/Google verification, real Stripe TEST traffic and the subsequent provider AI evaluation remain pending until the required credentials and critical account flows work.
+- The integrated site header passed all nine widths in Chromium, Firefox and WebKit, including the Firefox navigation recheck. Physical iPhone and actual InkSoft remain separate NOT RUN gates; see `external-checklists-20260910.md`.
