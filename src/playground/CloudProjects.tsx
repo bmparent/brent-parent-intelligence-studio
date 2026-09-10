@@ -34,7 +34,7 @@ export function CloudProjects({ project, target: active, documentId, guard, load
     try { await action(valid); } catch (error) { if(valid()) setMessage((error as Error).message); }
     finally { lock.current = false; setBusy(false); }
   }
-  async function refresh() { const result = await api(); setProjects(result.projects); return result.ownerId as string; }
+  async function refresh() { const result = await api(); if(typeof result.ownerId !== 'string' || !result.ownerId) throw Error('The account service needs the matching Playground update. Local editing and exports remain available.'); setProjects(result.projects); return result.ownerId; }
   async function save(copy: boolean, valid: () => boolean) {
     if (!preflight.allowed) {setMessage(preflight.message); return;}
     const snapshot = JSON.stringify(project);
@@ -50,6 +50,7 @@ export function CloudProjects({ project, target: active, documentId, guard, load
   }
   async function open(id: string, valid: () => boolean, revision?: string) {
     const result = await api('?id=' + encodeURIComponent(id) + (revision ? '&revision=' + encodeURIComponent(revision) : ''));
+    if(typeof result.ownerId !== 'string' || !result.ownerId) throw Error('The account service needs the matching Playground update. Your local design is unchanged.');
     const document = validateProject(result.document);
     if (!valid()) {setMessage('Cloud open ignored because the workspace changed. Open it again when ready.'); return;}
     const target = {id,head:result.head,owner:result.ownerId,name:document.name,saved:revision && revision !== result.head ? '' : JSON.stringify(document)};

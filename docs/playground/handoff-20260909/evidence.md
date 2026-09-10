@@ -28,3 +28,7 @@ The first typecheck exposed an Action union narrowing error, fixed by discrimina
 A request to remove only the disposable .next/cache created during this task was rejected by automatic approval review as blocked by policy; no cleanup occurred. Existing user files and production settings were preserved.
 
 Draft review: frontend PR #28 (11efeefe446eb88605cd581828e2a1c2b2988d86 deployed), backend PR #54 (f1e1934d840ea19ec14d9c13d62b966d44f57d0c deployed). All 48 exported files match after UTF-8 LF normalization. Existing-browser tool fallback also failed to initialize: disk error 112.
+
+## September 10 continuation
+
+Disk blocker cleared: 15.9 GB available at restart. Local Playwright Chromium, Firefox and WebKit each reproduced baseline A-content/B-target and passed the fixed A-content/A-target case, template detachment, Undo and reload. No page errors. Local API interception is explicit; these are not real member sessions. The runner initially used an over-strict text locator for nested status text; the locator was corrected and all six cases completed. Browser receipts remain outside source in SystemDiagnostics/playground-20260909/browser-reliability.json. Older account-service responses without owner identity now fail closed instead of accepting an undefined owner.
