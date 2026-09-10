@@ -1,3 +1,4 @@
+import { CompositionControls } from './CompositionControls';
 import { sectionKind } from "./model";
 import { useState } from "react";
 import { labels, createProject, RENDERER, type Project } from "./model";
@@ -83,6 +84,7 @@ export function Inspector({
         id="pg-inspector-panel"
         aria-labelledby={`pg-${tab}-tab`}
       >
+        {kind === 'hero' && <CompositionControls project={p} sectionId={s.id} edit={edit} notify={notify} />}
         {tab === "content" ? (
           <>
             <Field
@@ -276,7 +278,7 @@ export function Inspector({
               </>
             ) : (
               <>
-                {kind === "hero" && (
+                {kind === "hero" && !s.composition && (
                   <div className="pg-field">
                     <label htmlFor="hero-layout">Layout</label>
                     <select

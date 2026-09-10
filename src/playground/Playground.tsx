@@ -2,6 +2,7 @@ import {AIAssist} from "./AIAssist";
 import {imageWarnings} from "./publishing";
 import {StructureControls} from "./StructureControls";
 import { sectionKind } from "./model";
+import { moveSectionBefore } from "./composition";
 import { useEffect, useRef, useState } from "react";
 import {
   createProject,
@@ -46,6 +47,7 @@ export default function Playground() {
   const dialog = useRef<HTMLDialogElement>(null),
     [snapshotName, setSnapshotName] = useState("");
   const [imageNotes,setImageNotes]=useState<string[]>([]);
+  const sectionDrag = useRef<{id:string; valid:()=>boolean} | null>(null);
   const warnings = [...projectWarnings(project),...imageNotes];
   async function openExport(){const valid=guard();setImageNotes([]);dialog.current?.showModal();const notes=await imageWarnings(project);if(valid())setImageNotes(notes);}
   useEffect(() => {
@@ -208,6 +210,23 @@ export default function Playground() {
             {project.sections.map((s, i) => (
               <div
                 key={s.id}
+                draggable={ready && !comparison && i > 0 && i < project.sections.length - 1}
+                onDragStart={event => {
+                  if (i === 0 || i === project.sections.length - 1 || !ready || comparison) { event.preventDefault(); return; }
+                  sectionDrag.current = {id:s.id,valid:guard()};
+                  event.dataTransfer.effectAllowed = 'move';
+                  event.dataTransfer.setData('application/x-eidos-section',s.id);
+                }}
+                onDragOver={event => { if(sectionDrag.current && i > 0 && i < project.sections.length - 1) {event.preventDefault();event.currentTarget.classList.add('pg-section-drop');} }}
+                onDragLeave={event => event.currentTarget.classList.remove('pg-section-drop')}
+                onDragEnd={() => {sectionDrag.current=null;document.querySelectorAll('.pg-section-drop').forEach(el=>el.classList.remove('pg-section-drop'));}}
+                onDrop={event => {
+                  event.preventDefault();event.currentTarget.classList.remove('pg-section-drop');
+                  const drag=sectionDrag.current;sectionDrag.current=null;
+                  if(!drag || !drag.valid() || comparison) return;
+                  try {const rect=event.currentTarget.getBoundingClientRect();const before=event.clientY>rect.top+rect.height/2?project.sections[i+1]?.id:s.id;if(!before)return;change(moveSectionBefore(project,drag.id,before));setNotice('Section moved. Undo restores the previous order.');}
+                  catch(error){setNotice((error as Error).message);}
+                }}
                 className={`pg-section-row ${selected === s.id ? "selected" : ""} ${!s.visible ? "hidden-section" : ""}`}
               >
                 <button
@@ -379,6 +398,10 @@ export default function Playground() {
           <div className="pg-preview-shell">
             {ready ? (
               <Preview
+                edit={change}
+                guard={guard}
+                notify={setNotice}
+                documentId={documentId}
                 project={comparison || project}
                 selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id}
                 editing={editing && !comparison}
