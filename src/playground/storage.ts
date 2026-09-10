@@ -79,6 +79,7 @@ export async function imageData(file: File): Promise<string> {
     const image = new Image();
     image.src = url;
     await image.decode();
+    if (!image.width || !image.height || image.width * image.height > 16_000_000 || image.width > 12000 || image.height > 12000) throw new Error("Choose an image below 16 megapixels and 12,000 pixels per side.");
     const scale = Math.min(1, 1600 / Math.max(image.width, image.height));
     const canvas = document.createElement("canvas");
     canvas.width = Math.round(image.width * scale);

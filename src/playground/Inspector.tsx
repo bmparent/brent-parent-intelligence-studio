@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { labels, createProject, RENDERER, type Project, type SectionType } from "./model";
 import { Color, Destination, Field, Range, Toggle } from "./Controls";
+import { defaultMedia } from "./media";
 import { imageData } from "./storage";
 export function Inspector({
   project: p,
@@ -37,6 +38,7 @@ export function Inspector({
         <h2>{labels[selected]}</h2>
         <span className="pg-subtle">↗</span>
       </div>
+      {["hero","work"].includes(selected) && <button className="pg-text-button" onClick={()=>setTab("content")}>{s.image ? "Replace image" : "Add an image"}</button>}
       <div
         className="pg-tabs"
         role="tablist"
@@ -140,10 +142,11 @@ export function Inspector({
                       const stillCurrent = guard();
                       try {
                         const data = await imageData(file);
+                        const sourceId = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(data))),b=>b.toString(16).padStart(2,"0")).join("");
                         if (!stillCurrent()) { notify("Image ignored because the workspace changed. Choose the image again to add it here."); return; }
                         edit(current => ({
                           ...current,
-                          sections: current.sections.map(v => v.id === selected ? { ...v, image: data } : v),
+                          sections: current.sections.map(v => v.id === selected ? { ...v, image: data, media: {...(v.media || defaultMedia()),sourceId,sourceName:file.name.slice(0,120)} } : v),
                         }));
                         notify(
                           "Image added. It will travel with your project and export.",

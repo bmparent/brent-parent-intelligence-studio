@@ -10,6 +10,7 @@ import {
 } from "./model";
 import { useProject } from "./useProject";
 import { Preview } from "./Preview";
+import { MediaBrand } from "./MediaBrand";
 import { Inspector } from "./Inspector";
 import { CloudProjects } from './CloudProjects';
 import { Icon } from "./Controls";
@@ -34,6 +35,7 @@ export default function Playground() {
     [mobile, setMobile] = useState(false),
     [editing, setEditing] = useState(true),
     [panel, setPanel] = useState("canvas");
+  const [mediaOpen, setMediaOpen] = useState(false);
   const [notice, setNotice] = useState(""),
     [comparison, setComparison] = useState<Project | null>(null),
     [exporting, setExporting] = useState(false);
@@ -51,6 +53,7 @@ export default function Playground() {
     edit(p, group);
   };
   const chooseSection = (id: SectionType) => {
+    setMediaOpen(false);
     setSelected(id);
     setPanel("inspector");
   };
@@ -175,6 +178,7 @@ export default function Playground() {
       <div className="pg-workspace">
         <aside className="pg-sidebar" aria-label="Page sections">
           <h2>Your page</h2>
+          <button className="pg-media-entry" aria-pressed={mediaOpen} onClick={()=>{setMediaOpen(!mediaOpen);setPanel("inspector");}}>Media / Brand</button>
           <label className="pg-sr-only" htmlFor="page-template">
             Template
           </label>
@@ -382,13 +386,13 @@ export default function Playground() {
             )}
           </div>
         </main>
-        <Inspector
+        {mediaOpen ? <MediaBrand project={project} edit={change} guard={guard} notify={setNotice} close={()=>setMediaOpen(false)} /> : <Inspector
           project={project}
           selected={selected}
           edit={change}
           notify={setNotice}
           guard={guard}
-        />
+        />}
       </div>
       <footer className="pg-statusbar">
         <span>

@@ -134,6 +134,7 @@ function fixture() {
   };
   const env: PlatformEnv = {
     EIDOS_RUNTIME: 'sentinel',
+    EIDOS_VALIDATE_PLAYGROUND_IMAGE: async () => {}, // Decoder exercised separately in Sentinel's real Sharp tests.
     EIDOS_DB: db,
     EIDOS_LOCAL_TEST: 'true',
     PUBLIC_SITE_URL: 'http://localhost:8788',
@@ -188,3 +189,17 @@ async function signup(
   return { cookie, token, headers: { cookie } };
 }
 
+test('image decoder availability and atomic owner storage quota preserve saved state',async()=>{
+ const {env,sql}=fixture(),alice=await signup(env,'image_owner');const document=createProject();
+ const first=await save(ctx(env,'/api/playground/projects',{document},alice.headers));assert.equal(first.status,200);
+ const saved=await first.json();document.sections[1].image='data:image/png;base64,iVBORw0KGgo=';
+ const validate=env.EIDOS_VALIDATE_PLAYGROUND_IMAGE;delete env.EIDOS_VALIDATE_PLAYGROUND_IMAGE;
+ assert.equal((await save(ctx(env,'/api/playground/projects',{document,id:saved.id,expectedRevision:saved.revision},alice.headers))).status,503);
+ env.EIDOS_VALIDATE_PLAYGROUND_IMAGE=validate;
+ const owner=sql.prepare('SELECT id FROM eidos_email_members WHERE username=?').get('image_owner')!.id;
+ sql.prepare('INSERT INTO eidos_pg_assets(owner_id,hash,data) VALUES(?,?,zeroblob(40000000))').run(owner,'quota-fixture');
+ assert.equal((await save(ctx(env,'/api/playground/projects',{document,id:saved.id,expectedRevision:saved.revision},alice.headers))).status,413);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_pg_revisions').get()!.n,1);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_pg_assets').get()!.n,1);
+ sql.close();
+});
