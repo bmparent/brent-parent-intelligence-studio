@@ -1,0 +1,15 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:glass
+> node --import tsx --test scripts/test-liquid-glass.ts
+
+✔ solid at the top, continuous through the transition, glass after 72px (6.2337ms)
+✔ spring response agrees across refresh rates and releases without overshoot (58.1179ms)
+✔ hit geometry follows rounded corners and reports the bevel depth (1.5651ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1888.5926

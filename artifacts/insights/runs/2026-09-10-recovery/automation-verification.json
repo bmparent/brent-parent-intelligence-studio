@@ -1,0 +1,23 @@
+[
+  {
+    "id": "eidos-works-insights-evening-strategy",
+    "status": "ACTIVE",
+    "schedule": "FREQ=WEEKLY;BYDAY=FR;BYHOUR=18;BYMINUTE=0;BYSECOND=0",
+    "directUploadInstruction": true,
+    "oldInstructionRemoved": true
+  },
+  {
+    "id": "eidos-works-insights-midday-practical-guide",
+    "status": "ACTIVE",
+    "schedule": "FREQ=WEEKLY;BYDAY=WE;BYHOUR=13;BYMINUTE=0;BYSECOND=0",
+    "directUploadInstruction": true,
+    "oldInstructionRemoved": true
+  },
+  {
+    "id": "eidos-works-insights-morning-current-analysis",
+    "status": "ACTIVE",
+    "schedule": "FREQ=WEEKLY;BYDAY=MO;BYHOUR=8;BYMINUTE=0;BYSECOND=0",
+    "directUploadInstruction": true,
+    "oldInstructionRemoved": true
+  }
+]

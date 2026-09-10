@@ -1,0 +1,11 @@
+✔ Pages article directory redirects are allowed without accepting other locations (7.1256ms)
+✔ publishing runner runs every gate through a CLI path with spaces (14642.453ms)
+✔ publishing runner stops and records a failed gate (10445.0545ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26256.1365

@@ -1,0 +1,86 @@
+[
+  {
+    "startedAt": "2026-09-09T17:07:26.7358840Z",
+    "exitCode": 0,
+    "command": "npm run content:generate",
+    "finishedAt": "2026-09-09T17:07:27.9397648Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/content-generate.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:07:27.9705560Z",
+    "exitCode": 0,
+    "command": "npm run validate:insights",
+    "finishedAt": "2026-09-09T17:07:42.3532636Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/validate-insights.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:07:42.3619409Z",
+    "exitCode": 0,
+    "command": "npm run lint",
+    "finishedAt": "2026-09-09T17:08:50.3070308Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/lint.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:08:50.3123171Z",
+    "exitCode": 0,
+    "command": "npm run build",
+    "finishedAt": "2026-09-09T17:09:26.9331761Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/build.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:09:26.9383090Z",
+    "exitCode": 0,
+    "command": "npm run verify:prerender",
+    "finishedAt": "2026-09-09T17:09:28.3169616Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/verify-prerender.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:09:28.3213199Z",
+    "exitCode": 0,
+    "command": "npm run validate:insights:dist",
+    "finishedAt": "2026-09-09T17:09:29.6083341Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/validate-insights-dist.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:09:29.6119894Z",
+    "exitCode": 0,
+    "command": "npm run verify:urls",
+    "finishedAt": "2026-09-09T17:09:30.9028172Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/verify-urls.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:09:30.9080271Z",
+    "exitCode": 0,
+    "command": "npm run verify:editorial",
+    "finishedAt": "2026-09-09T17:09:32.2764671Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/verify-editorial.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:09:32.2812488Z",
+    "exitCode": 0,
+    "command": "npm run test:platform",
+    "finishedAt": "2026-09-09T17:09:40.8151206Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/test-platform.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:09:40.8200584Z",
+    "exitCode": 0,
+    "command": "npm run test:analytics",
+    "finishedAt": "2026-09-09T17:09:42.6364451Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/test-analytics.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:09:42.6407779Z",
+    "exitCode": 0,
+    "command": "npm run test:snapshot",
+    "finishedAt": "2026-09-09T17:09:44.2044469Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/test-snapshot.log"
+  },
+  {
+    "startedAt": "2026-09-09T17:09:44.2077258Z",
+    "exitCode": 0,
+    "command": "npm run build:functions",
+    "finishedAt": "2026-09-09T17:09:49.0057723Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/build-functions.log"
+  }
+]

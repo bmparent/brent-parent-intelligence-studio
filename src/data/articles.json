@@ -1106,5 +1106,138 @@
       "href": "/services/agentic-seo"
     },
     "ogImage": "/insights-og/bing-ai-citations-measure-business-value.svg"
+  },
+  {
+    "title": "Accessible Quote Forms: Help Customers Recover From Errors",
+    "slug": "accessible-quote-form-errors-recovery",
+    "description": "A practical guide to quote-form labels, validation and recovery, with a worked example and a checklist for your next storefront review.",
+    "dek": "A useful quote form makes mistakes recoverable: keep the customer’s work, identify the field that needs attention, and make submission status unambiguous.",
+    "category": "Storefront UX",
+    "publishedAt": "2026-09-10T22:04:26.054Z",
+    "updatedAt": "2026-09-10T22:04:26.054Z",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 5,
+    "tags": [
+      "Form accessibility",
+      "Error recovery",
+      "Quote requests",
+      "Storefront UX"
+    ],
+    "canonicalPath": "/insights/accessible-quote-form-errors-recovery",
+    "excerpt": "A useful quote form makes mistakes recoverable: keep the customer’s work, identify the field that needs attention, and make submission status unambiguous.",
+    "pillar": "UI/UX design, accessibility, responsive behavior, and design systems",
+    "slot": "midday",
+    "format": "practical-guide",
+    "searchIntent": "How do I make a storefront quote form easier to correct and submit accessibly?",
+    "featured": false,
+    "draft": false,
+    "thesis": "A useful quote form makes mistakes recoverable: keep the customer’s work, identify the field that needs attention, and make submission status unambiguous.",
+    "sources": [
+      {
+        "title": "Labeling Controls",
+        "url": "https://www.w3.org/WAI/tutorials/forms/labels/",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-09-09",
+        "type": "official-docs"
+      },
+      {
+        "title": "Validating Input",
+        "url": "https://www.w3.org/WAI/tutorials/forms/validation/",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-09-09",
+        "type": "official-docs"
+      },
+      {
+        "title": "User Notification",
+        "url": "https://www.w3.org/WAI/tutorials/forms/notifications/",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-09-09",
+        "type": "official-docs"
+      }
+    ],
+    "takeaways": [
+      "Keep visible labels and put requirements before the submit button.",
+      "Describe the correction in words and connect it to the affected field.",
+      "Keep ordinary quote details in place when submission fails.",
+      "Confirm receipt only when the receiving system has acknowledged it."
+    ],
+    "relatedSlugs": [
+      "storefront-ux-find-right-product-faster",
+      "mobile-hierarchy-over-desktop-polish"
+    ],
+    "body": [
+      {
+        "heading": "Design the recovery path alongside the form",
+        "paragraphs": [
+          "A useful quote form makes mistakes recoverable: keep the customer’s work, identify the field that needs attention, and make submission status unambiguous.",
+          "For a custom apparel quote, the difficult moment may arrive after someone has already entered quantities, sizes and a deadline. A generic failure message leaves them deciding whether to retype the request, submit twice or call. The design question is concrete: what can this person do next without losing their work?",
+          "The W3C form tutorials linked below explain labels, validation and notifications. The quote scenario and release checklist here are Eidos editorial recommendations, not results from a client test."
+        ]
+      },
+      {
+        "heading": "1. Make the requirements visible before submission",
+        "paragraphs": [
+          "Give each field a persistent label. In HTML, the label’s for value should match the input’s id. Placeholder text can provide an example, but it disappears during entry and should not carry the field’s identity.",
+          "W3C describes native required and input-type validation as useful starting points. For an email address, use an email control; identify required fields in visible text. Keep format instructions next to the relevant question. Validate on the server too: browser checks are a convenience, not a security boundary.",
+          "For this illustrative quote form, ask for contact email, garment quantity and project details. Make the delivery date optional if the business can quote without it. If an exact date is necessary, explain why. Every mandatory question should have an operational reason."
+        ]
+      },
+      {
+        "heading": "2. Give the error a destination and a correction",
+        "paragraphs": [
+          "W3C recommends an error list that identifies the affected controls, explains corrections and links to those controls. It also describes associating field-level messages with inputs through aria-describedby. These connections help turn an error into a route back to the task.",
+          "Replace a bare “Invalid input” with a specific instruction such as “Quantity: enter a whole number of garments.” Use text as well as visual emphasis. On submission, choose and test a deliberate focus or announcement approach so a keyboard or screen-reader user discovers the problem without hunting for it.",
+          "Avoid announcing a fresh error on every keystroke. In this example, validate on submission first; consider additional feedback after a field is left when it resolves a real ambiguity. The tradeoff is earlier help versus interrupting an unfinished answer."
+        ]
+      },
+      {
+        "heading": "3. Work through one failed apparel quote",
+        "paragraphs": [
+          "Imagine a customer enters “24-ish” as the quantity, supplies a valid email and writes a detailed decoration request. The form requires a whole number for the estimate. This is a fictional example of the intended interaction, not a measured conversion result.",
+          "After submission, keep the email and project description. Show “Check the quantity” above the form with a link to Quantity, and place “Enter a whole number, such as 24” beside that field. Once corrected, remove the stale error. The customer should be able to continue from the correction rather than restart.",
+          "Now imagine the values are valid but the request times out. That is a different state. Do not mark Quantity invalid or display a receipt. Say that receipt could not be confirmed and keep the entered details available. The implementation should reconcile the request’s status, or use a stable request identifier to avoid duplicate processing, before treating a retry as a new request. This is an engineering recommendation for the receiving workflow.",
+          "After the server confirms acceptance, show a clear receipt and the next step the business can actually honor. A successful request is not a paid order, an agreed delivery date or proof that a staff member has read it. Keep those meanings separate."
+        ]
+      },
+      {
+        "heading": "4. Choose what the platform can support",
+        "paragraphs": [
+          "For a short form, native browser validation may be sufficient for common input errors and reduces the custom behavior to maintain. A longer form may benefit from a custom error summary, but that adds responsibility for focus, announcements and consistency between browser and server messages.",
+          "On a hosted storefront, first establish which layer owns the form. A custom landing-page embed may have no control over the platform’s checkout errors. Improve the fields and instructions you own, and document platform limitations for the provider. Avoid an overlay that only changes how a broken interaction looks.",
+          "Retaining ordinary quote details during a failed attempt does not require storing them indefinitely. Decide separately whether drafts should survive a reload, where they would be stored and how they expire. Do not quietly put private customer requests into shared-device storage."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Use a staging form and synthetic details to check the full journey before release. Record the device, browser, assistive technology where used, expected behavior and actual result. A checklist pass is scoped evidence; it does not establish complete accessibility conformance."
+        ],
+        "bullets": [
+          "Submit an empty required field: can the customer identify the missing answer?",
+          "Enter a malformed value: does the message explain an achievable correction?",
+          "Use only the keyboard: can the customer reach and correct the affected field?",
+          "Check with a screen reader: are the label, instructions and error understandable together?",
+          "Simulate a server rejection and an uncertain timeout: are values retained and receipt claims accurate?",
+          "Retry and double-activate submit in staging: does the receiving workflow avoid duplicate requests?",
+          "Check a narrow screen and enlarged text: can the customer read the error and reach the next action?"
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "For a storefront or website brief, treat error recovery as an acceptance requirement alongside the successful path. Ask for the failed-submit state, the corrected state and the receipt state in the design review. That makes the work reviewable before visual polish conceals missing behavior.",
+          "Start with the form closest to a valuable customer action. A focused review of that path can produce a small implementation brief: what the site controls, what the platform must change and what evidence will show the correction works."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Discuss your storefront’s customer path",
+      "href": "/#contact"
+    },
+    "ogImage": "/insights-og/accessible-quote-form-errors-recovery.svg"
   }
 ]

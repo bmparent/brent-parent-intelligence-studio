@@ -1,0 +1,418 @@
+{
+  "runTime": "2026-09-09T17:05:05.557Z",
+  "slot": "midday",
+  "date": "2026-09-09",
+  "week": "2026-09-07/2026-09-13",
+  "baseCommit": "1c86ed8",
+  "title": "Accessible Quote Forms: Help Customers Recover From Errors",
+  "slug": "accessible-quote-form-errors-recovery",
+  "thesis": "A useful quote form makes mistakes recoverable: keep the customer’s work, identify the field that needs attention, and make submission status unambiguous.",
+  "searchIntent": "How do I make a storefront quote form easier to correct and submit accessibly?",
+  "audience": "Storefront owners and teams commissioning quote forms",
+  "sources": [
+    {
+      "title": "Labeling Controls",
+      "url": "https://www.w3.org/WAI/tutorials/forms/labels/",
+      "publisher": "W3C Web Accessibility Initiative",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-09",
+      "type": "official-docs"
+    },
+    {
+      "title": "Validating Input",
+      "url": "https://www.w3.org/WAI/tutorials/forms/validation/",
+      "publisher": "W3C Web Accessibility Initiative",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-09",
+      "type": "official-docs"
+    },
+    {
+      "title": "User Notification",
+      "url": "https://www.w3.org/WAI/tutorials/forms/notifications/",
+      "publisher": "W3C Web Accessibility Initiative",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-09",
+      "type": "official-docs"
+    }
+  ],
+  "sourceEvidence": {
+    "labels": "Persistent explicit labels and associated controls",
+    "validation": "Native required/input types and server-side checks",
+    "notifications": "Error links, field associations, corrections and submission feedback"
+  },
+  "deduplication": {
+    "result": "Distinct error-recovery intent; one existing scheduled article this week, Monday Bing measurement. No pending Wednesday branch/PR or receipt found.",
+    "reviewed": [
+      {
+        "title": "What Agentic SEO Means for Small Business Websites",
+        "slug": "agentic-seo-small-business-websites",
+        "tags": [
+          "Agentic SEO",
+          "AI search",
+          "Small business",
+          "Website strategy"
+        ],
+        "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
+        "searchIntent": "A plain-language guide to making a small-business website easier for customers, search engines, and AI assistants to understand.",
+        "thesis": "Agentic SEO is not a shortcut or a promise of automatic recommendations. It is the work of making your business clear enough to be understood wherever customers search.",
+        "sources": [
+          {
+            "title": "Optimizing your website for generative AI features on Google Search",
+            "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "Build and submit a sitemap",
+            "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          }
+        ]
+      },
+      {
+        "title": "How to Structure a Website So People and AI Assistants Understand It",
+        "slug": "structure-website-people-ai-assistants-understand",
+        "tags": [
+          "Information architecture",
+          "Website strategy",
+          "AI search",
+          "Content design"
+        ],
+        "pillar": "Website strategy, information architecture, and content design",
+        "searchIntent": "A practical framework for turning a collection of pages into a clear path for visitors, search systems, and AI-assisted discovery.",
+        "thesis": "A website becomes easier to understand when every important page has one job, a useful place in the hierarchy, and a clear relationship to the next decision.",
+        "sources": [
+          {
+            "title": "Optimizing your website for generative AI features on Google Search",
+            "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "Intro to how structured data markup works",
+            "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "BlogPosting schema",
+            "url": "https://schema.org/BlogPosting",
+            "publisher": "Schema.org",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "reference"
+          }
+        ]
+      },
+      {
+        "title": "Storefront UX: Helping Customers Find the Right Product Faster",
+        "slug": "storefront-ux-find-right-product-faster",
+        "tags": [
+          "Storefront UX",
+          "Ecommerce",
+          "Merchandise portals",
+          "Mobile design"
+        ],
+        "pillar": "Storefront UX, mobile commerce, and product discovery",
+        "searchIntent": "How stronger categories, product context, ordering guidance, and mobile paths can make a hosted or custom storefront easier to shop.",
+        "thesis": "A storefront feels simple when customers can identify the right category, understand the product, and complete the order without stopping to decode the process.",
+        "sources": [
+          {
+            "title": "Web Content Accessibility Guidelines 2.2",
+            "url": "https://www.w3.org/TR/WCAG22/",
+            "publisher": "W3C",
+            "publishedDate": "2023-10-05",
+            "accessedDate": "2026-07-10",
+            "type": "standard"
+          }
+        ]
+      },
+      {
+        "title": "From Spreadsheet Chaos to Operational Dashboards",
+        "slug": "spreadsheet-chaos-operational-dashboards",
+        "tags": [
+          "Dashboards",
+          "Operations",
+          "Workflow clarity",
+          "Reporting"
+        ],
+        "pillar": "Dashboards, workflow automation, and operational clarity",
+        "searchIntent": "A grounded way to decide when a spreadsheet needs a clearer operational view—and what a useful dashboard should show first.",
+        "thesis": "The goal of an operational dashboard is not to display every available number. It is to make the next important decision easier to see.",
+        "sources": [
+          {
+            "title": "Best Practices for Effective Dashboards",
+            "url": "https://help.tableau.com/current/pro/desktop/en-us/dashboards_best_practices.htm",
+            "publisher": "Tableau Help",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          }
+        ]
+      },
+      {
+        "title": "What a Website Snapshot Can Tell You Before a Redesign",
+        "slug": "website-snapshot-before-redesign",
+        "tags": [
+          "Website redesign",
+          "AI prototyping",
+          "Planning",
+          "Eidos Snapshot"
+        ],
+        "pillar": "Website strategy, AI prototyping, and redesign planning",
+        "searchIntent": "What an early website concept and focused recommendation report can clarify—and what still requires a full audit, design process, and build.",
+        "thesis": "A good Snapshot does not pretend to be a finished redesign. It gives a business owner a concrete direction to react to before the larger decisions begin.",
+        "sources": [
+          {
+            "title": "Creating helpful, reliable, people-first content",
+            "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "Web Content Accessibility Guidelines 2.2",
+            "url": "https://www.w3.org/TR/WCAG22/",
+            "publisher": "W3C",
+            "publishedDate": "2023-10-05",
+            "accessedDate": "2026-07-10",
+            "type": "standard"
+          }
+        ]
+      },
+      {
+        "title": "Why Mobile Hierarchy Matters More Than Desktop Polish",
+        "slug": "mobile-hierarchy-over-desktop-polish",
+        "tags": [
+          "Mobile UX",
+          "Responsive design",
+          "Website strategy",
+          "Conversion paths"
+        ],
+        "pillar": "Mobile UX, accessibility, and responsive hierarchy",
+        "searchIntent": "Why the order, spacing, and priority of information on a small screen often matter more than the most polished desktop presentation.",
+        "thesis": "Responsive design is not the act of squeezing a desktop page into one column. It is deciding what deserves attention when space and patience are limited.",
+        "sources": [
+          {
+            "title": "Responsive web design basics",
+            "url": "https://web.dev/articles/responsive-web-design-basics",
+            "publisher": "web.dev",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "Web Content Accessibility Guidelines 2.2",
+            "url": "https://www.w3.org/TR/WCAG22/",
+            "publisher": "W3C",
+            "publishedDate": "2023-10-05",
+            "accessedDate": "2026-07-10",
+            "type": "standard"
+          }
+        ]
+      },
+      {
+        "title": "Eidos Brain and Sentinel: A Small-Business Intelligence Model",
+        "slug": "eidos-brain-sentinel-small-business-intelligence",
+        "tags": [
+          "Eidos Brain",
+          "Sentinel",
+          "Decision support",
+          "Human review"
+        ],
+        "pillar": "AI prototyping, operational intelligence, and human review",
+        "searchIntent": "A grounded case note on using signals, exceptions, readable briefs, and human review to make small-business intelligence useful.",
+        "thesis": "Small-business intelligence should not feel like science fiction. It should help a person notice what changed, understand why it matters, and decide what to do next.",
+        "sources": [
+          {
+            "title": "Eidos Brain and Sentinel case notes",
+            "url": "https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence",
+            "publisher": "Eidos Works",
+            "publishedDate": "2026-06-08",
+            "accessedDate": "2026-07-10",
+            "type": "internal-proof"
+          }
+        ]
+      },
+      {
+        "title": "Baseline 2026 Turns Browser Support Into a Design-System Decision",
+        "slug": "baseline-2026-browser-support-design-system-decision",
+        "tags": [
+          "Baseline",
+          "Web standards",
+          "Design systems",
+          "Progressive enhancement",
+          "UI engineering"
+        ],
+        "pillar": "UI/UX design, accessibility, responsive behavior, and design systems",
+        "searchIntent": "Understand how Baseline 2026 should influence web design and frontend implementation decisions.",
+        "thesis": "Baseline is useful because it turns browser support from a vague argument into a repeatable product decision: what can be default, what needs enhancement, and what should stay experimental.",
+        "sources": [
+          {
+            "title": "Baseline 2026",
+            "url": "https://web.dev/baseline/2026",
+            "publisher": "web.dev",
+            "publishedDate": "2026",
+            "accessedDate": "2026-07-10",
+            "type": "primary"
+          },
+          {
+            "title": "Baseline compatibility glossary",
+            "url": "https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility",
+            "publisher": "MDN Web Docs",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "Web Content Accessibility Guidelines 2.2",
+            "url": "https://www.w3.org/TR/WCAG22/",
+            "publisher": "W3C",
+            "publishedDate": "2023-10-05",
+            "accessedDate": "2026-07-10",
+            "type": "standard"
+          }
+        ]
+      },
+      {
+        "title": "A Practical Source Map for AI-Ready Service Pages",
+        "slug": "practical-source-map-ai-ready-service-pages",
+        "tags": [
+          "AI search",
+          "Structured data",
+          "Service pages",
+          "SEO",
+          "Content systems"
+        ],
+        "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
+        "searchIntent": "Learn how to structure service pages for human readers, search engines, and AI-assisted discovery.",
+        "thesis": "A service page becomes AI-ready when its claims, entities, proof, and next actions are explicit enough for both people and machines to verify.",
+        "sources": [
+          {
+            "title": "Optimizing your website for generative AI features on Google Search",
+            "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "Intro to how structured data markup works",
+            "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "BlogPosting schema",
+            "url": "https://schema.org/BlogPosting",
+            "publisher": "Schema.org",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "reference"
+          }
+        ]
+      },
+      {
+        "title": "The Storefront Proof Loop Connects UX, Assets, and Operations",
+        "slug": "storefront-proof-loop-ux-assets-operations",
+        "tags": [
+          "Storefront UX",
+          "Cloudinary",
+          "Operations",
+          "Content strategy",
+          "E-commerce"
+        ],
+        "pillar": "Premium e-commerce and custom storefront experiences",
+        "searchIntent": "Understand how storefront design, media assets, and production operations should work together.",
+        "thesis": "A storefront becomes more trustworthy when its UX, asset system, and operational rules all explain the same buying reality.",
+        "sources": [
+          {
+            "title": "Image optimization",
+            "url": "https://cloudinary.com/documentation/image_optimization",
+            "publisher": "Cloudinary",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "Responsive images",
+            "url": "https://cloudinary.com/documentation/responsive_images",
+            "publisher": "Cloudinary",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          },
+          {
+            "title": "Build and submit a sitemap",
+            "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-07-10",
+            "type": "official-docs"
+          }
+        ]
+      },
+      {
+        "title": "What Bing AI Citations Can Tell You About Business Value",
+        "slug": "bing-ai-citations-measure-business-value",
+        "tags": [
+          "Bing Webmaster Tools",
+          "AI measurement",
+          "Citation reporting",
+          "Marketing attribution"
+        ],
+        "pillar": "Agentic search, AI discovery, structured data, and modern SEO",
+        "searchIntent": "How should a small business use Bing AI citation reporting to decide which website improvements to fund?",
+        "thesis": "Use AI citation reports to select page improvements, and use separately verified customer outcomes to evaluate business value.",
+        "sources": [
+          {
+            "title": "Introducing AI Performance in Bing Webmaster Tools Public Preview",
+            "url": "https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview",
+            "publisher": "Bing Webmaster Blog",
+            "publishedDate": "2026-02-10",
+            "accessedDate": "2026-09-07",
+            "type": "primary"
+          },
+          {
+            "title": "AI features and your website",
+            "url": "https://developers.google.com/search/docs/appearance/ai-features",
+            "publisher": "Google Search Central",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-09-07",
+            "type": "official-docs"
+          },
+          {
+            "title": "Overview of OpenAI Crawlers",
+            "url": "https://developers.openai.com/api/docs/bots",
+            "publisher": "OpenAI",
+            "publishedDate": "unknown",
+            "accessedDate": "2026-09-07",
+            "type": "official-docs"
+          }
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "label": "Discuss your storefront’s customer path",
+    "href": "/#contact"
+  },
+  "limits": [
+    "Illustrative example, not client results",
+    "Analytics, indexing, citations, inquiries and conversions unknown",
+    "No form implementation or accessibility conformance claim"
+  ],
+  "status": "validated-awaiting-release"
+}

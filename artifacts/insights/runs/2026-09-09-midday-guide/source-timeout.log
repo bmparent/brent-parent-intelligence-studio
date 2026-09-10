@@ -1,0 +1,6 @@
+
+> brent-parent-intelligence-studio@1.1.0 validate:insights
+> node scripts/validate-insights.mjs
+
+Insights validation failed:
+- practical-source-map-ai-ready-service-pages: source fetch failed for https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data (The operation was aborted).

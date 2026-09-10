@@ -1,0 +1,27 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:playground
+> npm run playground:glass && node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts
+
+
+> brent-parent-intelligence-studio@1.1.0 playground:glass
+> node scripts/build-playground-glass.mjs
+
+(node:7512) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Cloud revisions preserve images, enforce ownership, and reject stale writes (707.8025ms)
+✔ Frozen checkout is idempotent and entitlement requires signed matching payment (232.3048ms)
+✔ Legacy projects stay legacy and component exports require explicit upgrade (68.4788ms)
+✔ all starter projects round trip and reject incompatible versions (18.6509ms)
+✔ untrusted copy and links never become executable markup (3.7194ms)
+✔ exports use identical markup and package uploaded image bytes (21.0297ms)
+✔ stored ZIP carries central directory and correct file count (36.7371ms)
+✔ contrast and visibility produce accessible baseline content (2.0621ms)
+✔ imports reject malformed base64 and mismatched image signatures (2.2447ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3491.1857

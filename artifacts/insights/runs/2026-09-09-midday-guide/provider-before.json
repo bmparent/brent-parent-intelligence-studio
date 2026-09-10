@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"success\": true,\n  \"configFingerprint\": \"e481fb4073ea6eb3e906011412a16199b12d24253715e99c953e9caefcc1592f\",\n  \"source\": null,\n  \"productionBranch\": \"main\",\n  \"domains\": [\n    \"eidosworks.pages.dev\",\n    \"eidos-works.com\"\n  ],\n  \"deployment\": {\n    \"id\": \"cbf8aaeb-3b6c-42f3-b48a-3a6069c05586\",\n    \"status\": {\n      \"name\": \"deploy\",\n      \"started_on\": null,\n      \"ended_on\": \"2026-09-09T00:04:11.902745Z\",\n      \"status\": \"success\"\n    },\n    \"trigger\": {\n      \"type\": \"ad_hoc\",\n      \"metadata\": {\n        \"branch\": \"main\",\n        \"commit_hash\": \"d2d1a64972a59c316715feb207078ec7ce0cec8b\",\n        \"commit_message\": \"Merge pull request #21 from bmparent/codex/members-publication-feed-20260908\\r\\n\\r\\nKeep scheduled article delivery working with bot protection\",\n        \"commit_dirty\": false\n      }\n    }\n  },\n  \"envNames\": [\n    \"EIDOS_PLATFORM_TOKEN\",\n    \"EIDOS_PLATFORM_URL\"\n  ]\n}"
+    }
+  ]
+}

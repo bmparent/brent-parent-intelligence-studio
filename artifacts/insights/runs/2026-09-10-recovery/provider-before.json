@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "configFingerprint": "2b8fc78f6e22f925c58e26705f3912c615e927046a5bb6259234ea8ac8933e27",
+  "productionBranch": "main",
+  "domains": [
+    "eidosworks.pages.dev",
+    "eidos-works.com"
+  ],
+  "deployment": {
+    "id": "5c362fa8-fab1-4419-b3fe-96efb03d614b",
+    "status": {
+      "name": "deploy",
+      "started_on": null,
+      "ended_on": "2026-09-09T19:57:34.990522Z",
+      "status": "success"
+    },
+    "trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "c5d2525feb006a07a7ac00e19d2d8c574e220b5c",
+        "commit_message": "Merge pull request #27 from bmparent/feat/playground-product-release\r\n\r\nRelease original Playground glass, account projects and header exports",
+        "commit_dirty": false
+      }
+    }
+  },
+  "envNames": [
+    "EIDOS_PLATFORM_TOKEN",
+    "EIDOS_PLATFORM_URL"
+  ]
+}

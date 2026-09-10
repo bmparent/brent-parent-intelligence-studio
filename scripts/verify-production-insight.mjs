@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { request as httpsRequest } from 'node:https';
 import { isIP } from 'node:net';
 import { resolve } from 'node:path';
+import { isExpectedArticleLocation } from './insight-url.mjs';
 
 const root = process.cwd();
 const configuredSiteUrl = process.env.VITE_SITE_URL || 'https://eidos-works.com';
@@ -335,7 +336,7 @@ const articleResponse = await fetchForVerification('Article', articleUrl);
 
 if (articleResponse) {
   if (!articleResponse.ok) errors.push(`Article URL returned ${articleResponse.status}: ${articleUrl}`);
-  if (articleResponse.url !== articleUrl) errors.push(`Article URL redirected to ${articleResponse.url}; expected ${articleUrl}.`);
+  if (!isExpectedArticleLocation(articleResponse.url, articleUrl)) errors.push(`Article URL redirected to ${articleResponse.url}; expected ${articleUrl}.`);
 
   const h1Values = [...articleResponse.text.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1\s*>/gi)].map((match) => textContent(match[1]));
   if (!h1Values.some((value) => value === normalizeText(article.title))) errors.push('Article page is missing an h1 with the article title.');

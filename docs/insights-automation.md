@@ -17,9 +17,9 @@ No paid CMS or new metered API is required by the repository workflow.
 
 Timezone: America/New_York.
 
-- 8:00 AM: current development, news, standards, or platform change.
-- 1:00 PM: practical guide, comparison, implementation lesson, or explainer.
-- 6:00 PM: strategic analysis, original framework, or case-study-style article.
+- Monday 8:00 AM: current development, news, standards, or platform change.
+- Wednesday 1:00 PM: practical guide, comparison, implementation lesson, or explainer.
+- Friday 6:00 PM: strategic analysis, original framework, or case-study-style article.
 
 Each scheduled run should publish one article. It should not batch three similar articles from the same prompt.
 
@@ -106,12 +106,14 @@ Blocking failures leave production unchanged.
 3. Run `npm run publish:insight-run -- --slot=<morning|midday|evening|manual>`.
 4. Review the generated diff.
 5. Commit with a message like `content(insights): publish storefront proof loop`.
-6. Push through the existing GitHub to Cloudflare Pages deployment path.
+6. Wait for the publishing PR's required CI checks and merge it when they pass. Continue in the same run; an open PR is not publication. Fetch merged `origin/main` into the isolated release checkout and rerun the release checks documented in `docs/site-gallery.md`. The existing `eidosworks` Cloudflare Pages project uses direct upload: merging does not trigger deployment. Deploy the complete built app and existing Functions with `node node_modules/wrangler/bin/wrangler.js pages deploy dist --project-name eidosworks --branch main --commit-hash <verified-main-commit> --commit-dirty=false`. Preserve configured bindings and runtime settings. Check current production and origin/main immediately before release to avoid replacing newer work.
 7. Verify production:
 
 ```bash
 npm run verify:production-insight -- --slug=<article-slug>
 ```
+
+The production verifier accepts Cloudflare Pages' same-article trailing-slash redirect while still requiring the expected canonical metadata. Redirects to another page, origin, scheme, or query remain failures. Runner and redirect regression checks run with `node --test scripts/test-insight-run.mjs`.
 
 ## Failure and Recovery
 
@@ -125,9 +127,9 @@ If validation fails:
 
 To pause automation, pause the three Codex cron automations named:
 
-- Eidos Works Insights - morning current analysis
-- Eidos Works Insights - midday practical guide
-- Eidos Works Insights - evening strategy
+- Eidos Works Insights - Monday analysis
+- Eidos Works Insights - Wednesday practical guide
+- Eidos Works Insights - Friday perspective
 
 To resume, reactivate those same automations after confirming the repo checkout, GitHub push access, and Cloudflare Pages deployment path are healthy.
 
@@ -167,7 +169,9 @@ The repo can validate and build content without new paid services. Unattended pu
 
 - a real Git checkout
 - GitHub push permission for the automation environment
-- the existing Cloudflare Pages GitHub deployment connection
+- existing Cloudflare authentication for direct upload to the `eidosworks` Pages project
 - production verification access to `https://eidos-works.com`
 
 If any of those are missing, the automation must stop after validated local artifacts and report the blocker.
+
+The schedules run locally and depend on the configured host being available. Each attempt must resume an existing slot PR or deployment before writing another article, and finish with a verified live URL or an exact actionable blocker. Do not stop merely because CI is still running. Record merge, upload, and production-verification states separately.
