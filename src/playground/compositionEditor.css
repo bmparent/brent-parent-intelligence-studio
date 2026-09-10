@@ -1,0 +1,15 @@
+.pg-composition-controls{padding:18px 0 22px;margin-bottom:22px;border-bottom:1px solid #ffffff26;min-width:0}
+.pg-composition-controls h3{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px;font-size:15px}
+.pg-composition-controls h3 span{font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:3px 7px;border:1px solid currentColor;border-radius:99px}
+.pg-composition-controls p,.pg-composition-controls small{font-size:12px;line-height:1.6;display:block;margin:10px 0;opacity:.85}
+.pg-composition-controls label{display:block;font-size:12px;margin:14px 0 7px}
+.pg-composition-controls select{max-width:100%;width:100%;min-height:38px}
+.pg-composition-controls button{min-height:34px}
+.pg-composition-shortcuts{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.pg-composition-order{list-style:none;padding:0;margin:12px 0;display:grid;gap:7px}
+.pg-composition-order li{display:grid;grid-template-columns:minmax(0,1fr) 36px 36px;align-items:center;gap:6px;font-size:13px}
+.pg-composition-order button{min-width:34px;min-height:34px}
+.pg-composition-controls details{margin-top:18px}
+.pg-composition-controls summary{cursor:pointer;padding-block:8px;font-size:13px}
+.pg-section-row[draggable=true]{cursor:grab}.pg-section-row.pg-section-drop{outline:2px solid currentColor;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.pg-composition-controls *{transition:none!important}}
