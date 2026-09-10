@@ -1,0 +1,5 @@
+
+> brent-parent-intelligence-studio@1.1.0 content:generate
+> node scripts/generate-insights-assets.mjs
+
+Generated sitemap, feed, llms.txt, and 12 article OG images for https://eidos-works.com.

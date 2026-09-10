@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-09-08T21:05:16.784Z",
+  "generated_at_utc": "2026-09-09T17:08:53.693Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "accessible-quote-form-errors-recovery",
+      "canonical_url": "https://eidos-works.com/insights/accessible-quote-form-errors-recovery",
+      "og_image": "/insights-og/accessible-quote-form-errors-recovery.svg"
+    },
     {
       "slug": "bing-ai-citations-measure-business-value",
       "canonical_url": "https://eidos-works.com/insights/bing-ai-citations-measure-business-value",
@@ -63,6 +68,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/accessible-quote-form-errors-recovery.svg",
     "public/insights-og/bing-ai-citations-measure-business-value.svg",
     "public/insights-og/storefront-proof-loop-ux-assets-operations.svg",
     "public/insights-og/practical-source-map-ai-ready-service-pages.svg",

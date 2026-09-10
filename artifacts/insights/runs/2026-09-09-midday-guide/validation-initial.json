@@ -1,0 +1,16 @@
+[
+  {
+    "finishedAt": "2026-09-09T17:05:25.5799968Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/content-generate.log",
+    "startedAt": "2026-09-09T17:05:24.4938521Z",
+    "exitCode": 0,
+    "command": "npm run content:generate"
+  },
+  {
+    "finishedAt": "2026-09-09T17:05:39.9204724Z",
+    "log": "artifacts/insights/runs/2026-09-09-midday-guide/validate-insights.log",
+    "startedAt": "2026-09-09T17:05:25.6557472Z",
+    "exitCode": 1,
+    "command": "npm run validate:insights"
+  }
+]
