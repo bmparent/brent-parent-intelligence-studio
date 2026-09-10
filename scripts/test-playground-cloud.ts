@@ -8,7 +8,7 @@ import { onRequestGet as get, onRequestPost as save } from '../functions/api/pla
 import { onRequestPost as checkout } from '../functions/api/playground/checkout';
 import { onRequestPost as download } from '../functions/api/playground/purchases';
 import { onRequestPost as webhook } from '../functions/api/playground/webhook';
-import { createProject } from '../src/playground/model';
+import { createProject, upgradeProject, newBlock } from '../src/playground/model';
 import { createHmac } from 'node:crypto';
 
 test('Cloud revisions preserve images, enforce ownership, and reject stale writes', async () => {
@@ -202,4 +202,12 @@ test('image decoder availability and atomic owner storage quota preserve saved s
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_pg_revisions').get()!.n,1);
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_pg_assets').get()!.n,1);
  sql.close();
+});
+
+test('v2 card assets hydrate only for their owner and preserve earlier document versions',async()=>{
+ const {env,sql}=fixture(),alice=await signup(env,'alice'),bob=await signup(env,'bobby');
+ const document=upgradeProject(createProject()),gallery=newBlock('gallery');gallery.cards=[{id:'card-cloud',title:'Own',description:'',alt:'Image',image:'data:image/png;base64,iVBORw0KGgo='}];document.sections.splice(3,0,gallery);
+ const response=await save(ctx(env,'/api/playground/projects',{document},alice.headers));assert.equal(response.status,200,await response.clone().text());const saved=await response.json();
+ assert.deepEqual((await (await get(ctx(env,'/api/playground/projects?id='+saved.id,undefined,alice.headers))).json()).document,document);
+ assert.equal((await get(ctx(env,'/api/playground/projects?id='+saved.id,undefined,bob.headers))).status,404);sql.close();
 });

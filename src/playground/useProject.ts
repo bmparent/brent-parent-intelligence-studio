@@ -12,6 +12,7 @@ export function useProject() {
     [savedState, setSavedState] = useState<{
       project: Project;
       snapshots: Snapshot[];
+      generation: number;
     } | null>(null);
   const [storageError, setStorageError] = useState("");
   useEffect(() => {
@@ -41,10 +42,11 @@ export function useProject() {
   useEffect(() => {
     if (!ready || storageError) return;
     let cancelled = false;
+    const writeGeneration=generation.current;
     const timer = setTimeout(() => {
       saveWorkspace({ project, snapshots })
         .then(() => {
-          if (!cancelled) setSavedState({ project, snapshots });
+          if (!cancelled) setSavedState({ project, snapshots, generation:writeGeneration });
         })
         .catch(() => {
           if (!cancelled)
@@ -60,7 +62,7 @@ export function useProject() {
   }, [project, snapshots, ready, storageError]);
   const dirty =
     ready &&
-    (savedState?.project !== project || savedState?.snapshots !== snapshots);
+    (savedState?.project !== project || savedState?.snapshots !== snapshots || savedState?.generation !== generation.current);
   useEffect(() => {
     if (!dirty) return;
     const beforeUnload = (event: BeforeUnloadEvent) => {

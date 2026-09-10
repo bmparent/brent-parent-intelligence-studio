@@ -1,5 +1,6 @@
+import { sectionKind } from "./model";
 import { useState } from "react";
-import { labels, createProject, RENDERER, type Project, type SectionType } from "./model";
+import { labels, createProject, RENDERER, type Project } from "./model";
 import { Color, Destination, Field, Range, Toggle } from "./Controls";
 import { defaultMedia } from "./media";
 import { imageData } from "./storage";
@@ -11,13 +12,14 @@ export function Inspector({
   guard,
 }: {
   project: Project;
-  selected: SectionType;
+  selected: string;
   edit: (p: Project | ((current: Project) => Project), group?: string) => void;
   notify: (message: string) => void;
   guard: () => () => boolean;
 }) {
   const [tab, setTab] = useState<"content" | "appearance">("appearance");
-  const s = p.sections.find((s) => s.id === selected)!;
+  const s = p.sections.find((s) => s.id === selected) || p.sections[0];
+  const kind=sectionKind(s);
   const section = (key: string, value: string) =>
     edit(
       {
@@ -35,10 +37,10 @@ export function Inspector({
   return (
     <aside className="pg-inspector" aria-label="Design controls">
       <div className="pg-panel-heading">
-        <h2>{labels[selected]}</h2>
+        <h2>{labels[kind]}</h2>
         <span className="pg-subtle">↗</span>
       </div>
-      {["hero","work"].includes(selected) && <button className="pg-text-button" onClick={()=>setTab("content")}>{s.image ? "Replace image" : "Add an image"}</button>}
+      {["hero","work"].includes(kind) && <button className="pg-text-button" onClick={()=>setTab("content")}>{s.image ? "Replace image" : "Add an image"}</button>}
       <div
         className="pg-tabs"
         role="tablist"
@@ -85,20 +87,20 @@ export function Inspector({
           <>
             <Field
               label={
-                selected === "header" || selected === "footer"
+                kind === "header" || kind === "footer"
                   ? "Brand name"
                   : "Heading"
               }
               value={s.title}
               onChange={(v) => section("title", v)}
-              multiline={selected !== "header" && selected !== "footer"}
+              multiline={kind !== "header" && kind !== "footer"}
               maxLength={240}
             />
             <Field
               label={
-                selected === "header"
+                kind === "header"
                   ? "Navigation labels"
-                  : selected === "services"
+                  : kind === "services"
                     ? "Services"
                     : "Description"
               }
@@ -106,14 +108,14 @@ export function Inspector({
               onChange={(v) => section("description", v)}
               multiline
               hint={
-                selected === "services"
+                kind === "services"
                   ? "One service per line, up to six."
-                  : selected === "header"
+                  : kind === "header"
                     ? "Two labels separated by |, linking to Work and Services."
                     : undefined
               }
             />
-            {["header", "hero", "contact"].includes(selected) && (
+            {["header", "hero", "contact"].includes(kind) && (
               <>
                 <Field
                   label="Button text"
@@ -128,7 +130,7 @@ export function Inspector({
                 />
               </>
             )}
-            {["hero", "work"].includes(selected) && (
+            {["hero", "work"].includes(kind) && (
               <>
                 <label className="pg-upload">
                   {s.image ? "Replace image" : "Upload an image"}
@@ -181,7 +183,7 @@ export function Inspector({
           </>
         ) : (
           <>
-            {selected === "header" ? (
+            {kind === "header" ? (
               <>
                 {p.rendererVersion !== RENDERER && <div><p>This project uses the earlier glass renderer.</p><button onClick={() => edit({ ...p, rendererVersion: RENDERER })}>Upgrade to original glass</button><small>Undo restores the previous renderer.</small></div>}
                 <Toggle
@@ -274,7 +276,7 @@ export function Inspector({
               </>
             ) : (
               <>
-                {selected === "hero" && (
+                {kind === "hero" && (
                   <div className="pg-field">
                     <label htmlFor="hero-layout">Layout</label>
                     <select
