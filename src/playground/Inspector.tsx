@@ -7,11 +7,13 @@ export function Inspector({
   selected,
   edit,
   notify,
+  guard,
 }: {
   project: Project;
   selected: SectionType;
   edit: (p: Project | ((current: Project) => Project), group?: string) => void;
   notify: (message: string) => void;
+  guard: () => () => boolean;
 }) {
   const [tab, setTab] = useState<"content" | "appearance">("appearance");
   const s = p.sections.find((s) => s.id === selected)!;
@@ -135,9 +137,11 @@ export function Inspector({
                       const file = e.target.files?.[0];
                       e.target.value = "";
                       if (!file) return;
+                      const stillCurrent = guard();
                       try {
                         const data = await imageData(file);
-                        edit(current => current.template !== p.template ? current : ({
+                        if (!stillCurrent()) { notify("Image ignored because the workspace changed. Choose the image again to add it here."); return; }
+                        edit(current => ({
                           ...current,
                           sections: current.sections.map(v => v.id === selected ? { ...v, image: data } : v),
                         }));

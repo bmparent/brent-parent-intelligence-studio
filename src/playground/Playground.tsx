@@ -18,6 +18,7 @@ import "./editor.css";
 export default function Playground() {
   const {
     project,
+    target, documentId, guard, replace, acknowledge,
     ready,
     edit,
     undo,
@@ -62,11 +63,13 @@ export default function Playground() {
   }
   async function importProject(file?: File) {
     if (!file) return;
+    const stillCurrent = guard();
     try {
       if (file.size > 30_000_000)
         throw new Error("Project is too large. Maximum import size is 30 MB.");
       const p = validateProject(JSON.parse(await file.text()));
-      change(p);
+      if (!stillCurrent()) { setNotice("Import ignored because the workspace changed. Choose the file again to import here."); return; }
+      replace(p);
       setNotice("Project imported. Undo restores your previous design.");
     } catch (e) {
       setNotice((e as Error).message);
@@ -180,7 +183,7 @@ export default function Playground() {
             value={project.template}
             disabled={!ready}
             onChange={(e) => {
-              change(createProject(e.target.value as Project["template"]));
+              replace(createProject(e.target.value as Project["template"]));
               setNotice(
                 "Template changed. Undo brings your previous design back.",
               );
@@ -317,7 +320,7 @@ export default function Playground() {
             {snapshots.map((s) => (
               <div className="pg-snapshot" key={s.id}>
                 <span>{s.name}</span>
-                <button onClick={() => change(s.project)}>Restore</button>
+                <button onClick={() => replace(s.project)}>Restore</button>
                 <button
                   aria-pressed={comparison === s.project}
                   onClick={() =>
@@ -329,7 +332,7 @@ export default function Playground() {
               </div>
             ))}
           </details>
-          <CloudProjects project={project} load={change} disabled={!ready || !!comparison} />
+          <CloudProjects project={project} target={target} documentId={documentId} guard={guard} load={replace} acknowledge={acknowledge} disabled={!ready || !!comparison} />
           <div
             className={`pg-save-status ${storageError ? "error" : ""}`}
             role="status"
@@ -384,6 +387,7 @@ export default function Playground() {
           selected={selected}
           edit={change}
           notify={setNotice}
+          guard={guard}
         />
       </div>
       <footer className="pg-statusbar">

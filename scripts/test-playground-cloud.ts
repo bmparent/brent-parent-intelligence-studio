@@ -14,6 +14,7 @@ import { createHmac } from 'node:crypto';
 test('Cloud revisions preserve images, enforce ownership, and reject stale writes', async () => {
   const {env,sql}=fixture(), alice=await signup(env,'alice'), bob=await signup(env,'bobby');
   const document=createProject(); document.sections[1].image='data:image/png;base64,iVBORw0KGgo=';
+  assert.equal((await save(ctx(env,'/api/playground/projects',{document,expectedOwner:'another-account'},alice.headers))).status,409);
   const first=await save(ctx(env,'/api/playground/projects',{document},alice.headers));
   assert.equal(first.status,200,await first.clone().text());
   const saved=await first.json();
