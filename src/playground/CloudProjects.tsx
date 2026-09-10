@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { validateProject, type Project } from './model';
 import { cloudPreflight } from './limits';
 import type { SaveTarget } from './workspace';
@@ -6,6 +6,7 @@ import { Purchases } from './Purchases';
 
 type Saved = { id: string; name: string; head: string; updated_at: string };
 type Revision = { id: string; created_at: string };
+function historyReplace() { const url = new URL(location.href); url.searchParams.delete('open'); window.history.replaceState(null, '', url.pathname + url.search + url.hash); }
 async function api(query = '', input?: unknown) {
   const response = await fetch('/api/playground/projects' + query, {
     credentials: 'same-origin',
@@ -25,6 +26,8 @@ export function CloudProjects({ project, target: active, documentId, guard, load
   const [preview, setPreview] = useState<{project:Project; target:SaveTarget; valid:() => boolean} | null>(null);
   const [message, setMessage] = useState('Cloud saves are manual. Local autosave stays on.');
   const [busy, setBusy] = useState(false);
+  const [requestedProject, setRequestedProject] = useState('');
+  useEffect(() => { let mounted = true; queueMicrotask(() => { if (mounted) { const id = new URLSearchParams(location.search).get('open') || ''; if (/^[a-f0-9-]{36}$/.test(id)) setRequestedProject(id); } }); return () => { mounted = false; }; }, []);
   const lock = useRef(false);
   const preflight = cloudPreflight(project);
   async function run(action: (valid: () => boolean) => Promise<void>) {
@@ -57,9 +60,10 @@ export function CloudProjects({ project, target: active, documentId, guard, load
     if (revision) {setPreview({project:document,target,valid});setMessage('Revision preview only. Restore explicitly to edit it; Save then creates a new head.');}
     else {load(document,target);setPreview(null);setHistory(null);setMessage('Project opened. Undo restores both the previous design and its save target.');}
   }
-  return <details className="pg-project-tools">
+  return <details className="pg-project-tools" open={requestedProject ? true : undefined}>
     <summary>Account projects</summary>
     <p><a href="/account" target="_blank" rel="noreferrer">Sign in with your Eidos account</a>, then refresh this list.</p>
+    {requestedProject && <p><button disabled={busy || disabled} onClick={() => void run(async valid => { await open(requestedProject, valid); setRequestedProject(''); historyReplace(); })}>Open project selected from your account</button> Your current local design can be restored with Undo.</p>}
     <p>Save target: {active ? `${active.name} · ${active.id}` : 'New account project (detached design)'}</p>
     <button disabled={busy} onClick={() => void run(async () => {await refresh(); setMessage('Project list refreshed.');})}>Refresh account projects</button>
     <button disabled={busy || disabled || !preflight.allowed} onClick={() => void run(valid => save(false,valid))}>{active ? 'Save account revision' : 'Import into my account'}</button>

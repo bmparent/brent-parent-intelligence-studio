@@ -8,7 +8,7 @@ interface RelayContext {
 const routes = new Set([
   '/api/assistant', '/api/public-config',
   '/api/playground/ai', '/api/playground/projects', '/api/playground/checkout', '/api/playground/purchases', '/api/playground/webhook',
-  '/api/members/auth', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
+  '/api/members/auth', '/api/members/credentials', '/api/members/google', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
   '/api/community/moderate', '/api/community/maintenance',
   '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook',
@@ -37,8 +37,8 @@ export async function onRequest({ request, env, next }: RelayContext) {
       const value = request.headers.get(name);
       if (value) headers.set(name, value);
     }
-    const session = (request.headers.get('cookie') || '').split(';').map(s=>s.trim()).find(s=>/^__Host-eidos_session=[a-f0-9]{64}$/.test(s));
-    if (session) headers.set('cookie',session);
+    const cookies = (request.headers.get('cookie') || '').split(';').map(s=>s.trim()).filter(s=>/^__Host-eidos_(session|oauth|onboard)=[a-f0-9]{64}$/.test(s));
+    if (cookies.length) headers.set('cookie', cookies.join('; '));
     headers.set('x-eidos-platform-token', env.EIDOS_PLATFORM_TOKEN);
     // Optional project-scoped Vercel automation credential, configured only on Pages previews.
     if (env.EIDOS_PLATFORM_PREVIEW_BYPASS) headers.set('x-vercel-protection-bypass', env.EIDOS_PLATFORM_PREVIEW_BYPASS);
@@ -52,14 +52,23 @@ export async function onRequest({ request, env, next }: RelayContext) {
     });
     // Workers supports manual/follow only. Reject redirects before returning any
     // Location header or forwarding credentials to a second host.
-    if (response.status >= 300 && response.status < 400) {
+    const oauthRedirect = path === '/api/members/google' && request.method === 'GET' && response.status === 303 &&
+      /^\/account\?oauth=(success|choose-username|link-required|collision|error)$/.test((response.headers.get('location') || '').replace(url.origin, '')) &&
+      (response.headers.get('location') || '').startsWith(url.origin + '/account?');
+    if (response.status >= 300 && response.status < 400 && !oauthRedirect) {
       await response.body?.cancel();
       throw new HttpError(503, 'The studio connection is temporarily unavailable.');
     }
     const output = new Headers(response.headers);
-    const setCookie = output.get('set-cookie');
+    const setCookies = output.getSetCookie();
     output.delete('set-cookie');
-    if (['/api/members/auth','/api/members/account'].includes(path) && setCookie && /^__Host-eidos_session=(?:[a-f0-9]{64})?; Path=\/; HttpOnly; SameSite=Lax; Max-Age=(?:0|2592000); Secure$/.test(setCookie)) output.set('set-cookie',setCookie);
+    if (['/api/members/auth','/api/members/credentials','/api/members/google','/api/members/account'].includes(path)) {
+      for (const cookie of setCookies) {
+        const session = /^__Host-eidos_session=(?:[a-f0-9]{64})?; Path=\/; HttpOnly; SameSite=Lax; Max-Age=(?:0|2592000); Secure$/.test(cookie);
+        const flow = path === '/api/members/google' && /^__Host-eidos_(?:oauth|onboard)=(?:[a-f0-9]{64})?; Path=\/; HttpOnly; SameSite=Lax; Max-Age=(?:0|600); Secure$/.test(cookie);
+        if (session || flow) output.append('set-cookie', cookie);
+      }
+    }
     output.set('cache-control', 'no-store');
     output.set('x-content-type-options', 'nosniff');
     return new Response(response.body, { status: response.status, headers: output });
