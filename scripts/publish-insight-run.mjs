@@ -21,13 +21,18 @@ const commands = [
 function runCommand(command, commandArgs) {
   const startedAt = new Date().toISOString();
   return new Promise((resolveCommand) => {
-    const commandForPlatform = process.platform === 'win32' && command === 'npm' ? 'npm.cmd' : command;
-    const child = spawn(commandForPlatform, commandArgs, {
+    // npm supplies its CLI path when this script runs via npm run. Invoke it
+    // through Node so Windows never needs to execute a .cmd file or a shell.
+    const npmCli = command === 'npm' ? process.env.npm_execpath : null;
+    const child = spawn(npmCli ? process.execPath : command, npmCli ? [npmCli, ...commandArgs] : commandArgs, {
       cwd: root,
       stdio: ['ignore', 'pipe', 'pipe']
     });
     let stdout = '';
     let stderr = '';
+    child.on('error', (error) => {
+      stderr += `Failed to start ${command}: ${error.message}\n`;
+    });
     child.stdout.on('data', (chunk) => {
       const value = chunk.toString();
       stdout += value;

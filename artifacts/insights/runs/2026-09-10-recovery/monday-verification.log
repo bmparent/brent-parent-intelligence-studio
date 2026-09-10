@@ -1,0 +1,5 @@
+
+> brent-parent-intelligence-studio@1.1.0 verify:production-insight
+> node scripts/verify-production-insight.mjs --slug=bing-ai-citations-measure-business-value
+
+Production verification passed for https://eidos-works.com/insights/bing-ai-citations-measure-business-value
