@@ -1,0 +1,23 @@
+{
+  "time": "2026-09-10T22:39:05.860Z",
+  "frontend": {
+    "id": "67dd14cc-5fa5-4890-a931-87777c85e853",
+    "url": "https://67dd14cc.eidosworks.pages.dev",
+    "created": "2026-09-10T22:30:51.642765Z",
+    "trigger": {
+      "type": "ad_hoc",
+      "metadata": {
+        "branch": "main",
+        "commit_hash": "1c878b6d5b86cbf3b300406561dfaf95ff57d14f",
+        "commit_message": "Merge pull request #36 from bmparent/codex/insights-contact-link-20260910\r\n\r\nFix quote-form Insights contact link",
+        "commit_dirty": false
+      }
+    },
+    "environment": "production"
+  },
+  "backend": {
+    "id": "dpl_8ztuTFv3h34YFuBSjHS31F8Q13aV",
+    "sha": "a2da5fd9af21c02573e538fd30aaf7d5c690e457"
+  },
+  "taskProductionDeployment": false
+}

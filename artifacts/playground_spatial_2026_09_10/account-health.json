@@ -1,0 +1,32 @@
+[
+  {
+    "engine": "webkit",
+    "width": 1440,
+    "status": 200,
+    "errors": [
+      "/challenges.cloudflare.com\" from accessing a frame with origin \"https://eidos-pg-preview-20260910.pages.dev\". Protocols, domains, and ports must match."
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "%c%d font-size:0;color:transparent PhWMD5: AecW7",
+      "%c%d font-size:0;color:transparent PhWMD5: AecW7"
+    ],
+    "scope": "anonymous account page only; no CAPTCHA interaction, no account creation",
+    "body": "Skip to content\ne\neidos\nWORKS\nWork\nPlayground\nLab\nCommunity\nInsights\nStudio\nAccount\nLet’s build\n↗\n\nEIDOS WORKS / YOUR CORNER OF THE STUDIO\n\nGood ideas.\nKeep them close.\n\nSave your Playground projects and pick up from any device.\n\nYOUR EIDOS WORKS ACCOUNT\n\nCreate account\nEmail\nUsername\n3–24 letters, numbers or underscores; start with a letter.\nNewsletter and account options\nWebsite\nEmail me a confirmation link\nOR\nContinue with Google\nGoogle sign-in is being connected.\n\nAlready have an account? Sign in\n\nUse an email sign-in link\nBy continuing, you agree to the terms and privacy policy. Your email stays private.\n\nAccount sign-in is being connected. The free Playground and Insights archive remain available.\n\ne\neidos\nWORKS\n\nThoughtful design.\nRemarkable possibilities.\n\nSay hello ↗\nWork\nServices\nAbout\nContact\nPlayground\nLab\nCommunity\nAgent Exchange\nInsights\nShop\n© 2026 Eidos Works · Brent Parent\nPrivacy\nTerms\nEditorial policy\nCookie choices\nBuilt with intention.\n✳\nAsk Eidos"
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "status": 200,
+    "errors": [
+      "/challenges.cloudflare.com\" from accessing a frame with origin \"https://eidos-pg-preview-20260910.pages.dev\". Protocols, domains, and ports must match."
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "%c%d font-size:0;color:transparent PhWMD5: AecW7",
+      "%c%d font-size:0;color:transparent PhWMD5: AecW7"
+    ],
+    "scope": "anonymous account page only; no CAPTCHA interaction, no account creation",
+    "body": "Skip to content\ne\neidos\nWORKS\nMenu\n+\n\nEIDOS WORKS / YOUR CORNER OF THE STUDIO\n\nGood ideas.\nKeep them close.\n\nSave your Playground projects and pick up from any device.\n\nYOUR EIDOS WORKS ACCOUNT\n\nCreate account\nEmail\nUsername\n3–24 letters, numbers or underscores; start with a letter.\nNewsletter and account options\nWebsite\nEmail me a confirmation link\nOR\nContinue with Google\nGoogle sign-in is being connected.\n\nAlready have an account? Sign in\n\nUse an email sign-in link\nBy continuing, you agree to the terms and privacy policy. Your email stays private.\n\nAccount sign-in is being connected. The free Playground and Insights archive remain available.\n\ne\neidos\nWORKS\n\nThoughtful design.\nRemarkable possibilities.\n\nSay hello ↗\nWork\nServices\nAbout\nContact\nPlayground\nLab\nCommunity\nAgent Exchange\nInsights\nShop\n© 2026 Eidos Works · Brent Parent\nPrivacy\nTerms\nEditorial policy\nCookie choices\nBuilt with intention.\n✳\nAsk Eidos"
+  }
+]

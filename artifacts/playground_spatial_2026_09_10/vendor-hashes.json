@@ -1,0 +1,37 @@
+[
+  {
+    "file": "compositionSchema.ts",
+    "equal": true,
+    "sha256": "7e4daf5880dfb2328065720af9c9d645acdef2e16dc300b3186f21b37107dbde"
+  },
+  {
+    "file": "composition.ts",
+    "equal": true,
+    "sha256": "4895dbf69032705734681f79b2a3f3ab9b6b5665e6dc6c7c47456aa03c208639"
+  },
+  {
+    "file": "compositionRenderer.ts",
+    "equal": true,
+    "sha256": "1795d5b167c13702f28a458f958cc2d7507c53e45aebb38a1bc375dbf8fe13c6"
+  },
+  {
+    "file": "compositionRuntime.ts",
+    "equal": true,
+    "sha256": "10f628b912dcba93a3d5e5305830cebd6fc7b6bf087e50f10054f83b4430b4b8"
+  },
+  {
+    "file": "model.ts",
+    "equal": true,
+    "sha256": "cf2f7ad9b429ea7f38af5018249e8ce5a635d1fe0a844d23e38e8bdbad52dc15"
+  },
+  {
+    "file": "renderer.ts",
+    "equal": true,
+    "sha256": "5c0beca7e10501b4ac0f1438bdd31c0ffebc071a5960344cd8b8ed9f43f70b41"
+  },
+  {
+    "file": "aiOperations.ts",
+    "equal": true,
+    "sha256": "f3e0dba4707bc9dd493e2ca1042ed7a768d6b34aebbc4b281d766743dd649599"
+  }
+]
