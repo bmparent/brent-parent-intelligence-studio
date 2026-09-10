@@ -18,3 +18,8 @@ Additional verifier repair: Monday's original verifier log failed solely on Clou
 
 All eight release command groups passed, including the seven-command publishing wrapper, platform, Playground, analytics, glass, Snapshot, editorial and Functions checks. Three runner/redirect regression tests also passed. The corrected production verifier passed on Monday's existing article. Exact exits and logs are retained. All eleven existing article records match origin/main; exactly one article is added.
 
+
+First production release: PR #23 merged to 9f02030d1f2cf03a4bdd98f4c6d312b37583565a. Initial upload failed at the final network request; provider checks confirmed no deployment was created. Retrying the same artifact succeeded as c01a8a64-7ce0-41fe-8f93-5a7be7e7763b. The standard production verifier passed and configuration fingerprint stayed identical.
+
+The additional full-body checker received HTTP 403 with Python's default user agent; the same declared EidosWorksProductionVerifier user agent as the repository verifier resolved it. All article body paragraphs were present. The CTA check exposed an obsolete /#contact target: the live homepage has no contact anchor, while /contact/ returns HTTP 200 with the expected contact heading. A narrow follow-up changes only this new article's CTA to /contact and updates the public verification receipt script. The publishing gate is rerun for that correction.
+

@@ -11,8 +11,9 @@ article = next(a for a in json.loads(pathlib.Path('src/data/articles.json').read
 base = 'https://eidos-works.com'
 results = []
 pages = {}
-for path in [article['canonicalPath'], '/insights/', '/feed.xml', '/sitemap.xml', article['ogImage'], '/', '/playground/', '/work/nighttime-spectaculars/', '/work/holidays-in-hollywood/']:
-    with urllib.request.urlopen(base + path, timeout=45) as response:
+for path in [article['canonicalPath'], '/insights/', '/feed.xml', '/sitemap.xml', article['ogImage'], article['cta']['href'], '/', '/playground/', '/work/nighttime-spectaculars/', '/work/holidays-in-hollywood/']:
+    request = urllib.request.Request(base + path, headers={'User-Agent': 'EidosWorksProductionVerifier/1.0'})
+    with urllib.request.urlopen(request, timeout=45) as response:
         text = response.read().decode('utf-8')
         pages[path] = text
         results.append({'path': path, 'status': response.status, 'finalUrl': response.url})
@@ -25,9 +26,10 @@ assert article['byline'] in visible
 assert article['slug'] in pages['/insights/']
 assert article['slug'] in pages['/feed.xml']
 assert article['slug'] in pages['/sitemap.xml']
-assert 'id="contact"' in pages['/']
+assert f'href="{article["cta"]["href"]}"' in page
+assert '<h1' in pages[article['cta']['href']]
 for source in article['sources']:
     assert html.escape(source['url'], quote=True) in page or source['url'] in page
-receipt = {'time': datetime.now(timezone.utc).isoformat(), 'passed': True, 'article': article['title'], 'url': base + article['canonicalPath'], 'bodyParagraphsChecked': len(paragraphs), 'byline': article['byline'], 'sourceLinksChecked': len(article['sources']), 'ctaContactAnchor': True, 'pages': results}
+receipt = {'time': datetime.now(timezone.utc).isoformat(), 'passed': True, 'article': article['title'], 'url': base + article['canonicalPath'], 'bodyParagraphsChecked': len(paragraphs), 'byline': article['byline'], 'sourceLinksChecked': len(article['sources']), 'ctaDestination': article['cta']['href'], 'pages': results}
 (out / 'production-evidence.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')
 print(json.dumps(receipt, indent=2))
