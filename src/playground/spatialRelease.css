@@ -1,0 +1,8 @@
+.pg-spatial-shell{height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;background:#f6f5f2;color:#252622}
+.pg-spatial-shell>.pg-app{height:100%;min-height:0}
+.pg-spatial-release{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:9px 18px;border-bottom:1px solid #d9ddd5;font:12px/1.5 system-ui,sans-serif;background:#f3f5f0}
+.pg-spatial-release strong{font-size:12px;white-space:nowrap}
+.pg-spatial-release span{flex:1;min-width:220px}
+.pg-spatial-release a{color:#314f42;text-underline-offset:3px;min-height:28px;display:inline-flex;align-items:center}
+.pg-spatial-release a:focus-visible{outline:2px solid currentColor;outline-offset:4px;border-radius:2px}
+@media(max-width:640px){.pg-spatial-release{padding:7px 12px;gap:3px 10px}.pg-spatial-release span{flex-basis:100%;order:3;font-size:11px}.pg-spatial-release a{margin-left:auto;font-size:11px;min-height:32px}.pg-spatial-release strong{font-size:11px}}

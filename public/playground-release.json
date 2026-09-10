@@ -1,0 +1,10 @@
+{
+  "release": "spatial-local-20260910",
+  "mode": "browser-only",
+  "sourceCompositionCommit": "1b2c4cc3ef745505188c7670e91fba0692b7b3e4",
+  "productionBaseline": "1c878b6d5b86cbf3b300406561dfaf95ff57d14f",
+  "classicEditor": "/playground/?classic=1",
+  "cloudSchema3": false,
+  "paidExports": false,
+  "aiGeneration": false
+}
