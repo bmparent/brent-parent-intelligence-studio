@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import { createProject, type Project } from "./model";
 import { loadWorkspace, saveWorkspace, type Snapshot } from "./storage";
 import { useRef } from "react";
@@ -7,7 +7,10 @@ export function useProject() {
   const [state, dispatch] = useReducer(workspaceReducer, undefined, () => workspace(createProject(), crypto.randomUUID()));
   const generation = useRef(0);
   const [editVersion,bumpEditVersion]=useReducer((v:number)=>v+1,0);
-  const guard = () => { const captured = generation.current; return () => captured === generation.current; };
+  // Autosave/status renders must not change this callback identity: Preview uses
+  // it as a synchronization dependency. Recreating it rebuilt the iframe during
+  // an active drag, releasing pointer capture without any document edit.
+  const guard = useCallback(() => { const captured = generation.current; return () => captured === generation.current; }, []);
   const [ready, setReady] = useState(false),
     [snapshots, setSnapshots] = useState<Snapshot[]>([]),
     [savedState, setSavedState] = useState<{
