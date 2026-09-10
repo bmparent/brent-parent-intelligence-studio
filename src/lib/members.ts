@@ -26,6 +26,7 @@ export function useAccount() {
     [error, setError] = useState(''),
     [revision, setRevision] = useState(0);
   const refresh = useCallback(() => setRevision((n) => n + 1), []);
+  const clear = useCallback(() => setAccount({ member: null }), []);
   useEffect(() => {
     const controller = new AbortController();
     fetch('/api/members/account', { signal: controller.signal })
@@ -35,6 +36,7 @@ export function useAccount() {
         return r.json();
       })
       .then((a) => {
+        if (controller.signal.aborted) return;
         setAccount(a);
         setError('');
       })
@@ -43,5 +45,5 @@ export function useAccount() {
       });
     return () => controller.abort();
   }, [revision]);
-  return { account, error, refresh };
+  return { account, error, refresh, clear };
 }

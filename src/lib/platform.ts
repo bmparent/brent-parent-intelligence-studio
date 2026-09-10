@@ -4,6 +4,8 @@ export interface PublicConfig {
   turnstileSiteKey: string;
   communityReady: boolean;
   accountsReady: boolean;
+  passwordsReady: boolean;
+  googleReady: boolean;
   aiReady: boolean;
   shopReady: boolean;
   localTest: boolean;
@@ -13,6 +15,8 @@ const fallback: PublicConfig = {
   turnstileSiteKey: '',
   communityReady: false,
   accountsReady: false,
+  passwordsReady: false,
+  googleReady: false,
   aiReady: false,
   shopReady: false,
   localTest: false,

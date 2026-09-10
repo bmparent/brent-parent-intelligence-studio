@@ -1,25 +1,14 @@
-import { useEffect, useState, type FormEvent } from 'react';
-import { post, usePublicConfig } from '../lib/platform';
+import { useEffect, useState } from 'react';
+import { post } from '../lib/platform';
 import { useAccount } from '../lib/members';
 import { getArticleBySlug } from '../data/articles';
-import { Turnstile } from './Turnstile';
+import { AccountAccess } from './AccountAccess';
+import { MemberWorkspace, MemberSecurity } from './MemberWorkspace';
 import '../styles/members.css';
 
 export function AccountPage() {
-  const { account, error: loadError, refresh } = useAccount(),
-    config = usePublicConfig();
-  const [mode, setMode] = useState<'signup' | 'signin'>('signup'),
-    [email, setEmail] = useState(''),
-    [name, setName] = useState(''),
-    [kind, setKind] = useState('person'),
-    [newsletter, setNewsletter] = useState(false);
-  const [verification, setVerification] = useState(''),
-    [reset, setReset] = useState(0),
-    [busy, setBusy] = useState(false),
-    [message, setMessage] = useState(''),
-    [error, setError] = useState(''),
-    [key, setKey] = useState(''),
-    [localLink, setLocalLink] = useState('');
+  const { account, error: loadError, refresh, clear } = useAccount();
+  const [busy, setBusy] = useState(false), [message, setMessage] = useState(''), [error, setError] = useState(''), [key, setKey] = useState('');
   async function change(action: string, values: Record<string, unknown> = {}) {
     setBusy(true);
     setError('');
@@ -39,41 +28,12 @@ export function AccountPage() {
       setBusy(false);
     }
   }
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setBusy(true);
-    setError('');
-    setMessage('');
-    setLocalLink('');
-    try {
-      const result = await post<{
-        message: string;
-        localVerificationUrl?: string;
-      }>('/api/members/auth', {
-        action: mode,
-        email,
-        username: name,
-        kind,
-        newsletter,
-        challenge: verification,
-        website: new FormData(event.currentTarget).get('website'),
-      });
-      setMessage(result.message);
-      if (config?.localTest && result.localVerificationUrl)
-        setLocalLink(result.localVerificationUrl);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Please try again.');
-    } finally {
-      setBusy(false);
-      setVerification('');
-      setReset((n) => n + 1);
-    }
-  }
   async function logout() {
     setBusy(true);
     try {
       await post('/api/members/auth', { action: 'logout' });
       setKey('');
+      clear();
       refresh();
     } catch {
       setError('Sign out could not complete. Please try again.');
@@ -103,8 +63,8 @@ export function AccountPage() {
         </h1>
         <p>
           {member
-            ? 'Your reading, your conversations, and the questions worth coming back to.'
-            : 'A free account for curious people and the agents working alongside them.'}
+            ? 'Your projects, purchased exports, reading and account controls.'
+            : 'Save your Playground projects and pick up from any device.'}
         </p>
       </header>
       {loadError && (
@@ -123,156 +83,7 @@ export function AccountPage() {
         </p>
       )}
       {!account && !loadError && <p role="status">Loading your account…</p>}
-      {account && !member && (
-        <div className="ew-member-entry">
-          <div className="ew-member-benefits">
-            <div>
-              <span>01 / READING</span>
-              <h2>Every paper. Freely shared.</h2>
-              <p>
-                Get new white papers and blog posts in a daily email. Read the
-                complete archive anytime.
-              </p>
-            </div>
-            <div>
-              <span>02 / CONTINUITY</span>
-              <h2>A shelf for what matters.</h2>
-              <p>Save useful articles and return to them from any device.</p>
-            </div>
-            <div>
-              <span>03 / CONVERSATION</span>
-              <h2>Be part of the exchange.</h2>
-              <p>
-                Choose a unique @username. Mention a person or agent in a
-                conversation and find replies in your inbox.
-              </p>
-            </div>
-            <a href="/insights">Explore the free archive →</a>
-          </div>
-          <form className="ew-member-card ew-form-stack" onSubmit={submit}>
-            <div
-              className="ew-member-mode"
-              role="group"
-              aria-label="Account action"
-            >
-              <button
-                type="button"
-                aria-pressed={mode === 'signup'}
-                onClick={() => setMode('signup')}
-              >
-                Create account
-              </button>
-              <button
-                type="button"
-                aria-pressed={mode === 'signin'}
-                onClick={() => setMode('signin')}
-              >
-                Sign in
-              </button>
-            </div>
-            <h2>
-              {mode === 'signup'
-                ? 'Make yourself at home.'
-                : 'Pick up where you left off.'}
-            </h2>
-            <label className="ew-field">
-              {mode === 'signup' && kind === 'agent'
-                ? 'Operator email'
-                : 'Email'}
-              <input
-                type="email"
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                maxLength={260}
-              />
-            </label>
-            {mode === 'signup' && (
-              <>
-                <label className="ew-field">
-                  Username
-                  <input
-                    value={name}
-                    onChange={(e) => setName(e.target.value.toLowerCase())}
-                    required
-                    minLength={3}
-                    maxLength={24}
-                    pattern="[a-z][a-z0-9_]{2,23}"
-                    autoComplete="username"
-                    placeholder="your_name"
-                  />
-                  <small>
-                    3–24 letters, numbers, or underscores. Your public address
-                    will be @{name || 'your_name'}.
-                  </small>
-                </label>
-                <label className="ew-field">
-                  Who is this account for?
-                  <select
-                    value={kind}
-                    onChange={(e) => setKind(e.target.value)}
-                  >
-                    <option value="person">A person</option>
-                    <option value="agent">
-                      An agent, managed by its operator
-                    </option>
-                  </select>
-                </label>
-                <label className="ew-member-check">
-                  <input
-                    type="checkbox"
-                    checked={newsletter}
-                    onChange={(e) => setNewsletter(e.target.checked)}
-                  />
-                  <span>
-                    Email me new white papers and posts for free. One daily
-                    email; unsubscribe whenever you like.
-                  </span>
-                </label>
-              </>
-            )}
-            <label className="ew-honeypot" aria-hidden="true">
-              Website
-              <input name="website" tabIndex={-1} autoComplete="off" />
-            </label>
-            <Turnstile
-              action="member"
-              onToken={setVerification}
-              resetKey={reset}
-            />
-            <button
-              className="ew-button ew-button--primary"
-              disabled={
-                busy ||
-                !config?.accountsReady ||
-                (!config.localTest && !verification)
-              }
-            >
-              {busy ? 'Sending…' : 'Email me a sign-in link →'}
-            </button>
-            <p className="ew-form-note">
-              No password to remember. Confirm your email to finish. Your email
-              stays private; your username and account type are public.
-            </p>
-            <small>
-              By continuing, you agree to the <a href="/terms">terms</a> and{' '}
-              <a href="/privacy">privacy policy</a>.
-            </small>
-            {config && !config.accountsReady && (
-              <p className="ew-notice">
-                Email sign-in is being connected. The{' '}
-                <a href="/insights">complete archive</a> is available now.
-              </p>
-            )}
-            {localLink && (
-              <a href={localLink}>
-                Local preview only: open the test sign-in link
-              </a>
-            )}
-          </form>
-        </div>
-      )}
+      {account && !member && <AccountAccess onSuccess={refresh} />}
       {member && (
         <>
           <div className="ew-member-toolbar">
@@ -286,6 +97,8 @@ export function AccountPage() {
             </button>
           </div>
           <div className="ew-member-dashboard">
+            <MemberWorkspace key={member.username} username={member.username} email={member.email} />
+            <MemberSecurity key={member.username} />
             <section className="ew-member-card">
               <p className="ew-eyebrow">Your reading shelf</p>
               <h2>Saved for a quieter moment.</h2>
@@ -458,22 +271,27 @@ export function AccountPage() {
 }
 
 function FragmentAction({ unsubscribe = false }: { unsubscribe?: boolean }) {
-  const [token, setToken] = useState(''),
+  const [token, setToken] = useState(''), [intent, setIntent] = useState(''),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState(''),
     [error, setError] = useState('');
   useEffect(() => {
     let active = true;
-    queueMicrotask(() => {
+    const readLink = () => {
       if (active) {
-        setToken(
-          new URLSearchParams(location.hash.slice(1)).get('token') || '',
-        );
+        const params = new URLSearchParams(location.hash.slice(1));
+        if (!params.get('token')) return;
+        setToken(params.get('token') || '');
+        setIntent(params.get('intent') || '');
+        setMessage(''); setError('');
         history.replaceState(null, '', location.pathname);
       }
-    });
+    };
+    queueMicrotask(readLink);
+    window.addEventListener('hashchange', readLink);
     return () => {
       active = false;
+      window.removeEventListener('hashchange', readLink);
     };
   }, []);
   async function confirm() {
@@ -481,8 +299,8 @@ function FragmentAction({ unsubscribe = false }: { unsubscribe?: boolean }) {
     setError('');
     try {
       const r = await post<{ message?: string }>(
-        unsubscribe ? '/api/members/unsubscribe' : '/api/members/auth',
-        { action: 'verify', token },
+        unsubscribe ? '/api/members/unsubscribe' : intent === 'signup' ? '/api/members/credentials' : '/api/members/auth',
+        { action: intent === 'signup' && !unsubscribe ? 'verify-signup' : 'verify', token },
       );
       if (unsubscribe) setMessage(r.message || 'You are unsubscribed.');
       else location.assign('/account');
