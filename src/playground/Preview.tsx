@@ -92,17 +92,15 @@ export function Preview({
   }, [onSelect, onLink, project, editing, edit, guard, notify]);
   useEffect(() => {
     if (!loaded) return;
-    const update = requestAnimationFrame(() => {
-      const stamp = `${documentId}:${revision.current}`;
-      sent.current = { stamp, valid: guard?.() || (() => false), consumed: false };
-      frame.current?.contentWindow?.postMessage({
-        type: "playground-update",
-        html: pageMarkup(project),
-        css: tokensCss(project) + renderedStyles(project),
-        config: { ...runtimeConfig(project, editing, selected, true), compositionStamp: stamp },
-      }, "*");
-    });
-    return () => cancelAnimationFrame(update);
+    // Synchronization must also run while the preview panel is hidden or paint is throttled.
+    const stamp = `${documentId}:${++revision.current}`;
+    sent.current = { stamp, valid: guard?.() || (() => false), consumed: false };
+    frame.current?.contentWindow?.postMessage({
+      type: "playground-update",
+      html: pageMarkup(project),
+      css: tokensCss(project) + renderedStyles(project),
+      config: { ...runtimeConfig(project, editing, selected, true), compositionStamp: stamp },
+    }, "*");
   }, [project, editing, selected, loaded, documentId, guard]);
-  return <iframe ref={frame} title="Your page preview" className={mobile ? "pg-preview mobile" : "pg-preview"} sandbox="allow-scripts" srcDoc={source} />;
+  return <iframe ref={frame} onLoad={() => setLoaded(true)} title="Your page preview" className={mobile ? "pg-preview mobile" : "pg-preview"} sandbox="allow-scripts" srcDoc={source} />;
 }
