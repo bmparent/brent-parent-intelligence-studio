@@ -1,14 +1,14 @@
 # Eidos liquid glass
 
-Approved preset: **Eidos edge light v4** · September 9, 2026.
+Approved preset: **Eidos edge light v5** · September 10, 2026.
 
-Clear glass with a narrow curved bevel. Text and shapes beneath it remain recognizable. Pointer light appears along the edges, with a restrained white glint and small prism colors. Pressing affects the bevel; the center stays quiet.
+Clear glass with a narrow curved bevel. Text and shapes beneath it remain recognizable. Pointer light appears along the edges, with a restrained white glint and small prism colors. Pressing affects the bevel; the center stays quiet. Mobile touch adds a stronger pressure-linked prism response without changing the desktop/rest appearance.
 
 ## Main settings
 
 | Setting | Approved value | What it controls |
 | --- | --- | --- |
-| Profile | iOS-inspired, Refined | The approved fourth lab version |
+| Profile | iOS-inspired, Refined | The approved fifth refinement |
 | Edge bend | **16** | Distortion near the curved border |
 | Magnification | **1.03×** | Slight enlargement of the live backdrop |
 | Frost | **1.2px** | Softening after refraction |
@@ -26,7 +26,7 @@ Clear glass with a narrow curved bevel. Text and shapes beneath it remain recogn
 | Local light falloff | 115px |
 | Visible reflection band | Outer 7px only |
 | White glint | Peak 0.72; centered 0.9px inward; width 0.85px |
-| Prism color | Peak 0.32; centered 2.8px inward; width 1.35px |
+| Prism color | Desktop/rest peak 0.32; mobile touch full-pressure peak 0.65; centered 2.8px inward; width 1.35px |
 | Spectral spread | 48px, widens gently at grazing angles |
 | Spectral separation | 30px, increases gently with angle |
 | Green balance | 0.84 |
@@ -34,7 +34,7 @@ Clear glass with a narrow curved bevel. Text and shapes beneath it remain recogn
 | Dimming over dark material | 12% |
 | Reflection canvas pixel ratio | Capped at 1.5× |
 
-Brightness depends on pointer distance and the direction each part of the rounded edge faces. Color separation follows that local curve. These peak values are multiplied by distance, orientation, and entry/exit fading, so they are not whole-header opacity values.
+Brightness depends on pointer distance and the direction each part of the rounded edge faces. Color separation follows that local curve. These peak values are multiplied by distance, orientation, and entry/exit fading, so they are not whole-header opacity values. On coarse/no-hover mobile input, the prism peak interpolates from 0.32 at rest to 0.65 at full press using the existing pressure spring; desktop pointer behavior remains at 0.32.
 
 ## Touch and motion
 
@@ -46,6 +46,7 @@ Brightness depends on pointer distance and the direction each part of the rounde
 | Pressure fades completely | 22px inward |
 | Local contact footprint | 24% of width, limited to 150–240px |
 | Contact texture | 96 × 96px, prepared on size changes |
+| Mobile touch prism | 0.32 at rest → 0.65 at full press |
 | Pointer X / Y spring frequency | 48 / 48 |
 | Light / hover / press spring frequency | 28 / 25 / 32 |
 | Scroll / material spring frequency | 18 / 24 |
