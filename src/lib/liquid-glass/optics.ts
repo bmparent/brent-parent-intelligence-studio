@@ -7,6 +7,9 @@ function canvas2d(w: number, h: number) {
   if (!ctx) throw new Error('Canvas unavailable');
   return { canvas, ctx, pixels: ctx.createImageData(w, h) };
 }
+export function touchColourScale(basePeak: number, touchPeak: number, pressure: number, enabled: boolean) {
+  return enabled && basePeak > 0 ? 1 + clamp(pressure) * (touchPeak / basePeak - 1) : 1;
+}
 export function createLensMaps(w: number, h: number, radius: number, preset = approved) {
   const map = canvas2d(w, h), mask = canvas2d(w, h);
   const { edgeBend: amount, magnification: mag } = preset.lens;
@@ -60,9 +63,7 @@ export function createRimRenderer(canvas: HTMLCanvasElement, preset = approved) 
     render(lx: number, ly: number, strength: number, pressure: number, dark: number) {
       canvas.style.opacity = strength.toFixed(4);
       if (!pixels || strength < .001) return;
-      const touchColourScale = mobileTouch && p.colourPeak > 0
-        ? 1 + clamp(pressure) * (p.touchColourPeak / p.colourPeak - 1)
-        : 1;
+      const colourScale = touchColourScale(p.colourPeak, p.touchColourPeak, pressure, mobileTouch);
       for (const s of samples) {
         const dx = lx - s.x, dy = ly - s.y;
         const normal = dx * s.nx + dy * s.ny, tangent = -dx * s.ny + dy * s.nx;
@@ -74,7 +75,7 @@ export function createRimRenderer(canvas: HTMLCanvasElement, preset = approved) 
         const red = Math.exp(-Math.pow((tangent - separation) / spread, 2) * .5);
         const green = Math.exp(-Math.pow(tangent / spread, 2) * .5) * p.greenBalance;
         const blue = Math.exp(-Math.pow((tangent + separation) / spread, 2) * .5);
-        const white = s.white * intensity, chroma = s.colour * intensity * touchColourScale;
+        const white = s.white * intensity, chroma = s.colour * intensity * colourScale;
         const r = white + chroma * red, g = white + chroma * green, b = white + chroma * blue;
         const alpha = Math.max(r, g, b);
         pixels.data[s.i] = alpha ? Math.round(255 * r / alpha) : 0;
