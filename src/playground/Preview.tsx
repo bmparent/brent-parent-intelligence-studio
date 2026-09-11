@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { Project, SectionType } from "./model";
+import type { Project } from "./model";
 import { pageDocument, pageMarkup, runtimeConfig, tokensCss, renderedStyles } from "./renderer";
 export function Preview({
   project,
@@ -11,9 +11,9 @@ export function Preview({
 }: {
   project: Project;
   editing: boolean;
-  selected: SectionType;
+  selected: string;
   mobile: boolean;
-  onSelect: (id: SectionType) => void;
+  onSelect: (id: string) => void;
   onLink: (href: string) => void;
 }) {
   const frame = useRef<HTMLIFrameElement>(null);

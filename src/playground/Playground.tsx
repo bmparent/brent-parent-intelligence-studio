@@ -1,3 +1,7 @@
+import {AIAssist} from "./AIAssist";
+import {imageWarnings} from "./publishing";
+import {StructureControls} from "./StructureControls";
+import { sectionKind } from "./model";
 import { useEffect, useRef, useState } from "react";
 import {
   createProject,
@@ -6,7 +10,7 @@ import {
   projectWarnings,
   validateProject,
   type Project,
-  type SectionType,
+  
 } from "./model";
 import { useProject } from "./useProject";
 import { Preview } from "./Preview";
@@ -31,7 +35,7 @@ export default function Playground() {
     saveSnapshot,
     storageError,
   } = useProject();
-  const [selected, setSelected] = useState<SectionType>("header"),
+  const [selected, setSelected] = useState<string>("header"),
     [mobile, setMobile] = useState(false),
     [editing, setEditing] = useState(true),
     [panel, setPanel] = useState("canvas");
@@ -41,7 +45,9 @@ export default function Playground() {
     [exporting, setExporting] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null),
     [snapshotName, setSnapshotName] = useState("");
-  const warnings = projectWarnings(project);
+  const [imageNotes,setImageNotes]=useState<string[]>([]);
+  const warnings = [...projectWarnings(project),...imageNotes];
+  async function openExport(){const valid=guard();setImageNotes([]);dialog.current?.showModal();const notes=await imageWarnings(project);if(valid())setImageNotes(notes);}
   useEffect(() => {
     if (!notice) return;
     const t = setTimeout(() => setNotice(""), 6500);
@@ -52,14 +58,14 @@ export default function Playground() {
     setComparison(null);
     edit(p, group);
   };
-  const chooseSection = (id: SectionType) => {
+  const chooseSection = (id: string) => {
     setMediaOpen(false);
     setSelected(id);
     setPanel("inspector");
   };
   function reorder(index: number, direction: number) {
     const next = index + direction;
-    if (next < 1 || next > 4) return;
+    if (next < 1 || next > project.sections.length-2) return;
     const sections = [...project.sections];
     [sections[index], sections[next]] = [sections[next], sections[index]];
     change({ ...project, sections });
@@ -154,7 +160,7 @@ export default function Playground() {
           <button
             className="pg-primary"
             disabled={!ready || !!comparison}
-            onClick={() => dialog.current?.showModal()}
+            onClick={() => void openExport()}
           >
             Export <Icon name="export" />
           </button>
@@ -196,6 +202,7 @@ export default function Playground() {
             <option value="landing">Landing · Moss / editorial split</option>
             <option value="homepage">Homepage · Ink / centered studio</option>
             <option value="portfolio">Portfolio · Clay / spacious work</option>
+            <option value="about">About page</option><option value="contact">Contact / leads</option>
           </select>
           <div className="pg-section-list">
             {project.sections.map((s, i) => (
@@ -208,13 +215,13 @@ export default function Playground() {
                   aria-pressed={selected === s.id}
                   onClick={() => chooseSection(s.id)}
                 >
-                  <Icon name={s.id} />
-                  <span>{labels[s.id]}</span>
+                  <Icon name={sectionKind(s)} />
+                  <span>{labels[sectionKind(s)]}</span>
                 </button>
                 <div className="pg-section-actions">
                   <button
-                    title={`${s.visible ? "Hide" : "Show"} ${labels[s.id]}`}
-                    aria-label={`${s.visible ? "Hide" : "Show"} ${labels[s.id]}`}
+                    title={`${s.visible ? "Hide" : "Show"} ${labels[sectionKind(s)]}`}
+                    aria-label={`${s.visible ? "Hide" : "Show"} ${labels[sectionKind(s)]}`}
                     onClick={() =>
                       change({
                         ...project,
@@ -226,18 +233,18 @@ export default function Playground() {
                   >
                     {s.visible ? "◉" : "○"}
                   </button>
-                  {i > 0 && i < 5 && (
+                  {i > 0 && i < project.sections.length-1 && (
                     <>
                       <button
-                        aria-label={`Move ${labels[s.id]} up`}
+                        aria-label={`Move ${labels[sectionKind(s)]} up`}
                         disabled={i === 1}
                         onClick={() => reorder(i, -1)}
                       >
                         ↑
                       </button>
                       <button
-                        aria-label={`Move ${labels[s.id]} down`}
-                        disabled={i === 4}
+                        aria-label={`Move ${labels[sectionKind(s)]} down`}
+                        disabled={i === project.sections.length-2}
                         onClick={() => reorder(i, 1)}
                       >
                         ↓
@@ -248,6 +255,7 @@ export default function Playground() {
               </div>
             ))}
           </div>
+          <StructureControls project={project} selected={selected} edit={change} guard={guard} notify={setNotice} />
           <div className="pg-directions">
             <h2>Design direction</h2>
             <div className="pg-palettes">
@@ -336,6 +344,7 @@ export default function Playground() {
               </div>
             ))}
           </details>
+          <AIAssist project={project} target={target} documentId={documentId} selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id} guard={guard} edit={change} />
           <CloudProjects project={project} target={target} documentId={documentId} guard={guard} load={replace} acknowledge={acknowledge} disabled={!ready || !!comparison} />
           <div
             className={`pg-save-status ${storageError ? "error" : ""}`}
@@ -371,7 +380,7 @@ export default function Playground() {
             {ready ? (
               <Preview
                 project={comparison || project}
-                selected={selected}
+                selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id}
                 editing={editing && !comparison}
                 mobile={mobile}
                 onSelect={chooseSection}
@@ -388,7 +397,7 @@ export default function Playground() {
         </main>
         {mediaOpen ? <MediaBrand project={project} edit={change} guard={guard} notify={setNotice} close={()=>setMediaOpen(false)} /> : <Inspector
           project={project}
-          selected={selected}
+          selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id}
           edit={change}
           notify={setNotice}
           guard={guard}
@@ -406,7 +415,7 @@ export default function Playground() {
               ? "Click a section to make it yours"
               : "Visitor preview"}
         </span>
-        <button disabled={!ready || !!comparison} onClick={() => dialog.current?.showModal()}>
+        <button disabled={!ready || !!comparison} onClick={() => void openExport()}>
           {warnings.length
             ? `${warnings.length} publishing notes`
             : "Ready to export"}{" "}
