@@ -157,7 +157,7 @@ for (const engine of engines) {
       await zip.saveAs(zipPath);
       const expectedPath = path.join(output, name + '-expected.json');
       await writeFile(expectedPath, JSON.stringify(exportedProject));
-      execFileSync('python3', ['-c', "import sys,zipfile,json; z=zipfile.ZipFile(sys.argv[1]); names=z.namelist(); assert all(x in names for x in ['index.html','styles.css','tokens.css','script.js','project.json']); assert json.loads(z.read('project.json'))==json.load(open(sys.argv[2])); assert any(n.startswith('assets/') for n in names); assert b'pg-compose-handle' not in z.read('index.html'); print('ZIP verified')", zipPath, expectedPath], { stdio: 'inherit' });
+      execFileSync(process.env.PYTHON || (process.platform === 'win32' ? 'python' : 'python3'), ['-c', "import sys,zipfile,json; z=zipfile.ZipFile(sys.argv[1]); names=z.namelist(); assert all(x in names for x in ['index.html','styles.css','tokens.css','script.js','project.json']); assert json.loads(z.read('project.json'))==json.load(open(sys.argv[2])); assert any(n.startswith('assets/') for n in names); assert b'pg-compose-handle' not in z.read('index.html'); print('ZIP verified')", zipPath, expectedPath], { stdio: 'inherit' });
       check('actual downloaded ZIP contains exact project, packaged image and standalone files without editor handles');
       await page.getByRole('button', { name: 'Try page', exact: true }).click();
       await until(async () => await frame.locator('.pg-compose-handle').count() === 0, 'Try page removes handles');
