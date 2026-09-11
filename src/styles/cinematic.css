@@ -1052,7 +1052,54 @@ img {
     display: none;
   }
 }
+/* Keep all seven links clear of the CTA; only navigation collapses on tablets. */
+@media (max-width: 980px) {
+  .ew-menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+    color: white;
+    background: none;
+    border: 1px solid #b8d3db66;
+    border-radius: 99px;
+    padding: 9px 13px;
+    font-size: 0.875rem;
+    min-height: 40px;
+  }
+  .ew-glass-header .ew-header__cta {
+    display: none;
+  }
+  .ew-glass-header .ew-nav {
+    position: absolute;
+    top: 76px;
+    left: 14px;
+    right: 14px;
+    display: none;
+    max-height: calc(100dvh - 125px);
+    overflow: auto;
+    padding: 14px 24px;
+    background: #102b37f5;
+    border: 1px solid #aeced540;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+  }
+  .ew-glass-header .ew-nav.is-open {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 24px;
+  }
+  .ew-glass-header .ew-nav a,
+  .ew-glass-header .ew-nav .ew-nav-mobile-extra {
+    display: block;
+    padding: 12px 0;
+    font-size: 0.94rem;
+  }
+}
 @media (max-width: 760px) {
+  .ew-glass-header .ew-nav {
+    max-height: calc(100dvh - 105px);
+  }
   .ew-shell {
     width: calc(100% - 40px);
   }
@@ -1075,47 +1122,6 @@ img {
   .ew-brand-works {
     font-size: 9px;
     margin-top: 4px;
-  }
-  .ew-menu-toggle {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-left: auto;
-    color: white;
-    background: none;
-    border: 1px solid #b8d3db66;
-    border-radius: 99px;
-    padding: 9px 13px;
-    font-size: 0.72rem;
-    min-height: 40px;
-  }
-  .ew-glass-header .ew-header__cta {
-    display: none;
-  }
-  .ew-glass-header .ew-nav {
-    position: absolute;
-    top: 76px;
-    left: 14px;
-    right: 14px;
-    display: none;
-    max-height: calc(100dvh - 105px);
-    overflow: auto;
-    padding: 14px 24px;
-    background: #102b37f5;
-    border: 1px solid #aeced540;
-    border-radius: 16px;
-    backdrop-filter: blur(20px);
-  }
-  .ew-glass-header .ew-nav.is-open {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px 24px;
-  }
-  .ew-glass-header .ew-nav a,
-  .ew-glass-header .ew-nav .ew-nav-mobile-extra {
-    display: block;
-    padding: 12px 0;
-    font-size: 0.94rem;
   }
   .ew-cinema {
     min-height: 780px;
