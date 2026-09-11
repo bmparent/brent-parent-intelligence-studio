@@ -1,3 +1,4 @@
+import {AIAssist} from "./AIAssist";
 import {imageWarnings} from "./publishing";
 import {StructureControls} from "./StructureControls";
 import { sectionKind } from "./model";
@@ -343,6 +344,7 @@ export default function Playground() {
               </div>
             ))}
           </details>
+          <AIAssist project={project} target={target} documentId={documentId} selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id} guard={guard} edit={change} />
           <CloudProjects project={project} target={target} documentId={documentId} guard={guard} load={replace} acknowledge={acknowledge} disabled={!ready || !!comparison} />
           <div
             className={`pg-save-status ${storageError ? "error" : ""}`}
