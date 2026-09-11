@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { LiquidGlassSurface } from './LiquidGlassSurface';
 const links = [
   { href: '/work', label: 'Work' },
+  { href: '/playground', label: 'Playground' },
   { href: '/lab', label: 'Lab' },
   { href: '/community', label: 'Community' },
   { href: '/insights', label: 'Insights' },

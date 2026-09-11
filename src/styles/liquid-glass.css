@@ -57,6 +57,9 @@
 .ew-glass-header .ew-menu-toggle[data-glass-tone="light"] { border-color: #173b3c66; }
 @media (max-width: 760px) {
   .ew-glass-header .ew-header__inner { border-radius: var(--ew-glass-mobile-radius, 23px); }
+}
+/* Match the cinematic navigation breakpoint while retaining phone-only radii. */
+@media (max-width: 980px) {
   .ew-glass-header .ew-nav { top: calc(100% + 10px); left: 0; right: 0; }
   .ew-glass-header .ew-nav.is-open { background: #102b37; }
 }
