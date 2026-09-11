@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { advanceSpring, scrollProgress, surfacePoint } from '../src/lib/liquid-glass/math';
+import { touchColourScale } from '../src/lib/liquid-glass/optics';
+import approved from '../src/lib/liquid-glass/preset.json';
 
 test('solid at the top, continuous through the transition, glass after 72px', () => {
   for (const y of [-200, 0, 1, 4]) assert.equal(scrollProgress(y), 0);
@@ -31,4 +33,14 @@ test('hit geometry follows rounded corners and reports the bevel depth', () => {
   assert.equal(surfacePoint(600, -170, 1200, 76, 29).depth, -170);
   assert.equal(surfacePoint(600, 75, 1200, 76, 29).ny, 1);
   assert.equal(surfacePoint(600, 1, 1200, 76, 29).ny, -1);
+});
+test('mobile touch prism ramps from the desktop peak to the approved touch peak', () => {
+  const { colourPeak, touchColourPeak } = approved.light;
+  assert.equal(colourPeak, .32);
+  assert.equal(touchColourPeak, .65);
+  assert.equal(touchColourScale(colourPeak, touchColourPeak, 0, true), 1);
+  assert.equal(touchColourScale(colourPeak, touchColourPeak, 1, false), 1);
+  assert.equal(touchColourScale(colourPeak, touchColourPeak, 1, true), touchColourPeak / colourPeak);
+  const halfPeak = colourPeak * touchColourScale(colourPeak, touchColourPeak, .5, true);
+  assert.equal(halfPeak, (colourPeak + touchColourPeak) / 2);
 });
