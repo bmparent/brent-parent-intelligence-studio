@@ -6,12 +6,14 @@ import { workspace, workspaceReducer, type SaveTarget } from "./workspace";
 export function useProject() {
   const [state, dispatch] = useReducer(workspaceReducer, undefined, () => workspace(createProject(), crypto.randomUUID()));
   const generation = useRef(0);
+  const [editVersion,bumpEditVersion]=useReducer((v:number)=>v+1,0);
   const guard = () => { const captured = generation.current; return () => captured === generation.current; };
   const [ready, setReady] = useState(false),
     [snapshots, setSnapshots] = useState<Snapshot[]>([]),
     [savedState, setSavedState] = useState<{
       project: Project;
       snapshots: Snapshot[];
+      generation: number;
     } | null>(null);
   const [storageError, setStorageError] = useState("");
   useEffect(() => {
@@ -41,10 +43,11 @@ export function useProject() {
   useEffect(() => {
     if (!ready || storageError) return;
     let cancelled = false;
+    const writeGeneration=editVersion;
     const timer = setTimeout(() => {
       saveWorkspace({ project, snapshots })
         .then(() => {
-          if (!cancelled) setSavedState({ project, snapshots });
+          if (!cancelled) setSavedState({ project, snapshots, generation:writeGeneration });
         })
         .catch(() => {
           if (!cancelled)
@@ -57,10 +60,10 @@ export function useProject() {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [project, snapshots, ready, storageError]);
+  }, [project, snapshots, ready, storageError, editVersion]);
   const dirty =
     ready &&
-    (savedState?.project !== project || savedState?.snapshots !== snapshots);
+    (savedState?.project !== project || savedState?.snapshots !== snapshots || savedState?.generation !== editVersion);
   useEffect(() => {
     if (!dirty) return;
     const beforeUnload = (event: BeforeUnloadEvent) => {
@@ -86,16 +89,16 @@ export function useProject() {
     documentId: state.current.documentId,
     guard,
     replace: (project: Project, target?: SaveTarget | null) => {
-      generation.current++;
+      generation.current++; bumpEditVersion();
       dispatch({type: 'replace', project, target, documentId: crypto.randomUUID()});
     },
     acknowledge: (documentId: string, target: SaveTarget) => dispatch({type:'saved',documentId,target}),
     edit: (project: Project | ((current: Project) => Project), group?: string) => {
-      generation.current++;
+      generation.current++; bumpEditVersion();
       dispatch({ type: "edit", project, group, time: Date.now() });
     },
-    undo: () => { generation.current++; dispatch({ type: "undo" }); },
-    redo: () => { generation.current++; dispatch({ type: "redo" }); },
+    undo: () => { generation.current++; bumpEditVersion(); dispatch({ type: "undo" }); },
+    redo: () => { generation.current++; bumpEditVersion(); dispatch({ type: "redo" }); },
     canUndo: !!state.past.length,
     canRedo: !!state.future.length,
     saveSnapshot: (name: string) =>

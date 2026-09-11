@@ -16,7 +16,7 @@ const files = [
   'functions/api/assistant.ts', 'functions/api/public-config.ts',
   'functions/api/community', 'functions/api/members', 'functions/api/shop', 'functions/community',
   'functions/api/playground', 'src/playground/model.ts', 'src/playground/approved-glass-preset.json',
-  'src/playground/limits.ts', 'src/playground/export.ts', 'src/playground/renderer.ts', 'src/playground/runtime.ts', 'src/playground/pageStyles.ts', 'src/playground/glassBundle.ts',
+  'src/playground/aiOperations.ts', 'src/playground/media.ts', 'src/playground/limits.ts', 'src/playground/export.ts', 'src/playground/renderer.ts', 'src/playground/runtime.ts', 'src/playground/pageStyles.ts', 'src/playground/glassBundle.ts',
   'migrations',
 ];
 for (const file of files) {
