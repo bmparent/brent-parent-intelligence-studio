@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-09-12T16:05:04.696Z",
+  "configFingerprint": "0022b2dca866f9520df9ee9ae1dd9c10308a2572505cc030ec3f9ce16959c6a7",
+  "productionBranch": "main",
+  "domains": [
+    "eidosworks.pages.dev",
+    "eidos-works.com"
+  ],
+  "sourceType": "direct-upload",
+  "deploymentId": "1d184a86-bed0-4758-a806-53dbe111a8ff",
+  "commit": "14d87e49b0adc9d403558dc428d3f92c36c09b9c",
+  "status": "success"
+}

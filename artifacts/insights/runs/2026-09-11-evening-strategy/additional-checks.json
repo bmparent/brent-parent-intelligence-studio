@@ -1,0 +1,37 @@
+[
+  {
+    "command": "npm run verify:editorial",
+    "log": "artifacts/insights/runs/2026-09-11-evening-strategy/verify-editorial.log",
+    "code": 0
+  },
+  {
+    "command": "npm run test:platform",
+    "log": "artifacts/insights/runs/2026-09-11-evening-strategy/test-platform.log",
+    "code": 0
+  },
+  {
+    "command": "npm run test:playground",
+    "log": "artifacts/insights/runs/2026-09-11-evening-strategy/test-playground.log",
+    "code": 0
+  },
+  {
+    "command": "npm run test:analytics",
+    "log": "artifacts/insights/runs/2026-09-11-evening-strategy/test-analytics.log",
+    "code": 0
+  },
+  {
+    "command": "npm run test:glass",
+    "log": "artifacts/insights/runs/2026-09-11-evening-strategy/test-glass.log",
+    "code": 0
+  },
+  {
+    "command": "npm run test:snapshot",
+    "log": "artifacts/insights/runs/2026-09-11-evening-strategy/test-snapshot.log",
+    "code": 0
+  },
+  {
+    "command": "npm run build:functions",
+    "log": "artifacts/insights/runs/2026-09-11-evening-strategy/build-functions.log",
+    "code": 0
+  }
+]

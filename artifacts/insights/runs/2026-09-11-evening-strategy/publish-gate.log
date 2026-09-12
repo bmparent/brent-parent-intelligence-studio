@@ -1,0 +1,115 @@
+
+> brent-parent-intelligence-studio@1.1.0 publish:insight-run
+> node scripts/publish-insight-run.mjs --slot=evening
+
+14d87e49b0adc9d403558dc428d3f92c36c09b9c
+
+> brent-parent-intelligence-studio@1.1.0 content:generate
+> node scripts/generate-insights-assets.mjs
+
+Generated sitemap, feed, llms.txt, and 13 article OG images for https://eidos-works.com.
+
+> brent-parent-intelligence-studio@1.1.0 validate:insights
+> node scripts/validate-insights.mjs
+
+Insights validation passed for 13 published articles.
+
+> brent-parent-intelligence-studio@1.1.0 lint
+> eslint .
+
+
+> brent-parent-intelligence-studio@1.1.0 build
+> npm run playground:glass && node scripts/clean-build-output.mjs && npm run kit:build && npm run content:generate && npm run typecheck && vite build --outDir dist && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir false && node scripts/prerender.mjs
+
+
+> brent-parent-intelligence-studio@1.1.0 playground:glass
+> node scripts/build-playground-glass.mjs
+
+Cleared generated build output.
+
+> brent-parent-intelligence-studio@1.1.0 kit:build
+> node scripts/build-kit.mjs
+
+Packaged cinematic starter: 6012 bytes, 5 files.
+
+> brent-parent-intelligence-studio@1.1.0 content:generate
+> node scripts/generate-insights-assets.mjs
+
+Generated sitemap, feed, llms.txt, and 13 article OG images for https://eidos-works.com.
+
+> brent-parent-intelligence-studio@1.1.0 typecheck
+> tsc -b --pretty false
+
+vite v8.0.16 building client environment for production...
+(node:25872) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2K
+transforming...✓ 104 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/.vite/manifest.json                    0.91 kB │ gzip:  0.30 kB
+dist/index.html                             2.81 kB │ gzip:  0.91 kB
+dist/assets/Playground-CxZo-sRC.css        15.28 kB │ gzip:  3.93 kB
+dist/assets/index-7TPc6-76.css            159.43 kB │ gzip: 32.91 kB
+dist/assets/rolldown-runtime-D9-fqq9M.js    0.08 kB │ gzip:  0.08 kB
+dist/assets/Playground-BD1iYi6t.js        130.92 kB │ gzip: 42.76 kB
+dist/assets/react-vendor-P0Lkgw2L.js      190.21 kB │ gzip: 59.82 kB
+dist/assets/index-CAkGOf0c.js             362.22 kB │ gzip: 99.43 kB
+
+[PLUGIN_TIMINGS] Your build spent significant time in plugins. Here is a breakdown:
+  - vite:css (79%)
+  - vite:build-import-analysis (9%)
+  - vite:css-post (7%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+
+✓ built in 8.49s
+vite v8.0.16 building ssr environment for production...
+(node:30316) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[2K
+transforming...✓ 91 modules transformed.
+rendering chunks...
+computing gzip size...
+dist-ssr/.vite/manifest.json              0.52 kB │ gzip:   0.22 kB
+dist-ssr/assets/Playground-BfUQBHxl.js  187.63 kB │ gzip:  52.84 kB
+dist-ssr/entry-server.js                483.06 kB │ gzip: 114.84 kB
+
+✓ built in 1.92s
+> brent-parent-intelligence-studio@1.1.0 verify:prerender
+> node scripts/verify-prerender.mjs
+
+Prerender verification passed: headings, metadata, private-page directives, image alternatives, IDs, and JSON-LD are valid.
+
+> brent-parent-intelligence-studio@1.1.0 validate:insights:dist
+> node scripts/validate-insights.mjs --check-dist --skip-source-fetch
+
+Insights validation passed for 13 published articles.
+
+> brent-parent-intelligence-studio@1.1.0 verify:urls
+> node scripts/verify-urls.mjs
+
+Verified 13 public source files against 18 required and 8 forbidden references.
+ M artifacts/insights/latest-generation-report.json
+ M functions/_shared/platform/kitArchive.ts
+ M functions/_shared/platform/playgroundSchema.ts
+ M public/feed.xml
+ M public/insights-feed.json
+ M public/insights-og/accessible-quote-form-errors-recovery.svg
+ M public/insights-og/agentic-seo-small-business-websites.svg
+ M public/insights-og/baseline-2026-browser-support-design-system-decision.svg
+ M public/insights-og/bing-ai-citations-measure-business-value.svg
+ M public/insights-og/eidos-brain-sentinel-small-business-intelligence.svg
+ M public/insights-og/mobile-hierarchy-over-desktop-polish.svg
+ M public/insights-og/practical-source-map-ai-ready-service-pages.svg
+ M public/insights-og/spreadsheet-chaos-operational-dashboards.svg
+ M public/insights-og/storefront-proof-loop-ux-assets-operations.svg
+ M public/insights-og/storefront-ux-find-right-product-faster.svg
+ M public/insights-og/structure-website-people-ai-assistants-understand.svg
+ M public/insights-og/website-snapshot-before-redesign.svg
+ M public/llms.txt
+ M public/sitemap.xml
+ M src/data/articles.json
+ M src/playground/glassBundle.ts
+?? artifacts/insights/runs/2026-09-11-evening-strategy/
+?? public/insights-og/ai-agent-permissions-before-pilot.svg
+Wrote run report to C:\Users\bmpar\codex-worktrees\insights-friday-20260911\artifacts\insights\runs\2026-09-12T16-01-54-evening
