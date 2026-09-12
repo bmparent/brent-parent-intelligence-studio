@@ -50,6 +50,7 @@ export function BlockControls({ project, selected, onSelect, edit, notify, guard
     const [busy, setBusy] = useState(false);
     if (!node)
         return null;
+    const photoZoom=mobile?node.mobile?.zoom??node.media?.zoom??1:node.media?.zoom??1;
     const containers = all.filter(isContainer), parent = all.find(n => n.children?.some(c => c.id === node.id));
     const currentSection = project.sections.find(s => s.authoring && flattenNodes(s.authoring.root).some(n => n.id === node.id))!;
     function run(operation: BlockOperation) { try {
@@ -96,8 +97,8 @@ export function BlockControls({ project, selected, onSelect, edit, notify, guard
     }
     finally {
         setBusy(false);
-    } }}/></label>{field('Image description', node.alt, 'alt')}{number('Frame height (px)', 'height', 64, 960)}<label><input type="checkbox" checked={node.lockAspect} onChange={e => patch({ lockAspect: e.target.checked })}/> Lock frame aspect ratio</label><p>Select Crop in the canvas toolbar to reposition the photo inside its frame. Resizing changes the frame.</p><label className="pg-block-field">Photo zoom<input key={node.id + 'zoom' + (node.media?.zoom || 1)} type="number" min="1" max="3" step="0.05" defaultValue={node.media?.zoom || 1} onBlur={e => { const zoom = Number(e.target.value); if (zoom >= 1 && zoom <= 3)
-        patch({ media: { ...(node.media || defaultMedia()), zoom } }); }}/></label><button onClick={() => patch({ media: defaultMedia() })}>Reset crop</button></>}
+    } }}/></label>{field('Image description', node.alt, 'alt')}{number('Frame height (px)', 'height', 64, 960)}<label><input type="checkbox" checked={node.lockAspect} onChange={e => patch({ lockAspect: e.target.checked })}/> Lock frame aspect ratio</label><p>Select Crop in the canvas toolbar to reposition the photo inside its frame. Resizing changes the frame.</p><label className="pg-block-field">Photo zoom<input key={node.id + 'zoom' + mobile + photoZoom} type="number" min="1" max="3" step="0.05" defaultValue={photoZoom} onBlur={e => { const zoom = Number(e.target.value); if (zoom >= 1 && zoom <= 3)
+        patch(mobile?{mobile:{...node.mobile,zoom}}:{ media: { ...(node.media || defaultMedia()), zoom } }); }}/></label><button onClick={() => {const media={...defaultMedia(),...node.media};if(mobile){delete media.mobileX;delete media.mobileY;const overrides={...node.mobile};delete overrides.zoom;patch({media,mobile:overrides});}else patch({media:{...media,fit:'cover',x:50,y:50,zoom:1}});}}>Reset crop</button></>}
  {number('Width (%)', 'width', 10, 100)}
  <label className="pg-block-field">Alignment<select aria-label="Alignment" value={mobile ? node.mobile?.align || node.align : node.align} onChange={e => patch(mobile ? { mobile: { ...node.mobile, align: e.target.value as BlockNode['align'] } } : { align: e.target.value as BlockNode['align'] })}>{['left', 'center', 'right'].map(v => <option key={v}>{v}</option>)}</select></label>
  {isContainer(node) && <>{number('Gap (px)', 'gap', 0, 96)}{!mobile && node.type === 'columns' && node.children?.length === 2 && number('First column share (%)', 'split', 20, 80)}<label className="pg-block-field">Add element<select aria-label="Add element" value={kind} onChange={e => setKind(e.target.value as NodeType)}>{nodeTypes.map(t => <option key={t} value={t}>{t}</option>)}</select></label><button onClick={() => run({ type: 'add', parent: node.id, kind })}>Add {kind}</button>{mobile && <label className="pg-block-field">Mobile layout<select aria-label="Mobile layout" value={node.mobile?.layout || 'stack'} onChange={e => patch({ mobile: { ...node.mobile, layout: e.target.value as 'stack' | 'row' } })}><option value="stack">Automatic stack</option><option value="row">Row</option></select></label>}</>}

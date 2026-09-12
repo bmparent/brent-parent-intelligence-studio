@@ -1,3 +1,4 @@
+import {accountEpoch,subscribeAccountChanges} from '../lib/accountEpoch';
 import { useCallback, useEffect, useReducer, useState } from "react";
 import { createProject, type Project } from "./model";
 import { loadWorkspace, saveWorkspace, type Snapshot } from "./storage";
@@ -6,11 +7,13 @@ import { workspace, workspaceReducer, type SaveTarget } from "./workspace";
 export function useProject() {
   const [state, dispatch] = useReducer(workspaceReducer, undefined, () => workspace(createProject(), crypto.randomUUID()));
   const generation = useRef(0);
+  const [accountVersion,bumpAccountVersion]=useReducer((v:number)=>v+1,0);
+  useEffect(()=>subscribeAccountChanges(()=>{generation.current++;bumpAccountVersion();}),[]);
   const [editVersion,bumpEditVersion]=useReducer((v:number)=>v+1,0);
   // Autosave/status renders must not change this callback identity: Preview uses
   // it as a synchronization dependency. Recreating it rebuilt the iframe during
   // an active drag, releasing pointer capture without any document edit.
-  const guard = useCallback(() => { const captured = generation.current; return () => captured === generation.current; }, []);
+  const guard = useCallback(() => { const captured = generation.current, ownerEpoch=accountEpoch(); return () => captured === generation.current && ownerEpoch===accountEpoch(); }, []);
   const [ready, setReady] = useState(false),
     [snapshots, setSnapshots] = useState<Snapshot[]>([]),
     [savedState, setSavedState] = useState<{
@@ -78,6 +81,7 @@ export function useProject() {
   }, [dirty]);
   return {
     project: state.current.project,
+    accountVersion,
     ready,
     snapshots,
     status:

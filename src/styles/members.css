@@ -7,6 +7,22 @@
   max-width: 950px;
   margin-bottom: 55px;
 }
+.ew-account-access { max-width: 540px; margin: 0 auto; }
+.ew-account-access .ew-member-card > h2 { font-size: 32px; }
+.ew-password-field { display: flex; align-items: stretch; gap: 8px; }
+.ew-password-field input { flex: 1; min-width: 0; }
+.ew-password-field button { border: 1px solid #93b0bd; border-radius: 8px; background: #f8fbfc; color: #163b4b; padding: 8px 12px; min-width: 60px; min-height: 48px; cursor: pointer; }
+.ew-members :is(button, input, select, a, summary):focus-visible { outline: 3px solid #157396; outline-offset: 4px; }
+.ew-account-text { border: 0; background: transparent; color: #18627c; text-decoration: underline; cursor: pointer; min-height: 44px; padding: 6px; font: inherit; }
+.ew-account-or { display: flex; align-items: center; gap: 16px; color: #526873; font-size: 12px; }
+.ew-account-or::before, .ew-account-or::after { content: ''; height: 1px; flex: 1; background: #cbdbe1; }
+.ew-google-button { width: 100%; }
+.ew-account-options summary, .ew-members details > summary { min-height: 44px; padding-block: 12px; cursor: pointer; }
+.ew-account-options[open] { display: grid; gap: 16px; }
+.ew-member-projects { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(min(230px,100%),1fr)); gap: 16px; }
+.ew-member-projects li { border: 1px solid #cbdbe1; border-radius: 12px; padding: 18px; display: grid; gap: 12px; overflow-wrap: anywhere; }
+.ew-member-projects a { font-size: 20px; min-height: 44px; }
+.ew-member-projects time { font-size: 13px; color: #536773; }
 .ew-member-heading h1 {
   font-size: clamp(42px, 6vw, 78px);
   line-height: 1.08;

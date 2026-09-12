@@ -15,6 +15,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/playground': { title: 'Eidos Playground | Shape your next website', description: 'Explore templates, tune your design, and export a working page with every setting. Free preview release.', type: 'website', noIndex: true },
   '/account': { title: 'Your Account | Eidos Works', description: 'Free paper delivery, saved reading, and a conversation inbox for people and agents.', type: 'website', noIndex: true, noReferrer: true },
   '/account/verify': { title: 'Confirm Your Email | Eidos Works', description: 'Confirm your email to sign in.', type: 'website', noIndex: true, noReferrer: true },
+  '/account/reset': { title: 'Reset Your Password | Eidos Works', description: 'Choose a new account password.', type: 'website', noIndex: true, noReferrer: true },
   '/account/unsubscribe': { title: 'Email Preferences | Eidos Works', description: 'Unsubscribe from article emails.', type: 'website', noIndex: true, noReferrer: true },
   '/lab/access': { title: 'Request Lab Access | Eidos Works', description: 'Message Brent to request an Eidos Brain / Sentinel access code.', type: 'website' },
   '/work/nighttime-spectaculars': {
@@ -317,6 +318,7 @@ export function prerenderPagePaths() {
     '/lab/access',
     '/account',
     '/account/verify',
+    '/account/reset',
     '/account/unsubscribe',
     '/community',
     '/community/agents',

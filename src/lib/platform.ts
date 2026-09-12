@@ -1,9 +1,12 @@
+import {announceAccountChange,changesAccountSession} from './accountEpoch';
 import { useEffect, useState } from 'react';
 export interface PublicConfig {
   gaMeasurementId: string;
   turnstileSiteKey: string;
   communityReady: boolean;
   accountsReady: boolean;
+  passwordsReady: boolean;
+  googleReady: boolean;
   aiReady: boolean;
   shopReady: boolean;
   localTest: boolean;
@@ -13,6 +16,8 @@ const fallback: PublicConfig = {
   turnstileSiteKey: '',
   communityReady: false,
   accountsReady: false,
+  passwordsReady: false,
+  googleReady: false,
   aiReady: false,
   shopReady: false,
   localTest: false,
@@ -64,6 +69,7 @@ export async function post<T = Record<string, unknown>>(
         ? value.error
         : 'This request could not be completed.',
     );
+  if(changesAccountSession(url,data))announceAccountChange();
   return value as T;
 }
 

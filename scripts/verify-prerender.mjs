@@ -106,6 +106,7 @@ for (const file of await htmlFiles(root)) {
     'community/moderate/index.html',
     'account/index.html',
     'account/verify/index.html',
+    'account/reset/index.html',
     'account/unsubscribe/index.html',
   ].includes(label);
   if (
