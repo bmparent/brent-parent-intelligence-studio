@@ -118,4 +118,3 @@ export async function signup(
   const cookie = verified.headers.get('set-cookie')!.split(';')[0];
   return { cookie, token, headers: { cookie } };
 }
-

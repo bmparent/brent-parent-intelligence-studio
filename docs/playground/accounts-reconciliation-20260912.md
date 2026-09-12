@@ -20,7 +20,7 @@ this flag explicitly and prove owner isolation, asset hydration and expected-hea
 
 ## Validation and evidence
 
-- Frontend build/typecheck passed. Fifty aggregate Playground tests and 17 focused
+- Frontend build/typecheck passed. Fifty-two aggregate Playground tests (including account-epoch validation) and 17 focused
   member/relay/cloud tests passed. The new v4 test proves default-off behavior, isolated
   owner hydration, exact historical reads, and one winner from two concurrent saves.
 - Backend: 16 JavaScript and 48 TypeScript regressions passed, including real scrypt,
