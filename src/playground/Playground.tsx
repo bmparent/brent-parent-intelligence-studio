@@ -1,3 +1,4 @@
+import { BlockTree, BlockControls } from './BlockControls';
 import {AIAssist} from "./AIAssist";
 import {imageWarnings} from "./publishing";
 import {StructureControls} from "./StructureControls";
@@ -38,9 +39,11 @@ export default function Playground() {
     storageError,
   } = useProject();
   const [selected, setSelected] = useState<string>("header"),
-    [mobile, setMobile] = useState(false),
+    [mobile, setMobile] = useState(() => typeof window!=='undefined' && window.innerWidth<=640),
     [editing, setEditing] = useState(true),
     [panel, setPanel] = useState("canvas");
+  const [selectedNode,setSelectedNode]=useState('');
+  const selectNode=(id:string,sectionId:string)=>{setSelectedNode(id);setSelected(sectionId);setMediaOpen(false);};
   const [mediaOpen, setMediaOpen] = useState(false);
   const [notice, setNotice] = useState(""),
     [comparison, setComparison] = useState<Project | null>(null),
@@ -65,6 +68,7 @@ export default function Playground() {
   const chooseSection = (id: string) => {
     setMediaOpen(false);
     setSelected(id);
+    setSelectedNode('');
     setPanel("inspector");
   };
   function reorder(index: number, direction: number) {
@@ -266,6 +270,7 @@ export default function Playground() {
               </div>
             ))}
           </div>
+          <BlockTree project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} />
           <StructureControls project={project} selected={selected} edit={change} guard={guard} notify={setNotice} />
           <div className="pg-directions">
             <h2>Design direction</h2>
@@ -394,6 +399,9 @@ export default function Playground() {
                 guard={guard}
                 notify={setNotice}
                 documentId={documentId}
+                selectedNode={selectedNode}
+                onNodeSelect={selectNode}
+                onInspectNode={(id,sectionId)=>{selectNode(id,sectionId);setPanel("inspector");}}
                 project={comparison || project}
                 selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id}
                 editing={editing && !comparison}
@@ -410,7 +418,7 @@ export default function Playground() {
             )}
           </div>
         </main>
-        {mediaOpen ? <MediaBrand project={project} edit={change} guard={guard} notify={setNotice} close={()=>setMediaOpen(false)} /> : <Inspector
+        {mediaOpen ? <MediaBrand project={project} edit={change} guard={guard} notify={setNotice} close={()=>setMediaOpen(false)} /> : project.schemaVersion===4 && project.sections.find(s=>s.id===selected)?.authoring ? <BlockControls project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} mobile={mobile} /> : <Inspector
           project={project}
           selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id}
           edit={change}
@@ -421,7 +429,7 @@ export default function Playground() {
       <footer className="pg-statusbar">
         <span>
           <Icon name={mobile ? "mobile" : "desktop"} />
-          {mobile ? "Mobile · 390px" : "Desktop · Fit to canvas"}
+          {mobile ? "Mobile · 390px" : `Desktop · ${project.tokens.width}px · Fit to canvas`}
         </span>
         <span>
           {comparison

@@ -1,3 +1,4 @@
+import {applyBlockOperation} from './authoring';
 import { sectionKind, mediaSlots, type Card, type Section } from "./model";
 import {useState} from 'react';
 import type {Project} from './model';
@@ -8,10 +9,11 @@ import {imageData} from './storage';
 import {cloudPreflight} from './limits';
 import { removeLocalImage, supportsProductionCloud, CLOUD_FORMAT_NOTICE } from './releaseBoundary';
 export function MediaBrand({project:p,edit,guard,notify,close}:{project:Project;edit:(p:Project|((p:Project)=>Project),group?:string)=>void;guard:()=>()=>boolean;notify:(s:string)=>void;close:()=>void}) {
- const [placement,setPlacement]=useState<string>('hero'),[busy,setBusy]=useState(false),[message,setMessage]=useState('');
- const s=(mediaSlots(p).find(v=>v.id===placement)||p.sections[1]),m=s.media||defaultMedia();
+ const [placement,setPlacement]=useState<string>(()=>p.sections.find(v=>v.id==='hero')?.authoring?.root.children?.find(n=>n.type==='image')?.id||'hero'),[busy,setBusy]=useState(false),[message,setMessage]=useState('');
+ const slots=mediaSlots(p).filter(v=>!('authoring' in v && v.authoring));
+ const s=(slots.find(v=>v.id===placement)||slots[0]),m=s.media||defaultMedia();
  const brand=p.brand||{businessName:p.sections[0].title,tone:'',locks:[]};
- const updateItem=(patch:Partial<Card|Section>)=>({...p,sections:p.sections.map(v=>v.id===s.id?{...v,...patch} as Section:{...v,...(v.cards?{cards:v.cards.map(c=>c.id===s.id?{...c,...patch} as Card:c)}:{})})});
+ const updateItem=(patch:Partial<Pick<Card,"image"|"alt"|"media">>)=>'text' in s?applyBlockOperation(p,{type:'patch',id:s.id,patch}):({...p,sections:p.sections.map(v=>v.id===s.id?{...v,...patch} as Section:{...v,...(v.cards?{cards:v.cards.map(c=>c.id===s.id?{...c,...patch} as Card:c)}:{})})});
  const role=placement==='header'?'Brand logo':placement==='hero'?'Hero image':placement==='work'?'Selected work image':'Section background';
  function media(patch:Partial<MediaSettings>) {edit(updateItem({media:{...m,...patch}}),'media-'+s.id);}
  function kit(patch:Partial<BrandKit>) {edit({...p,brand:{...brand,...patch}});}
@@ -30,7 +32,7 @@ export function MediaBrand({project:p,edit,guard,notify,close}:{project:Project;
   const valid=guard();try {const image=new Image();image.src=logo;await image.decode();const canvas=document.createElement('canvas');canvas.width=32;canvas.height=32;const ctx=canvas.getContext('2d')!;ctx.drawImage(image,0,0,32,32);const pixels=ctx.getImageData(0,0,32,32).data,counts=new Map<string,number>();for(let i=0;i<pixels.length;i+=4){if(pixels[i+3]<160)continue;const hex='#'+[pixels[i],pixels[i+1],pixels[i+2]].map(v=>(Math.round(v/32)*32>255?255:Math.round(v/32)*32).toString(16).padStart(2,'0')).join('');counts.set(hex,(counts.get(hex)||0)+1);}const accent=[...counts].sort((a,b)=>b[1]-a[1])[0]?.[0];if(valid()&&accent&&!brand.locks.includes('palette')) {edit({...p,tokens:{...p.tokens,accent}});notify('Suggested accent from logo pixels. Review text contrast before publishing.');}}catch{setMessage('Could not read this logo. Choose colors manually.');}
  }
  return <aside className="pg-inspector" aria-label="Media and brand controls"><div className="pg-panel-heading"><h2>Media / Brand</h2><button onClick={close} aria-label="Close media controls">×</button></div><div className="pg-inspector-body">
- <div className="pg-field"><label htmlFor="pg-media-placement">Image placement</label><select id="pg-media-placement" value={placement} onChange={e=>setPlacement(e.target.value as string)}>{mediaSlots(p).filter(v=>v.id!=='footer').map(v=><option key={v.id} value={v.id}>{'visible' in v?labels[sectionKind(v)]:`Card: ${v.title||v.id}`} · {v.id==='header'?'logo':v.id==='hero'||v.id==='work'?'image':'background'}</option>)}</select></div>
+ <div className="pg-field"><label htmlFor="pg-media-placement">Image placement</label><select id="pg-media-placement" value={placement} onChange={e=>setPlacement(e.target.value as string)}>{slots.filter(v=>v.id!=='footer'&&(!('text' in v)||v.type==='image')).map(v=><option key={v.id} value={v.id}>{'visible' in v?labels[sectionKind(v)]:'text' in v?`Block: ${v.name}`:`Card: ${v.title||v.id}`} · {v.id==='header'?'logo':v.id==='hero'||v.id==='work'?'image':'background'}</option>)}</select></div>
  <div className="pg-media-drop" onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();void upload(e.dataTransfer.files[0]);}}>
  {s.image&&<img className="pg-media-thumb" src={s.image} alt={`${role} thumbnail`} />}
  <strong>{role}</strong><label className="pg-upload">{busy?'Processing…':s.image?'Replace image':'Choose image'}<input disabled={busy||(placement==='header'&&brand.locks.includes('logo'))} type="file" accept="image/png,image/jpeg,image/webp" onChange={e=>{void upload(e.target.files?.[0]);e.target.value='';}} /></label><small>Choose a file or drop it here. PNG, JPEG, WebP · 8 MB input · 16 megapixels. No SVG or HTML.</small></div>

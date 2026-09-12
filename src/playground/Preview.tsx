@@ -1,3 +1,5 @@
+import {applyBlockOperation, type BlockOperation} from './authoring';
+import {flattenNodes} from './authoringSchema';
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Project } from "./model";
 import { pageDocument, pageMarkup, runtimeConfig, tokensCss, renderedStyles } from "./renderer";
@@ -16,6 +18,9 @@ export function Preview({
   guard,
   notify,
   documentId = 'local',
+  selectedNode = '',
+  onNodeSelect,
+  onInspectNode,
 }: {
   project: Project;
   editing: boolean;
@@ -27,8 +32,22 @@ export function Preview({
   guard?: () => () => boolean;
   notify?: (message: string) => void;
   documentId?: string;
+  selectedNode?: string;
+  onNodeSelect?: (id:string,sectionId:string)=>void;
+  onInspectNode?: (id:string,sectionId:string)=>void;
 }) {
   const frame = useRef<HTMLIFrameElement>(null);
+  const viewport = useRef<HTMLDivElement>(null);
+  const [bounds,setBounds]=useState({width:0,height:0});
+  const logicalWidth=mobile?390:project.tokens.width;
+  const scale=bounds.width?Math.min(1,bounds.width/logicalWidth):1;
+  useLayoutEffect(()=>{
+    const element=viewport.current;if(!element)return;
+    const observer=new ResizeObserver(()=>{
+      const width=element.clientWidth,height=element.clientHeight;
+      setBounds(old=>old.width===width&&old.height===height?old:{width,height});
+    });observer.observe(element);return()=>observer.disconnect();
+  },[]);
   const revision = useRef(0);
   const sent = useRef<{ stamp: string; valid: () => boolean; consumed: boolean } | null>(null);
   const [channel] = useState(() => crypto.randomUUID());
@@ -46,6 +65,26 @@ export function Preview({
       if (data.type === "playground-ready") setLoaded(true);
       if (data.type === "playground-select" && project.sections.some(s => s.id === data.id)) onSelect(data.id);
       if (data.type === "playground-link" && typeof data.href === "string") onLink(data.href);
+      if (data.type === 'playground-block' && editing && edit && guard && project.schemaVersion === 4) {
+        const receipt=sent.current;
+        if(!receipt || receipt.consumed || data.stamp!==receipt.stamp || !receipt.valid())return;
+        if(data.action==='select'||data.action==='inspect'){
+          const section=project.sections.find(s=>s.id===data.sectionId&&s.authoring&&flattenNodes(s.authoring.root).some(n=>n.id===data.id));
+          if(section)(data.action==='inspect'?onInspectNode:onNodeSelect)?.(data.id,section.id);
+          return;
+        }
+        if(data.action!=='command'||!data.operation||typeof data.operation!=='object')return;
+        const op=data.operation;
+        const shapes:Record<string,string[]>={move:['type','id','parent','before'],patch:['type','id','patch'],duplicate:['type','id'],remove:['type','id'],'section-step':['type','id','direction'],'card-step':['type','id','direction']};
+        if(!shapes[op.type]||Object.keys(op).some(k=>!shapes[op.type].includes(k)))return;
+        try{
+          const next=applyBlockOperation(project,op as BlockOperation);
+          if(next===project)return;
+          receipt.consumed=true;
+          edit(current=>current===project?next:current);
+        }catch(error){notify?.((error as Error).message);}
+        return;
+      }
       if (data.type !== 'playground-composition' || !editing || !edit || !guard || project.schemaVersion !== 3) return;
       const receipt = sent.current;
       if (!receipt || receipt.consumed || data.stamp !== receipt.stamp || !receipt.valid()) return;
@@ -92,7 +131,7 @@ export function Preview({
     };
     window.addEventListener("message", message);
     return () => window.removeEventListener("message", message);
-  }, [onSelect, onLink, project, editing, edit, guard, notify, channel]);
+  }, [onSelect, onLink, project, editing, edit, guard, notify, channel, onNodeSelect, onInspectNode]);
   useEffect(() => {
     if (!loaded) return;
     // Synchronization must also run while the preview panel is hidden or paint is throttled.
@@ -109,5 +148,11 @@ export function Preview({
   useEffect(() => {
     if (loaded) frame.current?.contentWindow?.postMessage({ type: 'playground-selection', channel, selected }, '*');
   }, [selected, loaded, channel, project, editing]);
-  return <iframe ref={frame} onLoad={() => setLoaded(true)} title="Your page preview" className={mobile ? "pg-preview mobile" : "pg-preview"} sandbox="allow-scripts" srcDoc={source} />;
+  useEffect(() => {
+    if(loaded)frame.current?.contentWindow?.postMessage({type:'playground-block-selection',channel,id:selectedNode},'*');
+  },[loaded,selectedNode,project,channel]);
+  useEffect(()=>{if(loaded)frame.current?.contentWindow?.postMessage({type:'playground-cancel',channel,scale},'*');},[mobile,scale,channel,loaded]);
+  return <div ref={viewport} style={{position:'relative',width:'100%',height:'100%',overflow:'hidden'}} data-preview-width={logicalWidth} data-preview-scale={scale}>
+    <iframe ref={frame} onLoad={() => setLoaded(true)} title="Your page preview" className={mobile ? "pg-preview mobile" : "pg-preview"} style={{position:'absolute',left:Math.max(0,(bounds.width-logicalWidth*scale)/2),top:0,width:logicalWidth,height:bounds.height?bounds.height/scale:'100%',maxWidth:'none',transform:`scale(${scale})`,transformOrigin:'top left'}} sandbox="allow-scripts" srcDoc={source} />
+  </div>;
 }

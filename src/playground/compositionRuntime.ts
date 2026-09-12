@@ -147,6 +147,7 @@ export function compositionRuntime(initial: { editing: boolean; bridge: boolean;
       const files=event.dataTransfer.files;if(root&&files.length===1&&['image/png','image/jpeg','image/webp'].includes(files[0].type)&&files[0].size<=8_000_000)send({action:'file',sectionId:root.id,destination:{placement:root.dataset.placement||'inline'},mobile:innerWidth<=640,file:files[0]});else if(root)send({action:'error'});reset();
     },options);
     document.addEventListener('dragend',reset,options);document.addEventListener('dragleave',event=>{if(!event.relatedTarget)reset();},options);
+    window.addEventListener('message',e=>{if(e.source===parent&&e.data?.channel===initial.channel&&e.data.type==='playground-cancel')reset();},options);
     window.addEventListener('playground-before-update',()=>cleanup(),options);
     cleanup=()=>{reset();abort.abort();observer.disconnect();handles.forEach(h=>h.remove());style.remove();};
   }

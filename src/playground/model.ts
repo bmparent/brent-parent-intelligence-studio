@@ -1,7 +1,8 @@
 import { validateMedia, validateBrand, type MediaSettings, type BrandKit } from "./media";
 import approved from "./approved-glass-preset.json";
 import { validateComposition, type Composition } from './compositionSchema';
-export const VERSION = 3;
+import { validateAuthoring, flattenNodes, BLOCK_LIMITS, type Authoring, type BlockNode } from './authoringSchema';
+export const VERSION = 4;
 export const LEGACY_RENDERER = "eidos-portable-glass-1.0.0";
 export const RENDERER = "eidos-original-glass-2.0.0";
 export const sectionTypes = [
@@ -10,7 +11,7 @@ export const sectionTypes = [
   "services",
   "work",
   "contact",
-  "footer", "about", "faq", "gallery", "testimonials", "pricing",
+  "footer", "about", "faq", "gallery", "testimonials", "pricing", "content",
 ] as const;
 export type SectionType = (typeof sectionTypes)[number];
 export const labels: Record<SectionType, string> = {
@@ -19,15 +20,16 @@ export const labels: Record<SectionType, string> = {
   services: "Services",
   work: "Selected work",
   contact: "Contact",
-  footer: "Footer", about: "About", faq: "FAQ", gallery: "Gallery", testimonials: "Testimonials", pricing: "Services / pricing",
+  footer: "Footer", content: "Content section", about: "About", faq: "FAQ", gallery: "Gallery", testimonials: "Testimonials", pricing: "Services / pricing",
 };
 export type SectionStyle = { spacing: number; align: 'left'|'center'|'right'; background: string; mobileSpacing?: number; mobileAlign?: 'left'|'center'|'right' };
 export type Card = {id:string;title:string;description:string;image:string;alt:string;media?:MediaSettings};
 export const sectionKind = (s: Section): SectionType => s.type || s.id as SectionType;
-export const mediaSlots = (p:Project): (Section|Card)[] => p.sections.flatMap(s=>[s,...(s.cards||[])]);
-export function upgradeProject(p:Project):Project { return p.schemaVersion === 3 ? p : validateProject({...p,schemaVersion:2,sections:p.sections.map(s=>({...s,type:sectionKind(s)}))}); }
+export const mediaSlots = (p:Project): (Section|Card|BlockNode)[] => p.sections.flatMap(s=>[s,...(s.cards||[]),...(s.authoring?flattenNodes(s.authoring.root):[])]);
+export function upgradeProject(p:Project):Project { return p.schemaVersion >= 3 ? p : validateProject({...p,schemaVersion:2,sections:p.sections.map(s=>({...s,type:sectionKind(s)}))}); }
 export function newBlock(type:SectionType):Section { return {...makeSection(type,labels[type]),id:'block-'+crypto.randomUUID(),type,...(['faq','gallery','testimonials','pricing'].includes(type)?{cards:[]}: {})}; }
 export type Section = {
+  authoring?: Authoring;
   composition?: Composition;
   media?: MediaSettings;
   id: string;
@@ -46,7 +48,7 @@ export type Section = {
 };
 export type Project = {
   brand?: BrandKit;
-  schemaVersion: 1 | 2 | 3;
+  schemaVersion: 1 | 2 | 3 | 4;
   rendererVersion: string;
   template: "landing" | "homepage" | "portfolio" | "about" | "contact";
   name: string;
@@ -221,10 +223,14 @@ export function safeHref(value: string): string {
 }
 export function validateProject(input: unknown): Project {
   const p = record(input);
-  if (![1, 2, VERSION].includes(p.schemaVersion as number) || ![RENDERER, LEGACY_RENDERER].includes(String(p.rendererVersion)))
+  if (![1, 2, 3, VERSION].includes(p.schemaVersion as number) || ![RENDERER, LEGACY_RENDERER].includes(String(p.rendererVersion)))
     throw new Error(
       "This project needs a different Playground version. Your current design is unchanged.",
     );
+  if (p.schemaVersion === 4) {
+    if (new TextEncoder().encode(JSON.stringify(p)).length > BLOCK_LIMITS.documentBytes) throw Error('This design exceeds the 16 MB local authoring limit. Your current design is unchanged.');
+    if (Object.keys(p).some(k=>!['schemaVersion','rendererVersion','template','name','tokens','glass','sections','brand'].includes(k))) throw Error('Unsupported project field.');
+  }
   const t = record(p.tokens),
     g = record(p.glass);
   if (!Array.isArray(p.sections) || (p.schemaVersion===1 ? p.sections.length!==6 : p.sections.length<3 || p.sections.length>16))
@@ -235,8 +241,12 @@ export function validateProject(input: unknown): Project {
       id = p.schemaVersion===1 ? choice(s.id, sectionTypes.slice(0,6)) : string(s.id,80);
     if(!/^[a-z][a-z0-9-]*$/.test(id)||["page-main","page-nav","page-root"].includes(id))throw Error("Invalid or reserved section identity.");
     const type = p.schemaVersion===1 ? id as SectionType : choice(s.type,sectionTypes);
-    if (s.composition !== undefined && (p.schemaVersion !== 3 || type !== 'hero')) throw Error('Spatial composition requires a version 3 hero.');
+    if (s.composition !== undefined && (![3,4].includes(p.schemaVersion as number) || type !== 'hero')) throw Error('Spatial composition requires a version 3 hero.');
     if (p.schemaVersion === 3 && type === 'hero' && s.composition === undefined) throw Error('Version 3 heroes require composition settings.');
+    if (s.authoring !== undefined && (p.schemaVersion !== 4 || !['hero','content'].includes(type))) throw Error('Responsive blocks require a version 4 hero or content section.');
+    if (p.schemaVersion === 4 && type === 'hero' && s.authoring === undefined) throw Error('Version 4 heroes require responsive blocks.');
+    if (type === 'content' && (p.schemaVersion !== 4 || s.authoring === undefined)) throw Error('A content section requires responsive blocks.');
+    if (p.schemaVersion === 4 && Object.keys(s).some(k=>!['id','type','visible','title','description','cta','href','layout','image','alt','style','cards','navigation','media','composition','authoring'].includes(k))) throw Error('Unsupported section field.');
     if (seen.has(id)) throw new Error("Duplicate section.");
     seen.add(id);
     const image = string(s.image, 4_500_000);
@@ -263,6 +273,7 @@ export function validateProject(input: unknown): Project {
       id,
       ...(p.schemaVersion!==1 ? {type,...validateStructure(s)} : {}),
       ...(s.composition === undefined ? {} : {composition:validateComposition(s.composition)}),
+      ...(s.authoring === undefined ? {} : {authoring:validateAuthoring(s.authoring)}),
       visible: bool(s.visible),
       title: string(s.title, 240),
       description: string(s.description),
@@ -276,10 +287,12 @@ export function validateProject(input: unknown): Project {
   });
   if (sectionKind(sections[0]) !== "header" || sectionKind(sections[sections.length-1]) !== "footer" || sections.filter(s=>sectionKind(s)==="header").length!==1 || sections.filter(s=>sectionKind(s)==="footer").length!==1 || sections.filter(s=>sectionKind(s)==="hero").length!==1)
     throw new Error("Header and footer must stay at the ends of the page.");
-  const identities=sections.flatMap(s=>[s.id,...(s.cards||[]).map(c=>c.id)]);
+  const nodes=sections.flatMap(s=>s.authoring?flattenNodes(s.authoring.root):[]);
+  if(nodes.length>BLOCK_LIMITS.nodes)throw Error('This design supports at most 96 responsive nodes.');
+  const identities=sections.flatMap(s=>[s.id,...(s.cards||[]).map(c=>c.id),...(s.authoring?flattenNodes(s.authoring.root).map(n=>n.id):[])]);
   if(new Set(identities).size!==identities.length)throw Error("Duplicate page identity.");
   return {
-    schemaVersion: p.schemaVersion as 1|2|3,
+    schemaVersion: p.schemaVersion as 1|2|3|4,
     ...(p.brand === undefined ? {} : {brand:validateBrand(p.brand)}),
     rendererVersion: String(p.rendererVersion),
     template: choice(p.template, ["landing", "homepage", "portfolio", "about", "contact"] as const),

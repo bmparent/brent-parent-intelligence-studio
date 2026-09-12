@@ -12,7 +12,7 @@ type Props = { project: Project; selected: string; edit: (project: Project) => v
 export function StructureControls(props: Props) {
   const { project, edit, guard, notify } = props;
   const [uploading, setUploading] = useState(false);
-  const enabled = project.schemaVersion === 3;
+  const enabled = project.schemaVersion >= 3;
   async function uploadHero(file: File) {
     const valid = guard();
     setUploading(true);
@@ -29,6 +29,7 @@ export function StructureControls(props: Props) {
     } catch (error) { if (valid()) notify(error instanceof Error ? error.message : 'The image could not be opened.'); }
     finally { setUploading(false); }
   }
+  if(project.schemaVersion===4)return <OriginalStructureControls {...props} />;
   return <>
     <section className="pg-project-tools" aria-labelledby="pg-customize-heading" data-editor-release={EDITOR_RELEASE}>
       <h2 id="pg-customize-heading">Drag &amp; drop</h2>
