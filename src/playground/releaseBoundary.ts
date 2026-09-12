@@ -1,3 +1,4 @@
+import {applyBlockOperation} from './authoring';
 import type { Card, Project, Section } from './model';
 import type { SaveTarget } from './workspace';
 
@@ -16,6 +17,7 @@ export function legacySaveTarget(id: string, head: string, name: string, saved: 
   return { id, head, name, saved, owner: '' };
 }
 export function removeLocalImage(project: Project, id: string): Project {
+  if(id.startsWith('node-'))return applyBlockOperation(project,{type:'patch',id,patch:{image:'',media:undefined}});
   const clear = <T extends Card | Section>(item: T): T => {
     const next = { ...item, image: '' };
     delete next.media;

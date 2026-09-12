@@ -185,3 +185,12 @@ for (const engine of engines) {
 }
 console.log(JSON.stringify(results.map(({ name, passed, failure, checks }) => ({ name, passed, failure, checks })), null, 2));
 if (results.some(result => !result.passed)) process.exitCode = 1;
+
+// The existing release workflow executes this entry point. Keep the new format in its gates.
+if (!process.exitCode && process.env.PG_SKIP_BLOCKS !== '1') {
+  const prior=process.env.PG_EVIDENCE_DIR;
+  process.env.PG_EVIDENCE_DIR=path.join(output,'responsive-blocks');
+  process.env.PG_ENGINES ||= 'chromium,firefox,webkit';
+  await import('./verify-playground-blocks.mjs');
+  if(prior===undefined)delete process.env.PG_EVIDENCE_DIR;else process.env.PG_EVIDENCE_DIR=prior;
+}

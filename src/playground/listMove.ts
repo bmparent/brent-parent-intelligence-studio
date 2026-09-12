@@ -11,7 +11,7 @@ export function startListMove(event: React.PointerEvent<HTMLButtonElement>, vali
   function cancel(){abort.abort();cancelAnimationFrame(frame);ghost?.remove();row!.style.opacity='';marked?.classList.remove('pg-section-drop');if(handle.hasPointerCapture(pointer))handle.releasePointerCapture(pointer);}
   function locate(){
     const bounds=list!.getBoundingClientRect();if(x<bounds.left||x>bounds.right||y<Math.max(0,bounds.top)||y>Math.min(innerHeight,bounds.bottom))return null;
-    const rows=Array.from(list!.querySelectorAll<HTMLElement>('[data-sort-id]')).filter(el=>el!==row);
+    const rows=Array.from(list!.children).filter((el):el is HTMLElement=>el instanceof HTMLElement && !!el.dataset.sortId && el!==row);
     return rows.find(el=>{const r=el.getBoundingClientRect();return y<r.top+r.height/2;})||null;
   }
   function paint(time:number){
