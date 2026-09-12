@@ -186,7 +186,7 @@ export default function Playground() {
         ))}
       </nav>
       <div className="pg-workspace">
-        <aside className="pg-sidebar" aria-label="Page sections">
+        <aside className="pg-sidebar" aria-label="Page sections" inert={!ready}>
           <h2>Your page</h2>
           <button className="pg-media-entry" aria-pressed={mediaOpen} onClick={()=>{setMediaOpen(!mediaOpen);setPanel("inspector");}}>Media / Brand</button>
           <label className="pg-sr-only" htmlFor="page-template">
