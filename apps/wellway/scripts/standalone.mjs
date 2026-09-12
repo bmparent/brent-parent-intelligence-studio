@@ -11,7 +11,7 @@ const result = await build({
   platform: "browser",
   target: "es2022",
   write: false,
-  loader: { ".woff2": "dataurl" },
+  loader: { ".woff2": "dataurl", ".png": "dataurl" },
   plugins: [
     {
       name: "raw-svg",

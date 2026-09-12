@@ -5,6 +5,7 @@ import type {
   Action,
   ImportReport,
 } from "./types";
+import { member, healthHistory } from "./profiles";
 export const DEMO_DATE = "2026-09-12";
 export const STORAGE_KEY = "wellway.journey.v1";
 export const metricInfo: Record<
@@ -608,6 +609,8 @@ export function evidence(s: AppState) {
   const energy = summary(s, "energy");
   return {
     asOf: s.demoDate,
+    fictionalProfile: member,
+    fictionalHistory: healthHistory,
     goal: s.goal,
     sleep: {
       average: sleep.average,

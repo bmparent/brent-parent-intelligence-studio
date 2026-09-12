@@ -5,16 +5,21 @@ import type { Metric, Page } from "../lib/types";
 import { PageTitle, Button } from "../components/UI";
 import { Icon } from "../components/Icon";
 import { Chart, MetricTabs, MiniChart } from "../components/Chart";
+import { VisitCard } from "../components/VideoVisit";
 export function Today({
   navigate,
   checkin,
   tour,
   ask,
+  visit,
+  advisorProfile,
 }: {
   navigate: (p: Page) => void;
   checkin: () => void;
   tour: () => void;
   ask: () => void;
+  visit: () => void;
+  advisorProfile: () => void;
 }) {
   const { state } = useStore();
   const [metric, setMetric] = useState<Metric>("sleep");
@@ -178,6 +183,7 @@ export function Today({
           Ask about my week
         </Button>
       </section>
+      <VisitCard onOpen={visit} onProfile={advisorProfile} />
     </>
   );
 }

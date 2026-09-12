@@ -10,6 +10,10 @@ Your changes save in that browser. Use **Help & guide → Export backup** before
 
 ## Try this five-minute demonstration
 
+The expanded edition adds fictional portraits, member/advisor profiles, a dated mock health history, and subtle movement with a **Pause motion** control. System reduced-motion preferences are respected.
+
+Select **Try a video visit** on Today or Advisor to prepare an agenda, choose whether to include fictional context, enter a scripted visit, toggle the sample camera/mic/captions, and explore discussion topics. End the demo visit, edit the follow-up, and save it for advisor review. Only **Approve in demo** updates the plan. The images are static portraits; no actual camera, microphone, audio, recording, or call service is used.
+
 1. On Today, select **Start check-in**. Choose an energy rating, available time, and a fictional note about a changed schedule.
 2. Open **My journey**, switch measurements, and select a chart day. The source record appears. A missing night is excluded from the average.
 3. In **My plan**, adjust the walk's duration or time and mark it complete.

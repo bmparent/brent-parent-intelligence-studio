@@ -6,6 +6,8 @@ import { Icon } from "./components/Icon";
 import { Checkin } from "./components/Checkin";
 import { Guide } from "./components/Guide";
 import { Assistant } from "./components/Assistant";
+import { Portrait, Profile } from "./components/Profiles";
+import { VideoVisit } from "./components/VideoVisit";
 import { Today } from "./views/Today";
 import { Journey } from "./views/Journey";
 import { Plan } from "./views/Plan";
@@ -30,6 +32,14 @@ export default function App() {
   const [checkin, setCheckin] = useState(false);
   const [tour, setTour] = useState(false);
   const [assistant, setAssistant] = useState(false);
+  const [profile, setProfile] = useState<"member" | "advisor" | null>(null);
+  const [visit, setVisit] = useState(false);
+  const [reducedMotion] = useState(() =>
+    Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches),
+  );
+  const [motion, setMotion] = useState(
+    () => !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
+  );
   const [toast, setToast] = useState("");
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const main = useRef<HTMLElement>(null);
@@ -50,7 +60,7 @@ export default function App() {
   const label =
     page === "help" ? "Help & guide" : nav.find((x) => x.id === page)?.label;
   return (
-    <>
+    <div className={`wellway-app ${motion ? "" : "motion-paused"}`}>
       <a
         className="skip-link"
         href="#main-content"
@@ -127,9 +137,19 @@ export default function App() {
               </select>
               <Icon name="chevron" size={16} />
             </label>
-            <span className="avatar" title="Alex Parker · Fictional member">
-              AP
-            </span>
+            <button
+              className="portrait-button profile-trigger"
+              aria-label={
+                page === "advisor"
+                  ? "View Maya’s advisor profile"
+                  : "View Alex’s member profile"
+              }
+              onClick={() =>
+                setProfile(page === "advisor" ? "advisor" : "member")
+              }
+            >
+              <Portrait person={page === "advisor" ? "advisor" : "member"} />
+            </button>
           </div>
         </header>
         <main id="main-content" ref={main} tabIndex={-1}>
@@ -144,16 +164,39 @@ export default function App() {
               checkin={() => setCheckin(true)}
               tour={() => setTour(true)}
               ask={() => setAssistant(true)}
+              visit={() => setVisit(true)}
+              advisorProfile={() => setProfile("advisor")}
             />
           )}{" "}
           {page === "journey" && <Journey ask={() => setAssistant(true)} />}{" "}
           {page === "plan" && <Plan checkin={() => setCheckin(true)} />}{" "}
           {page === "connections" && <Connections />}{" "}
-          {page === "advisor" && <Advisor />}{" "}
+          {page === "advisor" && (
+            <Advisor
+              key={
+                state.reviews.find((r) => r.status === "draft")?.id ||
+                "no-draft"
+              }
+              visit={() => setVisit(true)}
+              profile={setProfile}
+            />
+          )}{" "}
           {page === "help" && (
             <Help tour={() => setTour(true)} navigate={navigate} />
           )}
           <footer className="app-footer">
+            <button
+              className="text-button motion-toggle"
+              disabled={reducedMotion}
+              aria-pressed={!motion}
+              onClick={() => setMotion(!motion)}
+            >
+              {reducedMotion
+                ? "Reduced motion"
+                : motion
+                  ? "Pause motion"
+                  : "Resume motion"}
+            </button>
             <span>Wellway concept by Eidos Works</span>
             <span>
               Fictional data · {dateLabel(state.demoDate, true)} · Saved in this
@@ -195,6 +238,16 @@ export default function App() {
         />
       )}{" "}
       {assistant && <Assistant onClose={() => setAssistant(false)} />}{" "}
+      {profile && <Profile person={profile} onClose={() => setProfile(null)} />}
+      {visit && (
+        <VideoVisit
+          onClose={() => setVisit(false)}
+          onSaved={() => {
+            setVisit(false);
+            navigate("advisor");
+          }}
+        />
+      )}
       {toast && (
         <div className="toast" role="status">
           <Icon name="check" />
@@ -208,6 +261,6 @@ export default function App() {
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 }

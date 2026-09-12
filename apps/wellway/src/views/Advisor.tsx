@@ -9,7 +9,15 @@ import {
 } from "../lib/data";
 import { PageTitle, Button, Note, Empty } from "../components/UI";
 import { Icon } from "../components/Icon";
-export function Advisor() {
+import { Portrait, History } from "../components/Profiles";
+import { VisitCard } from "../components/VideoVisit";
+export function Advisor({
+  visit,
+  profile,
+}: {
+  visit: () => void;
+  profile: (person: "member" | "advisor") => void;
+}) {
   const { state, dispatch } = useStore();
   const [proposal, setProposal] = useState(
     state.reviews.find((r) => r.status === "draft")?.proposal || "",
@@ -62,7 +70,13 @@ export function Advisor() {
         provide account separation.
       </Note>
       <section className="member-strip">
-        <span className="avatar avatar-large">AP</span>
+        <button
+          className="portrait-button"
+          aria-label="View Alex’s member profile"
+          onClick={() => profile("member")}
+        >
+          <Portrait />
+        </button>
         <div>
           <h2>Alex Parker</h2>
           <p>{state.goal}</p>
@@ -80,6 +94,7 @@ export function Advisor() {
           </strong>
         </div>
       </section>
+      <VisitCard onOpen={visit} onProfile={() => profile("advisor")} />
       <div className="advisor-grid">
         <div>
           <section className="panel">
@@ -253,6 +268,9 @@ export function Advisor() {
           </details>
         </section>
       </div>
+      <section className="panel history-panel">
+        <History />
+      </section>
     </>
   );
 }

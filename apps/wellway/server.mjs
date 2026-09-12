@@ -202,9 +202,10 @@ const server = http.createServer(async (req, res) => {
           );
         send(res, 200, {
           answer: final,
-          sources: Array.isArray(data.evidence.sleep?.sourceIds)
-            ? data.evidence.sleep.sourceIds
-            : [],
+          sources: [...new Set([
+            ...(Array.isArray(data.evidence.sleep?.sourceIds) ? data.evidence.sleep.sourceIds : []),
+            ...(Array.isArray(data.evidence.fictionalHistory) ? data.evidence.fictionalHistory.map(item => item?.id) : []),
+          ].filter(id => typeof id === 'string'))],
           model,
         });
       } catch (e) {

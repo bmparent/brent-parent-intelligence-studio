@@ -31,6 +31,8 @@ Before promoting the record:
 
 ## What this demonstrates
 
+The 1.1 expansion adds AI-generated fictional member/advisor portraits, profile dialogs and dated mock health history. A scripted video visit progresses from agenda/context selection through sample call controls and captions to an editable follow-up draft. Approval remains a separate action in Advisor. No live media, device permission, recording, or call service is used. Motion can be paused and respects reduced-motion preferences. The expanded DOM checks passed; real mobile/browser visual acceptance is still outstanding.
+
 - Original Wellway logo, observed navy/slate palette, Spectral headings, and Inter UI text.
 - A member journey from check-in to chart evidence to a manageable plan action.
 - Missing data, units, coverage, and source provenance that remain visible.

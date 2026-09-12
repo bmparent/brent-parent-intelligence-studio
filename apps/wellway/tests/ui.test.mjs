@@ -197,6 +197,9 @@ assert.match(
   d.querySelector(".modal-subtitle").textContent,
   /without a live model/,
 );
+await click("What is in my history?");
+assert.match(d.querySelector('.assistant-answer').textContent,/invented demonstration notes/);
+assert.match(d.querySelector('.source-list').textContent,/history-2023-knee/);
 d.querySelector('[aria-label="Close dialog"]').click();
 await tick();
 await click("Explore the demo");
@@ -206,6 +209,65 @@ d.dispatchEvent(
 );
 await tick();
 assert.equal(d.querySelector("[role=dialog]"), null);
+// The visit is a scripted local workflow, and must never request devices/network.
+d.querySelector('[aria-label="View Alex’s member profile"]').click();
+await tick();
+assert.match(d.querySelector("[role=dialog]").textContent, /Past knee strain/);
+assert.match(d.querySelector("[role=dialog]").textContent, /Penicillin/);
+d.querySelector('[aria-label="Close dialog"]').click();
+await tick();
+await click("Pause motion");
+assert.ok(d.querySelector(".motion-paused"));
+await click("Resume motion");
+assert.equal(d.querySelector(".motion-paused"), null);
+await click("Try a video visit");
+assert.match(
+  d.querySelector("[role=dialog]").textContent,
+  /No camera, microphone/,
+);
+await click("Enter demo visit");
+await click("My sleep");
+assert.match(d.querySelector(".visit-caption").textContent, /of 7 nights/);
+await click("Hide sample camera");
+assert.ok(d.querySelector(".camera-off"));
+await click("Unmute demo mic");
+assert.match(d.querySelector(".member-pip").textContent, /Demo mic on/);
+await click("Hide captions");
+assert.equal(d.querySelector(".visit-caption"), null);
+await click("Show captions");
+await click("End demo visit");
+const existingPlan = state().plan[0].detail;
+value(
+  d.querySelector(".modal textarea"),
+  "Discuss the existing walk after breakfast at the next check-in.",
+);
+await tick();
+await click("Save for advisor review");
+assert.equal(state().reviews[0].status, "draft");
+assert.equal(state().plan[0].detail, existingPlan);
+assert.match(
+  d.querySelector(".review-panel textarea").value,
+  /Discuss the existing walk/,
+);
+await click("Approve in demo");
+assert.match(state().plan[0].detail, /Discuss the existing walk/);
+// Starting from Advisor must also load a newly saved visit draft, not stale text.
+await click("Try a video visit");
+d.querySelector(".modal input[type=checkbox]").click();
+await tick();
+await click("Enter demo visit");
+assert.equal(d.querySelectorAll(".topic-buttons button").length, 1);
+assert.match(
+  d.querySelector(".visit-caption").textContent,
+  /chose not to share/,
+);
+await click("End demo visit");
+await click("Save for advisor review");
+assert.deepEqual(state().reviews[0].sources, []);
+assert.match(
+  d.querySelector(".review-panel textarea").value,
+  /Discuss the timing/,
+);
 const backup = w.localStorage.getItem("wellway.journey.v1");
 const reloaded = create(backup);
 await tick();
@@ -216,7 +278,7 @@ assert.equal(
 );
 assert.deepEqual(errors, []);
 console.log(
-  "DOM integration passed: check-in → chart source → plan edit/completion → advisor review → sample import/disconnect → backup validation/restore → guided answer → tour → persisted reload.",
+  "DOM integration passed: check-in → chart source → plan edit/completion → advisor review → sample import/disconnect → backup validation/restore → guided answer → tour → profiles → motion controls → simulated visit → editable follow-up → advisor approval → no-sharing visit → persisted reload.",
 );
 dom.window.close();
 reloaded.window.close();

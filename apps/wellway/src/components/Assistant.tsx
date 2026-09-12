@@ -3,6 +3,7 @@ import { useStore } from "../lib/store";
 import { summary, formatValue, dateLabel, evidence } from "../lib/data";
 import { Modal, Button, Note } from "./UI";
 import { Icon } from "./Icon";
+import { member, healthHistory } from "../lib/profiles";
 export function Assistant({ onClose }: { onClose: () => void }) {
   const { state } = useStore();
   const [question, setQuestion] = useState("");
@@ -60,7 +61,10 @@ export function Assistant({ onClose }: { onClose: () => void }) {
     const ql = q.toLowerCase();
     const current = state.checkins.at(-1);
     let text: string;
-    if (/sleep|week|change|trend|pattern/.test(ql)) {
+    if (/history|allerg|medication|profile|knee/.test(ql)) {
+      text = `Alex’s fictional intake describes a past knee strain, seasonal allergies, and an earlier work shift. ${member.allergies} ${member.medications}\n\nThese are invented demonstration notes, not verified clinical records. They add context for questions at a visit; they do not establish the cause of a wearable trend or justify a treatment change. Open Alex’s profile to inspect the dated source notes.`;
+      setSources(healthHistory.map((h) => `${h.date} · ${h.title} · ${h.id}`));
+    } else if (/sleep|week|change|trend|pattern/.test(ql)) {
       text =
         sleep.average === null
           ? "There are no sleep records in the last seven demo days. Try a sample import in Connections, or explore an earlier backup. I cannot describe a trend without records."
@@ -121,6 +125,7 @@ export function Assistant({ onClose }: { onClose: () => void }) {
           "What changed this week?",
           "How can I fit my plan into today?",
           "How do the connections work?",
+          "What is in my history?",
         ].map((q) => (
           <button key={q} disabled={Boolean(status)} onClick={() => ask(q)}>
             {q}
@@ -201,9 +206,10 @@ export function Assistant({ onClose }: { onClose: () => void }) {
             <div>
               <strong>Use live AI for this conversation</strong>
               <span>
-                Your question, check-in context, goal, and the displayed
-                evidence will be sent to OpenAI. Use fictional details only. API
-                usage is billed to the configured account.
+                Your question, check-in context, goal, fictional profile and
+                health history, and chart evidence will be sent to OpenAI. Use
+                fictional details only. API usage is billed to the configured
+                account.
               </span>
             </div>
           </label>

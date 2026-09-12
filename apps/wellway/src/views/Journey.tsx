@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { History } from "../components/Profiles";
 import { useStore } from "../lib/store";
 import { summary, formatValue, dateLabel } from "../lib/data";
 import type { Metric } from "../lib/types";
@@ -140,6 +141,9 @@ export function Journey({ ask }: { ask: () => void }) {
           </div>
         </section>
       </div>
+      <section className="panel history-panel">
+        <History compact />
+      </section>
     </>
   );
 }

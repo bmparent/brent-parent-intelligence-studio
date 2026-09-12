@@ -11,6 +11,19 @@ export function Icon({
   style?: CSSProperties;
 }) {
   const paths: Record<string, React.ReactNode> = {
+    video: (
+      <>
+        <rect x="3" y="6" width="12" height="12" rx="2" />
+        <path d="m15 10 6-3v10l-6-3" />
+      </>
+    ),
+    mic: (
+      <>
+        <rect x="9" y="2" width="6" height="12" rx="3" />
+        <path d="M5 10v2a7 7 0 0 0 14 0v-2m-7 9v3m-4 0h8" />
+      </>
+    ),
+    phone: <path d="M3 15v-4a15 15 0 0 1 18 0v4l-5-1v-3a12 12 0 0 0-8 0v3Z" />,
     home: (
       <>
         <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z" />

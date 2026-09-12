@@ -2,6 +2,10 @@
 
 Brand source inspected: https://wellway.com/ on 2026-09-12.
 
+The requested expansion preserves the existing shell and adds fictional Alex/Maya portraits, profile dialogs, a dated health-history timeline, and a three-stage video-visit demonstration. One generated paired-portrait asset is used as a CSS sprite to keep both identities consistent. The call view explicitly identifies its portraits and captions as static/scripted.
+
+Motion consists of a slow banner drift, brief content entrances, restrained metric hover lift, and a simulated visit indicator. The footer can pause motion; CSS also respects the system's reduced-motion preference. The video room extends the existing navy/slate/teal modal system, with a single-column mobile layout. Browser fidelity and actual mobile rendering remain unverified for the reasons in VALIDATION.md.
+
 - Original vector wordmark: https://wellway.com/app/uploads/logo-1.svg, saved from the rendered SVG document without alteration.
 - Navy: #111f3e; slate: #444f5d; body: #51575d; white surfaces.
 - Headings: Spectral, 400/500/600. Interface: Inter, 400/500/600/700. Local font files obtained from the Fontsource distributions; included OFL notices apply.
