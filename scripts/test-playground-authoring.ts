@@ -5,6 +5,7 @@ import {enableComposition} from '../src/playground/composition';
 import {enableBlocks,applyBlockOperation} from '../src/playground/authoring';
 import {newNode,flattenNodes,BLOCK_LIMITS} from '../src/playground/authoringSchema';
 import {exportFiles} from '../src/playground/export';
+import {defaultMedia} from '../src/playground/media';
 import {pageMarkup,runtimeScript,renderedStyles} from '../src/playground/renderer';
 import {workspace,workspaceReducer} from '../src/playground/workspace';
 import {supportsProductionCloud} from '../src/playground/releaseBoundary';
@@ -30,3 +31,5 @@ test('canvas structure moves preserve pinned sections, card identities and exact
  assert.equal(applyBlockOperation(p,{type:'section-step',id:'footer',direction:-1}),p);
  assert.throws(()=>applyBlockOperation(p,{type:'card-step',id:'missing',direction:1}));
 });
+
+test('mobile photo zoom is independent of desktop media and survives rendering',()=>{const p=enableBlocks(createProject()),image=root(p).children!.find(n=>n.type==='image')!;const next=applyBlockOperation(p,{type:'patch',id:image.id,patch:{media:defaultMedia(),mobile:{zoom:2}}});assert.equal(root(next).children!.find(n=>n.id===image.id)!.media!.zoom,1);assert.match(renderedStyles(next),/transform:scale\(2\)/);assert.throws(()=>applyBlockOperation(p,{type:'patch',id:image.id,patch:{mobile:{zoom:4}}}));});
