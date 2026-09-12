@@ -1,5 +1,7 @@
 # Site gallery
 
+The Wellway local app and its pending gallery record are documented in [wellway-demo.md](./wellway-demo.md). Its React/Vite source and standalone file are ready for review; the gallery record awaits a genuine browser capture and visual acceptance.
+
 The homepage shows the first six records from `src/data/siteGallery.json`. The Work page shows the complete collection at `/work#site-gallery`, with category filters, search, and a larger image preview. Each image and “Open app” link launches the public app in a new tab; a separate Preview button opens the screenshot dialog. Add future Sites to that JSON file without changing the components.
 
 Each record includes `slug`, `title`, `category`, `description`, `image`, `thumbnail`, and `date`. Add `url` only when the Site has a public destination suitable for portfolio visitors. Use the existing categories Games, Tools, Experiments, or Storefronts. Keep private project URLs out of the public data.
