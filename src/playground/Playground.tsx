@@ -145,11 +145,11 @@ export default function Playground() {
           </button>
         </div>
         <div className="pg-device" aria-label="Preview size">
-          <button aria-pressed={!mobile} onClick={() => setMobile(false)}>
+          <button aria-label="Desktop" aria-pressed={!mobile} onClick={() => setMobile(false)}>
             <Icon name="desktop" />
             <span>Desktop</span>
           </button>
-          <button aria-pressed={mobile} onClick={() => setMobile(true)}>
+          <button aria-label="Mobile" aria-pressed={mobile} onClick={() => setMobile(true)}>
             <Icon name="mobile" />
             <span>Mobile</span>
           </button>

@@ -5,6 +5,7 @@ export type NodeType = typeof nodeTypes[number];
 export type MobileLayout = {
     width?: number;
     height?: number;
+    zoom?: number;
     gap?: number;
     align?: 'left' | 'center' | 'right';
     layout?: 'stack' | 'row';
@@ -94,8 +95,9 @@ export function validateAuthoring(input: unknown): Authoring {
         let mobile: MobileLayout | undefined;
         if (n.mobile !== undefined) {
             const m = object(n.mobile);
-            keys(m, ['width', 'height', 'gap', 'align', 'layout']);
-            mobile = { ...(m.width === undefined ? {} : { width: number(m.width, 10, 100) }), ...(m.height === undefined ? {} : { height: number(m.height, 64, 960) }), ...(m.gap === undefined ? {} : { gap: number(m.gap, 0, 96) }), ...(m.align === undefined ? {} : { align: choice(m.align, ['left', 'center', 'right'] as const) }), ...(m.layout === undefined ? {} : { layout: choice(m.layout, ['stack', 'row'] as const) }) };
+            keys(m, ['width', 'height', 'gap', 'align', 'layout', 'zoom']);
+            mobile = { ...(m.zoom===undefined?{}:{zoom:number(m.zoom,1,3)}), ...(m.width === undefined ? {} : { width: number(m.width, 10, 100) }), ...(m.height === undefined ? {} : { height: number(m.height, 64, 960) }), ...(m.gap === undefined ? {} : { gap: number(m.gap, 0, 96) }), ...(m.align === undefined ? {} : { align: choice(m.align, ['left', 'center', 'right'] as const) }), ...(m.layout === undefined ? {} : { layout: choice(m.layout, ['stack', 'row'] as const) }) };
+            if(type!=='image' && m.zoom!==undefined)throw Error('Only images have photo zoom.');
             if (!container && m.layout !== undefined)
                 throw Error('Only containers have mobile layout.');
         }

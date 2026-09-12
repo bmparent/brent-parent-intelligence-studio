@@ -76,7 +76,7 @@ export function Preview({
         if(data.action!=='command'||!data.operation||typeof data.operation!=='object')return;
         const op=data.operation;
         const shapes:Record<string,string[]>={move:['type','id','parent','before'],patch:['type','id','patch'],duplicate:['type','id'],remove:['type','id'],'section-step':['type','id','direction'],'card-step':['type','id','direction']};
-        if(!shapes[op.type]||Object.keys(op).some(k=>!shapes[op.type].includes(k)))return;
+        if(typeof op.type!=='string'||!Object.hasOwn(shapes,op.type)||Object.keys(op).some(k=>!shapes[op.type].includes(k)))return;
         try{
           const next=applyBlockOperation(project,op as BlockOperation);
           if(next===project)return;
