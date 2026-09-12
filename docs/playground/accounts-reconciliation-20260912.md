@@ -1,6 +1,6 @@
 # Account reconciliation — September 12
 
-Status: implemented and controlled-tested; NOT accepted for hosted deployment.
+Status: implemented and controlled-tested; NOT accepted for production account rollout.
 The September 12 brief supersedes earlier optional AI budgets and resource-creation
 steps: no paid AI, new Google Cloud resources, plans or live Playground sales.
 
@@ -57,3 +57,7 @@ then, this stack remains a reviewable draft separate from accepted editor releas
 A nonce-only account epoch now invalidates pending opens, revision previews and save acknowledgments across tabs. Local storage/BroadcastChannel contain no identity or project data. Dashboard requests also reject responses captured under an earlier epoch. Server owner checks remain authoritative. The actual loopback two-tab browser test passed both a delayed A-open/B-signup case and a delayed A-save/B-login case, preserving the exact local document and rejecting cross-owner saves. Evidence: `accounts-switch-final/results.json`; command: `node scripts/verify-works-account-switch.mjs` with the local fixture running. The session-operation allowlist has a focused unit test.
 
 The matching backend package includes 66 source/vendor parity checks, manifests, captured logs, a journal and plain-language analysis under `artifacts/works_accounts_20260912/`. A configured artifact mirror copy succeeded; `drive_manifest.json` records its exact path and files. This is a filesystem mirror receipt, not independent Google Drive cloud-ingestion verification.
+
+## Hosted build and release follow-up
+
+The existing Git integration built backend preview `dpl_7a7gwFdLzvPabFrZ6vp8WwcE6o6n` at `ecd6b51504c4d84f4828b047a3129cd554b67057` successfully using Turbopack. Backend CI run 34713351465 and frontend CI run 34713361884 passed. This supplements the local webpack result without claiming hosted provider acceptance. The account changes remain drafts (#46 frontend, #61 backend). Editor PR44 is separately live at canonical source `6a47244d68c0ff75ecb5665d9155b17cad95d67a`; see the final implementation ledger for production proof and remaining gates.
