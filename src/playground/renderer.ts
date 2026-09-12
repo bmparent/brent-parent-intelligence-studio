@@ -93,8 +93,9 @@ export function runtimeScript(
   editing = false,
   selected = "",
   bridge = false,
+  channel?: string,
 ): string {
-  return `${glassScript}\n(${pageRuntime.toString()})(${JSON.stringify(runtimeConfig(p, editing, selected, bridge)).replace(/</g, "\\u003c")});${bridge ? `\n(${compositionRuntime.toString()})(${JSON.stringify({editing,bridge})});` : ''}`;
+  return `${glassScript}\n(${pageRuntime.toString()})(${JSON.stringify({...runtimeConfig(p, editing, selected, bridge), channel}).replace(/</g, "\\u003c")});${bridge ? `\n(${compositionRuntime.toString()})(${JSON.stringify({editing,bridge,channel})});` : ''}`;
 }
 function mediaStyles(p: Project) {
   const settings=mediaSlots(p).filter(s=>s.media&&s.image);if(!settings.length)return '';
@@ -119,7 +120,8 @@ export function pageDocument(
     selected?: string;
     bridge?: boolean;
     external?: boolean;
+    channel?: string;
   } = {},
 ): string {
-  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="${p.rendererVersion}"><title>${escapeHtml(p.name)}</title>${options.external ? '<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="styles.css">' : `<style id="page-style">${tokensCss(p)}${renderedStyles(p)}</style>`}</head><body data-reduced="${p.glass.reducedMotion}"><div id="page-root">${pageMarkup(p)}</div>${options.external ? '<script src="script.js" defer></script>' : `<script>${runtimeScript(p, options.editing, options.selected, options.bridge)}</script>`}</body></html>`;
+  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="${p.rendererVersion}"><title>${escapeHtml(p.name)}</title>${options.external ? '<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="styles.css">' : `<style id="page-style">${tokensCss(p)}${renderedStyles(p)}</style>`}</head><body data-reduced="${p.glass.reducedMotion}"><div id="page-root">${pageMarkup(p)}</div>${options.external ? '<script src="script.js" defer></script>' : `<script>${runtimeScript(p, options.editing, options.selected, options.bridge, options.channel)}</script>`}</body></html>`;
 }

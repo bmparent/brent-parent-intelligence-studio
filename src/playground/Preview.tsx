@@ -31,7 +31,8 @@ export function Preview({
   const frame = useRef<HTMLIFrameElement>(null);
   const revision = useRef(0);
   const sent = useRef<{ stamp: string; valid: () => boolean; consumed: boolean } | null>(null);
-  const [source] = useState(() => pageDocument(project, { editing, selected, bridge: true }));
+  const [channel] = useState(() => crypto.randomUUID());
+  const [source] = useState(() => pageDocument(project, { editing, selected, bridge: true, channel }));
   const [loaded, setLoaded] = useState(false);
   useLayoutEffect(() => {
     revision.current++;
@@ -41,6 +42,7 @@ export function Preview({
     const message = (event: MessageEvent) => {
       if (event.source !== frame.current?.contentWindow || !event.data || typeof event.data !== 'object') return;
       const data = event.data;
+      if (data.channel !== channel) return;
       if (data.type === "playground-ready") setLoaded(true);
       if (data.type === "playground-select" && project.sections.some(s => s.id === data.id)) onSelect(data.id);
       if (data.type === "playground-link" && typeof data.href === "string") onLink(data.href);
@@ -66,6 +68,7 @@ export function Preview({
       receipt.consumed = true; // One gesture, one history entry; duplicate messages cannot replay it.
       const apply = (next: Project) => {
         if (!valid()) { notify?.('Workspace changed. Repeat this move in the current project.'); return; }
+        if (JSON.stringify(next) === JSON.stringify(project)) { receipt.consumed = false; return; }
         edit(current => current === project ? next : current);
         onSelect(section.id);
         notify?.('Hero layout updated. Undo restores the previous arrangement.');
@@ -89,7 +92,7 @@ export function Preview({
     };
     window.addEventListener("message", message);
     return () => window.removeEventListener("message", message);
-  }, [onSelect, onLink, project, editing, edit, guard, notify]);
+  }, [onSelect, onLink, project, editing, edit, guard, notify, channel]);
   useEffect(() => {
     if (!loaded) return;
     // Synchronization must also run while the preview panel is hidden or paint is throttled.
@@ -97,10 +100,14 @@ export function Preview({
     sent.current = { stamp, valid: guard?.() || (() => false), consumed: false };
     frame.current?.contentWindow?.postMessage({
       type: "playground-update",
+      channel,
       html: pageMarkup(project),
       css: tokensCss(project) + renderedStyles(project),
-      config: { ...runtimeConfig(project, editing, selected, true), compositionStamp: stamp },
+      config: { ...runtimeConfig(project, editing, '', true), compositionStamp: stamp, channel, revision: revision.current },
     }, "*");
-  }, [project, editing, selected, loaded, documentId, guard]);
+  }, [project, editing, loaded, documentId, guard, channel]);
+  useEffect(() => {
+    if (loaded) frame.current?.contentWindow?.postMessage({ type: 'playground-selection', channel, selected }, '*');
+  }, [selected, loaded, channel, project, editing]);
   return <iframe ref={frame} onLoad={() => setLoaded(true)} title="Your page preview" className={mobile ? "pg-preview mobile" : "pg-preview"} sandbox="allow-scripts" srcDoc={source} />;
 }
