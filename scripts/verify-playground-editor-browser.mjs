@@ -3,6 +3,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { execFileSync } from 'node:child_process';
+import { verifyDirectGesture } from './verify-playground-direct-gesture.mjs';
 
 const require = createRequire(import.meta.url);
 const pw = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
@@ -32,6 +33,7 @@ for (const engine of engines) {
     const name = `${engine}-${width}`;
     const record = { name, base, release: 'local-spatial-2026-09-10', checks: [], errors: [], requests: [], console: [] };
     const context = await browser.newContext({ viewport: { width, height: 1000 }, acceptDownloads: true });
+    await context.tracing.start({ screenshots: true, snapshots: true });
     const page = await context.newPage();
     page.setDefaultTimeout(15000);
     page.on('pageerror', error => record.errors.push(error.message));
@@ -95,6 +97,7 @@ for (const engine of engines) {
         assert.equal(await frame.locator('#hero img').count(), 1);
       }
       check('six image placements synchronize in the actual iframe');
+      await verifyDirectGesture({page,frame,panel,jsonDownload,output,name,check});
       await panel('Controls');
       await page.getByRole('button', { name: 'Behind text', exact: true }).click();
       await panel('Preview');
@@ -172,6 +175,7 @@ for (const engine of engines) {
       await page.screenshot({ path: path.join(output, name + '-failure.png') }).catch(() => {});
       await writeFile(path.join(output, name + '-dom.txt'), await page.locator('body').innerText().catch(() => 'unavailable'));
     } finally {
+      await context.tracing.stop({ path: path.join(output, name + '-trace.zip') });
       results.push(record);
       await writeFile(path.join(output, 'results.json'), JSON.stringify({ testedAt: new Date().toISOString(), commit: process.env.GITHUB_SHA || null, browserPlugin: 'not available; Playwright used', results }, null, 2));
       await context.close();
