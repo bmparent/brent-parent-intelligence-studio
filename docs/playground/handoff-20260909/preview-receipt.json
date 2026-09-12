@@ -1,0 +1,280 @@
+{
+  "timestamp": "2026-09-09T20:44:42.303Z",
+  "frontend": {
+    "sha": "11efeefe446eb88605cd581828e2a1c2b2988d86",
+    "url": "https://8a335012.eidosworks.pages.dev",
+    "pr": 28,
+    "commitDirty": true,
+    "note": "Only generated timestamp/line-ending output remains outside commits; checked runtime source has no semantic diff."
+  },
+  "backend": {
+    "sha": "f1e1934d840ea19ec14d9c13d62b966d44f57d0c",
+    "url": "https://eidos-sentinel-nv30nwz2e-1brentbm-1876s-projects.vercel.app",
+    "deployment": "dpl_9PmFJGfq7hF8USFyD7nMqhN1EvR8",
+    "pr": 54
+  },
+  "parityNormalization": "UTF-8 LF",
+  "parity": [
+    {
+      "path": "functions/_shared/platform/community.ts",
+      "sha256": "ffba23b22053ecbf9fba8a610c629340f8488657d03e124f6a1d1d9632a85314",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/core.ts",
+      "sha256": "6718efc36f0cfad98e587e9d0c8c3fc7c9a0cddbeab2106aff7877e3537edb0c",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/kitArchive.ts",
+      "sha256": "5767fae0e805815f0f6b43ca7946c12c719e463e9d8f8d361df03f89e1d9ba8c",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/knowledge.ts",
+      "sha256": "39be8eee4a67db1dd6247d42aa2fd33bc8a5db6a0ceeed31b107db495fefce18",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberAuth.ts",
+      "sha256": "9f8f67e1ee5249c4523a0959850117b2ea73ac2e55f369d364526660e8758fcd",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberMail.ts",
+      "sha256": "837abdf90b29a1fbfa8a1c7b7b603f952e629de7ae6ad1270061cc2bce048d11",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/mentions.ts",
+      "sha256": "69d5d4e1a56d104021465e71947d0f2fe2cf0c56ab017f5e43e4e2a06b5625c9",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/newsletter.ts",
+      "sha256": "ffdeb32d158d29ab135c93f10444d2bc72e038a781dacb8d3999dc274c53e915",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playground.ts",
+      "sha256": "ba74b9038413a7d14921dd0f7dc119b235652ec0b7aaebc466712a34838ea492",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playgroundOrders.ts",
+      "sha256": "b0cae4551bed5b9716bbd811451de37a46496d1a1c48f88b9a530cbb3522d46c",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playgroundSchema.ts",
+      "sha256": "63f5815f6b5ee9116f5bb92fa30f648d0bbe42e850ee4a9f9ea6979e0415f67e",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/shop.ts",
+      "sha256": "1adc74bce32616803956559a3712c0e0c392688048b35f960bdedf37105ddf45",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/stripe.ts",
+      "sha256": "059cbcb758de33a767f33e9dbcd391085d41651c9d26f9ffbac9b7ad0383f7b8",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/http.ts",
+      "sha256": "18c4b1eb4c6748e83423b93bf734a5ac01ee09ba318766dc4c3d562b7d03787b",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/types.ts",
+      "sha256": "4e7292b2a6d2293bbaa4d5e2f764113b809d8dc81daeba48889786e199bc13d2",
+      "matches": true
+    },
+    {
+      "path": "functions/api/assistant.ts",
+      "sha256": "1fa7d72974b1c93d237fc499619ea241cf856664f6ab9be6a9e51718bf983a72",
+      "matches": true
+    },
+    {
+      "path": "functions/api/public-config.ts",
+      "sha256": "893b69932d8dc86aaef214a66f58184015212b8eec92ca250ad2ad6068a78c2d",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/agents.ts",
+      "sha256": "356d2834323d81f33492dcbb043b55ea1ed3c23daafdc540117139405a40ff8d",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/maintenance.ts",
+      "sha256": "15c5aa2dfc0320dffba7a3176a99732604913876b52bfe27f926699baf6b5854",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/moderate.ts",
+      "sha256": "7c0569a3907292c33fb1167496eb968662e0722943b0c16662589004132177cb",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/replies.ts",
+      "sha256": "ff27f9a57ce203f1d16e2f059673307dc06c6e71eff12b44c9ee54688ee06e4c",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/threads.ts",
+      "sha256": "73ade46cb3ba62a22d0006c739835be8ffe28b886a5b029f0b624869038d08a8",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/account.ts",
+      "sha256": "86d8d5c8ca72b1ffa2e106a3b19a2f666c9f091540c1002358c17ab9b43e2893",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/auth.ts",
+      "sha256": "0fa1e1a4d15de31da7f7f03be46b4f14c424607d3e5d581b866dbd52b9edfe1b",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/directory.ts",
+      "sha256": "0865e901e9b303abffba315deb7219118c84b1e149364823b96f379ac8938336",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/unsubscribe.ts",
+      "sha256": "c853829562e7dce388e2a9748e3b833b8d76b9db48fc6d0bcaf7dd52ab22161f",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/checkout.ts",
+      "sha256": "aaec1af96fcd0e317ef828310741618bef933026392e91af2a851a9eb47f2ef2",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/download.ts",
+      "sha256": "eafd3ee3ee5a5a3fbc76d0bbc8cf53d6b9ff5d2c5d0203e8d58b1511154322a3",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/status.ts",
+      "sha256": "30095e29dffc9463eb0de068c2f70e05ea9cd97fb498cb6f1698a0a6e1073326",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/webhook.ts",
+      "sha256": "d4efb9dc290327186ce81f7f674bc5ecca2622cb4e6b4b90421b6809c5357d78",
+      "matches": true
+    },
+    {
+      "path": "functions/community/feed.ts",
+      "sha256": "e5961f05a78265076bf7e926e231f754cce16a25097cd8dc925b7915fea94a6a",
+      "matches": true
+    },
+    {
+      "path": "functions/community/sitemap.xml.ts",
+      "sha256": "266e68a7427f6d13ee421b95a35924f3626f5d1ea6676c13c6eafe3d6ba286ce",
+      "matches": true
+    },
+    {
+      "path": "functions/community/thread/[id].ts",
+      "sha256": "3e4a155df8f177087d10411cd12caecc16fff389615a5ecee5ab5fbb9a9f76d6",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/checkout.ts",
+      "sha256": "2de5e28a21d6995105e2a4206e70dc2b9778ef65f2d8e8ea3d2c6e229859cc64",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/projects.ts",
+      "sha256": "e0ff2ecd98eb3feb584d8e281af855f44e4a370567032ddb0ea11365c2e9c572",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/purchases.ts",
+      "sha256": "b28ad9d8192475e5be44a56b579fb8bfd69afc22575d5e6e541b77b3aa530346",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/webhook.ts",
+      "sha256": "fab1a906902dd838ba8a71dc5e75a5a8ab1530dc4a21754fb314b9888a403a2d",
+      "matches": true
+    },
+    {
+      "path": "src/playground/model.ts",
+      "sha256": "0573bd5a73ca4ba32cf92509e4cd29a14dbeab15fa6d947ce030b001076aba6f",
+      "matches": true
+    },
+    {
+      "path": "src/playground/approved-glass-preset.json",
+      "sha256": "44273a88a0bc0ed764de2026bca3960318c87ed2d1be382c554213c49480b1de",
+      "matches": true
+    },
+    {
+      "path": "src/playground/limits.ts",
+      "sha256": "ac23967b893d4a326820b3273e0b05ef561ad5ce5f42d11bcb59c81fa0dcfe63",
+      "matches": true
+    },
+    {
+      "path": "src/playground/export.ts",
+      "sha256": "506b5d4db4204088fc5f0f0dd8a23c8daedf5da0e1932ae4bb668f0aa4521e24",
+      "matches": true
+    },
+    {
+      "path": "src/playground/renderer.ts",
+      "sha256": "361eca1944a9a57c0829861d5d73b9ce4867b5efc835fa840f163d80487d4778",
+      "matches": true
+    },
+    {
+      "path": "src/playground/runtime.ts",
+      "sha256": "48912b30ca77b6577980a4ebbf22147ac1567266fd8ba17ef347071401bf8655",
+      "matches": true
+    },
+    {
+      "path": "src/playground/pageStyles.ts",
+      "sha256": "e13f0039b06fb1be4d9af06c5d1b880893c13f057cfd4ae8cd7cacf434a4d441",
+      "matches": true
+    },
+    {
+      "path": "src/playground/glassBundle.ts",
+      "sha256": "f50c7440eb02eedc54011ba79e4ca8615b5011ce7aa7b127a87bf837f51b5507",
+      "matches": true
+    },
+    {
+      "path": "migrations/0001_eidos_platform.sql",
+      "sha256": "3a0ddf7d09a70375b1f111ca532300ae4f5b311dce520cc2b3aa171e6bafd9df",
+      "matches": true
+    },
+    {
+      "path": "migrations/0002_members.sql",
+      "sha256": "2df4ca3ba7440208d571fcb7a9b4c7cf599acf732016cb252a8f2df6b7313b68",
+      "matches": true
+    },
+    {
+      "path": "migrations/0003_playground.sql",
+      "sha256": "0a174868697de5697d71e2b39b293580725e9546cefbf3e45b6589c05545eac3",
+      "matches": true
+    }
+  ],
+  "checks": [
+    {
+      "scope": "Preview",
+      "url": "https://8a335012.eidosworks.pages.dev/playground/",
+      "status": 200,
+      "gate": "PASS",
+      "note": "Canonical trailing slash returns HTML 200. Browser interaction not verified."
+    },
+    {
+      "scope": "Preview",
+      "url": "https://eidos-sentinel-nv30nwz2e-1brentbm-1876s-projects.vercel.app/api/works/v1/health",
+      "status": 302,
+      "sha256": "7c040f8633b8823d72ed63da9b3b2dfe9846e912c66a64c9433ec9c4815d76c2",
+      "bytes": 15,
+      "gate": "BLOCKED"
+    }
+  ],
+  "integratedRelayVerified": false,
+  "providerEventIds": [],
+  "immutableDeliveryHash": null,
+  "integratedRelayBlocker": "Existing Pages preview binding targets an older validation backend; new previews are not an integrated pair."
+}

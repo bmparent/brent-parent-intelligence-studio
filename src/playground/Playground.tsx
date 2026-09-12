@@ -26,7 +26,7 @@ import "./editor.css";
 export default function Playground() {
   const {
     project,
-    target, documentId, guard, replace, acknowledge,
+    target, documentId, guard, replace, acknowledge, accountVersion,
     ready,
     edit,
     undo,
@@ -361,7 +361,7 @@ export default function Playground() {
             ))}
           </details>
           <AIAssist project={project} target={target} documentId={documentId} selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id} guard={guard} edit={change} />
-          <CloudProjects project={project} target={target} documentId={documentId} guard={guard} load={replace} acknowledge={acknowledge} disabled={!ready || !!comparison} />
+          <CloudProjects key={accountVersion} project={project} target={target} documentId={documentId} guard={guard} load={replace} acknowledge={acknowledge} disabled={!ready || !!comparison} />
           <div
             className={`pg-save-status ${storageError ? "error" : ""}`}
             role="status"
@@ -398,7 +398,7 @@ export default function Playground() {
                 edit={change}
                 guard={guard}
                 notify={setNotice}
-                documentId={documentId}
+                documentId={documentId+':account:'+accountVersion}
                 selectedNode={selectedNode}
                 onNodeSelect={selectNode}
                 onInspectNode={(id,sectionId)=>{selectNode(id,sectionId);setPanel("inspector");}}
