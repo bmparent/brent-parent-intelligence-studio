@@ -1,0 +1,123 @@
+{
+  "title": "Before You Buy an AI Agent, Define What It May Change",
+  "slug": "ai-agent-permissions-before-pilot",
+  "description": "Choose an AI pilot by defining permitted actions, evidence of success and recovery costs before expanding its access to business systems.",
+  "dek": "The useful unit of AI autonomy is a specific business action with a clear limit, a verifiable result and an owner for recovery.",
+  "category": "Automation",
+  "publishedAt": "2026-09-12T15:59:50.860Z",
+  "updatedAt": "2026-09-12T15:59:50.860Z",
+  "author": "Eidos Works Editorial",
+  "byline": "Eidos Works Editorial",
+  "readingTimeMinutes": 5,
+  "tags": [
+    "AI agents",
+    "Workflow permissions",
+    "Pilot evaluation",
+    "Operational automation"
+  ],
+  "canonicalPath": "/insights/ai-agent-permissions-before-pilot",
+  "excerpt": "An AI assistant can save preparation time while still being the wrong tool to change an order. Define the action, evidence and recovery path before buying autonomy.",
+  "pillar": "AI integrations that produce practical business value",
+  "slot": "evening",
+  "format": "strategic-analysis",
+  "searchIntent": "How should a small business decide which actions an AI agent can perform without approval?",
+  "featured": false,
+  "draft": false,
+  "thesis": "Grant an AI system autonomy one business action at a time, based on verifiable outcomes and the cost of recovering from mistakes.",
+  "sources": [
+    {
+      "title": "Building effective agents",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "publisher": "Anthropic",
+      "publishedDate": "2024-12-19",
+      "accessedDate": "2026-09-12",
+      "type": "primary"
+    },
+    {
+      "title": "Demystifying evals for AI agents",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "publisher": "Anthropic",
+      "publishedDate": "2026-01-09",
+      "accessedDate": "2026-09-12",
+      "type": "primary"
+    }
+  ],
+  "takeaways": [
+    "Specify the permitted business action before selecting an agent or integration.",
+    "Keep permission to read, prepare, change and communicate independently configurable.",
+    "Verify the receiving system’s state, including whether an uncertain action already happened.",
+    "Count review and recovery work when judging whether a pilot saves time."
+  ],
+  "relatedSlugs": [
+    "spreadsheet-chaos-operational-dashboards",
+    "storefront-proof-loop-ux-assets-operations"
+  ],
+  "body": [
+    {
+      "heading": "Buy a bounded outcome",
+      "paragraphs": [
+        "Grant an AI system autonomy one business action at a time, based on verifiable outcomes and the cost of recovering from mistakes. A tool that can prepare an excellent response has not yet earned permission to send it, alter an order or promise a delivery date.",
+        "For a small business, the purchasing question is concrete: which repeated action could this system take off someone’s desk, and what would that person need to inspect or repair afterward? That question produces a more useful pilot brief than a broad request to automate operations.",
+        "Anthropic’s Building effective agents distinguishes fixed workflows from systems that choose their own steps, and recommends adding complexity only when it improves results. Its evaluation guidance separates an agent’s account of what happened from the actual final state. Those are the source-backed foundations here. The decision framework and examples below are Eidos editorial analysis, not measured customer results."
+      ]
+    },
+    {
+      "heading": "Separate preparation from permission",
+      "paragraphs": [
+        "Consider a hypothetical merchandise business with an assistant that reads incoming requests. Summarizing a request, preparing an internal order change and sending a customer confirmation are three different responsibilities. Bundle them into one permission and the least reliable step can determine the risk of the entire workflow.",
+        "Start by writing down four boundaries: which records the assistant may read; which drafts it may prepare; which saved values it may change; and which messages it may send. Enforce those boundaries in the connected tools and application permissions. An instruction in a prompt is useful context, but it should not be the only thing preventing an unauthorized write.",
+        "The first pilot might read synthetic requests and create internal drafts only. If that produces useful work, the next step could be permission to assign an internal category under explicit rules. Sending messages or committing order changes requires its own acceptance decision. There is no need to unlock every action to get value from preparation."
+      ]
+    },
+    {
+      "heading": "Write a short agreement for each action",
+      "paragraphs": [
+        "For every proposed action, fill in the following details before a vendor demonstration. A missing answer is work for the project brief. It is especially important to identify who owns an exception; a queue that nobody checks merely moves the unfinished work."
+      ],
+      "bullets": [
+        "Action and scope: the exact record and fields that may change, with any quantity, time or usage limits.",
+        "Required evidence: the authoritative information that must exist before the change is allowed.",
+        "Stop condition: missing, conflicting or stale information that requires a named person to decide.",
+        "Success receipt: the receiving system’s identifier and confirmed state after the action.",
+        "Recovery: how to determine what happened, prevent duplicate work and correct an accepted mistake."
+      ]
+    },
+    {
+      "heading": "Walk through an ambiguous order change",
+      "paragraphs": [
+        "Imagine a customer asks to change a shirt color after placing an order. The assistant can locate the request and prepare a proposed edit. Whether it may apply that edit depends on the business rule: perhaps only while the order is still awaiting production. This is an illustrative policy, not a claim about a particular storefront platform.",
+        "If the production status is unavailable, the assistant should leave the order unchanged and route the request to its owner. If a person approves the proposed change, the system should recheck the relevant order state before applying it. Approval given while an order was waiting should not silently authorize an edit after production begins.",
+        "Now suppose the write times out. Immediately retrying could duplicate an action; declaring failure could also be wrong. The workflow needs a way to look up whether the original request took effect, using a stable operation identifier where supported. The customer-facing status should remain uncertain until the receiving system resolves it.",
+        "This walkthrough reveals a buying requirement: ask the integrator to demonstrate a stale order, an unavailable status and an uncertain write, as well as a successful edit. If the platform cannot expose the needed state or recovery mechanism, keep that action as a draft for staff."
+      ]
+    },
+    {
+      "heading": "Measure the work that remains",
+      "paragraphs": [
+        "Anthropic’s evaluation article recommends checking outcomes and using repeated trials because behavior can vary. For this pilot, Eidos recommends a test set with routine requests, exceptions and ambiguous cases. Agree on the expected result for each case before running it, including cases where stopping is the correct outcome.",
+        "Record completed actions, wrong actions, appropriate handoffs, unnecessary handoffs and unresolved outcomes separately. A single completion percentage can hide a system that completes routine work while making expensive mistakes at the boundary.",
+        "For a matched batch of requests, calculate net staff time saved as baseline handling time minus assisted handling, review and recovery time. Measure the complete batch so failed attempts stay in the calculation. Track provider and integration costs separately; an improvement in staff time does not by itself establish financial return.",
+        "A small pilot cannot establish performance across every season, customer or system change. Keep its test conditions visible and repeat relevant checks when the model, prompts, tools or business rules change."
+      ]
+    },
+    {
+      "heading": "What this means for your site",
+      "paragraphs": [
+        "If your site offers an AI assistant, its interface should explain what a visitor has actually accomplished. A prepared request, a submitted request and an accepted order change deserve distinct status messages. Make the handoff path visible, and avoid a success message that the underlying business system cannot support.",
+        "Human review has a cost too. Asking staff to approve every harmless internal classification can erase the benefit of automation. The aim is to put review where the consequence or uncertainty warrants it, then reduce unnecessary review only when the pilot evidence supports that specific action."
+      ]
+    },
+    {
+      "heading": "How Eidos Works applies this",
+      "paragraphs": [
+        "Our recommendation for an automation brief is to include one repeated task, one permitted action, an exception owner and the evidence needed to expand its scope. That gives a business and its builder something concrete to evaluate together before connecting more systems.",
+        "Bring a description of the current workflow and a fictional example of a troublesome request. Use those to define a small pilot with explicit acceptance conditions. Discuss the workflow with Eidos Works through the project contact below; private customer records are not needed for the initial brief."
+      ]
+    }
+  ],
+  "cta": {
+    "label": "Discuss a focused automation pilot",
+    "href": "/contact"
+  },
+  "ogImage": "/insights-og/ai-agent-permissions-before-pilot.svg"
+}

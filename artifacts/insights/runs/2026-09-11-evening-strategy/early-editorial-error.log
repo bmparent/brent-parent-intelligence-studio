@@ -1,0 +1,19 @@
+
+> brent-parent-intelligence-studio@1.1.0 verify:editorial
+> node scripts/verify-editorial.mjs
+
+node:internal/fs/promises:637
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'C:\Users\bmpar\codex-worktrees\insights-friday-20260911\dist\index.html'
+    at async open (node:internal/fs/promises:637:25)
+    at async readFile (node:internal/fs/promises:1269:14)
+    at async file:///C:/Users/bmpar/codex-worktrees/insights-friday-20260911/scripts/verify-editorial.mjs:71:14 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\bmpar\\codex-worktrees\\insights-friday-20260911\\dist\\index.html'
+}
+
+Node.js v24.14.0

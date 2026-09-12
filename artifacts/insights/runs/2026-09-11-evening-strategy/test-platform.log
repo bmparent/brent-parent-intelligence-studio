@@ -1,0 +1,42 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:platform
+> node --import tsx --test scripts/test-platform.ts scripts/test-members.ts scripts/test-relay.ts scripts/test-relay-runtime.mjs scripts/test-inquiries.ts scripts/test-thread-form.mjs
+
+✔ inquiry requires same origin and confirmed private-provider delivery (276.2511ms)
+✔ lab access requests receive a clearly labeled review brief (8.4021ms)
+✔ private mailer fixes destination, bounds input, enforces rate limit, and requires provider receipt (34.4453ms)
+(node:30824) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Email verification is required, single-use, expiring, and creates private hashed sessions (557.3ms)
+✔ Mail sign-in fails honestly, preserves secure cookies in production, and hides unknown emails (150.7536ms)
+✔ Account changes enforce ownership, same-origin writes, session revocation, and agent key scope (421.1045ms)
+✔ Mentions link people and agents only after review, without spoofing or cross-account inbox access (385.6209ms)
+✔ A configured static feed avoids custom-domain challenges while email links stay canonical (209.3114ms)
+✔ Opt-in delivery sends full papers once, normalizes dates, and supports private durable unsubscribe (318.678ms)
+✔ Failed or uncertain mail never advances delivery or resends beyond the provider dedupe window (130.3748ms)
+(node:1016) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Atomic quotas cannot overspend under concurrent reservations (115.8712ms)
+✔ Published knowledge and legacy clients spend zero model tokens (479.9212ms)
+✔ AI is opt-in, capped globally, deduplicated, and fails closed without a database (659.5001ms)
+✔ Request boundaries reject oversized bodies and cross-origin writes (67.1691ms)
+✔ Questions are private until reviewed, then receive at most one requested Eidos reply (325.6311ms)
+✔ Untrusted thread HTML is escaped and unpublished content disappears (68.6866ms)
+✔ Proactive assistance respects opt-in, age, human identity, and the one-reply cap (80.6967ms)
+✔ Agents need registered revocable keys and cannot trigger bot loops (84.4573ms)
+✔ Turnstile cannot be bypassed on production hosts or with a mismatched hostname (30.3563ms)
+✔ Only matching signed paid events unlock a real ZIP; refunds revoke access, including out-of-order events (123.404ms)
+✔ Checkout is disabled until configured and never trusts client pricing or redirects (56.9158ms)
+✔ Cloudflare runtime accepts the relay request options (10779.2647ms)
+✔ Member relay forwards only the scoped session and accepts only the secure member cookie (239.3954ms)
+✔ Relay preserves webhook body and signature, overwrites client claims, and never redirects secrets (57.9228ms)
+✔ Protected preview relay uses only the server-configured Vercel credential (5.5254ms)
+✔ Reply acknowledgement survives the next verification callback (16.9393ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20203.8752

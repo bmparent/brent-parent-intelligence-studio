@@ -31,6 +31,7 @@ Eidos Works designs digital experiences and operational tools for organizations 
 - Proof-stage Eidos Brain research with human review
 
 ## Insights
+- [Before You Buy an AI Agent, Define What It May Change](https://eidos-works.com/insights/ai-agent-permissions-before-pilot): Choose an AI pilot by defining permitted actions, evidence of success and recovery costs before expanding its access to business systems.
 - [Accessible Quote Forms: Help Customers Recover From Errors](https://eidos-works.com/insights/accessible-quote-form-errors-recovery): A practical guide to quote-form labels, validation and recovery, with a worked example and a checklist for your next storefront review.
 - [What Bing AI Citations Can Tell You About Business Value](https://eidos-works.com/insights/bing-ai-citations-measure-business-value): Use Bing AI citation reports to choose better page improvements while keeping visibility, website visits, qualified inquiries, and revenue separate.
 - [The Storefront Proof Loop Connects UX, Assets, and Operations](https://eidos-works.com/insights/storefront-proof-loop-ux-assets-operations): A strategic framework for connecting storefront UX, Cloudinary-ready assets, production workflow reality, and post-launch content into one stronger commerce system.

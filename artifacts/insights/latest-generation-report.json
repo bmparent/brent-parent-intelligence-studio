@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-09-10T22:23:26.919Z",
+  "generated_at_utc": "2026-09-12T16:05:23.020Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "ai-agent-permissions-before-pilot",
+      "canonical_url": "https://eidos-works.com/insights/ai-agent-permissions-before-pilot",
+      "og_image": "/insights-og/ai-agent-permissions-before-pilot.svg"
+    },
     {
       "slug": "accessible-quote-form-errors-recovery",
       "canonical_url": "https://eidos-works.com/insights/accessible-quote-form-errors-recovery",
@@ -68,6 +73,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/ai-agent-permissions-before-pilot.svg",
     "public/insights-og/accessible-quote-form-errors-recovery.svg",
     "public/insights-og/bing-ai-citations-measure-business-value.svg",
     "public/insights-og/storefront-proof-loop-ux-assets-operations.svg",
