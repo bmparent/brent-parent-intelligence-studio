@@ -1,0 +1,17 @@
+{
+  "name": "eidos-wellway-ai",
+  "main": "index.ts",
+  "compatibility_date": "2026-06-10",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": { "enabled": false },
+  "durable_objects": {
+    "bindings": [{ "name": "WELLWAY_BUDGET", "class_name": "WellwayBudget" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["WellwayBudget"] }],
+  "vars": {
+    "WELLWAY_AI_ENABLED": "false",
+    "WELLWAY_TOTAL_MICRO_USD": "0",
+    "WELLWAY_DAILY_MICRO_USD": "0",
+  },
+}
