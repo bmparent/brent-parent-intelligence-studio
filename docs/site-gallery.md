@@ -1,5 +1,7 @@
 # Site gallery
 
+The Wellway member/advisor app is documented in [wellway-demo.md](./wellway-demo.md). Its Tools card uses genuine browser captures and opens `/demos/wellway/`. Source, evidence, simulated behavior and hosted AI configuration are documented separately.
+
 The homepage shows the first six records from `src/data/siteGallery.json`. The Work page shows the complete collection at `/work#site-gallery`, with category filters, search, and a larger image preview. Each image and “Open app” link launches the public app in a new tab; a separate Preview button opens the screenshot dialog. Add future Sites to that JSON file without changing the components.
 
 Each record includes `slug`, `title`, `category`, `description`, `image`, `thumbnail`, and `date`. Add `url` only when the Site has a public destination suitable for portfolio visitors. Use the existing categories Games, Tools, Experiments, or Storefronts. Keep private project URLs out of the public data.
@@ -44,6 +46,6 @@ Three full interactive reconstructions are also available in the Work collection
 
 The first record links to the standalone public calculator at https://embroiderycalc-public.pages.dev/. The full and thumbnail WebP files come from a September 6, 2026 production homepage capture, after deployment of calculator commit 249c73c1307a06f4c05ea7f562d2b65ad9a41a3f. The calculator at /calculator/ supports browser-local estimates, DST analysis, artwork palettes, Madeira thread matching, history, and calibration. No account, ERP connection, AI service, or runtime secret is required. Optional analytics are disabled.
 
-The gallery retains all 17 records: 11 public Sites apps, this standalone calculator, and five saved InkSoft references. The separate embroiderycalc-preview Site remains accessible. The stable calculator slug and image filenames are retained.
+Before the Wellway addition, the gallery contained 17 records: 11 public Sites apps, this standalone calculator, and five saved InkSoft references. The separate embroiderycalc-preview Site remains accessible. The stable calculator slug and image filenames are retained.
 
 The older embroiderycalc-pro Cloudflare project retains its June 10 Printavo/AI deployment c27e2636-e7b8-40c3-a99f-c405a5d92a0d and existing runtime settings. Its automatic production builds are paused so the current standalone repository cannot replace the operational interface. The public project is a separate static direct upload. No private order search or paid AI call was used for release verification.

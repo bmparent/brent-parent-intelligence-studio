@@ -1,0 +1,584 @@
+.portrait {
+  background-image: url("./assets/fictional-profiles.png");
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  background-color: #d8e4ed;
+  box-shadow:
+    0 0 0 3px #fff,
+    0 4px 18px #132d4712;
+}
+.portrait-member {
+  background-position: left center;
+}
+.portrait-advisor {
+  background-position: right center;
+}
+.portrait-button {
+  display: inline-flex;
+  border: 0;
+  padding: 0;
+  background: none;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.portrait-button:hover .portrait {
+  box-shadow:
+    0 0 0 3px #b9dce4,
+    0 6px 22px #132d471a;
+}
+.profile-trigger .portrait {
+  width: 40px;
+  height: 40px;
+}
+.portrait-large {
+  width: 112px;
+  height: 112px;
+}
+.profile-intro {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin: 25px 0;
+}
+.profile-intro h3 {
+  font-family: Spectral, Georgia, serif;
+  font-size: 29px;
+}
+.profile-intro p {
+  font-size: 13px;
+  margin: 5px 0;
+}
+.profile-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
+}
+.profile-facts p {
+  font-size: 13px;
+  margin: 7px 0;
+}
+.health-history .timeline {
+  margin-top: 25px;
+}
+.health-history details {
+  margin-top: 7px;
+  padding-top: 0;
+  border: 0;
+}
+.health-history details summary {
+  min-height: 28px;
+  font-size: 12px;
+  color: var(--teal);
+}
+.health-history details p {
+  font-size: 12px;
+  margin-top: 3px;
+}
+.history-panel {
+  margin-top: 23px;
+}
+.visit-card {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  padding: 23px 26px;
+  background: linear-gradient(115deg, #edf4f8, #f8fcfd);
+  border: 1px solid #dce8ee;
+  border-radius: 12px;
+  margin: 22px 0;
+}
+.visit-card-copy {
+  flex: 1;
+  min-width: 0;
+}
+.visit-card h3 {
+  font-family: Spectral, Georgia, serif;
+  font-size: 27px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.visit-card p {
+  font-size: 13px;
+  margin: 4px 0;
+}
+.visit-card .button {
+  flex-shrink: 0;
+}
+.visit-progress {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 22px 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: #7b889a;
+}
+.visit-progress .active {
+  color: var(--teal);
+  font-weight: 600;
+}
+.visit-preflight {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) 1.2fr;
+  gap: 25px;
+  align-items: center;
+}
+.visit-preflight p {
+  font-size: 13px;
+  margin: 8px 0;
+}
+.sample-camera {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #d7e5eb;
+}
+.portrait-scene {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  background-size: 200% auto;
+}
+.sample-camera > span:last-child {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px 13px 12px;
+  background: linear-gradient(transparent, #14253dc9);
+  color: #fff;
+  font-size: 12px;
+}
+.visit-room {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(220px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.advisor-stage {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #d7e5eb;
+}
+.visit-sim-label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  border-radius: 5px;
+  background: #10203ed9;
+  color: #fff;
+  padding: 6px 9px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+.visit-name {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 45px 120px 15px 15px;
+  background: linear-gradient(transparent, #12243fd9);
+  color: #fff;
+  font-size: 14px;
+}
+.visit-name > span {
+  display: block;
+  font-size: 12px;
+  margin: 5px 0 0;
+  color: #d4e3ed;
+}
+.visit-name > i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7fe4c2;
+  margin-right: 8px;
+}
+.member-pip {
+  position: absolute;
+  right: 12px;
+  bottom: 14px;
+  width: 95px;
+  aspect-ratio: 0.85;
+  overflow: hidden;
+  border-radius: 9px;
+  border: 2px solid #ffffffd9;
+  box-shadow: 0 4px 20px #132a4133;
+  background: #172c43;
+}
+.member-pip > span:last-child {
+  position: absolute;
+  inset: auto 0 0;
+  color: #fff;
+  background: #112137d9;
+  font-size: 12px;
+  padding: 5px;
+}
+.camera-off {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #dae5ee;
+  font-size: 12px;
+  text-align: center;
+  padding: 10px;
+}
+.visit-discussion > p {
+  font-size: 12px;
+  margin: 7px 0 13px;
+}
+.topic-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 14px 0;
+}
+.topic-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d9e5ec;
+  border-radius: 7px;
+  background: #fff;
+  padding: 8px 10px;
+  font-size: 12px;
+  min-height: 37px;
+}
+.topic-buttons button[aria-pressed="true"] {
+  background: #e7f3f6;
+  color: #006d80;
+  border-color: #88b5c0;
+}
+.visit-caption {
+  padding: 14px;
+  background: #edf5f8;
+  border-left: 2px solid #13869a;
+  border-radius: 0 7px 7px 0;
+  margin-bottom: 14px;
+}
+.visit-caption small {
+  font-size: 12px;
+  color: #60778c;
+}
+.visit-caption p {
+  font-size: 13px;
+  margin: 8px 0 0;
+  line-height: 1.7;
+}
+.visit-discussion > small {
+  font-size: 12px;
+  line-height: 1.7;
+  display: block;
+}
+.call-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+  margin-top: 22px;
+}
+.call-controls > button:not(.button) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  min-height: 65px;
+  min-width: 85px;
+  padding: 9px 10px;
+  border: 1px solid #e1e9ef;
+  border-radius: 9px;
+  background: #f7fafc;
+  color: #47617c;
+}
+.call-controls > button[aria-pressed="true"] {
+  background: #e5f2f5;
+  border-color: #9dbfc8;
+  color: #006e80;
+}
+.call-controls > button > span {
+  font-size: 12px;
+}
+.call-controls > .button {
+  background: #a83844;
+  margin-left: auto;
+  font-size: 12px;
+  min-height: 45px;
+}
+.call-controls > .button:hover {
+  background: #862b35;
+}
+.visit-summary-head {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 25px 0;
+}
+.visit-summary-head p {
+  font-size: 13px;
+  margin: 7px 0;
+}
+.app-footer .motion-toggle {
+  margin-left: 0;
+  margin-right: auto;
+  white-space: nowrap;
+}
+@keyframes wellway-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  50% {
+    transform: translate(-18px, 8px) rotate(5deg);
+  }
+}
+@keyframes wellway-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes wellway-ring {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 #64cab94d;
+  }
+  50% {
+    box-shadow: 0 0 0 5px #64cab900;
+  }
+}
+.wellway-app:not(.motion-paused) .banner-lines {
+  animation: wellway-drift 16s ease-in-out infinite;
+  transform-origin: right center;
+}
+.wellway-app:not(.motion-paused) .metrics-row,
+.wellway-app:not(.motion-paused) .visit-card {
+  animation: wellway-reveal 0.55s ease-out both;
+}
+.wellway-app:not(.motion-paused) .visit-name > i {
+  animation: wellway-ring 2.5s ease-in-out infinite;
+}
+.metric-card {
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.wellway-app:not(.motion-paused) .metric-card:hover {
+  transform: translateY(-3px);
+}
+.motion-paused *,
+.motion-paused *:before,
+.motion-paused *:after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+@media (max-width: 1100px) {
+  .visit-card {
+    flex-wrap: wrap;
+  }
+  .visit-card > .button {
+    margin-left: 87px;
+  }
+  .visit-card-copy {
+    flex-basis: calc(100% - 90px);
+  }
+}
+@media (max-width: 760px) {
+  .profile-trigger .portrait {
+    width: 30px;
+    height: 30px;
+  }
+  .portrait-large {
+    width: 85px;
+    height: 85px;
+  }
+  .profile-intro {
+    align-items: flex-start;
+    gap: 19px;
+  }
+  .profile-intro h3 {
+    font-size: 25px;
+  }
+  .profile-facts {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .visit-card {
+    padding: 21px 18px;
+    gap: 15px;
+  }
+  .visit-card .portrait {
+    width: 53px;
+    height: 53px;
+  }
+  .visit-card-copy {
+    flex-basis: calc(100% - 70px);
+  }
+  .visit-card h3 {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+  .visit-card p {
+    font-size: 12px;
+    margin-top: 7px;
+  }
+  .visit-card > .button {
+    margin-left: 68px;
+    font-size: 12px;
+    min-height: 42px;
+  }
+  .visit-progress {
+    font-size: 12px;
+    gap: 8px;
+  }
+  .visit-preflight {
+    grid-template-columns: 1fr;
+    gap: 19px;
+  }
+  .sample-camera {
+    width: min(100%, 230px);
+    margin: auto;
+  }
+  .visit-room {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .advisor-stage {
+    aspect-ratio: 1;
+    max-width: 410px;
+    width: 100%;
+    margin: auto;
+  }
+  .visit-discussion h3 {
+    font-size: 17px;
+  }
+  .topic-buttons button {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  .call-controls {
+    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .call-controls > button:not(.button) {
+    min-width: 0;
+    padding: 10px 5px;
+  }
+  .call-controls > .button {
+    grid-column: 1/-1;
+    width: 100%;
+    margin: 7px 0 0;
+  }
+  .call-controls > button > span {
+    font-size: 12px;
+  }
+  .visit-summary-head {
+    gap: 15px;
+    align-items: flex-start;
+  }
+  .visit-summary-head .portrait {
+    width: 48px;
+    height: 48px;
+  }
+  .visit-summary-head h3 {
+    font-size: 17px;
+  }
+  .health-history h2 {
+    font-size: 26px;
+  }
+  .profile-trigger {
+    min-width: 32px;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+  }
+  .view-switch {
+    min-width: 0;
+  }
+  .topbar-actions {
+    gap: 8px;
+  }
+  .view-switch select {
+    max-width: 92px;
+  }
+  .visit-caption p {
+    font-size: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wellway-app *,
+  .wellway-app *:before,
+  .wellway-app *:after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.ai-connection {
+  padding: 14px 16px;
+  margin: 0 0 18px;
+  border: 1px solid var(--border);
+  background: var(--soft);
+  border-radius: 10px;
+  font-size: 14px;
+}
+.ai-connection p {
+  margin: 6px 0 0;
+  line-height: 1.6;
+}
+.profile-facts > *,
+.visit-preflight > *,
+.visit-discussion {
+  min-width: 0;
+}
+.health-history,
+.visit-caption,
+.ai-connection {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .modal input,
+  .modal textarea,
+  .modal select {
+    font-size: 16px;
+  }
+  .visit-card > .button {
+    margin-left: 0;
+    width: 100%;
+    min-height: 44px;
+  }
+  .profile-trigger {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .call-controls > button > span {
+    font-size: 12px;
+  }
+}
