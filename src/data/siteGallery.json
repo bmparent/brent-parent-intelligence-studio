@@ -1,5 +1,15 @@
 [
   {
+    "slug": "wellway-journey",
+    "title": "Wellway · Your wellness journey",
+    "category": "Tools",
+    "description": "A fictional member and advisor experience with daily check-ins, source-linked charts, editable plans, guided or live AI explanations, and a simulated visit with separate follow-up approval.",
+    "image": "/images/site-gallery/wellway-journey.webp",
+    "thumbnail": "/images/site-gallery/wellway-journey-thumb.webp",
+    "date": "2026-09-12",
+    "url": "/demos/wellway/"
+  },
+  {
     "slug": "embroiderycalc-pro",
     "title": "EmbroideryCalc",
     "category": "Tools",
