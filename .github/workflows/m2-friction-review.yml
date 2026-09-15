@@ -93,3 +93,4 @@ jobs:
             ${{ runner.temp }}/m2-deploy.log
           if-no-files-found: warn
           retention-days: 30
+# Focused M2 gate intentionally remains separate from the broader Playground release suite.
