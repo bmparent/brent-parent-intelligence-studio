@@ -51,31 +51,52 @@ export const serviceFamilies = [
     slug: 'digital-experiences',
     number: '01',
     title: 'Digital Experiences',
-    summary: 'Websites, service pages, and campaign experiences that help people understand the offer and take the right next step.',
-    includes: ['Website and UX redesign', 'Service and campaign pages', 'Accessible responsive frontends', 'Agentic SEO foundations'],
+    summary: 'Customer-facing websites, interactive experiences, campaigns, commerce journeys, and platform extensions that make an offer easier to understand and a next step easier to take.',
+    includes: [
+      'Website and UX redesign',
+      'Responsive websites and service pages',
+      'Interactive and cinematic web experiences',
+      'Campaign and launch experiences',
+      'Hosted commerce and storefront UX',
+      'Frontend extensions for existing platforms'
+    ],
     image: '/images/services/digital-experiences.png',
-    imageAlt: 'Eidos Works Agentic SEO service page shown as an authentic digital experience example.',
-    imageCaption: 'Eidos Works service-page experience'
+    imageAlt: 'Eidos Works service page shown as a digital experience example.',
+    imageCaption: 'Digital experience and service-page work'
   },
   {
-    slug: 'storefront-access-systems',
+    slug: 'business-systems',
     number: '02',
-    title: 'Storefront and Access Systems',
-    summary: 'Branded storefronts and practical access checks that help the right people reach the right products without unnecessary account friction.',
-    includes: ['InkSoft storefront UX', 'Employee and roster access gates', 'Category and product guidance', 'Responsive ordering paths'],
-    image: '/images/case-studies/storefront-experience-framed.png',
-    imageAlt: 'Liberty Christian Early Learning storefront entrance completed within Data Graphics client-services work.',
-    imageCaption: 'Hosted storefront experience'
-  },
-  {
-    slug: 'dashboards-workflow-tools',
-    number: '03',
-    title: 'Dashboards and Workflow Tools',
-    summary: 'Reporting, automation, and internal tools that show what is late, what needs attention, and what the team should do next.',
-    includes: ['Production reporting', 'Workflow visibility', 'Google Workspace automation', 'Internal operational tools'],
+    title: 'Business Systems',
+    summary: 'Internal tools, dashboards, workflow applications, reporting, and automation built around the way the organization actually operates.',
+    includes: [
+      'Operational dashboards',
+      'Internal web applications',
+      'Workflow and approval tools',
+      'Reporting interfaces',
+      'Existing-tool and API integrations',
+      'Google Workspace automation'
+    ],
     image: '/images/case-studies/production-dashboard.png',
     imageAlt: 'Production reporting dashboard showing schedule filters and daily work status.',
-    imageCaption: 'Production workflow dashboard'
+    imageCaption: 'Operational dashboard and workflow system'
+  },
+  {
+    slug: 'intelligent-systems',
+    number: '03',
+    title: 'Intelligent Systems',
+    summary: 'Focused AI assistants, agentic workflows, and decision-support tools designed around a specific job, real business context, and explicit boundaries.',
+    includes: [
+      'Focused AI assistants',
+      'Retrieval over approved business knowledge',
+      'Agentic workflows with explicit permissions',
+      'AI-enhanced internal tools',
+      'Structured analysis and decision support',
+      'Human review, evaluation, and guardrails'
+    ],
+    image: '/images/work/sentinel-lab.webp',
+    imageAlt: 'Eidos Sentinel Lab interface showing a proof-stage intelligent-systems research environment.',
+    imageCaption: 'Proof-stage intelligent-systems research interface'
   }
 ] as const;
 
