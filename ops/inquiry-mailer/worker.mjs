@@ -1,6 +1,12 @@
 // Private Pages service binding. Keep workers.dev, previews, and public routes disabled.
 const json = (body, status = 200) => Response.json(body, { status, headers: { 'cache-control': 'no-store' } });
 
+function subjectForBrief(brief) {
+  if (brief.startsWith('Eidos Works Friction Review request')) return 'Eidos Works Friction Review request';
+  if (brief.startsWith('Eidos Brain / Sentinel test-access request')) return 'Eidos Brain / Sentinel test-access request';
+  return 'Eidos Works project inquiry';
+}
+
 export default {
   async fetch(request, env) {
     if (request.method !== 'POST' || new URL(request.url).pathname !== '/inquiry') return json({ ok: false }, 404);
@@ -30,7 +36,7 @@ export default {
         from: env.STUDIO_FROM,
         to: env.STUDIO_TO,
         replyTo: body.email,
-        subject: 'Eidos Works project inquiry',
+        subject: subjectForBrief(body.brief),
         text: `${body.brief}\n\nInquiry reference: ${receipt}`,
       });
       if (!result?.messageId) return json({ ok: false }, 502);
