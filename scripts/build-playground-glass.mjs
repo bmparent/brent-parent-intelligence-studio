@@ -3,6 +3,8 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 const schema = (await readFile('migrations/0003_playground.sql','utf8')).replace(/\r\n/g, '\n');
 await writeFile('functions/_shared/platform/playgroundSchema.ts','// Generated from migration 0003 by playground:glass.\nexport default '+JSON.stringify(schema)+';\n');
+const assetQuota=(await readFile('migrations/0004_playground_asset_quota.sql','utf8')).replace(/\r\n/g,'\n');
+await writeFile('functions/_shared/platform/playgroundSchema.ts',(await readFile('functions/_shared/platform/playgroundSchema.ts','utf8'))+'export const assetQuota = '+JSON.stringify(assetQuota)+';\n');
 const result = await build({entryPoints:['src/playground/glassEntry.ts'],bundle:true,write:false,format:'iife',globalName:'EidosGlass',target:'es2022',minify:true});
 await mkdir('.wrangler',{recursive:true});
 await build({stdin:{contents:"import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';import {LiquidGlassSurface} from './src/components/LiquidGlassSurface';export const markup=renderToStaticMarkup(React.createElement(LiquidGlassSurface));",resolveDir:process.cwd()},bundle:true,platform:'node',format:'cjs',packages:'external',jsx:'automatic',outfile:'.wrangler/glass-markup.cjs'});

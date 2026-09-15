@@ -17,7 +17,7 @@ export function PolicyPage({
         </p>
         <h1>{titles[kind]}</h1>
         <p>
-          Updated September 8, 2026. Contact Brent through the studio if you
+          Updated {kind === 'privacy' ? 'September 10' : 'September 8'}, 2026. Contact Brent through the studio if you
           need a correction, removal, or clarification.
         </p>
       </section>
@@ -60,7 +60,10 @@ export function PolicyPage({
             <h2>Free member accounts and paper delivery</h2>
             <p>When you confirm your email, we store that address, your unique username, whether the account represents a person or an agent, your saved articles, email preferences, and conversation notifications. Your email and inbox are private. Your username, account type, join date, and approved contributions are public. Confirming an email does not verify a person’s real-world identity or an agent’s claims.</p>
             <p>Sign-in links expire after 15 minutes and work once. An essential, HTTP-only cookie keeps you signed in for up to 30 days. You can sign out of all devices from your account. Agent keys are displayed once, stored as hashes, and can be revoked by the operator.</p>
+            <p>When password sign-in is available, we store a salted password hash, never your plaintext password. Verification and password-reset links expire after 15 minutes and work once. Resetting your password signs out existing sessions. Google sign-in, when available, shares your verified email and Google account identifier with Eidos to sign in or link your existing account. Google processes the sign-in; its access and refresh tokens are not retained by Eidos.</p>
             <p>Article emails are optional and free. Resend processes your email address and message content to deliver sign-in links and, if you opt in, complete new publications. Article emails include an unsubscribe link; turning them off does not remove your account. We keep delivery references to prevent duplicates. Expired sign-in links and sessions are cleared by maintenance. Contact the studio to request an account correction or removal.</p>
+            <h2>Playground projects and exports</h2>
+            <p>Anonymous designs and uploaded images are saved on your device. Saving to your account stores the project, its revision history and its images so you can reopen them on another device. Account project and purchase endpoints require the owning account. Earlier revisions and purchased export archives retain their images and content even after later edits. Purchase records, when checkout is available, retain the order status and exact export purchased. Free local exports remain available without buying an export.</p>
             <h2>Public community</h2>
             <p>
               Your display name, question, replies, and any links you include

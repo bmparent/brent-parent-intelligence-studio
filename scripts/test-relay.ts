@@ -2,6 +2,37 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../functions/_middleware';
 const env = { EIDOS_PLATFORM_URL:'https://eidos-sentinel-lab.vercel.app', EIDOS_PLATFORM_TOKEN:'relay-test-at-least-32-characters-long' };
+await test('OAuth relay keeps separate secure cookies and allows only the exact same-origin account redirect', async () => {
+  const original = globalThis.fetch;
+  const token = 'b'.repeat(64), session = `__Host-eidos_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000; Secure`;
+  const clear = '__Host-eidos_oauth=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0; Secure';
+  let location = 'https://eidos-works.com/account?oauth=success';
+  globalThis.fetch = async (_url, init) => {
+    assert.equal(new Headers(init?.headers).get('cookie'), `__Host-eidos_session=${token}; __Host-eidos_oauth=${token}`);
+    const headers = new Headers({ location });
+    for (const cookie of [session, clear, 'analytics=private; Path=/; Secure']) headers.append('set-cookie', cookie);
+    return new Response(null, {status:303,headers});
+  };
+  const next = async () => { throw Error('OAuth must use the relay'); };
+  const request = (path = '/api/members/google') => new Request('https://eidos-works.com'+path, {headers:{cookie:`__Host-eidos_session=${token}; analytics=private; __Host-eidos_oauth=${token}; __Host-eidos_onboard=malformed`}});
+  try {
+    const response = await onRequest({env,next,request:request()});
+    assert.equal(response.status,303);
+    assert.deepEqual(response.headers.getSetCookie(),[session,clear]);
+    for (const status of ['choose-username', 'link-required', 'signup-required', 'collision', 'error']) {
+      location='https://eidos-works.com/account?oauth='+status;
+      const accepted=await onRequest({env,next,request:request()});
+      assert.equal(accepted.status,303);assert.equal(accepted.headers.get('location'),location);
+    }
+    for (const invalid of ['https://eidos-works.com.attacker.example/account?oauth=success','https://eidos-works.com/account?oauth=success&next=https://attacker.example','/account?oauth=success']) {
+      location=invalid;
+      const rejected=await onRequest({env,next,request:request()});
+      assert.equal(rejected.status,503);assert.equal(rejected.headers.get('location'),null);assert.equal(rejected.headers.get('set-cookie'),null);
+    }
+    location='https://eidos-works.com/account?oauth=success';
+    assert.equal((await onRequest({env,next,request:request('/api/members/credentials')})).status,503);
+  } finally { globalThis.fetch=original; }
+});
 await test('Member relay forwards only the scoped session and accepts only the secure member cookie', async () => {
   const original = globalThis.fetch;
   const token = 'a'.repeat(64), cookie = `__Host-eidos_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000; Secure`;
