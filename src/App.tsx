@@ -18,7 +18,6 @@ import { EditorialPolicy } from './components/EditorialPolicy';
 import { PernrGateCaseStudy } from './components/PernrGateCaseStudy';
 import {
   AboutPage,
-  ContactPage,
   EidosBrainLabPage,
   ProductionDashboardCaseStudy,
   StorefrontExperienceCaseStudy,
@@ -29,6 +28,8 @@ import {
   ServicesPage,
 } from './components/ServicePages';
 import { FrictionReviewPage } from './components/FrictionReviewPage';
+import { ConversionContactPage } from './components/ConversionContactPage';
+import { ConversionTracking } from './components/ConversionTracking';
 import {
   ShowcasePage,
   StorefrontShowcase,
@@ -123,7 +124,7 @@ function routeFor(path: string) {
   if (path === '/work/storefront-experience')
     return <StorefrontExperienceCaseStudy />;
   if (path === '/about') return <AboutPage />;
-  if (path === '/contact') return <ContactPage />;
+  if (path === '/contact') return <ConversionContactPage />;
   if (path === '/lab/eidos-brain') return <EidosBrainLabPage />;
   if (path === '/insights') return <InsightsHub currentPath={path} />;
   if (path === '/editorial-policy') return <EditorialPolicy />;
@@ -161,6 +162,7 @@ function App({ requestPath }: AppProps) {
       <SiteFooter />
       <EidosAssistant />
       <PrivacyControls />
+      <ConversionTracking />
     </>
   );
 }
