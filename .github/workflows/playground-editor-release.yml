@@ -11,7 +11,7 @@ concurrency:
 jobs:
   local-editor:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -82,6 +82,13 @@ jobs:
           PG_BASE_URL: https://eidos-works.com
           PG_ENGINES: chromium
         run: node scripts/verify-playground-editor-browser.mjs
+      - name: M2 live Friction Review desktop and mobile acceptance
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[m2-friction-qa]')
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
+          M2_FRICTION_EVIDENCE_DIR: ${{ runner.temp }}/pg-production-evidence
+          M2_FRICTION_BASE_URL: https://eidos-works.com
+        run: node scripts/verify-friction-review-production.mjs
       - name: Retain browser and build evidence even when a check fails
         if: always()
         uses: actions/upload-artifact@v4

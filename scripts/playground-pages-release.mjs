@@ -26,6 +26,7 @@ function stable(value) {
 function fingerprint(value) {
   return createHash('sha256').update(JSON.stringify(stable(value.deployment_configs || {}))).digest('hex');
 }
+const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
 const current = await project();
 identity(current);
 if (process.argv[2] === 'preflight') {
@@ -35,23 +36,58 @@ if (process.argv[2] === 'preflight') {
 } else {
   const before = JSON.parse(await readFile(receiptPath, 'utf8'));
   assert.equal(fingerprint(current), before.configFingerprint, 'Pages configuration changed during deployment; inspect before claiming success.');
-  const end = Date.now() + 180000;
+
+  const contentDeadline = Date.now() + 180000;
   const local = await readFile('dist/playground/index.html', 'utf8');
   const assets = [...local.matchAll(/(?:src|href)="(\/assets\/[^" ]+\.(?:js|css))"/g)].map(match => match[1]);
   assert.ok(assets.length > 0, 'Built Playground entry assets were not found.');
-  let verified = false;
-  while (Date.now() < end) {
+  let delivered = false;
+  while (Date.now() < contentDeadline) {
     const response = await fetch(`https://eidos-works.com/playground/?release=${encodeURIComponent(before.commit)}`, { cache: 'no-store' });
-    const delivered = await response.text();
-    if (response.ok && new URL(response.url).pathname.replace(/\/$/, '') === '/playground' && assets.every(asset => delivered.includes(asset))) { verified = true; break; }
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    const html = await response.text();
+    if (response.ok && new URL(response.url).pathname.replace(/\/$/, '') === '/playground' && assets.every(asset => html.includes(asset))) {
+      delivered = true;
+      break;
+    }
+    await sleep(3000);
   }
-  assert.ok(verified, 'The custom domain has not delivered this exact build yet.');
-  const after = await project();
-  identity(after);
-  assert.equal(fingerprint(after), before.configFingerprint, 'Provider configuration drifted.');
-  const deployment = after.canonical_deployment;
-  assert.equal(deployment?.deployment_trigger?.metadata?.commit_hash, before.commit, 'Production deployment commit does not match the verified source.');
-  await writeFile(receiptPath, JSON.stringify({ ...before, verifiedAt: new Date().toISOString(), deploymentId: deployment.id, deliveredEntryAssets: assets, configUnchanged: true }, null, 2));
-  console.log('Production commit and delivered entry assets verified; provider configuration unchanged.');
+  assert.ok(delivered, 'The custom domain has not delivered this exact build yet.');
+
+  // Cloudflare can begin serving a successful Direct Upload before the project
+  // metadata endpoint advances canonical_deployment. Poll the authoritative
+  // metadata instead of turning that short propagation window into a false
+  // release failure. The commit requirement itself remains strict.
+  const metadataDeadline = Date.now() + 180000;
+  let productionDeployment = null;
+  let lastObserved = { commit: null, status: null, id: null };
+  while (Date.now() < metadataDeadline) {
+    const after = await project();
+    identity(after);
+    assert.equal(fingerprint(after), before.configFingerprint, 'Provider configuration drifted.');
+    const deployment = after.canonical_deployment;
+    lastObserved = {
+      commit: deployment?.deployment_trigger?.metadata?.commit_hash || null,
+      status: deployment?.latest_stage?.status || null,
+      id: deployment?.id || null,
+    };
+    if (lastObserved.commit === before.commit && lastObserved.status === 'success') {
+      productionDeployment = deployment;
+      break;
+    }
+    await sleep(3000);
+  }
+
+  assert.ok(
+    productionDeployment,
+    `Cloudflare did not report the verified production commit as successful before timeout (expected ${before.commit}; observed commit ${lastObserved.commit || 'none'}, status ${lastObserved.status || 'none'}).`,
+  );
+  await writeFile(receiptPath, JSON.stringify({
+    ...before,
+    verifiedAt: new Date().toISOString(),
+    deploymentId: productionDeployment.id,
+    deliveredEntryAssets: assets,
+    configUnchanged: true,
+    canonicalCommitVerified: true,
+  }, null, 2));
+  console.log('Production commit, delivered entry assets, and successful Cloudflare deployment metadata verified; provider configuration unchanged.');
 }
