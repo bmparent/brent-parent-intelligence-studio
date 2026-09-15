@@ -1,0 +1,53 @@
+name: Wellway acceptance
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  wellway:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm ci --prefix apps/wellway --no-audit --no-fund
+      - run: npm test --prefix apps/wellway
+      - run: npm run test:ui --prefix apps/wellway
+      - run: npm run test:server --prefix apps/wellway
+      - run: node --import tsx --test ops/wellway-ai/ledger.test.ts ops/wellway-ai/runtime.test.ts
+      - name: Verify generated app matches source
+        run: |
+          node scripts/update-wellway-demo.mjs
+          git diff --exit-code -- public/demos/wellway/index.html
+      - name: Install isolated browser tooling
+        run: |
+          npm install --prefix "$RUNNER_TEMP/wellway-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/wellway-browser/node_modules/.bin/playwright" install --with-deps chromium firefox webkit
+      - name: Actual member and advisor workflows, plus mocked AI
+        env:
+          WELLWAY_AI_ENABLED: 'false'
+          WELLWAY_PORT: '4319'
+          WELLWAY_TEST_URL: http://127.0.0.1:4319/
+          WELLWAY_PLAYWRIGHT_MODULE: ${{ runner.temp }}/wellway-browser/node_modules/playwright
+          WELLWAY_BROWSER_ARTIFACTS: ${{ runner.temp }}/wellway-evidence
+        run: |
+          node --import tsx apps/wellway/server.mjs >"$RUNNER_TEMP/wellway-server.log" 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4319/ >/dev/null && break || sleep 1; done
+          node apps/wellway/tests/browser.mjs
+          node apps/wellway/tests/ai-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wellway-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/wellway-evidence
+            ${{ runner.temp }}/wellway-server.log
+          retention-days: 14
