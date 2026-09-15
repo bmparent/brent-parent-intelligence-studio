@@ -5,6 +5,8 @@ export type EidosEvent =
   | 'question_submit'
   | 'reply_submit'
   | 'generate_lead'
+  | 'friction_form_start'
+  | 'friction_submit'
   | 'begin_checkout'
   | 'purchase'
   | 'product_preview'
