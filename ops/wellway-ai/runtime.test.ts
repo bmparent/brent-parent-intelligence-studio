@@ -83,8 +83,12 @@ test("real Workers runtime: durable admission, structured response, duplicate an
         },
         body: JSON.stringify(value),
       });
-    const result = await ask(body);
-    assert.equal(result.status, 200, await result.clone().text());
+      const result = await ask(body);
+      assert.equal(result.status, 200, await result.clone().text());
+      const firstStatus = await (await mf.dispatchFetch("http://wellway/status")).json() as { allowance: { lifetimeReservedMicroUsd: number } };
+      const secondStatus = await (await mf.dispatchFetch("http://wellway/status")).json() as { allowance: { lifetimeReservedMicroUsd: number } };
+      assert.ok(firstStatus.allowance.lifetimeReservedMicroUsd > 0);
+      assert.deepEqual(secondStatus.allowance, firstStatus.allowance, "Status never resets or consumes reservations");
     assert.equal(((await result.json()) as { mode: string }).mode, "live");
     assert.equal(calls, 1);
     assert.equal((await ask(body)).status, 429);

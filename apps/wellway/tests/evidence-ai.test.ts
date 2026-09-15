@@ -199,3 +199,13 @@ test("visit and advisor drafts survive serialization and follow-up approval cann
   assert.equal(state.reviews[0].proposal, "Saved edit");
   assert.equal(state.reviews[0].status, "approved");
 });
+
+test("allowed citations do not authorize fabricated numeric or causal claims", () => {
+  const p = validateEvidence(evidence(seedState()));
+  const source = p.records.find((r) => r.kind === "observation" && r.metric === "sleep")!;
+  const result = (text: string) => ({ segments: [{ kind: "explanation", text, sourceIds: [source.id] }] });
+  assert.throws(() => validateAIResult(result("You recorded 23 hours of sleep."), p));
+  assert.throws(() => validateAIResult(result(`Your average was ${source.value} hours.`), p));
+  assert.throws(() => validateAIResult(result("The change was caused by your work."), p));
+  assert.equal(validateAIResult(result(`The cited reading records ${source.value} hours.`), p).mode, "live");
+});

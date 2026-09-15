@@ -183,7 +183,7 @@ export function Advisor({
           <h2>Agree on the next step</h2>
           {draft ? (
             <>
-              <span className="status-pill">Draft · Review needed</span>
+              <span className="status-pill">{draft.editedAt ? "Edited draft" : "Draft"} · Review needed</span>
               <p>
                 Check the source entries and edit the draft before adding it to
                 the member’s plan.
@@ -215,7 +215,7 @@ export function Advisor({
                   disabled={!proposal.trim()}
                   icon="check"
                 >
-                  Approve plan
+                  {draft.targetPlanId === "followup" ? "Approve follow-up" : "Approve plan"}
                 </Button>
                 <Button
                   variant="text"
@@ -246,7 +246,7 @@ export function Advisor({
                   <span className="icon-disc">
                     <Icon name="check" />
                   </span>
-                  <h3>Plan updated</h3>
+                  <h3>{approved.targetPlanId === "followup" ? "Follow-up approved" : "Plan updated"}</h3>
                   <p>{approved.proposal}</p>
                   <small>
                     Approved{" "}
@@ -271,6 +271,14 @@ export function Advisor({
               )}
             </>
           )}
+          {state.reviews.some((r) => r.status === "dismissed") && <details>
+            <summary>Rejected drafts ({state.reviews.filter((r) => r.status === "dismissed").length})</summary>
+            {state.reviews.filter((r) => r.status === "dismissed").map((r) => <article key={r.id}>
+              <span className="status-pill">Rejected · Not shared with member</span>
+              <p>{r.proposal}</p>
+              <small>{r.dismissedAt ? new Date(r.dismissedAt).toLocaleString() : "Saved in this workspace"}</small>
+            </article>)}
+          </details>}
           <details>
             <summary>How was this draft prepared?</summary>
             <p>

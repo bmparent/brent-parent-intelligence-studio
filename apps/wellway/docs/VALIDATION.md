@@ -1,4 +1,20 @@
-# Validation and limits — September 12, 2026
+# Validation and limits
+
+## September 14 completion checks
+
+Current main was inspected at `2945d9e2a1996f72672b6fdba171f59ea12c1d66`; work uses an isolated completion branch. No account or Playground feature branch was merged into this task.
+
+Changes: preserve unreadable saves before replacing them with sample records, provide recovery downloads, pause writes when recovery cannot be preserved, record advisor edits/rejections, prevent dismissing approved records, accurately label note-only approval, reject unsupported numeric AI claims, and make the standalone server test build its prerequisite. Fresh gallery images are real desktop and mobile captures. See PRODUCTION-READINESS.md for the separate healthcare production phase.
+
+Passed locally: 22 data/evidence/recovery tests; 6 ledger/runtime/relay tests; DOM journey and recovery; standalone server; Chromium at 1440/768/390/360px; WebKit at 390px; mocked AI retry/continuity/cancellation/scoped drafts; saved check-in to history/source inspection and reload at desktop/mobile; landscape overflow; gallery filtering/preview/launch. Firefox initially timed out clicking Today with no console error and is separately rechecked in release evidence. Do not treat the initial failed run as passing.
+
+Site checks passed: typecheck, lint (one existing Fast Refresh warning), platform (26), Playground (22), glass (4), analytics, Snapshot, complete site and Functions builds, prerender, editorial, generated Insights and URL validation. Release gates must be repeated against the integrated commit before deployment.
+
+Evidence is outside source at `C:/Users/bmpar/wellway-completion-evidence-20260914/`. Publication, final Firefox acceptance and actual hosted AI results belong to the final release receipt. The initial production inspection returned a fallback homepage for the Wellway API, no private Wellway Worker, and a Pages-only OAuth login. A Worker deploy attempt failed with Cloudflare authentication error 10000. No paid request or allowance reset was made by these tests. Owner authorization is being retried separately.
+
+Numeric citation checks are conservative and do not establish general semantic entailment. Physical iPhone, real on-screen keyboard, screen-reader certification, real healthcare authentication and clinical operation remain NOT TESTED or outside this fictional showcase.
+
+## Prior September 12 baseline (historical)
 
 ## Implemented and locally verified
 

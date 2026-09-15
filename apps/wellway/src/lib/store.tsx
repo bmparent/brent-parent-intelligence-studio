@@ -2,19 +2,22 @@ import {
   createContext,
   useContext,
   useReducer,
+  useState,
   useEffect,
   useSyncExternalStore,
   type Dispatch,
   type ReactNode,
 } from "react";
-import { seedState, reducer, STORAGE_KEY, validateBackup } from "./data";
+import { seedState, reducer, STORAGE_KEY } from "./data";
+import { loadWorkspace } from "./storage";
 import type { AppState, Action } from "./types";
 const Context = createContext<{
   state: AppState;
   dispatch: Dispatch<Action>;
   storageError: string;
+  recoveryWarning: string;
   saving: boolean;
-}>({ state: seedState(), dispatch: () => {}, storageError: "", saving: false });
+}>({ state: seedState(), dispatch: () => {}, storageError: "", recoveryWarning: "", saving: false });
 // Storage availability is external to React. Notify only when its status changes.
 let storageStatus: { error: string; saved: AppState | null } = {
   error: "",
@@ -34,26 +37,22 @@ function reportStorageStatus(message: string, saved: AppState | null) {
 }
 const getStorageStatus = () => storageStatus;
 const getServerStorageStatus = () => storageStatus;
-function load() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (validateBackup(parsed)) return parsed;
-    }
-  } catch {
-    /* A malformed local snapshot never enters the app state. */
-  }
-  return seedState();
-}
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, undefined, load);
+  const [initial] = useState(() => loadWorkspace({
+    getItem: (key) => localStorage.getItem(key),
+    setItem: (key, value) => localStorage.setItem(key, value),
+  }));
+  const [state, dispatch] = useReducer(reducer, initial.state);
   const snapshot = useSyncExternalStore(
     subscribeToStorage,
     getStorageStatus,
     getServerStorageStatus,
   );
   useEffect(() => {
+    if (!initial.writable) {
+      reportStorageStatus(initial.warning, null);
+      return;
+    }
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       reportStorageStatus("", state);
@@ -63,7 +62,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         null,
       );
     }
-  }, [state]);
+  }, [state, initial]);
   useEffect(() => {
     if (!snapshot.error) return;
     const protect = (event: BeforeUnloadEvent) => {
@@ -79,6 +78,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         state,
         dispatch,
         storageError: snapshot.error,
+        recoveryWarning: initial.writable ? initial.warning : "",
         saving: !snapshot.error && snapshot.saved !== state,
       }}
     >

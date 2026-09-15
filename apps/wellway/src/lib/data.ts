@@ -635,7 +635,7 @@ export function reducer(s: AppState, a: Action): AppState {
         ...s,
         reviews: s.reviews.map((r) =>
           r.id === a.id && r.status === "draft"
-            ? { ...r, proposal: a.proposal }
+            ? { ...r, proposal: a.proposal, editedAt: new Date().toISOString() }
             : r,
         ),
       };
@@ -670,7 +670,7 @@ export function reducer(s: AppState, a: Action): AppState {
       return {
         ...s,
         reviews: s.reviews.map((r) =>
-          r.id === a.id ? { ...r, status: "dismissed" } : r,
+          r.id === a.id && r.status === "draft" ? { ...r, status: "dismissed", dismissedAt: new Date().toISOString() } : r,
         ),
       };
     case "advance": {

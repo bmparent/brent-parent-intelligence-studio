@@ -10,9 +10,9 @@
     "build": "npm run typecheck && vite build && node scripts/standalone.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
     "start": "node --import tsx --env-file-if-exists=.env server.mjs",
-    "test": "node --import tsx --test tests/data.test.ts tests/evidence-ai.test.ts",
+    "test": "node --import tsx --test tests/data.test.ts tests/evidence-ai.test.ts tests/storage.test.ts",
     "test:ui": "npm run build && node tests/ui.test.mjs",
-    "test:server": "node tests/server.test.mjs"
+    "test:server": "npm run build && node tests/server.test.mjs"
   },
   "dependencies": {
     "react": "19.2.7",

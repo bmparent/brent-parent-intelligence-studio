@@ -28,7 +28,7 @@ function initialPage(): Page {
   return [...nav.map((x) => x.id), "help"].includes(p) ? (p as Page) : "today";
 }
 export default function App() {
-  const { state, storageError, saving } = useStore();
+  const { state, storageError, recoveryWarning, saving } = useStore();
   const [page, setPage] = useState<Page>(initialPage);
   const [checkin, setCheckin] = useState(false);
   const [tour, setTour] = useState(false);
@@ -184,9 +184,9 @@ export default function App() {
           <span>Scenario: {dateLabel(state.demoDate, true)}</span>
         </div>
         <main id="main-content" ref={main} tabIndex={-1}>
-          {storageError && (
+          {(storageError || recoveryWarning) && (
             <div className="storage-warning" role="alert">
-              {storageError}
+              {storageError || recoveryWarning}
             </div>
           )}
           {page === "today" && (

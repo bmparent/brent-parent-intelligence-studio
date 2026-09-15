@@ -207,7 +207,7 @@ for (const [engine, width] of cases) {
     );
     const before = stored.plan;
     await page
-      .getByRole("button", { name: "Approve plan", exact: true })
+      .getByRole("button", { name: "Approve follow-up", exact: true })
       .click();
     assert.deepEqual(
       await page.evaluate(
@@ -215,6 +215,11 @@ for (const [engine, width] of cases) {
       ),
       before,
     );
+    await page.locator(".nav-item").filter({ hasText: "My plan" }).click();
+    assert.match(await page.locator(".approved-followups").innerText(), /Preserve this advisor edit/);
+    await page.reload();
+    await ready(page);
+    assert.match(await page.locator(".approved-followups").innerText(), /Preserve this advisor edit/);
     await page.locator(".nav-item").filter({ hasText: "Today" }).click();
     await page
       .getByRole("button", { name: "Pause motion", exact: true })

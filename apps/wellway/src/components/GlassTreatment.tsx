@@ -49,7 +49,9 @@ function mount(surface: HTMLElement, paused: boolean) {
   } catch {
     /* Storage is optional. */
   }
-  if (!paused && !forced.matches)
+  // Firefox on Windows can stall pointer dispatch while the decorative WebGL
+  // rim is composited. Keep the approved CSS frosted material on that engine.
+  if (!paused && !forced.matches && !forceFallback && !/Firefox\//.test(navigator.userAgent))
     try {
       rim = createRimRenderer(canvas, {
         ...preset,

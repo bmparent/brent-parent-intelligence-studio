@@ -8,7 +8,7 @@ type Site = (typeof sites)[number];
 function Thumbnail({ site }: { site: Site }) {
   return <>
     <span className="ew-site-browser" aria-hidden="true"><i /><i /><i /></span>
-    <img className={site.previewLabel ? 'ew-site-reference-image' : undefined} src={site.thumbnail} alt={`${site.title} homepage preview`} width="640" height="480" loading="lazy" />
+    <img className={site.previewLabel ? 'ew-site-reference-image' : undefined} src={site.thumbnail} alt={site.alt || `${site.title} homepage preview`} width="640" height="480" loading="lazy" />
     <span className="ew-site-view" aria-hidden="true">{site.url ? 'Open app ↗' : 'View preview ↗'}</span>
   </>;
 }

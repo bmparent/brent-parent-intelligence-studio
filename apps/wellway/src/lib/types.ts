@@ -60,6 +60,8 @@ export type Review = {
   proposal: string;
   status: "draft" | "approved" | "dismissed";
   approvedAt?: string;
+  editedAt?: string;
+  dismissedAt?: string;
   sources: string[];
   sourceRecords?: EvidenceRecord[];
   targetPlanId?: string;

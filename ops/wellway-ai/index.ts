@@ -37,10 +37,14 @@ export class WellwayBudget extends DurableObject<Env> {
         new Date(now).toISOString().slice(0, 10),
       ),
     ][0];
-    return (
-      used < totalCap &&
-      (!daily || (daily.used < dailyCap && daily.calls < 100))
-    );
+    return {
+      available: used < totalCap && (!daily || (daily.used < dailyCap && daily.calls < 100)),
+      lifetimeReservedMicroUsd: used,
+      dailyReservedMicroUsd: daily?.used || 0,
+      lifetimeRemainingMicroUsd: Math.max(0, totalCap - used),
+      dailyRemainingMicroUsd: Math.max(0, dailyCap - (daily?.used || 0)),
+      utcDay: new Date(now).toISOString().slice(0, 10),
+    };
   }
 }
 const json = (body: unknown, status = 200) =>
@@ -118,12 +122,14 @@ export default {
       const budget = env.WELLWAY_BUDGET?.getByName(
         "wellway-showcase-budget-v1",
       );
-      if (path === "/status" && request.method === "GET")
+      if (path === "/status" && request.method === "GET") {
+        const allowance = budget ? await budget.available(totalCap, dailyCap, Date.now()) : null;
         return json({
-          aiConfigured:
-            enabled && (await budget.available(totalCap, dailyCap, Date.now())),
+          aiConfigured: enabled && !!allowance?.available,
           model: enabled ? MODEL : null,
+          allowance,
         });
+      }
       if (path !== "/ask") return json({ error: "Not found." }, 404);
       if (request.method !== "POST")
         return json({ error: "POST required." }, 405);
