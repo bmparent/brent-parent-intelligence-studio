@@ -98,7 +98,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
     type: 'website',
   },
   '/shop/cinematic-starter': {
-    title: 'Cinematic Starter \u2014 $29 | Eidos Works',
+    title: 'Cinematic Starter — $29 | Eidos Works',
     description:
       'An original responsive glass header and cinematic hero in HTML, CSS, and JavaScript. Preview the template and buy one commercial project license.',
     type: 'website',
@@ -111,10 +111,15 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
     noIndex: true,
     noReferrer: true,
   },
-
   '/': {
     title: 'Eidos Works | Creative Development & Intelligent Systems',
     description: siteConfig.description,
+    type: 'website',
+  },
+  '/friction-review': {
+    title: 'Friction Review | Eidos Works',
+    description:
+      'Show Eidos Works a website, workflow, storefront, application, repeated task, or digital process that almost works. Get a concise readout of the friction and the first change we would make.',
     type: 'website',
   },
   '/snapshot': {
@@ -146,31 +151,43 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/services': {
     title: 'Services | Eidos Works',
     description:
-      'Digital experiences, storefront and access systems, dashboards, and workflow tools designed around complicated real-world work.',
+      'Digital experiences, business systems, and focused AI tools built around the point where an existing site, workflow, platform, or piece of software stops fitting the work.',
     type: 'website',
   },
   '/services/digital-experiences': {
     title: 'Digital Experience Design & Development | Eidos Works',
     description:
-      'Websites, service pages, campaign pages, accessible UX, and technical foundations built around a useful customer action.',
+      'Websites, interactive experiences, commerce journeys, campaigns, and platform extensions that make an offer easier to understand and a next step easier to take.',
+    type: 'website',
+  },
+  '/services/business-systems': {
+    title: 'Business Systems & Workflow Tools | Eidos Works',
+    description:
+      'Internal tools, dashboards, workflow applications, reporting, integrations, and automation built around the way the organization actually operates.',
+    type: 'website',
+  },
+  '/services/intelligent-systems': {
+    title: 'Focused AI & Intelligent Systems | Eidos Works',
+    description:
+      'Focused AI assistants, agentic workflows, and decision-support tools designed around a specific job, approved context, explicit boundaries, and human control.',
     type: 'website',
   },
   '/services/storefront-access-systems': {
-    title: 'Storefront & Access Systems | Eidos Works',
+    title: 'Commerce & Access Experiences | Eidos Works',
     description:
-      'Hosted storefront UX, employee-store gates, roster checks, product paths, and ordering guidance for organizations.',
+      'Hosted storefront UX, commerce journeys, employee-store access, product paths, and platform extensions as part of Eidos Works digital experience capabilities.',
     type: 'website',
   },
   '/services/dashboards-workflow-tools': {
     title: 'Dashboards & Workflow Tools | Eidos Works',
     description:
-      'Operational reporting, workflow visibility, focused automation, and internal tools designed around daily decisions.',
+      'Operational reporting, workflow visibility, integrations, and automation are now part of Eidos Works Business Systems.',
     type: 'website',
   },
   '/work': {
     title: 'Selected Work | Eidos Works',
     description:
-      'Eidos Works case studies in private storefront access, production reporting, and hosted storefront experience design.',
+      'Eidos Works case studies and demonstrations across digital experiences, operational systems, commerce UX, and intelligent tools.',
     type: 'website',
   },
   '/work/pernr-access-gate': {
@@ -197,13 +214,13 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/about': {
     title: 'About Eidos Works & Brent Parent',
     description:
-      'Learn how Brent Parent leads Eidos Works and how design, storefront development, production operations, reporting, collaboration, and automation shape the studio.',
+      'Learn how Brent Parent leads Eidos Works and how design, operations, software, collaboration, automation, and focused AI shape the studio.',
     type: 'website',
   },
   '/contact': {
-    title: 'Discuss a Project | Eidos Works',
+    title: 'Start a Project | Eidos Works',
     description:
-      'Tell Eidos Works what customer path, storefront constraint, reporting gap, or repeated manual work you want to improve.',
+      'Tell Eidos Works about the digital experience, business system, workflow, application, or focused AI capability you want to build.',
     type: 'website',
   },
   '/lab/eidos-brain': {
@@ -215,7 +232,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/insights': {
     title: 'Insights | Eidos Works',
     description:
-      'Practical notes on website strategy, storefront UX, automation, dashboards, and AI-ready search from Eidos Works.',
+      'Practical notes on digital experiences, business systems, workflow automation, intelligent tools, and AI-ready search from Eidos Works.',
     type: 'website',
   },
   '/editorial-policy': {
@@ -297,7 +314,7 @@ export function pageMetadata(path = '/'): PageMetadata {
   return {
     title: 'Page Not Found | Eidos Works',
     description:
-      'Return to Eidos Works for websites, storefront experiences, automation, and AI-ready SEO.',
+      'Return to Eidos Works for digital experiences, business systems, focused AI tools, and practical studio work.',
     url: absoluteUrl(normalized),
     image: absoluteUrl(siteConfig.socialImage),
     type: 'website',
@@ -328,12 +345,15 @@ export function prerenderPagePaths() {
     '/shop/cinematic-starter',
     '/shop/success',
     '/',
+    '/friction-review',
     '/work',
     '/work/pernr-access-gate',
     '/work/production-dashboard',
     '/work/storefront-experience',
     '/services',
     '/services/digital-experiences',
+    '/services/business-systems',
+    '/services/intelligent-systems',
     '/services/storefront-access-systems',
     '/services/dashboards-workflow-tools',
     '/services/agentic-seo',

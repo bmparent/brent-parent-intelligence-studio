@@ -10,6 +10,7 @@ type FormState = {
   service: string;
   currentUrl: string;
   problem: string;
+  foundVia: string;
   website: string;
 };
 
@@ -17,9 +18,10 @@ const initialForm: FormState = {
   name: '',
   email: '',
   company: '',
-  service: 'Website & UX Redesign',
+  service: 'Digital Experiences',
   currentUrl: '',
   problem: '',
+  foundVia: '',
   website: '',
 };
 
@@ -47,6 +49,7 @@ export function ContactForm() {
     `Email: ${form.email}`,
     `Company: ${form.company || 'Not provided'}`,
     `Current website: ${form.currentUrl || 'Not provided'}`,
+    `Found Eidos Works via: ${form.foundVia || 'Not provided'}`,
     '',
     form.problem,
   ].join('\n');
@@ -75,6 +78,7 @@ export function ContactForm() {
           name: form.name,
           email: form.email,
           company: form.company,
+          foundVia: form.foundVia,
           website: form.website,
           brief,
         }),
@@ -93,6 +97,7 @@ export function ContactForm() {
             data.message ||
             'Your project note reached Eidos Works. Expect a personal reply.',
         });
+        track('contact_submit');
         track('generate_lead');
         setForm(initialForm);
         return;
@@ -170,9 +175,10 @@ export function ContactForm() {
             value={form.service}
             onChange={(event) => update('service', event.target.value)}
           >
-            <option>Website &amp; UX Redesign</option>
-            <option>Storefront Platform Experiences</option>
-            <option>Dashboards &amp; Automation</option>
+            <option>Digital Experiences</option>
+            <option>Business Systems</option>
+            <option>Intelligent Systems</option>
+            <option>Prototype / Product Exploration</option>
             <option>Agentic SEO</option>
             <option>Eidos Snapshot</option>
             <option>Something else</option>
@@ -200,6 +206,18 @@ export function ContactForm() {
             onChange={(event) => update('problem', event.target.value)}
           />
         </label>
+        <label className="ew-form-grid__wide">
+          <span>How did you find Eidos Works?</span>
+          <select value={form.foundVia} onChange={(event) => update('foundVia', event.target.value)}>
+            <option value="">Choose one</option>
+            <option>LinkedIn</option>
+            <option>Google / search</option>
+            <option>Reddit / community</option>
+            <option>Referral</option>
+            <option>Saw one of our projects</option>
+            <option>Other</option>
+          </select>
+        </label>
         <label className="ew-honeypot" aria-hidden="true">
           <span>Website</span>
           <input
@@ -219,7 +237,7 @@ export function ContactForm() {
           type="submit"
           disabled={submitState.status === 'sending'}
         >
-          {submitState.status === 'sending' ? 'Sending…' : 'Send project note'}
+          {submitState.status === 'sending' ? 'Sending…' : 'Send Project Note'}
         </button>
         <SafeEmailLink
           className="ew-text-link"
@@ -246,8 +264,9 @@ export function ContactForm() {
         </div>
       ) : (
         <p className="ew-form-note">
-          Your note is used only to respond to this inquiry. If delivery is
-          unavailable, we give you a direct email fallback.
+          Your note is used only to respond to this inquiry. Do not include
+          passwords, regulated data, private customer records, or other sensitive
+          information.
         </p>
       )}
     </form>

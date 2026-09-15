@@ -24,21 +24,22 @@ export function HomePage() {
           </h1>
           <p className="ew-cinema-lede">
             Creative development. Intelligent systems. Human direction.
-            <br className="ew-desktop-break" /> We turn ambitious ideas into
-            websites and tools that work.
+            <br className="ew-desktop-break" /> Eidos Works builds distinctive
+            digital experiences, business systems, and focused AI tools for teams
+            whose existing technology does not quite fit what they need.
           </p>
           <div className="ew-actions">
-            <a className="ew-button ew-button--light" href="/work">
-              Explore the work <span aria-hidden="true">↗</span>
-            </a>
-            <a className="ew-cinema-link ew-hero-glass" href="/contact">
+            <a className="ew-cinema-link ew-hero-glass" href="/friction-review">
               <LiquidGlassSurface variant="hero" />
-              <span>Tell us what you’re imagining</span> <span aria-hidden="true">→</span>
+              <span>Get a Friction Review</span> <span aria-hidden="true">→</span>
+            </a>
+            <a className="ew-button ew-button--light" href="/work">
+              Explore the Work <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
         <div className="ew-cinema-bottom ew-shell">
-          <span>Designed with intention. Built with AI.</span>
+          <span>Designed with intention. Built to work.</span>
           <a href="#selected-work">
             Scroll to explore <span aria-hidden="true">↓</span>
           </a>
@@ -71,40 +72,40 @@ export function HomePage() {
       </section>
       <section className="ew-capability-section ew-shell">
         <div>
-          <p className="ew-eyebrow">02 / Built around your idea</p>
+          <p className="ew-eyebrow">02 / Built around the problem</p>
           <h2>
             Beautiful on the surface.
             <br />
             <em>Capable underneath.</em>
           </h2>
           <p className="ew-section-lede">
-            A campaign that feels like a film. A storefront that finally makes
-            sense. A tool that takes the repetitive work off your plate. Let’s
-            find the right way to build it.
+            A customer journey that feels harder than it should. A workflow your
+            team still manages by hand. An AI idea that needs real boundaries.
+            Start with the friction; we’ll work backward to the right build.
           </p>
           <a className="ew-text-link" href="/services">
-            How we can help ↗
+            See how we can help ↗
           </a>
         </div>
         <div className="ew-capability-list">
           {[
             [
               '01',
-              'Websites with a point of view',
-              'Distinctive brands, cinematic campaigns, responsive experiences.',
+              'Digital Experiences',
+              'Websites, interactive experiences, commerce journeys, and campaigns with a clear point of view.',
               '/services/digital-experiences',
             ],
             [
               '02',
-              'Commerce that feels effortless',
-              'Custom storefronts, guided collections, thoughtful access systems.',
-              '/services/storefront-access-systems',
+              'Business Systems',
+              'Dashboards, internal tools, workflow applications, and automation built around the way work actually happens.',
+              '/services/business-systems',
             ],
             [
               '03',
-              'Tools that do the heavy lifting',
-              'Dashboards, connected workflows, focused AI assistance.',
-              '/services/dashboards-workflow-tools',
+              'Intelligent Systems',
+              'Focused AI assistants, agentic workflows, and decision tools with clear boundaries and human control.',
+              '/services/intelligent-systems',
             ],
           ].map(([n, title, body, href]) => (
             <a href={href} key={n}>
@@ -205,15 +206,20 @@ export function HomePage() {
         </div>
       </section>
       <section className="ew-closing ew-shell">
-        <p className="ew-eyebrow">Your idea. Our next favorite project.</p>
-        <h2>
-          What if we
-          <br />
-          <em>built it?</em>
-        </h2>
-        <a className="ew-button ew-button--primary" href="/contact">
-          Start a conversation ↗
-        </a>
+        <p className="ew-eyebrow">Have something that almost works?</p>
+        <h2>Show us the <em>friction.</em></h2>
+        <p>
+          Send us the website, workflow, process, or tool that keeps getting in
+          the way. We’ll identify what we would change first.
+        </p>
+        <div className="ew-actions">
+          <a className="ew-button ew-button--primary" href="/friction-review">
+            Get a Friction Review →
+          </a>
+          <a className="ew-button ew-button--secondary" href="/contact">
+            Start a Project ↗
+          </a>
+        </div>
         <p>Founded by Brent Parent in Central Florida.</p>
       </section>
     </>

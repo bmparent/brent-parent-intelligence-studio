@@ -1,4 +1,4 @@
-import { SafeEmailLink } from './EmailAddress';
+import { EmailAddress, SafeEmailLink } from './EmailAddress';
 import { siteConfig } from '../config/site';
 export function SiteFooter() {
   return (
@@ -18,9 +18,13 @@ export function SiteFooter() {
             <br />
             Remarkable possibilities.
           </p>
-          <SafeEmailLink address={siteConfig.contactEmail}>
-            Say hello ↗
-          </SafeEmailLink>
+          <div className="ew-footer-cta-stack">
+            <a href="/friction-review">Get a Friction Review ↗</a>
+            <a href="/contact">Start a Project ↗</a>
+            <SafeEmailLink address={siteConfig.projectsEmail}>
+              <EmailAddress address={siteConfig.projectsEmail} />
+            </SafeEmailLink>
+          </div>
         </div>
         <div className="ew-footer-links">
           <nav aria-label="Studio links">

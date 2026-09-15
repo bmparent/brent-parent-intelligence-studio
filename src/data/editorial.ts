@@ -51,35 +51,55 @@ export const serviceFamilies = [
     slug: 'digital-experiences',
     number: '01',
     title: 'Digital Experiences',
-    summary: 'Websites, service pages, and campaign experiences that help people understand the offer and take the right next step.',
-    includes: ['Website and UX redesign', 'Service and campaign pages', 'Accessible responsive frontends', 'Agentic SEO foundations'],
+    summary: 'Customer-facing websites, interactive experiences, campaigns, commerce journeys, and platform extensions that make the offer easier to understand and the next step easier to take.',
+    includes: [
+      'Website and UX redesign',
+      'Interactive and campaign experiences',
+      'Hosted commerce and portal UX',
+      'Platform and frontend extensions',
+      'Accessibility, performance, and search foundations'
+    ],
     image: '/images/services/digital-experiences.png',
-    imageAlt: 'Eidos Works Agentic SEO service page shown as an authentic digital experience example.',
-    imageCaption: 'Eidos Works service-page experience'
+    imageAlt: 'Eidos Works service page shown as a digital experience example.',
+    imageCaption: 'Digital experience and service-page work'
   },
   {
-    slug: 'storefront-access-systems',
+    slug: 'business-systems',
     number: '02',
-    title: 'Storefront and Access Systems',
-    summary: 'Branded storefronts and practical access checks that help the right people reach the right products without unnecessary account friction.',
-    includes: ['InkSoft storefront UX', 'Employee and roster access gates', 'Category and product guidance', 'Responsive ordering paths'],
-    image: '/images/case-studies/storefront-experience-framed.png',
-    imageAlt: 'Liberty Christian Early Learning storefront entrance completed within Data Graphics client-services work.',
-    imageCaption: 'Hosted storefront experience'
-  },
-  {
-    slug: 'dashboards-workflow-tools',
-    number: '03',
-    title: 'Dashboards and Workflow Tools',
-    summary: 'Reporting, automation, and internal tools that show what is late, what needs attention, and what the team should do next.',
-    includes: ['Production reporting', 'Workflow visibility', 'Google Workspace automation', 'Internal operational tools'],
+    title: 'Business Systems',
+    summary: 'Internal tools, dashboards, workflow applications, reporting, and automation built around the way the work actually happens.',
+    includes: [
+      'Operational dashboards',
+      'Internal applications',
+      'Workflow and reporting tools',
+      'Existing-tool and API integrations',
+      'Automation and handoff systems'
+    ],
     image: '/images/case-studies/production-dashboard.png',
     imageAlt: 'Production reporting dashboard showing schedule filters and daily work status.',
-    imageCaption: 'Production workflow dashboard'
+    imageCaption: 'Operational dashboard and workflow system'
+  },
+  {
+    slug: 'intelligent-systems',
+    number: '03',
+    title: 'Intelligent Systems',
+    summary: 'Focused AI assistants, agentic workflows, and decision-support tools designed around a specific job, real context, and explicit boundaries.',
+    includes: [
+      'Focused AI assistants',
+      'Retrieval over approved business knowledge',
+      'Agentic workflows with permissions',
+      'AI-enhanced internal tools',
+      'Evaluation, guardrails, and human review'
+    ],
+    image: '/images/work/sentinel-lab.webp',
+    imageAlt: 'Eidos Sentinel Lab interface showing a proof-stage intelligent-systems research environment.',
+    imageCaption: 'Proof-stage intelligent-systems research interface'
   }
 ] as const;
 
-export type ServiceSlug = (typeof serviceFamilies)[number]['slug'];
+// Kept broad because EditorialPages.tsx still contains legacy service-detail code.
+// Public service routing uses the stricter local slug type in ServicePages.tsx.
+export type ServiceSlug = string;
 
 export function serviceBySlug(slug: string) {
   return serviceFamilies.find((service) => service.slug === slug);

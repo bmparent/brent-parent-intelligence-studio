@@ -5,12 +5,15 @@ const root = process.cwd();
 const failures = [];
 const requiredRoutes = [
   '/',
+  '/friction-review',
   '/work',
   '/work/pernr-access-gate',
   '/work/production-dashboard',
   '/work/storefront-experience',
   '/services',
   '/services/digital-experiences',
+  '/services/business-systems',
+  '/services/intelligent-systems',
   '/services/storefront-access-systems',
   '/services/dashboards-workflow-tools',
   '/services/agentic-seo',
@@ -122,7 +125,7 @@ for (const evidence of [
 if (!home.includes('Founded by Brent Parent in Central Florida.'))
   failures.push('home: subtle founder attribution is missing');
 
-for (const label of ['Work', 'Lab', 'Community', 'Studio']) {
+for (const label of ['Work', 'Services', 'Lab', 'Community', 'Studio']) {
   if (!home.includes(`>${label}</a>`))
     failures.push(`home: primary navigation is missing ${label}`);
 }
@@ -138,6 +141,10 @@ for (const excluded of [
       `home: primary navigation still includes ${excluded.slice(1, -4)}`,
     );
 }
+if (!home.includes('Get a Friction Review'))
+  failures.push('home: primary Friction Review CTA is missing');
+if (!home.includes('Digital Experiences') || !home.includes('Business Systems') || !home.includes('Intelligent Systems'))
+  failures.push('home: locked three-pillar service architecture is incomplete');
 
 for (const route of [
   '/work/pernr-access-gate',
@@ -154,12 +161,31 @@ for (const route of [
 const services = await readFile(routeFile('/services'), 'utf8');
 for (const image of [
   'digital-experiences.png',
-  'storefront-experience-framed.png',
   'production-dashboard.png',
+  'sentinel-lab.webp',
 ]) {
   if (!services.includes(image))
     failures.push(`/services: matched service image is missing: ${image}`);
 }
+for (const label of ['Digital Experiences', 'Business Systems', 'Intelligent Systems']) {
+  if (!services.includes(label))
+    failures.push(`/services: locked service pillar is missing: ${label}`);
+}
+
+const friction = await readFile(routeFile('/friction-review'), 'utf8');
+for (const phrase of [
+  'Show Me the Friction',
+  'What almost works?',
+  'A focused second set of eyes.',
+  'Send the Friction',
+]) {
+  if (!friction.includes(phrase))
+    failures.push(`/friction-review: locked conversion copy is missing: ${phrase}`);
+}
+
+const contact = await readFile(routeFile('/contact'), 'utf8');
+if (!contact.includes('I know what is frustrating me, but not the solution.'))
+  failures.push('/contact: Friction Review decision path is missing');
 
 const about = await readFile(routeFile('/about'), 'utf8');
 if (!/Illustrated portrait of Brent Parent/i.test(about))

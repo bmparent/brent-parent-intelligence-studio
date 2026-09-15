@@ -141,8 +141,9 @@ function generateSitemap() {
       priority: '0.7',
     },
 
-    { loc: absolute('/'), lastmod: '2026-09-05', priority: '1.0' },
-    { loc: absolute('/work'), lastmod: '2026-09-05', priority: '0.9' },
+    { loc: absolute('/'), lastmod: '2026-09-15', priority: '1.0' },
+    { loc: absolute('/friction-review'), lastmod: '2026-09-15', priority: '0.9' },
+    { loc: absolute('/work'), lastmod: '2026-09-15', priority: '0.9' },
     {
       loc: absolute('/work/pernr-access-gate'),
       lastmod: '2026-07-11',
@@ -158,21 +159,31 @@ function generateSitemap() {
       lastmod: '2026-07-11',
       priority: '0.8',
     },
-    { loc: absolute('/services'), lastmod: '2026-07-11', priority: '0.9' },
+    { loc: absolute('/services'), lastmod: '2026-09-15', priority: '0.9' },
     {
       loc: absolute('/services/digital-experiences'),
-      lastmod: '2026-07-11',
+      lastmod: '2026-09-15',
+      priority: '0.8',
+    },
+    {
+      loc: absolute('/services/business-systems'),
+      lastmod: '2026-09-15',
+      priority: '0.8',
+    },
+    {
+      loc: absolute('/services/intelligent-systems'),
+      lastmod: '2026-09-15',
       priority: '0.8',
     },
     {
       loc: absolute('/services/storefront-access-systems'),
-      lastmod: '2026-07-11',
-      priority: '0.8',
+      lastmod: '2026-09-15',
+      priority: '0.7',
     },
     {
       loc: absolute('/services/dashboards-workflow-tools'),
-      lastmod: '2026-07-11',
-      priority: '0.8',
+      lastmod: '2026-09-15',
+      priority: '0.7',
     },
     {
       loc: absolute('/services/agentic-seo'),
@@ -180,7 +191,7 @@ function generateSitemap() {
       priority: '0.7',
     },
     { loc: absolute('/about'), lastmod: '2026-07-11', priority: '0.7' },
-    { loc: absolute('/contact'), lastmod: '2026-07-11', priority: '0.8' },
+    { loc: absolute('/contact'), lastmod: '2026-09-15', priority: '0.8' },
     {
       loc: absolute('/lab/eidos-brain'),
       lastmod: '2026-07-11',
@@ -237,7 +248,7 @@ function generateLlmsTxt() {
     (article) =>
       `- [${article.title}](${absolute(article.canonicalPath)}): ${article.description}`,
   );
-  return `# Eidos Works\n\nEidos Works designs digital experiences and operational tools for organizations with complicated real-world workflows. Brent Parent is the founder, designer, developer, and operator behind the work.\n\n## Key pages\n- [Community](${absolute('/community')})\n- [Agent Exchange](${absolute('/community/agents')})\n- [Agent API guide](${absolute('/community/agent-guide')})\n- [Public conversation feed](${absolute('/community/feed')})\n- [Sentinel Lab](${absolute('/lab')})\n- [Cinematic Starter](${absolute('/shop/cinematic-starter')})\n- [Home](${absolute('/')})\n- [Selected Work](${absolute('/work')})\n- [PERNR Access Gate](${absolute('/work/pernr-access-gate')})\n- [Production Dashboard](${absolute('/work/production-dashboard')})\n- [Storefront Experience](${absolute('/work/storefront-experience')})\n- [Services](${absolute('/services')})\n- [About Brent Parent](${absolute('/about')})\n- [Insights](${absolute('/insights')})\n- [Contact](${absolute('/contact')})\n- [Eidos Brain Lab](${absolute('/lab/eidos-brain')})\n- [Eidos Snapshot](${absolute('/snapshot')})\n- [Agentic SEO](${absolute('/services/agentic-seo')})\n- [Editorial Policy](${absolute('/editorial-policy')})\n\n## Primary topics\n- Digital experience design and frontend development\n- Hosted storefront and employee access systems\n- Operational dashboards and workflow automation\n- Structured content and search-readiness\n- Proof-stage Eidos Brain research with human review\n\n## Insights\n${articleLines.join('\n')}\n\n## Contact\n- hello@eidos-works.com\n- projects@eidos-works.com\n`;
+  return `# Eidos Works\n\nEidos Works builds distinctive digital experiences, business systems, and focused AI tools for teams whose existing technology does not quite fit what they need. Brent Parent founded the independent studio in Central Florida.\n\n## Key pages\n- [Community](${absolute('/community')})\n- [Agent Exchange](${absolute('/community/agents')})\n- [Agent API guide](${absolute('/community/agent-guide')})\n- [Public conversation feed](${absolute('/community/feed')})\n- [Sentinel Lab](${absolute('/lab')})\n- [Cinematic Starter](${absolute('/shop/cinematic-starter')})\n- [Home](${absolute('/')})\n- [Friction Review](${absolute('/friction-review')})\n- [Selected Work](${absolute('/work')})\n- [PERNR Access Gate](${absolute('/work/pernr-access-gate')})\n- [Production Dashboard](${absolute('/work/production-dashboard')})\n- [Storefront Experience](${absolute('/work/storefront-experience')})\n- [Services](${absolute('/services')})\n- [Digital Experiences](${absolute('/services/digital-experiences')})\n- [Business Systems](${absolute('/services/business-systems')})\n- [Intelligent Systems](${absolute('/services/intelligent-systems')})\n- [About Brent Parent](${absolute('/about')})\n- [Insights](${absolute('/insights')})\n- [Contact](${absolute('/contact')})\n- [Eidos Brain Lab](${absolute('/lab/eidos-brain')})\n- [Eidos Snapshot](${absolute('/snapshot')})\n- [Agentic SEO](${absolute('/services/agentic-seo')})\n- [Editorial Policy](${absolute('/editorial-policy')})\n\n## Primary topics\n- Digital experience design and frontend development\n- Business systems, operational dashboards, and workflow automation\n- Hosted commerce UX and platform extensions\n- Focused AI assistants and bounded agentic workflows\n- Structured content and search-readiness\n- Proof-stage Eidos Brain research with human review\n\n## Insights\n${articleLines.join('\n')}\n\n## Contact\n- hello@eidos-works.com\n- projects@eidos-works.com\n`;
 }
 
 function generateOgSvg(article) {
