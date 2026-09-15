@@ -280,7 +280,9 @@ export function validateAIResult(value: unknown, evidence: Evidence): AIResult {
       const aggregate = /\b(average|mean)\b/i.test(s.text);
       if (!cited.some((r) => r.metric === metric && typeof r.value === "number" &&
         (!aggregate || r.kind === "summary") &&
-        (Math.abs(r.value - number) < (metric === "sleep" ? 1 / 120 : 0.00001) || Number(r.value.toFixed(1)) === number))) return rejectResult("numeric_claim");
+        (Math.abs(r.value - number) < (metric === "sleep" ? 1 / 120 : 0.00001) ||
+          Number(r.value.toFixed(1)) === number ||
+          (metric === "steps" && r.kind === "summary" && Math.round(r.value) === number)))) return rejectResult(`numeric_claim_${metric}`);
     }
     if (/\b(caused by|diagnos(?:e|ed|is)|you have (?:diabetes|depression)|increase your dose|stop taking)\b/i.test(s.text)) return rejectResult("medical_claim_phrase");
     return {
