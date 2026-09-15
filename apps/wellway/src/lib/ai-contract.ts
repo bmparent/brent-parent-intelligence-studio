@@ -272,7 +272,7 @@ export function validateAIResult(value: unknown, evidence: Evidence): AIResult {
     const cited = evidence.records.filter((r) => ids.includes(r.id));
     // Validate bounded, measurable claims as well as ID membership. This is a
     // conservative numeric check, not a general semantic-entailment guarantee.
-    const measurements = s.text.replace(/(\d+)\s*(?:hours?|h)\s*(\d+)\s*(?:minutes?|m)\b/gi,
+    const measurements = s.text.replace(/(\d+)\s*(?:hours?|h)\s*(?:and\s+)?(\d+)\s*(?:minutes?|m)\b/gi,
       (_: string, hours: string, minutes: string) => `${Number(hours) + Number(minutes) / 60} hours`);
     for (const match of measurements.matchAll(/(\d+(?:,\d{3})*(?:\.\d+)?)\s*(hours?|hrs?|h\b|steps?\b|\/\s*5)/gi)) {
       const metric = /step/i.test(match[2]) ? "steps" : /5/.test(match[2]) ? "energy" : "sleep";
@@ -280,7 +280,9 @@ export function validateAIResult(value: unknown, evidence: Evidence): AIResult {
       const aggregate = /\b(average|mean)\b/i.test(s.text);
       if (!cited.some((r) => r.metric === metric && typeof r.value === "number" &&
         (!aggregate || r.kind === "summary") &&
-        (Math.abs(r.value - number) < (metric === "sleep" ? 1 / 120 : 0.00001) || Number(r.value.toFixed(1)) === number))) return rejectResult("numeric_claim");
+        (Math.abs(r.value - number) < (metric === "sleep" ? 1 / 120 : 0.00001) ||
+          Number(r.value.toFixed(1)) === number ||
+          (metric === "steps" && r.kind === "summary" && Math.round(r.value) === number)))) return rejectResult(`numeric_claim_${metric}`);
     }
     if (/\b(caused by|diagnos(?:e|ed|is)|you have (?:diabetes|depression)|increase your dose|stop taking)\b/i.test(s.text)) return rejectResult("medical_claim_phrase");
     return {

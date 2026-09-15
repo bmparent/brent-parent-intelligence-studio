@@ -194,6 +194,13 @@ export function Advisor({
                   rows={6}
                   value={proposal}
                   maxLength={6500}
+                  onInput={(e) =>
+                    dispatch({
+                      type: "review-edit",
+                      id: draft.id,
+                      proposal: e.currentTarget.value,
+                    })
+                  }
                   onChange={(e) =>
                     dispatch({
                       type: "review-edit",

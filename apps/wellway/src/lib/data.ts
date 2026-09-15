@@ -631,6 +631,7 @@ export function reducer(s: AppState, a: Action): AppState {
     case "review":
       return { ...s, reviews: [a.value, ...s.reviews] };
     case "review-edit":
+      if (!s.reviews.some((r) => r.id === a.id && r.status === "draft" && r.proposal !== a.proposal)) return s;
       return {
         ...s,
         reviews: s.reviews.map((r) =>

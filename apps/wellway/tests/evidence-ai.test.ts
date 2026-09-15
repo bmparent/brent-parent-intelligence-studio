@@ -190,6 +190,7 @@ test("visit and advisor drafts survive serialization and follow-up approval cann
     proposal: "Saved edit",
   });
   const before = structuredClone(state.plan);
+  assert.equal(reducer(state, { type: "review-edit", id: "followup", proposal: "Saved edit" }), state);
   state = reducer(state, {
     type: "approve",
     id: "followup",
@@ -205,7 +206,7 @@ test("allowed citations do not authorize fabricated numeric or causal claims", (
   const source = p.records.find((r) => r.kind === "observation" && r.metric === "sleep")!;
   const result = (text: string) => ({ segments: [{ kind: "explanation", text, sourceIds: [source.id] }] });
   assert.throws(() => validateAIResult(result("You recorded 23 hours of sleep."), p),
-    (error: unknown) => error instanceof Error && "code" in error && error.code === "numeric_claim" &&
+    (error: unknown) => error instanceof Error && "code" in error && error.code === "numeric_claim_sleep" &&
       !error.message.includes("23"));
   assert.throws(() => validateAIResult(result(`Your average was ${source.value} hours.`), p));
   assert.throws(() => validateAIResult(result("The change was caused by your work."), p));
@@ -213,4 +214,17 @@ test("allowed citations do not authorize fabricated numeric or causal claims", (
   const aggregate = p.records.find((r) => r.id === "summary:sleep:displayed")!;
   const totalMinutes = Math.round(aggregate.value! * 60);
   assert.equal(validateAIResult({ segments: [{ kind: "explanation", text: `Average sleep was ${Math.floor(totalMinutes / 60)}h ${totalMinutes % 60}m.`, sourceIds: [aggregate.id] }] }, p).mode, "live");
+  assert.equal(validateAIResult({ segments: [{ kind: "explanation", text: `Average sleep was ${Math.floor(totalMinutes / 60)} hours and ${totalMinutes % 60} minutes.`, sourceIds: [aggregate.id] }] }, p).mode, "live");
+});
+
+test("whole-step averages use the same rounding as the displayed source", () => {
+  const packet = evidence(seedState());
+  const observation = packet.records.find(r => r.kind === "observation" && r.metric === "steps")!;
+  observation.value! += 1;
+  const checked = validateEvidence(packet);
+  const aggregate = checked.records.find(r => r.id === "summary:steps:comparison")!;
+  const rounded = Math.round(aggregate.value!);
+  const result = (value: number) => ({ segments: [{ kind: "explanation", text: `Average movement was ${value.toLocaleString("en-US")} steps.`, sourceIds: [aggregate.id] }] });
+  assert.equal(validateAIResult(result(rounded), checked).mode, "live");
+  assert.throws(() => validateAIResult(result(rounded + 1), checked));
 });

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useStore } from "./lib/store";
 import { dateLabel } from "./lib/data";
 import type { Page } from "./lib/types";
@@ -49,6 +49,12 @@ export default function App() {
   const [toast, setToast] = useState("");
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const main = useRef<HTMLElement>(null);
+  const focusedPage = useRef(page);
+  useLayoutEffect(() => {
+    if (focusedPage.current === page) return;
+    focusedPage.current = page;
+    main.current?.focus({ preventScroll: true });
+  }, [page]);
   useEffect(() => {
     const media = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     if (!media) return;
@@ -68,7 +74,6 @@ export default function App() {
     setPage(p);
     location.hash = p;
     window.scrollTo({ top: 0, behavior: "instant" });
-    setTimeout(() => main.current?.focus(), 0);
   };
   const label =
     page === "help" ? "Help & guide" : nav.find((x) => x.id === page)?.label;

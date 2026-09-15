@@ -191,6 +191,10 @@ for (const [engine, width] of cases) {
     await page
       .locator(".review-panel textarea")
       .fill("Preserve this advisor edit.");
+    await page.waitForFunction(() =>
+      JSON.parse(localStorage.getItem("wellway.journey.v1")).reviews[0].proposal ===
+        "Preserve this advisor edit.",
+    );
     await page.locator(".nav-item").filter({ hasText: "My plan" }).click();
     await page.locator(".nav-item").filter({ hasText: "Advisor" }).click();
     assert.equal(
