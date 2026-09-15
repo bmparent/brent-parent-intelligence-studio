@@ -18,6 +18,14 @@ for (const engine of engines) {
     for (const width of [320, 390, 768, 1440]) {
       const context = await browser.newContext({ viewport: { width, height: 1000 } });
       const page = await context.newPage();
+      if (new URL(base).hostname === '127.0.0.1') {
+        // Vite preview serves the root document for extensionless directories.
+        // Read the real prerendered destination, as Pages does, preserving the link URL.
+        await page.route(/\/+(contact|work)$/, async route => {
+          const response = await route.fetch({ url: `${route.request().url()}/` });
+          await route.fulfill({ response });
+        });
+      }
       await page.addInitScript(() => {
         window.heroDraws = 0;
         const draw = WebGLRenderingContext.prototype.drawArrays;
