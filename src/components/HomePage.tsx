@@ -2,18 +2,13 @@ import { SiteGallery } from './SiteGallery';
 import { showcase, labUrl } from '../data/showcase';
 import { articles } from '../data/articles';
 import { ProjectTile } from './ShowcasePages';
+import { LivingHero } from './LivingHero';
+import { LiquidGlassSurface } from './LiquidGlassSurface';
 export function HomePage() {
   return (
     <>
       <section className="ew-cinema" aria-labelledby="home-title">
-        <img
-          className="ew-cinema-art"
-          src="/images/eidos-glass-hero.webp"
-          alt=""
-          width="1536"
-          height="1024"
-          fetchPriority="high"
-        />
+        <LivingHero />
         <div className="ew-cinema-shade" />
         <div className="ew-shell ew-cinema-content">
           <p className="ew-eyebrow">
@@ -36,8 +31,9 @@ export function HomePage() {
             <a className="ew-button ew-button--light" href="/work">
               Explore the work <span aria-hidden="true">↗</span>
             </a>
-            <a className="ew-cinema-link" href="/contact">
-              Tell us what you’re imagining <span aria-hidden="true">→</span>
+            <a className="ew-cinema-link ew-hero-glass" href="/contact">
+              <LiquidGlassSurface variant="hero" />
+              <span>Tell us what you’re imagining</span> <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>

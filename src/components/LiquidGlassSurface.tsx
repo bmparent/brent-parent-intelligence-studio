@@ -3,13 +3,17 @@ import { mountLiquidGlass } from '../lib/liquid-glass/controller';
 import preset from '../lib/liquid-glass/preset.json';
 
 /** Sibling decorative layers leave all existing link and menu hit targets intact. */
-export function LiquidGlassSurface() {
+export function LiquidGlassSurface({ variant = 'header' }: { variant?: 'header' | 'hero' }) {
   const layer = useRef<HTMLDivElement>(null);
   const id = `ew-lens-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
   useEffect(() => {
     const surface = layer.current?.parentElement;
-    if (surface) return mountLiquidGlass(surface);
-  }, []);
+    if (surface) return mountLiquidGlass(surface, variant === 'hero' ? {
+      tile: true,
+      lens: { frostPx: 3.6, edgeBend: 9, magnification: 1.015 },
+      light: { whitePeak: .53, colourPeak: .22, reachPx: 225 },
+    } : {});
+  }, [variant]);
   return (
     <div ref={layer} className="ew-liquid-layers" aria-hidden="true">
       <svg className="ew-liquid-defs" xmlns="http://www.w3.org/2000/svg">

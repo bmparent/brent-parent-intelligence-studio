@@ -1,13 +1,14 @@
 import approved from './preset.json';
 import { advanceSpring, clamp, scrollProgress, smoothstep, surfacePoint, type Spring } from './math';
-import { createContactMap, createLensMaps, createRimRenderer } from './optics';
+import { createContactMap, createLensMaps, createRimRenderer, type SceneLight } from './optics';
 
 /** The controller owns transient optics only; React continues to own navigation. */
-export type GlassOptions = { [K in keyof typeof approved]?: Partial<(typeof approved)[K]> } & { disabled?: boolean; reducedMotion?: boolean };
+export type GlassOptions = { [K in keyof typeof approved]?: Partial<(typeof approved)[K]> } & { disabled?: boolean; reducedMotion?: boolean; tile?: boolean };
 export function mountLiquidGlass(surface: HTMLElement, options: GlassOptions = {}) {
   const preset = { ...approved, lens: { ...approved.lens, ...options.lens }, light: { ...approved.light, ...options.light }, contact: { ...approved.contact, ...options.contact }, springs: { ...approved.springs, ...options.springs }, scroll: { ...approved.scroll, ...options.scroll }, site: { ...approved.site, ...options.site } };
-  const progressAt = (y: number) => options.disabled ? 0 : scrollProgress(y, preset.site);
-  const outer = surface.closest('header')!;
+  const progressAt = (y: number) => options.disabled ? 0 : options.tile ? 1 : scrollProgress(y, preset.site);
+  const outer = surface.closest('header') ?? surface;
+  let sceneLight: SceneLight | undefined;
   const query = <T extends Element>(selector: string) => surface.querySelector<T>(selector)!;
   const filter = query<SVGFilterElement>('filter');
   const lens = query<SVGImageElement>('[data-lens-map]');
@@ -81,6 +82,7 @@ export function mountLiquidGlass(surface: HTMLElement, options: GlassOptions = {
     return brightness + remaining * 245;
   }
   function readMaterial(rect: DOMRect) {
+    if (options.tile) { targets.material = 1; materialDirty = false; return; }
     itemTones = [...surface.querySelectorAll<HTMLElement>('.ew-brand,.ew-nav a,.ew-header__cta,.ew-menu-toggle')]
       .filter(el => el.getClientRects().length > 0).map(el => {
         const r = el.getBoundingClientRect();
@@ -127,7 +129,8 @@ export function mountLiquidGlass(surface: HTMLElement, options: GlassOptions = {
       if (effective < 125) el.dataset.glassTone = 'dark';
       else if (effective > 145) el.dataset.glassTone = 'light';
     }
-    rim?.render(states.x.x * rect.width, states.y.x * rect.height, light, press, material);
+    const source = sceneLight && !forced.matches ? { ...sceneLight, x: sceneLight.x - rect.left, y: sceneLight.y - rect.top } : undefined;
+    rim?.render(states.x.x * rect.width, states.y.x * rect.height, light * (options.tile ? .3 : 1), press, material, source);
     if (native) {
       const footprint = clamp(rect.width * preset.contact.widthRatio, preset.contact.minFootprintPx, preset.contact.maxFootprintPx);
       contact.setAttribute('x', (states.x.x * rect.width - footprint / 2).toFixed(3));
@@ -145,7 +148,7 @@ export function mountLiquidGlass(surface: HTMLElement, options: GlassOptions = {
     if (resizeNeeded) resize(rect); else if (materialDirty) readMaterial(rect);
     updateContact(rect);
     const y = Math.max(0, window.scrollY), progress = progressAt(y);
-    targets.flow = Math.tanh((y - previousScroll) / Math.max(1 / 120, dt) / preset.scroll.velocityScale); previousScroll = y;
+    targets.flow = options.tile ? 0 : Math.tanh((y - previousScroll) / Math.max(1 / 120, dt) / preset.scroll.velocityScale); previousScroll = y;
     if (motion.matches || options.reducedMotion || forced.matches || progress === 0) {
       for (const key of keys) { states[key].x = targets[key]; states[key].v = 0; }
       states.light.x = 0; states.hover.x = 0; states.press.x = 0; states.flow.x = 0;
@@ -204,6 +207,9 @@ export function mountLiquidGlass(surface: HTMLElement, options: GlassOptions = {
   const resizeObserver = new ResizeObserver(() => { resizeNeeded = true; wake(); }); resizeObserver.observe(surface);
   const menuObserver = new MutationObserver(() => { materialDirty = true; wake(); });
   const nav = surface.querySelector('nav'); if (nav) menuObserver.observe(nav, { attributes: true, attributeFilter: ['class'] });
+  if (options.tile) surface.closest('.ew-cinema')?.addEventListener('hero-light', event => {
+    sceneLight = (event as CustomEvent<SceneLight>).detail; wake();
+  }, passive);
   wake();
   return () => {
     stopped = true; abort.abort(); resizeObserver.disconnect(); menuObserver.disconnect();

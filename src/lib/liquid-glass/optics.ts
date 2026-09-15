@@ -1,5 +1,6 @@
 import approved from './preset.json';
 import { clamp, smoothstep, surfacePoint } from './math';
+export type SceneLight = { x: number; y: number; intensity: number };
 
 function canvas2d(w: number, h: number) {
   const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h;
@@ -60,9 +61,9 @@ export function createRimRenderer(canvas: HTMLCanvasElement, preset = approved) 
           colour: Math.exp(-Math.pow((depth - p.colourDepthPx) / p.colourWidthPx, 2)) * p.colourPeak * aa });
       }
     },
-    render(lx: number, ly: number, strength: number, pressure: number, dark: number) {
-      canvas.style.opacity = strength.toFixed(4);
-      if (!pixels || strength < .001) return;
+    render(lx: number, ly: number, strength: number, pressure: number, dark: number, source?: SceneLight) {
+      canvas.style.opacity = source ? '1' : strength.toFixed(4);
+      if (!pixels || (!source && strength < .001)) return;
       const colourScale = touchColourScale(p.colourPeak, p.touchColourPeak, pressure, mobileTouch);
       for (const s of samples) {
         const dx = lx - s.x, dy = ly - s.y;
@@ -75,8 +76,17 @@ export function createRimRenderer(canvas: HTMLCanvasElement, preset = approved) 
         const red = Math.exp(-Math.pow((tangent - separation) / spread, 2) * .5);
         const green = Math.exp(-Math.pow(tangent / spread, 2) * .5) * p.greenBalance;
         const blue = Math.exp(-Math.pow((tangent + separation) / spread, 2) * .5);
-        const white = s.white * intensity, chroma = s.colour * intensity * colourScale;
-        const r = white + chroma * red, g = white + chroma * green, b = white + chroma * blue;
+        // Bevel normal + overhead view direction favor the edge facing the actual arch.
+        const dxSource = (source?.x ?? 0) - s.x, dySource = (source?.y ?? 0) - s.y;
+        const distanceSource = Math.hypot(dxSource, dySource, 160);
+        const facingSource = Math.pow(clamp((dxSource * s.nx + dySource * s.ny + 80) / distanceSource), 2);
+        const attenuation = 1 / (1 + Math.pow(distanceSource / (p.reachPx * 4), 2));
+        const sourceEnergy = (source?.intensity ?? 0) * facingSource * attenuation;
+        const pointerScale = source ? strength : 1;
+        const white = s.white * intensity * pointerScale, chroma = s.colour * intensity * colourScale * pointerScale;
+        const r = white + chroma * red + sourceEnergy * (s.white + s.colour * .38);
+        const g = white + chroma * green + sourceEnergy * (s.white + s.colour * .78);
+        const b = white + chroma * blue + sourceEnergy * (s.white + s.colour);
         const alpha = Math.max(r, g, b);
         pixels.data[s.i] = alpha ? Math.round(255 * r / alpha) : 0;
         pixels.data[s.i + 1] = alpha ? Math.round(255 * g / alpha) : 0;
