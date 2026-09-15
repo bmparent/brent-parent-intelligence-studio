@@ -132,6 +132,58 @@
   border-right: 0;
 }
 
+/* The primary CTA is longer than the previous header label. Collapse the
+   full desktop nav before it can crowd the brand at small-laptop widths. */
+@media (min-width: 981px) and (max-width: 1180px) {
+  .ew-glass-header .ew-header__inner {
+    min-height: 76px;
+  }
+
+  .ew-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    color: inherit;
+    border: 1px solid rgba(225, 238, 239, 0.32);
+    border-radius: 999px;
+    background: transparent;
+  }
+
+  .ew-glass-header .ew-nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0.7rem;
+    border: 1px solid rgba(185, 211, 218, 0.3);
+    border-radius: 18px;
+    background: rgba(15, 37, 48, 0.97);
+    box-shadow: 0 16px 40px rgba(0, 18, 29, 0.22);
+    backdrop-filter: blur(22px) saturate(145%);
+  }
+
+  .ew-glass-header .ew-nav.is-open {
+    display: flex;
+  }
+
+  .ew-glass-header .ew-nav a,
+  .ew-glass-header .ew-nav .ew-nav-mobile-extra {
+    display: block;
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(220, 231, 233, 0.13);
+  }
+
+  .ew-glass-header .ew-header__cta {
+    display: none;
+  }
+}
+
 @media (max-width: 960px) {
   .ew-friction-hero {
     grid-template-columns: 1fr;
