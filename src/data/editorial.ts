@@ -100,7 +100,9 @@ export const serviceFamilies = [
   }
 ] as const;
 
-export type ServiceSlug = (typeof serviceFamilies)[number]['slug'];
+// Kept broad because EditorialPages.tsx still contains legacy service-detail code.
+// Public service routing uses the stricter local slug type in ServicePages.tsx.
+export type ServiceSlug = string;
 
 export function serviceBySlug(slug: string) {
   return serviceFamilies.find((service) => service.slug === slug);
