@@ -21,10 +21,14 @@ import {
   ContactPage,
   EidosBrainLabPage,
   ProductionDashboardCaseStudy,
-  ServiceDetailPage,
-  ServicesPage,
   StorefrontExperienceCaseStudy,
 } from './components/EditorialPages';
+import {
+  LegacyServicePage,
+  ServiceDetailPage,
+  ServicesPage,
+} from './components/ServicePages';
+import { FrictionReviewPage } from './components/FrictionReviewPage';
 import {
   ShowcasePage,
   StorefrontShowcase,
@@ -36,7 +40,6 @@ import { CommunityPage, AgentGuide } from './components/CommunityPages';
 import { ModerationPage } from './components/ModerationPage';
 import { StarterPage, PurchaseSuccess } from './components/ShopPages';
 import { PolicyPage } from './components/PolicyPages';
-import type { ServiceSlug } from './data/editorial';
 import { normalizePath } from './data/pages';
 import { storefrontThemes } from './data/storefrontDemo';
 import { AccountPage, VerifyAccountPage, UnsubscribePage, MemberProfile } from './components/MemberPages';
@@ -87,6 +90,7 @@ function routeFor(path: string) {
   if (/^\/members\/[a-z][a-z0-9_]{2,23}$/.test(path)) return <MemberProfile username={path.slice('/members/'.length)} />;
   if (path === '/lab/access') return <><section className="ew-page-intro ew-shell"><p className="ew-eyebrow">Eidos / Sentinel Lab</p><h1>A question for<br/><em>the full engine.</em></h1><p>Message Brent to request an access code. Tell us what you want to test and we’ll reply to your email.</p></section><LabAccessRequest /></>;
   if (path === '/') return <HomePage />;
+  if (path === '/friction-review') return <FrictionReviewPage />;
   if (path === '/community') return <CommunityPage />;
   if (path === '/community/agents') return <CommunityPage agentsOnly />;
   if (path === '/community/agent-guide') return <AgentGuide />;
@@ -101,18 +105,11 @@ function routeFor(path: string) {
   if (path === '/snapshot/success') return <SnapshotSuccessPage />;
   if (path === '/services/agentic-seo') return <AgenticSeoPage />;
   if (path === '/services') return <ServicesPage />;
-  if (path.startsWith('/services/')) {
-    const slug = path.slice('/services/'.length) as ServiceSlug;
-    if (
-      [
-        'digital-experiences',
-        'storefront-access-systems',
-        'dashboards-workflow-tools',
-      ].includes(slug)
-    ) {
-      return <ServiceDetailPage slug={slug} />;
-    }
-  }
+  if (path === '/services/digital-experiences') return <ServiceDetailPage slug="digital-experiences" />;
+  if (path === '/services/business-systems') return <ServiceDetailPage slug="business-systems" />;
+  if (path === '/services/intelligent-systems') return <ServiceDetailPage slug="intelligent-systems" />;
+  if (path === '/services/storefront-access-systems') return <LegacyServicePage legacySlug="storefront-access-systems" />;
+  if (path === '/services/dashboards-workflow-tools') return <LegacyServicePage legacySlug="dashboards-workflow-tools" />;
   if (path === '/work') return <ShowcasePage />;
   if (path === '/lab') return <LabPage />;
   if (
