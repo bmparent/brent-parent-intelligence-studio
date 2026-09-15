@@ -2,6 +2,7 @@ import { DurableObject } from "cloudflare:workers";
 import { initialize, reserve, type Storage, type Reservation } from "./ledger";
 import {
   MODEL,
+  AIResultError,
   MAX_BODY_BYTES,
   providerPayload,
   reservation,
@@ -195,6 +196,7 @@ export default {
           signal: controller.signal,
         });
         if (!upstream.ok) {
+          console.warn("wellway_ai_failure", "provider_http", upstream.status);
           await upstream.body?.cancel();
           return json(
             {
@@ -208,11 +210,13 @@ export default {
           status?: string;
           output?: { content?: { type: string; text?: string }[] }[];
         };
-        if (raw.status !== "completed")
+        if (raw.status !== "completed") {
+          console.warn("wellway_ai_failure", "provider_incomplete");
           return json(
             { error: "The AI response was incomplete. Please try again." },
             502,
           );
+        }
         const text = (raw.output || [])
           .flatMap((o) => o.content || [])
           .filter((c) => c.type === "output_text")
@@ -220,7 +224,10 @@ export default {
           .join("");
         const result = validateAIResult(JSON.parse(text), input.evidence);
         return json(result);
-      } catch {
+      } catch (error) {
+        // Codes only: never log prompts, records, model output, IPs, or credentials.
+        console.warn("wellway_ai_failure", controller.signal.aborted ? "timeout_or_cancel" :
+          error instanceof AIResultError ? error.code : "provider_or_parse");
         return json(
           {
             error: controller.signal.aborted

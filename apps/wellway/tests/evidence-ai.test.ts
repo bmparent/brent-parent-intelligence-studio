@@ -204,7 +204,9 @@ test("allowed citations do not authorize fabricated numeric or causal claims", (
   const p = validateEvidence(evidence(seedState()));
   const source = p.records.find((r) => r.kind === "observation" && r.metric === "sleep")!;
   const result = (text: string) => ({ segments: [{ kind: "explanation", text, sourceIds: [source.id] }] });
-  assert.throws(() => validateAIResult(result("You recorded 23 hours of sleep."), p));
+  assert.throws(() => validateAIResult(result("You recorded 23 hours of sleep."), p),
+    (error: unknown) => error instanceof Error && "code" in error && error.code === "numeric_claim" &&
+      !error.message.includes("23"));
   assert.throws(() => validateAIResult(result(`Your average was ${source.value} hours.`), p));
   assert.throws(() => validateAIResult(result("The change was caused by your work."), p));
   assert.equal(validateAIResult(result(`The cited reading records ${source.value} hours.`), p).mode, "live");
