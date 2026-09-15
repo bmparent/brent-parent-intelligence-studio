@@ -12,11 +12,11 @@ type ServiceContext = {
 const serviceContext: Record<ServiceSlug, ServiceContext> = {
   'digital-experiences': {
     forWhom:
-      'Teams with an unclear offer, awkward customer path, generic website, campaign deadline, or hosted platform that works technically but does not feel intentional.',
+      'Teams with an unclear web presence, awkward customer journey, platform limitation, campaign deadline, or digital experience that does not feel as capable as the work behind it.',
     constraints:
-      'Existing content and platforms, accessibility, search discovery, performance, responsive behavior, brand systems, and the need for an interface that remains useful without decorative effects.',
+      'Existing content, legacy and hosted platforms, accessibility, search discovery, performance, brand systems, mobile behavior, and the need for the experience to remain useful without decorative effects.',
     proof:
-      'A responsive working experience with clear calls to action, crawlable content, intentional interaction states, performance-minded implementation, and browser-verified behavior.',
+      'Clear hierarchy, responsive implementation, crawlable content, verified calls to action, browser-tested behavior, and documentation for any platform-specific extension.',
     problems: [
       'People do not understand what we offer.',
       'Our website looks generic or dated.',
@@ -27,11 +27,11 @@ const serviceContext: Record<ServiceSlug, ServiceContext> = {
   },
   'business-systems': {
     forWhom:
-      'Operations teams reviewing schedules, exceptions, handoffs, spreadsheets, repeated reports, approvals, or manual follow-up that should be easier to see and operate.',
+      'Teams managing repeated reports, spreadsheets, handoffs, approvals, exceptions, manual follow-up, or information spread across systems that were never designed to work together.',
     constraints:
-      'Data availability, API reliability, permissions, field consistency, existing software, operator habits, exports, alerts, error recovery, and the need to fit the real workflow rather than replace useful systems unnecessarily.',
+      'Data availability, API reliability, permissions, field consistency, export needs, operator habits, failure recovery, and what people actually need to decide or do next.',
     proof:
-      'A working tool tied to actual decisions: clear states, filters, handoffs, repeatable tests, and explicit handling of missing, stale, or failed data.',
+      'Working interface states, decision-relevant filters, repeatable tests, documented data assumptions, and clear handling of missing, stale, or failed inputs.',
     problems: [
       'We keep rebuilding the same report.',
       'Everything lives in different spreadsheets.',
@@ -42,11 +42,11 @@ const serviceContext: Record<ServiceSlug, ServiceContext> = {
   },
   'intelligent-systems': {
     forWhom:
-      'Teams with a specific AI-assisted job to perform: finding approved information, surfacing patterns, supporting decisions, or taking bounded actions under explicit human-controlled rules.',
+      'Teams that have a concrete AI use case but need something more useful and controlled than a generic chatbot.',
     constraints:
-      'Approved knowledge sources, permissions, provenance, evaluation, privacy, failure behavior, human review, model limitations, and clear separation between useful assistance and uncontrolled authority.',
+      'Data sensitivity, source quality, model limitations, permissions, cost, latency, hallucination risk, auditability, human oversight, and what the system must never be allowed to change on its own.',
     proof:
-      'A bounded capability with visible inputs and outputs, documented permissions, testable behavior, human review where needed, and explicit limits rather than a generic chatbot claim.',
+      'Defined use cases, permission boundaries, representative evaluations, source and provenance behavior where applicable, known limitations, fallback states, and a clear human-control model.',
     problems: [
       'A generic chatbot does not understand our actual process.',
       'People spend too much time finding the right information.',
@@ -79,16 +79,50 @@ function ServiceHero({
   );
 }
 
-function FrictionCta() {
+function StartingPointCta() {
   return (
     <section className="ew-engagement-note">
       <div className="ew-shell">
-        <p className="ew-eyebrow">Have something that almost works?</p>
-        <h2>Show us the friction.</h2>
+        <p className="ew-eyebrow">Starting point</p>
+        <h2>Start with the problem costing the most time or creating the most confusion.</h2>
         <p>
-          Send us the website, workflow, process, or tool that keeps getting in
-          the way. We’ll identify what we would change first.
+          You do not need a finished technical brief. Show us what almost works,
+          where people get stuck, or what your team keeps doing by hand.
         </p>
+        <div className="ew-actions">
+          <a className="ew-button ew-button--light" href="/friction-review">
+            Get a Friction Review →
+          </a>
+          <a className="ew-button ew-button--secondary" href="/contact">
+            Start a Project ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServiceDetailCta({ slug }: { slug: ServiceSlug }) {
+  const copy: Record<ServiceSlug, { title: string; body: string }> = {
+    'digital-experiences': {
+      title: 'What should become easier to understand or use?',
+      body: 'Show us the customer path, page, platform, or experience that almost works. We’ll identify the first place we would reduce friction.',
+    },
+    'business-systems': {
+      title: 'What is your team still doing by hand?',
+      body: 'Show us the repeated step, report, spreadsheet, or handoff. We’ll identify where a focused tool or automation could remove friction without replacing systems that still work.',
+    },
+    'intelligent-systems': {
+      title: 'What should AI help with — and what should it never control?',
+      body: 'Bring the task, the information involved, and the boundary. We’ll help determine whether AI belongs in the workflow at all and what a useful implementation would need.',
+    },
+  };
+  return (
+    <section className="ew-engagement-note">
+      <div className="ew-shell">
+        <p className="ew-eyebrow">Starting point</p>
+        <h2>{copy[slug].title}</h2>
+        <p>{copy[slug].body}</p>
         <div className="ew-actions">
           <a className="ew-button ew-button--light" href="/friction-review">
             Get a Friction Review →
@@ -107,8 +141,8 @@ export function ServicesPage() {
     <>
       <ServiceHero
         eyebrow="Services"
-        title="Start with the friction. Build the missing piece."
-        lede="Eidos Works designs and builds digital experiences, business systems, and focused AI tools around the point where an existing site, workflow, platform, or piece of software stops fitting the way the work actually happens."
+        title="Build the part your current tools can’t quite do."
+        lede="Eidos Works designs digital experiences, business systems, and focused AI tools around real workflows — not generic software categories. Start with the friction. We’ll work backward from what needs to become clearer, faster, or easier."
       />
       <section className="ew-ledger-section ew-shell">
         <div className="ew-service-index">
@@ -138,13 +172,13 @@ export function ServicesPage() {
                 className="ew-button ew-button--secondary"
                 href={`/services/${service.slug}`}
               >
-                Explore service
+                Explore {service.title} ↗
               </a>
             </article>
           ))}
         </div>
       </section>
-      <FrictionCta />
+      <StartingPointCta />
     </>
   );
 }
@@ -197,7 +231,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
           </article>
         </div>
       </section>
-      <FrictionCta />
+      <ServiceDetailCta slug={slug} />
     </>
   );
 }
