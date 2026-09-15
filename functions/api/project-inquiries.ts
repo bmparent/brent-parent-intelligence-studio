@@ -75,13 +75,13 @@ function buildBrief(payload: InquiryPayload) {
     `Email: ${clean(payload.email, 260) || 'Not provided'}`,
     `Company / organization: ${clean(payload.company, 180) || 'Not provided'}`,
     `Current website / relevant URL: ${clean(payload.currentUrl, 260) || 'Not provided'}`,
+    `Found Eidos Works via: ${clean(payload.foundVia, 120) || 'Not provided'}`,
   ];
 
   if (isFrictionReview(payload)) {
     const frictionBrief = [
       ...common,
       `Supporting link: ${clean(payload.supportingUrl, 500) || 'Not provided'}`,
-      `Found Eidos Works via: ${clean(payload.foundVia, 120) || 'Not provided'}`,
       '',
       'Where is the friction?',
       clean(payload.problem, 1_600) || 'Not provided',
@@ -131,7 +131,12 @@ function mailto(contactEmail: string, brief: string, payload: InquiryPayload) {
 }
 
 function webhookNotes(payload: InquiryPayload) {
-  if (!isFrictionReview(payload)) return clean(payload.problem, 1_600);
+  if (!isFrictionReview(payload)) {
+    return [
+      `Problem: ${clean(payload.problem, 1_600)}`,
+      `Found via: ${clean(payload.foundVia, 120) || 'Not provided'}`,
+    ].join('\n').slice(0, 1_900);
+  }
   return [
     `Friction: ${clean(payload.problem, 1_600)}`,
     `Desired outcome: ${clean(payload.desiredOutcome, 1_200) || 'Not provided'}`,
