@@ -213,6 +213,7 @@ test("allowed citations do not authorize fabricated numeric or causal claims", (
   const aggregate = p.records.find((r) => r.id === "summary:sleep:displayed")!;
   const totalMinutes = Math.round(aggregate.value! * 60);
   assert.equal(validateAIResult({ segments: [{ kind: "explanation", text: `Average sleep was ${Math.floor(totalMinutes / 60)}h ${totalMinutes % 60}m.`, sourceIds: [aggregate.id] }] }, p).mode, "live");
+  assert.equal(validateAIResult({ segments: [{ kind: "explanation", text: `Average sleep was ${Math.floor(totalMinutes / 60)} hours and ${totalMinutes % 60} minutes.`, sourceIds: [aggregate.id] }] }, p).mode, "live");
 });
 
 test("whole-step averages use the same rounding as the displayed source", () => {
