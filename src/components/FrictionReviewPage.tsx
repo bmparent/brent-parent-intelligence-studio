@@ -187,13 +187,27 @@ export function FrictionReviewPage() {
       <section className="ew-friction-hero ew-shell" aria-labelledby="friction-title">
         <div className="ew-friction-hero__intro">
           <p className="ew-eyebrow">Show Me the Friction</p>
-          <h1 id="friction-title">Show us what almost works.</h1>
+          <h1 id="friction-title">What almost works?</h1>
           <p className="ew-friction-hero__lede">
-            Send Eidos Works one website, workflow, storefront, application,
-            repeated task, or digital process that is not working the way you
-            want. You do not need a finished brief.
+            Send us one website, workflow, storefront, application, repeated task,
+            or digital process that is not working the way you want. We’ll review
+            it and tell you what we would change first.
+          </p>
+          <p className="ew-friction-support">
+            You do not need a finished brief. Show us where people get stuck, what
+            your team keeps doing by hand, or the part of your current tools that
+            no longer fits.
           </p>
           <div className="ew-friction-promise" aria-label="What the review includes">
+            <p className="ew-eyebrow">What you’ll get</p>
+            <h2>A focused second set of eyes.</h2>
+            <p className="ew-friction-promise__intro">
+              We’ll return a concise friction readout with up to three specific
+              observations, why they matter, and the most useful next step we
+              would take first. When a visual example would materially clarify
+              the answer, we may include a lightweight annotated concept or
+              prototype direction.
+            </p>
             <div>
               <span>01</span>
               <p><strong>Up to three friction points</strong><br />Specific observations, not generic advice.</p>
@@ -208,9 +222,9 @@ export function FrictionReviewPage() {
             </div>
           </div>
           <p className="ew-friction-note">
-            No sales call is required before the review. This is a focused
-            friction readout, not a security, legal, accessibility, or full
-            technical audit.
+            No obligation to hire Eidos Works. No sales call required before the
+            review. This is a focused friction readout, not a security, legal,
+            accessibility, or full technical audit.
           </p>
         </div>
 
@@ -266,7 +280,7 @@ export function FrictionReviewPage() {
                 minLength={20}
                 maxLength={1600}
                 rows={6}
-                placeholder="What almost works? Where do people get stuck, or what does your team keep doing by hand?"
+                placeholder="Tell us what almost works, where people get stuck, or what your team keeps doing by hand."
                 value={form.friction}
                 onChange={(event) => update('friction', event.target.value)}
               />
@@ -276,22 +290,22 @@ export function FrictionReviewPage() {
               <textarea
                 maxLength={1200}
                 rows={4}
-                placeholder="Describe the outcome you want, even if you are not sure how to build it."
+                placeholder="If this worked exactly the way you wanted, what would be different?"
                 value={form.desiredOutcome}
                 onChange={(event) => update('desiredOutcome', event.target.value)}
               />
             </label>
             <label>
-              <span>Supporting link <em>optional</em></span>
+              <span>Screenshot or supporting file/link <em>optional</em></span>
               <input
                 type="url"
                 inputMode="url"
                 maxLength={500}
-                placeholder="Screenshot, Loom, Drive, or other share link"
+                placeholder="Share link from Drive, Loom, Dropbox, or similar"
                 value={form.supportingUrl}
                 onChange={(event) => update('supportingUrl', event.target.value)}
               />
-              <small>If you prefer to attach a file, submit first and email it to the studio afterward.</small>
+              <small>The secure inquiry mailer is text-only. Use a share link here, or reply with an attachment after we acknowledge the request.</small>
             </label>
             <label>
               <span>How did you find Eidos Works? <em>optional</em></span>
@@ -324,10 +338,10 @@ export function FrictionReviewPage() {
               type="submit"
               disabled={submitState.status === 'sending'}
             >
-              {submitState.status === 'sending' ? 'Sending…' : 'Get a Friction Review'}
+              {submitState.status === 'sending' ? 'Sending…' : 'Send the Friction →'}
             </button>
             <SafeEmailLink className="ew-text-link" address={siteConfig.projectsEmail}>
-              Or email <EmailAddress address={siteConfig.projectsEmail} />
+              Prefer email? <EmailAddress address={siteConfig.projectsEmail} />
             </SafeEmailLink>
           </div>
 
@@ -340,12 +354,12 @@ export function FrictionReviewPage() {
               {submitState.status === 'success' ? (
                 <>
                   <p>
-                    If there is something useful to identify, we will show you
+                    If there is something useful to identify, we’ll show you
                     where the friction is and what we would change first — not
                     just send a sales pitch.
                   </p>
                   <a className="ew-button ew-button--secondary" href="/work">
-                    Explore what we’ve built →
+                    Explore What We’ve Built →
                   </a>
                 </>
               ) : submitState.mailto ? (
@@ -356,8 +370,9 @@ export function FrictionReviewPage() {
             </div>
           ) : (
             <p className="ew-form-note">
-              Your note is used only to review and respond to this inquiry. We
-              do not sell form data, and analytics remain consent-based.
+              Your submission is used to review and respond to this request. Do
+              not include passwords, regulated data, private customer records,
+              or other sensitive information.
             </p>
           )}
         </form>
