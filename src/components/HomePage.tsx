@@ -29,12 +29,12 @@ export function HomePage() {
             whose existing technology does not quite fit what they need.
           </p>
           <div className="ew-actions">
-            <a className="ew-button ew-button--light" href="/work">
-              Explore the work <span aria-hidden="true">↗</span>
-            </a>
             <a className="ew-cinema-link ew-hero-glass" href="/friction-review">
               <LiquidGlassSurface variant="hero" />
               <span>Get a Friction Review</span> <span aria-hidden="true">→</span>
+            </a>
+            <a className="ew-button ew-button--light" href="/work">
+              Explore the Work <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
