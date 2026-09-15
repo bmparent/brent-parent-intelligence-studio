@@ -21,7 +21,7 @@ for (const engine of engines) {
       if (new URL(base).hostname === '127.0.0.1') {
         // Vite preview serves the root document for extensionless directories.
         // Read the real prerendered destination, as Pages does, preserving the link URL.
-        await page.route(/\/+(contact|work)$/, async route => {
+        await page.route(/\/+(friction-review|work)$/, async route => {
           const response = await route.fetch({ url: `${route.request().url()}/` });
           await route.fulfill({ response });
         });
@@ -74,7 +74,7 @@ for (const engine of engines) {
         assert.equal(await scene.locator('img').evaluate(img => img.complete && img.naturalWidth === 1672), true);
         await page.keyboard.press('Tab'); await page.locator('.ew-hero-glass').focus();
         assert.equal(await page.locator('.ew-hero-glass').evaluate(el => el.matches(':focus-visible')), true);
-        await page.keyboard.press('Enter'); await page.waitForURL(/\/contact\/?$/);
+        await page.keyboard.press('Enter'); await page.waitForURL(/\/friction-review\/?$/);
         await page.locator('h1').waitFor({ state: 'visible' }); await page.waitForLoadState('networkidle');
         await page.goto(base); await page.waitForLoadState('networkidle'); await page.locator('.ew-actions a[href="/work"]').click();
         await page.waitForURL(/\/work\/?$/); await page.locator('h1').waitFor({ state: 'visible' }); await page.waitForLoadState('networkidle');
