@@ -51,6 +51,10 @@ Defaults disable paid calls. The local usage file fails closed if corrupt. It do
 
 ## Record conventions
 
+Unreadable or unsupported saved workspaces are preserved in a recovery copy before sample data is saved. Download that original copy from Help & guide. If the browser cannot preserve it, automatic saving pauses; export the current session before closing. Edited and rejected advisor drafts stay distinguishable; note-only approval is labeled **Approve follow-up** and does not change activities.
+
+See [production boundaries](docs/PRODUCTION-READINESS.md) for the separate requirements before real healthcare use.
+
 CSV columns are `id,date,metric,value,unit,sourceId`. Sleep uses `h`, movement uses `steps`, and energy uses `score` (1–5). Source plus record ID is the deduplication key. Existing records are not silently overwritten. Overlapping sources remain inspectable; charts select the preferred check-in/sample-watch record, then the most recently imported alternative, without summing overlapping measures.
 
 Average = sum of selected available values / recorded days. Missing days are excluded. The scenario calendar and real save/import timestamps remain distinct. Google Drive is optional manual backup storage.

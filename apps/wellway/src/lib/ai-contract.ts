@@ -262,6 +262,19 @@ export function validateAIResult(value: unknown, evidence: Evidence): AIResult {
       (s.kind !== "question" && !s.sourceIds.length)
     )
       return fail();
+    const ids = s.sourceIds as string[];
+    const cited = evidence.records.filter((r) => ids.includes(r.id));
+    // Validate bounded, measurable claims as well as ID membership. This is a
+    // conservative numeric check, not a general semantic-entailment guarantee.
+    for (const match of s.text.matchAll(/(\d+(?:,\d{3})*(?:\.\d+)?)\s*(hours?|hrs?|h\b|steps?\b|\/\s*5)/gi)) {
+      const metric = /step/i.test(match[2]) ? "steps" : /5/.test(match[2]) ? "energy" : "sleep";
+      const number = Number(match[1].replaceAll(",", ""));
+      const aggregate = /\b(average|mean)\b/i.test(s.text);
+      if (!cited.some((r) => r.metric === metric && typeof r.value === "number" &&
+        (!aggregate || r.kind === "summary") &&
+        (Math.abs(r.value - number) < 0.00001 || Number(r.value.toFixed(1)) === number))) return fail();
+    }
+    if (/\b(caused by|diagnos(?:e|ed|is)|you have (?:diabetes|depression)|increase your dose|stop taking)\b/i.test(s.text)) return fail();
     return {
       kind: s.kind as Segment["kind"],
       text: s.text.trim(),

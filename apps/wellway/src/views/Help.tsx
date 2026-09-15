@@ -9,6 +9,7 @@ import {
 import type { AppState, Page } from "../lib/types";
 import { PageTitle, Button, Note, Modal } from "../components/UI";
 import { Icon } from "../components/Icon";
+import { RECOVERY_KEY } from "../lib/storage";
 export function Help({
   tour,
   navigate,
@@ -169,6 +170,14 @@ export function Help({
             >
               Restore backup
             </Button>
+            <Button variant="text" onClick={() => {
+              try {
+                const raw = localStorage.getItem(RECOVERY_KEY);
+                if (raw === null) { setSaved("No unreadable saved workspace was found."); return; }
+                downloadFile("wellway-recovery.txt", raw, "text/plain");
+                setSaved("Original recovery copy download requested. Keep it for manual recovery; it has not been treated as a valid backup.");
+              } catch { setError("Browser storage is unavailable. Export the current session instead."); }
+            }}>Download recovery copy</Button>
           </div>
           <input
             ref={input}

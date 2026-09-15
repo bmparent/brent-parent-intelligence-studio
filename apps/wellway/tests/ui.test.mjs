@@ -284,3 +284,8 @@ console.log(
 );
 dom.window.close();
 reloaded.window.close();
+const corrupt = create("{unreadable-original");
+await tick();
+assert.equal(corrupt.window.localStorage.getItem("wellway.journey.v1.recovery"), "{unreadable-original");
+assert.match(corrupt.window.document.body.textContent, /original copy is preserved/);
+corrupt.window.close();
