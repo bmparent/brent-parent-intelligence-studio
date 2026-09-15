@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { LiquidGlassSurface } from './LiquidGlassSurface';
 const links = [
   { href: '/work', label: 'Work' },
+  { href: '/services', label: 'Services' },
   { href: '/playground', label: 'Playground' },
   { href: '/lab', label: 'Lab' },
   { href: '/community', label: 'Community' },
@@ -69,9 +70,6 @@ export function Header() {
               {link.label}
             </a>
           ))}
-          <a className="ew-nav-mobile-extra" href="/services">
-            Services
-          </a>
           <a className="ew-nav-mobile-extra" href="/friction-review">
             Get a Friction Review ↗
           </a>
