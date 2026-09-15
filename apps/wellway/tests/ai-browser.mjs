@@ -25,7 +25,8 @@ await page.route("**/api/wellway/ask", async (route) => {
   if (behavior === "error")
     return route.fulfill({
       status: 502,
-      json: { error: "Test interruption. Please retry." },
+      contentType: "text/html",
+      body: "<!DOCTYPE html><title>Bad gateway</title>",
     });
   if (behavior === "delay")
     await new Promise((resolve) => setTimeout(resolve, 800));
@@ -62,7 +63,7 @@ try {
   await page.getByRole("button", { name: "Ask", exact: true }).click();
   await page
     .getByRole("alert")
-    .filter({ hasText: "Test interruption" })
+    .filter({ hasText: "The AI service was interrupted. Your draft is safe." })
     .waitFor();
   assert.equal(await page.locator(".conversation-turn").count(), 0);
   behavior = "success";

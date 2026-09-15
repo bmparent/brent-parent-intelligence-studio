@@ -77,7 +77,9 @@ export function useAI() {
         }),
         signal: controller.signal,
       });
-      const result = await r.json();
+      const result = await r.json().catch(() => {
+        throw new Error("The AI service was interrupted. Your draft is safe. Please retry or use guided answers.");
+      });
       if (!r.ok)
         throw new Error(
           result.error ||

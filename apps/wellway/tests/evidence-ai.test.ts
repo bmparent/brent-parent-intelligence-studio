@@ -208,4 +208,7 @@ test("allowed citations do not authorize fabricated numeric or causal claims", (
   assert.throws(() => validateAIResult(result(`Your average was ${source.value} hours.`), p));
   assert.throws(() => validateAIResult(result("The change was caused by your work."), p));
   assert.equal(validateAIResult(result(`The cited reading records ${source.value} hours.`), p).mode, "live");
+  const aggregate = p.records.find((r) => r.id === "summary:sleep:displayed")!;
+  const totalMinutes = Math.round(aggregate.value! * 60);
+  assert.equal(validateAIResult({ segments: [{ kind: "explanation", text: `Average sleep was ${Math.floor(totalMinutes / 60)}h ${totalMinutes % 60}m.`, sourceIds: [aggregate.id] }] }, p).mode, "live");
 });

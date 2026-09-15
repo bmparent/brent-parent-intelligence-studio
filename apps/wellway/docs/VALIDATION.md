@@ -2,6 +2,12 @@
 
 ## September 14 completion checks
 
+Publication checkpoint: PR #47 merged as `a9910b0cc0c13181ee3a1d7039ed22de934e4a54` and the complete Pages application, including Functions, deployed as `ab5e785a-64a0-493f-a885-d5d1ec7b49d9`. The canonical domain delivered the exact reviewed app bundle. Homepage, Work, Playground, Insights, contact, community and shop entry points rendered without page errors; no messages, purchases or customer records were created.
+
+Owner authorization is resolved. The private Worker is deployed, existing credentials are server-held, and only the Wellway production service binding was added; all other Pages configuration was preserved. The ledger reported zero prior reservations before the first checks. A genuine member answer succeeded and cited the missing September 8 sleep record. The next request received an HTML 502 response; its reservation was retained. A follow-up patch replaces raw JSON parser errors with a useful retry message and tests HTML gateway failures. Numeric validation also accepts the app's hours/minutes display rounding. Final live workflow and remaining-budget receipts are in the release evidence folder; a successful first answer alone is not proof of all AI modes.
+
+All six browser cases passed in the clean Linux CI run and Firefox passed on Windows using the repository-pinned Playwright 1.58.2. The bundled 1.62.1 Firefox stalls remain recorded as failed attempts. CI also verified generated-source parity. The DOM runner now waits for React readiness instead of assuming startup completes within 30 ms.
+
 Current main was inspected at `2945d9e2a1996f72672b6fdba171f59ea12c1d66`; work uses an isolated completion branch. No account or Playground feature branch was merged into this task.
 
 Changes: preserve unreadable saves before replacing them with sample records, provide recovery downloads, pause writes when recovery cannot be preserved, record advisor edits/rejections, prevent dismissing approved records, accurately label note-only approval, reject unsupported numeric AI claims, and make the standalone server test build its prerequisite. Fresh gallery images are real desktop and mobile captures. See PRODUCTION-READINESS.md for the separate healthcare production phase.
