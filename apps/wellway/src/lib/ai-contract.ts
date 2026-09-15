@@ -241,6 +241,12 @@ export function providerPayload(input: AIRequest) {
     },
   };
 }
+export class AIResultError extends Error {
+  constructor(public readonly code: string) {
+    super("The response could not be verified against the supplied records.");
+  }
+}
+const rejectResult = (code: string): never => { throw new AIResultError(code); };
 export function validateAIResult(value: unknown, evidence: Evidence): AIResult {
   if (
     !object(value) ||
@@ -248,7 +254,7 @@ export function validateAIResult(value: unknown, evidence: Evidence): AIResult {
     !value.segments.length ||
     value.segments.length > 4
   )
-    return fail();
+    return rejectResult("segments_shape");
   const known = new Set(evidence.records.map((r) => r.id));
   const segments = value.segments.map((s: unknown): Segment => {
     if (
@@ -261,7 +267,7 @@ export function validateAIResult(value: unknown, evidence: Evidence): AIResult {
       s.sourceIds.some((id) => typeof id !== "string" || !known.has(id)) ||
       (s.kind !== "question" && !s.sourceIds.length)
     )
-      return fail();
+      return rejectResult("segment_or_citations");
     const ids = s.sourceIds as string[];
     const cited = evidence.records.filter((r) => ids.includes(r.id));
     // Validate bounded, measurable claims as well as ID membership. This is a
@@ -274,16 +280,16 @@ export function validateAIResult(value: unknown, evidence: Evidence): AIResult {
       const aggregate = /\b(average|mean)\b/i.test(s.text);
       if (!cited.some((r) => r.metric === metric && typeof r.value === "number" &&
         (!aggregate || r.kind === "summary") &&
-        (Math.abs(r.value - number) < (metric === "sleep" ? 1 / 120 : 0.00001) || Number(r.value.toFixed(1)) === number))) return fail();
+        (Math.abs(r.value - number) < (metric === "sleep" ? 1 / 120 : 0.00001) || Number(r.value.toFixed(1)) === number))) return rejectResult("numeric_claim");
     }
-    if (/\b(caused by|diagnos(?:e|ed|is)|you have (?:diabetes|depression)|increase your dose|stop taking)\b/i.test(s.text)) return fail();
+    if (/\b(caused by|diagnos(?:e|ed|is)|you have (?:diabetes|depression)|increase your dose|stop taking)\b/i.test(s.text)) return rejectResult("medical_claim_phrase");
     return {
       kind: s.kind as Segment["kind"],
       text: s.text.trim(),
       sourceIds: [...new Set(s.sourceIds as string[])],
     };
   });
-  if (segments.reduce((n, s) => n + s.text.length, 0) > 6500) return fail();
+  if (segments.reduce((n, s) => n + s.text.length, 0) > 6500) return rejectResult("response_length");
   return {
     mode: "live",
     model: MODEL,
