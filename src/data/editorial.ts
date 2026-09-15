@@ -51,14 +51,13 @@ export const serviceFamilies = [
     slug: 'digital-experiences',
     number: '01',
     title: 'Digital Experiences',
-    summary: 'Customer-facing websites, interactive experiences, campaigns, commerce journeys, and platform extensions that make an offer easier to understand and a next step easier to take.',
+    summary: 'Customer-facing websites, interactive experiences, campaigns, commerce journeys, and platform extensions that make the offer easier to understand and the next step easier to take.',
     includes: [
       'Website and UX redesign',
-      'Responsive websites and service pages',
-      'Interactive and cinematic web experiences',
-      'Campaign and launch experiences',
-      'Hosted commerce and storefront UX',
-      'Frontend extensions for existing platforms'
+      'Interactive and campaign experiences',
+      'Hosted commerce and portal UX',
+      'Platform and frontend extensions',
+      'Accessibility, performance, and search foundations'
     ],
     image: '/images/services/digital-experiences.png',
     imageAlt: 'Eidos Works service page shown as a digital experience example.',
@@ -68,14 +67,13 @@ export const serviceFamilies = [
     slug: 'business-systems',
     number: '02',
     title: 'Business Systems',
-    summary: 'Internal tools, dashboards, workflow applications, reporting, and automation built around the way the organization actually operates.',
+    summary: 'Internal tools, dashboards, workflow applications, reporting, and automation built around the way the work actually happens.',
     includes: [
       'Operational dashboards',
-      'Internal web applications',
-      'Workflow and approval tools',
-      'Reporting interfaces',
+      'Internal applications',
+      'Workflow and reporting tools',
       'Existing-tool and API integrations',
-      'Google Workspace automation'
+      'Automation and handoff systems'
     ],
     image: '/images/case-studies/production-dashboard.png',
     imageAlt: 'Production reporting dashboard showing schedule filters and daily work status.',
@@ -85,14 +83,13 @@ export const serviceFamilies = [
     slug: 'intelligent-systems',
     number: '03',
     title: 'Intelligent Systems',
-    summary: 'Focused AI assistants, agentic workflows, and decision-support tools designed around a specific job, real business context, and explicit boundaries.',
+    summary: 'Focused AI assistants, agentic workflows, and decision-support tools designed around a specific job, real context, and explicit boundaries.',
     includes: [
       'Focused AI assistants',
       'Retrieval over approved business knowledge',
-      'Agentic workflows with explicit permissions',
+      'Agentic workflows with permissions',
       'AI-enhanced internal tools',
-      'Structured analysis and decision support',
-      'Human review, evaluation, and guardrails'
+      'Evaluation, guardrails, and human review'
     ],
     image: '/images/work/sentinel-lab.webp',
     imageAlt: 'Eidos Sentinel Lab interface showing a proof-stage intelligent-systems research environment.',
