@@ -12,9 +12,19 @@ interface Env {
 type PagesContext = { request: Request; env: Env };
 
 type InquiryPayload = {
+  inquiryKind?: string;
   projectType?: string;
   problem?: string;
+  desiredOutcome?: string;
   currentUrl?: string;
+  supportingUrl?: string;
+  foundVia?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+  referrer?: string;
+  landingPage?: string;
   name?: string;
   company?: string;
   email?: string;
@@ -31,14 +41,22 @@ const jsonHeaders = {
 const MAX_REQUEST_BYTES = 12_000;
 const DEFAULT_PROJECTS_EMAIL = 'projects@eidos-works.com';
 
+function clean(value: unknown, maxLength: number) {
+  return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
+}
+
 function isLabAccessRequest(payload: InquiryPayload) {
   return clean(payload.projectType, 120).startsWith('Eidos / Sentinel access');
 }
 
+function isFrictionReview(payload: InquiryPayload) {
+  return clean(payload.inquiryKind, 80) === 'friction-review' || clean(payload.projectType, 120) === 'Friction Review';
+}
+
 function inquiryTitle(payload: InquiryPayload) {
-  return isLabAccessRequest(payload)
-    ? 'Eidos Brain / Sentinel test-access request'
-    : 'Eidos Works project inquiry';
+  if (isLabAccessRequest(payload)) return 'Eidos Brain / Sentinel test-access request';
+  if (isFrictionReview(payload)) return 'Eidos Works Friction Review request';
+  return 'Eidos Works project inquiry';
 }
 
 function json(value: unknown, init: ResponseInit = {}) {
@@ -48,22 +66,45 @@ function json(value: unknown, init: ResponseInit = {}) {
   });
 }
 
-function clean(value: unknown, maxLength: number) {
-  return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
-}
-
 function buildBrief(payload: InquiryPayload) {
-  return [
+  const common = [
     inquiryTitle(payload),
     '',
     `Service: ${clean(payload.projectType, 120) || 'Not provided'}`,
-    `Problem to solve: ${clean(payload.problem, 1_600) || 'Not provided'}`,
-    `Current website: ${clean(payload.currentUrl, 260) || 'Not provided'}`,
-    '',
     `Name: ${clean(payload.name, 160) || 'Not provided'}`,
+    `Email: ${clean(payload.email, 260) || 'Not provided'}`,
     `Company / organization: ${clean(payload.company, 180) || 'Not provided'}`,
-    `Email: ${clean(payload.email, 260) || 'Not provided'}`
-  ].join('\n');
+    `Current website / relevant URL: ${clean(payload.currentUrl, 260) || 'Not provided'}`,
+  ];
+
+  if (isFrictionReview(payload)) {
+    const frictionBrief = [
+      ...common,
+      `Supporting link: ${clean(payload.supportingUrl, 500) || 'Not provided'}`,
+      `Found Eidos Works via: ${clean(payload.foundVia, 120) || 'Not provided'}`,
+      '',
+      'Where is the friction?',
+      clean(payload.problem, 1_600) || 'Not provided',
+      '',
+      'What would you rather happen?',
+      clean(payload.desiredOutcome, 1_200) || 'Not provided',
+      '',
+      'Attribution',
+      `utm_source: ${clean(payload.utmSource, 160) || 'Not provided'}`,
+      `utm_medium: ${clean(payload.utmMedium, 160) || 'Not provided'}`,
+      `utm_campaign: ${clean(payload.utmCampaign, 160) || 'Not provided'}`,
+      `utm_content: ${clean(payload.utmContent, 160) || 'Not provided'}`,
+      `Referrer: ${clean(payload.referrer, 500) || 'Not provided'}`,
+      `Landing page: ${clean(payload.landingPage, 260) || 'Not provided'}`,
+    ].join('\n');
+    return frictionBrief.slice(0, 4_900);
+  }
+
+  return [
+    ...common,
+    '',
+    `Problem to solve: ${clean(payload.problem, 1_600) || 'Not provided'}`,
+  ].join('\n').slice(0, 4_900);
 }
 
 function validate(payload: InquiryPayload) {
@@ -83,8 +124,23 @@ function validate(payload: InquiryPayload) {
 function mailto(contactEmail: string, brief: string, payload: InquiryPayload) {
   const subject = isLabAccessRequest(payload)
     ? 'Eidos Brain / Sentinel Test Access'
-    : 'Eidos Works Project Inquiry';
+    : isFrictionReview(payload)
+      ? 'Eidos Works Friction Review'
+      : 'Eidos Works Project Inquiry';
   return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(brief)}`;
+}
+
+function webhookNotes(payload: InquiryPayload) {
+  if (!isFrictionReview(payload)) return clean(payload.problem, 1_600);
+  return [
+    `Friction: ${clean(payload.problem, 1_600)}`,
+    `Desired outcome: ${clean(payload.desiredOutcome, 1_200) || 'Not provided'}`,
+    `Supporting link: ${clean(payload.supportingUrl, 500) || 'Not provided'}`,
+    `Found via: ${clean(payload.foundVia, 120) || 'Not provided'}`,
+    `UTM: ${clean(payload.utmSource, 160) || '-'} / ${clean(payload.utmMedium, 160) || '-'} / ${clean(payload.utmCampaign, 160) || '-'}`,
+    `Referrer: ${clean(payload.referrer, 500) || 'Not provided'}`,
+    `Landing page: ${clean(payload.landingPage, 260) || 'Not provided'}`,
+  ].join('\n').slice(0, 3_800);
 }
 
 async function sendWebhook(url: string, payload: InquiryPayload, sharedSecret?: string) {
@@ -104,9 +160,9 @@ async function sendWebhook(url: string, payload: InquiryPayload, sharedSecret?: 
           email: clean(payload.email, 260),
           company: clean(payload.company, 180),
           website: clean(payload.currentUrl, 260),
-          source: 'eidos-works-site',
+          source: isFrictionReview(payload) ? 'eidos-works-friction-review' : 'eidos-works-site',
           serviceInterest: clean(payload.projectType, 120),
-          notes: clean(payload.problem, 1_600)
+          notes: webhookNotes(payload)
         }
       })
     });
@@ -175,7 +231,7 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
       });
       const result = await response.json().catch(() => null) as { ok?: boolean; receipt?: string } | null;
       if (response.ok && result?.ok === true && typeof result.receipt === 'string') {
-        return json({ state: 'sent', submitted: true, message: 'Your project note reached Eidos Works.', receipt: result.receipt, brief, mailto: fallbackMailto });
+        return json({ state: 'sent', submitted: true, message: isFrictionReview(payload) ? 'Your Friction Review request reached Eidos Works.' : 'Your project note reached Eidos Works.', receipt: result.receipt, brief, mailto: fallbackMailto });
       }
       return json({ state: 'provider_error', submitted: false, message: 'Delivery was unavailable. Email the prepared note directly.', brief, mailto: fallbackMailto }, { status: response.status === 429 ? 429 : 502 });
     } catch {
@@ -187,7 +243,7 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
   if (webhookUrl) {
     try {
       if (await sendWebhook(webhookUrl, payload, env.COMMAND_CENTER_SHARED_SECRET)) {
-        return json({ state: 'sent', submitted: true, message: 'Your project note reached Eidos Works.', brief, mailto: fallbackMailto });
+        return json({ state: 'sent', submitted: true, message: isFrictionReview(payload) ? 'Your Friction Review request reached Eidos Works.' : 'Your project note reached Eidos Works.', brief, mailto: fallbackMailto });
       }
       return json(
         { state: 'provider_error', submitted: false, message: 'Delivery was unavailable. Email the prepared note directly.', brief, mailto: fallbackMailto },
