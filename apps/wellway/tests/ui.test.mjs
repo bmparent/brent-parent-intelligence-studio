@@ -34,7 +34,13 @@ const dom = create();
 const w = dom.window;
 const d = w.document;
 const tick = () => new Promise((r) => setTimeout(r, 30));
-await tick();
+async function ready(instance) {
+  const deadline = Date.now() + 10000;
+  while (!instance.window.document.querySelector(".wellway-app h1") && Date.now() < deadline) await tick();
+  assert.ok(instance.window.document.querySelector(".wellway-app h1"), "React app mounted");
+  await tick(); // Allow the persistence effect to finish after the initial render.
+}
+await ready(dom);
 function button(text) {
   const b = [
     ...(d.querySelector("[role=dialog]") || d).querySelectorAll("button"),
@@ -272,7 +278,7 @@ assert.match(
 );
 const backup = w.localStorage.getItem("wellway.journey.v1");
 const reloaded = create(backup);
-await tick();
+await ready(reloaded);
 assert.equal(
   JSON.parse(reloaded.window.localStorage.getItem("wellway.journey.v1")).plan[0]
     .time,
@@ -285,7 +291,7 @@ console.log(
 dom.window.close();
 reloaded.window.close();
 const corrupt = create("{unreadable-original");
-await tick();
+await ready(corrupt);
 assert.equal(corrupt.window.localStorage.getItem("wellway.journey.v1.recovery"), "{unreadable-original");
 assert.match(corrupt.window.document.body.textContent, /original copy is preserved/);
 corrupt.window.close();
