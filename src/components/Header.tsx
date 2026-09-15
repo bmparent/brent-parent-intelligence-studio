@@ -72,12 +72,12 @@ export function Header() {
           <a className="ew-nav-mobile-extra" href="/services">
             Services
           </a>
-          <a className="ew-nav-mobile-extra" href="/contact">
-            Let’s build ↗
+          <a className="ew-nav-mobile-extra" href="/friction-review">
+            Get a Friction Review ↗
           </a>
         </nav>
-        <a className="ew-header__cta" href="/contact">
-          Let’s build <span aria-hidden="true">↗</span>
+        <a className="ew-header__cta" href="/friction-review">
+          Get a Friction Review <span aria-hidden="true">↗</span>
         </a>
       </div>
     </header>
