@@ -40,6 +40,7 @@ const jsonHeaders = {
 
 const MAX_REQUEST_BYTES = 12_000;
 const DEFAULT_PROJECTS_EMAIL = 'projects@eidos-works.com';
+const INQUIRY_RUNTIME_RELEASE = 'm2-friction-2026-09-15-r1';
 
 function clean(value: unknown, maxLength: number) {
   return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
@@ -178,6 +179,17 @@ async function sendWebhook(url: string, payload: InquiryPayload, sharedSecret?: 
     clearTimeout(timeout);
   }
 }
+
+export const onRequestGet = ({ env }: PagesContext) =>
+  json({
+    ok: true,
+    service: 'project-inquiries',
+    release: INQUIRY_RUNTIME_RELEASE,
+    deliveryConfigured: Boolean(
+      env.EIDOS_INQUIRY_MAILER || env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL || env.CONTACT_WEBHOOK_URL
+    ),
+    privateMailerConfigured: Boolean(env.EIDOS_INQUIRY_MAILER),
+  });
 
 export const onRequestOptions = () =>
   new Response(null, {
