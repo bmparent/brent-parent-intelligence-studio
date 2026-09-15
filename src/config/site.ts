@@ -6,7 +6,7 @@ export const siteConfig = {
     '',
   ),
   description:
-    'Eidos Works is an independent studio for creative web development, custom storefronts, intelligent tools, and AI-assisted experiences.',
+    'Eidos Works builds distinctive digital experiences, business systems, and focused AI tools for teams whose existing technology does not quite fit what they need.',
   contactEmail: 'hello@eidos-works.com',
   projectsEmail: 'projects@eidos-works.com',
   snapshotEmail: 'snapshot@eidos-works.com',
