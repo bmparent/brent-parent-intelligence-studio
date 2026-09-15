@@ -190,6 +190,7 @@ test("visit and advisor drafts survive serialization and follow-up approval cann
     proposal: "Saved edit",
   });
   const before = structuredClone(state.plan);
+  assert.equal(reducer(state, { type: "review-edit", id: "followup", proposal: "Saved edit" }), state);
   state = reducer(state, {
     type: "approve",
     id: "followup",
