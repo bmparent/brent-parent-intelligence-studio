@@ -27,6 +27,47 @@ test('inquiry requires same origin and confirmed private-provider delivery', asy
   assert.equal(fallback.submitted, false);
 });
 
+test('friction review keeps its label, useful context, and safe attribution', async () => {
+  let forwardedBrief = '';
+  const friction = {
+    inquiryKind: 'friction-review',
+    projectType: 'Friction Review',
+    problem: 'Customers stop after the estimate page because the next step is unclear.',
+    desiredOutcome: 'Make the handoff into scheduling obvious without replacing the current CRM.',
+    currentUrl: 'https://example.com/estimate',
+    supportingUrl: 'https://example.com/safe-share',
+    foundVia: 'LinkedIn',
+    utmSource: 'linkedin',
+    utmMedium: 'organic',
+    utmCampaign: 'phase2-playground',
+    utmContent: 'founder-post',
+    referrer: 'https://www.linkedin.com/feed/',
+    landingPage: '/friction-review',
+    name: 'Release test',
+    email: 'test@example.com',
+    company: 'Example Co',
+  };
+  const env = { EIDOS_INQUIRY_MAILER: { fetch: (async (_url: string | URL | Request, init?: RequestInit) => {
+    const body = JSON.parse(String(init?.body)) as { brief: string; email: string };
+    forwardedBrief = body.brief;
+    assert.equal(body.email, friction.email);
+    return Response.json({ ok: true, receipt: 'friction-receipt' });
+  }) as typeof fetch } };
+
+  const response = await onRequestPost({ request: request('https://eidos-works.com', friction), env });
+  const body = await response.json();
+  assert.equal(response.status, 200);
+  assert.equal(body.submitted, true);
+  assert.equal(body.receipt, 'friction-receipt');
+  assert.match(body.message, /Friction Review request reached Eidos Works/);
+  assert.match(forwardedBrief, /^Eidos Works Friction Review request/);
+  assert.match(forwardedBrief, /Where is the friction\?/);
+  assert.match(forwardedBrief, /What would you rather happen\?/);
+  assert.match(forwardedBrief, /utm_source: linkedin/);
+  assert.match(forwardedBrief, /Referrer: https:\/\/www\.linkedin\.com\/feed\//);
+  assert.match(decodeURIComponent(body.mailto), /subject=Eidos Works Friction Review/);
+});
+
 test('lab access requests receive a clearly labeled review brief', async () => {
   const response = await onRequestPost({
     request: request('https://eidos-works.com', {
@@ -43,13 +84,15 @@ test('lab access requests receive a clearly labeled review brief', async () => {
   );
 });
 
-test('private mailer fixes destination, bounds input, enforces rate limit, and requires provider receipt', async () => {
+test('private mailer fixes destination, labels bounded inquiry types, enforces rate limit, and requires provider receipt', async () => {
   let sent = 0;
   let permitted = true;
+  let lastSubject = '';
   const env = { STUDIO_TO: 'studio@example.com', STUDIO_FROM: 'projects@eidos-works.com', INQUIRY_LIMIT: { limit: async () => ({ success: permitted }) }, EMAIL: { send: async (message: Record<string, string>) => {
     assert.equal(message.to, 'studio@example.com');
     assert.equal(message.from, 'projects@eidos-works.com');
     assert.equal(message.replyTo, input.email);
+    lastSubject = message.subject;
     sent++;
     return { messageId: 'provider-test' };
   } } };
@@ -57,9 +100,15 @@ test('private mailer fixes destination, bounds input, enforces rate limit, and r
   const delivered = await (await mailer.fetch(message(), env)).json();
   assert.equal(delivered.ok, true);
   assert.equal(delivered.providerMessageId, 'provider-test');
+  assert.equal(lastSubject, 'Eidos Works project inquiry');
+
+  const frictionDelivered = await (await mailer.fetch(message({ brief: 'Eidos Works Friction Review request\n\nA sufficiently detailed friction review.', email: input.email }), env)).json();
+  assert.equal(frictionDelivered.ok, true);
+  assert.equal(lastSubject, 'Eidos Works Friction Review request');
+
   permitted = false;
   assert.equal((await mailer.fetch(message(), env)).status, 429);
-  assert.equal(sent, 1);
+  assert.equal(sent, 2);
   assert.equal((await mailer.fetch(message({ brief: 'x'.repeat(13_000), email: input.email }), env)).status, 413);
   assert.equal((await mailer.fetch(message({ brief: input.problem, email: 'x@example.com\r\nBcc: victim@example.com' }), env)).status, 400);
   permitted = true;
