@@ -64,6 +64,7 @@ jobs:
           const account = process.env.CLOUDFLARE_ACCOUNT_ID;
           const commit = process.env.GITHUB_SHA;
           const expectedRelease = 'm2-friction-2026-09-15-r1';
+          const browserQaUrl = 'https://eidosworks.pages.dev';
           const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
           const projectUrl = `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(account)}/pages/projects/eidosworks`;
 
@@ -110,36 +111,60 @@ jobs:
           assert(deploymentUrl, 'Could not determine the exact Cloudflare Pages deployment URL.');
           deploymentUrl = deploymentUrl.replace(/\/$/, '');
 
-          const runtimeDeadline = Date.now() + 90000;
-          let runtime = null;
-          let lastRuntime = 'no response';
-          while (Date.now() < runtimeDeadline) {
+          async function waitForInquiryRuntime(baseUrl, label, timeout = 90000) {
+            const deadline = Date.now() + timeout;
+            let lastRuntime = 'no response';
+            while (Date.now() < deadline) {
+              try {
+                const response = await fetch(`${baseUrl}/api/project-inquiries?release=${Date.now()}`, { cache: 'no-store' });
+                const contentType = response.headers.get('content-type') || '';
+                const text = await response.text();
+                lastRuntime = `${response.status} ${contentType} ${text.slice(0, 240)}`;
+                if (response.ok && contentType.includes('application/json')) {
+                  const body = JSON.parse(text);
+                  if (
+                    body?.ok === true &&
+                    body?.service === 'project-inquiries' &&
+                    body?.release === expectedRelease &&
+                    body?.deliveryConfigured === true &&
+                    body?.privateMailerConfigured === true
+                  ) return body;
+                }
+              } catch (error) {
+                lastRuntime = String(error);
+              }
+              await sleep(3000);
+            }
+            throw new Error(`${label} inquiry runtime did not become ready. Last observation: ${lastRuntime}`);
+          }
+
+          const exactRuntime = await waitForInquiryRuntime(deploymentUrl, 'Exact production');
+          const stableRuntime = await waitForInquiryRuntime(browserQaUrl, 'Stable Pages production');
+
+          const configDeadline = Date.now() + 90000;
+          let publicConfig = null;
+          let lastConfig = 'no response';
+          while (Date.now() < configDeadline) {
             try {
-              const response = await fetch(`${deploymentUrl}/api/project-inquiries?release=${Date.now()}`, { cache: 'no-store' });
+              const response = await fetch(`${browserQaUrl}/api/public-config?release=${Date.now()}`, { cache: 'no-store' });
               const contentType = response.headers.get('content-type') || '';
               const text = await response.text();
-              lastRuntime = `${response.status} ${contentType} ${text.slice(0, 240)}`;
+              lastConfig = `${response.status} ${contentType} ${text.slice(0, 240)}`;
               if (response.ok && contentType.includes('application/json')) {
                 const body = JSON.parse(text);
-                if (
-                  body?.ok === true &&
-                  body?.service === 'project-inquiries' &&
-                  body?.release === expectedRelease &&
-                  body?.deliveryConfigured === true &&
-                  body?.privateMailerConfigured === true
-                ) {
-                  runtime = body;
+                if (typeof body?.gaMeasurementId === 'string' && typeof body?.accountsReady === 'boolean') {
+                  publicConfig = body;
                   break;
                 }
               }
             } catch (error) {
-              lastRuntime = String(error);
+              lastConfig = String(error);
             }
             await sleep(3000);
           }
-          assert(runtime, `Exact production inquiry runtime did not become ready. Last observation: ${lastRuntime}`);
+          assert(publicConfig, `Stable Pages public-config relay did not become ready. Last observation: ${lastConfig}`);
 
-          await appendFile(process.env.GITHUB_ENV, `M2_FRICTION_BASE_URL=${deploymentUrl}\n`);
+          await appendFile(process.env.GITHUB_ENV, `M2_FRICTION_BASE_URL=${browserQaUrl}\n`);
           await writeFile(`${process.env.RUNNER_TEMP}/m2-runtime.json`, `${JSON.stringify({
             canonicalDomain: 'https://eidos-works.com',
             canonicalDomainAttached: true,
@@ -147,16 +172,19 @@ jobs:
             canonicalCommit: commit,
             canonicalStatus: deployment.latest_stage?.status || null,
             deploymentUrl,
-            runtimeRelease: runtime.release,
-            deliveryConfigured: runtime.deliveryConfigured,
-            privateMailerConfigured: runtime.privateMailerConfigured,
+            browserQaUrl,
+            runtimeRelease: exactRuntime.release,
+            stableRuntimeRelease: stableRuntime.release,
+            deliveryConfigured: exactRuntime.deliveryConfigured,
+            privateMailerConfigured: exactRuntime.privateMailerConfigured,
+            stablePublicConfigHealthy: true,
             verifiedAt: new Date().toISOString(),
           }, null, 2)}\n`);
-          console.log(`Authoritative production commit and inquiry runtime verified at ${deploymentUrl}.`);
+          console.log(`Authoritative production commit verified at ${deploymentUrl}; browser QA origin healthy at ${browserQaUrl}.`);
           NODE
       # The custom domain can legitimately challenge GitHub-hosted Azure runner IPs.
-      # Browser/provider QA therefore runs against the exact successful canonical
-      # Pages deployment verified above, not through the zone-level bot challenge.
+      # Cloudflare metadata proves the exact canonical production SHA, while the stable
+      # Pages project hostname is an explicitly policy-valid origin for browser/provider QA.
       - name: Prove Friction Review submission on desktop and mobile
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/m2-browser/node_modules/playwright
