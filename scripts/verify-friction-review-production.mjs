@@ -26,9 +26,18 @@ for (const testCase of cases) {
     });
     const page = await context.newPage();
     const pageErrors = [];
-    page.on('pageerror', error => pageErrors.push(error.message));
+    const failedResponses = [];
+    page.on('pageerror', error => pageErrors.push(`pageerror: ${error.message}`));
     page.on('console', message => {
-      if (message.type() === 'error') pageErrors.push(message.text());
+      if (message.type() !== 'error') return;
+      const location = message.location();
+      pageErrors.push(`console: ${message.text()}${location?.url ? ` @ ${location.url}` : ''}`);
+    });
+    page.on('response', response => {
+      if (response.status() >= 400) failedResponses.push(`${response.status()} ${response.url()}`);
+    });
+    page.on('requestfailed', request => {
+      failedResponses.push(`requestfailed ${request.url()} — ${request.failure()?.errorText || 'unknown error'}`);
     });
 
     const url = `${base}/friction-review?utm_source=qa&utm_medium=release&utm_campaign=m2_acceptance&utm_content=${testCase.name}`;
@@ -69,6 +78,9 @@ for (const testCase of cases) {
 
     await page.getByText('Got it. We’ll take a look.', { exact: true }).waitFor({ state: 'visible' });
     await page.getByText(/not just send a sales pitch/i).waitFor({ state: 'visible' });
+    if (pageErrors.length || failedResponses.length) {
+      console.error(`${testCase.name} browser diagnostics:`, JSON.stringify({ pageErrors, failedResponses }, null, 2));
+    }
     assert.deepEqual(pageErrors, [], `${testCase.name}: browser console/page errors were observed`);
 
     await page.screenshot({ path: path.join(output, `${testCase.name}.png`), fullPage: true });
@@ -80,6 +92,7 @@ for (const testCase of cases) {
       state: responseBody.state,
       receipt: responseBody.receipt,
       horizontalOverflow: geometry.overflow,
+      failedResponses,
     });
     await context.close();
     console.log(`Friction Review production ${testCase.name}: provider-confirmed success (${responseBody.receipt}).`);
