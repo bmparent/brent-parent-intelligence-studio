@@ -41,9 +41,10 @@ for (const testCase of cases) {
     });
 
     const url = `${base}/friction-review?utm_source=qa&utm_medium=release&utm_campaign=m2_acceptance&utm_content=${testCase.name}`;
-    const navigation = await page.goto(url, { waitUntil: 'domcontentloaded' });
+    const navigation = await page.goto(url, { waitUntil: 'load' });
     assert.ok(navigation, `${testCase.name}: Friction Review navigation returned no document response`);
     assert.ok(navigation.ok(), `${testCase.name}: Friction Review returned HTTP ${navigation.status()}`);
+    await page.waitForFunction(() => document.documentElement.dataset.eidosClientReady === 'true');
     await page.getByRole('heading', { level: 1, name: 'What almost works?' }).waitFor({ state: 'visible' });
     await page.locator('.ew-friction-form').waitFor({ state: 'visible' });
 
@@ -65,11 +66,28 @@ for (const testCase of cases) {
     await textareas.nth(1).fill('QA only: show the confirmed success state after the inquiry mail provider accepts the message.');
     await form.locator('select').selectOption({ label: 'Other' });
 
-    const responsePromise = page.waitForResponse(response =>
-      response.url().endsWith('/api/project-inquiries') && response.request().method() === 'POST',
-    );
-    await form.getByRole('button', { name: 'Send the Friction →' }).click();
-    const response = await responsePromise;
+    const validity = await form.evaluate(node => ({
+      valid: node.checkValidity(),
+      invalid: Array.from(node.elements)
+        .filter(element => typeof element.checkValidity === 'function' && !element.checkValidity())
+        .map(element => ({
+          tag: element.tagName,
+          name: element.getAttribute('name') || '',
+          type: element.getAttribute('type') || '',
+          validationMessage: element.validationMessage || '',
+        })),
+    }));
+    assert.equal(validity.valid, true, `${testCase.name}: browser-native form validation blocked submission: ${JSON.stringify(validity.invalid)}`);
+
+    const requestMatches = request =>
+      request.url().endsWith('/api/project-inquiries') && request.method() === 'POST';
+    const responseMatches = response => requestMatches(response.request());
+    const [request, response] = await Promise.all([
+      page.waitForRequest(requestMatches, { timeout: 10_000 }),
+      page.waitForResponse(responseMatches, { timeout: 30_000 }),
+      form.getByRole('button', { name: 'Send the Friction →' }).click(),
+    ]);
+    assert.equal(request.resourceType(), 'fetch', `${testCase.name}: inquiry submission was not emitted as a client fetch`);
     const responseBody = await response.json();
     assert.equal(response.ok(), true, `${testCase.name}: inquiry endpoint returned ${response.status()}`);
     assert.equal(responseBody?.submitted, true, `${testCase.name}: inquiry was not provider-confirmed`);
