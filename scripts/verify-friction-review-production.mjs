@@ -32,8 +32,11 @@ for (const testCase of cases) {
     });
 
     const url = `${base}/friction-review?utm_source=qa&utm_medium=release&utm_campaign=m2_acceptance&utm_content=${testCase.name}`;
-    await page.goto(url, { waitUntil: 'networkidle' });
+    const navigation = await page.goto(url, { waitUntil: 'domcontentloaded' });
+    assert.ok(navigation, `${testCase.name}: Friction Review navigation returned no document response`);
+    assert.ok(navigation.ok(), `${testCase.name}: Friction Review returned HTTP ${navigation.status()}`);
     await page.getByRole('heading', { level: 1, name: 'What almost works?' }).waitFor({ state: 'visible' });
+    await page.locator('.ew-friction-form').waitFor({ state: 'visible' });
 
     const geometry = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
