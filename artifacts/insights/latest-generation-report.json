@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-09-12T16:05:23.020Z",
+  "generated_at_utc": "2026-09-16T18:49:19.744Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "storefront-size-guide-inline-dialog-page",
+      "canonical_url": "https://eidos-works.com/insights/storefront-size-guide-inline-dialog-page",
+      "og_image": "/insights-og/storefront-size-guide-inline-dialog-page.svg"
+    },
     {
       "slug": "ai-agent-permissions-before-pilot",
       "canonical_url": "https://eidos-works.com/insights/ai-agent-permissions-before-pilot",
@@ -73,6 +78,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/storefront-size-guide-inline-dialog-page.svg",
     "public/insights-og/ai-agent-permissions-before-pilot.svg",
     "public/insights-og/accessible-quote-form-errors-recovery.svg",
     "public/insights-og/bing-ai-citations-measure-business-value.svg",

@@ -1,0 +1,27 @@
+[
+  {
+    "command": "npm run test:platform",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-16-midday-guide/test-platform.log"
+  },
+  {
+    "command": "npm run test:playground",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-16-midday-guide/test-playground.log"
+  },
+  {
+    "command": "npm run test:analytics",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-16-midday-guide/test-analytics.log"
+  },
+  {
+    "command": "npm run test:glass",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-16-midday-guide/test-glass.log"
+  },
+  {
+    "command": "npm run test:snapshot",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-16-midday-guide/test-snapshot.log"
+  }
+]

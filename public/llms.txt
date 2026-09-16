@@ -1,6 +1,6 @@
 # Eidos Works
 
-Eidos Works designs digital experiences and operational tools for organizations with complicated real-world workflows. Brent Parent is the founder, designer, developer, and operator behind the work.
+Eidos Works builds distinctive digital experiences, business systems, and focused AI tools for teams whose existing technology does not quite fit what they need. Brent Parent founded the independent studio in Central Florida.
 
 ## Key pages
 - [Community](https://eidos-works.com/community)
@@ -10,11 +10,15 @@ Eidos Works designs digital experiences and operational tools for organizations 
 - [Sentinel Lab](https://eidos-works.com/lab)
 - [Cinematic Starter](https://eidos-works.com/shop/cinematic-starter)
 - [Home](https://eidos-works.com/)
+- [Friction Review](https://eidos-works.com/friction-review)
 - [Selected Work](https://eidos-works.com/work)
 - [PERNR Access Gate](https://eidos-works.com/work/pernr-access-gate)
 - [Production Dashboard](https://eidos-works.com/work/production-dashboard)
 - [Storefront Experience](https://eidos-works.com/work/storefront-experience)
 - [Services](https://eidos-works.com/services)
+- [Digital Experiences](https://eidos-works.com/services/digital-experiences)
+- [Business Systems](https://eidos-works.com/services/business-systems)
+- [Intelligent Systems](https://eidos-works.com/services/intelligent-systems)
 - [About Brent Parent](https://eidos-works.com/about)
 - [Insights](https://eidos-works.com/insights)
 - [Contact](https://eidos-works.com/contact)
@@ -25,12 +29,14 @@ Eidos Works designs digital experiences and operational tools for organizations 
 
 ## Primary topics
 - Digital experience design and frontend development
-- Hosted storefront and employee access systems
-- Operational dashboards and workflow automation
+- Business systems, operational dashboards, and workflow automation
+- Hosted commerce UX and platform extensions
+- Focused AI assistants and bounded agentic workflows
 - Structured content and search-readiness
 - Proof-stage Eidos Brain research with human review
 
 ## Insights
+- [Storefront Size Guides: Inline, Dialog, or Separate Page?](https://eidos-works.com/insights/storefront-size-guide-inline-dialog-page): Choose the right home for a storefront size guide, preserve product choices, and review keyboard access with a worked example and release checklist.
 - [Before You Buy an AI Agent, Define What It May Change](https://eidos-works.com/insights/ai-agent-permissions-before-pilot): Choose an AI pilot by defining permitted actions, evidence of success and recovery costs before expanding its access to business systems.
 - [Accessible Quote Forms: Help Customers Recover From Errors](https://eidos-works.com/insights/accessible-quote-form-errors-recovery): A practical guide to quote-form labels, validation and recovery, with a worked example and a checklist for your next storefront review.
 - [What Bing AI Citations Can Tell You About Business Value](https://eidos-works.com/insights/bing-ai-citations-measure-business-value): Use Bing AI citation reports to choose better page improvements while keeping visibility, website visits, qualified inquiries, and revenue separate.
