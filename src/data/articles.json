@@ -1362,5 +1362,149 @@
       "href": "/contact"
     },
     "ogImage": "/insights-og/ai-agent-permissions-before-pilot.svg"
+  },
+  {
+    "title": "Storefront Size Guides: Inline, Dialog, or Separate Page?",
+    "slug": "storefront-size-guide-inline-dialog-page",
+    "description": "Choose the right home for a storefront size guide, preserve product choices, and review keyboard access with a worked example and release checklist.",
+    "dek": "A size guide should answer a buying question without making the customer reconstruct the order they were building.",
+    "category": "Storefront UX",
+    "publishedAt": "2026-09-16T18:46:13.957Z",
+    "updatedAt": "2026-09-16T18:46:13.977Z",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 5,
+    "tags": [
+      "Size guides",
+      "Product detail pages",
+      "Modal dialogs",
+      "Interaction design"
+    ],
+    "canonicalPath": "/insights/storefront-size-guide-inline-dialog-page",
+    "excerpt": "Choose a size-guide layout by how customers need to compare information, then test the trip back to the product—not just the opening animation.",
+    "pillar": "UI/UX design, accessibility, responsive behavior, and design systems",
+    "slot": "midday",
+    "format": "practical-guide",
+    "searchIntent": "Should a storefront size guide open inline, in a modal dialog, or on a separate page?",
+    "featured": false,
+    "draft": false,
+    "thesis": "Choose a size-guide layout by the comparison the customer needs to make, and preserve the product context when the guide closes.",
+    "sources": [
+      {
+        "title": "Dialog (Modal) Pattern",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "",
+        "accessedDate": "2026-09-16",
+        "type": "official-docs"
+      },
+      {
+        "title": "HTML Standard: The dialog element",
+        "url": "https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element",
+        "publisher": "WHATWG",
+        "publishedDate": "",
+        "accessedDate": "2026-09-16",
+        "type": "standard"
+      },
+      {
+        "title": "Understanding Reflow (WCAG 2.2)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "",
+        "accessedDate": "2026-09-16",
+        "type": "official-docs"
+      },
+      {
+        "title": "Understanding Focus Not Obscured (Minimum)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "",
+        "accessedDate": "2026-09-16",
+        "type": "official-docs"
+      }
+    ],
+    "takeaways": [
+      "Keep brief fit advice beside the size selector when customers need both at once.",
+      "Use a dialog for a bounded reference; use a page for a longer, shareable guide.",
+      "Treat selected options and the return path as acceptance requirements.",
+      "Review the guide with keyboard input, zoom and the actual hosted storefront."
+    ],
+    "relatedSlugs": [
+      "storefront-ux-find-right-product-faster",
+      "accessible-quote-form-errors-recovery",
+      "mobile-hierarchy-over-desktop-polish"
+    ],
+    "body": [
+      {
+        "heading": "Start with the comparison, not the overlay",
+        "paragraphs": [
+          "Choose a size-guide layout by the comparison the customer needs to make, and preserve the product context when the guide closes. For short advice, put it beside the size selector. For a compact reference, consider a dialog. For instructions spanning several products or measurement methods, give the guide its own page.",
+          "A polished panel can still interrupt the purchase if it hides the options a shopper is comparing or resets their selections. The useful design question is: what must stay available while the customer decides? The framework below is Eidos Works analysis, supported by the linked interaction standards; it is not a claim about measured sales improvements."
+        ]
+      },
+      {
+        "heading": "1. Choose among three layouts",
+        "paragraphs": [
+          "Write down the guide’s job before drawing it. Separate a fit note, such as how a garment is cut, from a measurement table and from instructions on taking measurements. Those are different amounts of work for the reader."
+        ],
+        "bullets": [
+          "Inline: use a short note or expandable section when the shopper needs to look between guidance and the size choices. It takes page space, but avoids a separate reading context.",
+          "Dialog: use a compact, product-specific reference when the customer can read it and return to one decision. It saves page space while adding opening, closing and focus behavior to maintain.",
+          "Separate page: use a stable destination for lengthy instructions, several product families or a guide staff need to share. Provide a clear return route and verify that going back retains the product configuration."
+        ]
+      },
+      {
+        "heading": "2. Specify the dialog’s behavior",
+        "paragraphs": [
+          "W3C’s modal-dialog pattern calls for focus to enter the dialog, Tab and Shift+Tab to remain within it, and Escape to close it. Include a visible close button and an accessible name, normally tied to the visible title. On closing, focus generally returns to the opener, with exceptions for a changed workflow or a removed opener.",
+          "For a structured measurement table, the same guidance suggests initially focusing a static element near the beginning rather than announcing the entire contents as one description. Mark a dialog modal only when the background is actually unavailable for interaction. A dim background alone does not establish that behavior.",
+          "For custom development, the HTML standard provides the dialog element and showModal() method. Its built-in behavior is a useful starting point, but authors still need to choose initial focus deliberately. Close it through the supported close mechanism rather than manually stripping its open attribute. On a hosted storefront, first establish whether the theme or platform owns this component."
+        ]
+      },
+      {
+        "heading": "3. Work through one product example",
+        "paragraphs": [
+          "Imagine a fictional uniform store. A shopper has selected a navy polo, size M and a quantity of two, then opens “Polo measurements.” The guide contains one table and a note distinguishing garment measurements from body measurements. These are illustrative requirements, not a report of a client implementation.",
+          "Keep that distinction visible in the guide and identify the specific polo or fit the table describes. An attractive generic chart is unhelpful if nobody can tell which garment it belongs to. Assign the merchandising team an owner for updating the reference when the supplier changes the product.",
+          "In this example, opening the guide must leave navy, M and quantity two intact. Closing it must leave them intact too. The shopper can then change M to L on the product page. The guide does not silently select a size or add an item to the bag.",
+          "If shoppers repeatedly need the chart beside the selector, switch this example to an inline section. If the chart needs several pages of measuring instructions, use a separate guide with a product-specific link. Those choices trade compactness for easier comparison or deeper explanation; none is universally best."
+        ]
+      },
+      {
+        "heading": "4. Make the small-screen version readable",
+        "paragraphs": [
+          "W3C’s Reflow guidance addresses reading at a width equivalent to 320 CSS pixels without losing information or functionality, with exceptions for content that needs a two-dimensional layout. A measurement table may need horizontal scrolling within its own region; that does not excuse clipping the surrounding instructions or close control.",
+          "Keep measurement units and row or column headings understandable. Avoid shrinking the whole guide until it fits but cannot be comfortably read. Check browser zoom as well as a narrow viewport: a desktop screenshot scaled down is not evidence of usable reflow.",
+          "W3C’s Focus Not Obscured guidance also matters when sticky headers, cookie notices or chat panels share the screen. The minimum criterion requires a newly focused component not to be entirely hidden by author-created content, subject to its stated notes. As a design target, keep the whole focused control visible. Test the assembled storefront because overlapping components may come from different vendors."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Give the implementer an acceptance checklist that covers the round trip. Use synthetic selections in staging and record expected versus actual behavior, the browser and the device or assistive technology used. This focused review does not establish full accessibility conformance."
+        ],
+        "bullets": [
+          "Open and close the guide from a configured product: are color, size and quantity unchanged?",
+          "Use only a keyboard: can you read the reference, dismiss it and resume the product decision?",
+          "Use a screen reader: is the guide identified, and can you understand the measurement structure?",
+          "Check narrow screens and enlarged content: are instructions and controls reachable without clipping?",
+          "Open other supported page layers: does the guide still have a usable reading and return path?",
+          "Navigate away and back if the guide is a separate page: does the product retain the expected state?",
+          "Verify the chart against its authoritative product data: are the fit, units and measurement method correct?"
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Bring one product URL and one unresolved buying question to a design review. Ask for a recommendation on placement, a description of the return behavior and a list of what the hosted platform can actually support. That produces a small, reviewable brief rather than a request to make every panel more elaborate.",
+          "The existing Eidos Works Friction Review is a relevant starting point for examining one customer path. For a size-guide brief, focus the discussion on finding the right reference, understanding it and continuing the order. Improving that path is the goal; any effect on completed purchases would need separate measurement."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Review your storefront’s customer path",
+      "href": "/friction-review"
+    },
+    "ogImage": "/insights-og/storefront-size-guide-inline-dialog-page.svg"
   }
 ]

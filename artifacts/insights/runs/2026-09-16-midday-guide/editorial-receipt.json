@@ -1,0 +1,103 @@
+{
+  "runId": "2026-09-16-midday-guide",
+  "slot": "midday",
+  "scheduledDate": "2026-09-16",
+  "weekStart": "2026-09-14",
+  "startedAt": "2026-09-16T18:47:12.309Z",
+  "baseCommit": "3ed1623",
+  "slug": "storefront-size-guide-inline-dialog-page",
+  "title": "Storefront Size Guides: Inline, Dialog, or Separate Page?",
+  "thesis": "Choose a size-guide layout by the comparison the customer needs to make, and preserve the product context when the guide closes.",
+  "searchIntent": "Should a storefront size guide open inline, in a modal dialog, or on a separate page?",
+  "audience": "Owners and implementers of hosted apparel storefronts",
+  "format": "practical-guide",
+  "deduplication": {
+    "checked": "All 13 origin/main records, live Insights hub, remote branches, open PRs and checked-in run receipts",
+    "sameSlotAttempts": 0,
+    "scheduledArticlesThisWeekBefore": 0,
+    "decision": "Distinct product-reference placement and return-state question; previous midday guide covered quote submission errors. Prior Friday covered AI permissions and Monday SEO measurement. No missed-slot backfill."
+  },
+  "sources": [
+    {
+      "title": "Dialog (Modal) Pattern",
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+      "publisher": "W3C Web Accessibility Initiative",
+      "publishedDate": null,
+      "accessedDate": "2026-09-16",
+      "type": "official-docs",
+      "evidenceUsed": "Dialog keyboard/focus semantics and structured content recommendations"
+    },
+    {
+      "title": "HTML Standard: The dialog element",
+      "url": "https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element",
+      "publisher": "WHATWG",
+      "publishedDate": null,
+      "accessedDate": "2026-09-16",
+      "type": "standard",
+      "evidenceUsed": "Native dialog methods and deliberate initial focus"
+    },
+    {
+      "title": "Understanding Reflow (WCAG 2.2)",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "publisher": "W3C Web Accessibility Initiative",
+      "publishedDate": null,
+      "accessedDate": "2026-09-16",
+      "type": "official-docs",
+      "evidenceUsed": "320 CSS pixel reflow and two-dimensional table exception"
+    },
+    {
+      "title": "Understanding Focus Not Obscured (Minimum)",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
+      "publisher": "W3C Web Accessibility Initiative",
+      "publishedDate": null,
+      "accessedDate": "2026-09-16",
+      "type": "official-docs",
+      "evidenceUsed": "Focused controls obscured by sticky or overlapping content"
+    }
+  ],
+  "cta": {
+    "label": "Review your storefront’s customer path",
+    "href": "/friction-review",
+    "verifiedUrl": "https://eidos-works.com/friction-review/",
+    "evidence": "Live official page opened September 16"
+  },
+  "searchGuidance": {
+    "google": "https://developers.google.com/search/docs/appearance/ai-features",
+    "openai": "https://developers.openai.com/api/docs/bots",
+    "bing": "https://www.bing.com/webmasters/help/bing-webmaster-guidelines-30fba23a",
+    "notes": "Google and OpenAI pages read live. Bing guideline search extract available; opened help page returned no substantive text. Existing robots/account policies unchanged; check production HTML and discoverability after release."
+  },
+  "analytics": {
+    "searchConsole": "unknown; authenticated report unavailable in this run",
+    "bingWebmaster": "unknown; authenticated report unavailable in this run",
+    "citations": "unknown",
+    "referrals": "unknown",
+    "inquiries": "unknown",
+    "paidConversions": "unknown",
+    "qa": "No inquiry, checkout, or paid call planned"
+  },
+  "limits": [
+    "Fictional worked example, not a measured conversion result",
+    "Focused checklist does not establish full accessibility conformance",
+    "No Eidos Brain/Sentinel proof milestone or model behavior changes",
+    "Actual crawler access and indexing require provider evidence; generic HTTP eligibility is narrower"
+  ],
+  "status": "local_gates_passed",
+  "validation": {
+    "lintWarning": "Pre-existing Wellway store.tsx react-refresh export warning",
+    "allExitCodes": 0,
+    "generatedDrift": "Existing main generator refreshes current service routes and studio copy in llms.txt/sitemap; no generator edits",
+    "providerConfigHash": "5466b5039aacf35917940f5b365a6c03b9931d5f531a1f67166f5ebab65e8941",
+    "additional": [
+      "test:platform",
+      "test:playground",
+      "test:analytics",
+      "test:glass",
+      "test:snapshot",
+      "verify:editorial",
+      "build:functions",
+      "node --test scripts/test-insight-run.mjs"
+    ],
+    "publishRunner": "passed: artifacts/insights/runs/2026-09-16T18-47-03-midday/run_report.json"
+  }
+}
