@@ -36,6 +36,7 @@ Eidos Works builds distinctive digital experiences, business systems, and focuse
 - Proof-stage Eidos Brain research with human review
 
 ## Insights
+- [When Is an AI Prototype Ready for a Production Pilot?](https://eidos-works.com/insights/ai-prototype-production-pilot-evidence): A practical decision framework for moving an AI prototype toward a limited production pilot, with task evidence, failure rules, and operating costs.
 - [Storefront Size Guides: Inline, Dialog, or Separate Page?](https://eidos-works.com/insights/storefront-size-guide-inline-dialog-page): Choose the right home for a storefront size guide, preserve product choices, and review keyboard access with a worked example and release checklist.
 - [Before You Buy an AI Agent, Define What It May Change](https://eidos-works.com/insights/ai-agent-permissions-before-pilot): Choose an AI pilot by defining permitted actions, evidence of success and recovery costs before expanding its access to business systems.
 - [Accessible Quote Forms: Help Customers Recover From Errors](https://eidos-works.com/insights/accessible-quote-form-errors-recovery): A practical guide to quote-form labels, validation and recovery, with a worked example and a checklist for your next storefront review.
