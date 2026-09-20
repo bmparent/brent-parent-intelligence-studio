@@ -16,7 +16,7 @@ export function CentralFloridaPage() {
       <p>We’ll return a concise readout with up to three specific observations, why they matter, and the most useful next step we would take first. A lightweight annotated concept or prototype direction may be included when it helps explain the answer.</p>
       <h3>What happens next?</h3><p>Your note goes privately to Eidos Works so we can review and respond by email. No sales call is required before the review, and there is no obligation to start a project. Do not send passwords or private customer records.</p>
       <p>This is a focused friction readout, not a security, legal, accessibility, or full technical audit. <a href="/privacy">Read how we handle your information.</a></p>
-      <div className="ew-actions"><a className="ew-button ew-button--primary" href="/friction-review">Send us the part that almost works →</a><a className="ew-text-link" href="/work">Explore working demonstrations ↗</a></div>
+      <div className="ew-actions"><a className="ew-button ew-button--primary" style={{ color: '#fff' }} href="/friction-review">Send us the part that almost works →</a><a className="ew-text-link" href="/work">Explore working demonstrations ↗</a></div>
     </section>
   </>;
 }
