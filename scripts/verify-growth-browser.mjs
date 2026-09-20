@@ -25,6 +25,12 @@ for(const [engine,width,height] of [['chromium',1440,1000],['webkit',390,844]]) 
     const [accepted]=await Promise.all([page.waitForResponse(r=>r.url().includes('/api/growth/events')&&r.request().method()==='POST'),page.getByRole('button',{name:'Allow analytics',exact:true}).click()]);
     assert.equal(accepted.status(),200,'Growth collector did not accept the consented event');
     await page.evaluate(()=>window.scrollTo(0,0));
+    const buttonContrast=await page.locator('a.ew-button--primary').evaluateAll(buttons=>buttons.map(button=>{
+      const luminance=color=>color.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[0.2126,0.7152,0.0722][i],0);
+      const style=getComputedStyle(button),foreground=luminance(style.color),background=luminance(style.backgroundColor);
+      return {text:button.textContent,ratio:(Math.max(foreground,background)+0.05)/(Math.min(foreground,background)+0.05)};
+    }));
+    assert.ok(buttonContrast.length>=2);assert.ok(buttonContrast.every(button=>button.ratio>=4.5),JSON.stringify(buttonContrast));
     await page.screenshot({path:`${output}/${engine}-central-florida.png`,fullPage:true});
     await page.getByRole('link',{name:'Get a Friction Review →',exact:true}).first().click();
     await page.waitForURL(/\/friction-review\/?$/);await page.waitForFunction(()=>document.documentElement.dataset.eidosClientReady==='true');
@@ -51,7 +57,7 @@ for(const [engine,width,height] of [['chromium',1440,1000],['webkit',390,844]]) 
     assert.equal(notFound.status(),404);
     await page.getByRole('heading',{level:1,name:'That page does not exist.'}).waitFor();
     assert.deepEqual(errors,[],`${engine} browser errors`);
-    results.push({engine,viewport:{width,height},passed:true,events:events.map(e=>({event:e.event,path:e.path,qa:e.qa,attribution:e.attribution})),consoleErrors:errors,heroElements:hero,reducedMotion:true,qaSubmission:submit&&(local||engine==='chromium')});
+    results.push({engine,viewport:{width,height},passed:true,buttonContrast,events:events.map(e=>({event:e.event,path:e.path,qa:e.qa,attribution:e.attribution})),consoleErrors:errors,heroElements:hero,reducedMotion:true,qaSubmission:submit&&(local||engine==='chromium')});
   }catch(error){results.push({engine,passed:false,error:String(error),consoleErrors:errors});throw error;}
   finally{await browser.close();await writeFile(`${output}/acceptance.json`,JSON.stringify({base,controlled:local,results},null,2));}
 }
