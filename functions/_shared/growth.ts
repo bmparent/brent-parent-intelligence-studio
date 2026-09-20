@@ -49,7 +49,7 @@ export async function growthEndpoint({ request, env }: { request: Request; env: 
     let context: GrowthContext;
     try { context = validateContext({ consent: input.consent, session: input.session, qa: input.qa, attribution: input.attribution }); }
     catch { throw new HttpError(400, 'Invalid analytics context.'); }
-    await recordGrowth(request, env, context, String(input.event), String(input.path), input.id);
+    await recordGrowth(request, env, context, String(input.event), publicPath(input.path)!, input.id);
     return json({ accepted: true });
   } catch (error) { return json({ error: error instanceof HttpError ? error.message : 'Measurement unavailable.' }, error instanceof HttpError ? error.status : 503); }
 }

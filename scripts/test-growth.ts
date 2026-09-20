@@ -97,6 +97,10 @@ test('browser consent, navigation attribution, query stripping, event allowlist 
   finally{clearGrowth();for(const [k,v]of Object.entries(previous))root[k]=v;}
 });
 test('context cannot smuggle extra client properties',()=>assert.throws(()=>validateContext({...context(),name:'private'})));
+test('approved trailing-slash paths are stored canonically for funnel counts',async()=>{
+  const {env,sql}=setup();await growthEndpoint({request:request(event({path:'/friction-review/'})),env});
+  assert.equal(sql.prepare('SELECT path FROM growth_events').get()?.path,'/friction-review');
+});
 
 
 test('maximum inquiry text cannot truncate attribution, and header injection never reaches attribution',async()=>{
