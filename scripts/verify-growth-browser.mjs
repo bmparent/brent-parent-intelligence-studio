@@ -9,7 +9,9 @@ await mkdir(output,{recursive:true});const results=[];
 for(const [engine,width,height] of [['chromium',1440,1000],['webkit',390,844]]) {
   const browser=await pw[engine].launch({headless:true});const errors=[],events=[];
   try {
-    const context=await browser.newContext({viewport:{width,height},...(engine==='webkit'?{isMobile:true,hasTouch:true}:{}),extraHTTPHeaders:{'x-eidos-qa':'automation'}});
+    const context=await browser.newContext({viewport:{width,height},...(engine==='webkit'?{isMobile:true,hasTouch:true}:{})});
+    // QA headers belong only to our origin; adding them to fonts/scripts triggers foreign CORS preflights.
+    await context.route(`${new URL(base).origin}/**`,route=>route.continue({headers:{...route.request().headers(),'x-eidos-qa':'automation'}}));
     // Local acceptance isolates the third-party tag; production acceptance uses the actual tag.
     if(local)await context.route('https://www.googletagmanager.com/**',route=>route.fulfill({status:200,body:''}));
     const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
