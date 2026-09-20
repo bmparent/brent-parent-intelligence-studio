@@ -22,7 +22,7 @@ export const siteConfig = {
     stacked:
       'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939364/eidos_Stacked_vzevuu.png',
   },
-  socialImage: '/social-preview.svg',
+  socialImage: '/social-preview.png',
 } as const;
 
 export function absoluteUrl(path = '/') {

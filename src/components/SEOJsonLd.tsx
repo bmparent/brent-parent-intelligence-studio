@@ -49,6 +49,9 @@ export function SEOJsonLd({ path }: { path: string }) {
   }
 
   const serviceNames: Record<string, { name: string; description: string }> = {
+    '/central-florida': { name: 'Friction Review for Central Florida businesses', description: 'A focused review of one website, workflow, or repeated task, with up to three observations and a practical next step.' },
+    '/services/business-systems': { name: 'Business Systems', description: 'Workflow automation, internal tools, operational reporting, and focused integrations.' },
+    '/services/intelligent-systems': { name: 'Intelligent Systems', description: 'Bounded AI assistance, information retrieval, analysis, and human-controlled workflows.' },
     '/services/digital-experiences': {
       name: 'Digital Experiences',
       description: 'Website, service-page, campaign-page, and accessible frontend design and development.'
@@ -69,6 +72,7 @@ export function SEOJsonLd({ path }: { path: string }) {
       '@id': absoluteUrl(`${normalized}#service`),
       name: service.name,
       serviceType: service.name,
+      ...(normalized === '/central-florida' ? { areaServed: 'Central Florida' } : {}),
       provider: { '@id': absoluteUrl('/#organization') },
       url: absoluteUrl(normalized),
       description: service.description

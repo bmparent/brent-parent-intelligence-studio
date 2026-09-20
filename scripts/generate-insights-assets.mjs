@@ -142,6 +142,7 @@ function generateSitemap() {
     },
 
     { loc: absolute('/'), lastmod: '2026-09-15', priority: '1.0' },
+    { loc: absolute('/central-florida'), lastmod: '2026-09-20', priority: '0.8' },
     { loc: absolute('/friction-review'), lastmod: '2026-09-15', priority: '0.9' },
     { loc: absolute('/work'), lastmod: '2026-09-15', priority: '0.9' },
     {
@@ -341,3 +342,8 @@ await writeFile(
 console.log(
   `Generated sitemap, feed, llms.txt, and ${articles.length} article OG images for ${siteUrl}.`,
 );
+
+// Strict public analytics route allowlist stays synchronized with published content.
+const pageSource = await readFile('src/data/pages.ts', 'utf8');
+const growthPaths = [...pageSource.matchAll(/^  '(\/[^']*)':/gm)].map(m => m[1]).filter(p => !/^\/(account|members|playground|snapshot\/|shop\/success|community\/moderate)/.test(p));
+await writeFile('src/data/growth-paths.json', JSON.stringify([...new Set([...growthPaths, ...articles.map(a => '/insights/' + a.slug)])].sort(), null, 2) + '\n');

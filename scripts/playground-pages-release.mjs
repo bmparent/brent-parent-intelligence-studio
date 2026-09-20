@@ -3,6 +3,8 @@ import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
+const probeOrigin = process.env.EIDOS_RELEASE_PROBE_ORIGIN || 'https://eidos-works.com';
+assert.ok(['https://eidos-works.com', 'https://eidosworks.pages.dev'].includes(probeOrigin), 'Unapproved production probe origin');
 const token = process.env.CLOUDFLARE_API_TOKEN;
 const account = process.env.CLOUDFLARE_ACCOUNT_ID;
 assert.ok(token && account, 'The existing Cloudflare deployment credentials are required.');
@@ -43,7 +45,7 @@ if (process.argv[2] === 'preflight') {
   assert.ok(assets.length > 0, 'Built Playground entry assets were not found.');
   let delivered = false;
   while (Date.now() < contentDeadline) {
-    const response = await fetch(`https://eidos-works.com/playground/?release=${encodeURIComponent(before.commit)}`, { cache: 'no-store' });
+    const response = await fetch(`${probeOrigin}/playground/?release=${encodeURIComponent(before.commit)}`, { cache: 'no-store' });
     const html = await response.text();
     if (response.ok && new URL(response.url).pathname.replace(/\/$/, '') === '/playground' && assets.every(asset => html.includes(asset))) {
       delivered = true;
@@ -86,6 +88,7 @@ if (process.argv[2] === 'preflight') {
     verifiedAt: new Date().toISOString(),
     deploymentId: productionDeployment.id,
     deliveredEntryAssets: assets,
+    contentProbeOrigin: probeOrigin,
     configUnchanged: true,
     canonicalCommitVerified: true,
   }, null, 2));

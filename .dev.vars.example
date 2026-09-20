@@ -22,3 +22,8 @@ EIDOS_LOCAL_TEST=false
 # New platform backend runs on Sentinel Lab. Configure these two values in Pages.
 EIDOS_PLATFORM_URL=https://eidos-sentinel-lab.vercel.app
 EIDOS_PLATFORM_TOKEN=
+
+# Owner growth reporting only. Set a random secret through Pages secret management.
+# Never expose this value in VITE_* or commit real credentials.
+EIDOS_GROWTH_OWNER_TOKEN=
+# EIDOS_GROWTH_DB is a D1 binding; see docs/growth/phase1-growth-system.md.

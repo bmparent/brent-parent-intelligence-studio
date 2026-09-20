@@ -1,3 +1,5 @@
+import { clearGrowth, growthTrack, growthPageView, growthContext } from './growth';
+import { publicPath } from './growthContract';
 export type EidosEvent =
   | 'assistant_open'
   | 'assistant_question'
@@ -32,7 +34,7 @@ declare global {
 }
 const key = 'eidos.analytics.v1';
 function trafficDetails() {
-  const preview = window.location.hostname !== 'eidos-works.com';
+  const preview = window.location.hostname !== 'eidos-works.com' || growthContext()?.qa === true;
   return {
     traffic_type: preview ? 'qa' : /(?:bot|crawler|spider|headless)/i.test(navigator.userAgent) ? 'agent' : 'human',
     ...(preview ? { debug_mode: true } : {}),
@@ -58,7 +60,7 @@ export function safePagePath() {
   if (path.startsWith('/snapshot/') || path === '/shop/success' || path === '/account' || path.startsWith('/account/') || path.startsWith('/members/'))
     return '/private';
   if (path.startsWith('/community/thread/')) return '/community/thread';
-  return path;
+  return publicPath(path) || '/private';
 }
 export function startAnalytics(id: string) {
   if (
@@ -106,6 +108,7 @@ export function startAnalytics(id: string) {
 }
 /** Call after navigation; suppress duplicate notifications and all private routes. */
 export function pageView() {
+  growthPageView();
   const id = window.__eidosAnalyticsId;
   if (consent() !== 'granted' || !id ||
       (window as unknown as Record<string, unknown>)['ga-disable-' + id]) return;
@@ -121,6 +124,7 @@ export function pageView() {
     });
 }
 export function stopAnalytics() {
+  clearGrowth();
   const id = window.__eidosAnalyticsId;
   if (!id) return;
   (window as unknown as Record<string, unknown>)['ga-disable-' + id] = true;
@@ -143,6 +147,7 @@ export function stopAnalytics() {
   }
 }
 export function track(event: EidosEvent, details: EventDetails = {}) {
+  growthTrack(event);
   if (consent() !== 'granted' || !window.__eidosAnalyticsId) return;
   const safe: EventDetails = {};
   if (details.mode === 'sources' || details.mode === 'ai') safe.mode = details.mode;

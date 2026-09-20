@@ -1,3 +1,4 @@
+import { growthContext, inquiryAttribution } from '../lib/growth';
 import { track } from '../lib/analytics';
 import { FormEvent, useState } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
@@ -81,6 +82,8 @@ export function ContactForm() {
           foundVia: form.foundVia,
           website: form.website,
           brief,
+          ...inquiryAttribution(),
+          growth: growthContext(),
         }),
       });
       const data = (await response.json()) as {

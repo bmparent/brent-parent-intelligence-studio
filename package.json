@@ -33,7 +33,11 @@
     "test:analytics": "node --import tsx --test scripts/test-analytics.ts",
     "test:glass": "node --import tsx --test scripts/test-liquid-glass.ts scripts/test-hero.ts",
     "build:functions": "wrangler pages functions build functions --outfile .wrangler/eidos-functions.js",
-    "playground:glass": "node scripts/build-playground-glass.mjs"
+    "playground:glass": "node scripts/build-playground-glass.mjs",
+    "test:growth": "node --import tsx --test scripts/test-growth.ts",
+    "growth:links": "node scripts/growth-links.mjs",
+    "growth:report": "node scripts/growth-report.mjs",
+    "verify:growth-seo": "node scripts/verify-growth-seo.mjs"
   },
   "dependencies": {
     "@babylonjs/core": "^9.10.1",

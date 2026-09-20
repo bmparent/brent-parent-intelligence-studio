@@ -1,0 +1,13 @@
+{
+  "name": "eidos-growth-retention",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false,
+  "triggers": { "crons": ["17 4 * * *"] },
+  "d1_databases": [{
+    "binding": "EIDOS_GROWTH_DB",
+    "database_name": "eidos-works-growth",
+    "database_id": "db2cdf4b-81f2-40af-bdee-719771417d9d",
+    "migrations_dir": "../../migrations/growth"
+  }]
+}

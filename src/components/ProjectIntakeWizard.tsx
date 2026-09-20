@@ -1,3 +1,4 @@
+import { growthContext, inquiryAttribution } from '../lib/growth';
 import { FormEvent, useMemo, useState } from 'react';
 import { siteConfig } from '../config/site';
 import { SectionHeader } from './SectionHeader';
@@ -181,7 +182,7 @@ export function ProjectIntakeWizard() {
       const response = await fetch('/api/project-inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, brief })
+        body: JSON.stringify({ ...form, brief, ...inquiryAttribution(), growth: growthContext() })
       });
       const data = (await response.json()) as InquiryResponse;
       const responseBrief = data.brief ?? brief;
