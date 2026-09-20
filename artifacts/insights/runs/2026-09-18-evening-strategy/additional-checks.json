@@ -1,0 +1,22 @@
+[
+  {
+    "command": "npm run test:platform",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run test:analytics",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run test:snapshot",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run verify:editorial",
+    "exitCode": 0
+  },
+  {
+    "command": "npm run build:functions",
+    "exitCode": 0
+  }
+]

@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-09-16T18:49:19.744Z",
+  "generated_at_utc": "2026-09-20T20:32:28.785Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "ai-prototype-production-pilot-evidence",
+      "canonical_url": "https://eidos-works.com/insights/ai-prototype-production-pilot-evidence",
+      "og_image": "/insights-og/ai-prototype-production-pilot-evidence.svg"
+    },
     {
       "slug": "storefront-size-guide-inline-dialog-page",
       "canonical_url": "https://eidos-works.com/insights/storefront-size-guide-inline-dialog-page",
@@ -78,6 +83,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/ai-prototype-production-pilot-evidence.svg",
     "public/insights-og/storefront-size-guide-inline-dialog-page.svg",
     "public/insights-og/ai-agent-permissions-before-pilot.svg",
     "public/insights-og/accessible-quote-form-errors-recovery.svg",
