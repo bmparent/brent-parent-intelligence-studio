@@ -76,7 +76,7 @@ await test('Analytics requires consent and never includes private URLs or arbitr
       true,
     );
     choice = 'granted';
-    window.location.pathname = '/insights/first-article';
+    window.location.pathname = '/insights/agentic-seo-small-business-websites';
     startAnalytics('G-TEST123');
     assert.equal(appended.length, 1, 'reconsent reuses the original tag');
     const views = () => commands.filter(c => c[0] === 'event' && c[1] === 'page_view');
@@ -84,7 +84,7 @@ await test('Analytics requires consent and never includes private URLs or arbitr
     pageView();
     startAnalytics('G-TEST123');
     assert.equal(views().length, 1, 'duplicate navigation signals are ignored');
-    window.location.pathname = '/insights/second-article';
+    window.location.pathname = '/insights/mobile-hierarchy-over-desktop-polish';
     pageView();
     assert.equal(views().length, 2);
     window.location.pathname = '/shop/success';
@@ -96,7 +96,7 @@ await test('Analytics requires consent and never includes private URLs or arbitr
       assert.equal(safePagePath(), '/private');
       assert.equal(views().length, 2, 'member pages do not expose account activity or usernames');
     }
-    window.location.pathname = '/insights/second-article';
+    window.location.pathname = '/insights/mobile-hierarchy-over-desktop-polish';
     pageView();
     assert.equal(views().length, 3, 'return navigation is counted once');
     assert.ok(!JSON.stringify(views()).includes('private@example.com'));

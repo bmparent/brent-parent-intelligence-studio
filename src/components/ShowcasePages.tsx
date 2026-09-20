@@ -60,6 +60,14 @@ export function ShowcasePage() {
           teach us. Explore the range, and imagine what comes next.
         </p>
       </section>
+      <section className="ew-reading ew-shell" aria-labelledby="proof-start">
+        <p className="ew-eyebrow">Four useful places to start</p><h2 id="proof-start">See the problem behind the interface.</h2>
+        <h3><a href="/work/production-dashboard">Production dashboard · Internal tool</a></h3><p>Problem: operational information is difficult to scan. Built: a reporting interface with filters and attention cues. Why it matters: it shows how information can support the next decision. The public case study excludes customer rows.</p>
+        <h3><a href="/work/pernr-access-gate">Store eligibility · Implemented workflow</a></h3><p>Problem: a private store needs a clear, controlled entry path. Built: a roster-backed eligibility flow with recovery states. Why it matters: an existing platform can gain a focused capability without a wholesale replacement. Private roster data is not exposed.</p>
+        <h3><a href="/work/jingle-bell-jingle-bam">Theatrical storefront · Demonstration</a></h3><p>Problem: a collection needs a coherent browsing experience. Built: a public reconstruction with layered artwork, navigation, and product inspection. Why it matters: it demonstrates interactive frontend implementation. This demonstration does not accept orders.</p>
+        <h3><a href="/lab">Sentinel Lab · Research system</a></h3><p>Problem: experimental results need inspectable evidence. Built: a separately hosted research application with experiment status and evidence gates. Why it matters: it demonstrates complex system interfaces and explicit limits. It is research, not a proven customer security service.</p>
+        <a className="ew-text-link" href="/friction-review">Show us the problem you want to solve →</a>
+      </section>
       <section
         className="ew-shell ew-work-collection"
         aria-label="Project collection"

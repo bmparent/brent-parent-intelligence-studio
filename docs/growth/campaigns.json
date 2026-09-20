@@ -1,0 +1,9 @@
+[
+  {"id":"linkedin","path":"/friction-review","source":"linkedin","medium":"organic_social","campaign":"phase1_friction_review","content":"founder_launch"},
+  {"id":"facebook","path":"/central-florida","source":"facebook","medium":"organic_social","campaign":"phase1_friction_review","content":"local_owners"},
+  {"id":"outreach","path":"/friction-review","source":"founder","medium":"direct_outreach","campaign":"phase1_friction_review","content":"personal_note"},
+  {"id":"community","path":"/central-florida","source":"community","medium":"organic_community","campaign":"phase1_friction_review","content":"helpful_post"},
+  {"id":"insights","path":"/friction-review","source":"eidos_insights","medium":"owned_content","campaign":"phase1_friction_review","content":"article_cta"},
+  {"id":"share","path":"/friction-review","source":"personal_share","medium":"direct_share","campaign":"phase1_friction_review","content":"what_we_do"},
+  {"id":"followup","path":"/friction-review","source":"founder","medium":"direct_outreach","campaign":"phase1_friction_review","content":"interested_followup"}
+]

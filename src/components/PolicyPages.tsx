@@ -17,7 +17,7 @@ export function PolicyPage({
         </p>
         <h1>{titles[kind]}</h1>
         <p>
-          Updated September 8, 2026. Contact Brent through the studio if you
+          Updated September 20, 2026. Contact Brent through the studio if you
           need a correction, removal, or clarification.
         </p>
       </section>
@@ -39,6 +39,10 @@ export function PolicyPage({
               not prevent you from using the site. Hosting providers may still
               keep operational access logs.
             </p>
+            <h2>First-party growth measurement</h2>
+            <p>With the same analytics permission, we count public page views, Friction Review clicks and starts, provider-confirmed submissions, and selected project interactions. We retain sanitized campaign labels, public landing paths, and referring hosts. We do not store form contents, contact details, IP addresses, raw browser identifiers, arbitrary query strings, or private URLs in growth analytics.</p>
+            <p>A random tab session is created only after consent, expires after 30 minutes of inactivity, and is hashed with a server secret that incorporates the UTC date. Session events are retained for 60 days and removed by maintenance. Testing and identified automation are separated from public reporting. These reports represent consented measurable traffic, not everyone who visits. Revoking consent clears the local growth session and stops further measurement.</p>
+            <p>Consented campaign context is included in your private inquiry so we can understand how you found us. Declining analytics keeps the inquiry form fully functional. The random session cannot identify you across devices.</p>
             <h2>Questions to Eidos</h2>
             <p>
               The assistant first matches your question with published studio

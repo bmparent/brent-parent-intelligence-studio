@@ -16,11 +16,12 @@ export function PrivacyControls() {
     window.addEventListener('eidos:privacy', open);
     const change = () => {
       if (consent() === 'denied') stopAnalytics();
-      else if (config?.gaMeasurementId) startAnalytics(config.gaMeasurementId);
+      else { pageView(); if (config?.gaMeasurementId) startAnalytics(config.gaMeasurementId); }
     };
     window.addEventListener('eidos:consent', change);
-    if (config?.gaMeasurementId) {
-      if (consent() === 'granted') startAnalytics(config.gaMeasurementId);
+    {
+      if (consent() === 'granted') pageView();
+      if (consent() === 'granted' && config?.gaMeasurementId) startAnalytics(config.gaMeasurementId);
       else if (!consent()) queueMicrotask(() => setShow(true));
     }
     return () => {
@@ -55,13 +56,10 @@ export function PrivacyControls() {
       <div>
         <strong>A little insight, with your permission.</strong>
         <p>
-          Optional Google Analytics helps us understand which work and ideas are
+          Optional first-party measurement and Google Analytics help us understand which work and ideas are
           useful. Questions, messages, and payment details are excluded.{' '}
           <a href="/privacy">Privacy details</a>
         </p>
-        {!config?.gaMeasurementId && (
-          <small>Analytics is not currently active.</small>
-        )}
       </div>
       <div className="ew-privacy-actions">
         <button

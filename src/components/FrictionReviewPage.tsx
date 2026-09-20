@@ -1,3 +1,4 @@
+import { growthContext, inquiryAttribution } from '../lib/growth';
 import { FormEvent, useRef, useState } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
 import { track } from '../lib/analytics';
@@ -35,39 +36,6 @@ type SubmitState =
       message: string;
       mailto?: string;
     };
-
-function safeReferrer() {
-  if (typeof document === 'undefined' || !document.referrer) return '';
-  try {
-    const url = new URL(document.referrer);
-    return `${url.origin}${url.pathname}`.slice(0, 500);
-  } catch {
-    return '';
-  }
-}
-
-function attribution() {
-  if (typeof window === 'undefined') {
-    return {
-      utmSource: '',
-      utmMedium: '',
-      utmCampaign: '',
-      utmContent: '',
-      referrer: '',
-      landingPage: '/friction-review',
-    };
-  }
-  const query = new URLSearchParams(window.location.search);
-  const clean = (value: string | null) => (value || '').trim().slice(0, 160);
-  return {
-    utmSource: clean(query.get('utm_source')),
-    utmMedium: clean(query.get('utm_medium')),
-    utmCampaign: clean(query.get('utm_campaign')),
-    utmContent: clean(query.get('utm_content')),
-    referrer: safeReferrer(),
-    landingPage: window.location.pathname.slice(0, 260),
-  };
-}
 
 export function FrictionReviewPage() {
   const [form, setForm] = useState(initialForm);
@@ -130,7 +98,8 @@ export function FrictionReviewPage() {
           company: form.company,
           website: form.website,
           brief,
-          ...attribution(),
+          ...inquiryAttribution(),
+          growth: growthContext(),
         }),
       });
       const data = (await response.json()) as {
@@ -380,7 +349,7 @@ export function FrictionReviewPage() {
 
       <section className="ew-friction-examples">
         <div className="ew-shell">
-          <p className="ew-eyebrow">Good submissions sound like this</p>
+          <p className="ew-eyebrow">Examples of friction you could submit</p>
           <div className="ew-friction-examples__grid">
             <p>“Customers keep getting lost between these two pages.”</p>
             <p>“We manually copy this information every day.”</p>

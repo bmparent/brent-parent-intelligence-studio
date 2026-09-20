@@ -116,6 +116,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
     description: siteConfig.description,
     type: 'website',
   },
+  '/central-florida': { title: 'Websites & Workflow Help for Central Florida Businesses | Eidos Works', description: 'Show us the website, repeated task, or disconnected workflow that almost works. A focused Friction Review for Central Florida owner-operated service businesses.', type: 'website' },
   '/friction-review': {
     title: 'Friction Review | Eidos Works',
     description:
@@ -346,6 +347,7 @@ export function prerenderPagePaths() {
     '/shop/success',
     '/',
     '/friction-review',
+    '/central-florida',
     '/work',
     '/work/pernr-access-gate',
     '/work/production-dashboard',

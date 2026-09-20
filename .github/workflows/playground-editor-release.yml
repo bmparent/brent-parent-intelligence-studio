@@ -40,12 +40,24 @@ jobs:
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done
           node scripts/verify-playground-editor-browser.mjs
           node scripts/verify-hero-browser.mjs
+      - name: Growth desktop and mobile acceptance with controlled delivery
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
+          GROWTH_EVIDENCE_DIR: ${{ runner.temp }}/growth-local
+        run: |
+          node --import tsx scripts/growth-local-server.ts >"$RUNNER_TEMP/growth-local.log" 2>&1 &
+          GROWTH_PID=$!
+          trap 'kill "$GROWTH_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8788/ >/dev/null && break || sleep 1; done
+          node scripts/verify-growth-browser.mjs
+          npm run verify:growth-seo
       - name: Repeat full site gates before a production upload
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           npm run lint
           npm run test:platform
           npm run test:playground
+          npm run test:growth
           npm run test:analytics
           npm run test:glass
           npm run test:snapshot
@@ -61,6 +73,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           GH_TOKEN: ${{ github.token }}
+          EIDOS_RELEASE_PROBE_ORIGIN: https://eidosworks.pages.dev
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
             echo '::error::Production upload blocked: configure CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as repository Actions secrets, or deploy this verified main commit from the existing authenticated laptop. No token was created and no production settings were changed.'
@@ -74,12 +87,14 @@ jobs:
           node scripts/playground-pages-release.mjs preflight
           npx --no-install wrangler pages deploy dist --project-name=eidosworks --branch=main --commit-hash="$GITHUB_SHA" --commit-message='Verified Playground local editor release' --commit-dirty=true
           node scripts/playground-pages-release.mjs verify
-      - name: Read back the actual custom-domain editor after deployment
+      # Cloudflare may challenge hosted runner IPs on the custom domain.
+      # Exact canonical deployment SHA/domain attachment is verified through provider metadata.
+      - name: Read back the production editor on the stable Pages QA origin
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
           PG_EVIDENCE_DIR: ${{ runner.temp }}/pg-production-evidence
-          PG_BASE_URL: https://eidos-works.com
+          PG_BASE_URL: https://eidosworks.pages.dev
           PG_ENGINES: chromium
         run: node scripts/verify-playground-editor-browser.mjs
       - name: M2 live Friction Review desktop and mobile acceptance
@@ -89,6 +104,14 @@ jobs:
           M2_FRICTION_EVIDENCE_DIR: ${{ runner.temp }}/pg-production-evidence
           M2_FRICTION_BASE_URL: https://eidos-works.com
         run: node scripts/verify-friction-review-production.mjs
+      - name: Phase 1 production acquisition acceptance
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[growth-phase1]')
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
+          GROWTH_EVIDENCE_DIR: ${{ runner.temp }}/growth-production
+          GROWTH_BASE_URL: https://eidosworks.pages.dev
+          GROWTH_QA_SUBMIT: '0'
+        run: node scripts/verify-growth-browser.mjs
       - name: Retain browser and build evidence even when a check fails
         if: always()
         uses: actions/upload-artifact@v4
@@ -99,6 +122,9 @@ jobs:
             ${{ runner.temp }}/pg-production-evidence
             ${{ runner.temp }}/pg-preview.log
             ${{ runner.temp }}/pg-pages-receipt.json
+            ${{ runner.temp }}/growth-local
+            ${{ runner.temp }}/growth-production
+            ${{ runner.temp }}/growth-local.log
             dist
           if-no-files-found: warn
           retention-days: 14

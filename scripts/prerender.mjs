@@ -26,7 +26,7 @@ function withHeadMetadata(html, page) {
   const description = escapeAttribute(page.description ?? '');
   const url = escapeAttribute(page.url ?? '');
   const type = escapeAttribute(page.type ?? 'website');
-  const image = escapeAttribute(page.image ?? 'https://eidos-works.com/social-preview.svg');
+  const image = escapeAttribute(page.image ?? 'https://eidos-works.com/social-preview.png');
 
   const robots = page.noIndex ? 'noindex, nofollow' : 'index, follow';
   const referrer = page.noReferrer ? 'no-referrer' : 'strict-origin-when-cross-origin';
@@ -64,3 +64,10 @@ for (const page of pages) {
   await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(outputPath, html);
 }
+
+// Real static 404 disables Pages' implicit SPA fallback for unknown public URLs.
+const missing = { path: '/404', title: 'Page Not Found | Eidos Works', description: 'That page does not exist. Return to Eidos Works or explore the services.', url: 'https://eidos-works.com/404', type: 'website', noIndex: true };
+const missingHtml = template.replace(/<div id="root">[\s\S]*<\/div>\s*<\/body>/, `<div id="root">${render('/404')}</div>\n  </body>`);
+await writeFile(resolve(root, 'dist/404.html'), withHeadMetadata(missingHtml, missing));
+// Existing private client routes get an empty shell rather than incorrect homepage hydration.
+await writeFile(resolve(root, 'dist/private-app.html'), withHeadMetadata(template, { ...missing, title: 'Private page | Eidos Works', noReferrer: true }));

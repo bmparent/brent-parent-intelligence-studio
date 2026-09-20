@@ -1,6 +1,8 @@
+import { confirmedInquiry, type GrowthEnv } from '../_shared/growth';
+import { sanitizeAttribution } from '../../src/lib/growthContract';
 import { isRecord, readJsonBody, RequestBodyError } from '../_shared/snapshot/http';
 
-interface Env {
+interface Env extends GrowthEnv {
   EIDOS_INQUIRY_MAILER?: { fetch: typeof fetch };
   CONTACT_WEBHOOK_URL?: string;
   GOOGLE_APPS_SCRIPT_WEBHOOK_URL?: string;
@@ -12,6 +14,7 @@ interface Env {
 type PagesContext = { request: Request; env: Env };
 
 type InquiryPayload = {
+  growth?: unknown;
   inquiryKind?: string;
   projectType?: string;
   problem?: string;
@@ -67,9 +70,18 @@ function json(value: unknown, init: ResponseInit = {}) {
   });
 }
 
+function isQa(payload: InquiryPayload) {
+  return /^Eidos Works QA\b/i.test(clean(payload.name, 160)) || Boolean(payload.growth && typeof payload.growth === 'object' && 'qa' in payload.growth && payload.growth.qa === true);
+}
+function attributionLines(payload: InquiryPayload) {
+  const labels = { utmSource: 'utm_source', utmMedium: 'utm_medium', utmCampaign: 'utm_campaign', utmContent: 'utm_content', referrer: 'Referrer', landingPage: 'Landing page' };
+  return Object.entries(sanitizeAttribution(payload)).map(([key,value]) => `${labels[key as keyof typeof labels]}: ${value || 'Not provided'}`);
+}
+
 function buildBrief(payload: InquiryPayload) {
   const common = [
     inquiryTitle(payload),
+    ...(isQa(payload) ? ['Eidos Works QA - not a customer lead'] : []),
     '',
     `Service: ${clean(payload.projectType, 120) || 'Not provided'}`,
     `Name: ${clean(payload.name, 160) || 'Not provided'}`,
@@ -82,6 +94,8 @@ function buildBrief(payload: InquiryPayload) {
   if (isFrictionReview(payload)) {
     const frictionBrief = [
       ...common,
+      'Attribution',
+      ...attributionLines(payload),
       `Supporting link: ${clean(payload.supportingUrl, 500) || 'Not provided'}`,
       '',
       'Where is the friction?',
@@ -90,19 +104,14 @@ function buildBrief(payload: InquiryPayload) {
       'What would you rather happen?',
       clean(payload.desiredOutcome, 1_200) || 'Not provided',
       '',
-      'Attribution',
-      `utm_source: ${clean(payload.utmSource, 160) || 'Not provided'}`,
-      `utm_medium: ${clean(payload.utmMedium, 160) || 'Not provided'}`,
-      `utm_campaign: ${clean(payload.utmCampaign, 160) || 'Not provided'}`,
-      `utm_content: ${clean(payload.utmContent, 160) || 'Not provided'}`,
-      `Referrer: ${clean(payload.referrer, 500) || 'Not provided'}`,
-      `Landing page: ${clean(payload.landingPage, 260) || 'Not provided'}`,
     ].join('\n');
     return frictionBrief.slice(0, 4_900);
   }
 
   return [
     ...common,
+    'Attribution',
+    ...attributionLines(payload),
     '',
     `Problem to solve: ${clean(payload.problem, 1_600) || 'Not provided'}`,
   ].join('\n').slice(0, 4_900);
@@ -134,18 +143,17 @@ function mailto(contactEmail: string, brief: string, payload: InquiryPayload) {
 function webhookNotes(payload: InquiryPayload) {
   if (!isFrictionReview(payload)) {
     return [
+      ...attributionLines(payload),
       `Problem: ${clean(payload.problem, 1_600)}`,
       `Found via: ${clean(payload.foundVia, 120) || 'Not provided'}`,
     ].join('\n').slice(0, 1_900);
   }
   return [
+    ...attributionLines(payload),
     `Friction: ${clean(payload.problem, 1_600)}`,
     `Desired outcome: ${clean(payload.desiredOutcome, 1_200) || 'Not provided'}`,
     `Supporting link: ${clean(payload.supportingUrl, 500) || 'Not provided'}`,
     `Found via: ${clean(payload.foundVia, 120) || 'Not provided'}`,
-    `UTM: ${clean(payload.utmSource, 160) || '-'} / ${clean(payload.utmMedium, 160) || '-'} / ${clean(payload.utmCampaign, 160) || '-'}`,
-    `Referrer: ${clean(payload.referrer, 500) || 'Not provided'}`,
-    `Landing page: ${clean(payload.landingPage, 260) || 'Not provided'}`,
   ].join('\n').slice(0, 3_800);
 }
 
@@ -211,7 +219,7 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
     if (!isRecord(body)) {
       return json({ state: 'validation_error', submitted: false, message: 'Invalid form submission.' }, { status: 400 });
     }
-    payload = body as InquiryPayload;
+    payload = { ...body, ...sanitizeAttribution(body) } as InquiryPayload;
   } catch (error) {
     if (error instanceof RequestBodyError) {
       return json(
@@ -248,7 +256,8 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
       });
       const result = await response.json().catch(() => null) as { ok?: boolean; receipt?: string } | null;
       if (response.ok && result?.ok === true && typeof result.receipt === 'string') {
-        return json({ state: 'sent', submitted: true, message: isFrictionReview(payload) ? 'Your Friction Review request reached Eidos Works.' : 'Your project note reached Eidos Works.', receipt: result.receipt, brief, mailto: fallbackMailto });
+        const measurementRecorded = await confirmedInquiry(request, env, payload.growth, isFrictionReview(payload), isQa(payload), result.receipt);
+        return json({ state: 'sent', submitted: true, message: isFrictionReview(payload) ? 'Your Friction Review request reached Eidos Works.' : 'Your project note reached Eidos Works.', receipt: result.receipt, measurementRecorded, brief, mailto: fallbackMailto });
       }
       return json({ state: 'provider_error', submitted: false, message: 'Delivery was unavailable. Email the prepared note directly.', brief, mailto: fallbackMailto }, { status: response.status === 429 ? 429 : 502 });
     } catch {
@@ -260,6 +269,7 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
   if (webhookUrl) {
     try {
       if (await sendWebhook(webhookUrl, payload, env.COMMAND_CENTER_SHARED_SECRET)) {
+        await confirmedInquiry(request, env, payload.growth, isFrictionReview(payload), isQa(payload), crypto.randomUUID());
         return json({ state: 'sent', submitted: true, message: isFrictionReview(payload) ? 'Your Friction Review request reached Eidos Works.' : 'Your project note reached Eidos Works.', brief, mailto: fallbackMailto });
       }
       return json(

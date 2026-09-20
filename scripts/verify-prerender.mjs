@@ -30,7 +30,9 @@ for (const file of await htmlFiles(root)) {
   }
   const label = (relative(root, file) || 'index.html').replaceAll('\\', '/');
   const h1Count = matches(html, /<h1(?:\s|>)/gi).length;
-  if (h1Count !== 1)
+  const privateShell = label === 'private-app.html';
+  if (privateShell && (!html.includes('<div id="root"></div>') || !html.includes('type="module"'))) failures.push('private-app.html: expected an empty client shell');
+  if (!privateShell && h1Count !== 1)
     failures.push(`${label}: expected one h1, found ${h1Count}`);
 
   const ids = matches(html, /\sid="([^"]+)"/gi).map((match) => match[1]);
@@ -101,6 +103,7 @@ for (const file of await htmlFiles(root)) {
   }
 
   const privatePage = [
+    'private-app.html',
     'snapshot/success/index.html',
     'shop/success/index.html',
     'community/moderate/index.html',

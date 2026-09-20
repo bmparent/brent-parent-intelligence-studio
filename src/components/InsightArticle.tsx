@@ -147,7 +147,8 @@ export function InsightArticle({ currentPath, slug, onBack }: InsightArticleProp
           </div>
           <div className="article-detail__links">
             <a href={article.cta.href}>{article.cta.label}</a>
-            <a href="/snapshot">Get an Eidos Snapshot</a>
+            <a href="/friction-review?utm_source=eidos_insights&amp;utm_medium=owned_content&amp;utm_campaign=phase1_friction_review&amp;utm_content=article_cta">Get a Friction Review</a>
+            <a href="/services">Explore the three service pillars</a>
             <a href="/insights" onClick={goBack}>Browse more insights</a>
           </div>
         </footer>
