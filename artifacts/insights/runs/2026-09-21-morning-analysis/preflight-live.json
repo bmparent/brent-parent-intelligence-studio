@@ -1,0 +1,23 @@
+[
+  {
+    "path": "/insights/",
+    "status": 200,
+    "url": "https://eidos-works.com/insights/",
+    "sept20": true,
+    "seo": false
+  },
+  {
+    "path": "/services/agentic-seo/",
+    "status": 200,
+    "url": "https://eidos-works.com/services/agentic-seo/",
+    "sept20": false,
+    "seo": true
+  },
+  {
+    "path": "/feed.xml",
+    "status": 200,
+    "url": "https://eidos-works.com/feed.xml",
+    "sept20": true,
+    "seo": false
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "run_id": "2026-09-21-morning-analysis",
+  "slot": "morning",
+  "slot_date": "2026-09-21",
+  "timezone": "America/New_York",
+  "started_at_utc": "2026-09-21T12:00:00Z",
+  "status": "ready-for-ci",
+  "title": "When Should a Small Business Use IndexNow?",
+  "slug": "indexnow-changing-business-pages",
+  "format": "evergreen",
+  "thesis": "Prioritize IndexNow when stale information can mislead a customer, and treat submission as one step in a verified publishing workflow.",
+  "searchIntent": "Is IndexNow worth enabling for a small business whose prices, availability, or service details change?",
+  "audience": "Small-business owners maintaining changing offers, availability and service details",
+  "topic_selection": "Evergreen question; no verified fresh announcement needed. Distinct from prior citation measurement, source-map and broad agentic SEO articles.",
+  "deduplication": {
+    "origin_main": "6a2089f1fb4b6beb7dec37c1af7ca62b582bd6f1",
+    "prior_90_days_records_reviewed": 15,
+    "existing_slot_attempt": false,
+    "pending_article_pr": false,
+    "scheduled_articles_this_week_before": 0,
+    "scheduled_articles_this_week_after": 1,
+    "week": "2026-09-21/2026-09-27",
+    "recent_rotation": [
+      "September 7: citation measurement",
+      "September 10 and 16: storefront accessibility/UX",
+      "September 12 and 20: AI pilot decisions"
+    ],
+    "preserved_residue": "Shared live checkout July 12 article, runner and receipts untouched",
+    "live_hub_observation": "Direct HTTP 200 confirmed September 20 article in hub/feed; web extraction was stale."
+  },
+  "sources": [
+    {
+      "title": "IndexNow documentation",
+      "url": "https://www.indexnow.org/documentation",
+      "publisher": "IndexNow",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-21",
+      "type": "official-docs",
+      "evidence": "Changed URLs and key-file ownership; participating-engine sharing; 200 means receipt, 202 pending key verification."
+    },
+    {
+      "title": "IndexNow frequently asked questions",
+      "url": "https://www.indexnow.org/faq",
+      "publisher": "IndexNow",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-21",
+      "type": "official-docs",
+      "evidence": "Check existing integrations; meaningful changes; notification does not guarantee indexing; use alongside sitemap."
+    },
+    {
+      "title": "Ask Google to recrawl your URLs",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl",
+      "publisher": "Google Search Central",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-21",
+      "type": "official-docs",
+      "evidence": "URL Inspection for individual URLs, sitemap for many; repeated recrawl requests do not accelerate crawling. Page shows last updated 2025-12-10; original publication date unknown."
+    },
+    {
+      "title": "AI features and your website",
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "publisher": "Google Search Central",
+      "publishedDate": "unknown",
+      "accessedDate": "2026-09-21",
+      "type": "official-docs",
+      "evidence": "Indexed and snippet-eligible page for AI supporting links; textual content, internal links, matching structured data; no special AI file/schema."
+    }
+  ],
+  "supplemental_guidance": [
+    {
+      "url": "https://developers.openai.com/api/docs/bots",
+      "accessedDate": "2026-09-21",
+      "evidence": "OAI-SearchBot search access and GPTBot training controls are independent; policies unchanged."
+    },
+    {
+      "url": "https://www.bing.com/webmasters/help/bing-webmaster-guidelines-30fba23a",
+      "accessedDate": "2026-09-21",
+      "evidence": "Live browser read confirmed IndexNow, canonical sitemaps, crawlable links and shared SEO foundations for Bing/Copilot; no crawler policy changed."
+    }
+  ],
+  "cta": {
+    "label": "Explore Agentic SEO",
+    "href": "/services/agentic-seo",
+    "verified_in_source": "src/App.tsx and src/components/AgenticSeoPage.tsx",
+    "production_check": "HTTP 200; live service page heading verified"
+  },
+  "limits": {
+    "analytics": "Read-only authenticated public growth report returned 0 measured consented sessions for 7 days; insufficient basis for topic selection, not evidence of zero visitors. QA excluded by report defaults. GA4 history unavailable; Search Console/Bing impressions and citations, paid conversions unknown.",
+    "indexing": "HTTP/crawl eligibility is not proof of indexing or citations.",
+    "research": "No Eidos Brain experiments or research claims.",
+    "example": "Hypothetical uniform deadline; no client outcome asserted.",
+    "publication": "pending"
+  },
+  "prior_production": {
+    "id": "2e9e40c5-59f9-4081-9294-4e7c36d9363f",
+    "source": "6a2089f",
+    "project": "eidosworks"
+  },
+  "analytics_artifact": "artifacts/growth/reports/2026-09-21-7d-public/report.md (local only)",
+  "validation_note": "Initial editorial check ran before build and failed ENOENT dist/index.html; rerun after completed build passed. Preserved first log. No product change needed.",
+  "publishing_gate": "2026-09-21T12-05-17-morning/run_report.json: all seven exit codes 0",
+  "additional_checks": "additional-checks.json: all nine commands exit 0"
+}

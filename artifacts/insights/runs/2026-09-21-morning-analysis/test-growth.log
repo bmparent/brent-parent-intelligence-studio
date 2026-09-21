@@ -1,0 +1,27 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:growth
+> node --import tsx --test scripts/test-growth.ts
+
+(node:14488) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ strict public paths exclude private, unknown, encoded, query and receipt paths (5.0601ms)
+✔ campaign/referrer sanitization removes queries, fragments, credentials and unsafe path data (0.9733ms)
+✔ unknown events/fields, denied consent, malformed contexts and oversized requests are rejected (93.321ms)
+✔ public/production QA/preview QA/automation/bot classification is explicit and bounded (2.7844ms)
+✔ sessions hash IDs, deduplicate events and retain only approved values (66.6609ms)
+✔ rate limit returns 429 without accepting an additional event (226.3127ms)
+✔ owner report rejects unauthenticated calls and never exposes session identities (9.557ms)
+✔ inquiry records only provider-confirmed submissions; QA never inflates public report (14.1122ms)
+✔ retention deletes expired sessions, source funnel reports match real SQL and zero denominator is NA (14.3836ms)
+✔ browser consent, navigation attribution, query stripping, event allowlist and revocation (2.8132ms)
+✔ context cannot smuggle extra client properties (0.5631ms)
+✔ approved trailing-slash paths are stored canonically for funnel counts (9.0252ms)
+✔ maximum inquiry text cannot truncate attribution, and header injection never reaches attribution (4.7008ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1206.1767
