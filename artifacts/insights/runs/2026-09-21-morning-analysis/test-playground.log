@@ -1,0 +1,40 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:playground
+> npm run playground:glass && node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts scripts/test-playground-authoring.ts
+
+
+> brent-parent-intelligence-studio@1.1.0 playground:glass
+> node scripts/build-playground-glass.mjs
+
+✔ opening versions 1-3 never upgrades or introduces authoring (21.1662ms)
+✔ explicit upgrade preserves all legacy section identities/data, tokens, renderer and glass and Undo restores exact original (8.8251ms)
+✔ two independently addressable images, text and buttons survive export and keep old archive input untouched (20.6256ms)
+✔ moves preserve node ID/data across compatible section containers, one history entry and exact Undo/Redo (3.6223ms)
+✔ duplicate assigns fresh IDs recursively; remove changes only the current document (7.0931ms)
+✔ cycles, roots and invalid sibling destinations cannot mutate input (5.6657ms)
+✔ mobile geometry is explicit, independent and exactly reversible (3.7688ms)
+✔ malformed, duplicate, excessive, unsafe and non-finite node inputs reject (10.6061ms)
+✔ text renders as escaped content and authored format stays explicitly local-only (3.192ms)
+✔ maximum 96-node project renders and exports; 97th node and cross-section duplicate identities reject (26.8936ms)
+✔ mobile row override remains shrinkable instead of overflowing with full-width children (3.1921ms)
+✔ canvas structure moves preserve pinned sections, card identities and exact reversibility (8.9962ms)
+✔ mobile photo zoom is independent of desktop media and survives rendering (7.3075ms)
+(node:25660) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Cloud revisions preserve images, enforce ownership, and reject stale writes (233.1063ms)
+✔ Frozen checkout is idempotent and entitlement requires signed matching payment (107.4853ms)
+✔ Legacy projects stay legacy and component exports require explicit upgrade (25.1803ms)
+✔ all starter projects round trip and reject incompatible versions (6.0328ms)
+✔ untrusted copy and links never become executable markup (2.087ms)
+✔ exports use identical markup and package uploaded image bytes (7.8084ms)
+✔ stored ZIP carries central directory and correct file count (16.5243ms)
+✔ contrast and visibility produce accessible baseline content (1.7765ms)
+✔ imports reject malformed base64 and mismatched image signatures (1.9554ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1971.5568

@@ -1,0 +1,47 @@
+[
+  {
+    "command": "npm run verify:editorial",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/verify-editorial.log"
+  },
+  {
+    "command": "npm run test:platform",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/test-platform.log"
+  },
+  {
+    "command": "npm run test:playground",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/test-playground.log"
+  },
+  {
+    "command": "npm run test:growth",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/test-growth.log"
+  },
+  {
+    "command": "npm run test:analytics",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/test-analytics.log"
+  },
+  {
+    "command": "npm run test:glass",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/test-glass.log"
+  },
+  {
+    "command": "npm run test:snapshot",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/test-snapshot.log"
+  },
+  {
+    "command": "npm run build:functions",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/build-functions.log"
+  },
+  {
+    "command": "npm run verify:growth-seo",
+    "code": 0,
+    "log": "artifacts/insights/runs/2026-09-21-morning-analysis/verify-growth-seo.log"
+  }
+]

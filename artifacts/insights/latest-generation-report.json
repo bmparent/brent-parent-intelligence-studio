@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-09-20T20:32:28.785Z",
+  "generated_at_utc": "2026-09-21T12:07:21.383Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "indexnow-changing-business-pages",
+      "canonical_url": "https://eidos-works.com/insights/indexnow-changing-business-pages",
+      "og_image": "/insights-og/indexnow-changing-business-pages.svg"
+    },
     {
       "slug": "ai-prototype-production-pilot-evidence",
       "canonical_url": "https://eidos-works.com/insights/ai-prototype-production-pilot-evidence",
@@ -83,6 +88,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/indexnow-changing-business-pages.svg",
     "public/insights-og/ai-prototype-production-pilot-evidence.svg",
     "public/insights-og/storefront-size-guide-inline-dialog-page.svg",
     "public/insights-og/ai-agent-permissions-before-pilot.svg",
