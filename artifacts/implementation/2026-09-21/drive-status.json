@@ -1,6 +1,10 @@
 {
-  "copyAttempted": false,
-  "copySuccess": false,
+  "copyAttempted": true,
+  "copySuccess": true,
+  "verifiedArtifactFiles": 31,
+  "destination": "G:\\My Drive\\Eidos_Works_Audit\\2026-09-21\\works-audit-candidate",
   "configuredLocalDestination": true,
-  "reason": "Works candidate retained in isolated repositories and review artifacts; no approved Drive destination selected for this task."
+  "timestamp_utc": "2026-09-22T00:35:07.6186523Z",
+  "root": "G:\\My Drive",
+  "reason": "Copied to configured mounted Google Drive folder and verified SHA-256. Remote cloud synchronization was not independently observed."
 }

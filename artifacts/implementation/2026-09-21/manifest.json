@@ -1,11 +1,16 @@
 {
-  "timestamp": "2026-09-22T00:11:20.901Z",
-  "scope": "local candidate and redacted read-only production baseline; generated reference explicitly named",
+  "timestamp": "2026-09-22T00:35:08.1394974Z",
+  "scope": "Local candidate and redacted production baseline; generated reference explicitly named",
   "files": [
     {
       "path": "audit-tests.txt",
       "bytes": 4143,
       "sha256": "41901236010521c1e6bb89c1eeabd6e87b05ae6951db7c31d7ae8ba4252d19cf"
+    },
+    {
+      "path": "backend-ci-snapshot.json",
+      "bytes": 1161,
+      "sha256": "de90162338bc2e7e3f46b767c05225573b511813bb69eea56209aee23e6e47d3"
     },
     {
       "path": "backend-focused-tests.txt",
@@ -15,12 +20,27 @@
     {
       "path": "build.txt",
       "bytes": 2588,
-      "sha256": "bccd68bbdad60d84f7fe65dac8708c98198699541e9a213e9d13dfcd560dd497"
+      "sha256": "beaac7796af96941ae42495bdc768f25ac0e7fd344cfb9bf7a9d1461073a27bc"
+    },
+    {
+      "path": "ci-editor-acceptance.json",
+      "bytes": 1905,
+      "sha256": "3db08a9b46bca2a83a9d62a2efd09fa527736057e67054cbb8e9873fc5f92222"
+    },
+    {
+      "path": "ci-editor-failure.txt",
+      "bytes": 19551,
+      "sha256": "63d9237b8cd35c39b9d9a09e9cacd3820452f2736902af08db337a9ed181905a"
+    },
+    {
+      "path": "ci-editor-followup.txt",
+      "bytes": 25611,
+      "sha256": "91c87613dbf77ac3bfbda944da049ebf8eb5999501540964b342b7989a4d378b"
     },
     {
       "path": "compatibility.json",
       "bytes": 16045,
-      "sha256": "060702a07138dbe76a2416577088b373eef36f033dfd92af1a936aa9a472075b"
+      "sha256": "f5317c43d62fa5515eb87f2f40366dded3cf1bd0bc7604a9d47d4929a67ed5d6"
     },
     {
       "path": "concept-production-desktop.png",
@@ -28,9 +48,14 @@
       "sha256": "0c19b418549db3d04d78d7b1ebaf988fb20f370c779cb5e75c0145244fdf2082"
     },
     {
+      "path": "concept-production-review.png",
+      "bytes": 81972,
+      "sha256": "134734d54c3954976c454a9bd8bd1f904691e62a6c38cafe15c4b638eb1aef3d"
+    },
+    {
       "path": "drive-status.json",
-      "bytes": 231,
-      "sha256": "6d5b26b10e5b6db3b9d94c61e1e222a9d58b6d96ed566bd64415134299f7a846"
+      "bytes": 441,
+      "sha256": "b6049121c79b682110f99b29143ac7b30eccfb3fb689de2f0391526da64da322"
     },
     {
       "path": "experience-regression-tests.txt",
@@ -43,19 +68,19 @@
       "sha256": "3f0ebab79aca1e0d80a1144b77f85d83c8f0f09850519e4d3c3c84055a3dd3d6"
     },
     {
+      "path": "frontend-ci-snapshot.json",
+      "bytes": 1537,
+      "sha256": "e1409ee80b543c9f4eafa315702712c048a0e35ab92f4ae2390bd8d582ee52d9"
+    },
+    {
       "path": "generated-concept-reference.png",
       "bytes": 1427575,
       "sha256": "1b23e43472418eafc23303c59ca00dcb3716dc46090d67d319f2502f20efa8b8"
     },
     {
-      "path": "growth-public/report.json",
-      "bytes": 4057,
-      "sha256": "d950f2c90b63b636e36de787595d2419c99cd8ec8d095010c478dd9de036a590"
-    },
-    {
-      "path": "growth-public/report.md",
-      "bytes": 3753,
-      "sha256": "27ef4b0b8dfdff3df5547b463f7c4ef98ccd80578e8ea2b75c10559688bce7e1"
+      "path": "header-contrast.json",
+      "bytes": 485,
+      "sha256": "8ec93241e86552b05acfd67f2bf522e61d0c3443f5fd724893d9c2083c3241e3"
     },
     {
       "path": "insights-desktop.png",
@@ -114,8 +139,8 @@
     },
     {
       "path": "validation-summary.json",
-      "bytes": 3395,
-      "sha256": "6efaf256786e850ca43abdbc64c0a1bc4b2799c40608f33887a8c000b0e56c39"
+      "bytes": 4713,
+      "sha256": "5095211adfd0ef47183d5951e512b6dc6a3db323f1d34804a716a28d8eb0a9a3"
     },
     {
       "path": "wellway-live-status.json",
@@ -126,6 +151,16 @@
       "path": "wellway-tests.txt",
       "bytes": 2400,
       "sha256": "f5b85d82f0840579a3d255d26cd32daa1a41345ff4279616282c561635d4a725"
+    },
+    {
+      "path": "growth-public/report.json",
+      "bytes": 4057,
+      "sha256": "d950f2c90b63b636e36de787595d2419c99cd8ec8d095010c478dd9de036a590"
+    },
+    {
+      "path": "growth-public/report.md",
+      "bytes": 3753,
+      "sha256": "27ef4b0b8dfdff3df5547b463f7c4ef98ccd80578e8ea2b75c10559688bce7e1"
     }
   ]
 }

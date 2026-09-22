@@ -9,6 +9,7 @@ Browser: Codex in-app Chromium on Windows. Built local preview at 127.0.0.1:4173
 - Operations concept: Last week shows 35 intake, 33 completed, +2 backlog. Tuesday shows 8 intake, 7 completed and 3 remaining daily capacity.
 - Insights: unmatched query creates a zero-results state and shareable query URL; clear restores articles; Back restores the query and zero-results state. Current lead and secondary stories visibly render.
 - Header: Menu opens at mobile width; Escape closes it and returns focus to the toggle. Inspection caught dark sampled branding on the new dark backing; fixed explicit text contrast including forced-colors support and rechecked at a scrolled section.
+- The scrolled CTA also needed a specific text-color rule because the glass tone sampler could otherwise make its text light on a light button. Final computed colors are rgb(22,52,53) on rgb(230,238,232), recorded in header-contrast.json. Account-project disclosure was inspected in the actual editor without saving or uploading a design.
 - All three services and Insights: no horizontal document overflow at 390, 768, 980 and 1440 pixels. Service image checks show no failed loaded images.
 
 ## Screenshots and provenance

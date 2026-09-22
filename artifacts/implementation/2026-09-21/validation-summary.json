@@ -98,5 +98,36 @@
     "Stripe TEST provider and live fulfillment",
     "Paid model semantic evaluation",
     "Production deployment"
-  ]
+  ],
+  "followup": {
+    "frontendSource": "831d00404302e8f90707df52d2d5a9f820378c4b",
+    "backendSource": "e76d8ee34064da561ecbb9bdb777fed66221655c",
+    "checks": [
+      {
+        "command": "npm run typecheck:snapshot-worker",
+        "result": "passed with generated D1/R2/runtime binding types"
+      },
+      {
+        "command": "npm run test:snapshot",
+        "result": "passed after explicit decoder defaults"
+      },
+      {
+        "command": "node --import tsx --test tests/works-platform.test.ts tests/playground-provider.test.ts tests/playground-image.test.ts",
+        "scope": "backend",
+        "result": "8 passed after final vendor refresh"
+      },
+      {
+        "command": "npm run lint",
+        "scope": "backend",
+        "result": "passed"
+      }
+    ],
+    "cloudflareTypesReviewed": "@cloudflare/workers-types@5.20260921.1; scheduled handler, D1 batch and R2 get/put signatures",
+    "ciBrowser": {
+      "source": "cd46e01",
+      "run": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/35671492810",
+      "result": "passed in Chromium, Firefox and WebKit at 1440 and 390; controlled growth browser acceptance also passed"
+    },
+    "scope": "Later Worker type/default-option and evidence-only changes do not claim physical-device or provider acceptance"
+  }
 }

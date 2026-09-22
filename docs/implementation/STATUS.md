@@ -11,3 +11,7 @@ Actual browser evidence includes source storefront captures; three responsive se
 No production deploy, migration, live charge, paid AI evaluation, allowance increase, private client upload, external message or affiliate publication was performed. Existing dirty source/research checkouts and deployed durable ledgers were preserved.
 
 Review artifacts under ../../artifacts/implementation/2026-09-21 and the paired draft changes. Proceed with an isolated hosted preview and provider/device acceptance before requesting the exact production release.
+
+Draft reviews: frontend https://github.com/bmparent/brent-parent-intelligence-studio/pull/66 and backend https://github.com/bmparent/eidos/pull/63. Backend CI and preview build passed. All frontend CI jobs passed on source cd46e01, including the actual editor in three engines/two widths and controlled growth delivery. Final follow-up adds generated Worker binding validation and explicit equivalent decoder defaults; its local Worker typecheck, signature smoke and eight paired backend tests passed. Any newer CI run is a separate receipt, not assumed green.
+
+Artifacts and notes were copied to the configured mounted Drive folder at G:/My Drive/Eidos_Works_Audit/2026-09-21/works-audit-candidate. Artifact SHA-256 hashes were checked against that destination. Remote Drive synchronization is not independently verified.

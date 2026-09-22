@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-09-22T00:09:07.394Z",
+  "timestamp": "2026-09-22T00:33:41.474Z",
   "contract": "works-v1/catalogue-2026-09-21.1",
   "scope": "All vendored platform/API/editor contract files; working-tree hashes, not deployed acceptance",
-  "frontendBase": "2b64ae3eeb7b5b7d7c6fe30ecc8b600dff49a97c",
-  "backendBase": "c3b03b78eb8ee4f0732891073a0d538f23d2d9a8",
+  "frontendBase": "831d00404302e8f90707df52d2d5a9f820378c4b",
+  "backendBase": "e76d8ee34064da561ecbb9bdb777fed66221655c",
   "files": [
     {
       "path": "functions/api/assistant.ts",
@@ -278,7 +278,7 @@
     {
       "path": "functions/_shared/snapshot/http.ts",
       "normalization": "exact bytes",
-      "sha256": "c954edebeef188607d8600a63f029d263f930a7302c735b05706b422df184d12",
+      "sha256": "4a1a93d677c03c0eb03c828bbd30ebf2df27ab1cf38f08fb251fd86ff35227ba",
       "matches": true
     },
     {
