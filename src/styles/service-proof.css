@@ -3,4 +3,4 @@
 
 .ew-glass-header .ew-header__inner [data-glass-tone],.ew-glass-header .ew-brand,.ew-glass-header .ew-menu-toggle{color:#eff5ef!important;text-shadow:none}.ew-glass-header .ew-nav{position:relative}@media(max-width:980px){.ew-glass-header .ew-nav{position:absolute}}@media(forced-colors:active){.ew-glass-header .ew-header__inner{background:Canvas!important}.ew-glass-header .ew-header__inner [data-glass-tone],.ew-glass-header .ew-brand,.ew-glass-header .ew-nav a,.ew-glass-header .ew-menu-toggle{color:LinkText!important}}
 
-.ew-glass-header .ew-header__cta{background:#e6eee8!important;color:#163435!important;text-shadow:none!important}@media(forced-colors:active){.ew-glass-header .ew-header__cta{background:Canvas!important;color:LinkText!important}}
+.ew-glass-header .ew-header__inner .ew-header__cta{background:#e6eee8!important;color:#163435!important;text-shadow:none!important}@media(forced-colors:active){.ew-glass-header .ew-header__inner .ew-header__cta{background:Canvas!important;color:LinkText!important}}

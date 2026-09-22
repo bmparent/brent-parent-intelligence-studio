@@ -86,11 +86,11 @@ for (const engine of engines) {
       const withImage = await jsonDownload();
       assert.ok(withImage.sections.find(section => section.id === 'hero').image.startsWith('data:image/'));
       const accountDetails = page.locator('details.pg-project-tools').filter({ has: page.locator('summary', { hasText: /^Account projects$/ }) });
-      await accountDetails.locator('summary').click();
+      await accountDetails.locator('summary').filter({hasText:/^Account projects$/}).click();
       assert.equal(await accountDetails.getByRole('link', { name: 'Sign in with your Eidos account', exact: true }).isVisible(), true);
       assert.equal(await accountDetails.getByRole('button', { name: 'Import into my account', exact: true }).isEnabled(), true);
       assert.ok((await accountDetails.innerText()).includes('Your design stays on this device until an account save succeeds'));
-      await accountDetails.locator('summary').click();
+      await accountDetails.locator('summary').filter({hasText:/^Account projects$/}).click();
       // Server default-off format and ownership gates are tested in test-playground-authoring-cloud.ts.
       // Merely opening these controls must not send the local document or claim a cloud save.
       assert.equal(record.requests.filter(request => request.method === 'POST').length, 0);
