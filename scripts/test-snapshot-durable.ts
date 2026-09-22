@@ -64,3 +64,21 @@ test('signed webhook rejects tampering, refunds before payment, and mismatched a
  assert.equal((await store.getByRequestId(second.requestId))!.status,'failed');
  assert.equal(sql.prepare('SELECT count(*) n FROM snapshot_jobs').get()!.n,0);
 });
+
+test('interrupted image work retains the finished written report without retrying providers', async () => {
+ const {sql,env,store,record}=setup();
+ try {
+  await store.create(record);
+  await store.save({...record,status:'paid'});
+  await store.save({...record,status:'processing',report:report as SnapshotRecord['report']});
+  sql.prepare("UPDATE snapshot_jobs SET state='running',updated=1").run();
+  await drainSnapshotJobs(env);
+  assert.equal(sql.prepare('SELECT state FROM snapshot_jobs').get()!.state,'review');
+  assert.equal((await store.getByRequestId(record.requestId))!.status,'partial');
+  const response=await status({env,request:new Request('http://localhost/api/snapshot/status?token='+record.resultToken),waitUntil:()=>{}});
+  const result=await response.json();
+  assert.equal(result.status,'partial');
+  assert.equal(result.report.overallImpression,report.overallImpression);
+  assert.equal(sql.prepare('SELECT count(*) n FROM snapshot_stages').get()!.n,0);
+ } finally { sql.close(); }
+});

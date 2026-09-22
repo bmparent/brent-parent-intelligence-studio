@@ -487,7 +487,7 @@ export function SnapshotResultPage({ token }: { token: string }) {
             <p>This concept preview shows one possible direction for clearer hierarchy, stronger calls to action, and a more polished customer path.</p>
           </div>
         </div>
-        {image ? <img className="ew-result__concept" src={image} alt="AI-assisted homepage redesign concept created for this Eidos Snapshot." /> : <div className="ew-result__placeholder">The written direction is ready. The concept image may still be processing.</div>}
+        {image ? <img className="ew-result__concept" src={image} alt="AI-assisted homepage redesign concept created for this Eidos Snapshot." /> : <div className="ew-result__placeholder">The written direction is ready, but the concept image is unavailable. Contact Snapshot support for a delivery review.</div>}
         {status.captureNotice ? <p className="ew-result__notice">{status.captureNotice}</p> : null}
       </section>
 

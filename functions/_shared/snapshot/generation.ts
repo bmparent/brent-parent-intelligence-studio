@@ -71,7 +71,7 @@ export async function drainSnapshotJobs(env: SnapshotEnv) {
   if(!snapshotReady(env)) return
   const store=getSnapshotStore(env,new Request('https://eidos-works.com'))!,db=env.SNAPSHOT_DB!
   await db.batch([
-    db.prepare("UPDATE snapshot_orders SET status='failed' WHERE status IN ('paid','processing') AND id IN(SELECT order_id FROM snapshot_jobs WHERE state='running' AND updated<?)").bind(Date.now()-15*60_000),
+    db.prepare("UPDATE snapshot_orders SET status=CASE WHEN json_type(record,'$.report')='object' THEN 'partial' ELSE 'failed' END WHERE status IN ('paid','processing') AND id IN(SELECT order_id FROM snapshot_jobs WHERE state='running' AND updated<?)").bind(Date.now()-15*60_000),
     db.prepare("UPDATE snapshot_jobs SET state='review',reason='worker_interrupted' WHERE state='running' AND updated<?").bind(Date.now()-15*60_000),
   ])
   const jobs=await db.prepare("SELECT order_id FROM snapshot_jobs WHERE state='queued' ORDER BY updated LIMIT 2").all<{order_id:string}>()

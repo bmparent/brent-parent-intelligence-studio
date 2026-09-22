@@ -5,7 +5,7 @@ import { fixture, ctx, signup } from './playground-test-fixture';
 import { onRequestPost as checkout } from '../functions/api/shop/checkout';
 import { onRequestPost as webhook } from '../functions/api/shop/webhook';
 import { onRequestGet as list, onRequestPost as download } from '../functions/api/shop/purchases';
-import { kitAttempt } from '../functions/_shared/platform/kitDelivery';
+import { kitAttempt, kitDownload, archiveDigest } from '../functions/_shared/platform/kitDelivery';
 
 test('ambiguous checkout retries preserve order, parameters and frozen delivery; verified recovery revokes on refund', async () => {
   const { env, sql } = fixture();
@@ -58,4 +58,24 @@ test('attempt parameters and authenticated owner cannot be changed; expired atte
   await assert.rejects(kitAttempt(request, env, token, 'own-website', site), /expired/);
   assert.equal(sql.prepare('SELECT count(*) n FROM eidos_orders').get()?.n, 1);
   sql.close();
+});
+
+test('frozen purchases never fall back to a legacy archive when bytes are missing or corrupt', async () => {
+  const { env, sql } = fixture();
+  try {
+    const attempt = await kitAttempt(ctx(env, '/api/shop/checkout').request, env, 'c'.repeat(64), 'own-website', env.PUBLIC_SITE_URL!);
+    sql.prepare("UPDATE eidos_orders SET status='paid' WHERE id=?").run(attempt.order_id);
+    const order = sql.prepare('SELECT * FROM eidos_orders WHERE id=?').get(attempt.order_id) as unknown as import('../functions/_shared/platform/shop').Order;
+    const valid = await kitDownload(env, order);
+    assert.equal(valid.status, 200);
+    sql.exec("UPDATE eidos_kit_archives SET data='Y29ycnVwdA=='");
+    await assert.rejects(kitDownload(env, order), /support check/);
+    sql.exec('DELETE FROM eidos_kit_archives');
+    await assert.rejects(kitDownload(env, order), /support check/);
+    // Only purchases with no frozen-version association are historical v1 orders.
+    sql.exec('DELETE FROM eidos_kit_attempts');
+    const legacy = await kitDownload(env, order);
+    const { legacyKitArchiveBase64 } = await import('../functions/_shared/platform/legacyKitArchive');
+    assert.equal(legacy.headers.get('x-artifact-sha256'), await archiveDigest(legacyKitArchiveBase64));
+  } finally { sql.close(); }
 });
