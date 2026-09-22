@@ -1,0 +1,15 @@
+✔ real raster decoder validates transparent images and rejects forged, truncated, oversized input (275.1761ms)
+✔ Playground initializes only its tables and libSQL concurrent saves have one winner (181.4616ms)
+✔ Relay authentication, exact origins, routes and method gates (10.7122ms)
+✔ Member sign-in survives the authenticated relay and libSQL consumes links exactly once (68.0173ms)
+✔ Published answers work with no database, model key or outbound fetch (6.8701ms)
+✔ Real libSQL adapter reserves atomically and rolls back failed batches (23.3067ms)
+✔ Sentinel quota and idempotency prevent repeated model calls (43.7843ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3767.539

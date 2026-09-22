@@ -1,0 +1,460 @@
+{
+  "timestamp": "2026-09-22T00:09:07.394Z",
+  "contract": "works-v1/catalogue-2026-09-21.1",
+  "scope": "All vendored platform/API/editor contract files; working-tree hashes, not deployed acceptance",
+  "frontendBase": "2b64ae3eeb7b5b7d7c6fe30ecc8b600dff49a97c",
+  "backendBase": "c3b03b78eb8ee4f0732891073a0d538f23d2d9a8",
+  "files": [
+    {
+      "path": "functions/api/assistant.ts",
+      "normalization": "exact bytes",
+      "sha256": "8092a7269d4bbe06d4fc03c28cdec99a42d92ea336fae03143d74b343d366526",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/agents.ts",
+      "normalization": "exact bytes",
+      "sha256": "7f2a3f1b383e81555ef1a0b84a10ede5d700cbc5f2c666b0f7549790f97ee003",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/maintenance.ts",
+      "normalization": "exact bytes",
+      "sha256": "55da363bcba65aadbcf39d165d48f28f62f52c432af292301730ad9bdf7d5de1",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/moderate.ts",
+      "normalization": "exact bytes",
+      "sha256": "66f3c1d57e7251e4fad2b3296b4e4734a3633ac7b032610952e203eda15db907",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/replies.ts",
+      "normalization": "exact bytes",
+      "sha256": "6416124abbfef3a6c77261da09019fcc04444b03e6d75b317bd713e4e9146fb9",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/threads.ts",
+      "normalization": "exact bytes",
+      "sha256": "55724dd910019ed7651b6761dc1a6398c261e92569bd9513f3abf616a449a371",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/account.ts",
+      "normalization": "exact bytes",
+      "sha256": "9a4a154ac411b6223e2be09dae69001feacf9c247a4fe0700b6f724bde2c786a",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/auth.ts",
+      "normalization": "exact bytes",
+      "sha256": "0d4090d49b3a8950b4196b089625327555b3307a52121fb915761f21b040424b",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/credentials.ts",
+      "normalization": "exact bytes",
+      "sha256": "62edee273daf77c1ac6e8fde73c3a1017ef63f6c0ec288acfa5e4e73f6e227fc",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/directory.ts",
+      "normalization": "exact bytes",
+      "sha256": "5f92189aae896460a7a9873bab00c1e8a8c11440af9d793fe0cbd9bd160166eb",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/google.ts",
+      "normalization": "exact bytes",
+      "sha256": "44923ac9aeb93fed74c4364fc8126332fe738f6c67d2ac2c0558f1b40c536f88",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/unsubscribe.ts",
+      "normalization": "exact bytes",
+      "sha256": "d6d7a3ffd4e1420af8b003a9630a2914f0096018bf3d1ff70860600296a734ab",
+      "matches": true
+    },
+    {
+      "path": "functions/api/operations/readiness.ts",
+      "normalization": "exact bytes",
+      "sha256": "27e2747ea3e8a81984cfc298f534a1cb14adbe12882b41519a8021da88c7d37d",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/ai.ts",
+      "normalization": "exact bytes",
+      "sha256": "d67170f6fc0ca697beaf1935309d3f621a85570b1d119407616a500d9a1576e9",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/checkout.ts",
+      "normalization": "exact bytes",
+      "sha256": "84698a9d6458bd32aa1e6e8593f86043a7a32715f499998e60f88b944da98259",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/projects.ts",
+      "normalization": "exact bytes",
+      "sha256": "736b969021c15cc8a81099e3e4cd88d611fb33dd978da55088d0aa97f870bd7f",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/purchases.ts",
+      "normalization": "exact bytes",
+      "sha256": "3dda4a6a0eab1d3187261e05652fbc697f5bdab5f3ddc34f57b10bcf88d39f05",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/webhook.ts",
+      "normalization": "exact bytes",
+      "sha256": "cf285d6cc590789c6a1c0cbf82ae5b6bc69e27478750c7efa142785226e7ab8a",
+      "matches": true
+    },
+    {
+      "path": "functions/api/public-config.ts",
+      "normalization": "exact bytes",
+      "sha256": "efa811d5177a67624f2fc56f9820fc6da33c1170ccd0084fb584bbd8d5c34f98",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/checkout.ts",
+      "normalization": "exact bytes",
+      "sha256": "37e2e3ac58f86eeb170d2dd09644c90d6e0f499197525ad1a066121706998b72",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/download.ts",
+      "normalization": "exact bytes",
+      "sha256": "62b12deb5a5b062c2179a237ce38465d24cd1ff0c6cca42cfde4f1ed50b912c2",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/purchases.ts",
+      "normalization": "exact bytes",
+      "sha256": "751db9619d2f033e5aa7d00c0422814b1c63345131ac45199ad46d8afb929831",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/status.ts",
+      "normalization": "exact bytes",
+      "sha256": "53d7ca4655309455dc2517ea9ed6cb55605a734570db061d2e5b0eabaa50605b",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/webhook.ts",
+      "normalization": "exact bytes",
+      "sha256": "bc5d2822e86726614d799640b13b9ec4389664086942ae2fd0ca4353a2f63040",
+      "matches": true
+    },
+    {
+      "path": "functions/community/feed.ts",
+      "normalization": "exact bytes",
+      "sha256": "be5d527e2f014cb5a0287e81bd6a9a226a56bc6a114317f07dab143184c8272e",
+      "matches": true
+    },
+    {
+      "path": "functions/community/sitemap.xml.ts",
+      "normalization": "exact bytes",
+      "sha256": "363becb37bc637001b9da464cc77316c04fb1e907b8c6724f4c7fd11fb7e617b",
+      "matches": true
+    },
+    {
+      "path": "functions/community/thread/[id].ts",
+      "normalization": "exact bytes",
+      "sha256": "de0480d557e7a1f868ad8c33bbcc530c9dbb04d43bfbd8b7c49ad17709c3b2b3",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/community.ts",
+      "normalization": "exact bytes",
+      "sha256": "7856bd704b28e3c73de7d8600329aa14007a5909ee75cf481197570ec2d7fac2",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/core.ts",
+      "normalization": "exact bytes",
+      "sha256": "afd387f3d08da1c648dd10599eec05d0c6f8c58d1f290684fc5f5a6d1e1def23",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/kitArchive.ts",
+      "normalization": "exact bytes",
+      "sha256": "5767fae0e805815f0f6b43ca7946c12c719e463e9d8f8d361df03f89e1d9ba8c",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/kitDelivery.ts",
+      "normalization": "exact bytes",
+      "sha256": "579268a5b0645178bf37717e2d856bcb3a7184eae4e717d0b3228c6baa53b584",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/knowledge.ts",
+      "normalization": "exact bytes",
+      "sha256": "64546352f6c8028cbf4f52a401838486d4b1443e7a01a92ba87ce703ea0a7fe9",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/legacyKitArchive.ts",
+      "normalization": "exact bytes",
+      "sha256": "e8da3034d9fff3d4b2f2d334ec3262d6f39fd0b28fcc2ceb1fd46330777d2695",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberAuth.ts",
+      "normalization": "exact bytes",
+      "sha256": "4e3c63564044b0140cdf16086e284ccbd371483fbba1d9239219f6efa977c244",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberCredentials.ts",
+      "normalization": "exact bytes",
+      "sha256": "1341f52275756092b3af21d45bcd593fbe5309d16382d6ace5eebe4d1c46bf35",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberGoogle.ts",
+      "normalization": "exact bytes",
+      "sha256": "0088be3d5e0e5a9f9448a251c2675a3d0e8cf0d7d5f378ee0b5feaab7e4961e6",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberMail.ts",
+      "normalization": "exact bytes",
+      "sha256": "edfa3fed8512d0e92d1122006ec7ca5b9d464c40d9a1ebb50c877d36c7a95840",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/mentions.ts",
+      "normalization": "exact bytes",
+      "sha256": "b1b2296b492ffd7a20111b984279423f3b346a2f7549a00b1e3510eeb908f664",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/newsletter.ts",
+      "normalization": "exact bytes",
+      "sha256": "fe7db163e329a9126032e2878e4e001b1791597ab014d6ffc7db9038adbc62d9",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playground.ts",
+      "normalization": "exact bytes",
+      "sha256": "5e8e0dffa8fd8809ecfb284c34b0b2fc04d50e384b7a8e5b04d5e68f27cbb4c5",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAI.ts",
+      "normalization": "exact bytes",
+      "sha256": "84d68da8ae0768903335ce029f4de28030fca3b700815c577d772a4243cbee56",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playgroundOrders.ts",
+      "normalization": "exact bytes",
+      "sha256": "414647d3d342f4f9d731a4dd80f38cc3856bc1731f3095651493902d69a7f39d",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playgroundSchema.ts",
+      "normalization": "exact bytes",
+      "sha256": "334a042d70b6bce5c93029a63b0f4b7acb30440893cf8c1322cadf1740b946e7",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/projectCatalogue.ts",
+      "normalization": "exact bytes",
+      "sha256": "58dc01289db304d469e14ad20c0c0729fdee3e6cfd105fb186e27b228798403f",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/shop.ts",
+      "normalization": "exact bytes",
+      "sha256": "83a9e1c10e38ebe4345486f765daa4966a389a59f597cf32ee6f07ad2266bc79",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/http.ts",
+      "normalization": "exact bytes",
+      "sha256": "c954edebeef188607d8600a63f029d263f930a7302c735b05706b422df184d12",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/stripe.ts",
+      "normalization": "exact bytes",
+      "sha256": "2e393ddf148ab0c9db568a26e56db3529b8c8878823556b0609ef337b74e895c",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/types.ts",
+      "normalization": "exact bytes",
+      "sha256": "cdb08692a240228d1b2c1cd6ac9f8397546c2d1921484618e264c3a6c97dd7d6",
+      "matches": true
+    },
+    {
+      "path": "migrations/0001_eidos_platform.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "3a0ddf7d09a70375b1f111ca532300ae4f5b311dce520cc2b3aa171e6bafd9df",
+      "matches": true
+    },
+    {
+      "path": "migrations/0002_members.sql",
+      "normalization": "exact bytes",
+      "sha256": "bf1bbfeb59646c8234addd3220c46850afcc92918203ee69704f0a20381edae5",
+      "matches": true
+    },
+    {
+      "path": "migrations/0003_playground.sql",
+      "normalization": "exact bytes",
+      "sha256": "de72422190fe3dba1e255905d7f30b9699d0b120d6a873a4555177cdb095d999",
+      "matches": true
+    },
+    {
+      "path": "migrations/0004_playground_asset_quota.sql",
+      "normalization": "exact bytes",
+      "sha256": "5085abacdc73ed47a5ec8b72aba66436c518ea603704afe9bc144a1cd413f922",
+      "matches": true
+    },
+    {
+      "path": "migrations/0005_playground_ai.sql",
+      "normalization": "exact bytes",
+      "sha256": "111e71d932a9dd8edeb7759b42a244def33417cf0d70ddd1644749e86b2f1846",
+      "matches": true
+    },
+    {
+      "path": "migrations/0006_member_credentials.sql",
+      "normalization": "exact bytes",
+      "sha256": "818cb798523a7542142aeb3df37ffebc724ca7582c7eee22435bfc47279b953b",
+      "matches": true
+    },
+    {
+      "path": "migrations/growth/0001_growth.sql",
+      "normalization": "exact bytes",
+      "sha256": "9a137ba1106dfd815f46c82b8288d2923767ffa13d4b9d3eaa5c06509de0b1d7",
+      "matches": true
+    },
+    {
+      "path": "src/playground/aiOperations.ts",
+      "normalization": "exact bytes",
+      "sha256": "697178a7868cec751aaa61b7563269412d0fd606a40358f874e98f6a89de91bf",
+      "matches": true
+    },
+    {
+      "path": "src/playground/approved-glass-preset.json",
+      "normalization": "exact bytes",
+      "sha256": "1d556317d4b8964f4943abf62d4720701c782584cdd9511eb39ef3b50ad3c428",
+      "matches": true
+    },
+    {
+      "path": "src/playground/authoring.ts",
+      "normalization": "exact bytes",
+      "sha256": "85502d0002bea9029089146c73f2f235386a790dcfbb4b42d6ef1e40e4bf60f1",
+      "matches": true
+    },
+    {
+      "path": "src/playground/authoringRenderer.ts",
+      "normalization": "exact bytes",
+      "sha256": "ec65fd15437d5d500440b36350997830b05f549fef8cd7ec87e57fcc9376dc91",
+      "matches": true
+    },
+    {
+      "path": "src/playground/authoringRuntime.ts",
+      "normalization": "exact bytes",
+      "sha256": "b41391bfc16fa6bc2bd20e4a4a1ee8dd61dbcf4f83631b3037baf6b8705796a7",
+      "matches": true
+    },
+    {
+      "path": "src/playground/authoringSchema.ts",
+      "normalization": "exact bytes",
+      "sha256": "cf5823efad65b33adf283104e18741dbccfed3da4b3bbfea7bbc34d3be68f1e7",
+      "matches": true
+    },
+    {
+      "path": "src/playground/composition.ts",
+      "normalization": "exact bytes",
+      "sha256": "b0af1c2301a9e9cd3b4002b9fa09347fc7f1eeb37fe6d379a9f292c4a121516c",
+      "matches": true
+    },
+    {
+      "path": "src/playground/compositionRenderer.ts",
+      "normalization": "exact bytes",
+      "sha256": "1795d5b167c13702f28a458f958cc2d7507c53e45aebb38a1bc375dbf8fe13c6",
+      "matches": true
+    },
+    {
+      "path": "src/playground/compositionRuntime.ts",
+      "normalization": "exact bytes",
+      "sha256": "f802525d53a152dfa6ac5fa644e93b94c0cda08d4e44abbd8140e2d5e1b6f290",
+      "matches": true
+    },
+    {
+      "path": "src/playground/compositionSchema.ts",
+      "normalization": "exact bytes",
+      "sha256": "7e4daf5880dfb2328065720af9c9d645acdef2e16dc300b3186f21b37107dbde",
+      "matches": true
+    },
+    {
+      "path": "src/playground/export.ts",
+      "normalization": "exact bytes",
+      "sha256": "5fbfa051f0dd338b0bec5ddf44d40463ba93e2dc52789e14d6d0f1f45ca820d3",
+      "matches": true
+    },
+    {
+      "path": "src/playground/glassBundle.ts",
+      "normalization": "exact bytes",
+      "sha256": "4901aeb6df7a71fd647d949e49f148cdcfcf80af26c524ac2e77a917bb648e04",
+      "matches": true
+    },
+    {
+      "path": "src/playground/limits.ts",
+      "normalization": "exact bytes",
+      "sha256": "d0aebf4543821e3489c8174496c31dd2de5723a793b84a24500d9bc55fea1a45",
+      "matches": true
+    },
+    {
+      "path": "src/playground/media.ts",
+      "normalization": "exact bytes",
+      "sha256": "8b47a27e8f0b74c5c2a028ec438599b36805790919429168e7d2f4804386935e",
+      "matches": true
+    },
+    {
+      "path": "src/playground/model.ts",
+      "normalization": "exact bytes",
+      "sha256": "8836205ebc39058cb0a99790345cdb50bf000417a1cb05e4c02f143e6cef2083",
+      "matches": true
+    },
+    {
+      "path": "src/playground/pageStyles.ts",
+      "normalization": "exact bytes",
+      "sha256": "d1388f66aae4598a15b8037911ee100092e973d2cdcd4e88fd6e8f7b01061cd2",
+      "matches": true
+    },
+    {
+      "path": "src/playground/releaseBoundary.ts",
+      "normalization": "exact bytes",
+      "sha256": "b15a3ba67bc04b4646f0eda90dc2b02f13855b3a1c8544655823dac912a348f0",
+      "matches": true
+    },
+    {
+      "path": "src/playground/renderer.ts",
+      "normalization": "exact bytes",
+      "sha256": "d01804a23205899d8f3a3468dfc449f4553c73bf9a2a4ca0bd5650be73481151",
+      "matches": true
+    },
+    {
+      "path": "src/playground/runtime.ts",
+      "normalization": "exact bytes",
+      "sha256": "bbceb2fcff79d32dc4b6ac1e395b6690bd2f73fe223c38fffa53c3587bd9c28b",
+      "matches": true
+    },
+    {
+      "path": "src/playground/workspace.ts",
+      "normalization": "exact bytes",
+      "sha256": "849976828ee604b1e3b8c4e735f54b540c7ca76e3c06ae0072aa9508bf027bf3",
+      "matches": true
+    }
+  ],
+  "passed": true
+}
