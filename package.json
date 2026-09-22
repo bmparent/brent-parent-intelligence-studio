@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc -b --pretty false",
+    "typecheck:snapshot-worker": "tsc -p ops/snapshot-worker/tsconfig.json --noEmit",
     "content:generate": "node scripts/generate-insights-assets.mjs",
     "validate:insights": "node scripts/validate-insights.mjs",
     "validate:insights:dist": "node scripts/validate-insights.mjs --check-dist --skip-source-fetch",
