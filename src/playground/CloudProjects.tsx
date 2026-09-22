@@ -66,6 +66,7 @@ function AcceptedCloudProjects({ project, target: active, documentId, guard, loa
   return <details className="pg-project-tools" open={requestedProject ? true : undefined}>
     <summary>Account projects</summary>
     <p><a href="/account" target="_blank" rel="noreferrer">Sign in with your Eidos account</a>, then refresh this list.</p>
+    <p>Your design stays on this device until an account save succeeds. If cloud saving is unavailable, download your project to keep a recovery copy.</p>
     {requestedProject && <p><button disabled={busy || disabled} onClick={() => void run(async valid => { await open(requestedProject, valid); setRequestedProject(''); historyReplace(); })}>Open project selected from your account</button> Your current local design can be restored with Undo.</p>}
     <p>Save target: {active ? `${active.name} · ${active.id}` : 'New account project (detached design)'}</p>
     <button disabled={busy} onClick={() => void run(async valid => {await refresh(valid); setMessage('Project list refreshed.');})}>Refresh account projects</button>
