@@ -4,6 +4,7 @@ import { getSnapshotStore, isLocalDevelopmentRequest } from '../../_shared/snaps
 import { createStripeCheckout, isStripeConfigured } from '../../_shared/snapshot/stripe'
 import type { PagesFunctionContext } from '../../_shared/snapshot/types'
 import { isValidRequestId } from '../../_shared/snapshot/validation'
+import { snapshotReady } from '../../_shared/snapshot/generation'
 
 function resultUrl(resultToken: string) {
   return `/snapshot/result/${encodeURIComponent(resultToken)}`
@@ -13,6 +14,7 @@ export const onRequestOptions = optionsResponse
 
 export const onRequestPost = async (context: PagesFunctionContext) => {
   const { request, env } = context
+  if(!isLocalDevelopmentRequest(request) && (env.SNAPSHOT_PUBLIC_ENABLED!=='true' || !snapshotReady(env))) return publicFailure('Snapshot is not accepting new orders yet.',503)
   const store = getSnapshotStore(env, request)
   if (!store) return publicFailure('Eidos Snapshot storage is not configured yet.', 503)
 
@@ -29,6 +31,8 @@ export const onRequestPost = async (context: PagesFunctionContext) => {
 
   const record = await store.getByRequestId(requestId)
   if (!record) return publicFailure('This Snapshot request could not be found or has expired.', 404)
+  if(['refunded','disputed','partial'].includes(record.status)) return publicFailure('This order is closed or under review. Contact support before starting another order.',409)
+  if(Date.now()-Date.parse(record.createdAt)>23*60*60*1000 && !record.paidAt) return publicFailure('This checkout attempt has expired. Contact support if payment was already attempted.',409)
 
   if (
     record.status === 'complete' ||

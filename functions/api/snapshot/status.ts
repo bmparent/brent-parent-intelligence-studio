@@ -1,4 +1,3 @@
-import { generateSnapshot } from '../../_shared/snapshot/generation'
 import { json, optionsResponse, publicFailure } from '../../_shared/snapshot/http'
 import { getSnapshotStore } from '../../_shared/snapshot/storage'
 import type { PagesFunctionContext, SnapshotRecord } from '../../_shared/snapshot/types'
@@ -12,6 +11,9 @@ function publicStatus(record: SnapshotRecord) {
     processing: 'Your website content is being reviewed and your Snapshot is being prepared.',
     complete: 'Your Snapshot is ready.',
     failed: record.publicError || 'Your Snapshot needs a manual review.',
+    partial: 'Your written report is available. The concept image needs a delivery review.',
+    refunded: 'This order was refunded. Delivery access is closed.',
+    disputed: 'This order is under payment review. Delivery access is paused.',
   }
 
   return {
@@ -34,7 +36,7 @@ function publicStatus(record: SnapshotRecord) {
     captureNote: record.captureNote,
     captureNotice: [record.captureNote, record.imageNote].filter(Boolean).join(' ') || undefined,
     imageNote: record.imageNote,
-    report: record.status === 'complete' ? record.report : undefined,
+    report: ['complete','partial'].includes(record.status) ? record.report : undefined,
   }
 }
 
@@ -48,20 +50,11 @@ export const onRequestGet = async (context: PagesFunctionContext) => {
   const token = new URL(request.url).searchParams.get('token')
   if (!isValidResultToken(token)) return publicFailure('A valid Snapshot result token is required.', 400)
 
-  let record = await store.getByResultToken(token)
+  const record = await store.getByResultToken(token)
   if (!record) return publicFailure('This Snapshot result could not be found or has expired.', 404)
 
-  const processingLeaseExpired =
-    record.status === 'processing' &&
-    (!record.processingStartedAt ||
-      !Number.isFinite(Date.parse(record.processingStartedAt)) ||
-      Date.now() - Date.parse(record.processingStartedAt) >= 5 * 60 * 1000)
-  if (record.status === 'paid' || processingLeaseExpired) {
-    await generateSnapshot(record.requestId, store, env)
-    record = (await store.getByResultToken(token)) ?? record
-  }
-
   const response: Record<string, unknown> = publicStatus(record)
+  if(record.status==='complete' && record.imageKey) response.conceptImage = `/api/snapshot/image?token=${encodeURIComponent(token)}`
   if (record.status === 'complete' && record.imageStored && record.imageBase64) {
     response.conceptImage = `data:${record.imageMediaType ?? 'image/jpeg'};base64,${record.imageBase64}`
   }
