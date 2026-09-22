@@ -17,10 +17,17 @@ export function StarterPage() {
     setBusy(true);
     setError('');
     try {
+      let attempt = sessionStorage.getItem('eidos.kit.attempt');
+      if (!attempt) {
+        attempt = crypto.randomUUID().replaceAll('-', '') + crypto.randomUUID().replaceAll('-', '');
+        sessionStorage.setItem('eidos.kit.attempt', attempt);
+        sessionStorage.setItem('eidos.kit.useCase', useCase);
+      }
       const result = await post<{ url: string }>('/api/shop/checkout', {
         acceptTerms: accepted,
         challenge: verification,
-        useCase,
+        useCase: sessionStorage.getItem('eidos.kit.useCase') || useCase,
+        attempt,
       });
       const url = new URL(result.url);
       if (url.hostname !== 'checkout.stripe.com' || url.protocol !== 'https:')
@@ -175,6 +182,15 @@ export function StarterPage() {
               {error}
             </p>
           )}
+          <details>
+            <summary>Recover or restart a purchase</summary>
+            <p><a href="/account">Sign in with your checkout email</a> to recover a verified purchase on another device. Existing receipt links continue to work.</p>
+            <p>Retries reuse this tab’s pending purchase. Only start again after checking that the previous checkout was cancelled or expired.</p>
+            <button type="button" disabled={busy} onClick={() => {
+              sessionStorage.removeItem('eidos.kit.attempt'); sessionStorage.removeItem('eidos.kit.useCase');
+              setError('A new purchase attempt will be created when you next open checkout.');
+            }}>Start a separate purchase attempt</button>
+          </details>
           <p className="ew-form-note">
             Payment is handled by Stripe. Your download becomes available after
             payment is verified. No subscription.

@@ -193,7 +193,7 @@ export function buildLocalFallback(payload: IntelligencePayload) {
       'Which tools and data sources are already involved?',
     ],
     confidence: payload.prompt || payload.signals?.length ? 'strong' : 'directional',
-    tokenNote: 'Local fallback used because the configured API provider was unavailable or the model call failed.',
+    tokenNote: 'Source-based local guidance. No AI provider was called.',
     source: 'local-fallback',
   }
 }
