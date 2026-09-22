@@ -1,4 +1,5 @@
 import { CentralFloridaPage } from './components/CentralFloridaPage';
+import {LocalPerformance} from './components/LocalPerformance';
 import { lazy, Suspense, useSyncExternalStore } from 'react';
 const Playground = lazy(() => import('./playground/Playground'));
 import { Header } from './components/Header';
@@ -45,6 +46,7 @@ import { PolicyPage } from './components/PolicyPages';
 import { normalizePath } from './data/pages';
 import { storefrontThemes } from './data/storefrontDemo';
 import { AccountPage, VerifyAccountPage, UnsubscribePage, MemberProfile } from './components/MemberPages';
+import { ResetPasswordPage } from './components/AccountAccess';
 import { LabAccessRequest } from './components/LabAccessRequest';
 
 const subscribeToClient = () => () => {};
@@ -87,6 +89,7 @@ function NotFoundPage() {
 
 function routeFor(path: string) {
   if (path === '/account') return <AccountPage />;
+  if (path === '/account/reset') return <ResetPasswordPage />;
   if (path === '/account/verify') return <VerifyAccountPage />;
   if (path === '/account/unsubscribe') return <UnsubscribePage />;
   if (/^\/members\/[a-z][a-z0-9_]{2,23}$/.test(path)) return <MemberProfile username={path.slice('/members/'.length)} />;
@@ -165,6 +168,7 @@ function App({ requestPath }: AppProps) {
       <EidosAssistant />
       <PrivacyControls />
       <ConversionTracking />
+      <LocalPerformance />
     </>
   );
 }

@@ -12,6 +12,7 @@ export type PageMetadata = {
 };
 
 const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
+  '/account/reset': { title: 'Reset Password | Eidos Works', description: 'Set a new password using your secure reset link.', type: 'website', noIndex: true, noReferrer: true },
   '/playground': { title: 'Eidos Playground | Shape your next website', description: 'Explore templates, tune your design, and export a working page with every setting. Free preview release.', type: 'website', noIndex: true },
   '/account': { title: 'Your Account | Eidos Works', description: 'Free paper delivery, saved reading, and a conversation inbox for people and agents.', type: 'website', noIndex: true, noReferrer: true },
   '/account/verify': { title: 'Confirm Your Email | Eidos Works', description: 'Confirm your email to sign in.', type: 'website', noIndex: true, noReferrer: true },

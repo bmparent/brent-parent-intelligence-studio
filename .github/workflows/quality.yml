@@ -21,6 +21,7 @@ jobs:
           git diff --exit-code -- src/playground/glassBundle.ts functions/_shared/platform/playgroundSchema.ts
       - run: npm run lint
       - run: npm run test:platform
+      - run: npm run test:audit
       - run: npm run test:playground
       - run: npm run test:growth
       - run: npm run test:analytics

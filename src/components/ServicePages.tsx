@@ -1,4 +1,7 @@
 import { serviceBySlug, serviceFamilies } from '../data/editorial';
+import { ConceptApplications } from './ConceptApplications';
+import { ProblemExplorer, SupportedAnswerDemo } from './ServiceExplorer';
+import '../styles/service-proof.css';
 
 type ServiceSlug = (typeof serviceFamilies)[number]['slug'];
 
@@ -192,18 +195,18 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
     <>
       <ServiceHero
         eyebrow={`Service ${service.number}`}
-        title={service.title}
+        title={slug==='digital-experiences'?'Make your website easier to explore, shop and use.':slug==='business-systems'?'Keep the work moving. Make the next decision clearer.':'Put useful assistance inside the work you already do.'}
         lede={service.summary}
       />
       <figure className={`ew-service-evidence ew-shell ew-service-evidence--${slug}`}>
         <img src={service.image} width="1200" height="800" alt={service.imageAlt} />
         <figcaption>{service.imageCaption}</figcaption>
       </figure>
-      <section className="ew-ledger-section ew-shell ew-service-detail">
-        <div>
-          <p className="ew-eyebrow">Who it is for</p>
-          <h2>{detail.forWhom}</h2>
-        </div>
+      <ServiceProof slug={slug} />
+      {slug==='digital-experiences' ? <ProblemExplorer/> : slug==='intelligent-systems' ? <SupportedAnswerDemo/> : null}
+      <details className="ew-shell service-task">
+        <summary>Scope, constraints and handoff</summary>
+        <p>{detail.forWhom}</p>
         <div className="ew-service-detail__facts">
           <article>
             <h3>What the work can include</h3>
@@ -230,10 +233,16 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
             <p>{detail.proof}</p>
           </article>
         </div>
-      </section>
+      </details>
       <ServiceDetailCta slug={slug} />
     </>
   );
+}
+
+function ServiceProof({ slug }: { slug: ServiceSlug }) {
+  if (slug === 'digital-experiences') return <section className="ew-shell service-proof"><div><p className="ew-eyebrow">A real hosted storefront</p><h2>A clearer entrance.<br/>A shorter path to the right product.</h2><p>Liberty Christian Early Learning runs on InkSoft. The custom entrance brings school identity, product categories and sizing guidance into the same customer journey.</p><a className="ew-text-link" href="https://stores.inksoft.com/liberty_christian_early_learnin/shop/home" target="_blank" rel="noreferrer">Visit the public storefront ↗</a><p className="service-proof__caption">Desktop and mobile captures: September 21, 2026. These show the delivered public interface, not a performance or conversion claim.</p></div><figure className="service-proof__phone"><img src="/images/services/liberty-mobile-20260921.png" width="390" height="844" loading="lazy" alt="Actual mobile Liberty storefront with classroom hero and product category paths"/><figcaption>Same store. A mobile entrance.</figcaption></figure><div className="service-proof__wide"><h3>Work within the platform. Improve the journey.</h3><p>Category hierarchy, sizing guidance, accessible controls and responsive layouts can improve a hosted store without replacing its checkout. Private roster access is a separate workflow.</p><a href="/work/pernr-access-gate">Explore the PERNR access case study →</a></div></section>;
+  if (slug === 'business-systems') return <section className="ew-shell service-proof"><div className="service-proof__wide"><p className="ew-eyebrow">Try the workflow</p><h2>Useful tools start with the next decision.</h2><p>Filter production work, change an estimate, or inspect a reporting period. These three working examples use fictional records; they demonstrate interactions, not delivered customer installations.</p><ConceptApplications /></div><article><p className="ew-eyebrow">Delivered project · private access</p><h3>Promo Photo Organizer</h3><p>A job and company intake, labeled photo views, an upload queue and a SharePoint handoff. The uploader checks the supplied file’s byte count. Automatic folder sorting and physical-phone behavior still need acceptance evidence.</p><p>No customer photos or private storage are exposed here.</p><a href="/contact?project=promo-organizer">Discuss this workflow →</a></article><article><p className="ew-eyebrow">Working product</p><h3>EmbroideryCalc</h3><p>A focused estimating workspace for embroidery inputs. Product and device acceptance remain separate from these fictional production demos.</p><a href="https://embroiderycalc-public.pages.dev/">See the product in the work collection →</a></article></section>;
+  return <section className="ew-shell service-proof"><div><p className="ew-eyebrow">Focused assistance</p><h2>Give AI a useful job.<br/>Keep the boundary visible.</h2><p>Wellway combines guided reflection with optional AI assistance. Local prompts remain available when hosted assistance is unavailable. It is a reflection tool, not diagnosis or emergency care.</p><a href="/demos/wellway/">Open Wellway →</a></div><article><p className="ew-eyebrow">Source-backed answers</p><h3>Ask Eidos about a real workflow.</h3><p>The site assistant retrieves from a maintained project catalogue. Its source answer remains available without an AI call. Follow-up context is bounded and can be reset.</p><p>Try “Do you have anything for print shops?” in Ask Eidos, then ask about the photo workflow.</p></article><div className="service-proof__wide"><h3>A practical engagement</h3><ol><li>Identify one task and its approved sources.</li><li>Define permissions, cost limits and a useful fallback.</li><li>Test representative questions and failure cases.</li><li>Review the evidence before expanding access.</li></ol><p>Sentinel is separate research-stage work. Its results are not evidence that every business AI task is solved.</p><a href="/lab">View the research boundary →</a></div></section>;
 }
 
 export function LegacyServicePage({ legacySlug }: { legacySlug: string }) {

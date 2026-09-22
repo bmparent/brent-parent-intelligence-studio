@@ -274,7 +274,7 @@ export function FrictionReviewPage() {
                 value={form.supportingUrl}
                 onChange={(event) => update('supportingUrl', event.target.value)}
               />
-              <small>The secure inquiry mailer is text-only. Use a share link here, or reply with an attachment after we acknowledge the request.</small>
+              <small>Paste a link to a screenshot or document that you are comfortable sharing. This form does not upload files. You can send an attachment by email after we reply.</small>
             </label>
             <label>
               <span>How did you find Eidos Works? <em>optional</em></span>

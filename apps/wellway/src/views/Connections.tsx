@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { useStore } from "../lib/store";
+import { useStore } from "../lib/storeContext";
 import {
   ingest,
   parseCsv,
