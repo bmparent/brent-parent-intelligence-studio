@@ -1,0 +1,11 @@
+﻿{
+    "checkedAt":  "2026-09-23T18:55:56.0298303Z",
+    "environment":  "Stripe TEST account; isolated Pages webhook; validation Turso",
+    "action":  "Stripe CLI events resend of existing checkout.session.completed event",
+    "eventId":  "evt_1UCRqCKC8pRG5Tr9g0bXVIMq",
+    "webhookEndpointId":  "we_1UIuqCKC8pRG5Tr91eNeAgtj",
+    "expected":  "Provider accepts test replay and existing event ledger remains idempotent",
+    "actual":  "Stripe CLI request succeeded; retrieved event livemode=false and pending_webhooks=0; existing validation ledger receipt timestamp remained 2026-09-05T22:13:40.580Z",
+    "limitation":  "Delivery HTTP response was not independently captured; no new checkout/archive/refund/dispute acceptance",
+    "source":  "Stripe TEST API and read-only libSQL query"
+}
