@@ -85,9 +85,16 @@ for (const engine of engines) {
       await until(async () => (await page.locator('.pg-toast').innerText()).includes('Hero image added'), 'upload feedback');
       const withImage = await jsonDownload();
       assert.ok(withImage.sections.find(section => section.id === 'hero').image.startsWith('data:image/'));
-      assert.equal(await page.getByRole('button', { name: 'Import into my account', exact: true }).count(), 0);
-      assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'));
-      check('real image decode/upload and explicit local-only cloud boundary');
+      const accountDetails = page.locator('details.pg-project-tools').filter({ has: page.locator('summary', { hasText: /^Account projects$/ }) });
+      await accountDetails.locator('summary').filter({hasText:/^Account projects$/}).click();
+      assert.equal(await accountDetails.getByRole('link', { name: 'Sign in with your Eidos account', exact: true }).isVisible(), true);
+      assert.equal(await accountDetails.getByRole('button', { name: 'Import into my account', exact: true }).isEnabled(), true);
+      assert.ok((await accountDetails.innerText()).includes('Your design stays on this device until an account save succeeds'));
+      await accountDetails.locator('summary').filter({hasText:/^Account projects$/}).click();
+      // Server default-off format and ownership gates are tested in test-playground-authoring-cloud.ts.
+      // Merely opening these controls must not send the local document or claim a cloud save.
+      assert.equal(record.requests.filter(request => request.method === 'POST').length, 0);
+      check('real image upload, account-save controls and no automatic document upload');
       await sectionHero();
       for (const placement of ['background', 'left', 'right', 'above', 'below', 'inline']) {
         await panel('Controls');

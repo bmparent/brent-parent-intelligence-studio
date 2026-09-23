@@ -75,10 +75,14 @@ for (const file of await htmlFiles(root)) {
     'work/storefront-experience/index.html',
     'services/index.html',
     'services/storefront-access-systems/index.html',
+    'services/digital-experiences/index.html',
+    'services/business-systems/index.html',
+    'services/dashboards-workflow-tools/index.html',
+    'services/intelligent-systems/index.html',
   ]);
   // The gallery may link to this separately hosted calculator. Keep the
   // retired-host guard for every other reference and all canonical metadata.
-  const referenceHtml = ['index.html', 'work/index.html'].includes(label)
+  const referenceHtml = ['index.html', 'work/index.html', 'services/business-systems/index.html', 'services/dashboards-workflow-tools/index.html'].includes(label)
     ? html.replaceAll('href="https://embroiderycalc-public.pages.dev/"', '')
     : html;
   if (

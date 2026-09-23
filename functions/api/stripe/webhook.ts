@@ -52,6 +52,19 @@ export const onRequestPost = async (context: PagesFunctionContext) => {
   if (await store.hasStripeEvent(event.id)) return json({ received: true, duplicate: true })
 
   try {
+    if (env.SNAPSHOT_DB && ['charge.refunded','charge.dispute.created'].includes(event.type)) {
+      const object=event.data.object
+      const intent=cleanString(object.payment_intent,240)
+      if(!intent) return publicFailure('Payment reference is required for review.',400)
+      const state=event.type==='charge.refunded'?'refunded':'disputed'
+      await env.SNAPSHOT_DB.batch([
+        env.SNAPSHOT_DB.prepare('INSERT INTO snapshot_revocations(payment_intent,state) VALUES(?,?) ON CONFLICT(payment_intent) DO UPDATE SET state=excluded.state').bind(intent,state),
+        env.SNAPSHOT_DB.prepare('UPDATE snapshot_orders SET status=? WHERE payment_intent=?').bind(state,intent),
+        env.SNAPSHOT_DB.prepare("UPDATE snapshot_jobs SET state='cancelled',reason=? WHERE order_id IN(SELECT id FROM snapshot_orders WHERE payment_intent=?)").bind(state,intent),
+        env.SNAPSHOT_DB.prepare('INSERT OR IGNORE INTO snapshot_events(id,created) VALUES(?,?)').bind(event.id,Date.now()),
+      ])
+      return json({received:true})
+    }
     if (event.type !== 'checkout.session.completed') {
       await store.saveStripeEvent(event.id)
       return json({ received: true, ignored: true })
@@ -73,6 +86,15 @@ export const onRequestPost = async (context: PagesFunctionContext) => {
 
     const record = await store.getByRequestId(requestId)
     if (!record) throw new Error('snapshot-record-missing')
+    if(['refunded','disputed','partial','failed'].includes(record.status)) return json({received:true,ignored:true})
+    const paymentIntent=cleanString(session.payment_intent,240)
+    if(env.SNAPSHOT_DB && paymentIntent) {
+      const revoked=await env.SNAPSHOT_DB.prepare('SELECT state FROM snapshot_revocations WHERE payment_intent=?').bind(paymentIntent).first<{state:string}>()
+      if(revoked) {
+        await env.SNAPSHOT_DB.prepare('UPDATE snapshot_orders SET status=?,payment_intent=? WHERE id=?').bind(revoked.state,paymentIntent,record.requestId).run()
+        return json({received:true,ignored:true})
+      }
+    }
     if (record.resultToken !== resultToken) {
       await store.saveStripeEvent(event.id)
       return json({ received: true, ignored: true })
@@ -93,14 +115,13 @@ export const onRequestPost = async (context: PagesFunctionContext) => {
         const now = new Date().toISOString()
         const paidRecord = {
           ...record,
-          status: 'paid' as const,
+          status: 'failed' as const,
           paidAt: record.paidAt ?? now,
           stripeSessionId: sessionId,
           stripeCheckoutUrl: undefined,
           updatedAt: now,
           publicError: PAYMENT_REVIEW_ERROR,
         }
-        await store.save(paidRecord)
         const failedRecord = { ...paidRecord, status: 'failed' as const, updatedAt: new Date().toISOString() }
         await store.save(failedRecord)
         context.waitUntil(
@@ -122,6 +143,7 @@ export const onRequestPost = async (context: PagesFunctionContext) => {
         status: 'paid',
         paidAt: record.paidAt ?? now,
         stripeSessionId: sessionId,
+        paymentIntent,
         stripeCheckoutUrl: undefined,
         updatedAt: now,
         publicError: undefined,

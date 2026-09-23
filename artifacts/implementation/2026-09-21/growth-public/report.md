@@ -1,0 +1,186 @@
+# Eidos Works growth report
+
+7 days, public, UTC. Consented measurable sessions, not all people. Daily rotating, tab-scoped IDs; no unique-person claim.
+
+Historical GA4 read access unavailable from deployment environment.
+
+## Funnel
+
+| Metric | Count |
+|---|---:|
+| sessions | 5 |
+| page_views | 31 |
+| review_sessions | 1 |
+| cta_clicks | 1 |
+| cta_sessions | 1 |
+| starts | 1 |
+| submissions | 0 |
+| submitted_sessions | 0 |
+| contacts | 0 |
+| started_and_submitted | 0 |
+
+## Conversion percentages
+
+- visitToReview: 20%
+- visitToSubmit: 0%
+- startToSubmit: 0%
+
+## Acquisition and pages
+
+```json
+{
+  "landingPages": [
+    {
+      "landing": "/",
+      "sessions": 1,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    },
+    {
+      "landing": "/insights/ai-prototype-production-pilot-evidence",
+      "sessions": 1,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    },
+    {
+      "landing": "/insights/indexnow-changing-business-pages",
+      "sessions": 1,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    },
+    {
+      "landing": "/services/business-systems",
+      "sessions": 1,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    },
+    {
+      "landing": "/work",
+      "sessions": 1,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    }
+  ],
+  "sources": [
+    {
+      "source": "direct",
+      "medium": "none",
+      "sessions": 5,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    }
+  ],
+  "campaigns": [
+    {
+      "campaign": "",
+      "sessions": 5,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    }
+  ],
+  "referrals": [
+    {
+      "referral": "",
+      "sessions": 5,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    }
+  ],
+  "sourceConversions": [
+    {
+      "source": "direct",
+      "medium": "none",
+      "campaign": "",
+      "sessions": 5,
+      "submissions": 0,
+      "contacts": 0,
+      "submissionRatePercent": 0
+    }
+  ],
+  "topPages": [
+    {
+      "path": "/work",
+      "page_views": 5
+    },
+    {
+      "path": "/services/business-systems",
+      "page_views": 3
+    },
+    {
+      "path": "/services",
+      "page_views": 3
+    },
+    {
+      "path": "/insights",
+      "page_views": 3
+    },
+    {
+      "path": "/work/pernr-access-gate",
+      "page_views": 2
+    },
+    {
+      "path": "/services/digital-experiences",
+      "page_views": 2
+    },
+    {
+      "path": "/insights/indexnow-changing-business-pages",
+      "page_views": 2
+    },
+    {
+      "path": "/",
+      "page_views": 2
+    },
+    {
+      "path": "/work/production-dashboard",
+      "page_views": 1
+    },
+    {
+      "path": "/work/nighttime-spectaculars",
+      "page_views": 1
+    },
+    {
+      "path": "/work/holidays-in-hollywood",
+      "page_views": 1
+    },
+    {
+      "path": "/services/intelligent-systems",
+      "page_views": 1
+    },
+    {
+      "path": "/services/agentic-seo",
+      "page_views": 1
+    },
+    {
+      "path": "/lab",
+      "page_views": 1
+    },
+    {
+      "path": "/insights/ai-prototype-production-pilot-evidence",
+      "page_views": 1
+    },
+    {
+      "path": "/friction-review",
+      "page_views": 1
+    },
+    {
+      "path": "/community",
+      "page_views": 1
+    }
+  ]
+}
+```
+
+## Limits
+
+- Public means not identified as QA, automation or an obvious bot; human identity is not verified.
+- Missing consent, blockers, network failures and provider-acknowledged deliveries whose telemetry failed are not counted.
+- Null conversion means no denominator, not zero performance.
+- No historical backfill; session detail retained for 60 days.

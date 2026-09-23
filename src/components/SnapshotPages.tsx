@@ -360,7 +360,7 @@ export function SnapshotSuccessPage() {
           return;
         }
         setStatus(next);
-        if (!['ready', 'complete', 'completed', 'failed'].includes(statusName(next))) {
+        if (!['ready', 'complete', 'completed', 'partial', 'refunded', 'disputed', 'failed'].includes(statusName(next))) {
           timer = window.setTimeout(poll, 4000);
         }
       } catch {
@@ -376,8 +376,8 @@ export function SnapshotSuccessPage() {
   }, [token]);
 
   const state = statusName(status);
-  const ready = ['ready', 'complete', 'completed'].includes(state);
-  const failed = state === 'failed';
+  const ready = ['ready', 'complete', 'completed', 'partial'].includes(state);
+  const failed = ['failed','refunded','disputed'].includes(state);
   const paymentPending = state === 'created' || state === 'checkout_created';
   const eyebrow = !token
     ? 'Snapshot link missing'
@@ -487,7 +487,7 @@ export function SnapshotResultPage({ token }: { token: string }) {
             <p>This concept preview shows one possible direction for clearer hierarchy, stronger calls to action, and a more polished customer path.</p>
           </div>
         </div>
-        {image ? <img className="ew-result__concept" src={image} alt="AI-assisted homepage redesign concept created for this Eidos Snapshot." /> : <div className="ew-result__placeholder">The written direction is ready. The concept image may still be processing.</div>}
+        {image ? <img className="ew-result__concept" src={image} alt="AI-assisted homepage redesign concept created for this Eidos Snapshot." /> : <div className="ew-result__placeholder">The written direction is ready, but the concept image is unavailable. Contact Snapshot support for a delivery review.</div>}
         {status.captureNotice ? <p className="ew-result__notice">{status.captureNotice}</p> : null}
       </section>
 

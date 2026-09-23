@@ -1,0 +1,166 @@
+{
+  "timestamp": "2026-09-22T00:35:08.1394974Z",
+  "scope": "Local candidate and redacted production baseline; generated reference explicitly named",
+  "files": [
+    {
+      "path": "audit-tests.txt",
+      "bytes": 4143,
+      "sha256": "41901236010521c1e6bb89c1eeabd6e87b05ae6951db7c31d7ae8ba4252d19cf"
+    },
+    {
+      "path": "backend-ci-snapshot.json",
+      "bytes": 1161,
+      "sha256": "de90162338bc2e7e3f46b767c05225573b511813bb69eea56209aee23e6e47d3"
+    },
+    {
+      "path": "backend-focused-tests.txt",
+      "bytes": 767,
+      "sha256": "2a4dbbf53b269a83d448c2f1467e898f205248b4bc4caf7e6ede35412d7a5e70"
+    },
+    {
+      "path": "build.txt",
+      "bytes": 2588,
+      "sha256": "beaac7796af96941ae42495bdc768f25ac0e7fd344cfb9bf7a9d1461073a27bc"
+    },
+    {
+      "path": "ci-editor-acceptance.json",
+      "bytes": 1905,
+      "sha256": "3db08a9b46bca2a83a9d62a2efd09fa527736057e67054cbb8e9873fc5f92222"
+    },
+    {
+      "path": "ci-editor-failure.txt",
+      "bytes": 19551,
+      "sha256": "63d9237b8cd35c39b9d9a09e9cacd3820452f2736902af08db337a9ed181905a"
+    },
+    {
+      "path": "ci-editor-followup.txt",
+      "bytes": 25611,
+      "sha256": "91c87613dbf77ac3bfbda944da049ebf8eb5999501540964b342b7989a4d378b"
+    },
+    {
+      "path": "compatibility.json",
+      "bytes": 16045,
+      "sha256": "f5317c43d62fa5515eb87f2f40366dded3cf1bd0bc7604a9d47d4929a67ed5d6"
+    },
+    {
+      "path": "concept-production-desktop.png",
+      "bytes": 81812,
+      "sha256": "0c19b418549db3d04d78d7b1ebaf988fb20f370c779cb5e75c0145244fdf2082"
+    },
+    {
+      "path": "concept-production-review.png",
+      "bytes": 81972,
+      "sha256": "134734d54c3954976c454a9bd8bd1f904691e62a6c38cafe15c4b638eb1aef3d"
+    },
+    {
+      "path": "drive-status.json",
+      "bytes": 441,
+      "sha256": "b6049121c79b682110f99b29143ac7b30eccfb3fb689de2f0391526da64da322"
+    },
+    {
+      "path": "experience-regression-tests.txt",
+      "bytes": 2198,
+      "sha256": "6bec03cc68ded9b9a9af70924a8831967fe883dd2812a3976d10914889c12eb1"
+    },
+    {
+      "path": "focused-tests.txt",
+      "bytes": 3243,
+      "sha256": "3f0ebab79aca1e0d80a1144b77f85d83c8f0f09850519e4d3c3c84055a3dd3d6"
+    },
+    {
+      "path": "frontend-ci-snapshot.json",
+      "bytes": 1537,
+      "sha256": "e1409ee80b543c9f4eafa315702712c048a0e35ab92f4ae2390bd8d582ee52d9"
+    },
+    {
+      "path": "generated-concept-reference.png",
+      "bytes": 1427575,
+      "sha256": "1b23e43472418eafc23303c59ca00dcb3716dc46090d67d319f2502f20efa8b8"
+    },
+    {
+      "path": "header-contrast.json",
+      "bytes": 485,
+      "sha256": "8ec93241e86552b05acfd67f2bf522e61d0c3443f5fd724893d9c2083c3241e3"
+    },
+    {
+      "path": "insights-desktop.png",
+      "bytes": 107616,
+      "sha256": "c2584096558d3137eebcd05aceec0fd0cbec4e9a14b230ed76445f8f2771d48f"
+    },
+    {
+      "path": "insights-layout.json",
+      "bytes": 476,
+      "sha256": "e5a119bc7f9b363d89b0639ff3a9f7d836f88843f070be80844c3c6f532d7505"
+    },
+    {
+      "path": "lint.txt",
+      "bytes": 63,
+      "sha256": "aa488371b2e81d8f57f9ebe644e9fcda864374b837ae2f2e9ca1ebcd05a4d962"
+    },
+    {
+      "path": "live-headers.json",
+      "bytes": 1253,
+      "sha256": "aa5069035f3c2a9d6fca4f5dc6a4cdfae0fa6a4e3c99649b256610b48d379c21"
+    },
+    {
+      "path": "payment-inventory.json",
+      "bytes": 998,
+      "sha256": "4ba96c435e9d31eb3033d3fc4298b39b541ae0ada7aae61b22a4cb66d27490d8"
+    },
+    {
+      "path": "platform-tests.txt",
+      "bytes": 3591,
+      "sha256": "937075cb32e46c7900623e53bea853f7db18c109af6ea3517a41c76b72cddd40"
+    },
+    {
+      "path": "release-tests.txt",
+      "bytes": 5588,
+      "sha256": "6f9d834106ceee0f6f2cca7accc911e019ac791a04e5576b82fa42c4a06b73ca"
+    },
+    {
+      "path": "route-crawl.json",
+      "bytes": 2172,
+      "sha256": "c314b1755be6cfc5903f887e9b29f90d3c74065b2d9dae431c702ab3a6edbe0f"
+    },
+    {
+      "path": "service-layouts.json",
+      "bytes": 3496,
+      "sha256": "e367e358af9baf8fd2678bd914e69fcfcadce94c8ae57147db5267a4d6265319"
+    },
+    {
+      "path": "snapshot-smoke.txt",
+      "bytes": 164,
+      "sha256": "d694e8652d51bc823629eff883212cef6a0bd920c34e19be7ab6e1da66ffbd9f"
+    },
+    {
+      "path": "snapshot-tests.txt",
+      "bytes": 725,
+      "sha256": "809763221b307760be07aeb7d9ed357a6efb4b49d0cb0a3437495d0f8428fe6d"
+    },
+    {
+      "path": "validation-summary.json",
+      "bytes": 4713,
+      "sha256": "5095211adfd0ef47183d5951e512b6dc6a3db323f1d34804a716a28d8eb0a9a3"
+    },
+    {
+      "path": "wellway-live-status.json",
+      "bytes": 304,
+      "sha256": "1cd859fdef9640c50ff200985366354d38720f60276d549272ec0dc400f7ca60"
+    },
+    {
+      "path": "wellway-tests.txt",
+      "bytes": 2400,
+      "sha256": "f5b85d82f0840579a3d255d26cd32daa1a41345ff4279616282c561635d4a725"
+    },
+    {
+      "path": "growth-public/report.json",
+      "bytes": 4057,
+      "sha256": "d950f2c90b63b636e36de787595d2419c99cd8ec8d095010c478dd9de036a590"
+    },
+    {
+      "path": "growth-public/report.md",
+      "bytes": 3753,
+      "sha256": "27ef4b0b8dfdff3df5547b463f7c4ef98ccd80578e8ea2b75c10559688bce7e1"
+    }
+  ]
+}

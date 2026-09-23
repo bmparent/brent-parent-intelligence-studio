@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { useStore } from "./lib/store";
+import { useStore } from "./lib/storeContext";
 import { dateLabel } from "./lib/data";
 import type { Page } from "./lib/types";
 import { Icon } from "./components/Icon";

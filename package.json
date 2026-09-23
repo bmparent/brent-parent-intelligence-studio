@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc -b --pretty false",
+    "typecheck:snapshot-worker": "tsc -p ops/snapshot-worker/tsconfig.json --noEmit",
     "content:generate": "node scripts/generate-insights-assets.mjs",
     "validate:insights": "node scripts/validate-insights.mjs",
     "validate:insights:dist": "node scripts/validate-insights.mjs --check-dist --skip-source-fetch",
@@ -31,6 +32,7 @@
     "test:platform": "node --import tsx --test scripts/test-platform.ts scripts/test-members.ts scripts/test-relay.ts scripts/test-relay-runtime.mjs scripts/test-inquiries.ts scripts/test-thread-form.mjs",
     "test:playground": "npm run playground:glass && node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts scripts/test-playground-authoring.ts",
     "test:analytics": "node --import tsx --test scripts/test-analytics.ts",
+    "test:audit": "node --import tsx --test scripts/test-assistant-catalogue.ts scripts/test-account-epoch.ts scripts/test-kit-recovery.ts scripts/test-playground-ai.ts scripts/test-playground-authoring-cloud.ts scripts/test-snapshot-durable.ts scripts/test-works-audit.ts",
     "test:glass": "node --import tsx --test scripts/test-liquid-glass.ts scripts/test-hero.ts",
     "build:functions": "wrangler pages functions build functions --outfile .wrangler/eidos-functions.js",
     "playground:glass": "node scripts/build-playground-glass.mjs",
@@ -60,6 +62,7 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.10",
+    "web-vitals": "6.2.2",
     "wrangler": "^4.98.0"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "environment": "Computed styles read from actual scrolled built page via browser",
+  "cta": {
+    "foreground": [
+      22,
+      52,
+      53
+    ],
+    "background": [
+      230,
+      238,
+      232
+    ],
+    "ratio": 11.263672476659357
+  },
+  "brandForeground": [
+    239,
+    245,
+    239
+  ],
+  "headerBacking": "rgba(9,32,43,.96)",
+  "limits": "Computed solid CTA pair only. Liquid highlights, all backgrounds, forced-colors and native-device acceptance remain separate."
+}

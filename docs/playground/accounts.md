@@ -1,0 +1,31 @@
+# Playground accounts
+
+The account UI adds email/username/password signup, username-or-email password login, email verification, password recovery, deliberate Google linking, saved projects and purchase history to the existing email-member system. Existing member IDs, usernames, project ownership, sessions, agent keys, newsletters and reading lists remain in place. Migration `0006_member_credentials.sql` only adds tables and indexes; it does not rewrite existing members or earlier migrations.
+
+## Security and identity
+
+Passwords are 15–128 characters, accepted without trimming. Sentinel's Node runtime uses built-in asynchronous scrypt (`N=131072`, `r=8`, `p=1`, 32-byte random salt, 64-byte derived key), with timing-safe comparison and a dummy derivation for unknown identities. Passwords never enter emails, receipts or client storage. IP and normalized-identifier quotas bound authentication attempts; managed Turnstile remains required on hosted password/email entry points. Incorrect and missing accounts receive the same login error; reset requests use a generic acknowledgement. Public username availability remains visible.
+
+Signup requires an expiring, single-use email proof before creating a member. Reset tokens are random, stored only as SHA-256 digests, expire in 15 minutes, and travel in URL fragments that the account page removes. Password change and reset invalidate existing member sessions, outstanding email sign-in links, recovery tokens and member-bound OAuth flows. Password change issues a fresh session; reset requires a fresh login. Conditional session creation prevents an in-flight password or magic-link login from defeating a completed reset.
+
+Reset and verification pages also handle a new fragment link opened in the same tab. Successful sign-out clears the dashboard immediately, and aborted account loads cannot repopulate it. Password inputs have explicit labels, separate show/hide buttons and linked length guidance.
+
+Google uses server-side OIDC code exchange with PKCE, browser-bound state, nonce, exact callback matching and JOSE signature/issuer/audience/expiry checks. Google subject is unique; each Eidos account has at most one linked Google subject. A verified Gmail or Workspace address can link to an existing matching member without changing its username or projects. Google is not treated as authoritative for third-party email providers: those users first prove the email through Eidos, then deliberately link from Security. Cross-account collisions stop with an explanation. New Google members choose a username before creation. Codes, tokens and client secrets remain server-side. Claimed flow verifiers/nonces are scrubbed on successful, failed and collision callbacks.
+
+For a third-party address without an Eidos account, the callback returns to Create account with the email-proof requirement. Existing addresses return to email sign-in. An authenticated dashboard displays Google linking failures and collisions instead of silently hiding their result.
+
+Sessions retain the existing 30-day `__Host-eidos_session` cookie with Secure, HttpOnly, SameSite=Lax and Path=/. The relay admits only exact account redirects and allowlisted session/temporary OAuth cookies. It never follows a provider redirect with platform credentials.
+
+## Configuration and validation
+
+On Sentinel set `EIDOS_PASSWORD_AUTH_ENABLED=true`, preserving the existing accounts, mail, rate-secret and Turnstile configuration. Google additionally requires `EIDOS_GOOGLE_CLIENT_ID`, `EIDOS_GOOGLE_CLIENT_SECRET` and `EIDOS_GOOGLE_REDIRECT_URI`. The redirect must exactly equal the frontend origin plus `/api/members/google` and must be registered with Google. Password and Google availability are independently reported by `/api/public-config`; unconfigured options cannot pretend to work.
+
+For a dedicated Vercel/Turso preview, `EIDOS_DATABASE_BINDING_PREFIX=EIDOS_PG_INTEGRATION` selects `EIDOS_PG_INTEGRATION_TURSO_DATABASE_URL` and `EIDOS_PG_INTEGRATION_TURSO_AUTH_TOKEN`. Missing prefixed variables fail closed. They never fall back to a shared database. Run `npm --prefix apps/sentinel-lab run works:migrate` from the backend repository root with the intended environment. A deployment-specific migration build command may be used for an isolated preview; do not change the project's global production build command.
+
+Refresh the shared vendor with `node scripts/export-sentinel-platform.mjs <sentinel-lab-directory>`. Frontend checks are `npm run typecheck`, `npm run lint`, `npm run test:platform`, the existing Playground/glass/analytics suites, `npm run build`, and `npm run build:functions`. Backend checks are `npm --prefix apps/sentinel-lab run lint`, `npm --prefix apps/sentinel-lab test`, and `npm --prefix apps/sentinel-lab run build`.
+
+The new backend tests cover actual scrypt, additive migration reruns, legitimate controlled account/project flows, cross-owner denials, concurrent reset/login races, session rotation, retained agent keys, bounded attempts, real JOSE signature validation, and controlled OAuth exchange/collisions. Controlled tests do not establish real Google consent, email delivery, cross-provider preview operation or physical-device compatibility. Those require separate receipts in the integration gate ledger.
+
+The account project limit is rechecked inside the save transaction. A controlled concurrency test makes two requests observe the same last slot, then verifies that only one is accepted and the rejected upload leaves no orphan asset. Existing project/revision identity, stale-head guards and immutable historical images are retained; no migration or research behavior changes were needed for this fix.
+
+Sources: [OWASP password storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html), [Node crypto](https://nodejs.org/api/crypto.html), [Google OIDC](https://developers.google.com/identity/openid-connect/openid-connect), [Google authoritative email guidance](https://developers.google.com/identity/gsi/web/guides/verify-google-id-token).

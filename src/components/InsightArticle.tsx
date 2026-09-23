@@ -1,4 +1,5 @@
 import type { MouseEvent } from 'react';
+import {ToolsUsed} from './ToolsUsed';
 import { SaveArticle } from './MemberPages';
 import { getArticleBySlug, getArticleSlugFromPath } from '../data/articles';
 
@@ -84,6 +85,7 @@ export function InsightArticle({ currentPath, slug, onBack }: InsightArticleProp
           </ul>
         </aside>
 
+        {article.body.length>=6 && <nav aria-label="In this guide" className="insight-article__contents"><h2>In this guide</h2><ol>{article.body.map(section=><li key={section.heading}><a href={`#${article.slug}-${toId(section.heading)}`}>{section.heading}</a></li>)}</ol></nav>}
         <div className="insight-article__body">
           {article.body.map((section) => (
             <section key={section.heading} aria-labelledby={`${article.slug}-${toId(section.heading)}`}>
@@ -139,6 +141,7 @@ export function InsightArticle({ currentPath, slug, onBack }: InsightArticleProp
           </section>
         ) : null}
 
+        <ToolsUsed article={article.slug}/>
         <footer className="insight-article__footer">
           <div>
             <p className="eyebrow">A clearer next step</p>

@@ -1,0 +1,113 @@
+{
+  "environment": "Local built preview; resized viewport, not physical devices or independent performance loads",
+  "results": [
+    {
+      "brokenImages": [],
+      "h1": "Make your website easier to explore, shop and use.",
+      "overflow": false,
+      "path": "/services/digital-experiences",
+      "sample": "{\"LCP\":716,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "brokenImages": [],
+      "h1": "Make your website easier to explore, shop and use.",
+      "overflow": false,
+      "path": "/services/digital-experiences",
+      "sample": "{\"LCP\":716,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "brokenImages": [],
+      "h1": "Make your website easier to explore, shop and use.",
+      "overflow": false,
+      "path": "/services/digital-experiences",
+      "sample": "{\"LCP\":716,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 965,
+      "width": 980
+    },
+    {
+      "brokenImages": [],
+      "h1": "Make your website easier to explore, shop and use.",
+      "overflow": false,
+      "path": "/services/digital-experiences",
+      "sample": "{\"LCP\":716,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "brokenImages": [],
+      "h1": "Keep the work moving. Make the next decision clearer.",
+      "overflow": false,
+      "path": "/services/business-systems",
+      "sample": "{\"LCP\":1916,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "brokenImages": [],
+      "h1": "Keep the work moving. Make the next decision clearer.",
+      "overflow": false,
+      "path": "/services/business-systems",
+      "sample": "{\"LCP\":1916,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "brokenImages": [],
+      "h1": "Keep the work moving. Make the next decision clearer.",
+      "overflow": false,
+      "path": "/services/business-systems",
+      "sample": "{\"LCP\":1916,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 965,
+      "width": 980
+    },
+    {
+      "brokenImages": [],
+      "h1": "Keep the work moving. Make the next decision clearer.",
+      "overflow": false,
+      "path": "/services/business-systems",
+      "sample": "{\"LCP\":1916,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "brokenImages": [],
+      "h1": "Put useful assistance inside the work you already do.",
+      "overflow": false,
+      "path": "/services/intelligent-systems",
+      "sample": "{\"LCP\":1192,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "brokenImages": [],
+      "h1": "Put useful assistance inside the work you already do.",
+      "overflow": false,
+      "path": "/services/intelligent-systems",
+      "sample": "{\"LCP\":1192,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "brokenImages": [],
+      "h1": "Put useful assistance inside the work you already do.",
+      "overflow": false,
+      "path": "/services/intelligent-systems",
+      "sample": "{\"LCP\":1192,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 965,
+      "width": 980
+    },
+    {
+      "brokenImages": [],
+      "h1": "Put useful assistance inside the work you already do.",
+      "overflow": false,
+      "path": "/services/intelligent-systems",
+      "sample": "{\"LCP\":1192,\"INP\":null,\"CLS\":0}",
+      "scrollWidth": 1425,
+      "width": 1440
+    }
+  ]
+}

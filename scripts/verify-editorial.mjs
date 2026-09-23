@@ -160,9 +160,9 @@ for (const route of [
 
 const services = await readFile(routeFile('/services'), 'utf8');
 for (const image of [
-  'digital-experiences.png',
-  'production-dashboard.png',
-  'sentinel-lab.webp',
+  'liberty-desktop-20260921.png',
+  'embroiderycalc-pro.webp',
+  'wellway-journey.webp',
 ]) {
   if (!services.includes(image))
     failures.push(`/services: matched service image is missing: ${image}`);
@@ -251,9 +251,9 @@ for (const image of [
   }
 }
 try {
-  await access(resolve(root, 'dist/images/services/digital-experiences.png'));
+  await access(resolve(root, 'dist/images/services/liberty-desktop-20260921.png'));
 } catch {
-  failures.push('service evidence image is missing: digital-experiences.png');
+  failures.push('service evidence image is missing: liberty-desktop-20260921.png');
 }
 
 if (failures.length) {

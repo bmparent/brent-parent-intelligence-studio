@@ -1,0 +1,133 @@
+{
+  "recorded": "2026-09-22T00:10:34.936Z",
+  "source": {
+    "frontend": "2b64ae3eeb7b5b7d7c6fe30ecc8b600dff49a97c",
+    "backend": "c3b03b78eb8ee4f0732891073a0d538f23d2d9a8"
+  },
+  "environment": "local Windows; tool-observed execution, no hosted acceptance inferred",
+  "checks": [
+    {
+      "command": "npm run build",
+      "scope": "frontend",
+      "result": "passed"
+    },
+    {
+      "command": "npm run lint",
+      "scope": "frontend",
+      "result": "passed; no warnings"
+    },
+    {
+      "command": "npm run test:platform",
+      "result": "29 passed"
+    },
+    {
+      "command": "node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts scripts/test-playground-authoring.ts scripts/test-assistant-catalogue.ts scripts/test-playground-ai.ts scripts/test-playground-authoring-cloud.ts scripts/test-kit-recovery.ts scripts/test-works-audit.ts",
+      "result": "49 passed"
+    },
+    {
+      "command": "npm run test:audit",
+      "result": "30 passed"
+    },
+    {
+      "command": "node --import tsx --test scripts/test-liquid-glass.ts scripts/test-hero.ts scripts/test-analytics.ts scripts/test-growth.ts",
+      "result": "20 passed"
+    },
+    {
+      "command": "npm run test:snapshot",
+      "result": "passed"
+    },
+    {
+      "command": "npm run verify:prerender",
+      "result": "passed"
+    },
+    {
+      "command": "npm run verify:editorial",
+      "result": "35 routes passed"
+    },
+    {
+      "command": "npm run validate:insights:dist",
+      "result": "16 articles passed"
+    },
+    {
+      "command": "npm run verify:urls",
+      "result": "13 public source files; string checks, not browser loading"
+    },
+    {
+      "command": "node scripts/crawl-works.mjs http://127.0.0.1:4173",
+      "result": "14 HTTP document checks passed; browser interactions separately recorded"
+    },
+    {
+      "command": "npm run build:functions",
+      "result": "Worker compiled successfully"
+    },
+    {
+      "command": "npm run build",
+      "scope": "backend apps/sentinel-lab",
+      "result": "passed"
+    },
+    {
+      "command": "npm run lint",
+      "scope": "backend apps/sentinel-lab",
+      "result": "passed after final provider test correction"
+    },
+    {
+      "command": "node --import tsx --test tests/works-platform.test.ts tests/playground-image.test.ts",
+      "scope": "backend apps/sentinel-lab",
+      "result": "7 passed after vendor refresh"
+    },
+    {
+      "command": "node --import tsx --test tests/playground-provider.test.ts",
+      "scope": "backend apps/sentinel-lab",
+      "result": "1 passed strict schema/refusal/no retry"
+    },
+    {
+      "command": "npm run build",
+      "scope": "apps/wellway",
+      "result": "passed; public standalone updated"
+    }
+  ],
+  "earlierFailures": [
+    "Old deterministic-community label assertion fixed without weakening claim check",
+    "Retired-image editorial assertions updated to the actual replacement sources",
+    "Snapshot amount mismatch queue race corrected with signed regression test",
+    "Provider test initially used invalid kind edit; corrected to typed text/operationSchema and typecheck passed"
+  ],
+  "notTested": [
+    "Physical iOS/Android and assistive technology",
+    "Real Google consent and inbox delivery",
+    "Stripe TEST provider and live fulfillment",
+    "Paid model semantic evaluation",
+    "Production deployment"
+  ],
+  "followup": {
+    "frontendSource": "831d00404302e8f90707df52d2d5a9f820378c4b",
+    "backendSource": "e76d8ee34064da561ecbb9bdb777fed66221655c",
+    "checks": [
+      {
+        "command": "npm run typecheck:snapshot-worker",
+        "result": "passed with generated D1/R2/runtime binding types"
+      },
+      {
+        "command": "npm run test:snapshot",
+        "result": "passed after explicit decoder defaults"
+      },
+      {
+        "command": "node --import tsx --test tests/works-platform.test.ts tests/playground-provider.test.ts tests/playground-image.test.ts",
+        "scope": "backend",
+        "result": "8 passed after final vendor refresh"
+      },
+      {
+        "command": "npm run lint",
+        "scope": "backend",
+        "result": "passed"
+      }
+    ],
+    "cloudflareTypesReviewed": "@cloudflare/workers-types@5.20260921.1; scheduled handler, D1 batch and R2 get/put signatures",
+    "ciBrowser": {
+      "source": "cd46e01",
+      "run": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/35671492810",
+      "result": "passed in Chromium, Firefox and WebKit at 1440 and 390; controlled growth browser acceptance also passed"
+    },
+    "scope": "Later Worker type/default-option and evidence-only changes do not claim physical-device or provider acceptance"
+  }
+}

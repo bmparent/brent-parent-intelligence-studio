@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStore } from "../lib/store";
+import { useStore } from "../lib/storeContext";
 import type { Page } from "../lib/types";
 import { Modal, Button, Note } from "./UI";
 import { Icon } from "./Icon";

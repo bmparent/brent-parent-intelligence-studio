@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "eidos-snapshot-jobs",
+  "main": "worker.ts",
+  "compatibility_date": "2026-09-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "triggers": { "crons": ["*/2 * * * *"] },
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
+  "vars": { "SNAPSHOT_GENERATION_ENABLED": "false", "SNAPSHOT_CAPTURE_APPROVED": "false", "SNAPSHOT_DAILY_ALLOWANCE_CENTS": "0", "SNAPSHOT_MAX_JOB_COST_CENTS": "0", "OPENAI_TEXT_MODEL": "", "OPENAI_IMAGE_MODEL": "" },
+  "d1_databases": [{ "binding": "SNAPSHOT_DB", "database_name": "snapshot-local", "database_id": "00000000-0000-0000-0000-000000000002", "migrations_dir": "../../snapshot-migrations" }],
+  "r2_buckets": [{ "binding": "SNAPSHOT_OBJECTS", "bucket_name": "eidos-snapshot-local" }]
+}

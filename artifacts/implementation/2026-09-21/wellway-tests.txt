@@ -1,0 +1,35 @@
+
+> wellway-journey-demo@1.1.0 test
+> node --import tsx --test tests/data.test.ts tests/evidence-ai.test.ts tests/storage.test.ts
+
+✔ sleep average excludes the missing night rather than counting zero (20.9814ms)
+✔ overlapping device totals use one preferred record and preserve the alternative (1.5282ms)
+✔ ingestion is idempotent, rejects invalid units and retains valid new records (6.8581ms)
+✔ CSV supports quoted context, rejects missing columns and malformed quotes (3.8161ms)
+✔ invalid calendar dates, non-finite values and blank CSV values are rejected (2.4754ms)
+✔ repeated same-day check-ins replace the daily energy observation (2.4647ms)
+✔ next demo day retains history and does not invent wearable readings (7.9392ms)
+✔ advisor approval updates the member plan and retains evidence identifiers (12.2229ms)
+✔ disconnection preserves previously ingested history (1.7862ms)
+✔ backup validation accepts the complete seed and rejects malformed nested state (10.793ms)
+✔ malformed persisted visit drafts and unrenderable references are rejected (23.3777ms)
+✔ dated evidence matches all displayed chart periods and comparisons, preserving gaps and units (365.565ms)
+✔ server recomputes aggregates and rejects invalid dates, duplicate rows, units and excluded records (16.0081ms)
+✔ visit privacy removes excluded context from prompts, follow-up and saved references (13.9963ms)
+✔ follow-up follows the discussed topic instead of imposing a schedule change (2.9063ms)
+✔ citations must be present in the authorized packet and belong to each response segment (7.1432ms)
+✔ provider request keeps bounded continuity, uses the pinned model and has no tools or approval action (18.6387ms)
+✔ visit and advisor drafts survive serialization and follow-up approval cannot rewrite an activity (5.4873ms)
+✔ allowed citations do not authorize fabricated numeric or causal claims (15.5294ms)
+✔ whole-step averages use the same rounding as the displayed source (6.8774ms)
+✔ valid edits survive; malformed and future-version saves retain exact recovery bytes (30.4542ms)
+✔ unavailable storage and conflicting recovery copies never allow overwriting (1.6306ms)
+✔ dismissal cannot mutate an approved review (14.7417ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1847.8383

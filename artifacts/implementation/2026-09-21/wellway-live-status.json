@@ -1,0 +1,12 @@
+{
+  "aiConfigured": true,
+  "model": "gpt-4.1-mini-2025-04-14",
+  "allowance": {
+    "available": true,
+    "lifetimeReservedMicroUsd": 114961,
+    "dailyReservedMicroUsd": 11234,
+    "lifetimeRemainingMicroUsd": 885039,
+    "dailyRemainingMicroUsd": 238766,
+    "utcDay": "2026-09-21"
+  }
+}

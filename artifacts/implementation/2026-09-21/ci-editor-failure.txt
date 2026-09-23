@@ -1,0 +1,112 @@
+local-editor	Actual React editor acceptance in three engines and two widths	﻿2026-09-22T00:14:22.2411161Z ##[group]Run npm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2411730Z [36;1mnpm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2412081Z [36;1mSERVER_PID=$![0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2412320Z [36;1mtrap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2412747Z [36;1mfor i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2413176Z [36;1mnode scripts/verify-playground-editor-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2413484Z [36;1mnode scripts/verify-hero-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2445440Z shell: /usr/bin/bash -e {0}
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2445654Z env:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2445930Z   PLAYWRIGHT_MODULE: /home/runner/work/_temp/pg-browser/node_modules/playwright
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2446307Z   PG_EVIDENCE_DIR: /home/runner/work/_temp/pg-evidence
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2446555Z ##[endgroup]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:22.2578856Z curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect to server
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:24.5329222Z chromium-1440: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:24.6632616Z chromium-1440: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:24.8481316Z chromium-1440: FAIL AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:24.8481729Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:24.8482095Z   assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:24.8482531Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:24.8483358Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:25.7962419Z chromium-390: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:25.9453482Z chromium-390: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:26.1428644Z chromium-390: FAIL AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:26.1429202Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:26.1429728Z   assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:26.1430467Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:26.1431198Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:28.0841869Z firefox-1440: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:28.2460180Z firefox-1440: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:28.5253641Z firefox-1440: FAIL AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:28.5254510Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:28.5255298Z   assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:28.5255871Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:28.5256531Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:29.7162505Z firefox-390: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:29.9107814Z firefox-390: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:30.2285877Z firefox-390: FAIL AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:30.2286451Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:30.2286873Z   assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:30.2287352Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:30.2287844Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:38.7526841Z webkit-1440: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:39.4694890Z webkit-1440: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:39.9146540Z webkit-1440: FAIL AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:39.9146931Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:39.9147270Z   assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:39.9147646Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:39.9148149Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.0924617Z webkit-390: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.2482489Z webkit-390: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.5671242Z webkit-390: FAIL AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.5674472Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.5675119Z   assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.5675623Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.5676260Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7091510Z [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7091834Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7092125Z     "name": "chromium-1440",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7092464Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7094225Z     "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))\n\n    at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7095899Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7096446Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7097075Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7097387Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7097579Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7097793Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7097996Z     "name": "chromium-390",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7098254Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7100197Z     "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))\n\n    at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7102103Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7102652Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7103307Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7103653Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7103896Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7104116Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7104367Z     "name": "firefox-1440",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7104673Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7106572Z     "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))\n\n    at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7108422Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7109057Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7109753Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7110672Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7110922Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7111128Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7111382Z     "name": "firefox-390",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7111701Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7113645Z     "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))\n\n    at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7115428Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7116095Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7116845Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7117237Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7117486Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7117707Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7118011Z     "name": "webkit-1440",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7118413Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7120697Z     "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))\n\n    at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7122455Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7123143Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7124129Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7124508Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7124762Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7124999Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7125256Z     "name": "webkit-390",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7125561Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7127593Z     "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok((await page.locator('.pg-sidebar').innerText()).includes('Cloud saving for this format is not enabled yet'))\n\n    at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:14",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7129357Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7130134Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7130863Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7131426Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7131665Z   }
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7131909Z ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:14:42.7269755Z ##[error]Process completed with exit code 1.

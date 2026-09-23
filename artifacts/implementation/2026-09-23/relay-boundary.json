@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-09-23T18:20:31.507Z",
+  "environment": "protected backend branch preview through temporary automation bypass; exact site origin",
+  "cases": [
+    {
+      "name": "missing platform token",
+      "status": 401,
+      "error": "Studio relay authentication required.",
+      "accountsReady": null,
+      "shopReady": null
+    },
+    {
+      "name": "wrong exact origin",
+      "status": 403,
+      "error": "Unrecognized studio origin.",
+      "accountsReady": null,
+      "shopReady": null
+    },
+    {
+      "name": "approved origin",
+      "status": 200,
+      "error": null,
+      "accountsReady": true,
+      "shopReady": true
+    }
+  ]
+}

@@ -203,7 +203,7 @@ async function readLimitedText(response: Response) {
     merged.set(chunk, offset)
     offset += chunk.byteLength
   }
-  return new TextDecoder('utf-8', { fatal: false }).decode(merged)
+  return new TextDecoder('utf-8', { fatal: false, ignoreBOM: false }).decode(merged)
 }
 
 interface DnsJsonAnswer {
