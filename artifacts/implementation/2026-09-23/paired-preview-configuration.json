@@ -1,0 +1,119 @@
+{
+  "checkedAt": "2026-09-23T18:29:06.823Z",
+  "site": {
+    "source": "bba430f6390606b5d4daa9b9e2f042cffedbb157",
+    "url": "https://eidosworks-test-20260923.pages.dev",
+    "deployment": "e49eca8b-4f56-45e3-875a-74f3490dd7b4",
+    "publicConfigStatus": 200,
+    "publicConfig": {
+      "gaMeasurementId": "G-8N7Y7EM4CS",
+      "turnstileSiteKey": "0x4AAAAAAFBX6JteaS7vPNPF",
+      "communityReady": true,
+      "accountsReady": true,
+      "passwordsReady": true,
+      "googleReady": true,
+      "aiReady": true,
+      "shopReady": true,
+      "localTest": false
+    }
+  },
+  "backend": {
+    "source": "4099a63d495aa1aae225794da7e464f68b19cfb6",
+    "url": "https://eidos-sentinel-q16o0d18b-1brentbm-1876s-projects.vercel.app",
+    "deployment": "dpl_8JrQAhUwph2Rqch36wvD8wYVQXUh",
+    "readinessStatus": 200,
+    "readiness": {
+      "contract": "works-v1",
+      "database": "ready",
+      "sourceRevision": "4099a63d495aa1aae225794da7e464f68b19cfb6",
+      "accounts": {
+        "enabled": true,
+        "passwordEnabled": true,
+        "googleConfigured": true
+      },
+      "kit": {
+        "enabled": true,
+        "mode": "test"
+      },
+      "playground": {
+        "authoringEnabled": false,
+        "checkoutMode": "test-only"
+      },
+      "snapshot": {
+        "readiness": "not accepted for sale"
+      }
+    }
+  },
+  "database": {
+    "urlSha256": "dbf0ee4f912f8b322b63005d95e42948cac719b35b880e48ef18c491a236f237",
+    "credentialSha256": "60dae48deccd61a154da6b5802b43eab70286d810cedea7e2064d9b10fb25b1a",
+    "schema": {
+      "tableCount": 33,
+      "tableNames": [
+        "eidos_agents",
+        "eidos_answer_cache",
+        "eidos_bookmarks",
+        "eidos_email_members",
+        "eidos_kit_archives",
+        "eidos_kit_attempts",
+        "eidos_kit_recovery",
+        "eidos_mail_deliveries",
+        "eidos_member_auth_tokens",
+        "eidos_member_google",
+        "eidos_member_google_signup",
+        "eidos_member_keys",
+        "eidos_member_oauth_flows",
+        "eidos_member_passwords",
+        "eidos_member_sessions",
+        "eidos_mentions",
+        "eidos_orders",
+        "eidos_outcomes",
+        "eidos_pg_ai_control",
+        "eidos_pg_ai_requests",
+        "eidos_pg_assets",
+        "eidos_pg_events",
+        "eidos_pg_orders",
+        "eidos_pg_projects",
+        "eidos_pg_revisions",
+        "eidos_pg_revoked",
+        "eidos_quotas",
+        "eidos_replies",
+        "eidos_revoked_payments",
+        "eidos_signin_links",
+        "eidos_stripe_events",
+        "eidos_threads",
+        "eidos_unsubscribe_tokens"
+      ],
+      "eidos_email_members": true,
+      "eidos_member_passwords": true,
+      "eidos_member_google": true,
+      "eidos_member_auth_tokens": true,
+      "eidos_kit_archives": true,
+      "eidos_pg_projects": true,
+      "eidos_pg_assets": true,
+      "eidos_pg_ai_requests": true,
+      "eidos_pg_orders": true,
+      "eidos_orders": true,
+      "eidos_stripe_events": true
+    }
+  },
+  "configuration": {
+    "publicSiteUrl": "https://eidosworks-test-20260923.pages.dev",
+    "previewOrigins": "https://eidosworks-test-20260923.pages.dev",
+    "googleRedirectUri": "https://eidosworks-test-20260923.pages.dev/api/members/google",
+    "accountsEnabled": "true",
+    "passwordEnabled": "true",
+    "shopEnabled": "true",
+    "authoringEnabled": "false",
+    "playgroundAiEnabled": "unset",
+    "platformTokenSha256": "7f84b3f21a82f32d2ebfbc0c99eb28016e1a5bdc3435048fc5d06398ac962585",
+    "stripeKeySha256": "5d34782289b2d774a8e8f0cf69d0694dd49a2072ef6975a4f3c95686a50cf6e5",
+    "stripeMode": "test",
+    "protectionBypassSha256": "8b42f2a7a61c45b118e4d55880b94f5f46c5a70d9a0549e6e3abcc915a213ceb",
+    "turnstileSiteKey": "0x4AAAAAAFBX6JteaS7vPNPF",
+    "turnstileSecretSha256": "99ca96aa95a96b9c01ae9ab523e7628c68dc9b21d39c8a655b5edc908044f1a5",
+    "stripeTestWebhookEndpointId": "we_1UIuqCKC8pRG5Tr91eNeAgtj",
+    "stripeTestWebhookSecretSha256": "15d45fb9165f68333308ba2716304e3044b7fe58f1ea3df573a20ba57f975e98"
+  },
+  "configurationFingerprint": "729479eef30dcc347540fd607d39e9c7f1e83c19bf9805861d579a51c9f3a476"
+}

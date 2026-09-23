@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createHmac } from 'node:crypto';
+import { createHash, createHmac } from 'node:crypto';
 import { fixture, ctx, signup } from './playground-test-fixture';
 import { onRequestPost as checkout } from '../functions/api/shop/checkout';
 import { onRequestPost as webhook } from '../functions/api/shop/webhook';
@@ -41,6 +41,10 @@ test('ambiguous checkout retries preserve order, parameters and frozen delivery;
     const archive = await download(ctx(env, '/api/shop/purchases', { id }, buyer.headers));
     assert.equal(archive.status, 200);
     assert.equal(archive.headers.get('x-artifact-sha256'), purchases.purchases[0].archive_digest);
+    const delivered = Buffer.from(await archive.arrayBuffer());
+    assert.equal(createHash('sha256').update(delivered).digest('hex'), purchases.purchases[0].archive_digest);
+    const frozen = sql.prepare('SELECT data FROM eidos_kit_archives WHERE digest=?').get(purchases.purchases[0].archive_digest) as {data:string};
+    assert.deepEqual(delivered, Buffer.from(frozen.data, 'base64'));
     assert.equal((await sign('charge.refunded', { payment_intent: 'pi_fixture' }, 'evt_refund')).status, 200);
     assert.equal((await sign('checkout.session.completed', paid, 'evt_late_paid')).status, 200);
     assert.equal((await download(ctx(env, '/api/shop/purchases', { id }, buyer.headers))).status, 403);

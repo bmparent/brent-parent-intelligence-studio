@@ -1,5 +1,7 @@
 # Candidate acceptance and release gates
 
+Current hosted release check: [2026-09-23 acceptance record](ACCEPTANCE_2026-09-23.md). It records the isolated public preview, 75-file parity, exact tested revisions, and provider-dependent gates still open.
+
 This is an unreleased Eidos Works implementation candidate. Local tests are evidence for local behavior; they are not production, inbox, device or paid-provider acceptance. The 50-row CSV is the item-level record. Research engine behavior was not changed.
 
 ## Implemented

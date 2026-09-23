@@ -1,0 +1,30 @@
+{
+    "checkedAt":  "2026-09-23T18:30:13.2295543Z",
+    "environment":  "isolated Pages host to candidate Vercel backend, separate validation Turso, Stripe TEST",
+    "checks":  [
+                   {
+                       "expected":  "Google authorization URL using exact preview callback, state, nonce and PKCE",
+                       "status":  "partial; consent not completed",
+                       "actual":  "200; accounts.google.com; redirect https://eidosworks-test-20260923.pages.dev/api/members/google; openid email; state, nonce and S256 present",
+                       "action":  "POST Google start"
+                   },
+                   {
+                       "expected":  "Real challenge can be completed",
+                       "status":  "needs human browser",
+                       "actual":  "Real preview-host widget loaded; automated Chromium received no token; Create account remained disabled",
+                       "action":  "Browser account Turnstile"
+                   },
+                   {
+                       "expected":  "Dedicated isolated test endpoint with test signing secret",
+                       "status":  "configured; genuine event not received",
+                       "actual":  "we_1UIuqCKC8pRG5Tr91eNeAgtj created in TEST mode; branch-only signing secret configured",
+                       "action":  "Stripe TEST webhook setup"
+                   },
+                   {
+                       "expected":  "Reject unverified payload",
+                       "status":  "pass",
+                       "actual":  "400 Invalid signature",
+                       "action":  "POST unsigned webhook"
+                   }
+               ]
+}
