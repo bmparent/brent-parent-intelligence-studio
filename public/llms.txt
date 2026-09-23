@@ -36,6 +36,7 @@ Eidos Works builds distinctive digital experiences, business systems, and focuse
 - Proof-stage Eidos Brain research with human review
 
 ## Insights
+- [Mobile Storefront Filters: A Practical Guide to Safe, Reversible Choices](https://eidos-works.com/insights/mobile-storefront-filters-safe-reversible-choices): A practical guide to designing mobile product filters that are easy to operate, easy to undo, and clear about when results change.
 - [When Should a Small Business Use IndexNow?](https://eidos-works.com/insights/indexnow-changing-business-pages): Decide when IndexNow is worth enabling for changing prices, availability, and service details, and what a successful submission actually proves.
 - [When Is an AI Prototype Ready for a Production Pilot?](https://eidos-works.com/insights/ai-prototype-production-pilot-evidence): A practical decision framework for moving an AI prototype toward a limited production pilot, with task evidence, failure rules, and operating costs.
 - [Storefront Size Guides: Inline, Dialog, or Separate Page?](https://eidos-works.com/insights/storefront-size-guide-inline-dialog-page): Choose the right home for a storefront size guide, preserve product choices, and review keyboard access with a worked example and release checklist.

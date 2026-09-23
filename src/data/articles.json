@@ -1753,5 +1753,129 @@
       "href": "/services/agentic-seo"
     },
     "ogImage": "/insights-og/indexnow-changing-business-pages.svg"
+  },
+  {
+    "title": "Mobile Storefront Filters: A Practical Guide to Safe, Reversible Choices",
+    "slug": "mobile-storefront-filters-safe-reversible-choices",
+    "description": "A practical guide to designing mobile product filters that are easy to operate, easy to undo, and clear about when results change.",
+    "dek": "A product filter should help customers narrow a catalog without trapping them in a state they cannot see, understand, or reverse.",
+    "category": "Storefront UX",
+    "publishedAt": "2026-09-23T13:00:00-04:00",
+    "updatedAt": "2026-09-23T13:00:00-04:00",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 6,
+    "tags": [
+      "Mobile commerce",
+      "Product filters",
+      "Accessibility",
+      "Storefront UX"
+    ],
+    "canonicalPath": "/insights/mobile-storefront-filters-safe-reversible-choices",
+    "excerpt": "Make mobile product filters easier to use by showing the active state, preserving a clear exit, and choosing when results update deliberately.",
+    "pillar": "UI/UX design, accessibility, responsive behavior, and design systems",
+    "slot": "midday",
+    "format": "practical-guide",
+    "searchIntent": "How should a storefront design mobile product filters so customers can narrow results without losing their place?",
+    "featured": false,
+    "draft": false,
+    "thesis": "Mobile filters work best when customers can see what is active, operate each control reliably, and undo a narrowing decision without losing their browsing context.",
+    "sources": [
+      {
+        "title": "Understanding Success Criterion 2.5.8: Target Size (Minimum)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-09-23",
+        "type": "standard"
+      },
+      {
+        "title": "Dialog (Modal) Pattern",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-09-23",
+        "type": "standard"
+      },
+      {
+        "title": "Disclosure (Show/Hide) Pattern",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-09-23",
+        "type": "standard"
+      }
+    ],
+    "takeaways": [
+      "Show an active-filter count and a clear way to remove individual choices or reset all filters.",
+      "Use an explicit Apply action when a filter panel has several choices or updating results would move the customer away from the controls.",
+      "Treat filter buttons, close controls, and selected-value removers as touch targets that need adequate size or spacing.",
+      "Test keyboard, screen-reader, narrow-screen, and back-navigation behavior against a real catalog."
+    ],
+    "relatedSlugs": [
+      "storefront-ux-find-right-product-faster",
+      "accessible-quote-form-errors-recovery",
+      "storefront-size-guide-inline-dialog-page"
+    ],
+    "body": [
+      {
+        "heading": "Start with the choice customers are making",
+        "paragraphs": [
+          "Mobile filters work best when customers can see what is active, operate each control reliably, and undo a narrowing decision without losing their browsing context. A filter is not merely a compact menu: it changes which products a customer can discover. If the interface obscures that change, a customer may conclude that the catalog has nothing for them when the useful option is simply hidden.",
+          "This guide is a design framework, not a claim about a measured conversion lift. Use it when a product collection has enough variation—such as size, decoration method, fit, availability, or price—that scanning every item is not practical. The first decision is which filters answer a real buying question, rather than which catalog fields happen to exist."
+        ]
+      },
+      {
+        "heading": "Choose the update model deliberately",
+        "paragraphs": [
+          "For a single, low-risk choice such as one in-stock toggle, updating results immediately can be understandable if the customer still sees the filter control and the new result count. For a panel with several categories, an Apply button usually creates a clearer moment of commitment: choose values, confirm the new result set, then continue browsing.",
+          "A worked example: imagine a school-apparel catalog with filters for garment type, size range, color, and pickup window. Opening the panel should show the current choices. After a customer selects youth sizing and a pickup window, the interface can say what will change—for example, an Apply button with the pending result count. Once applied, show selected choices as removable chips near the results and retain a Reset all control. The customer can then broaden the catalog without reconstructing the path from memory.",
+          "The tradeoff is speed versus comprehension. Immediate updates can shorten one simple action, but a long list that refreshes under an open panel can feel unstable, especially when a selection returns few or no products. An explicit Apply step adds one activation but makes a multi-choice state easier to inspect and abandon."
+        ]
+      },
+      {
+        "heading": "Make the filter state visible and reversible",
+        "paragraphs": [
+          "Use plain labels for both the control and the selected state. A button labeled Filters should indicate when choices are active, such as Filters (2), without relying only on color or an icon. After results change, keep a concise summary close to the collection: selected values, a result count, and a clear way to remove one value or reset all. Do not make clearing filters require reopening several nested panels.",
+          "Treat a zero-results state as a recovery point, not a dead end. State that the current choices produced no products, retain the selected values for inspection, and offer the smallest useful escape: remove the last choice, reset filters, or show a related collection. Do not silently discard selections, because that hides both the cause and the recovery action.",
+          "Preserve the customer’s place when a selection is applied or removed. If an implementation must refresh the route, keep the filter state in a shareable URL where appropriate and return focus to a meaningful result summary. The exact technical implementation depends on the hosted platform; the experience to verify is that back navigation, sharing, and returning to the collection do not produce a contradictory state."
+        ]
+      },
+      {
+        "heading": "Build the panel as an interaction, not a visual overlay",
+        "paragraphs": [
+          "W3C’s WCAG 2.2 Target Size (Minimum) guidance describes a 24 by 24 CSS pixel minimum for pointer targets, subject to defined exceptions including sufficient spacing. That is a conformance requirement with specific scope, not a universal design recommendation. For a storefront, use it as a practical prompt to inspect tightly packed filter rows, chip removers, close buttons, and sort controls on an actual narrow screen.",
+          "If filters open in a modal dialog, the WAI-ARIA Authoring Practices describe a dialog whose tab sequence stays inside the active dialog; content behind it is inert until the dialog closes. That pattern fits a focused filter task when the implementation can provide a clear label, predictable keyboard behavior, a visible close route, and sensible focus return to the control that opened it. A disclosure pattern may fit a smaller in-page group when the customer benefits from seeing filters and products together. The pattern should follow the task, not a preferred animation.",
+          "Use native controls where the platform allows them, and avoid adding ARIA roles just to reproduce ordinary button or checkbox behavior. Visual polish does not substitute for a state that can be named, reached, changed, and reversed with the customer’s available input method."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Test this against a live-like collection with enough products and at least one intentionally empty combination. The goal is to observe behavior, not infer it from a component library demo."
+        ],
+        "bullets": [
+          "Customer question: Can each visible filter be tied to a decision a shopper actually needs to make?",
+          "State: Before opening the panel, can you tell how many filters are active and which values are narrowing the results?",
+          "Apply model: Does immediate update leave the controls and result change understandable, or does a multi-choice panel need Apply and Cancel or Close behavior?",
+          "Recovery: Can a customer remove one filter, reset all filters, and recover from zero results without losing context?",
+          "Touch: Are filter options, chip removers, close controls, and sort buttons adequately sized or spaced for the intended implementation?",
+          "Keyboard and assistive technology: Can you open, change, apply, close, and return to results with an understandable focus path?",
+          "Navigation: Do refresh, back navigation, shared links, and a return to the collection preserve or clearly explain the filter state?"
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Bring one collection page and the three most common product-selection questions to a storefront review. Eidos Works can turn that into a small, platform-aware filter brief: which choices belong in the first view, which state must stay visible, and which interaction path needs testing before implementation.",
+          "The aim is not to add more controls. It is to make product discovery more legible for the customer and more reviewable for the team maintaining the catalog. Improvements to a particular storefront still need their own accessibility review and outcome measurement."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Review your storefront’s customer path",
+      "href": "/friction-review"
+    },
+    "ogImage": "/insights-og/mobile-storefront-filters-safe-reversible-choices.svg"
   }
 ]

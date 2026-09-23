@@ -1,0 +1,57 @@
+{
+  "run_id": "2026-09-23-midday-practical-guide",
+  "slot": "midday",
+  "status": "passed",
+  "article": {
+    "slug": "mobile-storefront-filters-safe-reversible-choices",
+    "title": "Mobile Storefront Filters: A Practical Guide to Safe, Reversible Choices",
+    "thesis": "Mobile filters work best when customers can see what is active, operate each control reliably, and undo a narrowing decision without losing their browsing context.",
+    "audience_search_intent": "How should a storefront design mobile product filters so customers can narrow results without losing their place?",
+    "cta": "/friction-review"
+  },
+  "deduplication": {
+    "result": "passed",
+    "reviewed_recent_articles": [
+      "storefront-size-guide-inline-dialog-page",
+      "accessible-quote-form-errors-recovery",
+      "storefront-ux-find-right-product-faster"
+    ],
+    "reason": "This guide addresses mobile filter state, recovery, and interaction patterns; it does not duplicate the recent size-guide or quote-form guides."
+  },
+  "sources": [
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+      "accessed_date": "2026-09-23",
+      "evidence": "W3C explains the 24 by 24 CSS pixel target-size criterion and its spacing exceptions."
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+      "accessed_date": "2026-09-23",
+      "evidence": "W3C describes modal-dialog focus containment and inert content outside an active dialog."
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/",
+      "accessed_date": "2026-09-23",
+      "evidence": "W3C provides the disclosure pattern used to distinguish a smaller in-page filter group from a modal task."
+    }
+  ],
+  "validation": {
+    "runner_attempt": "npm run publish:insight-run -- --slot=midday",
+    "runner_result": "initial schema failure was corrected; a second Windows runner hung after its lint child exited and did not write a report",
+    "sequential_equivalent_gate": [
+      { "command": "npm run content:generate", "exit_code": 0 },
+      { "command": "npm run validate:insights", "exit_code": 0 },
+      { "command": "npm run lint", "exit_code": 0 },
+      { "command": "npm run build", "exit_code": 0, "evidence": "new prerendered route produced; Windows npm parent did not terminate after children completed" },
+      { "command": "npm run verify:prerender", "exit_code": 0 },
+      { "command": "npm run validate:insights:dist", "exit_code": 0 },
+      { "command": "npm run verify:urls", "exit_code": 0 },
+      { "command": "npm run verify:editorial", "exit_code": 0 }
+    ]
+  },
+  "limits": [
+    "No analytics, search-console, Bing Webmaster, customer outcome, or conversion evidence was available for this editorial run.",
+    "The guide is a framework and worked example, not a claim of conformance or measured storefront performance.",
+    "Commit, CI, deployment, and production verification remain pending at receipt creation."
+  ]
+}

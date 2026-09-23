@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-09-21T12:07:21.383Z",
+  "generated_at_utc": "2026-09-23T23:31:57.259Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "mobile-storefront-filters-safe-reversible-choices",
+      "canonical_url": "https://eidos-works.com/insights/mobile-storefront-filters-safe-reversible-choices",
+      "og_image": "/insights-og/mobile-storefront-filters-safe-reversible-choices.svg"
+    },
     {
       "slug": "indexnow-changing-business-pages",
       "canonical_url": "https://eidos-works.com/insights/indexnow-changing-business-pages",
@@ -88,6 +93,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/mobile-storefront-filters-safe-reversible-choices.svg",
     "public/insights-og/indexnow-changing-business-pages.svg",
     "public/insights-og/ai-prototype-production-pilot-evidence.svg",
     "public/insights-og/storefront-size-guide-inline-dialog-page.svg",
