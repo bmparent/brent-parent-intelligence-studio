@@ -2,7 +2,7 @@
 
 ## Status
 
-Local editorial and release gates passed. Commit, deployment, and live verification are pending.
+Published and production-verified.
 
 ## Article
 
@@ -33,6 +33,13 @@ Reviewed the recent size-guide, quote-form, and storefront-discovery articles. T
 - `npm run verify:editorial` — passed
 
 The first publishing-run attempt failed only because the required `What this means for your site` section was absent. After that safe correction, the Windows runner hung after its lint child exited. The equivalent sequential gate above was completed instead; this receipt preserves that distinction.
+
+## Publication
+
+- Content commit: `44283600ec2d771242157e43ff8e24a272026b09`
+- Cloudflare Pages deployment: `https://df72b3ba.eidosworks.pages.dev`
+- Canonical live URL: `https://eidos-works.com/insights/mobile-storefront-filters-safe-reversible-choices`
+- `npm run verify:production-insight -- --slug=mobile-storefront-filters-safe-reversible-choices` — passed
 
 ## Limits
 

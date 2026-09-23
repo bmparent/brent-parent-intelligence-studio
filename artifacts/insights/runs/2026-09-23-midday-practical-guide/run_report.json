@@ -49,9 +49,18 @@
       { "command": "npm run verify:editorial", "exit_code": 0 }
     ]
   },
+  "publication": {
+    "content_commit": "44283600ec2d771242157e43ff8e24a272026b09",
+    "deployment_url": "https://df72b3ba.eidosworks.pages.dev",
+    "production_url": "https://eidos-works.com/insights/mobile-storefront-filters-safe-reversible-choices",
+    "production_verification": {
+      "command": "npm run verify:production-insight -- --slug=mobile-storefront-filters-safe-reversible-choices",
+      "exit_code": 0,
+      "result": "passed"
+    }
+  },
   "limits": [
     "No analytics, search-console, Bing Webmaster, customer outcome, or conversion evidence was available for this editorial run.",
-    "The guide is a framework and worked example, not a claim of conformance or measured storefront performance.",
-    "Commit, CI, deployment, and production verification remain pending at receipt creation."
+    "The guide is a framework and worked example, not a claim of conformance or measured storefront performance."
   ]
 }
