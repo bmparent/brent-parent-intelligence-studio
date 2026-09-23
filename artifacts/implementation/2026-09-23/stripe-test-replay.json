@@ -5,7 +5,7 @@
     "eventId":  "evt_1UCRqCKC8pRG5Tr9g0bXVIMq",
     "webhookEndpointId":  "we_1UIuqCKC8pRG5Tr91eNeAgtj",
     "expected":  "Provider accepts test replay and existing event ledger remains idempotent",
-    "actual":  "Stripe CLI request succeeded; retrieved event livemode=false and pending_webhooks=0; existing validation ledger receipt timestamp remained 2026-09-05T22:13:40.580Z",
-    "limitation":  "Delivery HTTP response was not independently captured; no new checkout/archive/refund/dispute acceptance",
-    "source":  "Stripe TEST API and read-only libSQL query"
+    "actual":  "Stripe CLI request succeeded; retrieved event livemode=false and pending_webhooks=0. A second resend was observed in Cloudflare Pages Functions tail at 2026-09-23T19:02:53.693Z: signed Stripe POST to /api/shop/webhook, cf-ray a3fbce69882c816e, HTTP 200, no exceptions. Read-only validation ledger query after the replay showed the original receipt timestamp 2026-09-05T22:13:40.580Z.",
+    "limitation":  "This is a replay of a prior TEST checkout event; no new checkout/archive/refund/dispute acceptance.",
+    "source":  "Stripe TEST API, Cloudflare Pages Functions tail, and read-only libSQL query"
 }
