@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-09-24T21:13:48Z",
+  "status": "fail_closed_pending_access",
+  "siteApplicationSource": "50798e0e4939cc0f643df11f29757413e5de4873",
+  "backendApplicationSource": "3f877078b27a6eb114bee91284fd609516bbc6ba",
+  "backendTestOnlyHead": "9f06c80730421a942ef3299516e653ec2b160a31",
+  "worker": {
+    "url": "https://eidos-works-owner-preview.1brent-bm.workers.dev",
+    "version": "057ba77f-6379-4691-b116-8a42c41bc4b4",
+    "anonymousHtmlStatus": 403,
+    "anonymousApiStatus": 403,
+    "accessApplication": "not_created_api_403",
+    "ownerSession": "not_tested"
+  },
+  "backend": {
+    "url": "https://eidos-sentinel-pj7i6q58g-1brentbm-1876s-projects.vercel.app",
+    "deployment": "dpl_GAwZW84rr4vQZ2ak9FWLXqfoPJ6D",
+    "readinessStatus": 200,
+    "database": "ready",
+    "sourceRevision": "3f877078b27a6eb114bee91284fd609516bbc6ba",
+    "stripeMode": "test",
+    "playgroundAuthoringEnabled": false,
+    "snapshot": "not accepted for sale",
+    "ownerApiWithoutJwtStatus": 403
+  },
+  "validationDatabase": {
+    "urlSha256": "dbf0ee4f912f8b322b63005d95e42948cac719b35b880e48ef18c491a236f237",
+    "credentialSha256": "60dae48deccd61a154da6b5802b43eab70286d810cedea7e2064d9b10fb25b1a",
+    "operationsTablesPresent": 5,
+    "seededWorkItems": 8,
+    "existingMemberRowsObserved": 2,
+    "existingOrderRowsObserved": 4,
+    "existingProjectRowsObserved": 2
+  },
+  "checks": {
+    "pairedGitBlobParity": "76/76",
+    "siteLintBuildPrerenderUrls": "passed",
+    "backendTests": "49 existing plus 3 owner operations tests passed locally",
+    "backendBuild": "passed locally and on Vercel",
+    "workerDryRun": "passed",
+    "localBrowserDesktopMobile": "passed with synthetic fixture; not hosted owner acceptance",
+    "hostedOwnerReadAndMutations": "not_tested_pending_access"
+  },
+  "realSources": ["Works validation database", "Works backend readiness and outcomes"],
+  "disconnectedSources": ["inbox or CRM read", "Stripe provider reconciliation", "GitHub live status", "Cloudflare and Vercel analytics", "GA4 and Search Console", "Drive and Sheets", "provider AI usage"],
+  "productionChanged": false
+}

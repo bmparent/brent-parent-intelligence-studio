@@ -2,6 +2,8 @@
 
 This is a separate Cloudflare Worker under `ops/owner-console`, paired to the **preview** Sentinel Lab Works backend and the existing validation Turso database. It is not part of the public site bundle, navigation, feed, or sitemap. Keep PR #66 and #63 draft. No production alias or customer database is a preview target.
 
+The [September 24 preview receipt](../../artifacts/implementation/2026-09-24/owner-console-preview-receipt.json) records the exact deployed Worker and backend identities. As of that receipt, the host is deliberately fail closed: anonymous HTML/API and the backend owner API without an Access JWT return 403. Cloudflare rejected creation of the required Access application with HTTP 403 under the current Wrangler OAuth credentials. The local desktop/mobile screenshots are design and browser checks using a labeled fixture. They are not evidence of hosted owner access or live action acceptance.
+
 ## Exact source and security decision
 
 Work began from site `f2d98bc1d1de8a7b01509b580558c39858949684` and backend `a50647dddb8a270563062b378033155afe935753`, both draft candidate heads checked on 2026-09-24. Main was site `c8f5d89a57f90bf817157326df5ad5f4ec403c48`, backend `a2da5fd9af21c02573e538fd30aaf7d5c690e457`. The September 23 preview receipt reflects older source and is not an acceptance receipt for this console.
