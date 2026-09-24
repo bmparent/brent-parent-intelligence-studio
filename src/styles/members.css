@@ -3,6 +3,19 @@
   padding-bottom: 90px;
   min-height: 75vh;
 }
+/* Account controls remain legible beneath the sticky glass navigation. */
+body:has(.ew-members) .ew-glass-header .ew-liquid-optics {
+  background: rgba(15, 37, 48, 0.96);
+}
+body:has(.ew-members) .ew-glass-header .ew-header__inner [data-glass-tone] {
+  color: #f3faf8;
+  text-shadow: 0 1px 2px #07121b;
+}
+body:has(.ew-members) .ew-glass-header .ew-header__cta[data-glass-tone] {
+  color: #17383a;
+  background: #f4faf1;
+  text-shadow: none;
+}
 .ew-member-heading {
   max-width: 950px;
   margin-bottom: 55px;

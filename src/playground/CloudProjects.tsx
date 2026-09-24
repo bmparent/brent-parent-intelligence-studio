@@ -1,9 +1,10 @@
-import {accountEpoch} from '../lib/accountEpoch';
+import {accountEpoch, subscribeAccountChanges} from '../lib/accountEpoch';
 import { useEffect, useRef, useState } from 'react';
 import { validateProject, type Project } from './model';
 import { cloudPreflight } from './limits';
 import type { SaveTarget } from './workspace';
 import { Purchases } from './Purchases';
+import { supportsProductionCloud, CLOUD_FORMAT_NOTICE } from './releaseBoundary';
 
 type Saved = { id: string; name: string; head: string; updated_at: string };
 type Revision = { id: string; created_at: string };
@@ -28,7 +29,20 @@ function AcceptedCloudProjects({ project, target: active, documentId, guard, loa
   const [message, setMessage] = useState('Cloud saves are manual. Local autosave stays on.');
   const [busy, setBusy] = useState(false);
   const [requestedProject, setRequestedProject] = useState('');
+  const [newFormatSaveEnabled, setNewFormatSaveEnabled] = useState(false);
+  const cloudFormatReady = supportsProductionCloud(project) || newFormatSaveEnabled;
   useEffect(() => { let mounted = true; queueMicrotask(() => { if (mounted) { const id = new URLSearchParams(location.search).get('open') || ''; if (/^[a-f0-9-]{36}$/.test(id)) setRequestedProject(id); } }); return () => { mounted = false; }; }, []);
+  useEffect(() => {
+    let mounted = true;
+    const reload = () => {
+      setProjects([]); setNewFormatSaveEnabled(false);
+      const epoch = accountEpoch();
+      void api().then(result => { if (mounted && epoch === accountEpoch() && typeof result.ownerId === 'string') { setProjects(result.projects); setNewFormatSaveEnabled(result.newFormatSaveEnabled === true); } }).catch(() => {});
+    };
+    reload();
+    const unsubscribe = subscribeAccountChanges(reload);
+    return () => { mounted = false; unsubscribe(); };
+  }, []);
   const lock = useRef(false);
   const preflight = cloudPreflight(project);
   async function run(action: (valid: () => boolean) => Promise<void>) {
@@ -38,13 +52,14 @@ function AcceptedCloudProjects({ project, target: active, documentId, guard, loa
     try { await action(valid); } catch (error) { if(valid()) setMessage((error as Error).message); }
     finally { lock.current = false; setBusy(false); }
   }
-  async function refresh(valid:()=>boolean) { const result = await api(); if(typeof result.ownerId !== 'string' || !result.ownerId) throw Error('The account service needs the matching Playground update. Local editing and exports remain available.'); if(!valid())throw Error('Workspace changed. Refresh account projects again.'); setProjects(result.projects); return result.ownerId; }
+  async function refresh(valid:()=>boolean) { const result = await api(); if(typeof result.ownerId !== 'string' || !result.ownerId) throw Error('The account service needs the matching Playground update. Local editing and exports remain available.'); if(!valid())throw Error('Workspace changed. Refresh account projects again.'); setProjects(result.projects); setNewFormatSaveEnabled(result.newFormatSaveEnabled === true); return {owner:result.ownerId,newFormatSaveEnabled:result.newFormatSaveEnabled === true}; }
   async function save(copy: boolean, valid: () => boolean) {
     if (!preflight.allowed) {setMessage(preflight.message); return;}
     const ownerEpoch=accountEpoch();
     const snapshot = JSON.stringify(project);
-    const owner = await refresh(valid);
+    const {owner,newFormatSaveEnabled:available} = await refresh(valid);
     if (!valid()) {setMessage('Save canceled because the workspace changed.'); return;}
+    if (!supportsProductionCloud(project) && !available) {setMessage(CLOUD_FORMAT_NOTICE); return;}
     if (active && active.owner !== owner) {setMessage('Your account changed. Open a project from this account, or import this design again to detach its previous owner before saving.'); return;}
     setMessage('Saving to your account…');
     const result = await api('', { document: project, expectedOwner:owner, ...(!copy && active ? {id: active.id, expectedRevision: active.head} : {}) });
@@ -67,11 +82,12 @@ function AcceptedCloudProjects({ project, target: active, documentId, guard, loa
     <summary>Account projects</summary>
     <p><a href="/account" target="_blank" rel="noreferrer">Sign in with your Eidos account</a>, then refresh this list.</p>
     <p>Your design stays on this device until an account save succeeds. If cloud saving is unavailable, download your project to keep a recovery copy.</p>
+    {!cloudFormatReady && <p role="status"><strong>Local only — not saved to your account.</strong> {CLOUD_FORMAT_NOTICE}</p>}
     {requestedProject && <p><button disabled={busy || disabled} onClick={() => void run(async valid => { await open(requestedProject, valid); setRequestedProject(''); historyReplace(); })}>Open project selected from your account</button> Your current local design can be restored with Undo.</p>}
     <p>Save target: {active ? `${active.name} · ${active.id}` : 'New account project (detached design)'}</p>
     <button disabled={busy} onClick={() => void run(async valid => {await refresh(valid); setMessage('Project list refreshed.');})}>Refresh account projects</button>
-    <button disabled={busy || disabled || !preflight.allowed} onClick={() => void run(valid => save(false,valid))}>{active ? 'Save account revision' : 'Import into my account'}</button>
-    <button disabled={busy || disabled || !preflight.allowed} onClick={() => void run(valid => save(true,valid))}>Save as new account project</button>
+    <button disabled={busy || disabled || !preflight.allowed || !cloudFormatReady} onClick={() => void run(valid => save(false,valid))}>{active ? 'Save account revision' : 'Import into my account'}</button>
+    <button disabled={busy || disabled || !preflight.allowed || !cloudFormatReady} onClick={() => void run(valid => save(true,valid))}>Save as new account project</button>
     <p role="status">{message}{active && active.saved !== JSON.stringify(project) ? ' Current design has changes not saved to your account.' : ''}</p>
     <p>{preflight.message || `Account document size: ${preflight.bytes.toLocaleString()} / 2,000,000 bytes.`}</p>
     {projects.map(p => <button disabled={busy || disabled} key={p.id} onClick={() => void run(valid => open(p.id,valid))}>{p.name} {active?.id === p.id ? '(open)' : ''}</button>)}

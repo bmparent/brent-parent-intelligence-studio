@@ -10,9 +10,13 @@ test('v4 cloud defaults off; explicit controlled gate preserves node assets, own
  p=applyBlockOperation(p,{type:'add',parent:root.id,kind:'image'});
  for(const n of root.children!.filter(n=>n.type==='image'))p=applyBlockOperation(p,{type:'patch',id:n.id,patch:{image:'data:image/png;base64,iVBORw0KGgo=',mobile:{width:72,height:240}}});
  delete env.EIDOS_PLAYGROUND_AUTHORING_ENABLED;
+ const unavailable=await (await get(ctx(env,'/api/playground/projects',undefined,a.headers))).json();
+ assert.equal(unavailable.newFormatSaveEnabled,false);
  assert.equal((await save(ctx(env,'/api/playground/projects',{document:p},a.headers))).status,409);
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_pg_projects').get()!.n,0);
  env.EIDOS_PLAYGROUND_AUTHORING_ENABLED='true';
+ const available=await (await get(ctx(env,'/api/playground/projects',undefined,a.headers))).json();
+ assert.equal(available.newFormatSaveEnabled,true);
  const response=await save(ctx(env,'/api/playground/projects',{document:p},a.headers));assert.equal(response.status,200,await response.clone().text());const first=await response.json();
  const reopened=await (await get(ctx(env,'/api/playground/projects?id='+first.id,undefined,a.headers))).json();assert.deepEqual(reopened.document,p);
  assert.equal((await get(ctx(env,'/api/playground/projects?id='+first.id,undefined,b.headers))).status,404);
