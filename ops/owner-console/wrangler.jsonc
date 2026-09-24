@@ -5,6 +5,7 @@
   "workers_dev": true,
   "vars": {
     "EIDOS_OPS_ENVIRONMENT": "preview",
-    "EIDOS_OPS_HOST": "eidos-works-owner-preview.1brent-bm.workers.dev"
+    "EIDOS_OPS_HOST": "eidos-works-owner-preview.1brent-bm.workers.dev",
+    "EIDOS_PLATFORM_URL": "https://eidos-sentinel-u0yt3fm01-1brentbm-1876s-projects.vercel.app"
   }
 }

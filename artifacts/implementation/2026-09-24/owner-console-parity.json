@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T20:54:10.651Z",
+  "checkedAt": "2026-09-24T21:07:27.806Z",
   "siteRevision": "record separately",
   "backendRevision": "record separately",
   "sourceMode": "working tree files",
@@ -23,8 +23,8 @@
     {
       "path": "functions/_shared/platform/kitArchive.ts",
       "normalization": "exact bytes",
-      "sourceSha256": "e9e45c0cb0a71f1a0da63e148f249963303db6443eefe466d7117232bc28b266",
-      "vendorSha256": "e9e45c0cb0a71f1a0da63e148f249963303db6443eefe466d7117232bc28b266",
+      "sourceSha256": "5767fae0e805815f0f6b43ca7946c12c719e463e9d8f8d361df03f89e1d9ba8c",
+      "vendorSha256": "5767fae0e805815f0f6b43ca7946c12c719e463e9d8f8d361df03f89e1d9ba8c",
       "matches": true
     },
     {
@@ -114,8 +114,8 @@
     {
       "path": "functions/_shared/platform/playgroundSchema.ts",
       "normalization": "exact bytes",
-      "sourceSha256": "5a6043ba1f855f7af705fa3b6802a76396e590ad1ed0de3a59d2609b0478e55b",
-      "vendorSha256": "5a6043ba1f855f7af705fa3b6802a76396e590ad1ed0de3a59d2609b0478e55b",
+      "sourceSha256": "334a042d70b6bce5c93029a63b0f4b7acb30440893cf8c1322cadf1740b946e7",
+      "vendorSha256": "334a042d70b6bce5c93029a63b0f4b7acb30440893cf8c1322cadf1740b946e7",
       "matches": true
     },
     {
@@ -471,8 +471,8 @@
     {
       "path": "src/playground/glassBundle.ts",
       "normalization": "exact bytes",
-      "sourceSha256": "68af76ec54ada33a8aaff6a20cf15d14b181c4eb5f5e8fc342faf6ae6d186e95",
-      "vendorSha256": "68af76ec54ada33a8aaff6a20cf15d14b181c4eb5f5e8fc342faf6ae6d186e95",
+      "sourceSha256": "4caf223195da36068137ce1d676b7bda00c74e455055555d88c66e234eff8d5e",
+      "vendorSha256": "4caf223195da36068137ce1d676b7bda00c74e455055555d88c66e234eff8d5e",
       "matches": true
     },
     {
@@ -534,8 +534,8 @@
     {
       "path": "migrations/0007_operations.sql",
       "normalization": "UTF-8 LF",
-      "sourceSha256": "2c734c933e268730aca7feae96907cc068651598f9816243ac8575d1d2aa1aa0",
-      "vendorSha256": "2c734c933e268730aca7feae96907cc068651598f9816243ac8575d1d2aa1aa0",
+      "sourceSha256": "9ac380d35cbc653d944122c5ed2e49a581123622eba0c8e82dcca1ceee541010",
+      "vendorSha256": "9ac380d35cbc653d944122c5ed2e49a581123622eba0c8e82dcca1ceee541010",
       "matches": true
     }
   ]
