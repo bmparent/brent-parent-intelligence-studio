@@ -1,5 +1,7 @@
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 import { html } from './ui';
+import { readGithub } from './github';
+import { readDeployments } from './deployments';
 
 interface Env {
   EIDOS_OPS_HOST:string;
@@ -10,10 +12,13 @@ interface Env {
   EIDOS_PLATFORM_URL?:string;
   EIDOS_PLATFORM_TOKEN?:string;
   EIDOS_PLATFORM_PREVIEW_BYPASS?:string;
+  EIDOS_SITE_PREVIEW_URL?:string;
+  EIDOS_OWNER_WORKER_REVISION?:string;
 }
 const headers = {'cache-control':'no-store, private','x-content-type-options':'nosniff','x-frame-options':'DENY','referrer-policy':'no-referrer','permissions-policy':'camera=(),microphone=(),geolocation=()','content-security-policy':"default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"};
 const response = (body:unknown,status:number) => new Response(JSON.stringify(body),{status,headers:{...headers,'content-type':'application/json; charset=utf-8'}});
 const jwks = new Map<string,ReturnType<typeof createRemoteJWKSet>>();
+let githubCache: { expires: number; value: Awaited<ReturnType<typeof readGithub>> } | undefined;
 async function owner(request:Request,env:Env) {
   const {EIDOS_OPS_ACCESS_TEAM:team,EIDOS_OPS_ACCESS_AUD:audience,EIDOS_OPS_OWNER_SUB:subject,EIDOS_OPS_OWNER_EMAIL:email} = env;
   const token = request.headers.get('cf-access-jwt-assertion') || '';
@@ -29,6 +34,16 @@ export default {async fetch(request:Request,env:Env):Promise<Response> {
   if (url.hostname!==env.EIDOS_OPS_HOST || url.protocol!=='https:') return response({error:'Unrecognized host.'},403);
   if (!await owner(request,env)) return response({error:'Owner access required.'},403);
   if (url.pathname==='/' && request.method==='GET') return new Response(html,{headers:{...headers,'content-type':'text/html; charset=utf-8'}});
+  if (url.pathname==='/api/sources/github' && request.method==='GET') {
+    const now = Date.now();
+    if (!githubCache || githubCache.expires <= now) {
+      const value = await readGithub();
+      githubCache = { expires: now + (value.status === 'unavailable' ? 30000 : 120000), value };
+    }
+    return response(githubCache.value, githubCache.value.status === 'unavailable' ? 503 : 200);
+  }
+  if (url.pathname==='/api/sources/deployments' && request.method==='GET')
+    return response(await readDeployments(env),200);
   if (url.pathname==='/api/operations' && ['GET','POST'].includes(request.method)) {
     if (!env.EIDOS_PLATFORM_URL || !env.EIDOS_PLATFORM_TOKEN || env.EIDOS_PLATFORM_TOKEN.length<32) return response({error:'Backend connector unavailable.'},503);
     let target:URL;
