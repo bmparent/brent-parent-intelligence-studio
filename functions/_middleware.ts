@@ -7,7 +7,7 @@ interface RelayContext {
 }
 const routes = new Set([
   '/api/assistant', '/api/public-config',
-  '/api/operations/readiness',
+  '/api/operations/readiness', '/api/operations/audit',
   '/api/playground/ai', '/api/playground/projects', '/api/playground/checkout', '/api/playground/purchases', '/api/playground/webhook',
   '/api/members/auth', '/api/members/credentials', '/api/members/google', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
@@ -37,6 +37,10 @@ export async function onRequest({ request, env, next }: RelayContext) {
     for (const name of ['content-type', 'authorization', 'origin', 'stripe-signature']) {
       const value = request.headers.get(name);
       if (value) headers.set(name, value);
+    }
+    if (path.startsWith('/api/operations/') || path === '/api/community/moderate' || path === '/api/community/maintenance') {
+      const assertion = request.headers.get('cf-access-jwt-assertion');
+      if (assertion) headers.set('cf-access-jwt-assertion', assertion);
     }
     const cookies = (request.headers.get('cookie') || '').split(';').map(s=>s.trim()).filter(s=>/^__Host-eidos_(session|oauth|onboard)=[a-f0-9]{64}$/.test(s));
     if (cookies.length) headers.set('cookie', cookies.join('; '));

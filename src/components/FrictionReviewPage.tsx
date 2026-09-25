@@ -3,6 +3,7 @@ import { FormEvent, useRef, useState } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
 import { track } from '../lib/analytics';
 import { EmailAddress, SafeEmailLink } from './EmailAddress';
+import { Turnstile } from './Turnstile';
 
 type FormState = {
   name: string;
@@ -44,6 +45,8 @@ export function FrictionReviewPage() {
     message: '',
   });
   const started = useRef(false);
+  const [challenge, setChallenge] = useState('');
+  const [challengeReset, setChallengeReset] = useState(0);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
@@ -100,8 +103,11 @@ export function FrictionReviewPage() {
           brief,
           ...inquiryAttribution(),
           growth: growthContext(),
+          challenge,
         }),
       });
+      setChallenge('');
+      setChallengeReset(value => value + 1);
       const data = (await response.json()) as {
         state?: string;
         submitted?: boolean;
@@ -142,6 +148,8 @@ export function FrictionReviewPage() {
         mailto: fallbackMailto,
       });
     } catch {
+      setChallenge('');
+      setChallengeReset(value => value + 1);
       setSubmitState({
         status: 'fallback',
         message:
@@ -301,6 +309,7 @@ export function FrictionReviewPage() {
             </label>
           </div>
 
+          <Turnstile onToken={setChallenge} action="inquiry" resetKey={challengeReset} />
           <div className="ew-form-actions ew-friction-form__actions">
             <button
               className="ew-button ew-button--primary"

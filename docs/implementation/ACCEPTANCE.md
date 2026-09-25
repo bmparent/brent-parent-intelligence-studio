@@ -2,6 +2,8 @@
 
 Current hosted release check: [2026-09-23 acceptance record](ACCEPTANCE_2026-09-23.md). It records the isolated public preview, 75-file parity, exact tested revisions, and provider-dependent gates still open.
 
+The later [security sprint candidate](SECURITY_SPRINT_2026-09-25.md) adds owner Access validation/audit, inquiry quotas and enforced static CSP. Its local checks are separate from the September 23 hosted acceptance; Access application, WAF choices and deployed CSP/browser behavior still require isolated preview verification.
+
 This is an unreleased Eidos Works implementation candidate. Local tests are evidence for local behavior; they are not production, inbox, device or paid-provider acceptance. The 50-row CSV is the item-level record. Research engine behavior was not changed.
 
 ## Implemented

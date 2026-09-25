@@ -8,6 +8,7 @@ import { onRequestPost as inquiry } from '../functions/api/project-inquiries';
 import { publicPath, safeReferral, campaignToken, emptyAttribution, validateContext } from '../src/lib/growthContract';
 import { growthPageView, growthTrack, clearGrowth, growthContext, inquiryAttribution } from '../src/lib/growth';
 import { reportSql, summarize } from './growth-report.mjs';
+import { withInquiryTurnstile } from './mock-inquiry-turnstile';
 import type { Statement, Database } from '../functions/_shared/platform/core';
 
 class SqlStatement implements Statement {
@@ -19,12 +20,13 @@ class SqlStatement implements Statement {
 }
 function setup() {
   const sql=new DatabaseSync(':memory:');sql.exec(readFileSync('migrations/growth/0001_growth.sql','utf8'));
+  sql.exec(readFileSync('migrations/growth/0002_owner_audit.sql','utf8'));
   const db: Database={prepare:q=>new SqlStatement(sql,q),batch:async statements=>{sql.exec('BEGIN');try {const rows=await Promise.all(statements.map(s=>s.run()));sql.exec('COMMIT');return rows;}catch(e){sql.exec('ROLLBACK');throw e;}}};
-  return {sql,env:{EIDOS_GROWTH_DB:db,EIDOS_PLATFORM_TOKEN:'test-only-not-production-secret'.repeat(2),EIDOS_GROWTH_OWNER_TOKEN:'owner-test-secret'.repeat(3)}};
+  return {sql,env:{EIDOS_GROWTH_DB:db,EIDOS_PLATFORM_TOKEN:'test-only-not-production-secret'.repeat(2),EIDOS_GROWTH_OWNER_TOKEN:'owner-test-secret'.repeat(3),EIDOS_ADMIN_AUTOMATION_ALLOWED:'true',TURNSTILE_SECRET_KEY:'test-only'}};
 }
 const context=()=>({consent:true as const,session:crypto.randomUUID(),qa:false,attribution:{...emptyAttribution,utmSource:'linkedin',utmMedium:'organic_social',utmCampaign:'phase1_friction_review',landingPage:'/central-florida'}});
 const event=(extra={})=>({event:'page_view',id:crypto.randomUUID(),path:'/central-florida',...context(),...extra});
-function request(input: unknown, host='eidos-works.com', headers={}) { return new Request(`https://${host}/api/growth/events`,{method:'POST',headers:{origin:`https://${host}`,'content-type':'application/json',...headers},body:JSON.stringify(input)}); }
+function request(input: unknown, host='eidos-works.com', headers={}) { return new Request(`https://${host}/api/growth/events`,{method:'POST',headers:{origin:`https://${host}`,'content-type':'application/json','cf-connecting-ip':'192.0.2.2',...headers},body:JSON.stringify(input)}); }
 
 test('strict public paths exclude private, unknown, encoded, query and receipt paths',()=>{
   for(const p of ['/snapshot/result/secret','/account','/community/moderate','/members/name','/owner/growth','/unknown','/friction-review?email=secret','/work/%2e%2e/account'])assert.equal(publicPath(p),null);
@@ -68,11 +70,11 @@ test('owner report rejects unauthenticated calls and never exposes session ident
   assert.equal((await report({request:new Request('https://eidos-works.com/api/growth/report'),env})).status,401);
   const r=await report({request:new Request('https://eidos-works.com/api/growth/report?days=7',{headers:{authorization:'Bearer '+env.EIDOS_GROWTH_OWNER_TOKEN}}),env});assert.equal(r.status,200);assert.ok(!(await r.text()).includes('session_hash'));
 });
-test('inquiry records only provider-confirmed submissions; QA never inflates public report',async()=>{
+test('inquiry records only provider-confirmed submissions; QA never inflates public report',()=>withInquiryTurnstile(async()=>{
   const {env,sql}=setup();const c=context();
   await growthEndpoint({request:request(event(c)),env});
   let brief='';const mailer={fetch:(async(_url:unknown,init:RequestInit)=>{brief=JSON.parse(String(init.body)).brief;return Response.json({ok:true,receipt:'test-provider-receipt'});}) as typeof fetch};
-  const input={projectType:'Friction Review',inquiryKind:'friction-review',name:'Eidos Works QA',email:'qa@example.com',problem:'Eidos Works QA only: this is a synthetic local provider proof.',...c.attribution,growth:{...c,qa:true}};
+  const input={projectType:'Friction Review',inquiryKind:'friction-review',name:'Eidos Works QA',email:'qa@example.com',problem:'Eidos Works QA only: this is a synthetic local provider proof.',challenge:'verified-local-token',...c.attribution,growth:{...c,qa:true}};
   const result=await inquiry({request:request(input),env:{...env,EIDOS_INQUIRY_MAILER:mailer}});
   assert.equal((await result.json()).measurementRecorded,true);assert.match(brief,/utm_source: linkedin/);assert.match(brief,/Landing page: \/central-florida/);assert.match(brief,/not a customer lead/);
   assert.equal(sql.prepare("SELECT COUNT(*) n FROM growth_events WHERE event='friction_submit' AND traffic='public'").get()?.n,0);
@@ -80,7 +82,7 @@ test('inquiry records only provider-confirmed submissions; QA never inflates pub
   mailer.fetch=async()=>Response.json({ok:false});await inquiry({request:request({...input,growth:c}),env:{...env,EIDOS_INQUIRY_MAILER:mailer}});
   assert.equal(sql.prepare("SELECT COUNT(*) n FROM growth_events WHERE event='friction_submit'").get()?.n,1);
   assert.equal(await confirmedInquiry(request({}),env,undefined,true,false,'x'),false);
-});
+}));
 test('retention deletes expired sessions, source funnel reports match real SQL and zero denominator is NA',async()=>{
   const {env,sql}=setup(),c=context();
   for(const e of ['page_view','friction_form_start'])await growthEndpoint({request:request(event({...c,event:e,path:'/friction-review'})),env});
@@ -103,8 +105,8 @@ test('approved trailing-slash paths are stored canonically for funnel counts',as
 });
 
 
-test('maximum inquiry text cannot truncate attribution, and header injection never reaches attribution',async()=>{
+test('maximum inquiry text cannot truncate attribution, and header injection never reaches attribution',()=>withInquiryTurnstile(async()=>{
   const {env}=setup();let brief='';const mailer={fetch:(async(_url:unknown,init:RequestInit)=>{brief=JSON.parse(String(init.body)).brief;return Response.json({ok:true,receipt:'synthetic-local-maximum'});}) as typeof fetch};
-  await inquiry({request:request({projectType:'Friction Review',name:'Eidos Works QA',email:'qa@example.com',problem:'p'.repeat(1600),desiredOutcome:'d'.repeat(1200),supportingUrl:'https://example.com/'+ 'x'.repeat(450),company:'c'.repeat(180),utmSource:'linkedin',utmCampaign:'phase1_friction_review',landingPage:'/central-florida',referrer:'https://example.com/private?email=secret'}),env:{...env,EIDOS_INQUIRY_MAILER:mailer}});
+  await inquiry({request:request({projectType:'Friction Review',name:'Eidos Works QA',email:'qa@example.com',problem:'p'.repeat(1600),desiredOutcome:'d'.repeat(1200),supportingUrl:'https://example.com/'+ 'x'.repeat(450),company:'c'.repeat(180),utmSource:'linkedin',utmCampaign:'phase1_friction_review',landingPage:'/central-florida',referrer:'https://example.com/private?email=secret',challenge:'verified-local-token'}),env:{...env,EIDOS_INQUIRY_MAILER:mailer}});
   assert.match(brief,/Landing page: \/central-florida/);assert.match(brief,/utm_campaign: phase1_friction_review/);assert.ok(!brief.includes('email=secret'));assert.ok(brief.length<=4900);
-});
+}));

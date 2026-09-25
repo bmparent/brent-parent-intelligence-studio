@@ -1,6 +1,7 @@
 import { confirmedInquiry, type GrowthEnv } from '../_shared/growth';
 import { sanitizeAttribution } from '../../src/lib/growthContract';
 import { isRecord, readJsonBody, RequestBodyError } from '../_shared/snapshot/http';
+import { type Database } from '../_shared/platform/core';
 
 interface Env extends GrowthEnv {
   EIDOS_INQUIRY_MAILER?: { fetch: typeof fetch };
@@ -9,11 +10,13 @@ interface Env extends GrowthEnv {
   COMMAND_CENTER_SHARED_SECRET?: string;
   PUBLIC_PROJECTS_EMAIL?: string;
   NOTIFICATION_TO_EMAIL?: string;
+  TURNSTILE_SECRET_KEY?: string;
 }
 
 type PagesContext = { request: Request; env: Env };
 
 type InquiryPayload = {
+  challenge?: string;
   growth?: unknown;
   inquiryKind?: string;
   projectType?: string;
@@ -44,6 +47,49 @@ const jsonHeaders = {
 const MAX_REQUEST_BYTES = 12_000;
 const DEFAULT_PROJECTS_EMAIL = 'projects@eidos-works.com';
 const INQUIRY_RUNTIME_RELEASE = 'm2-friction-2026-09-15-r1';
+
+async function inquiryDigest(secret: string, value: string) {
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return [...new Uint8Array(await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(value)))]
+    .map(n => n.toString(16).padStart(2, '0')).join('');
+}
+
+async function verifyInquiry(request: Request, env: Env, token: unknown) {
+  if (typeof token !== 'string' || token.length < 8 || token.length > 2048) return false;
+  const hostname = new URL(request.url).hostname;
+  if (!env.TURNSTILE_SECRET_KEY) return false;
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ secret: env.TURNSTILE_SECRET_KEY, response: token,
+      remoteip: request.headers.get('cf-connecting-ip') || undefined }),
+    signal: AbortSignal.timeout(8_000),
+  });
+  if (!response.ok) return false;
+  const result = await response.json() as { success?: boolean; hostname?: string; action?: string };
+  return result.success === true && result.hostname === hostname && result.action === 'inquiry';
+}
+
+async function reserveInquiry(request: Request, env: Env, email: string) {
+  const database: Database | undefined = env.EIDOS_GROWTH_DB;
+  const secret = env.EIDOS_PLATFORM_TOKEN;
+  const ip = request.headers.get('cf-connecting-ip');
+  if (!database || !secret || secret.length < 32 || !ip) return null;
+  const hour = Math.floor(Date.now() / 3_600_000), day = Math.floor(Date.now() / 86_400_000);
+  const visitor = await inquiryDigest(secret, `inquiry-ip:${day}:${ip}`);
+  const address = await inquiryDigest(secret, `inquiry-email:${day}:${email.toLowerCase()}`);
+  for (const [bucket, period, limit, expires] of [
+    [`inquiry-ip:${visitor}`, hour, 5, hour * 60 + 120],
+    [`inquiry-email:${address}`, day, 3, (day + 2) * 1440],
+    ['inquiry-global', day, 100, (day + 2) * 1440],
+  ] as const) {
+    const row = await database.prepare(
+      'INSERT INTO growth_quotas(bucket,period,used,expires) VALUES(?,?,1,?) ON CONFLICT(bucket,period) DO UPDATE SET used=used+1 WHERE used<? RETURNING used',
+    ).bind(bucket, period, expires, limit).first();
+    if (!row) return false;
+  }
+  return true;
+}
 
 function clean(value: unknown, maxLength: number) {
   return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
@@ -244,6 +290,19 @@ export const onRequestPost = async ({ request, env }: PagesContext) => {
       { state: 'validation_error', submitted: false, message: 'Please complete the required fields.', errors, brief, mailto: fallbackMailto },
       { status: 400 }
     );
+  }
+
+  // Every delivery path (private mailer and webhook) passes the same checks.
+  if (env.EIDOS_INQUIRY_MAILER || env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL || env.CONTACT_WEBHOOK_URL) {
+    try {
+      if (!await verifyInquiry(request, env, payload.challenge))
+        return json({ state: 'fallback', submitted: false, message: 'Verification expired. You can email the prepared note directly.', brief, mailto: fallbackMailto }, { status: 403 });
+      const quota = await reserveInquiry(request, env, clean(payload.email, 260));
+      if (quota !== true)
+        return json({ state: 'fallback', submitted: false, message: quota === false ? 'Too many requests right now. You can email the prepared note directly.' : 'The form is temporarily unavailable. You can email the prepared note directly.', brief, mailto: fallbackMailto }, { status: quota === false ? 429 : 503 });
+    } catch {
+      return json({ state: 'fallback', submitted: false, message: 'The form is temporarily unavailable. You can email the prepared note directly.', brief, mailto: fallbackMailto }, { status: 503 });
+    }
   }
 
   if (env.EIDOS_INQUIRY_MAILER) {

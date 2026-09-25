@@ -1,8 +1,14 @@
 import {mkdir,writeFile} from 'node:fs/promises';
 const origin=process.env.EIDOS_MONITOR_ORIGIN||'https://eidos-works.com';
 if(!/^https:\/\/eidos-works\.com$/.test(origin))throw Error('Monitor origin must be canonical production.');
-if(!process.env.EIDOS_ADMIN_TOKEN)throw Error('EIDOS_ADMIN_TOKEN is required; never put it in a URL.');
-const r=await fetch(origin+'/api/operations/readiness',{headers:{authorization:'Bearer '+process.env.EIDOS_ADMIN_TOKEN},redirect:'error',signal:AbortSignal.timeout(15000)});
+const access=process.env.EIDOS_OWNER_ACCESS_JWT;
+if(!access&&!process.env.EIDOS_ADMIN_TOKEN)throw Error('EIDOS_OWNER_ACCESS_JWT or EIDOS_ADMIN_TOKEN is required; never put credentials in a URL.');
+const headers=access?{'cf-access-jwt-assertion':access,cookie:'CF_Authorization='+access}:{authorization:'Bearer '+process.env.EIDOS_ADMIN_TOKEN};
+if(!access&&process.env.CF_ACCESS_CLIENT_ID&&process.env.CF_ACCESS_CLIENT_SECRET){
+  headers['CF-Access-Client-Id']=process.env.CF_ACCESS_CLIENT_ID;
+  headers['CF-Access-Client-Secret']=process.env.CF_ACCESS_CLIENT_SECRET;
+}
+const r=await fetch(origin+'/api/operations/readiness',{headers,redirect:'error',signal:AbortSignal.timeout(15000)});
 if(!r.ok)throw Error('Readiness request failed: HTTP '+r.status);
 const state=await r.json();
 const alerts=[];
