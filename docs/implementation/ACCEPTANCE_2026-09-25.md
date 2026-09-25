@@ -16,6 +16,8 @@
 - The Eidos Works Community Google Auth Platform web client already contains the exact `https://eidosworks-test-20260923.pages.dev/api/members/google` callback alongside the production callback. A fresh isolated-site Google start returned an authorization URL with that callback; Google's response was HTTP 200 and did not contain `redirect_uri_mismatch`. Personal consent and an Eidos session remain unverified.
 - A fresh hosted Chromium run on the deployed site passed 26/26 public route and interaction checks at 390, 768, and 1440 CSS pixels with reduced motion. This is viewport emulation; it does not satisfy a physical-phone or screen-reader gate.
 - Repo-root `npm run build`, `npm run verify:prerender`, `npm run test:audit` (32/32), and `npm run test:owner-console` (5/5) passed. The owner Worker was uploaded with `--keep-vars` and deployed through Wrangler versions without changing its custom-domain trigger.
+- The September 25 Snapshot source patch replaced direct target fetch with a protected capture-proxy call. The paired Node route pins its connection to a validated public IPv4 address and rechecks each redirect. Local capture tests passed 3/3, backend capture tests passed 6/6 after the bounded-body addition, full site audit passed 35/35, backend tests passed 16/16 plus 59/59 before that focused addition, owner-console tests passed 5/5, both type checks passed, and 76 vendored files matched. These results do not prove deployed egress or authorize Snapshot generation.
+- The authenticated owner console's mobile menu opened with focus on its first item; Escape closed it and returned focus to Menu. Browser viewport emulation and this keyboard check do not satisfy true 200% browser zoom, screen reader, or physical device acceptance.
 
 ## Open gates
 
@@ -23,7 +25,7 @@
 2. Run a new Stripe TEST browser checkout, provider-signed webhook, archive download/digest, guest recovery, replay, refund and dispute revocation on this exact preview. The connected Stripe app required reauthentication and the dashboard required the owner's SMS code at this checkpoint. No new purchase was claimed.
 3. Accept authenticated Playground save/reopen, media ownership, proposal preview/apply/Undo, export entitlement, and interrupted paid request. Paid AI and authoring remain off pending a bounded test allowance and commercial acceptance.
 4. Exercise an actual phone, 200% browser zoom, and a screen reader. The hosted viewport result is supporting evidence only.
-5. Resolve Snapshot's DNS-to-fetch rebinding gap with a verified pinned outbound path; approve conservative provider cost ceiling, shared D1/R2 migration and lifecycle, existing KV order recovery, support/retention policy, and signed TEST fulfillment before enabling generation or orders. Snapshot remains off.
+5. Deploy and prove Snapshot's new pinned capture proxy with matching restricted tokens on the isolated pair; approve conservative provider cost ceiling, shared D1/R2 migration and lifecycle, existing KV order recovery, support/retention policy, and signed TEST fulfillment before enabling generation or orders. Local proxy tests close the source-level DNS-to-fetch gap; hosted safe egress is not yet accepted. Snapshot remains off.
 
 ## Safety and scope
 

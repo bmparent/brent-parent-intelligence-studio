@@ -1,0 +1,30 @@
+{
+  "dateUtc": "2026-09-25",
+  "scope": "local source and paired contract only",
+  "decision": "capture_proxy_code_tested_hosted_egress_not_accepted",
+  "directTargetFetchRemoved": true,
+  "proxyRequiresExactConfiguredHttpsUrlAndToken": true,
+  "backendRouteRequiresDedicatedToken": true,
+  "backendPinsResolvedPublicIpv4AddressPerRedirect": true,
+  "snapshotGenerationEnabled": false,
+  "snapshotCaptureApproved": false,
+  "tests": {
+    "siteCapture": "3_passed",
+    "siteAudit": "35_passed",
+    "ownerConsole": "5_passed",
+    "backendCapture": "6_passed_after_bounded_body_addition",
+    "backendSuites": "16_plus_59_passed_before_bounded_body_addition",
+    "pairedContract": "76_files_match",
+    "siteTypecheck": "passed",
+    "snapshotWorkerTypecheck": "passed",
+    "backendTypecheck": "passed"
+  },
+  "remaining": [
+    "deploy_proxy_with_matching_restricted_tokens_to_isolated_pair",
+    "verify_actual_pinned_network_connection_and_redirect_handling",
+    "approve_provider_cost_reservation_and_isolated_budget",
+    "bind_shared_d1_and_private_r2_then_apply_migration",
+    "verify_existing_kv_order_recovery_and_storage_retention",
+    "signed_stripe_test_fulfillment_and_support_policy"
+  ]
+}
