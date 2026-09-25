@@ -88,7 +88,8 @@ for (const engine of engines) {
       const accountDetails = page.locator('details.pg-project-tools').filter({ has: page.locator('summary', { hasText: /^Account projects$/ }) });
       await accountDetails.locator('summary').filter({hasText:/^Account projects$/}).click();
       assert.equal(await accountDetails.getByRole('link', { name: 'Sign in with your Eidos account', exact: true }).isVisible(), true);
-      assert.equal(await accountDetails.getByRole('button', { name: 'Import into my account', exact: true }).isEnabled(), true);
+      assert.equal(await accountDetails.getByRole('button', { name: 'Import into my account', exact: true }).isEnabled(), false);
+      assert.ok((await accountDetails.innerText()).includes('Cloud saving for this format is not enabled yet'));
       assert.ok((await accountDetails.innerText()).includes('Your design stays on this device until an account save succeeds'));
       await accountDetails.locator('summary').filter({hasText:/^Account projects$/}).click();
       // Server default-off format and ownership gates are tested in test-playground-authoring-cloud.ts.
