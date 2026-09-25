@@ -24,7 +24,7 @@ const types:Record<string,string>={'.html':'text/html','.js':'application/javasc
 createServer(async(req,res)=>{
   try {
     const url=new URL(req.url||'/','http://127.0.0.1:8788');const chunks=[];for await(const c of req)chunks.push(c);const raw=Buffer.concat(chunks);
-    const request=new Request(url,{method:req.method,headers:req.headers as Record<string,string>,...(!['GET','HEAD'].includes(req.method||'GET')?{body:raw}:{} )});
+    const request=new Request(url,{method:req.method,headers:{...req.headers,'cf-connecting-ip':'192.0.2.1'} as Record<string,string>,...(!['GET','HEAD'].includes(req.method||'GET')?{body:raw}:{} )});
     let response:Response;
     if(url.pathname==='/api/growth/events') response=await growthEndpoint({request,env});
     else if(url.pathname==='/api/growth/report') response=await report({request,env});
