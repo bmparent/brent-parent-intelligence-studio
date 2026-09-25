@@ -1,5 +1,5 @@
 {
-  "checkedAtUtc": "2026-09-25T20:54:21Z",
+  "checkedAtUtc": "2026-09-25T21:06:26Z",
   "overallStatus": "private_owner_preview_accepted_public_release_no_go",
   "source": {
     "site": "7ec762eb296148a94c95b6e2ff956310c771bdf2",
@@ -107,7 +107,7 @@
     "deploymentAvailability": "hosted_exact_URL_HTTP_probes_verified_provider_metadata_unavailable",
     "stripeTestProvider": "hosted_bounded_read_only_reconciliation_4_kit_orders_0_observed_mismatches",
     "stripeWebhookDelivery": "unavailable_no_provider_delivery_receipt",
-    "inboxOrCrm": "not_configured_no_server_side_read_grant",
+    "inboxOrCrm": "worker_not_configured_no_server_side_read_grant_historical_2026_09_24_QA_message_observed_in_owner_Gmail_without_exact_preview_attribution",
     "driveSheets": "not_configured_no_server_side_read_grant",
     "ga4SearchConsole": "not_configured_no_server_side_read_grant",
     "aiProviderUsage": "not_configured_no_usage_scope"
