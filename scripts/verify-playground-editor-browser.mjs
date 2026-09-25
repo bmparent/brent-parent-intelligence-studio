@@ -174,8 +174,10 @@ for (const engine of engines) {
       await until(async () => await frame.locator('.pg-compose-handle').count() === 0, 'Try page removes handles');
       await page.screenshot({ path: path.join(output, name + '-try.png'), fullPage: false });
       assert.equal(record.errors.length, 0, record.errors.join('\n'));
-      assert.equal(record.requests.length, 0, 'manual editing must not contact Playground accounts, purchases or AI');
-      check('Try page removes authoring UI, zero page exceptions and zero Playground API/provider requests');
+      assert.ok(record.requests.every(request => request.method === 'GET' &&
+        new URL(request.url).pathname === '/api/playground/projects'),
+      'manual editing may refresh the account list but must not save, purchase or request AI');
+      check('Try page removes authoring UI, zero page exceptions and no cloud mutations or AI requests');
       record.passed = true;
     } catch (error) {
       record.passed = false; record.failure = error.stack || String(error);
