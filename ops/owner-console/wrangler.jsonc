@@ -2,10 +2,14 @@
   "name": "eidos-works-owner-preview",
   "main": "src/worker.ts",
   "compatibility_date": "2026-09-24",
-  "workers_dev": true,
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "owner-preview.eidos-works.com", "custom_domain": true }
+  ],
   "vars": {
     "EIDOS_OPS_ENVIRONMENT": "preview",
-    "EIDOS_OPS_HOST": "eidos-works-owner-preview.1brent-bm.workers.dev",
-    "EIDOS_PLATFORM_URL": "https://eidos-sentinel-n9z8j02pg-1brentbm-1876s-projects.vercel.app"
+    "EIDOS_OPS_HOST": "owner-preview.eidos-works.com",
+    "EIDOS_PLATFORM_URL": "https://eidos-sentinel-irfdtg9wq-1brentbm-1876s-projects.vercel.app",
+    "EIDOS_SITE_PREVIEW_URL": "https://62ad943a.eidosworks-candidate-20260923.pages.dev"
   }
 }

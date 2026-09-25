@@ -38,7 +38,7 @@ export default {async fetch(request:Request,env:Env):Promise<Response> {
     const now = Date.now();
     if (!githubCache || githubCache.expires <= now) {
       const value = await readGithub();
-      githubCache = { expires: now + (value.status === 'unavailable' ? 30000 : 120000), value };
+      githubCache = { expires: now + (value.status === 'unavailable' ? 30000 : 600000), value };
     }
     return response(githubCache.value, githubCache.value.status === 'unavailable' ? 503 : 200);
   }
