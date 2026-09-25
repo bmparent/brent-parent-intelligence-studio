@@ -3,6 +3,7 @@ import { track } from '../lib/analytics';
 import { FormEvent, useState } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
 import { EmailAddress, SafeEmailLink } from './EmailAddress';
+import { Turnstile } from './Turnstile';
 
 type FormState = {
   name: string;
@@ -41,6 +42,8 @@ export function ContactForm() {
     status: 'idle',
     message: '',
   });
+  const [challenge, setChallenge] = useState('');
+  const [challengeReset, setChallengeReset] = useState(0);
 
   const brief = [
     'Eidos Works project inquiry',
@@ -84,8 +87,11 @@ export function ContactForm() {
           brief,
           ...inquiryAttribution(),
           growth: growthContext(),
+          challenge,
         }),
       });
+      setChallenge('');
+      setChallengeReset(value => value + 1);
       const data = (await response.json()) as {
         state?: string;
         submitted?: boolean;
@@ -128,6 +134,8 @@ export function ContactForm() {
         mailto: fallbackMailto,
       });
     } catch {
+      setChallenge('');
+      setChallengeReset(value => value + 1);
       setSubmitState({
         status: 'fallback',
         message:
@@ -234,6 +242,7 @@ export function ContactForm() {
         </label>
       </div>
 
+      <Turnstile onToken={setChallenge} action="inquiry" resetKey={challengeReset} />
       <div className="ew-form-actions">
         <button
           className="ew-button ew-button--primary"

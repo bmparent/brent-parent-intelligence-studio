@@ -38,10 +38,16 @@ async function main() {
   let data;
   if(args.input) data=JSON.parse(await readFile(args.input,'utf8'));
   else {
-    const credentials = process.env.EIDOS_GROWTH_OWNER_TOKEN ? { EIDOS_GROWTH_OWNER_TOKEN: process.env.EIDOS_GROWTH_OWNER_TOKEN } : JSON.parse(await readFile(process.env.EIDOS_GROWTH_CREDENTIAL_FILE || resolve(homedir(), '.codex/secrets/eidos-growth-owner.json'), 'utf8'));
+    const access = process.env.EIDOS_OWNER_ACCESS_JWT;
+    const credentials = access ? undefined : process.env.EIDOS_GROWTH_OWNER_TOKEN ? { EIDOS_GROWTH_OWNER_TOKEN: process.env.EIDOS_GROWTH_OWNER_TOKEN } : JSON.parse(await readFile(process.env.EIDOS_GROWTH_CREDENTIAL_FILE || resolve(homedir(), '.codex/secrets/eidos-growth-owner.json'), 'utf8'));
     const origin = args.origin || 'https://eidos-works.com';
     if (!['https://eidos-works.com','https://eidosworks.pages.dev','http://127.0.0.1:8788'].includes(origin)) throw Error('Unapproved report origin');
-    const response = await fetch(`${origin}/api/growth/report?days=${days}&view=${view}`, { headers: { authorization: 'Bearer ' + credentials.EIDOS_GROWTH_OWNER_TOKEN }, redirect: 'error' });
+    const headers = access ? { 'cf-access-jwt-assertion': access, cookie: 'CF_Authorization=' + access } : { authorization: 'Bearer ' + credentials.EIDOS_GROWTH_OWNER_TOKEN };
+    if (!access && process.env.CF_ACCESS_CLIENT_ID && process.env.CF_ACCESS_CLIENT_SECRET) {
+      headers['CF-Access-Client-Id'] = process.env.CF_ACCESS_CLIENT_ID;
+      headers['CF-Access-Client-Secret'] = process.env.CF_ACCESS_CLIENT_SECRET;
+    }
+    const response = await fetch(`${origin}/api/growth/report?days=${days}&view=${view}`, { headers, redirect: 'error' });
     if (!response.ok) throw Error(`Owner report returned HTTP ${response.status}`);
     data = await response.json();
   }
