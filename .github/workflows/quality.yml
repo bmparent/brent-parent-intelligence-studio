@@ -24,6 +24,7 @@ jobs:
       - run: npm run test:audit
       - run: npm run test:playground
       - run: npm run test:growth
+      - run: npm run test:growth-team
       - run: npm run test:analytics
       - run: npm run test:glass
       - run: npm run test:snapshot

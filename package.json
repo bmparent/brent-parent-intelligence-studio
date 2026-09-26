@@ -37,6 +37,7 @@
     "build:functions": "wrangler pages functions build functions --outfile .wrangler/eidos-functions.js",
     "playground:glass": "node scripts/build-playground-glass.mjs",
     "test:growth": "node --import tsx --test scripts/test-growth.ts",
+    "test:growth-team": "node --test ops/growth-team/finance.test.mjs",
     "test:owner-console": "node --import tsx --test ops/owner-console/src/*.test.ts",
     "growth:links": "node scripts/growth-links.mjs",
     "growth:report": "node scripts/growth-report.mjs",
