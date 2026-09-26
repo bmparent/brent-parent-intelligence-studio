@@ -63,8 +63,13 @@ for (const width of [1440, 390]) {
     await page.getByLabel('What needs to become clearer, easier, or more useful?').waitFor();
     await page.waitForFunction(() => document.querySelector('textarea')?.value.includes('Eidos Playground'));
     assert.equal(await page.getByLabel('How did you find Eidos Works?').inputValue(), 'Eidos Playground');
+    await page.goto(base + '/services/digital-experiences/');
+    await page.getByRole('heading', { name: 'Start with a draft. Take it as far as you want.' }).waitFor();
+    assert.equal(await page.getByRole('link', { name: /Build a page in Playground/ }).isVisible(), true);
+    assert.equal(await page.getByRole('link', { name: /Get the Cinematic Starter kit/ }).isVisible(), true);
+    assert.equal(await page.getByRole('link', { name: /Ask Brent to design and build it/ }).isVisible(), true);
     assert.equal(errors.length, 0, `no page errors: ${errors.join(', ')}`);
-    console.log(`PASS ${width}: fresh editor, click and drag placement, Undo/Redo, reload, ZIP, contact route and prefill`);
+    console.log(`PASS ${width}: fresh editor, click and drag placement, Undo/Redo, reload, ZIP, contact prefill and service paths`);
   } catch (error) {
     await page.screenshot({ path: path.join(evidence, `failure-${width}.png`) });
     throw error;

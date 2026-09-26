@@ -105,6 +105,18 @@ function StartingPointCta() {
   );
 }
 
+function DigitalStartingPaths() {
+  return <section className="ew-shell service-start-paths" aria-labelledby="digital-start-title">
+    <div><h2 id="digital-start-title">Start with a draft. Take it as far as you want.</h2>
+      <p>Make the first page in Playground, hand its files to your team, or bring the idea to Brent for a scoped build.</p></div>
+    <div className="service-start-paths__options">
+      <a href="/playground"><span>01 · Free tool</span><strong>Build a page in Playground</strong><small>Arrange content, preview it and download your own editable files.</small><b aria-hidden="true">↗</b></a>
+      <a href="/shop/cinematic-starter"><span>02 · $29 product</span><strong>Get the Cinematic Starter kit</strong><small>A separate ready-made page kit with its own checkout and terms.</small><b aria-hidden="true">↗</b></a>
+      <a href="/contact#project-form"><span>03 · Custom service</span><strong>Ask Brent to design and build it</strong><small>Tell us the goal and constraints; custom work is scoped and quoted separately.</small><b aria-hidden="true">↗</b></a>
+    </div>
+  </section>;
+}
+
 function ServiceDetailCta({ slug }: { slug: ServiceSlug }) {
   const copy: Record<ServiceSlug, { title: string; body: string }> = {
     'digital-experiences': {
@@ -181,6 +193,7 @@ export function ServicesPage() {
           ))}
         </div>
       </section>
+      <DigitalStartingPaths />
       <StartingPointCta />
     </>
   );
@@ -204,6 +217,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
       </figure>
       <ServiceProof slug={slug} />
       {slug==='digital-experiences' ? <ProblemExplorer/> : slug==='intelligent-systems' ? <SupportedAnswerDemo/> : null}
+      {slug==='digital-experiences' && <DigitalStartingPaths />}
       <details className="ew-shell service-task">
         <summary>Scope, constraints and handoff</summary>
         <p>{detail.forWhom}</p>
