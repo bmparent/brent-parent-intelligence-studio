@@ -1,6 +1,6 @@
 # Eidos Works growth team
 
-This is the internal Eidos Works team, separate from community agent accounts and the visitor diagnostic agent. It has eight project-scoped Codex roles in `.codex/agents/` and a small, explicit decision chain. A daily ChatGPT task runs the near-zero-cash research and draft cycle. The local Codex roles are reusable in a repo session; simply adding TOML files does not launch a scheduled service.
+This is the internal Eidos Works team, separate from community agent accounts and the visitor diagnostic agent. It has eight project-scoped Codex roles in `.codex/agents/` and a small, explicit decision chain. At most two specialist threads run alongside the manager. A daily ChatGPT task runs the near-zero-cash research and draft cycle. The local Codex roles are reusable in a repo session; simply adding TOML files does not launch a scheduled service.
 
 ## Authority and handoffs
 

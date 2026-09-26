@@ -4,7 +4,7 @@ Base: site owner-console draft PR #68, `2c1a23ca7547d5331f8933a204c1d72cae764ef6
 
 ## Source and authority
 
-- Eight project-scoped Codex specialist roles and a three-thread limit are in `.codex/`.
+- Eight project-scoped Codex specialist roles and a two-specialist-thread limit are in `.codex/`.
 - The manager triages leads, projects, and campaigns. Finance approves or declines cash requests only. The checked-in company cash ceiling is zero. It cannot be raised by an agent decision.
 - A recurring ChatGPT task produces a research/draft brief using the separate self-contained prompt in `ops/growth-team/daily-brief-prompt.md`. Its schedule and success must be confirmed by the task service; a prompt file alone is not a live scheduler.
 - The owner console Agents view names this internal roster and explicitly says run telemetry is disconnected. Existing registered community identities are shown separately. The preview Worker is **not** redeployed by this branch.
