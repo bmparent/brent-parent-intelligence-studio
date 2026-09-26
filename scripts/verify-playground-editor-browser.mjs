@@ -60,14 +60,22 @@ for (const engine of engines) {
       await page.goto(base + '/playground/', { waitUntil: 'domcontentloaded' });
       await page.locator('.pg-app').waitFor();
       await panel('Your page');
-      await page.locator('[data-editor-release="local-spatial-2026-09-10"]').waitFor();
       record.title = await page.title(); record.url = page.url();
       assert.match(record.url, /\/playground\/?$/);
       assert.ok(record.title.length > 0);
       assert.equal(await page.locator('vite-error-overlay,nextjs-portal').count(), 0);
+      const initial = await jsonDownload();
+      assert.equal(initial.schemaVersion, 4);
+      // Exercise the old explicit-upgrade path with a legacy fixture built from
+      // the original fields retained by enableBlocks. Existing saved v1-v3
+      // documents must still open without silent migration.
+      const legacy = { ...initial, schemaVersion: 1, sections: initial.sections.map(({ authoring, type, ...section }) => section) };
+      const importInput = page.getByText('Import project', { exact: true }).locator('input');
+      await importInput.setInputFiles({ name: 'legacy-project.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(legacy)) });
       const original = await jsonDownload();
       assert.equal(original.schemaVersion, 1);
-      check('page identity, nonblank React app, release marker, no framework overlay, existing project unmodified');
+      await page.locator('[data-editor-release="local-spatial-2026-09-10"]').waitFor();
+      check('new flexible draft, legacy import preserved, release marker and no framework overlay');
       await page.getByRole('button', { name: 'Enable drag & drop', exact: true }).click();
       const upgraded = await jsonDownload();
       assert.equal(upgraded.schemaVersion, 3);
@@ -160,9 +168,9 @@ for (const engine of engines) {
       await page.screenshot({ path: path.join(output, name + '-editor.png'), fullPage: false });
       check('desktop/mobile screenshot, readable handle sizing and no horizontal preview overflow');
       const exportedProject = await jsonDownload();
-      await page.getByRole('button', { name: /^Export\s*$/ }).click();
+      await page.getByRole('button', { name: /^Free starter pack\s*$/ }).click();
       const zipPending = page.waitForEvent('download');
-      await page.getByRole('button', { name: 'Download page package', exact: true }).click();
+      await page.getByRole('button', { name: 'Download my free starter pack', exact: true }).click();
       const zip = await zipPending;
       const zipPath = path.join(output, name + '-page.zip');
       await zip.saveAs(zipPath);

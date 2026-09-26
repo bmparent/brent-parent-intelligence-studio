@@ -1,10 +1,13 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
 import { createProject, type Project } from "./model";
+import { enableBlocks } from './authoring';
 import { loadWorkspace, saveWorkspace, type Snapshot } from "./storage";
 import { useRef } from "react";
 import { workspace, workspaceReducer, type SaveTarget } from "./workspace";
 export function useProject() {
-  const [state, dispatch] = useReducer(workspaceReducer, undefined, () => workspace(createProject(), crypto.randomUUID()));
+  // Only brand-new workspaces start in the flexible editor. Stored documents keep
+  // their original schema and are never migrated by opening them.
+  const [state, dispatch] = useReducer(workspaceReducer, undefined, () => workspace(enableBlocks(createProject()), crypto.randomUUID()));
   const generation = useRef(0);
   const [editVersion,bumpEditVersion]=useReducer((v:number)=>v+1,0);
   // Autosave/status renders must not change this callback identity: Preview uses

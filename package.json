@@ -30,7 +30,7 @@
     "platform:dev": "wrangler pages dev dist --ip 127.0.0.1 --port 8788",
     "platform:migrate:local": "wrangler d1 migrations apply eidos-platform-local --local",
     "test:platform": "node --import tsx --test scripts/test-platform.ts scripts/test-members.ts scripts/test-relay.ts scripts/test-relay-runtime.mjs scripts/test-inquiries.ts scripts/test-thread-form.mjs",
-    "test:playground": "npm run playground:glass && node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts scripts/test-playground-authoring.ts",
+    "test:playground": "npm run playground:glass && node --import tsx --test scripts/test-playground.ts scripts/test-playground-cloud.ts scripts/test-playground-authoring.ts scripts/test-playground-journey.ts",
     "test:analytics": "node --import tsx --test scripts/test-analytics.ts",
     "test:audit": "node --import tsx --test scripts/test-assistant-catalogue.ts scripts/test-account-epoch.ts scripts/test-kit-recovery.ts scripts/test-playground-ai.ts scripts/test-playground-authoring-cloud.ts scripts/test-snapshot-durable.ts scripts/test-works-audit.ts",
     "test:glass": "node --import tsx --test scripts/test-liquid-glass.ts scripts/test-hero.ts",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@babylonjs/core": "^9.10.1",
+    "@dnd-kit/core": "^6.3.1",
     "gsap": "^3.14.2",
     "jose": "^6.2.12",
     "react": "^19.2.5",

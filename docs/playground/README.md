@@ -1,5 +1,13 @@
 Current product update: see [product-release.md](product-release.md) for the original glass integration, account projects, test checkout configuration, and header exports. The notes below describe the original preview release.
 
+## 2026-09-26 editor journey candidate
+
+New local workspaces start in the responsive block format (schema v4); old saved projects keep their own format until the visitor explicitly upgrades. The visible Add elements library supports click to add, dnd-kit pointer/touch/keyboard dragging to an exact insertion line in Page structure, and desktop canvas drop into the selected authored area. A visitor can select an element on the canvas for text, image, layout and width controls, rearrange existing blocks on the canvas, undo/redo, and preview mobile width. The canvas drop appends to a selected area; use the page structure drop lines or canvas controls for exact order. A browser with no cloud format entitlement continues to save locally only.
+
+The primary free ZIP is the visitor's own page design. It includes standalone HTML/CSS/JS, bundled assets, `project.json`, `AI-HANDOFF.md` and `NEXT-STEPS.md`. A link to `/contact?from=playground#project-form` opens a reviewed, editable project note with no design or image content in the URL. Custom build work is quoted after discovery; the site's separate $29 Cinematic Starter kit is a different product. The free export does not create a WordPress or Squarespace plugin and does not connect a contact form backend in the exported page.
+
+Run `node scripts/verify-playground-journey.mjs` against `npm run preview` with Playwright Chromium installed to check the full local click/drag, Undo/Redo, reload, ZIP and handoff path at desktop and mobile widths. The existing `verify-playground-editor-browser.mjs` also imports an old-format fixture so backward compatibility stays in the browser gates.
+
 # Eidos Playground
 
 A client-only visual editor at `/playground`, linked from the Eidos Works footer. This preview release is free and does not add a payment flow or claim cloud project storage.

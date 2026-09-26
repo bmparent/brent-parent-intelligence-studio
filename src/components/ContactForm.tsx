@@ -1,6 +1,6 @@
 import { growthContext, inquiryAttribution } from '../lib/growth';
 import { track } from '../lib/analytics';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
 import { EmailAddress, SafeEmailLink } from './EmailAddress';
 import { Turnstile } from './Turnstile';
@@ -37,7 +37,17 @@ type SubmitState =
     };
 
 export function ContactForm() {
-  const [form, setForm] = useState(initialForm);
+  // An explicit Playground handoff carries context only; no design content is
+  // placed in the URL or submitted without the visitor reviewing this note.
+  const [form, setForm] = useState<FormState>(initialForm);
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('from') !== 'playground') return;
+    const timer = window.setTimeout(() => setForm(current => ({ ...current,
+      foundVia: current.foundVia || 'Eidos Playground',
+      problem: current.problem || 'I made a draft in the Eidos Playground and would like help refining and launching it. I can share my exported starter pack after we connect.',
+    })), 0);
+    return () => window.clearTimeout(timer);
+  }, []);
   const [submitState, setSubmitState] = useState<SubmitState>({
     status: 'idle',
     message: '',
@@ -226,6 +236,7 @@ export function ContactForm() {
             <option>Reddit / community</option>
             <option>Referral</option>
             <option>Saw one of our projects</option>
+            <option>Eidos Playground</option>
             <option>Other</option>
           </select>
         </label>

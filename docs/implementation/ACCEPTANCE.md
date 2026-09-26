@@ -1,5 +1,13 @@
 # Candidate acceptance and release gates
 
+## Playground entry and handoff candidate — 2026-09-26
+
+The branch `codex/playground-journey-20260926` is stacked on the security sprint's site head `91e3c67eacd47d4d49a86cf3b79fec495a314702` (itself stacked on draft site PR #66). It is a public-site-only source change; no backend, migration, provider setting, price, production deployment, or purchased archive changes are included.
+
+New local workspaces open schema v4 with an element library. dnd-kit supplies keyboard/pointer/touch drag input and drop targets for exact insertion in page structure; the existing sandboxed canvas still handles movement and resizing. A palette click and a canvas drop also add to the current authored area. Existing workspaces keep their schema on open. New-format cloud save is still default-off until paired hosted ownership/reopen acceptance; the status and export make a portable local backup available. Export includes `NEXT-STEPS.md` along with the existing HTML, assets, project JSON and AI handoff. The custom-build inquiry carries only a static source cue and editable note; the actual project ZIP stays on the visitor's device unless they choose to share it. The free design ZIP and separate $29 Cinematic Starter kit are presented as distinct options.
+
+Local verification: typecheck and production build passed; 26/26 Playground tests, lint and prerender verification passed. The CI workflow now checks the new customer path in a real Chromium desktop/mobile browser alongside the legacy format and three-engine editor checks. Hosted browser, authenticated cloud reopen, inquiry inbox receipt, actual payment, physical touch and production release remain open. This candidate must not change the general release gate above.
+
 Current hosted release check: [2026-09-23 acceptance record](ACCEPTANCE_2026-09-23.md). It records the isolated public preview, 75-file parity, exact tested revisions, and provider-dependent gates still open.
 
 The later [security sprint candidate](SECURITY_SPRINT_2026-09-25.md) adds owner Access validation/audit, inquiry quotas and enforced static CSP. Its local checks are separate from the September 23 hosted acceptance; Access application, WAF choices and deployed CSP/browser behavior still require isolated preview verification.

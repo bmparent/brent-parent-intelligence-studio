@@ -1,4 +1,9 @@
+import { DndContext, DragOverlay, pointerWithin, rectIntersection, type DragEndEvent } from '@dnd-kit/core';
 import { BlockTree, BlockControls } from './BlockControls';
+import { CanvasDropZone, ElementPalette } from './ElementPalette';
+import { enableBlocks } from './authoring';
+import { preferredContainer, placeElement } from './elementPlacement';
+import { nodeTypes, type NodeType } from './authoringSchema';
 import {AIAssist} from "./AIAssist";
 import {imageWarnings} from "./publishing";
 import {StructureControls} from "./StructureControls";
@@ -22,6 +27,7 @@ import { Inspector } from "./Inspector";
 import { CloudProjects } from './CloudProjects';
 import { Icon } from "./Controls";
 import { download, exportFiles, headerFiles, zipFiles } from "./export";
+import { track } from '../lib/analytics';
 import "./editor.css";
 export default function Playground() {
   const {
@@ -38,13 +44,14 @@ export default function Playground() {
     saveSnapshot,
     storageError,
   } = useProject();
-  const [selected, setSelected] = useState<string>("header"),
+  const [selected, setSelected] = useState<string>("hero"),
     [mobile, setMobile] = useState(() => typeof window!=='undefined' && window.innerWidth<=640),
     [editing, setEditing] = useState(true),
     [panel, setPanel] = useState("canvas");
   const [selectedNode,setSelectedNode]=useState('');
   const selectNode=(id:string,sectionId:string)=>{setSelectedNode(id);setSelected(sectionId);setMediaOpen(false);};
   const [mediaOpen, setMediaOpen] = useState(false);
+  const [draggingKind, setDraggingKind] = useState<NodeType | null>(null);
   const [notice, setNotice] = useState(""),
     [comparison, setComparison] = useState<Project | null>(null),
     [exporting, setExporting] = useState(false);
@@ -78,6 +85,29 @@ export default function Playground() {
     [sections[index], sections[next]] = [sections[next], sections[index]];
     change({ ...project, sections });
   }
+  function addElement(kind: NodeType, parent = preferredContainer(project, selected, selectedNode), before: string | null = null) {
+    if (!ready || comparison) return;
+    try {
+      if (!parent) throw new Error('Choose a page area first.');
+      const placed = placeElement(project, kind, parent, before);
+      change(placed.project);
+      setSelected(placed.sectionId);
+      setSelectedNode(placed.nodeId);
+      setMediaOpen(false);
+      setPanel('canvas');
+      setNotice(`${kind.charAt(0).toUpperCase() + kind.slice(1)} added. Select it on the page to edit, or Undo to remove it.`);
+    } catch (error) { setNotice((error as Error).message); }
+  }
+  function finishElementDrag(event: DragEndEvent) {
+    const kind = event.active.data.current?.kind;
+    setDraggingKind(null);
+    if (!nodeTypes.includes(kind as NodeType) || !event.over) return;
+    if (event.over.id === 'canvas') { addElement(kind as NodeType); return; }
+    const parent = event.over.data.current?.parent;
+    const before = event.over.data.current?.before;
+    if (typeof parent === 'string' && (before === null || typeof before === 'string'))
+      addElement(kind as NodeType, parent, before);
+  }
   async function importProject(file?: File) {
     if (!file) return;
     const stillCurrent = guard();
@@ -104,6 +134,7 @@ export default function Playground() {
         "application/zip",
       );
       setNotice("Your page package is ready. Check your downloads.");
+      track('playground_pack_download', { item_id: 'playground-starter-pack' });
       dialog.current?.close();
     } catch (e) {
       setNotice((e as Error).message);
@@ -165,12 +196,13 @@ export default function Playground() {
             <Icon name="eye" />
             {editing ? "Try page" : "Back to editor"}
           </button>
+          <a className="pg-button-secondary pg-work-link" href="/contact?from=playground#project-form" onClick={() => track('playground_contact_click')}>Work with Brent ↗</a>
           <button
             className="pg-primary"
             disabled={!ready || !!comparison}
             onClick={() => void openExport()}
           >
-            Export <Icon name="export" />
+            Free starter pack <Icon name="export" />
           </button>
         </div>
       </header>
@@ -189,9 +221,13 @@ export default function Playground() {
           </button>
         ))}
       </nav>
+      <DndContext collisionDetection={args => args.pointerCoordinates ? pointerWithin(args) : rectIntersection(args)}
+        onDragStart={event => { const kind = event.active.data.current?.kind; if (nodeTypes.includes(kind as NodeType)) setDraggingKind(kind as NodeType); }}
+        onDragEnd={finishElementDrag} onDragCancel={() => setDraggingKind(null)}>
       <div className="pg-workspace">
         <aside className="pg-sidebar" aria-label="Page sections" inert={!ready}>
           <h2>Your page</h2>
+          <p className="pg-guide">Pick a starting layout, add elements, then make the page yours. Your edits save on this device.</p>
           <button className="pg-media-entry" aria-pressed={mediaOpen} onClick={()=>{setMediaOpen(!mediaOpen);setPanel("inspector");}}>Media / Brand</button>
           <label className="pg-sr-only" htmlFor="page-template">
             Template
@@ -201,7 +237,7 @@ export default function Playground() {
             value={project.template}
             disabled={!ready}
             onChange={(e) => {
-              replace(createProject(e.target.value as Project["template"]));
+              replace(enableBlocks(createProject(e.target.value as Project["template"])));
               setNotice(
                 "Template changed. Undo brings your previous design back.",
               );
@@ -270,7 +306,9 @@ export default function Playground() {
               </div>
             ))}
           </div>
-          <BlockTree project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} />
+          <ElementPalette enabled={project.schemaVersion === 4 && ready && !comparison}
+            add={kind => addElement(kind)} upgrade={() => { try { change(enableBlocks(project)); setSelected('hero'); setNotice('Flexible editing is ready. Your earlier design is available with Undo.'); } catch (error) { setNotice((error as Error).message); } }}/>
+          <BlockTree project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} dragging={!!draggingKind} />
           <StructureControls project={project} selected={selected} edit={change} guard={guard} notify={setNotice} />
           <div className="pg-directions">
             <h2>Design direction</h2>
@@ -376,6 +414,12 @@ export default function Playground() {
               </small>
             </span>
           </div>
+          <div className="pg-next-steps">
+            <h2>When your draft feels right</h2>
+            <button onClick={() => void openExport()} disabled={!ready || !!comparison}>Download your free starter pack ↗</button>
+            <a href="/contact?from=playground#project-form" onClick={() => track('playground_contact_click')}>Ask Brent to finish it ↗</a>
+            <small>Custom work is scoped and quoted after you tell us what you need. <a href="/services/digital-experiences">Explore the service</a>.</small>
+          </div>
         </aside>
         <main className="pg-canvas" aria-label="Page canvas">
           {comparison && (
@@ -417,6 +461,7 @@ export default function Playground() {
               <div className="pg-loading">Opening your workspace…</div>
             )}
           </div>
+          <CanvasDropZone dragging={!!draggingKind && editing && !comparison} destination={project.sections.find(s => s.id === selected)?.title || 'your page'} />
         </main>
         {mediaOpen ? <MediaBrand project={project} edit={change} guard={guard} notify={setNotice} close={()=>setMediaOpen(false)} /> : project.schemaVersion===4 && project.sections.find(s=>s.id===selected)?.authoring ? <BlockControls project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} mobile={mobile} /> : <Inspector
           project={project}
@@ -426,6 +471,8 @@ export default function Playground() {
           guard={guard}
         />}
       </div>
+      <DragOverlay>{draggingKind && <div className="pg-element-overlay">+ {draggingKind.charAt(0).toUpperCase() + draggingKind.slice(1)}</div>}</DragOverlay>
+      </DndContext>
       <footer className="pg-statusbar">
         <span>
           <Icon name={mobile ? "mobile" : "desktop"} />
@@ -435,13 +482,13 @@ export default function Playground() {
           {comparison
             ? "Saved variation"
             : editing
-              ? "Click a section to make it yours"
+              ? "Add an element or select one on the canvas"
               : "Visitor preview"}
         </span>
         <button disabled={!ready || !!comparison} onClick={() => void openExport()}>
           {warnings.length
             ? `${warnings.length} publishing notes`
-            : "Ready to export"}{" "}
+            : "Free starter pack"}{" "}
           ↗
         </button>
       </footer>
@@ -471,7 +518,7 @@ export default function Playground() {
           <br />
           with you.
         </h2>
-        <p>A working page. Every setting. Ready for your next step.</p>
+        <p>Your working draft and the files an AI assistant or development team can continue from.</p>
         <ul className="pg-export-list">
           <li>Standalone HTML, CSS & JavaScript</li>
           <li>Editable project & design tokens</li>
@@ -493,10 +540,11 @@ export default function Playground() {
           disabled={exporting || !ready || !!comparison}
           onClick={() => void exportZip()}
         >
-          {exporting ? "Preparing package…" : "Download page package"}
+          {exporting ? "Preparing package…" : "Download my free starter pack"}
           <Icon name="export" />
         </button>
-        <small>Free during the preview release. No account required.</small>
+        <small>Your design stays on this device until you choose to export or save it to an available account. No account or payment needed for this download.</small>
+        <div className="pg-export-next"><a href="/contact?from=playground#project-form" onClick={() => track('playground_contact_click')}>Want Brent to finish this? Send a project note ↗</a><p>Custom design and development are quoted after discovery. Your project is not attached automatically; share the ZIP only if you choose.</p><a href="/shop/cinematic-starter">Explore the separate $29 Cinematic Starter kit ↗</a></div>
         <button disabled={exporting || !ready || !!comparison} onClick={()=>{try{download(zipFiles(headerFiles(project)),'eidos-header.zip','application/zip');setNotice('Header component downloaded with installation instructions.');}catch(e){setNotice((e as Error).message);}}}>Download header component</button>
       </dialog>
     </div>
