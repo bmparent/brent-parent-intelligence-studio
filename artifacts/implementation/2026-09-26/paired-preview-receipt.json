@@ -26,14 +26,17 @@
     "sourceCommit": "1bbcab6bf1e2483d8a769bf12534039c397a994d",
     "vercelState": "READY",
     "githubQualityChecks": "passed",
-    "ownerConsoleRuntimeRevision": "unobserved_after_session_expiry"
+    "ownerConsoleRuntimeRevision": "1bbcab6bf1e2483d8a769bf12534039c397a994d"
   },
   "ownerConsole": {
     "url": "https://owner-preview.eidos-works.com",
-    "workerVersion": "2a6de528-d95f-40c9-a937-cec81258dd7c",
+    "workerVersion": "0301ce45-8bc2-45e2-b273-5a287215db70",
     "trafficPercent": 100,
     "exactHostAccessObserved": true,
-    "authenticatedOnThisExactPair": "pending_session_renewal",
+    "authenticatedOnThisExactPair": "overview_account_work_note_payments_and_services_observed_2026-09-26",
+    "releaseLink": "docs/implementation/ACCEPTANCE_2026-09-26.md_verified_after_worker_rollout",
+    "anonymousHtmlAndApiStatus": 302,
+    "disabledWorkersDevStatus": 404,
     "workersDevEnabled": false,
     "dgPromoPhotosAppOrPolicyChanged": false
   },
@@ -46,10 +49,13 @@
     "backendLatestGithubQuality": "passed",
     "hostedPublicChromium": "26_of_26_passed_viewport_emulation_only",
     "pairedContract": "76_of_76_matched_generated_worktree_hashes_site_base_3688ad8_backend_head_1bbcab6",
-    "snapshotLocalLiveProxySmoke": "passed_example_com_559_html_bytes"
+    "snapshotLocalLiveProxySmoke": "passed_example_com_559_html_bytes",
+    "ownerValidationDatabase": "healthy_4_members_8_open_work_items",
+    "ownerStripeTestReconciliation": "4_kit_rows_0_mismatches_in_observed_window_webhook_unavailable",
+    "ownerGoogleWorkNote": "saved_and_reopened_callback_registered_consent_pending"
   },
   "humanAndServiceGates": [
-    "private_owner_session_renewal_and_exact_pair_browser_acceptance",
+    "owner_exact_pair_accessibility_and_negative_mutation_acceptance",
     "personal_google_consent_and_account_boundaries",
     "new_stripe_test_checkout_webhook_archive_recovery_refund_dispute",
     "authenticated_playground_and_bounded_ai",
