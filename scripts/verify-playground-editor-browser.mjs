@@ -72,6 +72,7 @@ for (const engine of engines) {
       const legacy = { ...initial, schemaVersion: 1, sections: initial.sections.map(({ authoring, type, ...section }) => section) };
       const importInput = page.getByText('Import project', { exact: true }).locator('input');
       await importInput.setInputFiles({ name: 'legacy-project.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(legacy)) });
+      await until(async () => (await page.locator('.pg-toast').innerText()).includes('Project imported'), 'legacy fixture import');
       const original = await jsonDownload();
       assert.equal(original.schemaVersion, 1);
       await page.locator('[data-editor-release="local-spatial-2026-09-10"]').waitFor();

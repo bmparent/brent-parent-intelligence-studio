@@ -61,6 +61,7 @@ export default function Playground() {
   const sectionDrag = useRef<() => void>(() => {});
   useEffect(() => { sectionDrag.current(); return () => sectionDrag.current(); }, [project, documentId, comparison]);
   const warnings = [...projectWarnings(project),...imageNotes];
+  const dropSection = project.sections.find(section => section.id === selected && section.authoring);
   async function openExport(){const valid=guard();setImageNotes([]);dialog.current?.showModal();const notes=await imageWarnings(project);if(valid())setImageNotes(notes);}
   useEffect(() => {
     if (!notice) return;
@@ -450,7 +451,7 @@ export default function Playground() {
                 selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id}
                 editing={editing && !comparison}
                 mobile={mobile}
-                onSelect={id => { setMediaOpen(false); setSelected(id); }}
+                onSelect={id => { setMediaOpen(false); setSelected(id); setSelectedNode(''); }}
                 onLink={(href) =>
                   setNotice(
                     `This link opens ${href}. It will work normally in your exported page.`,
@@ -461,7 +462,7 @@ export default function Playground() {
               <div className="pg-loading">Opening your workspace…</div>
             )}
           </div>
-          <CanvasDropZone dragging={!!draggingKind && editing && !comparison} destination={project.sections.find(s => s.id === selected)?.title || 'your page'} />
+          <CanvasDropZone dragging={!!draggingKind && editing && !comparison} destination={dropSection ? labels[sectionKind(dropSection)] : 'Hero'} />
         </main>
         {mediaOpen ? <MediaBrand project={project} edit={change} guard={guard} notify={setNotice} close={()=>setMediaOpen(false)} /> : project.schemaVersion===4 && project.sections.find(s=>s.id===selected)?.authoring ? <BlockControls project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} mobile={mobile} /> : <Inspector
           project={project}
