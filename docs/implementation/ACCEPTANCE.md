@@ -2,6 +2,8 @@
 
 Current hosted release check: [2026-09-23 acceptance record](ACCEPTANCE_2026-09-23.md). It records the isolated public preview, 75-file parity, exact tested revisions, and provider-dependent gates still open.
 
+The separate owner console candidate and its connector/security inventory are recorded in [OWNER_CONSOLE.md](OWNER_CONSOLE.md). The exact-host Access app at `owner-preview.eidos-works.com`, owner subject, MFA requirement, paired preview backend, and isolated Worker are configured. Its `workers.dev` route is disabled. Anonymous requests are intercepted by Access. The owner enrolled a TOTP authenticator and signed in; the authenticated hosted browser observed Works data and completed controlled account/work actions with audit history. A read-only check of the connected owner Gmail inbox found a clearly labeled September 24 Eidos Works QA inquiry; the message was not attributable to this exact paired preview, and the console still has no server-side inbox grant. [The owner-console hosted receipt](../../artifacts/implementation/2026-09-24/owner-console-hosted-receipt.json) separates hosted checks from local negative security tests and open gates. The Cloudflare account's shared login domain still carries DG Promo Photos branding; changing it would affect the separate uploader application. This does not change the paired public release decision or close any provider-dependent gate.
+
 This is an unreleased Eidos Works implementation candidate. Local tests are evidence for local behavior; they are not production, inbox, device or paid-provider acceptance. The 50-row CSV is the item-level record. Research engine behavior was not changed.
 
 ## Implemented

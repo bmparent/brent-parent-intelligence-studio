@@ -1,0 +1,90 @@
+{
+  "dateUtc": "2026-09-26",
+  "decision": "public_release_no_go",
+  "site": {
+    "url": "https://eidosworks-test-20260923.pages.dev",
+    "deploymentId": "00024a26-e9bb-46db-9ec7-4bbb3ff11c16",
+    "uniqueUrl": "https://00024a26.eidosworks-test-20260923.pages.dev",
+    "sourceCommit": "3688ad81e4fc500887931860dec22db780b1a51f",
+    "stableAndUniqueRootHttpStatus": 200,
+    "stableAndUniqueRootHtmlSha256": "8753d5468436fba7eeed3f0be34e13aad2b5625ea7311f1eeacf1d11fa397840",
+    "sourceBuildDirtyFromGenerators": true,
+    "productionAliasChanged": false,
+    "publicConfig": {
+      "communityReady": true,
+      "accountsReady": true,
+      "passwordsReady": true,
+      "googleReady": true,
+      "aiReady": true,
+      "shopReady": true,
+      "localTest": false
+    }
+  },
+  "backend": {
+    "url": "https://eidos-sentinel-qicep692a-1brentbm-1876s-projects.vercel.app",
+    "deploymentId": "dpl_4B4HQaAbfyRAuiC6UPAXBjxRJHex",
+    "sourceCommit": "1bbcab6bf1e2483d8a769bf12534039c397a994d",
+    "vercelState": "READY",
+    "githubQualityChecks": "passed",
+    "ownerConsoleRuntimeRevision": "1bbcab6bf1e2483d8a769bf12534039c397a994d"
+  },
+  "ownerConsole": {
+    "url": "https://owner-preview.eidos-works.com",
+    "workerVersion": "13a2d910-cb9f-4e64-9124-13f10b9b0f9c",
+    "trafficPercent": 100,
+    "exactHostAccessObserved": true,
+    "authenticatedOnThisExactPair": "overview_account_work_note_payments_and_services_observed_2026-09-26",
+    "releaseLink": "docs/implementation/ACCEPTANCE_2026-09-26.md_verified_after_worker_rollout",
+    "anonymousHtmlAndApiStatus": 302,
+    "disabledWorkersDevStatus": 404,
+    "workersDevEnabled": false,
+    "dgPromoPhotosAppOrPolicyChanged": false
+  },
+  "checks": {
+    "siteBuild": "passed",
+    "sitePrerender": "passed",
+    "siteAuditTests": "35_passed",
+    "ownerConsoleTests": "5_passed",
+    "backendFocusedCaptureAndOperations": "9_passed",
+    "backendFullSuitesOnExactHead": "16_js_plus_60_ts_passed",
+    "backendLatestGithubQuality": "passed",
+    "hostedPublicChromium": "26_of_26_passed_viewport_emulation_only",
+    "hostedPublicChromiumCurrentDeploymentArtifact": "artifacts/implementation/2026-09-26/hosted-public-after-mailer/hosted-public-browser.json",
+    "pairedContract": "76_of_76_matched_generated_worktree_hashes_site_base_3688ad8_backend_head_1bbcab6",
+    "snapshotLocalLiveProxySmoke": "passed_example_com_559_html_bytes",
+    "ownerValidationDatabase": "healthy_4_members_7_open_work_items_after_inbox_completion",
+    "ownerStripeTestReconciliation": "4_kit_rows_0_mismatches_in_observed_window_webhook_unavailable",
+    "ownerGoogleWorkNote": "saved_and_reopened_callback_registered_consent_pending",
+    "ownerNarrowKeyboardMenu": "enter_opens_focus_overview_escape_closes_focus_menu",
+    "ownerControlledAccountMutations": "wrong_id_denied_suspend_restore_username_collision_denied_temporary_username_restored_revoke_zero_sessions_audit_success",
+    "ownerInboxWorkNoteAndDoneStatus": "saved_and_audited_on_release_inbox",
+    "ownerReleaseGateLabel": "authoritative_inbox_crm_reads_inside_owner_console_blocked"
+  },
+  "providerObservations": {
+    "cloudflarePagesLatestDeploymentConfirmed": "00024a26-e9bb-46db-9ec7-4bbb3ff11c16",
+    "exactPreviewInquiryDeliveryConfigured": true,
+    "exactPreviewPrivateMailerConfigured": true,
+    "existingPrivateInquiryMailerVersion": "2ab25d22-171a-4641-821d-ebc42aee7168",
+    "qaInquirySubmittedOnExactPreview": true,
+    "qaInquiryState": "sent",
+    "qaInquiryReceipt": "0e3889e4-dd3c-4a7c-85c9-4d50df63b003",
+    "qaInquiryMeasurementRecorded": false,
+    "studioGmailMessageId": "1a0df68e126aa6dd",
+    "studioGmailReceiptAndQaMarkerMatched": true,
+    "vercelGroupedRuntimeErrorsLastDay": 0,
+    "vercelDeploymentPreviewStatusCounts": { "200": 10, "201": 1, "405": 1 },
+    "providerReadScope": "read_only_external_to_hosted_console"
+  },
+  "humanAndServiceGates": [
+    "owner_exact_pair_accessibility_and_negative_mutation_acceptance",
+    "personal_google_consent_and_account_boundaries",
+    "new_stripe_test_checkout_webhook_archive_recovery_refund_dispute",
+    "authenticated_playground_and_bounded_ai",
+    "physical_phone_actual_zoom_screen_reader",
+    "snapshot_hosted_egress_budget_storage_retention_and_fulfillment",
+    "restricted_hosted_read_grants_for_disconnected_sources"
+  ],
+  "snapshotGenerationEnabled": false,
+  "snapshotCaptureApproved": false,
+  "livePaymentAttempted": false
+}

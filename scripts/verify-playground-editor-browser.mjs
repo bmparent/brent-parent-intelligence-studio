@@ -88,7 +88,8 @@ for (const engine of engines) {
       const accountDetails = page.locator('details.pg-project-tools').filter({ has: page.locator('summary', { hasText: /^Account projects$/ }) });
       await accountDetails.locator('summary').filter({hasText:/^Account projects$/}).click();
       assert.equal(await accountDetails.getByRole('link', { name: 'Sign in with your Eidos account', exact: true }).isVisible(), true);
-      assert.equal(await accountDetails.getByRole('button', { name: 'Import into my account', exact: true }).isEnabled(), true);
+      assert.equal(await accountDetails.getByRole('button', { name: 'Import into my account', exact: true }).isEnabled(), false);
+      assert.ok((await accountDetails.innerText()).includes('Local only'));
       assert.ok((await accountDetails.innerText()).includes('Your design stays on this device until an account save succeeds'));
       await accountDetails.locator('summary').filter({hasText:/^Account projects$/}).click();
       // Server default-off format and ownership gates are tested in test-playground-authoring-cloud.ts.
@@ -173,8 +174,8 @@ for (const engine of engines) {
       await until(async () => await frame.locator('.pg-compose-handle').count() === 0, 'Try page removes handles');
       await page.screenshot({ path: path.join(output, name + '-try.png'), fullPage: false });
       assert.equal(record.errors.length, 0, record.errors.join('\n'));
-      assert.equal(record.requests.length, 0, 'manual editing must not contact Playground accounts, purchases or AI');
-      check('Try page removes authoring UI, zero page exceptions and zero Playground API/provider requests');
+      assert.ok(record.requests.every(request => request.method === 'GET' && new URL(request.url).pathname === '/api/playground/projects'), 'manual editing may only read the account project list');
+      check('Try page removes authoring UI, zero page exceptions and no Playground mutation, purchase or AI requests');
       record.passed = true;
     } catch (error) {
       record.passed = false; record.failure = error.stack || String(error);

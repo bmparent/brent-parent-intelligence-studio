@@ -12,10 +12,11 @@ if (manifest.files.length !== 75 || new Set(manifest.files.map(file => file.path
   throw Error('The expected 75-file contract manifest is incomplete or duplicated.');
 }
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
+const contractFiles = [...manifest.files, { path: 'migrations/0007_operations.sql', normalization: 'UTF-8 LF' }];
 const exactRevisions = Boolean(process.env.SITE_REVISION && process.env.BACKEND_REVISION);
 const readGitBlob = (cwd, revision, path) => execFileSync('git', ['show', `${revision}:${path}`], { cwd, maxBuffer: 8_000_000 });
 const checks = [];
-for (const { path, normalization } of manifest.files) {
+for (const { path, normalization } of contractFiles) {
   const source = exactRevisions ? readGitBlob(process.cwd(), process.env.SITE_REVISION, path) : await readFile(resolve(path));
   const vendor = exactRevisions
     ? readGitBlob(resolve(backend, '../..'), process.env.BACKEND_REVISION, `apps/sentinel-lab/lib/works/vendor/${path}`)
