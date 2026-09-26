@@ -1,0 +1,63 @@
+{
+  "dateUtc": "2026-09-26",
+  "decision": "public_release_no_go",
+  "site": {
+    "url": "https://eidosworks-test-20260923.pages.dev",
+    "deploymentId": "7a88eaab-84b5-4249-9711-33465d314bb8",
+    "uniqueUrl": "https://7a88eaab.eidosworks-test-20260923.pages.dev",
+    "sourceCommit": "3688ad81e4fc500887931860dec22db780b1a51f",
+    "stableAndUniqueRootHttpStatus": 200,
+    "stableAndUniqueRootHtmlSha256": "8753d5468436fba7eeed3f0be34e13aad2b5625ea7311f1eeacf1d11fa397840",
+    "sourceBuildDirtyFromGenerators": true,
+    "productionAliasChanged": false,
+    "publicConfig": {
+      "communityReady": true,
+      "accountsReady": true,
+      "passwordsReady": true,
+      "googleReady": true,
+      "aiReady": true,
+      "shopReady": true,
+      "localTest": false
+    }
+  },
+  "backend": {
+    "url": "https://eidos-sentinel-qicep692a-1brentbm-1876s-projects.vercel.app",
+    "deploymentId": "dpl_4B4HQaAbfyRAuiC6UPAXBjxRJHex",
+    "sourceCommit": "1bbcab6bf1e2483d8a769bf12534039c397a994d",
+    "vercelState": "READY",
+    "githubQualityChecks": "passed",
+    "ownerConsoleRuntimeRevision": "unobserved_after_session_expiry"
+  },
+  "ownerConsole": {
+    "url": "https://owner-preview.eidos-works.com",
+    "workerVersion": "2a6de528-d95f-40c9-a937-cec81258dd7c",
+    "trafficPercent": 100,
+    "exactHostAccessObserved": true,
+    "authenticatedOnThisExactPair": "pending_session_renewal",
+    "workersDevEnabled": false,
+    "dgPromoPhotosAppOrPolicyChanged": false
+  },
+  "checks": {
+    "siteBuild": "passed",
+    "sitePrerender": "passed",
+    "siteAuditTests": "35_passed",
+    "ownerConsoleTests": "5_passed",
+    "backendFocusedCaptureAndOperations": "9_passed",
+    "backendLatestGithubQuality": "passed",
+    "hostedPublicChromium": "26_of_26_passed_viewport_emulation_only",
+    "pairedContract": "76_of_76_matched_generated_worktree_hashes_site_base_3688ad8_backend_head_1bbcab6",
+    "snapshotLocalLiveProxySmoke": "passed_example_com_559_html_bytes"
+  },
+  "humanAndServiceGates": [
+    "private_owner_session_renewal_and_exact_pair_browser_acceptance",
+    "personal_google_consent_and_account_boundaries",
+    "new_stripe_test_checkout_webhook_archive_recovery_refund_dispute",
+    "authenticated_playground_and_bounded_ai",
+    "physical_phone_actual_zoom_screen_reader",
+    "snapshot_hosted_egress_budget_storage_retention_and_fulfillment",
+    "restricted_hosted_read_grants_for_disconnected_sources"
+  ],
+  "snapshotGenerationEnabled": false,
+  "snapshotCaptureApproved": false,
+  "livePaymentAttempted": false
+}

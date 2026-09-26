@@ -9,7 +9,7 @@
   "vars": {
     "EIDOS_OPS_ENVIRONMENT": "preview",
     "EIDOS_OPS_HOST": "owner-preview.eidos-works.com",
-    "EIDOS_PLATFORM_URL": "https://eidos-sentinel-irfdtg9wq-1brentbm-1876s-projects.vercel.app",
+    "EIDOS_PLATFORM_URL": "https://eidos-sentinel-qicep692a-1brentbm-1876s-projects.vercel.app",
     "EIDOS_SITE_PREVIEW_URL": "https://eidosworks-test-20260923.pages.dev"
   }
 }
