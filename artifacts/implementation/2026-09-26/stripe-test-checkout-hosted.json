@@ -1,0 +1,61 @@
+{
+  "checkedAtUtc": "2026-09-26T23:26:32Z",
+  "scope": "isolated paired preview; Stripe TEST only",
+  "status": "new_test_purchase_and_download_passed_remaining_lifecycle_checks_open",
+  "candidate": {
+    "siteUrl": "https://eidosworks-test-20260923.pages.dev",
+    "siteDeploymentId": "00024a26-e9bb-46db-9ec7-4bbb3ff11c16",
+    "siteSourceCommit": "3688ad81e4fc500887931860dec22db780b1a51f",
+    "backendSourceCommitObservedByOwnerConsole": "1bbcab6bf1e2483d8a769bf12534039c397a994d",
+    "ownerConsoleUrl": "https://owner-preview.eidos-works.com"
+  },
+  "stripeTest": {
+    "dashboardAccount": "Brent Parent",
+    "mode": "test",
+    "paymentIntentId": "pi_3UK4npKC8pRG5Tr90oTRZSaq",
+    "product": "Eidos Cinematic Starter — one website license",
+    "amountCents": 2900,
+    "currency": "usd",
+    "paymentStatus": "succeeded",
+    "paymentObservedLocal": "2026-09-26 19:14 America/New_York",
+    "priorAttemptStatus": "expired",
+    "priorAttemptCreatedLocal": "2026-09-26 16:20 America/New_York"
+  },
+  "worksValidationLedger": {
+    "orderId": "8043cdca-2efc-481f-a4ee-c29a672bb916",
+    "status": "paid",
+    "createdLocal": "2026-09-26 19:14:05 America/New_York",
+    "paidLocal": "2026-09-26 19:14:47 America/New_York",
+    "boundedStripeTestReconciliation": "provider_succeeded_ledger_paid_zero_observed_mismatches",
+    "checkoutOutcome": "accepted_twice_on_2026-09-26_including_prior_expired_attempt",
+    "webhookOutcome": "four_accepted_on_2026-09-26_last_at_19:14:49_local_aggregate_not_an_event_delivery_receipt",
+    "downloadOutcome": "one_accepted_on_2026-09-26_at_19:14:57_local"
+  },
+  "downloadedArchive": {
+    "localFilename": "eidos-cinematic-starter-v1 (2).zip",
+    "localLastWriteUtc": "2026-09-26T23:15:14Z",
+    "bytes": 6012,
+    "sha256": "c5723e4908f8aff386f50ec41c59dfa673a8e4280c46f2eed2399e30ee5f7988",
+    "zipIntegrity": "passed_python_m_zipfile_t",
+    "fileCount": 5,
+    "files": [
+      "eidos-cinematic-starter/index.html",
+      "eidos-cinematic-starter/styles.css",
+      "eidos-cinematic-starter/script.js",
+      "eidos-cinematic-starter/README.md",
+      "eidos-cinematic-starter/LICENSE.txt"
+    ],
+    "matchesSeptember23ArchiveSha256": true,
+    "archiveCopiedIntoRepository": false
+  },
+  "evidenceBoundaries": {
+    "successPage": "Chrome tab title and /shop/success route observed; page body could not be read after browser control detached",
+    "stripeWebhookDelivery": "provider_event_delivery_id_and_status_unavailable",
+    "signedWebhookProcessing": "paid_ledger_and_accepted_site_outcomes_observed; exact_signed_event_receipt_not_captured",
+    "guestEmailRecovery": "not_tested",
+    "webhookReplay": "not_tested_on_new_order",
+    "refundAndDisputeRevocation": "not_tested_on_new_order",
+    "livePayment": "not_attempted",
+    "productionRelease": "not_approved"
+  }
+}
