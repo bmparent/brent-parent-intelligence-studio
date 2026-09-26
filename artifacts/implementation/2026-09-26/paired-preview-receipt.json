@@ -30,7 +30,7 @@
   },
   "ownerConsole": {
     "url": "https://owner-preview.eidos-works.com",
-    "workerVersion": "0301ce45-8bc2-45e2-b273-5a287215db70",
+    "workerVersion": "13a2d910-cb9f-4e64-9124-13f10b9b0f9c",
     "trafficPercent": 100,
     "exactHostAccessObserved": true,
     "authenticatedOnThisExactPair": "overview_account_work_note_payments_and_services_observed_2026-09-26",
@@ -52,10 +52,13 @@
     "hostedPublicChromiumCurrentDeploymentArtifact": "artifacts/implementation/2026-09-26/hosted-public-after-mailer/hosted-public-browser.json",
     "pairedContract": "76_of_76_matched_generated_worktree_hashes_site_base_3688ad8_backend_head_1bbcab6",
     "snapshotLocalLiveProxySmoke": "passed_example_com_559_html_bytes",
-    "ownerValidationDatabase": "healthy_4_members_8_open_work_items",
+    "ownerValidationDatabase": "healthy_4_members_7_open_work_items_after_inbox_completion",
     "ownerStripeTestReconciliation": "4_kit_rows_0_mismatches_in_observed_window_webhook_unavailable",
     "ownerGoogleWorkNote": "saved_and_reopened_callback_registered_consent_pending",
-    "ownerNarrowKeyboardMenu": "enter_opens_focus_overview_escape_closes_focus_menu"
+    "ownerNarrowKeyboardMenu": "enter_opens_focus_overview_escape_closes_focus_menu",
+    "ownerControlledAccountMutations": "wrong_id_denied_suspend_restore_username_collision_denied_temporary_username_restored_revoke_zero_sessions_audit_success",
+    "ownerInboxWorkNoteAndDoneStatus": "saved_and_audited_on_release_inbox",
+    "ownerReleaseGateLabel": "authoritative_inbox_crm_reads_inside_owner_console_blocked"
   },
   "providerObservations": {
     "cloudflarePagesLatestDeploymentConfirmed": "00024a26-e9bb-46db-9ec7-4bbb3ff11c16",
