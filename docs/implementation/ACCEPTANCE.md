@@ -2,7 +2,7 @@
 
 ## Combined review candidate — 2026-09-27
 
-The site integration combines the audit candidate, security sprint, Playground journey, owner console and growth-team heads, then merges the current `main` editorial content. The paired backend combines its owner-console and security-sprint heads. See [the September 27 integration record](ACCEPTANCE_2026-09-27.md) for exact parents, local verification and still-open hosted gates. This source combination has **not** been deployed to an isolated paired preview or production. Earlier hosted receipts below belong to different revisions; none may be treated as acceptance of the combined tree.
+The site integration combines the audit candidate, security sprint, Playground journey, latest owner console including daily refresh, and growth-team heads, then merges the current `main` editorial content. The paired backend combines its owner-console and security-sprint heads. See [the September 27 integration record](ACCEPTANCE_2026-09-27.md) for exact parents, local verification and still-open hosted gates. This source combination has **not** been deployed to an isolated paired preview or production. Earlier hosted receipts below belong to different revisions; none may be treated as acceptance of the combined tree.
 
 ## Playground entry and handoff candidate — 2026-09-26
 

@@ -19,6 +19,7 @@ test('owner Worker denies missing, forged, expired and different-subject JWTs be
   try {
     assert.equal((await worker.fetch(make('/'),env)).status,403);
     assert.equal((await worker.fetch(make('/api/sources/github','forged'),env)).status,403);
+    assert.equal((await worker.fetch(make('/api/sources/daily-refresh'),env)).status,403);
     assert.equal((await worker.fetch(make('/',await sign('owner-123','-1s')),env)).status,403);
     assert.equal((await worker.fetch(make('/api/sources/github',await sign('other-123')),env)).status,403);
     assert.equal((await worker.fetch(new Request('https://owner.example.workers.dev/',{headers:{'cf-access-jwt-assertion':await sign('owner-123')}}),env)).status,403);
