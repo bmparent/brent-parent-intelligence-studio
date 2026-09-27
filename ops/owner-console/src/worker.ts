@@ -2,8 +2,9 @@ import { createRemoteJWKSet, jwtVerify } from 'jose';
 import { html } from './ui';
 import { readGithub } from './github';
 import { readDeployments } from './deployments';
+import { readDailyRefresh, runDailyRefresh, type DailyRefreshEnv } from './dailyRefresh';
 
-interface Env {
+interface Env extends DailyRefreshEnv {
   EIDOS_OPS_HOST:string;
   EIDOS_OPS_ACCESS_TEAM?:string;
   EIDOS_OPS_ACCESS_AUD?:string;
@@ -44,6 +45,10 @@ export default {async fetch(request:Request,env:Env):Promise<Response> {
   }
   if (url.pathname==='/api/sources/deployments' && request.method==='GET')
     return response(await readDeployments(env),200);
+  if (url.pathname==='/api/sources/daily-refresh' && request.method==='GET') {
+    try { return response({status:'healthy',data:await readDailyRefresh(env.EIDOS_OWNER_REFRESH)},200); }
+    catch { return response({status:'unavailable',errorCode:'daily_refresh_store_unavailable'},503); }
+  }
   if (url.pathname==='/api/operations' && ['GET','POST'].includes(request.method)) {
     if (!env.EIDOS_PLATFORM_URL || !env.EIDOS_PLATFORM_TOKEN || env.EIDOS_PLATFORM_TOKEN.length<32) return response({error:'Backend connector unavailable.'},503);
     let target:URL;
@@ -63,4 +68,7 @@ export default {async fetch(request:Request,env:Env):Promise<Response> {
     } catch { return response({error:'Backend connector timeout or unavailable.'},503); }
   }
   return response({error:'Not found.'},404);
+},
+async scheduled(_controller: ScheduledController, env: Env): Promise<void> {
+  await runDailyRefresh(env);
 }};

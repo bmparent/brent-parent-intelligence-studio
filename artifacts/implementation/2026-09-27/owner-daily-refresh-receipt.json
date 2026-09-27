@@ -1,0 +1,38 @@
+{
+  "kind": "Eidos Works private owner preview daily refresh implementation receipt",
+  "recordedAtUtc": "2026-09-27T21:52:42Z",
+  "host": "https://owner-preview.eidos-works.com",
+  "worker": {
+    "name": "eidos-works-owner-preview",
+    "versionId": "7c0aa6da-999c-42e1-9abb-e16c6250e1dc",
+    "deploymentId": "9e183f59-e950-4669-b5bf-712a4259c219",
+    "trafficPercentage": 100,
+    "cronUtc": "15 3 * * *",
+    "scheduleVerifiedBy": "Cloudflare API read after Wrangler deployment",
+    "isolatedKvNamespace": "eidos-works-owner-preview-refresh",
+    "kvNamespaceId": "78fb41e1fb3d401f94f6c661a8ec1a10",
+    "existingSecretsPreserved": [
+      "EIDOS_OPS_ACCESS_AUD",
+      "EIDOS_OPS_ACCESS_TEAM",
+      "EIDOS_OPS_OWNER_EMAIL",
+      "EIDOS_OPS_OWNER_SUB",
+      "EIDOS_PLATFORM_PREVIEW_BYPASS",
+      "EIDOS_PLATFORM_TOKEN"
+    ]
+  },
+  "checks": {
+    "ownerConsoleUnit": "7 passed, 0 failed",
+    "siteTypecheck": "passed",
+    "workerDryRunBuild": "passed, KV binding present",
+    "localBrowserFixture": "manual refresh, 15-minute automatic refresh, failure preservation, checkpoint display passed",
+    "anonymousHostAndApi": "HTTP 302 to Cloudflare Access",
+    "authenticatedHostedBrowser": "pending owner MFA; local fixture is not hosted acceptance",
+    "firstScheduledExecution": "pending the next 03:15 UTC trigger"
+  },
+  "scope": {
+    "browserRefresh": "Authenticated source reads on open, every 15 minutes while visible, and on return from a hidden tab after 15 minutes",
+    "dailyScheduled": "Public GitHub metadata and exact preview HTTP availability only; status and timestamps stored in KV",
+    "disconnected": "Inbox/CRM, Drive/Sheets, GA4/Search Console, AI usage, and LIVE Stripe remain not configured"
+  },
+  "productionRelease": "unchanged; public release remains NO-GO"
+}

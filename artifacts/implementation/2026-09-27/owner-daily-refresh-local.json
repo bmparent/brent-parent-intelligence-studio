@@ -1,0 +1,8 @@
+{
+  "kind": "local fixture, not hosted integration",
+  "reads": 4,
+  "manualRefresh": "passed",
+  "failureRetainsLastSuccess": "passed",
+  "automaticRefresh": "passed",
+  "dailyCheckpointDisplay": "passed"
+}
