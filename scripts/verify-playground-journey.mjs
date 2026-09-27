@@ -18,10 +18,20 @@ for (const width of [1440, 390]) {
     await panel('Your page');
     const tools = page.locator('details.pg-project-tools').filter({ has: page.locator('summary', { hasText: 'Projects & variations' }) });
     if (!await tools.evaluate(element => element.open)) await tools.locator('summary').click();
-    const download = page.waitForEvent('download');
+    const download = page.waitForEvent('download', { timeout: 10_000 });
     await tools.getByRole('button', { name: 'Download project JSON' }).click();
+    const notice = await page.locator('.pg-toast').allTextContents();
     const chunks = [];
-    for await (const chunk of await (await download).createReadStream()) chunks.push(chunk);
+    let result;
+    try { result = await download; }
+    catch (error) {
+      const state = await page.locator('.pg-app').evaluate(element => ({ panel: element.dataset.panel,
+        projectToolsOpen: element.querySelector('details.pg-project-tools')?.open,
+        saveStatus: element.querySelector('.pg-save-status')?.textContent?.trim(),
+        notice: element.querySelector('.pg-toast')?.textContent?.trim() }));
+      throw new Error(`Project JSON download failed at ${width}px: ${JSON.stringify({ state, notice, errors })}`, { cause: error });
+    }
+    for await (const chunk of await result.createReadStream()) chunks.push(chunk);
     return JSON.parse(Buffer.concat(chunks).toString('utf8'));
   }
   try {
