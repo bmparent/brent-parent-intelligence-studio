@@ -13,24 +13,31 @@ for (const width of [1440, 390]) {
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  async function panel(name) { if (width < 850) await page.getByRole('navigation', { name: 'Workspace panels' }).getByRole('button', { name }).click(); }
+  async function panel(name) {
+    if (width >= 850) return;
+    await page.getByRole('navigation', { name: 'Workspace panels' }).getByRole('button', { name }).click();
+    const view = { 'Your page': 'sections', Preview: 'canvas' }[name];
+    await page.locator(`.pg-app[data-panel="${view}"]`).waitFor();
+  }
   async function project() {
     await panel('Your page');
     const tools = page.locator('details.pg-project-tools').filter({ has: page.locator('summary', { hasText: 'Projects & variations' }) });
     if (!await tools.evaluate(element => element.open)) await tools.locator('summary').click();
-    const download = page.waitForEvent('download', { timeout: 10_000 });
-    await tools.getByRole('button', { name: 'Download project JSON' }).click();
-    const notice = await page.locator('.pg-toast').allTextContents();
-    const chunks = [];
     let result;
-    try { result = await download; }
+    try {
+      [result] = await Promise.all([
+        page.waitForEvent('download', { timeout: 12_000 }),
+        tools.getByRole('button', { name: 'Download project JSON' }).click({ timeout: 10_000 }),
+      ]);
+    }
     catch (error) {
       const state = await page.locator('.pg-app').evaluate(element => ({ panel: element.dataset.panel,
         projectToolsOpen: element.querySelector('details.pg-project-tools')?.open,
         saveStatus: element.querySelector('.pg-save-status')?.textContent?.trim(),
         notice: element.querySelector('.pg-toast')?.textContent?.trim() }));
-      throw new Error(`Project JSON download failed at ${width}px: ${JSON.stringify({ state, notice, errors })}`, { cause: error });
+      throw new Error(`Project JSON download failed at ${width}px: ${JSON.stringify({ state, errors })}`, { cause: error });
     }
+    const chunks = [];
     for await (const chunk of await result.createReadStream()) chunks.push(chunk);
     return JSON.parse(Buffer.concat(chunks).toString('utf8'));
   }
@@ -48,6 +55,8 @@ for (const width of [1440, 390]) {
     const grip = page.getByRole('button', { name: 'Drag Text into page structure or onto canvas' });
     const slot = page.locator('.pg-block-tree .pg-element-slot').filter({ hasText: '' }).first();
     await grip.dragTo(slot);
+    // The drop moves the mobile UI to Preview; wait for that commit before reopening Your page.
+    if (width < 850) await page.locator('.pg-app[data-panel="canvas"]').waitFor();
     const afterDrag = await project();
     assert.equal(afterDrag.sections.find(section => section.id === 'hero').authoring.root.children[0].type, 'text');
     assert.equal(afterDrag.sections.find(section => section.id === 'hero').authoring.root.children[1].id, first);
