@@ -6,6 +6,10 @@
   "routes": [
     { "pattern": "owner-preview.eidos-works.com", "custom_domain": true }
   ],
+  "triggers": { "crons": ["15 3 * * *"] },
+  "kv_namespaces": [
+    { "binding": "EIDOS_OWNER_REFRESH", "id": "78fb41e1fb3d401f94f6c661a8ec1a10" }
+  ],
   "vars": {
     "EIDOS_OPS_ENVIRONMENT": "preview",
     "EIDOS_OPS_HOST": "owner-preview.eidos-works.com",
