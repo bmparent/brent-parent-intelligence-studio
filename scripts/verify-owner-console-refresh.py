@@ -5,7 +5,7 @@ from threading import Thread
 import json
 import re
 
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 root = Path(__file__).resolve().parents[1]
 source = (root / "ops/owner-console/src/ui.ts").read_text(encoding="utf-8")
@@ -65,13 +65,13 @@ try:
         page.clock.install()
         page.goto(url)
         page.get_by_text("Members").wait_for()
-        assert page.locator(".metric").nth(1).locator("strong").inner_text() == "1"
+        expect(page.locator(".metric").nth(1).locator("strong")).to_have_text("1")
         page.get_by_role("button", name="Refresh now").click()
-        assert page.locator(".metric").nth(1).locator("strong").inner_text() == "2"
+        expect(page.locator(".metric").nth(1).locator("strong")).to_have_text("2")
         state["fail"] = True
         page.get_by_role("button", name="Refresh now").click()
         page.get_by_text("Refresh failed:", exact=False).wait_for()
-        assert page.locator(".metric").nth(1).locator("strong").inner_text() == "2"
+        expect(page.locator(".metric").nth(1).locator("strong")).to_have_text("2")
         assert "refresh failed" in page.locator("#environment").inner_text()
         state["fail"] = False
         page.clock.fast_forward(15 * 60 * 1000 + 60 * 1000)
@@ -81,9 +81,15 @@ try:
         page.get_by_text("Daily scheduled check").wait_for()
         assert "last fully healthy" in page.locator("#content").inner_text().lower()
         page.screenshot(path=str(output / "owner-daily-refresh-local.png"), full_page=True)
+        phone = browser.new_page(viewport={"width": 390, "height": 844}, reduced_motion="reduce")
+        phone.goto(url)
+        phone.get_by_role("button", name="Refresh now").wait_for()
+        assert not phone.evaluate("document.documentElement.scrollWidth > window.innerWidth")
+        phone.screenshot(path=str(output / "owner-daily-refresh-mobile.png"), full_page=True)
         results = {"kind": "local fixture, not hosted integration", "reads": state["reads"],
                    "manualRefresh": "passed", "failureRetainsLastSuccess": "passed",
-                   "automaticRefresh": "passed", "dailyCheckpointDisplay": "passed"}
+                   "automaticRefresh": "passed", "dailyCheckpointDisplay": "passed",
+                   "mobileOverflow": "none at 390px"}
         browser.close()
 finally:
     server.shutdown()

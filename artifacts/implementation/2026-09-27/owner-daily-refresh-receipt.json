@@ -1,11 +1,11 @@
 {
   "kind": "Eidos Works private owner preview daily refresh implementation receipt",
-  "recordedAtUtc": "2026-09-27T21:52:42Z",
+  "recordedAtUtc": "2026-09-27T21:58:12Z",
   "host": "https://owner-preview.eidos-works.com",
   "worker": {
     "name": "eidos-works-owner-preview",
-    "versionId": "7c0aa6da-999c-42e1-9abb-e16c6250e1dc",
-    "deploymentId": "9e183f59-e950-4669-b5bf-712a4259c219",
+    "versionId": "0dae07a9-cb35-400e-8326-b52972c09e2d",
+    "deploymentId": "7a34a197-b647-4ff6-9464-c50cec5ccc1a",
     "trafficPercentage": 100,
     "cronUtc": "15 3 * * *",
     "scheduleVerifiedBy": "Cloudflare API read after Wrangler deployment",
@@ -24,7 +24,7 @@
     "ownerConsoleUnit": "7 passed, 0 failed",
     "siteTypecheck": "passed",
     "workerDryRunBuild": "passed, KV binding present",
-    "localBrowserFixture": "manual refresh, 15-minute automatic refresh, failure preservation, checkpoint display passed",
+    "localBrowserFixture": "manual refresh, 15-minute automatic refresh, failure preservation, checkpoint display, and 390px mobile overflow check passed",
     "anonymousHostAndApi": "HTTP 302 to Cloudflare Access",
     "authenticatedHostedBrowser": "pending owner MFA; local fixture is not hosted acceptance",
     "firstScheduledExecution": "pending the next 03:15 UTC trigger"
