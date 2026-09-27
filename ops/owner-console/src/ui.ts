@@ -6,7 +6,7 @@ export const html = `<!doctype html><html lang="en"><head><meta charset="utf-8">
 const $=s=>document.querySelector(s),ce=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n};let snapshot=null,view='overview',searchPage=0,searchTerm='',selected=null,refreshTask=null,lastRefreshAttempt=0,refreshFailed=false;
 const AUTO_REFRESH_MS=15*60*1000;
 const titles={overview:'Overview',work:'Work queue',accounts:'Accounts',inquiries:'Inquiries',payments:'Payments & usage',agents:'Agents & automations',artifacts:'Artifacts & logs',directory:'Service directory',services:'Services & security',releases:'Site & releases'};
-const directory=${JSON.stringify(directory)};
+const directory=${JSON.stringify(directory).replace(/</g, '\\u003c')};
 async function api(body){const init=body?{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}:{};const r=await fetch('/api/operations',init);const data=await r.json();if(!r.ok)throw Error(data.error||'Source unavailable');return data}
 function showError(msg){$('#error').replaceChildren(ce('div','notice',msg))}function clearError(){$('#error').replaceChildren()}
 function tag(value){const t=ce('span','tag '+String(value).replace(/[^a-z_]/g,''),value||'unknown');return t}function fmt(s){if(!s)return 'Unknown';const d=new Date(s);return Number.isNaN(+d)?String(s):d.toLocaleString()}
