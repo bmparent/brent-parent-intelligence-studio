@@ -6,7 +6,7 @@ import type { SnapshotEnv, SnapshotRecord } from './types'
 const remedy = 'The written report is available, but the concept image could not be delivered. Contact snapshot@eidos-works.com with your checkout email for a delivery review or refund request.'
 export function snapshotReady(env: SnapshotEnv) {
   const daily = Number(env.SNAPSHOT_DAILY_ALLOWANCE_CENTS || 0), cost = Number(env.SNAPSHOT_MAX_JOB_COST_CENTS || 0)
-  return Boolean(env.SNAPSHOT_DB && env.SNAPSHOT_OBJECTS && env.SNAPSHOT_GENERATION_ENABLED === 'true' && env.SNAPSHOT_CAPTURE_APPROVED === 'true' && env.OPENAI_TEXT_MODEL && env.OPENAI_IMAGE_MODEL && (env.OPENAI_SNAPSHOT_API_KEY || env.OPENAI_API_KEY) && Number.isSafeInteger(daily) && Number.isSafeInteger(cost) && cost > 0 && daily >= cost)
+  return Boolean(env.SNAPSHOT_DB && env.SNAPSHOT_OBJECTS && env.SNAPSHOT_GENERATION_ENABLED === 'true' && env.SNAPSHOT_CAPTURE_APPROVED === 'true' && env.SNAPSHOT_CAPTURE_PROXY_URL?.startsWith('https://') && env.SNAPSHOT_CAPTURE_PROXY_TOKEN && env.OPENAI_TEXT_MODEL && env.OPENAI_IMAGE_MODEL && (env.OPENAI_SNAPSHOT_API_KEY || env.OPENAI_API_KEY) && Number.isSafeInteger(daily) && Number.isSafeInteger(cost) && cost > 0 && daily >= cost)
 }
 export async function checksum(bytes: Uint8Array) {
   return [...new Uint8Array(await crypto.subtle.digest('SHA-256', new Uint8Array(bytes)))].map(n=>n.toString(16).padStart(2,'0')).join('')
@@ -40,7 +40,7 @@ export async function generateSnapshot(requestId: string, store: SnapshotStore, 
   try {
     record = {...record,status:'processing',processingStartedAt:new Date().toISOString()}
     await store.save(record)
-    const capture = await capturePublicPage(record.intake.websiteUrl)
+    const capture = await capturePublicPage(record.intake.websiteUrl, env)
     await startStage('report',env.OPENAI_TEXT_MODEL!)
     const report = await generateStructuredReport(env,record.intake,capture.page)
     await finishStage('report')

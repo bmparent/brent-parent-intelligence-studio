@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-09-23T23-24-53-midday",
+  "slot": "midday",
+  "started_at_utc": "2026-09-23T23:24:53.077Z",
+  "cwd": "C:\\Users\\bmpar\\.codex\\worktrees\\insights-wed-20260923\\brent-parent-intelligence-studio-live",
+  "git_commit_before": "af22c30182984134b5ec1418ed4ffc547f2541c5",
+  "commands": [
+    {
+      "command": "npm run content:generate",
+      "code": 0,
+      "started_at_utc": "2026-09-23T23:24:53.378Z",
+      "finished_at_utc": "2026-09-23T23:24:55.825Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 content:generate\n> node scripts/generate-insights-assets.mjs\n\nGenerated sitemap, feed, llms.txt, and 17 article OG images for https://eidos-works.com.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run validate:insights",
+      "code": 1,
+      "started_at_utc": "2026-09-23T23:24:55.825Z",
+      "finished_at_utc": "2026-09-23T23:25:12.755Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 validate:insights\n> node scripts/validate-insights.mjs\n\n",
+      "stderr": "Insights validation failed:\n- mobile-storefront-filters-safe-reversible-choices: missing required section \"what this means for your site\".\n"
+    }
+  ],
+  "status": "failed",
+  "failure": "npm run validate:insights exited with 1",
+  "finished_at_utc": "2026-09-23T23:25:12.755Z",
+  "git_status_after": "M artifacts/insights/latest-generation-report.json\n M public/feed.xml\n M public/insights-feed.json\n M public/insights-og/accessible-quote-form-errors-recovery.svg\n M public/insights-og/agentic-seo-small-business-websites.svg\n M public/insights-og/ai-agent-permissions-before-pilot.svg\n M public/insights-og/ai-prototype-production-pilot-evidence.svg\n M public/insights-og/baseline-2026-browser-support-design-system-decision.svg\n M public/insights-og/bing-ai-citations-measure-business-value.svg\n M public/insights-og/eidos-brain-sentinel-small-business-intelligence.svg\n M public/insights-og/indexnow-changing-business-pages.svg\n M public/insights-og/mobile-hierarchy-over-desktop-polish.svg\n M public/insights-og/practical-source-map-ai-ready-service-pages.svg\n M public/insights-og/spreadsheet-chaos-operational-dashboards.svg\n M public/insights-og/storefront-proof-loop-ux-assets-operations.svg\n M public/insights-og/storefront-size-guide-inline-dialog-page.svg\n M public/insights-og/storefront-ux-find-right-product-faster.svg\n M public/insights-og/structure-website-people-ai-assistants-understand.svg\n M public/insights-og/website-snapshot-before-redesign.svg\n M public/llms.txt\n M public/sitemap.xml\n M src/data/articles.json\n M src/data/growth-paths.json\n?? public/insights-og/mobile-storefront-filters-safe-reversible-choices.svg"
+}
