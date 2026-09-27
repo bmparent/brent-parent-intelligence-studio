@@ -7,7 +7,8 @@ permissions:
   contents: read
 concurrency:
   group: playground-editor-${{ github.ref }}
-  cancel-in-progress: false
+  # Keep production pushes serial; obsolete draft-PR browser runs can be replaced.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   local-editor:
     runs-on: ubuntu-latest

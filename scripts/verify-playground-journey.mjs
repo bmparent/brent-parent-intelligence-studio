@@ -59,7 +59,7 @@ for (const width of [1440, 390]) {
     assert.match(zip.suggestedFilename(), /\.zip$/);
     await zip.saveAs(path.join(evidence, `starter-${width}.zip`));
     await page.getByRole('link', { name: 'Work with Brent' }).click();
-    assert.match(page.url(), /\/contact\?from=playground#project-form$/);
+    assert.match(page.url(), /\/contact\/\?from=playground#project-form$/);
     await page.getByLabel('What needs to become clearer, easier, or more useful?').waitFor();
     await page.waitForFunction(() => document.querySelector('textarea')?.value.includes('Eidos Playground'));
     assert.equal(await page.getByLabel('How did you find Eidos Works?').inputValue(), 'Eidos Playground');
