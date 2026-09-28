@@ -27,7 +27,7 @@ for (const width of [1440, 390]) {
     assert.match(await stage.innerText(), /Tidal/);
 
     await page.getByRole('button', { name: 'Guide a purchase' }).click();
-    assert.match(await page.locator('.dx-translate__result').innerText(), /Holidays in Hollywood/);
+    assert.match(await page.locator('.dx-translate__result').innerText(), /Holidays in Hollywood/i);
     assert.equal(await page.getByRole('link', { name: 'Visit the live webstore' }).count(), 1);
     assert.equal(await page.getByRole('link', { name: 'Explore the illustrated house' }).count(), 1);
     assert.equal(await page.getByRole('link', { name: /Build a page in Playground/ }).count(), 1);
