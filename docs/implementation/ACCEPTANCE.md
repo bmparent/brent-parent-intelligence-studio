@@ -1,5 +1,9 @@
 # Candidate acceptance and release gates
 
+## Digital Experiences page candidate — 2026-09-28
+
+A public-site-only showcase revision is stacked on the combined draft branch. See [the September 28 page record](DIGITAL_EXPERIENCES_2026-09-28.md) for project selection, claim boundaries, local checks, and browser acceptance. It does not change the paired backend or the NO-GO production decision below.
+
 ## Combined review candidate — 2026-09-27
 
 The site integration combines the audit candidate, security sprint, Playground journey, latest owner console including daily refresh and service directory, and growth-team heads, then merges the current `main` editorial content. The paired backend combines its owner-console and security-sprint heads. See [the September 27 integration record](ACCEPTANCE_2026-09-27.md) for exact parents, local verification and still-open hosted gates. This source combination has **not** been deployed to an isolated paired preview or production. Earlier hosted receipts below belong to different revisions; none may be treated as acceptance of the combined tree.

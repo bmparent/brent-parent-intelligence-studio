@@ -160,7 +160,7 @@ for (const route of [
 
 const services = await readFile(routeFile('/services'), 'utf8');
 for (const image of [
-  'liberty-desktop-20260921.png',
+  'hih-full-storefront-reference-v2.webp',
   'embroiderycalc-pro.webp',
   'wellway-journey.webp',
 ]) {

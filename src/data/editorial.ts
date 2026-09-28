@@ -59,9 +59,9 @@ export const serviceFamilies = [
       'Platform and frontend extensions',
       'Accessibility, performance, and search foundations'
     ],
-    image: '/images/services/liberty-desktop-20260921.png',
-    imageAlt: 'Actual Liberty Early Learning storefront captured on September 21, 2026.',
-    imageCaption: 'Delivered InkSoft storefront · actual desktop capture'
+    image: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1500/v1786042295/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-full-storefront-reference-v2.webp',
+    imageAlt: 'Holidays in Hollywood storefront design reference with a theatrical holiday entrance and apparel categories.',
+    imageCaption: 'Holidays in Hollywood · saved storefront design reference'
   },
   {
     slug: 'business-systems',
