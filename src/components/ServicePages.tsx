@@ -2,6 +2,7 @@ import { serviceBySlug, serviceFamilies } from '../data/editorial';
 import { ConceptApplications } from './ConceptApplications';
 import { SupportedAnswerDemo } from './ServiceExplorer';
 import { DigitalExperiencesPage } from './DigitalExperiencesPage';
+import { BusinessSystemsPage } from './BusinessSystemsPage';
 import '../styles/service-proof.css';
 
 type ServiceSlug = (typeof serviceFamilies)[number]['slug'];
@@ -205,12 +206,13 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
   const detail = serviceContext[slug];
   if (!service || !detail) return null;
   if (slug === 'digital-experiences') return <><DigitalExperiencesPage /><DigitalStartingPaths /><ServiceDetailCta slug={slug} /></>;
+  if (slug === 'business-systems') return <><BusinessSystemsPage /><ServiceDetailCta slug={slug} /></>;
 
   return (
     <>
       <ServiceHero
         eyebrow={`Service ${service.number}`}
-        title={slug==='business-systems'?'Keep the work moving. Make the next decision clearer.':'Put useful assistance inside the work you already do.'}
+        title="Put useful assistance inside the work you already do."
         lede={service.summary}
       />
       <figure className={`ew-service-evidence ew-shell ew-service-evidence--${slug}`}>
