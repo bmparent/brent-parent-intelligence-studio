@@ -21,7 +21,7 @@ try {
       assert.equal(await page.locator('.bs-case').count(), 3);
       assert.equal(await page.getByRole('link', { name: /Explore the case study/ }).getAttribute('href'), '/work/production-dashboard');
       assert.equal(await page.getByRole('link', { name: /Open EmbroideryCalc/ }).getAttribute('rel'), 'noopener noreferrer');
-      assert.match(await page.locator('.bs-private').innerText(), /SharePoint handoff/);
+      assert.match(await page.locator('.bs-private').innerText(), /Handoff review/);
 
       const estimator = page.getByRole('button', { name: 'Estimating workspace' });
       await estimator.focus();
@@ -38,7 +38,11 @@ try {
       }
       const size = await page.evaluate(() => ({ body: document.documentElement.scrollWidth, viewport: innerWidth }));
       assert.ok(size.body <= size.viewport + 1, `horizontal overflow at ${width}px: ${JSON.stringify(size)}`);
+      assert.equal(await page.locator('.ew-engagement-note .ew-button--secondary').evaluate(el => getComputedStyle(el).color), 'rgb(246, 242, 233)', 'dark-panel secondary CTA has light text');
       assert.deepEqual(errors, [], 'no client errors');
+      const essential = page.getByRole('button', { name: 'Essential only' });
+      if (await essential.isVisible()) await essential.click();
+      await page.evaluate(() => window.scrollTo(0, 0));
       await page.screenshot({ path: path.join(evidence, `business-systems-${width}.png`), fullPage: true });
       console.log(`PASS ${width}: cases, links, fictional demo, focus, loaded images, and layout`);
     } finally { await context.close(); }

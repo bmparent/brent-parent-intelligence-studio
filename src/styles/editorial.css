@@ -828,6 +828,18 @@ h4 {
   margin-left: max(clamp(16px, 8vw, 128px), calc((100% - var(--ew-max)) / 2));
 }
 
+.ew-engagement-note .ew-button--secondary {
+  color: #f6f2e9;
+  border-color: rgba(246, 242, 233, 0.65);
+  background: transparent;
+}
+
+.ew-engagement-note .ew-button--secondary:hover,
+.ew-engagement-note .ew-button--secondary:focus-visible {
+  color: var(--ew-night-deep);
+  background: #f6f2e9;
+}
+
 .ew-service-detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
