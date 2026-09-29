@@ -32,6 +32,14 @@ try {
         return { overlap: links.some(link => link.overlap), links, trigger: { top: trigger.top, bottom: trigger.bottom } };
       });
       assert.equal(indexOverlap.overlap, false, `assistant trigger does not cover a project link: ${JSON.stringify(indexOverlap)}`);
+      const introOverlap = await page.evaluate(() => {
+        const trigger = document.querySelector('.ew-assistant-trigger').getBoundingClientRect();
+        return [...document.querySelectorAll('.is-intro > p, .is-intro > h2')].some(element => {
+          const box = element.getBoundingClientRect();
+          return box.top < innerHeight && box.bottom > 0 && box.left < trigger.right && box.right > trigger.left && box.top < trigger.bottom && box.bottom > trigger.top;
+        });
+      });
+      assert.equal(introOverlap, false, 'assistant trigger does not cover first-viewport intro copy');
       assert.match(await page.locator('#is-project-01').innerText(), /reflection tool, not diagnosis/i);
       assert.match(await page.locator('#is-project-03').innerText(), /Research-stage system/i);
       assert.equal(await page.getByRole('link', { name: /Try a source-backed answer/ }).getAttribute('href'), '#is-answer');

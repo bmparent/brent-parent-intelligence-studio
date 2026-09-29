@@ -52,8 +52,10 @@
   .is-hero h1 { margin: 18px 0 16px; }
   .is-hero .ew-button { margin-top: 20px; }
   .is-hero__index { align-self: auto; }
+  .is-hero__index a { min-height: 54px; padding-block: 12px; }
   .is-project:nth-child(even) .is-project__visual { order: 0; }
   .is-intro { gap: 10px; }
+  .is-intro { padding-top: 150px; }
   .is-intro .ew-eyebrow { grid-column: auto; }
   .is-source-flow { min-height: 300px; }
 }
