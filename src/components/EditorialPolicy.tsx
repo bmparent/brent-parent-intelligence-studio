@@ -2,15 +2,15 @@ const policies = [
   {
     title: 'Topic selection',
     paragraphs: [
-      'Insights focus on recurring Eidos Works work: website strategy, storefront UX, dashboards, automation, AI-ready search, and proof-stage prototyping. The goal is useful context, not volume for its own sake.',
-      'Before publication, a new guide is compared with existing titles, questions, categories, and takeaways so it adds a distinct reason to read.'
+      'Insights includes essays about the human side of technology and technical writing about Eidos Works craft: websites, storefront UX, dashboards, automation, AI-ready search, and proof-stage prototyping. The goal is useful thought, not volume for its own sake.',
+      'Before publication, a new piece is compared with existing titles, questions, and themes so it adds a distinct reason to read.'
     ]
   },
   {
     title: 'Sources and current claims',
     paragraphs: [
       'Time-sensitive claims are checked against current public sources. Official documentation, standards bodies, primary announcements, and first-party technical references are preferred when they are available.',
-      'Source links appear with the article when outside facts or platform behavior shape the guidance. Eidos Works analysis is kept separate from what a source directly confirms.'
+      'Research links are retained in the article record and checked during publication. The essay or guide does not end with a source list. Readers can request the supporting links or a correction through the Contact page. Eidos Works analysis is kept separate from what a source directly confirms.'
     ]
   },
   {
@@ -36,7 +36,7 @@ export function EditorialPolicy() {
         <p className="ew-eyebrow">Editorial policy</p>
         <h1 id="editorial-policy-title">How Eidos Works publishes Insights.</h1>
         <p>
-          Practical guidance should be clear about what is known, what is interpreted, what has changed, and what a reader should verify before acting.
+          Essays and technical guidance should be clear about what is known, what is interpreted, what has changed, and what a reader should verify before acting.
         </p>
       </header>
 

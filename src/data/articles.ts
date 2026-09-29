@@ -43,7 +43,7 @@ type ArticleRecord = {
   excerpt: string;
   pillar: string;
   slot: 'morning' | 'midday' | 'evening' | 'seed';
-  format: 'current-analysis' | 'practical-guide' | 'strategic-analysis' | 'evergreen';
+  format: 'current-analysis' | 'practical-guide' | 'strategic-analysis' | 'evergreen' | 'essay';
   searchIntent: string;
   featured: boolean;
   draft: boolean;

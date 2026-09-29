@@ -8,6 +8,7 @@ The Insights system uses repository-native static content and Codex scheduled ru
 - React imports that data through `src/data/articles.ts`.
 - `scripts/generate-insights-assets.mjs` generates sitemap, RSS, llms.txt, article OG SVGs, and a generation receipt.
 - `scripts/validate-insights.mjs` enforces editorial metadata, source links, duplication checks, generated asset inclusion, and optional prerendered HTML checks.
+- `docs/insights-voice.md` defines the essay voice, weekly mix, and factual boundaries.
 - `scripts/publish-insight-run.mjs` runs the full local quality gate and writes a run report.
 - Codex cron automations perform the research, article writing, validation, commit, push, and post-deploy verification loop.
 
@@ -17,9 +18,9 @@ No paid CMS or new metered API is required by the repository workflow.
 
 Timezone: America/New_York.
 
-- Monday 8:00 AM: current development, news, standards, or platform change.
-- Wednesday 1:00 PM: practical guide, comparison, implementation lesson, or explainer.
-- Friday 6:00 PM: strategic analysis, original framework, or case-study-style article.
+- Monday 8:00 AM: a reflective essay that connects a verified current development or durable social question to a person's life and Eidos Works' craft.
+- Wednesday 1:00 PM: a technically useful article with concrete mechanisms, tradeoffs, and an executable decision or practice.
+- Friday 6:00 PM: a deeper philosophical essay about attention, memory, trust, making, care, or the human stakes of technology.
 
 Each scheduled run should publish one article. It should not batch three similar articles from the same prompt.
 
@@ -44,10 +45,12 @@ Every article in `src/data/articles.json` includes:
 - publishedAt, updatedAt, author, byline
 - readingTimeMinutes, tags, canonicalPath, excerpt
 - pillar, slot, format, searchIntent, featured, draft
-- thesis, sources, takeaways, relatedSlugs
+- thesis, sources, takeaways, relatedSlugs (`takeaways` may be empty for essays)
 - body sections, CTA, and OG image path
 
 Automated or assisted articles should use `Eidos Works Editorial` as byline.
+
+Use `format: "essay"` for the Monday and Friday reflective pieces. Essays need a real thesis, at least two body sections, and can use natural headings instead of the required practical-guide headings. They may leave `sources` empty only when the piece makes no time-sensitive or externally verifiable factual claims. Wednesday technical articles keep the practical headings, takeaways, and source requirements. The article UI does not display a Sources or References section; source records stay in the content data and validation workflow.
 
 ## Research and Source Rules
 
@@ -64,7 +67,7 @@ Prefer:
 
 If no worthwhile verified news exists for the morning slot, publish timely evergreen analysis instead of manufacturing urgency.
 
-Source retrieval is only a final quality gate for trusted article records. When reviewing an untrusted pull request or draft, run `npm run validate:insights -- --skip-source-fetch` first so contributor-controlled URLs are not fetched. A trusted scheduled or release run must still complete the normal `npm run validate:insights` check before publication whenever an article relies on current external claims.
+Source retrieval is only a final quality gate for trusted article records. When reviewing an untrusted pull request or draft, run `npm run validate:insights -- --skip-source-fetch` first so contributor-controlled URLs are not fetched. A trusted scheduled or release run must still complete the normal `npm run validate:insights` check before publication whenever an article relies on current external claims. Research notes and links belong in article metadata and the run receipt; do not append a public bibliography section.
 
 ## Deduplication
 
@@ -101,7 +104,7 @@ Blocking failures leave production unchanged.
 
 ## Manual Single-Article Run
 
-1. Research the topic and open the sources.
+1. Research the topic when it uses outside facts, and open the sources. For a purely reflective essay, document that no external claim required a source.
 2. Add exactly one article record to `src/data/articles.json`.
 3. Run `npm run publish:insight-run -- --slot=<morning|midday|evening|manual>`.
 4. Review the generated diff.

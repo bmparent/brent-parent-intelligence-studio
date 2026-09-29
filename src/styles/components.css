@@ -628,7 +628,6 @@
 }
 
 .insight-article__correction,
-.insight-article__sources,
 .insight-article__related {
   width: min(100%, var(--ew-reading));
   margin: clamp(3rem, 7vw, 5rem) auto 0;
@@ -647,31 +646,8 @@
   margin: 0.35rem 0 0;
 }
 
-.insight-article__sources h2,
 .insight-article__related h2 {
   font-size: clamp(2rem, 4vw, 3.4rem);
-}
-
-.insight-article__sources ol {
-  display: grid;
-  gap: 0.8rem;
-  padding-left: 1.2rem;
-}
-
-.insight-article__sources li {
-  padding-left: 0.35rem;
-}
-
-.insight-article__sources a {
-  color: var(--ew-teal);
-  font-weight: 800;
-  text-underline-offset: 0.2em;
-}
-
-.insight-article__sources span {
-  display: block;
-  color: var(--ew-muted-light);
-  font-size: 0.78rem;
 }
 
 .insight-article__related > div {

@@ -23,6 +23,7 @@ const insightCategories = new Set([
   'AI Prototyping',
   'Case Notes'
 ]);
+const insightFormats = new Set(['current-analysis', 'practical-guide', 'strategic-analysis', 'evergreen', 'essay']);
 
 const prohibitedPatterns = [
   /state of the art/i,
@@ -333,6 +334,7 @@ for (const [index, article] of articles.entries()) {
   if (!insightCategories.has(article.category)) {
     fail(`${label}: category must use the Eidos Works Insights taxonomy.`);
   }
+  if (!insightFormats.has(article.format)) fail(`${label}: unsupported article format.`);
 
   if (titleSet.has(article.title)) fail(`${label}: duplicate title "${article.title}".`);
   if (slugSet.has(article.slug)) fail(`${label}: duplicate slug "${article.slug}".`);
@@ -342,9 +344,13 @@ for (const [index, article] of articles.entries()) {
   canonicalSet.add(article.canonicalPath);
 
   if (!Array.isArray(article.tags) || article.tags.length < 3) fail(`${label}: at least three tags are required.`);
-  if (!Array.isArray(article.sources) || article.sources.length < 1) fail(`${label}: at least one source is required.`);
+  if (!Array.isArray(article.sources) || (article.format !== 'essay' && article.sources.length < 1)) {
+    fail(`${label}: sources must be an array, with at least one source for non-essay articles.`);
+  }
   if (!Array.isArray(article.body) || article.body.length < 2) fail(`${label}: at least two body sections are required.`);
-  if (!Array.isArray(article.takeaways) || article.takeaways.length < 3) fail(`${label}: at least three takeaways are required.`);
+  if (!Array.isArray(article.takeaways) || (article.format !== 'essay' && article.takeaways.length < 3)) {
+    fail(`${label}: takeaways must be an array, with at least three for non-essay articles.`);
+  }
   if (!Array.isArray(article.relatedSlugs)) fail(`${label}: relatedSlugs must be an array.`);
   if (!Number.isInteger(article.readingTimeMinutes) || article.readingTimeMinutes < 1) {
     fail(`${label}: readingTimeMinutes must be a positive integer.`);
@@ -364,8 +370,10 @@ for (const [index, article] of articles.entries()) {
       .map((section) => typeof section?.heading === 'string' ? section.heading.trim().toLowerCase() : '')
       .filter(Boolean)
   );
-  for (const requiredHeading of ['what this means for your site', 'how eidos works applies this']) {
-    if (!sectionHeadings.has(requiredHeading)) fail(`${label}: missing required section "${requiredHeading}".`);
+  if (article.format !== 'essay') {
+    for (const requiredHeading of ['what this means for your site', 'how eidos works applies this']) {
+      if (!sectionHeadings.has(requiredHeading)) fail(`${label}: missing required section "${requiredHeading}".`);
+    }
   }
 
   if (!isValidDate(article.publishedAt)) fail(`${label}: publishedAt is not a valid date.`);
@@ -499,6 +507,9 @@ if (checkDist) {
     if (!html.includes(article.title)) fail(`${article.slug}: dist HTML missing visible title.`);
     if (!html.includes('application/ld+json')) fail(`${article.slug}: dist HTML missing JSON-LD.`);
     if (!html.includes(absolute(article.canonicalPath))) fail(`${article.slug}: dist HTML missing absolute canonical URL.`);
+    if (/insight-article__sources|article-sources|Sources and references|What informed this guide/.test(html)) {
+      fail(`${article.slug}: dist HTML still renders a sources section.`);
+    }
     const h1Count = (html.match(/<h1[\s>]/g) ?? []).length;
     if (h1Count !== 1) fail(`${article.slug}: expected exactly one h1 in prerendered article HTML, found ${h1Count}.`);
   }

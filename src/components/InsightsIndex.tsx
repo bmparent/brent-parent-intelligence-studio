@@ -80,8 +80,8 @@ export function InsightsIndex({ initialSlug, standalone = false }: InsightsIndex
       <SectionHeader
         id="insights-title"
         eyebrow="Insights"
-        title="Field notes for storefront UX, automation, AI-ready search, and applied systems."
-        summary="Insights is the Eidos Works knowledge hub: source-linked articles, original frameworks, practical guides, and strategy notes connected back to real service and proof surfaces."
+        title="Essays and field notes on the lives we build around technology."
+        summary="A place for human questions, practical craft, and the systems we choose to live with."
         titleAs={standalone && !isArticleRoute ? 'h1' : 'h2'}
       />
 
@@ -204,23 +204,6 @@ export function InsightsIndex({ initialSlug, standalone = false }: InsightsIndex
                 ) : null}
               </section>
             ))}
-
-            <section className="article-sources" aria-labelledby={`${activeArticle.slug}-sources`}>
-              <h3 id={`${activeArticle.slug}-sources`}>Sources</h3>
-              <ul>
-                {activeArticle.sources.map((source) => (
-                  <li key={source.url}>
-                    <a href={source.url} target="_blank" rel="noreferrer noopener">
-                      {source.title}
-                    </a>
-                    <span>
-                      {source.publisher}
-                      {source.publishedDate !== 'unknown' ? ` - ${source.publishedDate}` : ''}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </section>
 
             {activeRelated.length ? (
               <section className="article-related" aria-labelledby={`${activeArticle.slug}-related`}>

@@ -5,12 +5,13 @@ These rules apply when working in this repository on Eidos Works public-site con
 ## Core Rules
 
 - Eidos Works is the public studio brand. Do not confuse it with Eidos Brain, which is a research and proof-stage portfolio area.
-- Publish useful, source-linked, customer-facing articles. Do not publish filler, generic AI copy, invented client results, fake quotes, unsupported metrics, or exaggerated platform claims.
+- Publish useful, human-facing essays and technical articles. Do not publish filler, generic AI copy, invented client results, fake quotes, unsupported metrics, or exaggerated platform claims.
 - Use `Eidos Works Editorial` for automated or assisted articles unless Brent Parent has actually reviewed or written the piece.
 - Keep current facts grounded in live sources. Prefer official documentation, standards bodies, primary announcements, and first-party technical references.
 - Do not invent special AI schema, imply llms.txt is a Google ranking requirement, or claim foundational SEO is obsolete.
 - Keep article URLs stable and readable: `/insights/descriptive-slug`.
-- Preserve visible sources, publication dates, modified dates, canonical URLs, RSS inclusion, sitemap inclusion, and JSON-LD.
+- Keep research sources in article metadata and publication receipts for verification, without a dedicated public Sources or References section. Preserve publication dates, modified dates, canonical URLs, RSS inclusion, sitemap inclusion, and JSON-LD.
+- Follow `docs/insights-voice.md`: two reflective essays and one technically useful article in the weekly rotation. The voice may draw on the Brent and Eidos stories, but fiction is never presented as biography, product proof, or personal testimony.
 
 ## Article Workflow
 
@@ -39,9 +40,9 @@ npm run verify:production-insight -- --slug=<article-slug>
 
 ## Scheduled Publishing Slots
 
-- 8:00 AM America/New_York: current development, news, standards, or platform change.
-- 1:00 PM America/New_York: practical guide, explanation, comparison, or implementation lesson.
-- 6:00 PM America/New_York: strategic analysis, applied business insight, original framework, or case-study-style article.
+- Monday 8:00 AM America/New_York: current-life essay grounded in verified developments when relevant.
+- Wednesday 1:00 PM America/New_York: technically useful guide or explanation.
+- Friday 6:00 PM America/New_York: philosophical Eidos Works essay with a human stake.
 
 Each run should normally publish one article only.
 
