@@ -3,6 +3,7 @@ import { ConceptApplications } from './ConceptApplications';
 import { SupportedAnswerDemo } from './ServiceExplorer';
 import { DigitalExperiencesPage } from './DigitalExperiencesPage';
 import { BusinessSystemsPage } from './BusinessSystemsPage';
+import { IntelligentSystemsPage } from './IntelligentSystemsPage';
 import '../styles/service-proof.css';
 
 type ServiceSlug = (typeof serviceFamilies)[number]['slug'];
@@ -207,6 +208,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
   if (!service || !detail) return null;
   if (slug === 'digital-experiences') return <><DigitalExperiencesPage /><DigitalStartingPaths /><ServiceDetailCta slug={slug} /></>;
   if (slug === 'business-systems') return <><BusinessSystemsPage /><ServiceDetailCta slug={slug} /></>;
+  if (slug === 'intelligent-systems') return <><IntelligentSystemsPage /><ServiceDetailCta slug={slug} /></>;
 
   return (
     <>
