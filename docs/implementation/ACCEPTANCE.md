@@ -68,3 +68,7 @@ The fresh seven-day public-category report has five consented tab/day sessions, 
 ## Release conflict reconciliation — 2026-09-30
 
 The paired candidate now incorporates current main's editorial voice and studio/contact routing while retaining the release stack. See [the September 30 reconciliation record](ACCEPTANCE_2026-09-30.md) for exact tested trees, shared-source parity, local checks and the browser-verification boundary. The hosted/provider gates below remain open. Production is still **NO-GO**.
+
+## Full-page portfolio concepts — 2026-09-30
+
+The gallery candidate adds three labeled fictional business mockups, full-page thumbnails, an enlarged reading view, and customer-goal/design-approach briefs. See [the portfolio concept record](PORTFOLIO_CONCEPTS_2026-09-30.md) for asset provenance, local build checks, desktop and phone-width browser observations, and the draft release boundary. These are static design illustrations, not client projects or operational business sites. The paired production and physical-device gates remain open.
