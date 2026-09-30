@@ -9,7 +9,7 @@ export function CaseStudies() {
         id="case-studies-title"
         eyebrow="Featured case studies"
         title="Real storefront systems, dashboards, and visual work framed as business-facing proof."
-        summary="The work is organized around the problem, approach, execution, and result so buyers can understand what Brent builds and why the interface choices matter."
+        summary="The work is organized around the problem, approach, execution, and result so buyers can understand what Eidos Works builds and why the interface choices matter."
       />
 
       <div className="case-grid">

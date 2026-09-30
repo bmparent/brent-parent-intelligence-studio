@@ -136,15 +136,13 @@ function ServiceDetailCta({ slug }: { slug: ServiceSlug }) {
   );
 }
 
-export function ServicesPage() {
+export function ServiceFamiliesSection() {
   return (
     <>
-      <ServiceHero
-        eyebrow="Services"
-        title="Build the part your current tools can’t quite do."
-        lede="Eidos Works designs digital experiences, business systems, and focused AI tools around real workflows — not generic software categories. Start with the friction. We’ll work backward from what needs to become clearer, faster, or easier."
-      />
-      <section className="ew-ledger-section ew-shell">
+      <section className="ew-ledger-section ew-shell" aria-labelledby="about-work-title">
+        <p className="ew-eyebrow">What we build</p>
+        <h2 id="about-work-title">Build the part your current tools can’t quite do.</h2>
+        <p>Eidos Works designs digital experiences, business systems, and focused AI tools around real workflows. Start with the friction. We work backward from what needs to become clearer, faster, or easier.</p>
         <div className="ew-service-index">
           {serviceFamilies.map((service) => (
             <article key={service.slug}>
@@ -160,7 +158,7 @@ export function ServicesPage() {
                 <figcaption>{service.imageCaption}</figcaption>
               </figure>
               <div>
-                <h2>{service.title}</h2>
+                <h3>{service.title}</h3>
                 <p>{service.summary}</p>
                 <ul>
                   {service.includes.map((item) => (

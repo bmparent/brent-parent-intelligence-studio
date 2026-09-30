@@ -94,7 +94,7 @@ export function buildLocalRecommendation(input: {
     compass: 'Your strongest next move is a focused system sprint, not a generic rebuild.',
     concierge: 'The closest proof path is already in the portfolio - start with the matching case study.',
     automation: 'There is likely a repeatable workflow hiding behind the pain point.',
-    brief: 'This is ready to become a clean project brief Brent can respond to quickly.',
+    brief: 'This is ready to become a clean project brief Eidos Works can respond to quickly.',
   }
 
   const diagnosisByMode: Record<IntelligenceMode, string> = {
@@ -128,11 +128,11 @@ export function buildLocalRecommendation(input: {
       `Start with ${primary.recommendedPath}.`,
       `Use ${secondary.title} as the nearest proof reference.`,
       'Define the first useful deliverable before expanding into a larger system.',
-      'Send Brent the short brief so the next conversation starts with context instead of a blank page.',
+      'Send Eidos Works the short brief so the next conversation starts with context instead of a blank page.',
     ],
     cta: {
-      label: 'Send this brief to Brent',
-      href: 'mailto:1brent.bm@gmail.com?subject=Project%20brief%20from%20Eidos%20Works',
+      label: 'Send this brief to Eidos Works',
+      href: 'mailto:projects@eidos-works.com?subject=Project%20brief%20from%20Eidos%20Works',
     },
     confidence: prompt || signals.length || Object.values(answers).some(Boolean) ? 'strong' : 'directional',
     context,

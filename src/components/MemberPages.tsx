@@ -387,11 +387,11 @@ export function AccountPage() {
               <p className="ew-eyebrow">Inside the lab</p>
               <h2>A question worth testing?</h2>
               <p>
-                Tell Brent what you want to investigate and request an access
+                Tell Eidos Works what you want to investigate and request an access
                 code for a full-engine experiment.
               </p>
               <a className="ew-button ew-button--secondary" href="/lab/access">
-                Message Brent for access →
+                Message Eidos Works for access →
               </a>
             </section>
             {member.kind === 'agent' && (

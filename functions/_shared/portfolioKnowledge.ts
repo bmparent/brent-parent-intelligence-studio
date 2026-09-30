@@ -181,13 +181,13 @@ export function buildLocalFallback(payload: IntelligencePayload) {
       `Start with ${primary.recommendedPath}.`,
       `Use ${secondary.title} as the nearest proof reference.`,
       'Define the smallest useful first deliverable before expanding scope.',
-      'Send Brent this brief so the next conversation starts with context.',
+      'Send Eidos Works this brief so the next conversation starts with context.',
     ],
     cta: {
-      label: 'Send this brief to Brent',
-      href: 'mailto:1brent.bm@gmail.com?subject=Project%20brief%20from%20Eidos%20Works',
+      label: 'Send this brief to Eidos Works',
+      href: 'mailto:projects@eidos-works.com?subject=Project%20brief%20from%20Eidos%20Works',
     },
-    questionsForBrent: [
+    questionsForEidos: [
       'What current system, page, report, or workflow is causing the most friction?',
       'What outcome would make the first version worth shipping?',
       'Which tools and data sources are already involved?',

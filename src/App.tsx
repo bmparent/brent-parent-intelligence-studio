@@ -26,7 +26,6 @@ import {
 import {
   LegacyServicePage,
   ServiceDetailPage,
-  ServicesPage,
 } from './components/ServicePages';
 import { FrictionReviewPage } from './components/FrictionReviewPage';
 import { ConversionContactPage } from './components/ConversionContactPage';
@@ -90,7 +89,7 @@ function routeFor(path: string) {
   if (path === '/account/verify') return <VerifyAccountPage />;
   if (path === '/account/unsubscribe') return <UnsubscribePage />;
   if (/^\/members\/[a-z][a-z0-9_]{2,23}$/.test(path)) return <MemberProfile username={path.slice('/members/'.length)} />;
-  if (path === '/lab/access') return <><section className="ew-page-intro ew-shell"><p className="ew-eyebrow">Eidos / Sentinel Lab</p><h1>A question for<br/><em>the full engine.</em></h1><p>Message Brent to request an access code. Tell us what you want to test and we’ll reply to your email.</p></section><LabAccessRequest /></>;
+  if (path === '/lab/access') return <><section className="ew-page-intro ew-shell"><p className="ew-eyebrow">Eidos / Sentinel Lab</p><h1>A question for<br/><em>the full engine.</em></h1><p>Message Eidos Works to request an access code. Tell us what you want to test and we’ll reply to your email.</p></section><LabAccessRequest /></>;
   if (path === '/') return <HomePage />;
   if (path === '/central-florida') return <CentralFloridaPage />;
   if (path === '/friction-review') return <FrictionReviewPage />;
@@ -107,7 +106,7 @@ function routeFor(path: string) {
   if (path === '/snapshot/start') return <SnapshotStartPage />;
   if (path === '/snapshot/success') return <SnapshotSuccessPage />;
   if (path === '/services/agentic-seo') return <AgenticSeoPage />;
-  if (path === '/services') return <ServicesPage />;
+  if (path === '/services') return <AboutPage />;
   if (path === '/services/digital-experiences') return <ServiceDetailPage slug="digital-experiences" />;
   if (path === '/services/business-systems') return <ServiceDetailPage slug="business-systems" />;
   if (path === '/services/intelligent-systems') return <ServiceDetailPage slug="intelligent-systems" />;

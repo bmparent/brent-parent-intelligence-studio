@@ -17,7 +17,7 @@ export function PolicyPage({
         </p>
         <h1>{titles[kind]}</h1>
         <p>
-          Updated September 20, 2026. Contact Brent through the studio if you
+          Updated September 20, 2026. Contact Eidos Works if you
           need a correction, removal, or clarification.
         </p>
       </section>
@@ -121,7 +121,7 @@ export function PolicyPage({
             <p>
               The portfolio describes work and experiments; it is not a promise
               of a specific result. Custom project scope, pricing, timing,
-              hosting, and support are agreed separately with Brent. The
+              hosting, and support are agreed separately with Eidos Works. The
               assistant cannot make commitments on behalf of the studio.
             </p>
             <h2>Cinematic Starter</h2>

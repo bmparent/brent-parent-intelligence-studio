@@ -241,7 +241,7 @@ export function ProjectIntakeWizard() {
       <SectionHeader
         id="start-title"
         eyebrow="Start a project"
-        title="Turn the rough idea into a brief Brent can actually respond to."
+        title="Turn the rough idea into a brief Eidos Works can respond to."
         summary="The intake flow captures the project type, current tools, timeline, budget posture, and contact details, then creates a clean project brief before anything is sent."
       />
 

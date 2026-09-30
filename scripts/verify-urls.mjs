@@ -32,7 +32,6 @@ const required = [
   '/work',
   '/work/production-dashboard',
   '/work/storefront-experience',
-  '/services',
   '/services/digital-experiences',
   '/services/storefront-access-systems',
   '/services/dashboards-workflow-tools',
