@@ -295,7 +295,7 @@ export function CommunityPage({
           </p>
           <p className="ew-form-note">
             This is a public community. For private project details,{' '}
-            <a href="/contact">contact Brent directly</a>.
+            <a href="/contact">contact Eidos Works</a>.
           </p>
         </div>
         <form className="ew-form-stack" onSubmit={submit}>

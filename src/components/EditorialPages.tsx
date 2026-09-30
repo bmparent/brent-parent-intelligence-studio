@@ -5,6 +5,7 @@ import { featuredMedia } from '../data/media';
 import { cld, cldSrcSet, externalLinkProps } from '../utils';
 import { siteConfig } from '../config/site';
 import { EmailAddress, SafeEmailLink } from './EmailAddress';
+import { ServiceFamiliesSection } from './ServicePages';
 
 function EditorialHero({ eyebrow, title, lede, aside, className = '' }: { eyebrow: string; title: string; lede: string; aside?: string; className?: string }) {
   return (
@@ -253,6 +254,7 @@ export function AboutPage() {
           <a className="ew-button ew-button--primary" href="/contact">Discuss a project</a>
         </div>
       </section>
+      <ServiceFamiliesSection />
       <section className="ew-ledger-section ew-about-principles"><div className="ew-shell"><p className="ew-eyebrow">Working principles</p><ul>
 <li><strong>Understand the real workflow before choosing the interface.</strong><p>Every interface is an interpretation of someone’s world. We start by listening, because a useful answer depends on seeing the question clearly.</p></li>
 <li><strong>Use technology where it removes confusion or repeated work.</strong><p>Attention is a finite part of a person’s life. A good tool gives some of it back, leaving more room for judgment, curiosity, and the work that matters.</p></li>

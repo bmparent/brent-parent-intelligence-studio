@@ -21,7 +21,7 @@ export const intelligenceKnowledge: LocalKnowledgeEntry[] = [
     summary:
       'A static-first Vite, React, and TypeScript public site positioned around premium services, interactive proof, and conversion clarity.',
     proof:
-      'Useful when a visitor needs a more credible site, clearer offer architecture, better proof hierarchy, and a polished path to contact Brent.',
+      'Useful when a visitor needs a more credible site, clearer offer architecture, better proof hierarchy, and a polished path to contact Eidos Works.',
     recommendedPath: 'Conversion-focused website and positioning sprint',
   },
   {

@@ -83,8 +83,8 @@ export function HomePage() {
             team still manages by hand. An AI idea that needs real boundaries.
             Start with the friction; we’ll work backward to the right build.
           </p>
-          <a className="ew-text-link" href="/services">
-            See how we can help ↗
+          <a className="ew-text-link" href="/about">
+            About Eidos Works ↗
           </a>
         </div>
         <div className="ew-capability-list">

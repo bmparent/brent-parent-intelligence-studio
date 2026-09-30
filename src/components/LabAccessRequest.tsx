@@ -138,9 +138,9 @@ export function LabAccessRequest() {
     >
       <div className="ew-lab-access__intro">
         <p className="ew-eyebrow">Limited full-engine access</p>
-        <h2 id="lab-access-title">Message Brent for an access code.</h2>
+        <h2 id="lab-access-title">Message Eidos Works for an access code.</h2>
         <p>
-          Describe what you’d like to try and send your message below. Brent
+          Describe what you’d like to try and send your message below. Eidos Works
           will reply by email with the next step and, when approved, an access
           code for the full engine. The quick demo is open to everyone.
         </p>

@@ -73,7 +73,6 @@ for (const file of await htmlFiles(root)) {
     'work/jingle-bell-jingle-bam/index.html',
     'work/pernr-access-gate/index.html',
     'work/storefront-experience/index.html',
-    'services/index.html',
     'services/storefront-access-systems/index.html',
   ]);
   // The gallery may link to this separately hosted calculator. Keep the

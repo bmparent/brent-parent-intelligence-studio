@@ -10,7 +10,6 @@ const requiredRoutes = [
   '/work/pernr-access-gate',
   '/work/production-dashboard',
   '/work/storefront-experience',
-  '/services',
   '/services/digital-experiences',
   '/services/business-systems',
   '/services/intelligent-systems',
@@ -69,6 +68,8 @@ for (const route of requiredRoutes) {
     failures.push(`${route}: canonical does not match ${canonical}`);
   if (count(html, /<h1(?:\s|>)/gi) !== 1)
     failures.push(`${route}: expected exactly one h1`);
+  if (route !== '/about' && /(?:message|ask|contact|send|tell|reply to|brief for)\s+Brent\b/i.test(html))
+    failures.push(`${route}: direct-to-Brent contact copy remains`);
 }
 
 const home = await readFile(routeFile('/'), 'utf8');
@@ -125,7 +126,7 @@ for (const evidence of [
 if (!home.includes('Founded by Brent Parent in Central Florida.'))
   failures.push('home: subtle founder attribution is missing');
 
-for (const label of ['Work', 'Services', 'Lab', 'Community', 'Studio']) {
+for (const label of ['Work', 'About', 'Lab', 'Community', 'Insights']) {
   if (!home.includes(`>${label}</a>`))
     failures.push(`home: primary navigation is missing ${label}`);
 }
@@ -158,18 +159,18 @@ for (const route of [
     failures.push(`${route}: remaining uncertainty is missing`);
 }
 
-const services = await readFile(routeFile('/services'), 'utf8');
+const about = await readFile(routeFile('/about'), 'utf8');
 for (const image of [
   'digital-experiences.png',
   'production-dashboard.png',
   'sentinel-lab.webp',
 ]) {
-  if (!services.includes(image))
-    failures.push(`/services: matched service image is missing: ${image}`);
+  if (!about.includes(image))
+    failures.push(`/about: matched service image is missing: ${image}`);
 }
 for (const label of ['Digital Experiences', 'Business Systems', 'Intelligent Systems']) {
-  if (!services.includes(label))
-    failures.push(`/services: locked service pillar is missing: ${label}`);
+  if (!about.includes(label))
+    failures.push(`/about: locked service pillar is missing: ${label}`);
 }
 
 const friction = await readFile(routeFile('/friction-review'), 'utf8');
@@ -187,11 +188,27 @@ const contact = await readFile(routeFile('/contact'), 'utf8');
 if (!contact.includes('I know what is frustrating me, but not the solution.'))
   failures.push('/contact: Friction Review decision path is missing');
 
-const about = await readFile(routeFile('/about'), 'utf8');
 if (!/Illustrated portrait of Brent Parent/i.test(about))
   failures.push('/about: founder portrait is missing');
 if (!/collaborate with client teams/i.test(about))
   failures.push('/about: collaborative studio language is missing');
+if (!about.includes('What we build'))
+  failures.push('/about: service overview is missing');
+
+const redirects = await readFile(resolve(root, 'dist/_redirects'), 'utf8');
+if (!/^\/services\s+\/about\s+301$/m.test(redirects))
+  failures.push('/services: permanent redirect to /about is missing');
+
+for (const file of [
+  'src/components/ui/IntelligenceStudioAgent.tsx',
+  'src/lib/intelligenceRouter.ts',
+  'functions/_shared/portfolioKnowledge.ts',
+  'functions/api/assistant.ts',
+]) {
+  const source = await readFile(resolve(root, file), 'utf8');
+  if (/questionsForBrent|(?:message|ask|contact|send|tell)\s+(?:this brief to\s+)?Brent\b|1brent\.bm@gmail\.com/i.test(source))
+    failures.push(`${file}: direct-to-Brent assistant copy remains`);
+}
 
 const prohibitedPrimaryCopy = [
   'service families',
@@ -204,7 +221,7 @@ const prohibitedPrimaryCopy = [
 ];
 for (const route of [
   '/',
-  '/services',
+  '/about',
   '/work/production-dashboard',
   '/work/storefront-experience',
 ]) {
