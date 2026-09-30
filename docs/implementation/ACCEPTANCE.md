@@ -1,9 +1,5 @@
 # Candidate acceptance and release gates
 
-## Release conflict reconciliation — 2026-09-30
-
-The paired candidate now incorporates current main's editorial voice and studio/contact routing while retaining the release stack. See [the September 30 reconciliation record](ACCEPTANCE_2026-09-30.md) for exact tested trees, shared-source parity, local checks and the browser-verification boundary. The hosted/provider gates below remain open. Production is still **NO-GO**.
-
 ## Combined review candidate — 2026-09-27
 
 The site integration combines the audit candidate, security sprint, Playground journey, latest owner console including daily refresh and service directory, and growth-team heads, then merges the current `main` editorial content. The paired backend combines its owner-console and security-sprint heads. See [the September 27 integration record](ACCEPTANCE_2026-09-27.md) for exact parents, local verification and still-open hosted gates. This source combination has **not** been deployed to an isolated paired preview or production. Earlier hosted receipts below belong to different revisions; none may be treated as acceptance of the combined tree.
@@ -68,3 +64,7 @@ Rollback code to the production identities in current-state.md while retaining a
 ## What the growth snapshot means
 
 The fresh seven-day public-category report has five consented tab/day sessions, 31 page views, one review view, one CTA click, one form start and zero submissions/contact conversions. These are not five unique humans; unmarked QA may be present. Earlier zero snapshots are historical. This tiny sample cannot establish revenue, conversion improvement or affiliate efficacy. See growth-public/report files for the exact receipt.
+
+## Release conflict reconciliation — 2026-09-30
+
+The paired candidate now incorporates current main's editorial voice and studio/contact routing while retaining the release stack. See [the September 30 reconciliation record](ACCEPTANCE_2026-09-30.md) for exact tested trees, shared-source parity, local checks and the browser-verification boundary. The hosted/provider gates below remain open. Production is still **NO-GO**.
