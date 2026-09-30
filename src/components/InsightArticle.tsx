@@ -75,14 +75,14 @@ export function InsightArticle({ currentPath, slug, onBack }: InsightArticleProp
         </header>
         <SaveArticle slug={article.slug} />
 
-        <aside className="insight-article__takeaways" aria-labelledby={`${article.slug}-takeaways`}>
+        {article.practicalTakeaways.length ? <aside className="insight-article__takeaways" aria-labelledby={`${article.slug}-takeaways`}>
           <h2 id={`${article.slug}-takeaways`}>Practical takeaways</h2>
           <ul>
             {article.practicalTakeaways.map((takeaway) => (
               <li key={takeaway}>{takeaway}</li>
             ))}
           </ul>
-        </aside>
+        </aside> : null}
 
         <div className="insight-article__body">
           {article.body.map((section) => (
@@ -109,25 +109,10 @@ export function InsightArticle({ currentPath, slug, onBack }: InsightArticleProp
           </aside>
         ) : null}
 
-        <section className="insight-article__sources" aria-labelledby={`${article.slug}-sources`}>
-          <p className="eyebrow">Sources and references</p>
-          <h2 id={`${article.slug}-sources`}>What informed this guide</h2>
-          <ol>
-            {article.sources.map((source) => (
-              <li key={`${source.url}-${source.title}`}>
-                <a href={source.url} rel="noreferrer">
-                  {source.title}
-                </a>
-                <span>{source.publisher}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
         {relatedArticles.length ? (
           <section className="insight-article__related" aria-labelledby={`${article.slug}-related`}>
             <p className="eyebrow">Continue with</p>
-            <h2 id={`${article.slug}-related`}>Related practical guides</h2>
+            <h2 id={`${article.slug}-related`}>Keep reading</h2>
             <div>
               {relatedArticles.map((relatedArticle) => relatedArticle ? (
                 <a href={relatedArticle.canonicalPath} key={relatedArticle.slug}>
@@ -141,9 +126,9 @@ export function InsightArticle({ currentPath, slug, onBack }: InsightArticleProp
 
         <footer className="insight-article__footer">
           <div>
-            <p className="eyebrow">A clearer next step</p>
-            <h2>Turn the useful ideas into a practical plan for your site.</h2>
-            <p>Bring the current website, the problem you want to solve, and any constraints already in place.</p>
+            <p className="eyebrow">Continue the conversation</p>
+            <h2>{article.format === 'essay' ? 'What kind of world are we building together?' : 'Turn the useful ideas into a practical plan for your site.'}</h2>
+            <p>{article.format === 'essay' ? 'Tell us what you are trying to make, and what matters to you about it.' : 'Bring the current website, the problem you want to solve, and any constraints already in place.'}</p>
           </div>
           <div className="article-detail__links">
             <a href={article.cta.href}>{article.cta.label}</a>

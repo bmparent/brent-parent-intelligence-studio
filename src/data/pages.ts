@@ -233,7 +233,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/insights': {
     title: 'Insights | Eidos Works',
     description:
-      'Practical notes on digital experiences, business systems, workflow automation, intelligent tools, and AI-ready search from Eidos Works.',
+      'Essays on the human side of technology and practical field notes on design, automation, and useful digital systems from Eidos Works.',
     type: 'website',
   },
   '/editorial-policy': {

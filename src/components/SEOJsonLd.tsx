@@ -113,8 +113,7 @@ export function SEOJsonLd({ path }: { path: string }) {
       mainEntityOfPage: absoluteUrl(article.canonicalPath),
       image: absoluteUrl(article.ogImage),
       keywords: article.tags.join(', '),
-      articleSection: article.category,
-      citation: article.sources.map((source) => source.url)
+      articleSection: article.category
     });
   }
 

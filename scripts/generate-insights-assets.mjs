@@ -241,7 +241,7 @@ function generateFeed() {
     )
     .join('\n');
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>Eidos Works Insights</title>\n    <link>${xmlEscape(absolute('/insights'))}</link>\n    <description>Practical, source-linked notes on website strategy, storefront UX, automation, dashboards, and AI-ready search.</description>\n    <language>en-us</language>\n    <lastBuildDate>${lastBuildDate}</lastBuildDate>\n${items}\n  </channel>\n</rss>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>Eidos Works Insights</title>\n    <link>${xmlEscape(absolute('/insights'))}</link>\n    <description>Essays on the human side of technology and practical notes on design, automation, and useful digital systems.</description>\n    <language>en-us</language>\n    <lastBuildDate>${lastBuildDate}</lastBuildDate>\n${items}\n  </channel>\n</rss>\n`;
 }
 
 function generateLlmsTxt() {
