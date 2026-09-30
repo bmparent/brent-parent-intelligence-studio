@@ -1,3 +1,4 @@
+import { IntelligentSystemsPage } from './IntelligentSystemsPage';
 import { BusinessSystemsPage } from './BusinessSystemsPage';
 import { DigitalExperiencesPage } from './DigitalExperiencesPage';
 import '../styles/service-start-paths.css';
@@ -200,6 +201,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
   const service = serviceBySlug(slug);
   const detail = serviceContext[slug];
   if (!service || !detail) return null;
+  if (slug === 'intelligent-systems') return <><IntelligentSystemsPage /><ServiceDetailCta slug={slug} /></>;
   if (slug === 'business-systems') return <><BusinessSystemsPage /><ServiceDetailCta slug={slug} /></>;
   if (slug === 'digital-experiences') return <><DigitalExperiencesPage /><DigitalStartingPaths /><ServiceDetailCta slug={slug} /></>;
 
