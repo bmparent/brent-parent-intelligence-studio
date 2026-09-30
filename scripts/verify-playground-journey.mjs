@@ -55,6 +55,9 @@ for (const width of [1440, 390]) {
     const grip = page.getByRole('button', { name: 'Drag Text into page structure or onto canvas' });
     const slot = page.locator('.pg-block-tree .pg-element-slot').filter({ hasText: '' }).first();
     await grip.dragTo(slot);
+    // dnd-kit AbstractPointerSensor intentionally suppresses document clicks for
+    // 50 ms after pointerup. Let that cleanup finish before clicking a panel tab.
+    await page.waitForTimeout(100);
     // The drop moves the mobile UI to Preview; wait for that commit before reopening Your page.
     if (width < 850) await page.locator('.pg-app[data-panel="canvas"]').waitFor();
     const afterDrag = await project();
