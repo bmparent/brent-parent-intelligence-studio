@@ -1,3 +1,4 @@
+import { BusinessSystemsPage } from './BusinessSystemsPage';
 import { DigitalExperiencesPage } from './DigitalExperiencesPage';
 import '../styles/service-start-paths.css';
 import { serviceBySlug, serviceFamilies } from '../data/editorial';
@@ -199,6 +200,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
   const service = serviceBySlug(slug);
   const detail = serviceContext[slug];
   if (!service || !detail) return null;
+  if (slug === 'business-systems') return <><BusinessSystemsPage /><ServiceDetailCta slug={slug} /></>;
   if (slug === 'digital-experiences') return <><DigitalExperiencesPage /><DigitalStartingPaths /><ServiceDetailCta slug={slug} /></>;
 
   return (
