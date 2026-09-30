@@ -230,7 +230,7 @@ export function LabPage() {
             Open the live lab ↗
           </a>
           <a className="ew-button ew-button--secondary" href="/lab/access">
-            Message Brent for access →
+            Message Eidos Works for access →
           </a>
         </div>
       </section>

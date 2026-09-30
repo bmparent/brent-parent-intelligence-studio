@@ -70,14 +70,14 @@ for (const width of [1440, 390]) {
     await page.reload();
     assert.deepEqual(await project(), afterDrag, 'local reload retains the design');
     await page.locator('.pg-toolbar').getByRole('button', { name: 'Free starter pack' }).click();
-    assert.ok(await page.getByRole('link', { name: /Want Brent to finish this/ }).isVisible());
+    assert.ok(await page.getByRole('link', { name: /Want Eidos Works to finish this/ }).isVisible());
     assert.ok(await page.getByRole('link', { name: /separate \$29 Cinematic Starter kit/ }).isVisible());
     const pending = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Download my free starter pack' }).click();
     const zip = await pending;
     assert.match(zip.suggestedFilename(), /\.zip$/);
     await zip.saveAs(path.join(evidence, `starter-${width}.zip`));
-    await page.getByRole('link', { name: 'Work with Brent' }).click();
+    await page.getByRole('link', { name: 'Work with Eidos Works' }).click();
     assert.match(page.url(), /\/contact\/\?from=playground#project-form$/);
     await page.getByLabel('What needs to become clearer, easier, or more useful?').waitFor();
     await page.waitForFunction(() => document.querySelector('textarea')?.value.includes('Eidos Playground'));
@@ -86,7 +86,7 @@ for (const width of [1440, 390]) {
     await page.getByRole('heading', { name: 'Start with a draft. Take it as far as you want.' }).waitFor();
     assert.equal(await page.getByRole('link', { name: /Build a page in Playground/ }).isVisible(), true);
     assert.equal(await page.getByRole('link', { name: /Get the Cinematic Starter kit/ }).isVisible(), true);
-    assert.equal(await page.getByRole('link', { name: /Ask Brent to design and build it/ }).isVisible(), true);
+    assert.equal(await page.getByRole('link', { name: /Ask Eidos Works to design and build it/ }).isVisible(), true);
     assert.equal(errors.length, 0, `no page errors: ${errors.join(', ')}`);
     console.log(`PASS ${width}: fresh editor, click and drag placement, Undo/Redo, reload, ZIP, contact prefill and service paths`);
   } catch (error) {

@@ -108,11 +108,11 @@ function StartingPointCta() {
 function DigitalStartingPaths() {
   return <section className="ew-shell service-start-paths" aria-labelledby="digital-start-title">
     <div><h2 id="digital-start-title">Start with a draft. Take it as far as you want.</h2>
-      <p>Make the first page in Playground, hand its files to your team, or bring the idea to Brent for a scoped build.</p></div>
+      <p>Make the first page in Playground, hand its files to your team, or bring the idea to Eidos Works for a scoped build.</p></div>
     <div className="service-start-paths__options">
       <a href="/playground/"><span>01 · Free tool</span><strong>Build a page in Playground</strong><small>Arrange content, preview it and download your own editable files.</small><b aria-hidden="true">↗</b></a>
       <a href="/shop/cinematic-starter/"><span>02 · $29 product</span><strong>Get the Cinematic Starter kit</strong><small>A separate ready-made page kit with its own checkout and terms.</small><b aria-hidden="true">↗</b></a>
-      <a href="/contact/#project-form"><span>03 · Custom service</span><strong>Ask Brent to design and build it</strong><small>Tell us the goal and constraints; custom work is scoped and quoted separately.</small><b aria-hidden="true">↗</b></a>
+      <a href="/contact/#project-form"><span>03 · Custom service</span><strong>Ask Eidos Works to design and build it</strong><small>Tell us the goal and constraints; custom work is scoped and quoted separately.</small><b aria-hidden="true">↗</b></a>
     </div>
   </section>;
 }
@@ -151,15 +151,13 @@ function ServiceDetailCta({ slug }: { slug: ServiceSlug }) {
   );
 }
 
-export function ServicesPage() {
+export function ServiceFamiliesSection() {
   return (
     <>
-      <ServiceHero
-        eyebrow="Services"
-        title="Build the part your current tools can’t quite do."
-        lede="Eidos Works designs digital experiences, business systems, and focused AI tools around real workflows — not generic software categories. Start with the friction. We’ll work backward from what needs to become clearer, faster, or easier."
-      />
-      <section className="ew-ledger-section ew-shell">
+      <section className="ew-ledger-section ew-shell" aria-labelledby="about-work-title">
+        <p className="ew-eyebrow">What we build</p>
+        <h2 id="about-work-title">Build the part your current tools can’t quite do.</h2>
+        <p>Eidos Works designs digital experiences, business systems, and focused AI tools around real workflows. Start with the friction. We work backward from what needs to become clearer, faster, or easier.</p>
         <div className="ew-service-index">
           {serviceFamilies.map((service) => (
             <article key={service.slug}>
@@ -175,7 +173,7 @@ export function ServicesPage() {
                 <figcaption>{service.imageCaption}</figcaption>
               </figure>
               <div>
-                <h2>{service.title}</h2>
+                <h3>{service.title}</h3>
                 <p>{service.summary}</p>
                 <ul>
                   {service.includes.map((item) => (

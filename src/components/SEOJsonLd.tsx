@@ -113,8 +113,7 @@ export function SEOJsonLd({ path }: { path: string }) {
       mainEntityOfPage: absoluteUrl(article.canonicalPath),
       image: absoluteUrl(article.ogImage),
       keywords: article.tags.join(', '),
-      articleSection: article.category,
-      citation: article.sources.map((source) => source.url)
+      articleSection: article.category
     });
   }
 
@@ -146,7 +145,6 @@ export function SEOJsonLd({ path }: { path: string }) {
     '/work/pernr-access-gate': 'PERNR Access Gate',
     '/work/production-dashboard': 'Production Dashboard',
     '/work/storefront-experience': 'Storefront Experience',
-    '/services': 'Services',
     '/services/digital-experiences': 'Digital Experiences',
     '/services/storefront-access-systems': 'Storefront and Access Systems',
     '/services/dashboards-workflow-tools': 'Dashboards and Workflow Tools',
@@ -171,7 +169,7 @@ export function SEOJsonLd({ path }: { path: string }) {
       items.push({ '@type': 'ListItem', position: 2, name: 'Work', item: absoluteUrl('/work') });
       items.push({ '@type': 'ListItem', position: 3, name: breadcrumbName, item: absoluteUrl(normalized) });
     } else if (normalized.startsWith('/services/')) {
-      items.push({ '@type': 'ListItem', position: 2, name: 'Services', item: absoluteUrl('/services') });
+      items.push({ '@type': 'ListItem', position: 2, name: 'About', item: absoluteUrl('/about') });
       items.push({ '@type': 'ListItem', position: 3, name: breadcrumbName, item: absoluteUrl(normalized) });
     } else {
       items.push({ '@type': 'ListItem', position: 2, name: breadcrumbName, item: absoluteUrl(normalized) });

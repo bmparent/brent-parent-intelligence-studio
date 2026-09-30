@@ -22,11 +22,11 @@ export function ContactCTA() {
         <p className="eyebrow">Eidos Works inquiries</p>
         <h2 id="contact-title">Need a storefront, dashboard, automation, or intelligence interface that actually feels custom?</h2>
         <p>
-          Bring the business problem, the platform constraints, and the outcome you want. I'll help turn it into a clear interface, workflow, or working system that looks premium and functions in the real world.
+          Bring the business problem, the platform constraints, and the outcome you want. Eidos Works can help turn it into a clear interface, workflow, or working system that looks premium and functions in the real world.
         </p>
         <div className="final-cta__actions">
           <SafeEmailLink className="btn btn--primary" address={siteConfig.contactEmail} subject="Eidos Works project inquiry">
-            Contact Brent
+            Contact Eidos Works
           </SafeEmailLink>
           <a className="btn btn--secondary" href="#work">
             View case studies

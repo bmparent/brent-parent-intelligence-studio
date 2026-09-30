@@ -33,5 +33,8 @@ test('invalid destination cannot change a project; free pack includes a usable h
   assert.ok(names.includes('project.json'));
   assert.ok(names.includes('AI-HANDOFF.md'));
   assert.ok(names.includes('NEXT-STEPS.md'));
-  assert.match(new TextDecoder().decode(files.find(file => file.name === 'NEXT-STEPS.md')!.data), /share this ZIP/);
+  const nextSteps = new TextDecoder().decode(files.find(file => file.name === 'NEXT-STEPS.md')!.data);
+  assert.match(nextSteps, /share this ZIP/);
+  assert.match(nextSteps, /Tell Eidos Works what you want to improve/);
+  assert.doesNotMatch(nextSteps, /Tell Brent/);
 });

@@ -197,7 +197,7 @@ export default function Playground() {
             <Icon name="eye" />
             {editing ? "Try page" : "Back to editor"}
           </button>
-          <a className="pg-button-secondary pg-work-link" href="/contact/?from=playground#project-form" onClick={() => track('playground_contact_click')}>Work with Brent ↗</a>
+          <a className="pg-button-secondary pg-work-link" href="/contact/?from=playground#project-form" onClick={() => track('playground_contact_click')}>Work with Eidos Works ↗</a>
           <button
             className="pg-primary"
             disabled={!ready || !!comparison}
@@ -418,7 +418,7 @@ export default function Playground() {
           <div className="pg-next-steps">
             <h2>When your draft feels right</h2>
             <button onClick={() => void openExport()} disabled={!ready || !!comparison}>Download your free starter pack ↗</button>
-            <a href="/contact/?from=playground#project-form" onClick={() => track('playground_contact_click')}>Ask Brent to finish it ↗</a>
+            <a href="/contact/?from=playground#project-form" onClick={() => track('playground_contact_click')}>Ask Eidos Works to finish it ↗</a>
             <small>Custom work is scoped and quoted after you tell us what you need. <a href="/services/digital-experiences/">Explore the service</a>.</small>
           </div>
         </aside>
@@ -545,7 +545,7 @@ export default function Playground() {
           <Icon name="export" />
         </button>
         <small>Your design stays on this device until you choose to export or save it to an available account. No account or payment needed for this download.</small>
-        <div className="pg-export-next"><a href="/contact/?from=playground#project-form" onClick={() => track('playground_contact_click')}>Want Brent to finish this? Send a project note ↗</a><p>Custom design and development are quoted after discovery. Your project is not attached automatically; share the ZIP only if you choose.</p><a href="/shop/cinematic-starter/">Explore the separate $29 Cinematic Starter kit ↗</a></div>
+        <div className="pg-export-next"><a href="/contact/?from=playground#project-form" onClick={() => track('playground_contact_click')}>Want Eidos Works to finish this? Send a project note ↗</a><p>Custom design and development are quoted after discovery. Your project is not attached automatically; share the ZIP only if you choose.</p><a href="/shop/cinematic-starter/">Explore the separate $29 Cinematic Starter kit ↗</a></div>
         <button disabled={exporting || !ready || !!comparison} onClick={()=>{try{download(zipFiles(headerFiles(project)),'eidos-header.zip','application/zip');setNotice('Header component downloaded with installation instructions.');}catch(e){setNotice((e as Error).message);}}}>Download header component</button>
       </dialog>
     </div>

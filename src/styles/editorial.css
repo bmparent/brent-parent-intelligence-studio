@@ -411,7 +411,7 @@ h4 {
 }
 
 .ew-service-ledger h3,
-.ew-service-index h2 {
+.ew-service-index h3 {
   margin-bottom: 0.5rem;
   font-family: "Newsreader", Georgia, serif;
   font-size: clamp(1.7rem, 3vw, 2.8rem);

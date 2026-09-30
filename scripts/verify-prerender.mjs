@@ -65,6 +65,8 @@ for (const file of await htmlFiles(root)) {
   }
 
   const approvedPlatformPages = new Set([
+    // The studio About page now includes the service families and their platform evidence.
+    'about/index.html',
     'work/index.html',
     'work/nighttime-spectaculars/index.html',
     'work/holidays-in-hollywood/index.html',
@@ -73,7 +75,6 @@ for (const file of await htmlFiles(root)) {
     'work/jingle-bell-jingle-bam/index.html',
     'work/pernr-access-gate/index.html',
     'work/storefront-experience/index.html',
-    'services/index.html',
     'services/storefront-access-systems/index.html',
     'services/digital-experiences/index.html',
     'services/business-systems/index.html',

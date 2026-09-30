@@ -45,7 +45,7 @@ export interface LocalRecommendation {
 
 export interface IntelligenceResult extends LocalRecommendation {
   mode: IntelligenceMode
-  questionsForBrent: string[]
+  questionsForEidos: string[]
   tokenNote: string
   source: 'openai' | 'local-fallback'
 }

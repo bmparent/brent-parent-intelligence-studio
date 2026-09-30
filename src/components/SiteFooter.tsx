@@ -30,7 +30,6 @@ export function SiteFooter() {
         <div className="ew-footer-links">
           <nav aria-label="Studio links">
             <a href="/work">Work</a>
-            <a href="/services">Services</a>
             <a href="/about">About</a>
             <a href="/contact">Contact</a>
           </nav>

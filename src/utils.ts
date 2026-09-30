@@ -16,7 +16,7 @@ export function externalLinkProps(label: string) {
   };
 }
 
-export const projectBriefText = `Hi Brent - I am interested in building with Eidos Works.\n\nProject type: storefront / dashboard / automation / intelligence prototype / website\nBusiness context:\nPrimary goal:\nCurrent tools or platform:\nTimeline:\nWhat would make this project successful:\n`;
+export const projectBriefText = `Hello Eidos Works - I am interested in building with your studio.\n\nProject type: storefront / dashboard / automation / intelligence prototype / website\nBusiness context:\nPrimary goal:\nCurrent tools or platform:\nTimeline:\nWhat would make this project successful:\n`;
 
 export const contactEmail = siteConfig.contactEmail;
 export const contactMailto = `mailto:${encodeURIComponent(contactEmail)}?subject=Eidos%20Works%20project%20inquiry&body=${encodeURIComponent(projectBriefText)}`;

@@ -17,7 +17,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/account': { title: 'Your Account | Eidos Works', description: 'Free paper delivery, saved reading, and a conversation inbox for people and agents.', type: 'website', noIndex: true, noReferrer: true },
   '/account/verify': { title: 'Confirm Your Email | Eidos Works', description: 'Confirm your email to sign in.', type: 'website', noIndex: true, noReferrer: true },
   '/account/unsubscribe': { title: 'Email Preferences | Eidos Works', description: 'Unsubscribe from article emails.', type: 'website', noIndex: true, noReferrer: true },
-  '/lab/access': { title: 'Request Lab Access | Eidos Works', description: 'Message Brent to request an Eidos Brain / Sentinel access code.', type: 'website' },
+  '/lab/access': { title: 'Request Lab Access | Eidos Works', description: 'Message Eidos Works to request an Eidos Brain / Sentinel access code.', type: 'website' },
   '/work/nighttime-spectaculars': {
     title: 'Nighttime Spectaculars Storefront | Eidos Works',
     description:
@@ -150,12 +150,6 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
       'Build a website that is easier for customers, search engines, and AI assistants to understand with structured content, metadata, schema, and accessible UX.',
     type: 'website',
   },
-  '/services': {
-    title: 'Services | Eidos Works',
-    description:
-      'Digital experiences, business systems, and focused AI tools built around the point where an existing site, workflow, platform, or piece of software stops fitting the work.',
-    type: 'website',
-  },
   '/services/digital-experiences': {
     title: 'Digital Experience Design & Development | Eidos Works',
     description:
@@ -234,7 +228,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/insights': {
     title: 'Insights | Eidos Works',
     description:
-      'Practical notes on digital experiences, business systems, workflow automation, intelligent tools, and AI-ready search from Eidos Works.',
+      'Essays on the human side of technology and practical field notes on design, automation, and useful digital systems from Eidos Works.',
     type: 'website',
   },
   '/editorial-policy': {
@@ -275,7 +269,8 @@ export function normalizePath(path = '/') {
 }
 
 export function pageMetadata(path = '/'): PageMetadata {
-  const normalized = normalizePath(path);
+  const normalizedPath = normalizePath(path);
+  const normalized = normalizedPath === '/services' ? '/about' : normalizedPath;
   const staticPage = staticPages[normalized];
   if (staticPage) {
     return {
@@ -353,7 +348,6 @@ export function prerenderPagePaths() {
     '/work/pernr-access-gate',
     '/work/production-dashboard',
     '/work/storefront-experience',
-    '/services',
     '/services/digital-experiences',
     '/services/business-systems',
     '/services/intelligent-systems',

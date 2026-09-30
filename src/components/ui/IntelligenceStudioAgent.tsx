@@ -27,7 +27,7 @@ const modes: Array<{
     id: 'concierge',
     label: 'Case Study Concierge',
     eyebrow: 'Route to proof',
-    description: 'Ask what Brent has built and get the closest proof path instead of browsing blindly.',
+    description: 'Explore what Eidos Works has built and get the closest proof path instead of browsing blindly.',
   },
   {
     id: 'automation',
@@ -87,7 +87,7 @@ function createFallbackResult(mode: IntelligenceMode, local: ReturnType<typeof b
     nextSteps: local.nextSteps,
     cta: local.cta,
     confidence: local.confidence,
-    questionsForBrent: [
+    questionsForEidos: [
       'What system or process is causing the most friction right now?',
       'What would a useful first version need to prove?',
       'Which tools, sites, forms, or reports already exist?',
@@ -111,8 +111,8 @@ function resultToClipboardText(result: IntelligenceResult) {
     'Next steps:',
     ...result.nextSteps.map((step) => `- ${step}`),
     '',
-    'Questions for Brent:',
-    ...result.questionsForBrent.map((question) => `- ${question}`),
+    'Questions for Eidos Works:',
+    ...result.questionsForEidos.map((question) => `- ${question}`),
   ].join('\n')
 }
 
@@ -381,8 +381,8 @@ export function IntelligenceStudioAgent() {
                 </div>
 
                 <div className="agent-question-list">
-                  <span>Questions for Brent</span>
-                  {result.questionsForBrent.map((question) => (
+                  <span>Questions for Eidos Works</span>
+                  {result.questionsForEidos.map((question) => (
                     <p key={question}>{question}</p>
                   ))}
                 </div>
