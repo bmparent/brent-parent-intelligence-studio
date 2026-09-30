@@ -161,7 +161,7 @@ for (const route of [
 
 const about = await readFile(routeFile('/about'), 'utf8');
 for (const image of [
-  'digital-experiences.png',
+  'hih-full-storefront-reference-v2.webp',
   'production-dashboard.png',
   'sentinel-lab.webp',
 ]) {

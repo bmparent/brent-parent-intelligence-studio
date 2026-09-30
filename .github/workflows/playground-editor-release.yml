@@ -40,6 +40,7 @@ jobs:
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done
           node scripts/verify-playground-editor-browser.mjs
           node scripts/verify-hero-browser.mjs
+          node scripts/verify-digital-experiences-browser.mjs
       - name: Growth desktop and mobile acceptance with controlled delivery
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
