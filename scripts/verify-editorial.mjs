@@ -95,8 +95,8 @@ if (density.articles > 12)
   failures.push(
     `home: ${density.articles} article containers exceeds the editorial limit of 12`,
   );
-// Gallery thumbnails are one requested browsing surface, not extra page CTAs.
-const galleryButtons = count(home, /<button[^>]*class="ew-site-preview"/gi);
+// Thumbnail and preview controls belong to the same gallery browsing surface.
+const galleryButtons = count(home, /<button[^>]*class="ew-site-(?:preview|window)\b/gi);
 if (density.buttons - galleryButtons > 10)
   failures.push(
     `home: ${density.buttons - galleryButtons} non-gallery buttons exceeds the editorial limit of 10`,
@@ -161,7 +161,7 @@ for (const route of [
 
 const about = await readFile(routeFile('/about'), 'utf8');
 for (const image of [
-  'digital-experiences.png',
+  'hih-full-storefront-reference-v2.webp',
   'production-dashboard.png',
   'sentinel-lab.webp',
 ]) {

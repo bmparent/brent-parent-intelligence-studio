@@ -152,7 +152,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/services/digital-experiences': {
     title: 'Digital Experience Design & Development | Eidos Works',
     description:
-      'Websites, interactive experiences, commerce journeys, campaigns, and platform extensions that make an offer easier to understand and a next step easier to take.',
+      'Explore Eidos Works storefronts, games, and interactive experiments, including Holidays in Hollywood, the MDCA Webstore, Little House, and Tidal. See how each experience was built.',
     type: 'website',
   },
   '/services/business-systems': {

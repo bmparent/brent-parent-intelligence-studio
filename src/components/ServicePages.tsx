@@ -1,3 +1,7 @@
+import { IntelligentSystemsPage } from './IntelligentSystemsPage';
+import { BusinessSystemsPage } from './BusinessSystemsPage';
+import { DigitalExperiencesPage } from './DigitalExperiencesPage';
+import '../styles/service-start-paths.css';
 import { serviceBySlug, serviceFamilies } from '../data/editorial';
 
 type ServiceSlug = (typeof serviceFamilies)[number]['slug'];
@@ -102,11 +106,23 @@ function StartingPointCta() {
   );
 }
 
+function DigitalStartingPaths() {
+  return <section className="ew-shell service-start-paths" aria-labelledby="digital-start-title">
+    <div><h2 id="digital-start-title">Start with a draft. Take it as far as you want.</h2>
+      <p>Make the first page in Playground, hand its files to your team, or bring the idea to Eidos Works for a scoped build.</p></div>
+    <div className="service-start-paths__options">
+      <a href="/playground/"><span>01 · Free tool</span><strong>Build a page in Playground</strong><small>Arrange content, preview it and download your own editable files.</small><b aria-hidden="true">↗</b></a>
+      <a href="/shop/cinematic-starter/"><span>02 · $29 product</span><strong>Get the Cinematic Starter kit</strong><small>A separate ready-made page kit with its own checkout and terms.</small><b aria-hidden="true">↗</b></a>
+      <a href="/contact/#project-form"><span>03 · Custom service</span><strong>Ask Eidos Works to design and build it</strong><small>Tell us the goal and constraints; custom work is scoped and quoted separately.</small><b aria-hidden="true">↗</b></a>
+    </div>
+  </section>;
+}
+
 function ServiceDetailCta({ slug }: { slug: ServiceSlug }) {
   const copy: Record<ServiceSlug, { title: string; body: string }> = {
     'digital-experiences': {
-      title: 'What should become easier to understand or use?',
-      body: 'Show us the customer path, page, platform, or experience that almost works. We’ll identify the first place we would reduce friction.',
+      title: 'Show us the part that almost works.',
+      body: 'Send a page, storefront, campaign idea, or customer path that is not doing justice to the work behind it. We’ll identify the first place we would make it clearer, more useful, or more compelling.',
     },
     'business-systems': {
       title: 'What is your team still doing by hand?',
@@ -185,6 +201,9 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
   const service = serviceBySlug(slug);
   const detail = serviceContext[slug];
   if (!service || !detail) return null;
+  if (slug === 'intelligent-systems') return <><IntelligentSystemsPage /><ServiceDetailCta slug={slug} /></>;
+  if (slug === 'business-systems') return <><BusinessSystemsPage /><ServiceDetailCta slug={slug} /></>;
+  if (slug === 'digital-experiences') return <><DigitalExperiencesPage /><DigitalStartingPaths /><ServiceDetailCta slug={slug} /></>;
 
   return (
     <>

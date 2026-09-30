@@ -7,7 +7,8 @@ permissions:
   contents: read
 concurrency:
   group: playground-editor-${{ github.ref }}
-  cancel-in-progress: false
+  # Replace superseded PR checks while keeping production uploads serial.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   local-editor:
     runs-on: ubuntu-latest
@@ -40,6 +41,9 @@ jobs:
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done
           node scripts/verify-playground-editor-browser.mjs
           node scripts/verify-hero-browser.mjs
+          node scripts/verify-digital-experiences-browser.mjs
+          node scripts/verify-business-systems-browser.mjs
+          node scripts/verify-intelligent-systems-browser.mjs
       - name: Growth desktop and mobile acceptance with controlled delivery
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright

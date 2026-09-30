@@ -59,9 +59,9 @@ export const serviceFamilies = [
       'Platform and frontend extensions',
       'Accessibility, performance, and search foundations'
     ],
-    image: '/images/services/digital-experiences.png',
-    imageAlt: 'Eidos Works service page shown as a digital experience example.',
-    imageCaption: 'Digital experience and service-page work'
+    image: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1500/v1786042295/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-full-storefront-reference-v2.webp',
+    imageAlt: 'Holidays in Hollywood storefront design reference with a theatrical holiday entrance and apparel categories.',
+    imageCaption: 'Holidays in Hollywood · saved storefront design reference'
   },
   {
     slug: 'business-systems',
