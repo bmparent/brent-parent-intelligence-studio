@@ -1,0 +1,14 @@
+{
+  "name": "eidos-quote-desk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "wrangler deploy --dry-run --outdir .build",
+    "test": "node tests/estimator.test.mjs && node tests/lifecycle.test.mjs && node tests/revenue.test.mjs",
+    "preview": "node preview.mjs"
+  },
+  "dependencies": { "stripe": "22.6.0" },
+  "devDependencies": { "wrangler": "4.98.0" }
+}
