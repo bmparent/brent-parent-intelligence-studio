@@ -18,3 +18,7 @@ Baseline: [main workflow 36651895749](https://github.com/bmparent/brent-parent-i
 Candidate, merged and live checks are recorded in `PUBLIC_RELEASE_2026-09-30.md` as they become available. Local or CI browser widths are not physical-device or assistive-technology acceptance. The larger paired identity, owned cloud reopen, owner security, inbox and Stripe TEST gates remain open on #73/#67; those gates are not accepted by this public presentation release. Quote Desk remains configured for TEST with checkout disabled and requires its own hosted acceptance.
 
 Rollback uses the existing main/deployment baseline above and preserves customer data. No data migration is part of this release.
+
+## October 1 storefront gallery follow-up
+
+The current Liberty Christian Prep, MDCA and Disney Junior homepages replace their old cropped references with dated complete captures and full-page reading. Real storefronts retain client-services attribution and live links; fictional concepts retain their separate disclosure. Animated demo source and all other gallery records remain unchanged. Candidate scope, image provenance, current verification and the `7f03936` rollback baseline are recorded in [STOREFRONT_GALLERY_2026-10-01.md](STOREFRONT_GALLERY_2026-10-01.md). The held paired runtime gates above remain open.
