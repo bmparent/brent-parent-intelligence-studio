@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { SupportedAnswerDemo } from './SupportedAnswerDemo';
+import { BuildDetails } from './BuildDetails';
+import { intelligentBuilds } from '../data/buildStories';
 import '../styles/intelligent-systems.css';
 
 const projects = [
@@ -47,7 +49,7 @@ export function IntelligentSystemsPage() {
       <div>
         <p className="ew-eyebrow">Service 03 / Intelligent Systems</p>
         <h1 id="is-title">Give assistance a job. <em>Keep people in control.</em></h1>
-        <p>Useful intelligence begins with a specific question, trustworthy information, and a clear limit on what the system may do. These three projects show different ways to make that boundary visible.</p>
+        <p>We develop AI assistants, published-source retrieval, and React applications around specific tasks. Explore how each system works.</p>
         <a className="ew-button ew-button--primary" href="#is-work">See the projects ↓</a>
       </div>
       <nav className="is-hero__index" aria-label="Projects on this page">
@@ -79,6 +81,7 @@ export function IntelligentSystemsPage() {
               <div><dt>Human control</dt><dd>{project.control}</dd></div>
               <div><dt>What is verified</dt><dd>{project.verified}</dd></div>
             </dl>
+            {intelligentBuilds[project.title] && <BuildDetails story={intelligentBuilds[project.title]} />}
             <a href={project.href}>{project.action} <span aria-hidden="true">↗</span></a>
           </div>
         </div>

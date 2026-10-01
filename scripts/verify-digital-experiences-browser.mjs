@@ -23,7 +23,7 @@ for (const width of [1440, 390]) {
   page.on('pageerror', error => errors.push(error.message));
   try {
     await page.goto(base + '/services/digital-experiences/', { waitUntil: 'domcontentloaded' });
-    await page.getByRole('heading', { name: /Make the thing you do feel unmistakable/ }).waitFor();
+    await page.getByRole('heading', { name: /Custom websites.*Unmistakable experiences/ }).waitFor();
     assert.equal(await page.getByRole('main').count(), 1, 'one main landmark');
 
     const stage = page.locator('.dx-stage');

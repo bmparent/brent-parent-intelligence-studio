@@ -1,0 +1,16 @@
+.ew-build-details{--build-ink:#183c33;--build-muted:#435a50;min-width:0;margin-block:2rem;padding-block:1.5rem;border-top:1px solid #a8b9ae;border-bottom:1px solid #a8b9ae;overflow-wrap:anywhere}
+.ew-build-details .ew-build-details__heading{display:flex;align-items:center;gap:.65rem;margin:0;font-family:Inter,Aptos,sans-serif;font-size:.8rem;font-weight:650;letter-spacing:.1em;text-transform:uppercase;color:var(--build-ink)}
+.ew-build-details__heading svg{flex-shrink:0}
+.ew-build-details .ew-build-details__service{margin:.8rem 0 .5rem;font-size:.95rem;font-weight:650;line-height:1.5;color:var(--build-ink)}
+.ew-build-details .ew-build-details__summary{margin:0 0 1.2rem;font-size:.92rem;line-height:1.65;color:var(--build-muted)}
+.ew-build-details .ew-build-details__stack{display:grid;gap:1rem;margin:0 0 1.5rem}
+.ew-build-details .ew-build-details__stack>div{padding:0;border:0}
+.ew-build-details .ew-build-details__stack dt{margin:0 0 .5rem;color:var(--build-muted);font-size:.68rem;font-weight:650;letter-spacing:.1em;text-transform:uppercase}
+.ew-build-details .ew-build-details__stack dd{margin:0}
+.ew-build-details .ew-build-details__stack ul{display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0;list-style:none}
+.ew-build-details .ew-build-details__stack li{max-width:100%;margin:0;padding:.35rem .65rem;border:1px solid #b1c5b9;border-radius:6px;background:#e5eee6;color:#234e40;font:500 .75rem/1.4 Inter,Aptos,sans-serif}
+.ew-build-details .ew-build-details__steps{display:grid;gap:1.1rem;margin:0;padding:0;list-style:none;counter-reset:build-step}
+.ew-build-details .ew-build-details__steps>li{display:grid;grid-template-columns:1.6rem minmax(0,1fr);gap:.65rem;margin:0;padding:0;counter-increment:build-step}
+.ew-build-details .ew-build-details__steps>li::before{content:counter(build-step,decimal-leading-zero);padding-top:.2rem;color:#287863;font:650 .7rem/1.5 Inter,Aptos,sans-serif}
+.ew-build-details__steps strong{font-family:Inter,Aptos,sans-serif;font-size:.88rem;line-height:1.5;color:var(--build-ink)}
+.ew-build-details .ew-build-details__steps p{margin:.4rem 0 0;font-size:.92rem;line-height:1.65;color:var(--build-muted)}

@@ -18,7 +18,7 @@ try {
     try {
       const response = await page.goto(base + '/services/intelligent-systems/', { waitUntil: 'domcontentloaded' });
       assert.equal(response.status(), 200);
-      assert.match(await page.title(), /Intelligent Systems/);
+      assert.match(await page.title(), /AI Assistant & React Application Development/);
       await page.getByRole('heading', { name: /Give assistance a job/ }).waitFor();
       assert.equal(await page.locator('.is-project').count(), 3);
       const headerGap = await page.evaluate(() => document.querySelector('#is-title').getBoundingClientRect().top - document.querySelector('.ew-header').getBoundingClientRect().bottom);
