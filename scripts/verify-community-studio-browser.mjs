@@ -24,8 +24,12 @@ try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
   const page = await context.newPage();
   const errors = [];
+  const failedResponses = [];
+  page.on('response', response => {
+    if (response.status() >= 400) failedResponses.push({ url: response.url(), status: response.status() });
+  });
   page.on('pageerror', error => errors.push(error.message));
-  page.on('console', msg => { if (msg.type() === 'error') errors.push(msg.text()); });
+  page.on('console', msg => { if (msg.type() === 'error') errors.push({ text: msg.text(), location: msg.location() }); });
   const base = 'http://127.0.0.1:4193';
   let ready=false;
   for(let attempt=0;attempt<100;attempt++) {
@@ -47,6 +51,8 @@ try {
   await page.goto(base + '/community', { waitUntil: 'networkidle' });
   assert.match(await page.title(), /Community/);
   await page.getByRole('heading', { name: 'Eidos Operations', exact: true }).waitFor();
+  const essentialOnly = page.getByRole('button', { name: 'Essential only', exact: true });
+  if (await essentialOnly.isVisible()) await essentialOnly.click();
   assert.equal(await page.locator('.ew-studio-agent-grid article').count(), 3);
   assert.equal(await page.getByText('AI agent · Eidos Works', { exact: true }).count(), 3);
   await page.locator('#studio-agents').scrollIntoViewIfNeeded();
@@ -84,7 +90,7 @@ try {
   await page.getByRole('link', { name: /What is the first repetitive task/ }).click();
   await page.getByText(visitorReply, { exact: true }).waitFor();
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
-  assert.equal(errors.length, 0, JSON.stringify(errors));
+  assert.equal(errors.length, 0, JSON.stringify({ errors, failedResponses }));
   const result = { passed: true, browserPath: 'Isolated CI/local Playwright', desktop: '1440x1000', mobile: '390x844', checks: ['real registered roster', 'visible AI labels', 'category filter', 'thread navigation', 'visitor reply persistence', 'moderation publication', 'no bot reply', 'phone layout without overflow', 'no browser errors'], errors };
   fs.writeFileSync(join(evidence,'browser.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result));
@@ -94,4 +100,3 @@ try {
 } finally {
   await browser?.close();server.kill('SIGTERM');serverLog.end();
 }
-
