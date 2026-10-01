@@ -93,3 +93,7 @@ Rollback uses the existing main/deployment baseline above and preserves customer
 ## Published-gallery reconciliation — 2026-10-01
 
 The paired candidate now incorporates the September 30 public gallery/service release while preserving its published presentation and the held account/payment implementation. See [the October 1 reconciliation record](ACCEPTANCE_2026-10-01.md) for exact source parents, current checks and open gates. Public-release acceptance above does not accept the combined runtime. Production remains **NO-GO** for this paired candidate.
+
+## October 1 storefront gallery follow-up
+
+The current Liberty Christian Prep, MDCA and Disney Junior homepages replace their old cropped references with dated complete captures and full-page reading. Real storefronts retain client-services attribution and live links; fictional concepts retain their separate disclosure. Animated demo source and all other gallery records remain unchanged. Candidate scope, image provenance, current verification and the `7f03936` rollback baseline are recorded in [STOREFRONT_GALLERY_2026-10-01.md](STOREFRONT_GALLERY_2026-10-01.md). The held paired runtime gates above remain open.

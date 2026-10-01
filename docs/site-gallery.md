@@ -38,7 +38,9 @@ Preserve the existing platform bindings, runtime variables, backend relay, and p
 
 ## Additional InkSoft references
 
-Five saved InkSoft homepage captures sit alongside the published apps: Liberty Christian Prep, Liberty Christian Early Learning, MDCA Uniforms, Disney Junior, and YMCA Employee Uniforms. These are saved design references, not live store links. Their Cloudinary URLs are versioned public assets in the existing project account; thumbnails request a 640px rendition, larger previews request 1600px. `previewLabel` supplies the appropriate reference label. `date` is optional when the original project date has not been established.
+Five InkSoft homepage references sit alongside the published apps: Liberty Christian Prep, Liberty Christian Early Learning, MDCA Uniforms, Disney Junior, and YMCA Employee Uniforms. Liberty Christian Prep, MDCA and Disney Junior now use complete October 1, 2026 browser captures, stored as versioned local WebP files with 640-pixel-wide uncropped thumbnails. Their cards open the full-page reading dialog; separate links open the current storefront. `capturedAt` records the screenshot date rather than inventing an original project date. Client-services attribution and the Disney Junior cast-member ordering context are retained. The remaining Early Learning and YMCA entries retain their saved Cloudinary images and reference-preview behavior.
+
+`fullPage` controls image presentation independently of provenance. Only records in the Concepts category receive fictional/AI-generated wording. Real storefront captures receive client-storefront labels, dated capture notes and live-store links. See [the October 1 refresh record](implementation/STOREFRONT_GALLERY_2026-10-01.md) for sources, dimensions and verification.
 
 Three full interactive reconstructions are also available in the Work collection: `/work/disney-villains`, `/work/beauty-and-the-beast`, and `/work/jingle-bell-jingle-bam`. They use saved project artwork and illustrative catalog labels/options. These pages are separate from the historical screenshots in the gallery.
 
