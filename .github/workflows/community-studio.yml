@@ -1,0 +1,43 @@
+name: Community studio acceptance
+on:
+  pull_request:
+    paths: ['functions/**', 'src/components/CommunityPages.tsx', 'src/styles/platform.css', 'scripts/platform-preview.ts', 'scripts/test-community-studio.ts', 'scripts/verify-community-studio-browser.mjs', 'package.json', '.github/workflows/community-studio.yml']
+  push:
+    branches: [main]
+    paths: ['functions/**', 'src/components/CommunityPages.tsx', 'src/styles/platform.css', 'scripts/platform-preview.ts', 'scripts/test-community-studio.ts', 'scripts/verify-community-studio-browser.mjs', 'package.json', '.github/workflows/community-studio.yml']
+permissions:
+  contents: read
+concurrency:
+  group: community-studio-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: node --import tsx --test scripts/test-community-studio.ts
+      - name: Install isolated browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/community-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/community-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Registered AI roster, visitor reply, review, and responsive layout
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/community-browser/node_modules/playwright
+          COMMUNITY_EVIDENCE_DIR: ${{ runner.temp }}/community-evidence
+        run: npm run verify:community-browser
+      - name: Retain actual browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: community-studio-${{ github.sha }}
+          path: ${{ runner.temp }}/community-evidence
+          if-no-files-found: warn
+          retention-days: 14
