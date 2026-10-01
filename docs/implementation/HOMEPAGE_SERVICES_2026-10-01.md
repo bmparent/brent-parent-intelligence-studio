@@ -2,7 +2,7 @@
 
 ## Candidate
 
-Branch `codex/home-services-selected-work-20261001` starts from current main `435be02b30f1d983e19b9e915c665ebc38a56668`, including the merged #81 storefront-gallery refresh. Work began on `7f03936` and was rebased without conflicts when #81 merged. No held #73/#67 runtime ancestry is introduced. The final PR records the exact candidate SHA and source tree.
+Branch `codex/home-services-selected-work-20261001` began on `7f03936` and was rebased onto `435be02b30f1d983e19b9e915c665ebc38a56668` when #81's storefront-gallery refresh merged. The first exact-head CI passed on `d59763e`. While it ran, #83 merged as current main `8aec88943075c737dc5469c698819c61cc94a360`. This candidate incorporates that main revision, retaining all service build stories and both appended acceptance records. Only the shared acceptance-document append required resolution. No held #73/#67 runtime ancestry is introduced. The PR records the final candidate SHA, source tree and repeated combined-source verification.
 
 ## Customer-visible change
 
@@ -27,4 +27,4 @@ The local preview adapter serves the existing standalone Wellway directory index
 
 Responsive iframe evidence is not a physical-phone or touch test. Reduced-motion and forced-colors rules are present; OS preference, assistive-technology and physical-device acceptance are not claimed. The existing Wellway app requires secure-context `crypto.randomUUID`, so its full runtime cannot run on the internal HTTP preview; the unchanged public HTTPS demo was checked instead. No additional Wellway acceptance is implied.
 
-The temporary responsive harness and build-generated timestamp changes are excluded from source and build output. Production promotion and exact-head CI are recorded separately in the PR. Existing account, payment, owner-console, inbox, research and paid-provider acceptance gates retain their prior status. Public-source rollback target is `435be02`.
+The temporary responsive harness and build-generated timestamp changes are excluded from source and build output. Production promotion and exact-head CI are recorded separately in the PR. Existing account, payment, owner-console, inbox, research and paid-provider acceptance gates retain their prior status. Public-source rollback target is `8aec889`.
