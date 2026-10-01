@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {assess,economics} from '../revenue-gate.mjs';
+function evidence(){return {environment:'live',sourceReceiptsReviewed:true,independentPayingCustomers:20,customersWithSuccessfulRenewal:8,weeklyEvidence:Array.from({length:8},(_,i)=>({weekStart:new Date(Date.UTC(2026,6,6+i*7)).toISOString().slice(0,10),closed:true,financeCoverageComplete:true,bankReconciled:true,providerReceiptRefs:['fixture-provider-ref'],bankReceiptRefs:['fixture-bank-ref'],settledNetReceipts:150,actualOperatingExpenses:100,upkeepMinutes:30}))};}
+test('estimated provider fees are deducted before expense coverage',()=>{assert(Math.abs(economics().netAfterEstimatedProviderFees-18.016)<0.000001);assert.equal(Math.ceil(625/economics().netAfterEstimatedProviderFees),35);});
+test('projections, test payments and incomplete records cannot meet the revenue gate',()=>{assert.equal(assess({}).structuredEvidencePassed,false);for(const changed of [{environment:'test'},{sourceReceiptsReviewed:false},{customersWithSuccessfulRenewal:0}])assert.equal(assess({...evidence(),...changed}).structuredEvidencePassed,false);});
+test('one bad week, a gap, missing expenses or excessive upkeep fails the gate',()=>{for(const changed of [{settledNetReceipts:100},{actualOperatingExpenses:null},{upkeepMinutes:61},{weekStart:'2026-06-01'},{bankReconciled:false}]){const e=evidence();Object.assign(e.weeklyEvidence[3],changed);assert.equal(assess(e).structuredEvidencePassed,false);}});
+test('complete fixture passes the structured check without claiming independent authentication',()=>{const result=assess(evidence());assert.equal(result.structuredEvidencePassed,true);assert.match(result.limits,/does not independently authenticate/);});

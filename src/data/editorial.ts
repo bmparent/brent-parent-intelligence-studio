@@ -59,9 +59,9 @@ export const serviceFamilies = [
       'Platform and frontend extensions',
       'Accessibility, performance, and search foundations'
     ],
-    image: '/images/services/liberty-desktop-20260921.png',
-    imageAlt: 'Actual Liberty Early Learning storefront captured on September 21, 2026.',
-    imageCaption: 'Delivered InkSoft storefront · actual desktop capture'
+    image: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1500/v1786042295/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-full-storefront-reference-v2.webp',
+    imageAlt: 'Holidays in Hollywood storefront design reference with a theatrical holiday entrance and apparel categories.',
+    imageCaption: 'Holidays in Hollywood · saved storefront design reference'
   },
   {
     slug: 'business-systems',
@@ -75,9 +75,9 @@ export const serviceFamilies = [
       'Existing-tool and API integrations',
       'Automation and handoff systems'
     ],
-    image: '/images/site-gallery/embroiderycalc-pro.webp',
-    imageAlt: 'EmbroideryCalc estimating workspace.',
-    imageCaption: 'EmbroideryCalc · focused estimating workspace'
+    image: '/images/case-studies/production-dashboard.png',
+    imageAlt: 'Production reporting dashboard showing schedule filters and daily work status.',
+    imageCaption: 'Operational dashboard and workflow system'
   },
   {
     slug: 'intelligent-systems',
@@ -91,9 +91,9 @@ export const serviceFamilies = [
       'AI-enhanced internal tools',
       'Evaluation, guardrails, and human review'
     ],
-    image: '/images/site-gallery/wellway-journey.webp',
-    imageAlt: 'Wellway guided reflection interface.',
-    imageCaption: 'Wellway · guided reflection with optional bounded assistance'
+    image: '/images/work/sentinel-lab.webp',
+    imageAlt: 'Eidos Sentinel Lab interface showing a proof-stage intelligent-systems research environment.',
+    imageCaption: 'Proof-stage intelligent-systems research interface'
   }
 ] as const;
 

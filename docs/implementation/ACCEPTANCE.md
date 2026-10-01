@@ -68,3 +68,28 @@ The fresh seven-day public-category report has five consented tab/day sessions, 
 ## Release conflict reconciliation — 2026-09-30
 
 The paired candidate now incorporates current main's editorial voice and studio/contact routing while retaining the release stack. See [the September 30 reconciliation record](ACCEPTANCE_2026-09-30.md) for exact tested trees, shared-source parity, local checks and the browser-verification boundary. The hosted/provider gates below remain open. Production is still **NO-GO**.
+
+## Public-site release acceptance — 2026-09-30
+
+Brent explicitly authorized merging the gallery and other mergeable PRs and taking the result live on September 30. This release starts from production/main `e0f5ca9c0b81542929960aa6ada075f81ad0240b` and extracts public presentation changes from the previously stacked branches. It does not merge the paired implementation candidate in site #73 or backend #67.
+
+### Scope and impact
+
+- Gallery #80: three fictional full-page website concepts, thumbnails, filter/search, reading dialog and customer briefs. No business offers or client outcomes are implied.
+- Service showcases #74–76: public project pages and local fictional demonstrations. Their frontend-only dependencies are reviewed separately from the larger paired candidate.
+- Quote Desk #79 may merge as isolated, disabled source. Its workflow only tests and dry-builds the separate app. No hosted subscription launch is accepted.
+- The production backend, Pages Functions, shared server contract, account flows, payment/provider configuration, feature flags, migrations and private operational data retain the main baseline.
+
+The original stacked heads remain available on backup branches before rebasing. Rebased branches must contain no ancestry from the unaccepted paired candidate. The release must pass local lint/build/editorial/route checks and exact-head GitHub checks before main promotion. Main's existing workflow deploys the verified build to the existing Cloudflare Pages project `eidosworks`; it checks the current main SHA before upload and reads the deployment back.
+
+### Evidence and limitations
+
+Baseline: [main workflow 36651895749](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/36651895749) passed, deployed `e0f5ca9`, and verified the production identity and delivered assets. Its upload URL was `https://02b448c0.eidosworks.pages.dev`. The canonical homepage was read in Chromium before this release and showed the previous 18-entry gallery.
+
+Candidate, merged and live checks are recorded in `PUBLIC_RELEASE_2026-09-30.md` as they become available. Local or CI browser widths are not physical-device or assistive-technology acceptance. The larger paired identity, owned cloud reopen, owner security, inbox and Stripe TEST gates remain open on #73/#67; those gates are not accepted by this public presentation release. Quote Desk remains configured for TEST with checkout disabled and requires its own hosted acceptance.
+
+Rollback uses the existing main/deployment baseline above and preserves customer data. No data migration is part of this release.
+
+## Published-gallery reconciliation — 2026-10-01
+
+The paired candidate now incorporates the September 30 public gallery/service release while preserving its published presentation and the held account/payment implementation. See [the October 1 reconciliation record](ACCEPTANCE_2026-10-01.md) for exact source parents, current checks and open gates. Public-release acceptance above does not accept the combined runtime. Production remains **NO-GO** for this paired candidate.

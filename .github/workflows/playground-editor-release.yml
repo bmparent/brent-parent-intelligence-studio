@@ -7,7 +7,7 @@ permissions:
   contents: read
 concurrency:
   group: playground-editor-${{ github.ref }}
-  # Keep production pushes serial; obsolete draft-PR browser runs can be replaced.
+  # Replace superseded PR checks while keeping production uploads serial.
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   local-editor:
@@ -42,6 +42,9 @@ jobs:
           node scripts/verify-playground-editor-browser.mjs
           node scripts/verify-playground-journey.mjs
           node scripts/verify-hero-browser.mjs
+          node scripts/verify-digital-experiences-browser.mjs
+          node scripts/verify-business-systems-browser.mjs
+          node scripts/verify-intelligent-systems-browser.mjs
       - name: Growth desktop and mobile acceptance with controlled delivery
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright

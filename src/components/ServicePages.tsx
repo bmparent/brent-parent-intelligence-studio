@@ -1,3 +1,7 @@
+import { IntelligentSystemsPage } from './IntelligentSystemsPage';
+import { BusinessSystemsPage } from './BusinessSystemsPage';
+import { DigitalExperiencesPage } from './DigitalExperiencesPage';
+import '../styles/service-start-paths.css';
 import { serviceBySlug, serviceFamilies } from '../data/editorial';
 import { ConceptApplications } from './ConceptApplications';
 import { ProblemExplorer, SupportedAnswerDemo } from './ServiceExplorer';
@@ -120,8 +124,8 @@ function DigitalStartingPaths() {
 function ServiceDetailCta({ slug }: { slug: ServiceSlug }) {
   const copy: Record<ServiceSlug, { title: string; body: string }> = {
     'digital-experiences': {
-      title: 'What should become easier to understand or use?',
-      body: 'Show us the customer path, page, platform, or experience that almost works. We’ll identify the first place we would reduce friction.',
+      title: 'Show us the part that almost works.',
+      body: 'Send a page, storefront, campaign idea, or customer path that is not doing justice to the work behind it. We’ll identify the first place we would make it clearer, more useful, or more compelling.',
     },
     'business-systems': {
       title: 'What is your team still doing by hand?',
@@ -201,6 +205,9 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
   const service = serviceBySlug(slug);
   const detail = serviceContext[slug];
   if (!service || !detail) return null;
+  if (slug === 'intelligent-systems') return <><IntelligentSystemsPage /><ServiceDetailCta slug={slug} /></>;
+  if (slug === 'business-systems') return <><BusinessSystemsPage /><ServiceDetailCta slug={slug} /></>;
+  if (slug === 'digital-experiences') return <><DigitalExperiencesPage /><DigitalStartingPaths /><ServiceDetailCta slug={slug} /></>;
 
   return (
     <>
