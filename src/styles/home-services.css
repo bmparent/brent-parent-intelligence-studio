@@ -78,14 +78,8 @@
   gap: 16px;
   margin-bottom: 20px;
 }
-.hs-card__number {
+.hs-card__arrow {
   padding-top: 7px;
-  color: #a7bdc1;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-}
-.hs-card__number > span {
-  margin-left: 6px;
   color: #b3e9df;
   font-size: 1.125rem;
 }
@@ -222,7 +216,7 @@
 }
 @media (forced-colors: active) {
   .hs-section { color: CanvasText; background: Canvas; }
-  .hs-section :is(p, h2 em, h3, .ew-eyebrow, .hs-card__number, .hs-card__includes) { color: CanvasText; }
+  .hs-section :is(p, h2 em, h3, .ew-eyebrow, .hs-card__arrow, .hs-card__includes) { color: CanvasText; }
   .hs-card, .hs-icon, .hs-card__includes, .hs-invitation { border-color: CanvasText; }
   .hs-icon { color: CanvasText; background: Canvas; }
   .hs-icon svg { filter: none; }

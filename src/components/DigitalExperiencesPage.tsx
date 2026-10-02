@@ -115,20 +115,20 @@ export function DigitalExperiencesPage() {
   return <div className="dx-page">
     <section className="dx-hero ew-shell" aria-labelledby="dx-title">
       <div className="dx-hero__copy">
-        <p className="ew-eyebrow">Service 01 / Digital Experiences</p>
+        <p className="ew-eyebrow">Digital Experiences</p>
         <h1 id="dx-title">Custom websites.<br/><em>Unmistakable experiences.</em></h1>
         <p>We design and develop responsive websites, ecommerce storefronts, campaign landing pages, and interactive web applications. From a custom InkSoft storefront to a React and TypeScript frontend, the build starts with what your customer needs to understand or do.</p>
         <div className="dx-actions"><a className="ew-button ew-button--primary" href="#selected-experiences">Explore the work ↓</a><a className="dx-text-link" href="/friction-review">Show us what almost works ↗</a></div>
       </div>
       <div className={`dx-stage dx-stage--${featured.color}`}>
-        <div className="dx-stage__top"><span>Selected experience / {String(active + 1).padStart(2, '0')}</span><span aria-hidden="true">✳</span></div>
+        <div className="dx-stage__top"><span>Selected experience</span><span aria-hidden="true">✳</span></div>
         <a href={featured.href} {...(featured.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${featured.title}`}>
           <img key={featured.title} src={featured.image} width="960" height="670" alt={featured.alt} fetchPriority={active === 0 ? 'high' : undefined} />
         </a>
         <div className="dx-stage__footer"><div><small>{featured.kind}</small><strong>{featured.title}</strong></div><span aria-hidden="true">↗</span></div>
       </div>
       <div className="dx-selector" aria-label="Choose a featured experience">
-        {projects.map((project, index) => <button key={project.title} type="button" aria-pressed={index === active} onClick={() => setActive(index)}><span>{String(index + 1).padStart(2, '0')}</span><strong>{project.title}</strong><small>{project.kind.split(' · ')[0]}</small></button>)}
+        {projects.map((project, index) => <button key={project.title} type="button" aria-pressed={index === active} onClick={() => setActive(index)}><strong>{project.title}</strong><small>{project.kind.split(' · ')[0]}</small></button>)}
       </div>
     </section>
 
@@ -149,9 +149,9 @@ export function DigitalExperiencesPage() {
     </section>
 
     <section className="dx-projects" aria-label="Featured digital experience projects">
-      {projects.map((project, index) => <article className={`dx-project dx-project--${project.color}`} key={project.title}>
+      {projects.map((project) => <article className={`dx-project dx-project--${project.color}`} key={project.title}>
         <div className="dx-project__inner ew-shell">
-          <div className="dx-project__visual"><span className="dx-project__number">{String(index + 1).padStart(2, '0')} / 04</span><a href={project.href} {...(project.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${project.title}`}><img src={project.image} width="1200" height="800" loading="lazy" alt={project.alt}/></a><p>{project.kind}</p></div>
+          <div className="dx-project__visual"><a href={project.href} {...(project.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${project.title}`}><img src={project.image} width="1200" height="800" loading="lazy" alt={project.alt}/></a><p>{project.kind}</p></div>
           <div className="dx-project__story"><p className="ew-eyebrow">{project.title}</p><h3>{project.headline}</h3><p className="dx-project__description">{project.description}</p>{project.buildStory ? <BuildDetails story={project.buildStory} /> : <div className="dx-project__build"><h4>Behind the build</h4><ol>{project.build?.map((step) => <li key={step}>{step}</li>)}</ol></div>}<p className="dx-project__application"><strong>For your work</strong>{project.application}</p><ProjectLink project={project}/><small className="dx-project__disclosure">{project.disclosure}</small></div>
         </div>
       </article>)}

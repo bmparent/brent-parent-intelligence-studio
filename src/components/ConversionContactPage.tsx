@@ -21,13 +21,13 @@ export function ConversionContactPage() {
 
       <section className="ew-shell ew-contact-choice" aria-label="Choose how to start">
         <a href="#project-form">
-          <span className="ew-eyebrow">01 / Defined project</span>
+          <span className="ew-eyebrow">Defined project</span>
           <h2>I know what I want to build.</h2>
           <p>Continue with the project form.</p>
           <span className="ew-text-link">Send a Project Note ↓</span>
         </a>
         <a href="/friction-review">
-          <span className="ew-eyebrow">02 / Define the problem</span>
+          <span className="ew-eyebrow">Define the problem</span>
           <h2>I know what is frustrating me, but not the solution.</h2>
           <p>Start with the problem. We’ll identify what we would change first.</p>
           <span className="ew-text-link">Get a Friction Review →</span>

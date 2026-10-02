@@ -2,27 +2,22 @@ import { ContactForm } from './ContactForm';
 
 const foundations = [
   {
-    number: '01',
     title: 'Crawlable, structured public pages',
     body: 'Service pages, case notes, pricing context, contact paths, canonicals, sitemap rules, and internal links that form a coherent public map.'
   },
   {
-    number: '02',
     title: 'Metadata and schema that match the page',
     body: 'Accurate titles, descriptions, social previews, Organization and Person signals, Service schema, Article schema, and useful breadcrumbs.'
   },
   {
-    number: '03',
     title: 'Content that answers real questions',
     body: 'Clear headings, answer-first sections, specific examples, and practical explanations written for the questions customers ask before contacting you.'
   },
   {
-    number: '04',
     title: 'Agent-friendly customer experience',
     body: 'Semantic HTML, accessible labels, real links and buttons, predictable forms, clear confirmation states, and important information outside of decorative effects.'
   },
   {
-    number: '05',
     title: 'Measurement and iteration',
     body: 'Search Console, Bing Webmaster Tools where relevant, index checks, conversion tracking, and AI-referral observation when the data is available.'
   }
@@ -49,9 +44,9 @@ export function AgenticSeoPage() {
             </div>
           </div>
           <div className="ew-agentic-stack" role="group" aria-label="Three audiences a well-structured website should serve">
-            <span>01 · Customers looking for an answer</span>
-            <span>02 · Search engines mapping the site</span>
-            <span>03 · AI assistants comparing the evidence</span>
+            <span>Customers looking for an answer</span>
+            <span>Search engines mapping the site</span>
+            <span>AI assistants comparing the evidence</span>
           </div>
         </div>
       </section>
@@ -74,19 +69,15 @@ export function AgenticSeoPage() {
           </header>
           <div className="ew-reason-grid">
             <article>
-              <span>01</span>
               <p>Customers are asking more detailed questions before they ever contact you.</p>
             </article>
             <article>
-              <span>02</span>
               <p>AI-assisted search tools summarize pages instead of only presenting a list of blue links.</p>
             </article>
             <article>
-              <span>03</span>
               <p>Weak structure makes your services, proof, pricing context, and contact paths harder to interpret.</p>
             </article>
             <article>
-              <span>04</span>
               <p>A clearer website helps both visitors and search systems find the right answer faster.</p>
             </article>
           </div>
@@ -105,7 +96,6 @@ export function AgenticSeoPage() {
         <div className="ew-foundation-list">
           {foundations.map((foundation) => (
             <article key={foundation.title}>
-              <span>{foundation.number}</span>
               <h3>{foundation.title}</h3>
               <p>{foundation.body}</p>
             </article>

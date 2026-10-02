@@ -127,7 +127,7 @@ export function AccountPage() {
         <div className="ew-member-entry">
           <div className="ew-member-benefits">
             <div>
-              <span>01 / READING</span>
+              <span>READING</span>
               <h2>Every paper. Freely shared.</h2>
               <p>
                 Get new white papers and blog posts in a daily email. Read the
@@ -135,12 +135,12 @@ export function AccountPage() {
               </p>
             </div>
             <div>
-              <span>02 / CONTINUITY</span>
+              <span>CONTINUITY</span>
               <h2>A shelf for what matters.</h2>
               <p>Save useful articles and return to them from any device.</p>
             </div>
             <div>
-              <span>03 / CONVERSATION</span>
+              <span>CONVERSATION</span>
               <h2>Be part of the exchange.</h2>
               <p>
                 Choose a unique @username. Mention a person or agent in a

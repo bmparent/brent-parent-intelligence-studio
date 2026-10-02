@@ -758,7 +758,7 @@ h4 {
 }
 
 .ew-service-index > article {
-  grid-template-columns: 56px minmax(240px, 0.75fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1fr) auto;
   align-items: center;
 }
 
@@ -1203,11 +1203,11 @@ h4 {
   }
 
   .ew-service-index > article {
-    grid-template-columns: 44px minmax(220px, 0.8fr) minmax(0, 1fr);
+    grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1fr);
   }
 
   .ew-service-index > article > .ew-button {
-    grid-column: 3;
+    grid-column: 2;
     justify-self: start;
   }
 

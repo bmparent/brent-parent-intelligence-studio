@@ -29,7 +29,6 @@
 .dx-selector button{display:grid;gap:.3rem;min-width:0;padding:1rem;text-align:left;color:#284740;border:0;border-radius:10px;background:transparent;cursor:pointer;transition:background .2s ease,transform .2s ease}
 .dx-selector button:hover{background:#e5ede6;transform:translateY(-3px)}
 .dx-selector button[aria-pressed=true]{background:#193f3c;color:#fff}
-.dx-selector button span{font-size:.68rem;letter-spacing:.12em;opacity:.8}
 .dx-selector button strong{font-size:clamp(.9rem,1.4vw,1.15rem);line-height:1.15}
 .dx-selector button small{font-size:.7rem;opacity:.8}
 .dx-intro{display:grid;grid-template-columns:1fr .8fr;gap:1rem 5rem;align-items:end;padding-block:clamp(5rem,9vw,9rem)}
@@ -44,7 +43,6 @@
 .dx-project__inner{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(0,.87fr);gap:clamp(2.5rem,6vw,7rem);align-items:start}
 .dx-project:nth-child(even) .dx-project__visual{order:2}
 .dx-project__visual{position:relative;margin:0}
-.dx-project__number{display:block;margin-bottom:1rem;color:#497366;font-size:.75rem;letter-spacing:.14em}
 .dx-project__visual>a{display:block;overflow:hidden;border-radius:18px;background:#d9e5de;box-shadow:0 24px 55px #152b2524}
 .dx-project__visual img{display:block;width:100%;height:clamp(310px,44vw,610px);object-fit:cover;object-position:center top;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
 .dx-project--blue .dx-project__inner{grid-template-columns:minmax(0,1fr);gap:clamp(2rem,4vw,4rem)}

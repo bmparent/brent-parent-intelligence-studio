@@ -64,18 +64,8 @@
 }
 
 .ew-friction-promise > div {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 1rem;
   padding-block: 1rem;
   border-bottom: 1px solid var(--ew-line);
-}
-
-.ew-friction-promise span {
-  color: var(--ew-teal);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
 }
 
 .ew-friction-promise div p {
@@ -308,10 +298,6 @@
 
   .ew-friction-hero__lede {
     font-size: 1.12rem;
-  }
-
-  .ew-friction-promise > div {
-    grid-template-columns: 34px 1fr;
   }
 
   .ew-friction-form {
