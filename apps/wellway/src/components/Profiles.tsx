@@ -1,5 +1,5 @@
 import { member, advisor, healthHistory } from "../lib/profiles";
-import { useStore } from "../lib/store";
+import { useStore } from "../lib/storeContext";
 import { Modal, Note } from "./UI";
 export function Portrait({
   person = "member",

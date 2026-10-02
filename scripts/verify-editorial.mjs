@@ -268,9 +268,9 @@ for (const image of [
   }
 }
 try {
-  await access(resolve(root, 'dist/images/services/digital-experiences.png'));
+  await access(resolve(root, 'dist/images/services/liberty-desktop-20260921.png'));
 } catch {
-  failures.push('service evidence image is missing: digital-experiences.png');
+  failures.push('service evidence image is missing: liberty-desktop-20260921.png');
 }
 
 if (failures.length) {

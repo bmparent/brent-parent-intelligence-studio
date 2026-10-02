@@ -1,3 +1,4 @@
+import {accountEpoch,subscribeAccountChanges} from './accountEpoch';
 import { useCallback, useEffect, useState } from 'react';
 export type Member = {
   username: string;
@@ -26,8 +27,10 @@ export function useAccount() {
     [error, setError] = useState(''),
     [revision, setRevision] = useState(0);
   const refresh = useCallback(() => setRevision((n) => n + 1), []);
+  const clear = useCallback(() => setAccount({ member: null }), []);
+  useEffect(()=>subscribeAccountChanges(()=>{clear();refresh();}),[clear,refresh]);
   useEffect(() => {
-    const controller = new AbortController();
+    const controller = new AbortController(), epoch=accountEpoch();
     fetch('/api/members/account', { signal: controller.signal })
       .then(async (r) => {
         if (!r.ok)
@@ -35,13 +38,14 @@ export function useAccount() {
         return r.json();
       })
       .then((a) => {
+        if (controller.signal.aborted || epoch!==accountEpoch()) return;
         setAccount(a);
         setError('');
       })
       .catch((e) => {
-        if (e.name !== 'AbortError') setError(e.message);
+        if (e.name !== 'AbortError' && epoch===accountEpoch()) setError(e.message);
       });
     return () => controller.abort();
   }, [revision]);
-  return { account, error, refresh };
+  return { account, error, refresh, clear };
 }

@@ -350,7 +350,7 @@ export async function generateConceptImage(
     }
 
     const base64Image = typeof body.data[0].b64_json === 'string' ? body.data[0].b64_json : ''
-    if (!base64Image || base64Image.length > 900_000 || !base64Image.startsWith('/9j/')) {
+    if (!base64Image || base64Image.length > 8_000_000 || !base64Image.startsWith('/9j/')) {
       return { note: 'The written Snapshot is ready, but the visual concept was not returned in a durable format.' }
     }
     return { base64Image, mediaType: 'image/jpeg' }

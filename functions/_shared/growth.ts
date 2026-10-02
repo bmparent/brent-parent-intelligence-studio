@@ -35,6 +35,8 @@ export async function recordGrowth(request: Request, env: GrowthEnv, context: Gr
   await database.batch([
     database.prepare('DELETE FROM growth_events WHERE day < date(\'now\',\'-60 days\')'),
     database.prepare('DELETE FROM growth_quotas WHERE expires < ?').bind(period),
+    database.prepare('DELETE FROM eidos_owner_audit WHERE created_at < ?')
+      .bind(new Date(Date.now() - 90 * 86400000).toISOString()),
     database.prepare('INSERT OR IGNORE INTO growth_events(id,day,session_hash,event,traffic,path,landing,source,medium,campaign,content,referral) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)')
       .bind(id,day,sid,event,traffic,event === 'landing_page' ? a.landingPage : path,a.landingPage,
         a.utmSource || (external ? referral : 'direct'), a.utmMedium || (external ? 'referral' : 'none'),a.utmCampaign,a.utmContent,external ? referral : ''),

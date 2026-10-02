@@ -1,0 +1,36 @@
+{
+  "at": "2026-09-21T23:49:44.432Z",
+  "environment": "canonical production before candidate release",
+  "headers": {
+    "/": {
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(self)",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-content-type-options": "nosniff"
+      }
+    },
+    "/services/business-systems/": {
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(self)",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "x-content-type-options": "nosniff"
+      }
+    },
+    "/api/public-config": {
+      "status": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "content-type": "application/json; charset=utf-8",
+        "referrer-policy": "no-referrer",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "x-content-type-options": "nosniff"
+      }
+    }
+  }
+}

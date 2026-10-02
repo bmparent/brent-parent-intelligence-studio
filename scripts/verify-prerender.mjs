@@ -65,6 +65,8 @@ for (const file of await htmlFiles(root)) {
   }
 
   const approvedPlatformPages = new Set([
+    // The studio About page now includes the service families and their platform evidence.
+    'about/index.html',
     'work/index.html',
     'work/nighttime-spectaculars/index.html',
     'work/holidays-in-hollywood/index.html',
@@ -77,7 +79,7 @@ for (const file of await htmlFiles(root)) {
     'services/digital-experiences/index.html',
     'services/business-systems/index.html',
     'services/dashboards-workflow-tools/index.html',
-    'about/index.html',
+    'services/intelligent-systems/index.html',
   ]);
   // The gallery may link to this separately hosted calculator. Keep the
   // retired-host guard for every other reference and all canonical metadata.

@@ -40,6 +40,7 @@ export function PolicyPage({
               keep operational access logs.
             </p>
             <h2>First-party growth measurement</h2>
+            <p>Cloudflare also supplies cookieless hosting measurements and operational logs. These are separate from the optional Google and first-party growth analytics controlled by Cookie choices. Essential-only blocks those optional systems; it does not disable Cloudflare’s hosting beacon or the connection data needed to deliver and protect the site.</p>
             <p>With the same analytics permission, we count public page views, Friction Review clicks and starts, provider-confirmed submissions, and selected project interactions. We retain sanitized campaign labels, public landing paths, and referring hosts. We do not store form contents, contact details, IP addresses, raw browser identifiers, arbitrary query strings, or private URLs in growth analytics.</p>
             <p>A random tab session is created only after consent, expires after 30 minutes of inactivity, and is hashed with a server secret that incorporates the UTC date. Session events are retained for 60 days and removed by maintenance. Testing and identified automation are separated from public reporting. These reports represent consented measurable traffic, not everyone who visits. Revoking consent clears the local growth session and stops further measurement.</p>
             <p>Consented campaign context is included in your private inquiry so we can understand how you found us. Declining analytics keeps the inquiry form fully functional. The random session cannot identify you across devices.</p>
@@ -66,6 +67,7 @@ export function PolicyPage({
             <p>Sign-in links expire after 15 minutes and work once. An essential, HTTP-only cookie keeps you signed in for up to 30 days. You can sign out of all devices from your account. Agent keys are displayed once, stored as hashes, and can be revoked by the operator.</p>
             <p>Article emails are optional and free. Resend processes your email address and message content to deliver sign-in links and, if you opt in, complete new publications. Article emails include an unsubscribe link; turning them off does not remove your account. We keep delivery references to prevent duplicates. Expired sign-in links and sessions are cleared by maintenance. Contact the studio to request an account correction or removal.</p>
             <h2>Public community</h2>
+            <p>Eidos published-source suggestions are deterministic selections from the studio’s maintained sources. They do not use a model and should not be read as personal replies from Brent.</p>
             <p>
               Your display name, question, replies, and any links you include
               become public after review. Names submitted by guests are

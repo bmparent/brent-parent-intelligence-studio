@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStore } from "../lib/store";
+import { useStore } from "../lib/storeContext";
 import { series, formatValue, dateLabel } from "../lib/data";
 import type { Metric, Page } from "../lib/types";
 import { PageTitle, Button } from "../components/UI";

@@ -12,6 +12,8 @@ concurrency:
 jobs:
   local-editor:
     runs-on: ubuntu-latest
+    # PR browser checks avoid apt mirror stalls; main retains the hosted runner and gh CLI.
+    container: ${{ github.event_name == 'pull_request' && fromJSON('{"image":"mcr.microsoft.com/playwright:v1.58.2-noble","options":"--user 1001"}') || '' }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -21,6 +23,11 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+      - name: Provision Python for PR ZIP assertions
+        if: github.event_name == 'pull_request'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - run: npm ci --no-audit --no-fund
       - run: npm run playground:glass
       - name: Local editing, export and server/client cloud boundary tests
@@ -29,7 +36,9 @@ jobs:
       - name: Install isolated browser test tools (no repository dependency changes)
         run: |
           npm install --prefix "$RUNNER_TEMP/pg-browser" --no-save --no-package-lock playwright@1.58.2
-          "$RUNNER_TEMP/pg-browser/node_modules/.bin/playwright" install --with-deps chromium firefox webkit
+          if [ "$GITHUB_EVENT_NAME" != "pull_request" ]; then
+            "$RUNNER_TEMP/pg-browser/node_modules/.bin/playwright" install --with-deps chromium firefox webkit
+          fi
       - name: Actual React editor acceptance in three engines and two widths
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
@@ -40,6 +49,7 @@ jobs:
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done
           node scripts/verify-playground-editor-browser.mjs
+          node scripts/verify-playground-journey.mjs
           node scripts/verify-hero-browser.mjs
           node scripts/verify-digital-experiences-browser.mjs
           node scripts/verify-business-systems-browser.mjs
