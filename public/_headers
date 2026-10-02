@@ -34,3 +34,6 @@
   Cache-Control: private, no-store
 /kit-preview/*
   X-Robots-Tag: noindex, follow
+
+/quote-desk/*
+  X-Robots-Tag: noindex, follow
