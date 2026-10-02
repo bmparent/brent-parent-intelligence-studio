@@ -1,0 +1,109 @@
+name: One-time isolated Works preview upload
+on: [create]
+permissions:
+  contents: read
+concurrency:
+  group: works-isolated-preview-upload-20261002
+  cancel-in-progress: false
+env:
+  SOURCE_SHA: b8d6b3411f583277679a77ef34c3967bf02f11da
+jobs:
+  build:
+    if: github.event.ref_type == 'branch' && github.event.ref == 'codex/works-isolated-preview-upload-20261002-v2' && github.repository == 'bmparent/brent-parent-intelligence-studio'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint && npm run test:platform && npm run test:growth && npm run test:playground && npm run test:audit
+      - run: npm run build && npm run verify:prerender && npm run verify:editorial && npm run validate:insights -- --skip-source-fetch
+      - run: npm run validate:insights:dist && npm run verify:urls
+      - name: Keep isolated test artifacts out of search indexes
+        run: |
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          p = Path('dist/_headers')
+          s = p.read_text()
+          assert s.startswith('/*\n')
+          s = s.replace('/*\n', '/*\n  X-Robots-Tag: noindex, nofollow\n', 1)
+          p.write_text(s)
+          PYTHON
+      - name: Package reviewed Functions without deployment credentials
+        run: |
+          npx --no-install wrangler pages functions build functions --outdir dist/_worker.js --output-routes-path dist/_routes.json
+          test -s dist/_worker.js/index.js
+          test -s dist/playground/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: isolated-preview-build
+          path: dist
+          include-hidden-files: true
+          retention-days: 3
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@v4
+        with:
+          name: isolated-preview-build
+          path: payload
+      - name: Install fixed official uploader without credentials
+        run: npm install --prefix "$RUNNER_TEMP/uploader" --no-save --no-package-lock wrangler@4.98.0
+      - name: Upload only isolated test project, preserve all configuration
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { createHash } from 'node:crypto';
+          import { writeFile } from 'node:fs/promises';
+          const r=await fetch(`https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/pages/projects/eidosworks-test-20260923`,{headers:{Authorization:`Bearer ${process.env.CLOUDFLARE_API_TOKEN}`}});
+          assert.equal(r.ok,true);const x=await r.json();assert.equal(x.success,true);const p=x.result;
+          assert.equal(p.id,'09e9378c-e6a6-471e-9e57-9e279c7e78bf');
+          assert.equal(p.production_branch,'codex/works-audit-implementation-20260921');
+          assert.deepEqual(p.domains,['eidosworks-test-20260923.pages.dev']);
+          assert.equal(p.deployment_configs.production.d1_databases.EIDOS_GROWTH_DB.id,'dfefb575-81bc-4ecd-8212-2a6db84d0877');
+          const stable=v=>Array.isArray(v)?v.map(stable):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable(v[k])])):v;
+          const fingerprint=createHash('sha256').update(JSON.stringify(stable(p.deployment_configs))).digest('hex');
+          await writeFile(process.env.RUNNER_TEMP+'/preview-fingerprint',fingerprint);
+          console.log('Isolated project/domain/database verified; no credential values recorded.');
+          JS
+          "$RUNNER_TEMP/uploader/node_modules/.bin/wrangler" pages deploy payload --project-name=eidosworks-test-20260923 --branch=codex/works-audit-implementation-20260921 --commit-hash="$SOURCE_SHA" --commit-message='Reviewed isolated runtime acceptance preview with noindex header' --commit-dirty=false
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          import {readFile,writeFile} from 'node:fs/promises';
+          const stable=v=>Array.isArray(v)?v.map(stable):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable(v[k])])):v;
+          const expected=await readFile(process.env.RUNNER_TEMP+'/preview-fingerprint','utf8');
+          let receipt;
+          for(let i=0;i<30;i++){
+            const r=await fetch(`https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/pages/projects/eidosworks-test-20260923`,{headers:{Authorization:`Bearer ${process.env.CLOUDFLARE_API_TOKEN}`}});
+            assert.equal(r.ok,true);const x=await r.json();assert.equal(x.success,true);const p=x.result;
+            assert.equal(p.id,'09e9378c-e6a6-471e-9e57-9e279c7e78bf');
+            assert.equal(createHash('sha256').update(JSON.stringify(stable(p.deployment_configs))).digest('hex'),expected);
+            const d=p.canonical_deployment;
+            if(d?.deployment_trigger?.metadata?.commit_hash===process.env.SOURCE_SHA&&d?.latest_stage?.status==='success'){receipt={source:process.env.SOURCE_SHA,deploymentId:d.id,url:d.url,project:p.name,configUnchanged:true,artifactOverrides:['test-only noindex,nofollow header'],verifiedAt:new Date().toISOString()};break;}
+            await new Promise(r=>setTimeout(r,4000));
+          }
+          assert.ok(receipt,'Exact reviewed source deployment not confirmed');
+          await writeFile('preview-receipt.json',JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-preview-receipt
+          path: preview-receipt.json
+          retention-days: 7
+          if-no-files-found: warn
