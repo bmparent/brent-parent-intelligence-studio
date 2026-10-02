@@ -2,7 +2,7 @@
 
 ## Current paired-preview work — 2026-10-02
 
-The paired site draft now incorporates public main through `27a05a3b2cf11b77569811ef98d1877afab028ef`, preserving the candidate account and Playground work alongside the current homepage, service pages and branding. The backend remains `97d806d4d0a7a71575090e10d5e81aca1036b4e4`. Local checks and 76-file contract parity pass. [The October 2 record](ACCEPTANCE_2026-10-02.md) describes the narrowly scoped CI upload to the existing test Pages project and separates exact hosted receipts from still-open consent, ownership, inbox, signed TEST payment and physical-device gates. Production remains NO-GO; the historical sections below describe their own revisions.
+The paired site draft now incorporates public main through `6ae67b5e8e2927dfe18c610ba499d22a518f50e2`, preserving the candidate account and Playground work alongside the current homepage, service pages and branding. The backend remains `97d806d4d0a7a71575090e10d5e81aca1036b4e4`. Local checks and 76-file contract parity pass. The earlier exact isolated upload and bounded HTTP checks passed on site `9c26b1549d24aa18f198d74322d5c6fd2a6175ed`; account/Google configuration is present but checkout reports unavailable. Protected database/provider configuration and real user/payment checks remain open. [The October 2 record](ACCEPTANCE_2026-10-02.md) describes the narrowly scoped CI upload to the existing test Pages project and separates exact hosted receipts from still-open consent, ownership, inbox, signed TEST payment and physical-device gates. Production remains NO-GO; the historical sections below describe their own revisions.
 
 ## Combined review candidate — 2026-09-27
 
