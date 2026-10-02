@@ -8,6 +8,10 @@ const siteUrl = (
 const articlesPath = resolve(root, 'src/data/articles.json');
 const publicDir = resolve(root, 'public');
 const ogDir = resolve(publicDir, 'insights-og');
+const studioMark = (await readFile(resolve(publicDir, 'brand/eidos-mark.svg'), 'utf8'))
+  .replace(/^[\s\S]*?<svg\b[^>]*>/, '')
+  .replace(/<\/svg>\s*$/, '')
+  .replace('fill="#14212a"', 'fill="#fff8ed"');
 const reportDir = resolve(root, 'artifacts/insights');
 const insightCategories = new Set([
   'Website Strategy',
@@ -278,7 +282,8 @@ function generateOgSvg(article) {
   <rect x="44" y="44" width="1112" height="542" rx="34" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)"/>
   <circle cx="1010" cy="138" r="172" fill="rgba(231,199,125,0.16)"/>
   <circle cx="994" cy="488" r="236" fill="rgba(111,205,222,0.13)"/>
-  <text x="72" y="126" class="brand">Eidos Works</text>
+  <g transform="translate(54 59) scale(.65)">${studioMark}</g>
+  <text x="142" y="126" class="brand">Eidos Works</text>
   <text x="72" y="184" class="eyebrow">${svgEscape(article.category)}</text>
   ${titleSvg}
   <text x="72" y="548" class="meta">${svgEscape(article.byline)} | ${article.publishedAt.slice(0, 10)} | ${article.readingTimeMinutes} min read</text>

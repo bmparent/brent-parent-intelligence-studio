@@ -307,13 +307,13 @@ const items: WorkMediaItem[] = [
     isAdditional: true
   },
   {
-    id: 'eidos-horizontal-logo',
-    src: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939365/eidos_horizontal_bim82e.png',
-    alt: 'Eidos Works horizontal logo.',
+    id: 'eidos-lowercase-e-logo',
+    src: '/brand/eidos-mark.svg',
+    alt: 'Eidos Works lowercase e logo, matching the studio header.',
     category: 'Eidos / Brand Assets',
-    title: 'Eidos Works Horizontal Mark',
+    title: 'Eidos Works Studio Mark',
     type: 'brand',
-    caption: 'Primary horizontal logo used for the public-facing Eidos Works brand.',
+    caption: 'The simple lowercase e used in the Eidos Works header and studio branding.',
     relatedHref: '#top',
     isAdditional: true
   }

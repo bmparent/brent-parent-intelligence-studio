@@ -33,6 +33,10 @@ The source and browser checks for this candidate do not close the held #73/#67 p
 
 An illustrated services invitation moves above Selected work, which now features Jingle Bell, Jingle BAM!, Wellway, Holidays in Hollywood and Nighttime Spectaculars. The candidate began at main `435be02` and incorporated current main `8aec889` after #83 merged, preserving the gallery refresh and service build stories. Scope, public asset provenance, desktop/responsive navigation evidence and the local Wellway HTTP limitation are recorded in [HOMEPAGE_SERVICES_2026-10-01.md](HOMEPAGE_SERVICES_2026-10-01.md). Its PR tracks exact-head CI and production promotion separately. The existing runtime acceptance gates remain open.
 
+## October 2 studio branding
+
+The branding update starts from public main `cf7f791db84aa886b3e1064dfc28345579f18225` and aligns favicon, previews, Organization logo, gallery assets, Playground, Quote Desk and article-card branding with the current header's lowercase e. Source scope, local checks, desktop/phone-width browser evidence, release readback requirements and rollback are recorded in [BRANDING_2026-10-02.md](BRANDING_2026-10-02.md). This public presentation change does not accept the held paired runtime. A third-party advertising draft may retain its selected image and requires regeneration or manual upload.
+
 ## October 2 section numbering update
 
 Brent requested removing the numbering of sections throughout Eidos Works. Branch `codex/remove-section-numbering-20261002` starts at public main `2f403a936f0737fa5d8b3f4f3e2ba9833537ed72`. It removes decorative section, service, project, option and benefit indexes from the homepage, portfolio, service pages/overview, contact, Friction Review, Snapshot landing/report sections and account introduction. Number-only elements are removed from rendered HTML, and affected navigation/service/foundation grids close the former number columns. Titles, project disclosures, arrows, destinations and existing fragment IDs remain intact. Ordered process/build instructions, form progression, prices, data and structured-data positions retain their meaning.
