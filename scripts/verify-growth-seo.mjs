@@ -6,7 +6,7 @@ for(const path of routes) {
   const html=await readFile(`dist${path==='/'?'':path}/index.html`,'utf8');
   assert.match(html,/<title>[^<]+<\/title>/);assert.match(html,/<meta name="description" content="[^"]{30,}"/);
   assert.ok(html.includes(`rel="canonical" href="https://eidos-works.com${path==='/'?'/':path}"`),path+' canonical');
-  assert.ok(html.includes('property="og:image" content="https://eidos-works.com/social-preview.png"'),path+' raster social preview');
+  assert.ok(html.includes('property="og:image" content="https://eidos-works.com/brand/eidos-social-preview-v2.png"'),path+' raster social preview');
   assert.ok(html.includes('name="twitter:image"'));assert.equal([...html.matchAll(/<h1(?:\s|>)/g)].length,1,path+' single h1');
   assert.ok(html.includes('href="/friction-review"'));assert.ok(sitemap.includes(`https://eidos-works.com${path}</loc>`));
   assert.ok(html.includes('application/ld+json'));results.push({path,canonical:true,title:true,description:true,social:true,h1:true,cta:true,sitemap:true});

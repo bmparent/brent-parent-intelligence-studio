@@ -16,13 +16,10 @@ export const siteConfig = {
   snapshotCheckoutEnabled:
     import.meta.env.VITE_SNAPSHOT_CHECKOUT_ENABLED === 'true',
   logos: {
-    icon: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939367/eidods_icon_clukns.png',
-    horizontal:
-      'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939365/eidos_horizontal_bim82e.png',
-    stacked:
-      'https://res.cloudinary.com/dhcmpzn9e/image/upload/v1780939364/eidos_Stacked_vzevuu.png',
+    icon: '/brand/eidos-logo-square.png',
+    mark: '/brand/eidos-mark.svg',
   },
-  socialImage: '/social-preview.png',
+  socialImage: '/brand/eidos-social-preview-v2.png',
 } as const;
 
 export function absoluteUrl(path = '/') {

@@ -12,7 +12,11 @@ export function SEOJsonLd({ path }: { path: string }) {
       url: siteConfig.url,
       logo: {
         '@type': 'ImageObject',
-        url: siteConfig.logos.horizontal
+        url: absoluteUrl(siteConfig.logos.icon),
+        contentUrl: absoluteUrl(siteConfig.logos.icon),
+        width: 1024,
+        height: 1024,
+        caption: 'Eidos Works lowercase e logo'
       },
       email: siteConfig.contactEmail,
       founder: { '@id': absoluteUrl('/#brent-parent') },

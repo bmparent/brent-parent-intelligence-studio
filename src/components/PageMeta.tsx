@@ -19,6 +19,11 @@ export function PageMeta({ path }: { path: string }) {
     setMeta('meta[name="twitter:title"]', 'content', metadata.title);
     setMeta('meta[name="twitter:description"]', 'content', metadata.description);
     if (metadata.image) setMeta('meta[name="twitter:image"]', 'content', metadata.image);
+    const imageAlt = metadata.image?.endsWith('/brand/eidos-social-preview-v2.png')
+      ? 'Eidos Works lowercase e studio logo'
+      : metadata.title;
+    setMeta('meta[property="og:image:alt"]', 'content', imageAlt);
+    setMeta('meta[name="twitter:image:alt"]', 'content', imageAlt);
 
     const canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (canonical) canonical.href = metadata.url;
