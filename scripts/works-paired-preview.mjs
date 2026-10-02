@@ -101,7 +101,7 @@ async function main(mode) {
       productionDeploymentId: productionAfter.canonical_deployment?.id || null,
       productionRevision: productionAfter.canonical_deployment?.deployment_trigger?.metadata?.commit_hash || null,
       bindingPresence: {
-        inquiryMailer: Boolean(configured.deployment_configs.production.service_bindings?.EIDOS_INQUIRY_MAILER),
+        inquiryMailer: Boolean(configured.deployment_configs.production.services?.EIDOS_INQUIRY_MAILER),
         growthDatabase: Boolean(configured.deployment_configs.production.d1_databases?.EIDOS_GROWTH_DB),
       },
       acceptance: 'deployment preparation only; identity, ownership, signed TEST payment and delivery remain open',
@@ -130,10 +130,30 @@ async function main(mode) {
   const localHtml = await readFile('dist/account/index.html', 'utf8');
   const entryAssets = [...localHtml.matchAll(/(?:src|href)="(\/assets\/[^" ]+\.(?:js|css))"/g)].map(match => match[1]);
   assert.ok(entryAssets.length, 'No built account assets were found.');
-  const accountResponse = await fetch(`${previewOrigin}/account/?candidate=${receipt.siteRevision}`, { redirect: 'error', signal: AbortSignal.timeout(20000) });
-  const accountHtml = await accountResponse.text();
-  assert.equal(accountResponse.status, 200, 'The preview account page is unavailable.');
+  // A successful provider upload can precede stable-origin edge propagation.
+  // Wait only for the exact built assets; never accept the previous build.
+  let accountHtml = '', accountStatus = 0, accountAttempts = 0;
+  const assetDeadline = Date.now() + 90000;
+  do {
+    const accountResponse = await fetch(`${previewOrigin}/account/?candidate=${receipt.siteRevision}`, { redirect: 'error', signal: AbortSignal.timeout(20000) });
+    accountStatus = accountResponse.status;
+    accountHtml = await accountResponse.text();
+    accountAttempts++;
+    if (accountStatus === 200 && entryAssets.every(asset => accountHtml.includes(asset))) break;
+    assert.ok([200, 404, 503].includes(accountStatus), `The preview account page returned HTTP ${accountStatus}; stop rather than retry an access block.`);
+    await new Promise(done => setTimeout(done, 3000));
+  } while (Date.now() < assetDeadline);
+  assert.equal(accountStatus, 200, 'The preview account page is unavailable.');
   assert.ok(entryAssets.every(asset => accountHtml.includes(asset)), 'The preview is serving a different account build.');
+  const deliveredAssetHashes = [];
+  for (const asset of entryAssets) {
+    const response = await fetch(previewOrigin + asset, { redirect: 'error', signal: AbortSignal.timeout(20000) });
+    assert.equal(response.status, 200, 'A built account asset is unavailable.');
+    const delivered = createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex');
+    const expected = createHash('sha256').update(await readFile('dist' + asset)).digest('hex');
+    assert.equal(delivered, expected, 'A delivered account asset differs from the candidate.');
+    deliveredAssetHashes.push({ path: asset, sha256: delivered });
+  }
   const configResponse = await fetch(`${previewOrigin}/api/public-config`, { redirect: 'error', signal: AbortSignal.timeout(30000) });
   assert.equal(configResponse.status, 200, 'The paired public configuration could not be read.');
   const config = await configResponse.json();
@@ -156,7 +176,7 @@ async function main(mode) {
     checks.push({ name, status: response.status, meaning: name === 'unsigned kit event' && response.status === 503 ? 'not configured; not signed-payment acceptance' : 'HTTP boundary observation only' });
   }
   await writeFile(receiptPath, JSON.stringify({ ...receipt, verifiedAt: new Date().toISOString(),
-    deploymentId: deployment.id, deploymentUrl: deployment.url, deliveredAccountAssets: entryAssets,
+    deploymentId: deployment.id, deploymentUrl: deployment.url, deliveredAccountAssets: entryAssets, deliveredAssetHashes, accountAttempts,
     configuredFeatures: { accounts: config.accountsReady, passwords: config.passwordsReady, google: config.googleReady, shop: config.shopReady, localTest: config.localTest },
     checks, productionConfigUnchanged: true,
     acceptance: 'exact frontend upload and paired HTTP boundaries verified; real consent, two-owner reopen, inbox and signed TEST lifecycle remain open',

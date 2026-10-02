@@ -9,7 +9,7 @@ const project = () => ({
     EIDOS_PLATFORM_URL: { type: 'plain_text', value: 'https://old-preview.vercel.app' },
     EIDOS_PLATFORM_TOKEN: { type: 'secret_text', value: 'test-fixture-only' },
     EIDOS_PLATFORM_PREVIEW_BYPASS: { type: 'secret_text', value: 'test-fixture-only' },
-  }, service_bindings: { EIDOS_INQUIRY_MAILER: { service: 'test-mailer' } } }, preview: {} },
+  }, services: { EIDOS_INQUIRY_MAILER: { service: 'test-mailer' } } }, preview: {} },
 });
 
 test('preview deployment refuses production, custom domains and a changed branch', () => {
@@ -46,7 +46,7 @@ test('URL-only reconciliation detects credential, environment and service-bindin
   assert.equal(fingerprint(withoutRelayUrl(before)), fingerprint(withoutRelayUrl(changedUrl)));
   for (const mutate of [
     value => { value.production.env_vars.EIDOS_PLATFORM_TOKEN.value = 'changed-credential'; },
-    value => { value.production.service_bindings.EIDOS_INQUIRY_MAILER.service = 'different-mailer'; },
+    value => { value.production.services.EIDOS_INQUIRY_MAILER.service = 'different-mailer'; },
     value => { value.preview.env_vars = { NEW_SETTING: { value: 'new' } }; },
   ]) {
     const changed = structuredClone(before);
