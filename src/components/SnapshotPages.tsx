@@ -115,9 +115,8 @@ export function SnapshotLandingPage() {
           <h2 id="snapshot-contents-title">A useful first pass—not a vague AI score.</h2>
         </div>
         <div className="ew-snapshot-deliverables">
-          {deliverables.map((item, index) => (
+          {deliverables.map((item) => (
             <article key={item}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{item}</h3>
             </article>
           ))}

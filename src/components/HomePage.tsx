@@ -51,7 +51,7 @@ export function HomePage() {
       <section id="selected-work" className="ew-featured ew-shell">
         <div className="ew-section-heading">
           <div>
-            <p className="ew-eyebrow">02 / Selected work</p>
+            <p className="ew-eyebrow">Selected work</p>
             <h2>A little of what’s possible.</h2>
           </div>
           <a className="ew-text-link" href="/work">
@@ -59,8 +59,8 @@ export function HomePage() {
           </a>
         </div>
         <div className="ew-project-grid">
-          {homeSelectedProjects.map((project, index) => (
-            <ProjectTile key={project.slug} project={project} index={index} />
+          {homeSelectedProjects.map((project) => (
+            <ProjectTile key={project.slug} project={project} />
           ))}
         </div>
         <div className="ew-work-footnote">
@@ -76,7 +76,7 @@ export function HomePage() {
         <div className="ew-shell ew-lab-feature-grid">
           <div>
             <p className="ew-eyebrow">
-              <span className="ew-status-dot" /> 03 / Inside the lab
+              <span className="ew-status-dot" /> Inside the lab
             </p>
             <h2>
               Curiosity.
@@ -125,7 +125,7 @@ export function HomePage() {
       <section className="ew-open-studio ew-shell">
         <div className="ew-section-heading">
           <div>
-            <p className="ew-eyebrow">04 / An open studio</p>
+            <p className="ew-eyebrow">An open studio</p>
             <h2>Good questions lead somewhere.</h2>
           </div>
           <a className="ew-text-link" href="/community">

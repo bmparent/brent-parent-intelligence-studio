@@ -9,10 +9,8 @@ import { storefrontBuilds } from '../data/buildStories';
 import { BuildDetails } from './BuildDetails';
 export function ProjectTile({
   project,
-  index = 0,
 }: {
   project: ShowcaseProject;
-  index?: number;
 }) {
   return (
     <article className="ew-project-tile">
@@ -35,7 +33,7 @@ export function ProjectTile({
         </div>
         <div className="ew-project-meta">
           <span>
-            {String(index + 1).padStart(2, "0")} / {project.status}
+            {project.status}
           </span>
           <span>{project.category}</span>
         </div>
@@ -104,8 +102,8 @@ export function ShowcasePage() {
           </p>
         )}
         <div className="ew-project-grid">
-          {projects.map((project, index) => (
-            <ProjectTile key={project.slug} project={project} index={index} />
+          {projects.map((project) => (
+            <ProjectTile key={project.slug} project={project} />
           ))}
         </div>
         <div className="ew-collection-note">

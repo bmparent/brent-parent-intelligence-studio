@@ -114,7 +114,7 @@ export function HomeServices() {
       <div className="ew-shell">
         <div className="hs-intro">
           <div>
-            <p className="ew-eyebrow">01 / What we can build for you</p>
+            <p className="ew-eyebrow">What we can build for you</p>
             <h2 id="home-services-title">A remarkable website.<br /><em>A more capable business.</em></h2>
           </div>
           <div className="hs-intro__copy">
@@ -128,11 +128,11 @@ export function HomeServices() {
           <a href="/services/intelligent-systems">Intelligent Systems <span aria-hidden="true">↗</span></a>
         </nav>
         <div className="hs-grid">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <a className="hs-card" key={service.icon} href={service.href} aria-labelledby={`home-service-${service.icon}`}>
               <div className="hs-card__top">
                 <ServiceIcon kind={service.icon} />
-                <span className="hs-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')} / <span>↗</span></span>
+                <span className="hs-card__arrow" aria-hidden="true">↗</span>
               </div>
               <h3 id={`home-service-${service.icon}`}>{service.title}</h3>
               <p>{service.description}</p>
