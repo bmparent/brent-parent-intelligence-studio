@@ -8,9 +8,8 @@
 .is-hero .ew-button { margin-top: 32px; }
 .is-hero__index { align-self: center; border-top: 1px solid #aebdb4; padding-top: 15px; }
 .is-hero__index > span { display: block; text-transform: uppercase; letter-spacing: .13em; font-size: 12px; color: #587369; margin-bottom: 18px; }
-.is-hero__index a { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 8px; padding: 23px 4px; border-bottom: 1px solid #cbd6ce; color: inherit; text-decoration: none; font-size: 18px; }
+.is-hero__index a { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 23px 4px; border-bottom: 1px solid #cbd6ce; color: inherit; text-decoration: none; font-size: 18px; }
 .is-hero__index a:hover, .is-hero__index a:focus-visible { background: #e8eee6; }
-.is-hero__index b { font-size: 12px; color: #8b6e4c; }
 .is-intro { padding-block: clamp(70px, 9vw, 130px); display: grid; grid-template-columns: 1fr 1fr; gap: 22px 8vw; border-top: 1px solid #d3ddd4; }
 .is-intro .ew-eyebrow { grid-column: 1 / -1; }
 .is-intro h2, .is-method h2 { font-size: clamp(36px, 4.8vw, 70px); line-height: 1.08; margin: 0; }

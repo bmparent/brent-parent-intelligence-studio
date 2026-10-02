@@ -12,7 +12,11 @@ export function SEOJsonLd({ path }: { path: string }) {
       url: siteConfig.url,
       logo: {
         '@type': 'ImageObject',
-        url: siteConfig.logos.horizontal
+        url: absoluteUrl(siteConfig.logos.icon),
+        contentUrl: absoluteUrl(siteConfig.logos.icon),
+        width: 1024,
+        height: 1024,
+        caption: 'Eidos Works lowercase e logo'
       },
       email: siteConfig.contactEmail,
       founder: { '@id': absoluteUrl('/#brent-parent') },
@@ -50,11 +54,11 @@ export function SEOJsonLd({ path }: { path: string }) {
 
   const serviceNames: Record<string, { name: string; description: string }> = {
     '/central-florida': { name: 'Friction Review for Central Florida businesses', description: 'A focused review of one website, workflow, or repeated task, with up to three observations and a practical next step.' },
-    '/services/business-systems': { name: 'Business Systems', description: 'Workflow automation, internal tools, operational reporting, and focused integrations.' },
-    '/services/intelligent-systems': { name: 'Intelligent Systems', description: 'Bounded AI assistance, information retrieval, analysis, and human-controlled workflows.' },
+    '/services/business-systems': { name: 'Custom Web Applications & Workflow Automation', description: 'Custom web applications, React dashboards, workflow automation, operational reporting, and API integrations.' },
+    '/services/intelligent-systems': { name: 'AI Assistant & React Application Development', description: 'Focused AI assistants, published-source retrieval, React interfaces, and human-controlled workflows.' },
     '/services/digital-experiences': {
-      name: 'Digital Experiences',
-      description: 'Website, service-page, campaign-page, and accessible frontend design and development.'
+      name: 'React Development & InkSoft Storefront Design',
+      description: 'Custom React and TypeScript websites, InkSoft storefront customization, responsive UI/UX, HTML Canvas animation, and technical SEO foundations.'
     },
     '/services/storefront-access-systems': {
       name: 'Storefront and Access Systems',

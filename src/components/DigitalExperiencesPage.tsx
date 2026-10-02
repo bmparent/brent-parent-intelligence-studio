@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { showcase } from '../data/showcase';
+import { mdcaBuild, storefrontBuilds, type BuildStory } from '../data/buildStories';
+import { BuildDetails } from './BuildDetails';
 import '../styles/digital-experiences.css';
 
 const holidaysImage = showcase.find((project) => project.slug === 'holidays-in-hollywood')?.image ?? '';
 const jingleImage = showcase.find((project) => project.slug === 'jingle-bell-jingle-bam')?.image ?? '';
+const nighttimeImage = showcase.find((project) => project.slug === 'nighttime-spectaculars')?.image ?? '';
 
 type Project = {
   title: string;
@@ -15,7 +18,8 @@ type Project = {
   external?: boolean;
   headline: string;
   description: string;
-  build: string[];
+  build?: string[];
+  buildStory?: BuildStory;
   application: string;
   disclosure: string;
   color: string;
@@ -31,11 +35,7 @@ const projects: Project[] = [
     action: 'Explore the storefront',
     headline: 'Give a collection an entrance with a point of view.',
     description: 'A Hollywood-inspired holiday scene gives this cast-and-crew collection its own atmosphere. From that entrance, visitors can move into jackets, hoodies, headwear, and pants rather than deciphering a generic product grid.',
-    build: [
-      'The original custom presentation was shaped for an InkSoft storefront with scoped styles, responsive layouts, and clear collection paths.',
-      'InkSoft retained the product, account, cart, and checkout functions. The visual layer gave the store its distinct character.',
-      'A separate React portfolio reconstruction uses saved project artwork and illustrative options so the protected store can remain private.'
-    ],
+    buildStory: storefrontBuilds['holidays-in-hollywood'],
     application: 'When your product has a story, the first screen can set its tone and still lead people directly toward a useful choice.',
     disclosure: 'Storefront design within Data Graphics’ client-services workflow. Public design reconstruction; products and options are illustrative, with no orders or payments. Brand assets belong to their owners. No direct Disney relationship is claimed.',
     color: 'gold'
@@ -50,11 +50,7 @@ const projects: Project[] = [
     external: true,
     headline: 'Make the practical questions easy to answer.',
     description: 'The MDCA store helps families choose between shopping now and checking fit first. Its live entrance explains the ordering path, production timing, and pickup notification before the customer reaches the catalog.',
-    build: [
-      'The storefront organizes the first decisions around official uniforms, sizing help, and the steps from checkout to pickup.',
-      'A custom responsive entrance and school imagery sit above InkSoft’s existing product and checkout system.',
-      'The live page keeps the final-sale reminder and fit guidance visible where those details matter to a family placing an order.'
-    ],
+    buildStory: mdcaBuild,
     application: 'A useful customer experience often starts by answering the questions people would otherwise need to call or email about.',
     disclosure: 'Storefront work within Data Graphics’ client-services workflow; Eidos Works does not claim a direct MDCA client relationship or ownership of the school identity. Image is a saved design reference; the linked store is live. No conversion or sales uplift is claimed.',
     color: 'blue'
@@ -119,21 +115,31 @@ export function DigitalExperiencesPage() {
   return <div className="dx-page">
     <section className="dx-hero ew-shell" aria-labelledby="dx-title">
       <div className="dx-hero__copy">
-        <p className="ew-eyebrow">Service 01 / Digital Experiences</p>
-        <h1 id="dx-title">Make the thing you do feel <em>unmistakable.</em></h1>
-        <p>A digital experience should do more than look good in a screenshot. It should help people understand your offer, find the right path, and feel confident taking the next step. We design websites, storefronts, campaigns, and interactive places around those moments.</p>
+        <p className="ew-eyebrow">Digital Experiences</p>
+        <h1 id="dx-title">Custom websites.<br/><em>Unmistakable experiences.</em></h1>
+        <p>We design and develop responsive websites, ecommerce storefronts, campaign landing pages, and interactive web applications. From a custom InkSoft storefront to a React and TypeScript frontend, the build starts with what your customer needs to understand or do.</p>
         <div className="dx-actions"><a className="ew-button ew-button--primary" href="#selected-experiences">Explore the work ↓</a><a className="dx-text-link" href="/friction-review">Show us what almost works ↗</a></div>
       </div>
       <div className={`dx-stage dx-stage--${featured.color}`}>
-        <div className="dx-stage__top"><span>Selected experience / {String(active + 1).padStart(2, '0')}</span><span aria-hidden="true">✳</span></div>
+        <div className="dx-stage__top"><span>Selected experience</span><span aria-hidden="true">✳</span></div>
         <a href={featured.href} {...(featured.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${featured.title}`}>
           <img key={featured.title} src={featured.image} width="960" height="670" alt={featured.alt} fetchPriority={active === 0 ? 'high' : undefined} />
         </a>
         <div className="dx-stage__footer"><div><small>{featured.kind}</small><strong>{featured.title}</strong></div><span aria-hidden="true">↗</span></div>
       </div>
       <div className="dx-selector" aria-label="Choose a featured experience">
-        {projects.map((project, index) => <button key={project.title} type="button" aria-pressed={index === active} onClick={() => setActive(index)}><span>{String(index + 1).padStart(2, '0')}</span><strong>{project.title}</strong><small>{project.kind.split(' · ')[0]}</small></button>)}
+        {projects.map((project, index) => <button key={project.title} type="button" aria-pressed={index === active} onClick={() => setActive(index)}><strong>{project.title}</strong><small>{project.kind.split(' · ')[0]}</small></button>)}
       </div>
+    </section>
+
+    <section className="dx-capabilities ew-shell" aria-labelledby="dx-capabilities-title">
+      <div><p className="ew-eyebrow">Web design & frontend development</p><h2 id="dx-capabilities-title">Choose the build that fits the job.</h2><p>A clearer website, a better shopping journey, or a custom interactive application: the technology should serve the experience and the team maintaining it.</p></div>
+      <dl>
+        <div><dt>React & TypeScript development</dt><dd>Custom interfaces, reusable components, interactive product views, and web applications with explicit state and typed data.</dd></div>
+        <div><dt>InkSoft storefront customization</dt><dd>Branded HTML and CSS entrances, collection navigation, and responsive ecommerce UX within an existing hosted commerce platform.</dd></div>
+        <div><dt>Responsive web design & UI/UX</dt><dd>Mobile layouts, keyboard controls, product inspection, HTML Canvas animation, and reduced-motion options built around useful customer actions.</dd></div>
+        <div><dt>Technical SEO & search-ready content</dt><dd>Descriptive page titles, semantic HTML, canonical URLs, structured data, and prerendered service and case-study content. <a href="/services/agentic-seo">Explore our search-readiness approach →</a></dd></div>
+      </dl>
     </section>
 
     <section className="dx-intro ew-shell" id="selected-experiences">
@@ -143,17 +149,17 @@ export function DigitalExperiencesPage() {
     </section>
 
     <section className="dx-projects" aria-label="Featured digital experience projects">
-      {projects.map((project, index) => <article className={`dx-project dx-project--${project.color}`} key={project.title}>
+      {projects.map((project) => <article className={`dx-project dx-project--${project.color}`} key={project.title}>
         <div className="dx-project__inner ew-shell">
-          <div className="dx-project__visual"><span className="dx-project__number">{String(index + 1).padStart(2, '0')} / 04</span><a href={project.href} {...(project.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${project.title}`}><img src={project.image} width="1200" height="800" loading="lazy" alt={project.alt}/></a><p>{project.kind}</p></div>
-          <div className="dx-project__story"><p className="ew-eyebrow">{project.title}</p><h3>{project.headline}</h3><p className="dx-project__description">{project.description}</p><div className="dx-project__build"><h4>Behind the build</h4><ol>{project.build.map((step) => <li key={step}>{step}</li>)}</ol></div><p className="dx-project__application"><strong>For your work</strong>{project.application}</p><ProjectLink project={project}/><small className="dx-project__disclosure">{project.disclosure}</small></div>
+          <div className="dx-project__visual"><a href={project.href} {...(project.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${project.title}`}><img src={project.image} width="1200" height="800" loading="lazy" alt={project.alt}/></a><p>{project.kind}</p></div>
+          <div className="dx-project__story"><p className="ew-eyebrow">{project.title}</p><h3>{project.headline}</h3><p className="dx-project__description">{project.description}</p>{project.buildStory ? <BuildDetails story={project.buildStory} /> : <div className="dx-project__build"><h4>Behind the build</h4><ol>{project.build?.map((step) => <li key={step}>{step}</li>)}</ol></div>}<p className="dx-project__application"><strong>For your work</strong>{project.application}</p><ProjectLink project={project}/><small className="dx-project__disclosure">{project.disclosure}</small></div>
         </div>
       </article>)}
     </section>
 
-    <section className="dx-more ew-shell" aria-labelledby="dx-more-title"><div><p className="ew-eyebrow">More to explore</p><h2 id="dx-more-title">Different ideas ask for different kinds of interaction.</h2></div><div className="dx-more__grid">
-      <a href="/work/jingle-bell-jingle-bam"><img src={jingleImage} width="700" height="450" loading="lazy" alt="Jingle Bell, Jingle BAM holiday storefront theatre artwork"/><span>Public storefront reconstruction</span><h3>Jingle Bell, Jingle BAM!</h3><p>A holiday theatre, snow-globe collection paths, and front-and-back garment inspection. The public demo uses illustrative options and accepts no orders.</p><strong>Explore the holiday storefront ↗</strong></a>
-      <a href="https://portal-pocket-ar.bmparent.chatgpt.site" target="_blank" rel="noopener noreferrer"><img src="/images/site-gallery/portal-pocket-ar.webp" width="700" height="450" loading="lazy" alt="Pocket Portal augmented reality game preview"/><span>Studio experiment</span><h3>Pocket Portal</h3><p>A short camera-based game built around a portal card, light fragments, and a practice option. Camera and 3D support vary by device.</p><strong>Visit Pocket Portal ↗</strong></a>
+    <section className="dx-more ew-shell" aria-labelledby="dx-more-title"><div><p className="ew-eyebrow">Storefront engineering</p><h2 id="dx-more-title">Custom storefronts, from artwork to interaction.</h2><p>See how two more InkSoft designs become working React portfolio experiences, with their own graphics and browsing details.</p><a className="dx-text-link" href="https://portal-pocket-ar.bmparent.chatgpt.site" target="_blank" rel="noopener noreferrer">Explore Pocket Portal, our camera-based studio experiment ↗</a></div><div className="dx-more__grid">
+      <article><a href="/work/jingle-bell-jingle-bam"><img src={jingleImage} width="700" height="450" loading="lazy" alt="Jingle Bell, Jingle BAM holiday storefront theatre artwork"/></a><span>Public storefront reconstruction</span><h3>Jingle Bell, Jingle BAM!</h3><BuildDetails story={storefrontBuilds['jingle-bell-jingle-bam']} /><p className="dx-project__disclosure">Data Graphics client-services work. Public reconstruction with a demo cart; no orders or payments. Brand assets belong to their owners; no direct Disney engagement is claimed.</p><a className="dx-link" href="/work/jingle-bell-jingle-bam">Explore the holiday storefront ↗</a></article>
+      <article><a href="/work/nighttime-spectaculars"><img src={nighttimeImage} width="700" height="450" loading="lazy" alt="Nighttime Spectaculars storefront artwork showing Hollywood Studios at night"/></a><span>Public storefront reconstruction</span><h3>Nighttime Spectaculars</h3><BuildDetails story={storefrontBuilds['nighttime-spectaculars']} /><p className="dx-project__disclosure">Data Graphics client-services work. Illustrative public catalog and temporary demo bag; no orders or payments. No direct Disney engagement or measured sales outcome is claimed.</p><a className="dx-link" href="/work/nighttime-spectaculars">Explore the animated storefront ↗</a></article>
     </div></section>
 
     <section className="dx-translate" aria-labelledby="dx-translate-title"><div className="ew-shell dx-translate__inner"><div><p className="ew-eyebrow">Your work, made easier to experience</p><h2 id="dx-translate-title">What should your customers be able to understand or do?</h2><p>A school store, an event, a service business, and a product launch need different paths. Choose a starting point to see the kind of question we would tackle first.</p></div><div className="dx-translate__tool"><div className="dx-translate__choices" aria-label="Choose a customer goal">{startingPoints.map((point, index) => <button type="button" key={point.label} aria-pressed={index === startingPoint} onClick={() => setStartingPoint(index)}>{point.label}</button>)}</div><div className="dx-translate__result" aria-live="polite"><span>First question / {selectedPath.project}</span><h3>{selectedPath.title}</h3><p>{selectedPath.body}</p><a href="/friction-review">Show us your customer path ↗</a></div></div></div></section>

@@ -1,5 +1,9 @@
 # Candidate acceptance and release gates
 
+## Current paired-preview work — 2026-10-02
+
+The paired site draft now incorporates public main through `27a05a3b2cf11b77569811ef98d1877afab028ef`, preserving the candidate account and Playground work alongside the current homepage, service pages and branding. The backend remains `97d806d4d0a7a71575090e10d5e81aca1036b4e4`. Local checks and 76-file contract parity pass. [The October 2 record](ACCEPTANCE_2026-10-02.md) describes the narrowly scoped CI upload to the existing test Pages project and separates exact hosted receipts from still-open consent, ownership, inbox, signed TEST payment and physical-device gates. Production remains NO-GO; the historical sections below describe their own revisions.
+
 ## Combined review candidate — 2026-09-27
 
 The site integration combines the audit candidate, security sprint, Playground journey, latest owner console including daily refresh and service directory, and growth-team heads, then merges the current `main` editorial content. The paired backend combines its owner-console and security-sprint heads. See [the September 27 integration record](ACCEPTANCE_2026-09-27.md) for exact parents, local verification and still-open hosted gates. This source combination has **not** been deployed to an isolated paired preview or production. Earlier hosted receipts below belong to different revisions; none may be treated as acceptance of the combined tree.
@@ -97,3 +101,29 @@ The paired candidate now incorporates the September 30 public gallery/service re
 ## October 1 storefront gallery follow-up
 
 The current Liberty Christian Prep, MDCA and Disney Junior homepages replace their old cropped references with dated complete captures and full-page reading. Real storefronts retain client-services attribution and live links; fictional concepts retain their separate disclosure. Animated demo source and all other gallery records remain unchanged. Candidate scope, image provenance, current verification and the `7f03936` rollback baseline are recorded in [STOREFRONT_GALLERY_2026-10-01.md](STOREFRONT_GALLERY_2026-10-01.md). The held paired runtime gates above remain open.
+
+## October 1 service-copy candidate
+
+The service build-story update was initially checked on public main `7f03936366016f8bd005f2e3740896759e930889`, then rebased onto `435be02b30f1d983e19b9e915c665ebc38a56668` to preserve the storefront gallery refresh, on `codex/service-build-details-20261001`. It adds source-grounded stack and implementation notes to Digital Experiences, all five existing storefront reconstructions, the Business Systems concept applications, and the Wellway/Ask Eidos Intelligent Systems examples. Page metadata and Service JSON-LD describe those visible services. The copy format for future completed projects is in `docs/service-case-study-copy.md`.
+
+The source and browser checks for this candidate do not close the held #73/#67 provider or account gates. The public changes have no backend, account, payment, provider, migration, or private-data dependency. Acceptance requires lint/typecheck, production build, existing route/editorial checks, desktop and phone-width browser checks, and exact-head CI. Source rollback is the latest public-main SHA above; production state must be read back separately before publication is claimed.
+
+## October 1 homepage candidate
+
+An illustrated services invitation moves above Selected work, which now features Jingle Bell, Jingle BAM!, Wellway, Holidays in Hollywood and Nighttime Spectaculars. The candidate began at main `435be02` and incorporated current main `8aec889` after #83 merged, preserving the gallery refresh and service build stories. Scope, public asset provenance, desktop/responsive navigation evidence and the local Wellway HTTP limitation are recorded in [HOMEPAGE_SERVICES_2026-10-01.md](HOMEPAGE_SERVICES_2026-10-01.md). Its PR tracks exact-head CI and production promotion separately. The existing runtime acceptance gates remain open.
+
+## October 2 studio branding
+
+The branding update starts from public main `cf7f791db84aa886b3e1064dfc28345579f18225` and aligns favicon, previews, Organization logo, gallery assets, Playground, Quote Desk and article-card branding with the current header's lowercase e. Source scope, local checks, desktop/phone-width browser evidence, release readback requirements and rollback are recorded in [BRANDING_2026-10-02.md](BRANDING_2026-10-02.md). This public presentation change does not accept the held paired runtime. A third-party advertising draft may retain its selected image and requires regeneration or manual upload.
+
+## October 2 section numbering update
+
+Brent requested removing the numbering of sections throughout Eidos Works. Branch `codex/remove-section-numbering-20261002` starts at public main `2f403a936f0737fa5d8b3f4f3e2ba9833537ed72`. It removes decorative section, service, project, option and benefit indexes from the homepage, portfolio, service pages/overview, contact, Friction Review, Snapshot landing/report sections and account introduction. Number-only elements are removed from rendered HTML, and affected navigation/service/foundation grids close the former number columns. Titles, project disclosures, arrows, destinations and existing fragment IDs remain intact. Ordered process/build instructions, form progression, prices, data and structured-data positions retain their meaning.
+
+Local lint has zero errors and the existing Wellway fast-refresh advisory. TypeScript, client/SSR production build, prerender, editorial checks for 34 routes, source/built article validation, URL checks and Snapshot validation/signature smoke checks pass. Cloud Browser reads the canonical baseline; this session's internal preview URL returns `ERR_BLOCKED_BY_CLIENT`, and the local Playwright browser executable is unavailable. The existing exact-head CI provides desktop and 390-pixel service interaction/image/layout checks before merge. CI and post-release canonical readback are recorded on the PR; publication is not claimed by this pre-release record. No browser environment or repository browser dependency changes are included.
+
+The existing main workflow builds and verifies the source, deploys to the established Cloudflare Pages project and reads back the exact production identity. Rollback is public-main `2f403a9`. This change has no backend, provider, payment, migration or account-behavior change and does not accept the held paired-runtime gates.
+
+## October 2 creative homepage folio
+
+Brent approved the paper-collage homepage widget direction and requested implementation. The scoped candidate begins at public main `24ea6e5d25d16ff7014e32cedce9444b197c6082`. Six generated illustrations, responsive WebP sources, native service text/links and the warm-paper folio replace the previous widget art. The existing three service families, destinations, fragment ID and section-numbering removal are preserved. Local build, route, editorial and visual checks are recorded in [HOMEPAGE_FOLIO_2026-10-02.md](HOMEPAGE_FOLIO_2026-10-02.md) and the root design QA report. Exact-head CI and production readback are recorded on the PR before publication is claimed. Rollback is the baseline above. The existing held runtime gates remain open.

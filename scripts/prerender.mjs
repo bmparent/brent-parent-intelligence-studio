@@ -26,7 +26,8 @@ function withHeadMetadata(html, page) {
   const description = escapeAttribute(page.description ?? '');
   const url = escapeAttribute(page.url ?? '');
   const type = escapeAttribute(page.type ?? 'website');
-  const image = escapeAttribute(page.image ?? 'https://eidos-works.com/social-preview.png');
+  const image = escapeAttribute(page.image ?? 'https://eidos-works.com/brand/eidos-social-preview-v2.png');
+  const imageAlt = escapeAttribute(image.endsWith('/brand/eidos-social-preview-v2.png') ? 'Eidos Works lowercase e studio logo' : page.title ?? 'Eidos Works');
 
   const robots = page.noIndex ? 'noindex, nofollow' : 'index, follow';
   const referrer = page.noReferrer ? 'no-referrer' : 'strict-origin-when-cross-origin';
@@ -39,10 +40,12 @@ function withHeadMetadata(html, page) {
     .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${escapeAttribute(page.title ?? 'Eidos Works')}" />`)
     .replace(/<meta\s+property="og:description"\s+content="[^"]*"\s*\/>/s, `<meta property="og:description" content="${description}" />`)
     .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${image}" />`)
+    .replace(/<meta property="og:image:alt" content="[^"]*" \/>/, `<meta property="og:image:alt" content="${imageAlt}" />`)
     .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`)
     .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${escapeAttribute(page.title ?? 'Eidos Works')}" />`)
     .replace(/<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/s, `<meta name="twitter:description" content="${description}" />`)
     .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${image}" />`)
+    .replace(/<meta name="twitter:image:alt" content="[^"]*" \/>/, `<meta name="twitter:image:alt" content="${imageAlt}" />`)
     .replace(/<meta name="robots" content="[^"]*" \/>/, `<meta name="robots" content="${robots}" />`)
     .replace(/<meta name="referrer" content="[^"]*" \/>/, `<meta name="referrer" content="${referrer}" />`);
 }

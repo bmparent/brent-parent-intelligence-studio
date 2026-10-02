@@ -1,0 +1,92 @@
+{
+  "purpose": "Illustrative homepage service art generated from the user-approved folio direction, not screenshots or measurements of shipping products.",
+  "approved_reference": {
+    "name": "exec-99dc68e3-763b-4045-8f04-2db1bbc9fa29.png",
+    "width": 1190,
+    "height": 1322,
+    "sha256": "5f84589272b3fbd3d71aae4c7e6e73ba5c20b1cbdc75585d4a0dc8ec2eed4187"
+  },
+  "creation": "Image Gen; six separate transparent raster assets and a seamless paper texture. Optimized with Pillow to WebP at 1280 and 640 widths; original aspect ratios and alpha preserved.",
+  "icon": {
+    "source": "https://github.com/tabler/tabler-icons/blob/main/icons/outline/arrow-up-right.svg",
+    "license": "MIT; TABLER-LICENSE.txt",
+    "modification": "none"
+  },
+  "files": [
+    {
+      "file": "TABLER-LICENSE.txt",
+      "bytes": 1074,
+      "sha256": "384bad79d7f23eae723071cb340ed8333de0faa5216c92e8d53f750ad2260a96"
+    },
+    {
+      "file": "arrow-up-right.svg",
+      "bytes": 411,
+      "sha256": "8b149f040d34c24adda45f425c45a03c7780309fdb99b48076dfa2f8296eb698"
+    },
+    {
+      "file": "assistants-small.webp",
+      "bytes": 46022,
+      "sha256": "ec9796ea00c3ee176bceb7d6547a787f17a72e0932ddf11b42619c080ec2fe17"
+    },
+    {
+      "file": "assistants.webp",
+      "bytes": 142068,
+      "sha256": "316390f37c9a60bee83de1e224f5a773ced2fd9c15e88148b363bc9977bddf44"
+    },
+    {
+      "file": "automation-small.webp",
+      "bytes": 41576,
+      "sha256": "746ef9ee0662e917b504014d169155cc7472c19055e82c7b817235731487d2ec"
+    },
+    {
+      "file": "automation.webp",
+      "bytes": 130714,
+      "sha256": "bc1fd8460247284f90db775e648981ed64db30654577aaf39f95f2ad13a6e24a"
+    },
+    {
+      "file": "business-small.webp",
+      "bytes": 43722,
+      "sha256": "a5c1bd59f541c94a6d0cfb4bb2f3694bb3d8cf590f7c10256188505367b8b6f6"
+    },
+    {
+      "file": "business.webp",
+      "bytes": 135886,
+      "sha256": "d17cba7c34e053a731cde768244f14251aa2519facb4352c7b3339d1e779305d"
+    },
+    {
+      "file": "commerce-small.webp",
+      "bytes": 71998,
+      "sha256": "4cc5fd14761605214690623c8e468a574490657a4dde8a460b3fba5ae134d2e0"
+    },
+    {
+      "file": "commerce.webp",
+      "bytes": 236146,
+      "sha256": "6d42d48b44df6ea200583c033ad0decab94529faa62457ba4260bef73c78dacb"
+    },
+    {
+      "file": "paper.webp",
+      "bytes": 816,
+      "sha256": "46db8816943d3dfa2d7372e82c8891e7e38c590eb9074e5b13b928f9de626f9f"
+    },
+    {
+      "file": "performance-small.webp",
+      "bytes": 58556,
+      "sha256": "524a93d25b6c6b84522a868541fbc9527c794bd2449d92f3ac1c53babef342e3"
+    },
+    {
+      "file": "performance.webp",
+      "bytes": 193886,
+      "sha256": "cc24ccade839d679f536cef9d816af3a3509b67be3adf5049897fd4a31e966e9"
+    },
+    {
+      "file": "websites-small.webp",
+      "bytes": 65370,
+      "sha256": "fd983cdc271867e82775b6b25c34c5e55016c1fa2e5b8a3b7fd87844877e1389"
+    },
+    {
+      "file": "websites.webp",
+      "bytes": 221446,
+      "sha256": "1a3b9a4947bddf7e11b448a64479cb0a7f6c2f3a3574938e46ade0b20bff6959"
+    }
+  ]
+}

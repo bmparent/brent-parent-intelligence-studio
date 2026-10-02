@@ -178,7 +178,6 @@ export function ServicesPage() {
         <div className="ew-service-index">
           {serviceFamilies.map((service) => (
             <article key={service.slug}>
-              <span>{service.number}</span>
               <figure className={`ew-service-index__image ew-service-index__image--${service.slug}`}>
                 <img src={service.image} width="1200" height="800" loading="lazy" alt={service.imageAlt} />
                 <figcaption>{service.imageCaption}</figcaption>
@@ -217,7 +216,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
   const detail = context[slug];
   return (
     <>
-      <EditorialHero eyebrow={`Service ${service.number}`} title={service.title} lede={service.summary} />
+      <EditorialHero eyebrow="Our services" title={service.title} lede={service.summary} />
       <figure className={`ew-service-evidence ew-shell ew-service-evidence--${slug}`}>
         <img src={service.image} width="1200" height="800" alt={service.imageAlt} />
         <figcaption>{service.imageCaption}</figcaption>

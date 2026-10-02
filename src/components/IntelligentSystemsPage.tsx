@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { SupportedAnswerDemo } from './SupportedAnswerDemo';
+import { BuildDetails } from './BuildDetails';
+import { intelligentBuilds } from '../data/buildStories';
 import '../styles/intelligent-systems.css';
 
 const projects = [
@@ -45,14 +47,14 @@ export function IntelligentSystemsPage() {
   return <div className="is-page">
     <section className="is-hero ew-shell" aria-labelledby="is-title">
       <div>
-        <p className="ew-eyebrow">Service 03 / Intelligent Systems</p>
+        <p className="ew-eyebrow">Intelligent Systems</p>
         <h1 id="is-title">Give assistance a job. <em>Keep people in control.</em></h1>
-        <p>Useful intelligence begins with a specific question, trustworthy information, and a clear limit on what the system may do. These three projects show different ways to make that boundary visible.</p>
+        <p>We develop AI assistants, published-source retrieval, and React applications around specific tasks. Explore how each system works.</p>
         <a className="ew-button ew-button--primary" href="#is-work">See the projects ↓</a>
       </div>
       <nav className="is-hero__index" aria-label="Projects on this page">
-        <span>Selected systems / 03</span>
-        {projects.map(project => <a key={project.number} href={`#is-project-${project.number}`}><b>{project.number}</b>{project.title}<span aria-hidden="true">↘</span></a>)}
+        <span>Selected systems</span>
+        {projects.map(project => <a key={project.number} href={`#is-project-${project.number}`}><span>{project.title}</span><span aria-hidden="true">↘</span></a>)}
       </nav>
     </section>
 
@@ -66,7 +68,7 @@ export function IntelligentSystemsPage() {
       {projects.map(project => <article className="is-project" id={`is-project-${project.number}`} key={project.number}>
         <div className="ew-shell is-project__grid">
           <figure className="is-project__visual">
-            <div className="is-project__visual-head"><span>{project.number} / 03</span><span>{project.status}</span></div>
+            <div className="is-project__visual-head"><span>{project.status}</span></div>
             {project.image ? <ProjectImage src={project.image} alt={project.alt} title={project.title} /> : <div className="is-source-flow" role="img" aria-label="Ask Eidos source-answer path: visitor question, published studio information, answer with source links"><span>Published-source path</span><ol><li>Visitor question</li><li>Published sources</li><li>Answer + source links</li></ol><small>Optional AI elaboration is separate and labeled.</small></div>}
             <figcaption>{project.title === 'Wellway' ? 'Existing public capture · fictional scenario data' : project.title === 'Sentinel Lab' ? 'Existing public research-interface capture · current status lives in the Lab' : 'Diagram of the source-answer flow · no provider request shown'}</figcaption>
           </figure>
@@ -79,6 +81,7 @@ export function IntelligentSystemsPage() {
               <div><dt>Human control</dt><dd>{project.control}</dd></div>
               <div><dt>What is verified</dt><dd>{project.verified}</dd></div>
             </dl>
+            {intelligentBuilds[project.title] && <BuildDetails story={intelligentBuilds[project.title]} />}
             <a href={project.href}>{project.action} <span aria-hidden="true">↗</span></a>
           </div>
         </div>

@@ -7,9 +7,9 @@ for(const path of routes) {
   const r=await fetch(base+path,{cache:'no-store'}),html=await r.text();assert.equal(r.status,200,path);
   const local=await readFile(`${dist}${path==='/'?'':path}/index.html`,'utf8');
   const assets=[...local.matchAll(/(?:src|href)="(\/assets\/[^" ]+\.(?:js|css))"/g)].map(m=>m[1]);assert.ok(assets.length);assert.ok(assets.every(a=>html.includes(a)),path+' must serve this exact build');
-  assert.ok(html.includes('social-preview.png'));assert.ok(html.includes('href="/friction-review"'));results.push({path,status:r.status,exactAssets:assets,social:true,cta:true});
+  assert.ok(html.includes('/brand/eidos-social-preview-v2.png'));assert.ok(html.includes('href="/friction-review"'));results.push({path,status:r.status,exactAssets:assets,social:true,cta:true});
 }
-for(const path of ['/sitemap.xml','/robots.txt','/social-preview.png']){const r=await fetch(base+path);assert.equal(r.status,200);results.push({path,status:r.status});}
+for(const path of ['/sitemap.xml','/robots.txt','/brand/eidos-social-preview-v2.png']){const r=await fetch(base+path);assert.equal(r.status,200);results.push({path,status:r.status});}
 const unknown=await fetch(base+'/growth-nonexistent-page');assert.equal(unknown.status,404);results.push({path:'/growth-nonexistent-page',status:unknown.status});
 const config=await(await fetch(base+'/api/public-config')).json();assert.equal(config.gaMeasurementId,'G-8N7Y7EM4CS');
 const inquiry=await(await fetch(base+'/api/project-inquiries')).json();assert.equal(inquiry.deliveryConfigured,true);assert.equal(inquiry.privateMailerConfigured,true);

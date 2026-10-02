@@ -5,12 +5,12 @@ import StorefrontDemo, { StorefrontPreview } from "./StorefrontDemo";
 import { LabAccessRequest } from "./LabAccessRequest";
 import { storefrontThemes, type StorefrontTheme } from "../data/storefrontDemo";
 import { showcase, labUrl, type ShowcaseProject } from "../data/showcase";
+import { storefrontBuilds } from '../data/buildStories';
+import { BuildDetails } from './BuildDetails';
 export function ProjectTile({
   project,
-  index = 0,
 }: {
   project: ShowcaseProject;
-  index?: number;
 }) {
   return (
     <article className="ew-project-tile">
@@ -33,7 +33,7 @@ export function ProjectTile({
         </div>
         <div className="ew-project-meta">
           <span>
-            {String(index + 1).padStart(2, "0")} / {project.status}
+            {project.status}
           </span>
           <span>{project.category}</span>
         </div>
@@ -102,8 +102,8 @@ export function ShowcasePage() {
           </p>
         )}
         <div className="ew-project-grid">
-          {projects.map((project, index) => (
-            <ProjectTile key={project.slug} project={project} index={index} />
+          {projects.map((project) => (
+            <ProjectTile key={project.slug} project={project} />
           ))}
         </div>
         <div className="ew-collection-note">
@@ -160,13 +160,7 @@ export function StorefrontShowcase({ slug }: { slug: string }) {
             storytelling; real HTML controls provide navigation and accessible
             actions.
           </p>
-          <h3>How it was built</h3>
-          <p>
-            The original custom experience fits inside InkSoft’s hosted
-            storefront. Scoped styles and responsive layout rules shape the
-            header, hero, and collection paths while the platform continues to
-            own product selection, cart, accounts, and checkout.
-          </p>
+          <BuildDetails story={storefrontBuilds[project.slug as StorefrontTheme]} headingLevel={3} />
           <h3>What you can try here</h3>
           <p>
             The portfolio version rebuilds the interface in React: collection

@@ -1,9 +1,10 @@
 import { SiteGallery } from './SiteGallery';
-import { showcase, labUrl } from '../data/showcase';
+import { homeSelectedProjects, labUrl } from '../data/showcase';
 import { articles } from '../data/articles';
 import { ProjectTile } from './ShowcasePages';
 import { LivingHero } from './LivingHero';
 import { LiquidGlassSurface } from './LiquidGlassSurface';
+import { HomeServices } from './HomeServices';
 export function HomePage() {
   return (
     <>
@@ -40,16 +41,17 @@ export function HomePage() {
         </div>
         <div className="ew-cinema-bottom ew-shell">
           <span>Designed with intention. Built to work.</span>
-          <a href="#selected-work">
+          <a href="#services">
             Scroll to explore <span aria-hidden="true">↓</span>
           </a>
           <span>Central Florida · Working everywhere</span>
         </div>
       </section>
+      <HomeServices />
       <section id="selected-work" className="ew-featured ew-shell">
         <div className="ew-section-heading">
           <div>
-            <p className="ew-eyebrow">01 / Selected work</p>
+            <p className="ew-eyebrow">Selected work</p>
             <h2>A little of what’s possible.</h2>
           </div>
           <a className="ew-text-link" href="/work">
@@ -57,73 +59,24 @@ export function HomePage() {
           </a>
         </div>
         <div className="ew-project-grid">
-          {showcase.slice(0, 2).map((project, index) => (
-            <ProjectTile key={project.slug} project={project} index={index} />
+          {homeSelectedProjects.map((project) => (
+            <ProjectTile key={project.slug} project={project} />
           ))}
         </div>
         <div className="ew-work-footnote">
           <p>
-            Public storefront recreations. The original stores are private and
-            password-protected; these demos showcase their design and browsing
-            experience.
+            Storefronts are public recreations of private client stores, with
+            design work contributed through Data Graphics. Wellway is an
+            independent app demo using fictional people and records.
           </p>
-          <span>Art direction / Development / Commerce</span>
-        </div>
-      </section>
-      <section className="ew-capability-section ew-shell">
-        <div>
-          <p className="ew-eyebrow">02 / Built around the problem</p>
-          <h2>
-            Beautiful on the surface.
-            <br />
-            <em>Capable underneath.</em>
-          </h2>
-          <p className="ew-section-lede">
-            A customer journey that feels harder than it should. A workflow your
-            team still manages by hand. An AI idea that needs real boundaries.
-            Start with the friction; we’ll work backward to the right build.
-          </p>
-          <a className="ew-text-link" href="/about">
-            About Eidos Works ↗
-          </a>
-        </div>
-        <div className="ew-capability-list">
-          {[
-            [
-              '01',
-              'Digital Experiences',
-              'Websites, interactive experiences, commerce journeys, and campaigns with a clear point of view.',
-              '/services/digital-experiences',
-            ],
-            [
-              '02',
-              'Business Systems',
-              'Dashboards, internal tools, workflow applications, and automation built around the way work actually happens.',
-              '/services/business-systems',
-            ],
-            [
-              '03',
-              'Intelligent Systems',
-              'Focused AI assistants, agentic workflows, and decision tools with clear boundaries and human control.',
-              '/services/intelligent-systems',
-            ],
-          ].map(([n, title, body, href]) => (
-            <a href={href} key={n}>
-              <span>{n}</span>
-              <div>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </div>
-              <span aria-hidden="true">↗</span>
-            </a>
-          ))}
+          <span>Design / Development / Commerce / Applications</span>
         </div>
       </section>
       <section className="ew-lab-feature">
         <div className="ew-shell ew-lab-feature-grid">
           <div>
             <p className="ew-eyebrow">
-              <span className="ew-status-dot" /> 03 / Inside the lab
+              <span className="ew-status-dot" /> Inside the lab
             </p>
             <h2>
               Curiosity.
@@ -172,7 +125,7 @@ export function HomePage() {
       <section className="ew-open-studio ew-shell">
         <div className="ew-section-heading">
           <div>
-            <p className="ew-eyebrow">04 / An open studio</p>
+            <p className="ew-eyebrow">An open studio</p>
             <h2>Good questions lead somewhere.</h2>
           </div>
           <a className="ew-text-link" href="/community">

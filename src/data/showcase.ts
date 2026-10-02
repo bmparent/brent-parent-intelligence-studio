@@ -147,5 +147,33 @@ export const showcase = [
       'One-time commercial license',
     ],
   },
+  {
+    slug: 'wellway',
+    title: 'Wellway',
+    category: 'Systems',
+    description:
+      'A wellness workspace with guided check-ins, a journey view and editable plans, explored through a fictional demonstration.',
+    image: '/images/site-gallery/wellway-journey.webp',
+    alt: 'Wellway fictional member workspace showing a daily check-in, a journey chart and an editable plan.',
+    status: 'Fictional app demo',
+    href: '/demos/wellway/',
+    details: [
+      'Guided check-ins and source-linked records',
+      'Browser-local saves and recovery exports',
+      'Fictional demonstration data; not a clinical service',
+    ],
+  },
 ] as const;
 export type ShowcaseProject = (typeof showcase)[number];
+
+// Explicit selection keeps the homepage independent of collection ordering.
+export const homeSelectedProjects = [
+  'jingle-bell-jingle-bam',
+  'wellway',
+  'holidays-in-hollywood',
+  'nighttime-spectaculars',
+].map((slug) => {
+  const project = showcase.find((item) => item.slug === slug);
+  if (!project) throw new Error(`Missing homepage project: ${slug}`);
+  return project;
+});

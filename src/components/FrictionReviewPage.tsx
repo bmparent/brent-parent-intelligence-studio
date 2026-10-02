@@ -186,15 +186,12 @@ export function FrictionReviewPage() {
               prototype direction.
             </p>
             <div>
-              <span>01</span>
               <p><strong>Up to three friction points</strong><br />Specific observations, not generic advice.</p>
             </div>
             <div>
-              <span>02</span>
               <p><strong>Why they matter</strong><br />A short explanation tied to the actual path or workflow.</p>
             </div>
             <div>
-              <span>03</span>
               <p><strong>The first move we would make</strong><br />A practical next step, whether or not you hire us.</p>
             </div>
           </div>
