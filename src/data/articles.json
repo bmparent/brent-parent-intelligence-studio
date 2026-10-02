@@ -1877,5 +1877,86 @@
       "href": "/friction-review"
     },
     "ogImage": "/insights-og/mobile-storefront-filters-safe-reversible-choices.svg"
+  },
+  {
+    "title": "A Good Website Does Not Ask You to Remember Everything",
+    "slug": "good-website-does-not-ask-you-remember-everything",
+    "description": "An essay about the quiet burden of making people carry a business's unfinished decisions, and what it means to design a website with care.",
+    "dek": "Every unclear page asks a visitor to hold one more thing in mind. Good design is partly the work of setting that burden down.",
+    "category": "Website Strategy",
+    "publishedAt": "2026-10-02T18:00:00-04:00",
+    "updatedAt": "2026-10-02T18:00:00-04:00",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 5,
+    "tags": [
+      "Website strategy",
+      "Content design",
+      "Customer experience",
+      "Digital trust"
+    ],
+    "canonicalPath": "/insights/good-website-does-not-ask-you-remember-everything",
+    "excerpt": "Every unclear page asks a visitor to hold one more thing in mind. Good design is partly the work of setting that burden down.",
+    "pillar": "Website strategy, information architecture, and content design",
+    "slot": "evening",
+    "format": "essay",
+    "searchIntent": "Explore why clear website structure reduces cognitive burden and earns customer trust.",
+    "featured": false,
+    "draft": false,
+    "thesis": "A trustworthy website does not make visitors remember scattered details, translate internal language, or reconstruct the next step; it carries more of that work itself.",
+    "sources": [],
+    "takeaways": [],
+    "relatedSlugs": [
+      "structure-website-people-ai-assistants-understand",
+      "website-snapshot-before-redesign",
+      "mobile-hierarchy-over-desktop-polish"
+    ],
+    "body": [
+      {
+        "heading": "The small labor of a confusing page",
+        "paragraphs": [
+          "A person opens a website between other obligations. Perhaps they are standing in a hallway, waiting for a child to finish practice, or holding a phone with one hand while a pot begins to boil. They do not arrive empty. Their attention is already divided among names, deadlines, prices, directions, and the ordinary work of being responsible for something.",
+          "Then the page gives them more to carry. A service is named in language that only the business understands. A deadline sits apart from the thing it governs. The price, the proof, and the next step are each somewhere else. Nothing may be technically hidden, yet the visitor has to keep collecting fragments and arranging them in memory before they can act.",
+          "We often call this friction. That word is useful, but it can sound mechanical. The more human fact is that confusion transfers labor. When a business leaves its decisions unresolved, someone on the other side of the screen has to finish the work quietly, with less context and less time."
+        ]
+      },
+      {
+        "heading": "Memory is not an endless waiting room",
+        "paragraphs": [
+          "A website cannot remove every choice. A customer may still need to compare options, ask a question, or decide that the moment is not right. Care is not the same as pressure. But a page can distinguish between the thinking that belongs to a customer and the thinking that belongs to the organization.",
+          "The customer should decide whether an offer fits their need. The organization should decide what it calls the offer, where its important conditions live, which details are current, and how a person can move forward without reopening three tabs. That division is a form of respect. It says: we will not make you memorize our structure before you can understand our promise.",
+          "This is why clarity can feel surprisingly intimate. A clear page does not merely move information faster. It notices the visitor's limited attention and declines to spend it carelessly."
+        ]
+      },
+      {
+        "heading": "Trust begins before the claim",
+        "paragraphs": [
+          "Trust is often discussed as a matter of proof: testimonials, case studies, policies, credentials, guarantees. Those can matter. But there is an earlier moment, before a visitor has weighed any evidence. It is the moment when they sense whether a site is trying to help them orient themselves or trying to keep them clicking until they surrender.",
+          "A page earns some trust when it tells the truth about its own boundaries. It names what is included and what is not. It lets a deadline be a deadline rather than a vague urgency signal. It gives a contact path without pretending that a form is a relationship. It makes it possible to leave, return, and still know where one was.",
+          "None of this guarantees a purchase, a lead, or a lasting relationship. It does something quieter: it makes the business legible. And legibility is one of the conditions in which trust has a chance to grow."
+        ]
+      },
+      {
+        "heading": "What we try to carry on the page",
+        "paragraphs": [
+          "At Eidos Works, this idea shows up in choices that may look modest from a distance: giving an important page one job, placing a condition near the decision it changes, using navigation that names a customer's destination rather than an internal department, and keeping the next action visible without shouting for it.",
+          "The technical work matters because it keeps that care from disappearing after launch. Content models give repeated facts a home. Semantic structure helps a page keep its shape. Responsive hierarchy asks what survives when the screen gets smaller. These are not decorations around a strategy. They are ways of deciding that a visitor should not have to reconstruct the business from scattered clues.",
+          "The standard is not a perfectly silent interface or a site without choices. It is a site that takes responsibility for its own complexity before handing a person the decision that is truly theirs."
+        ]
+      },
+      {
+        "heading": "The feeling of being expected",
+        "paragraphs": [
+          "There is a difference between being processed and being expected. A system processes us when it presents its rules as a maze and calls our persistence engagement. It expects us when it has prepared a place for the questions we are likely to bring.",
+          "The best websites leave that second feeling. Not because they know us perfectly, and not because they decide for us, but because someone considered the path before we arrived. The price is where the price needs to be. The answer does not vanish at the moment it becomes useful. The next step is clear enough that a person can choose it, or choose not to, without losing themselves in the process.",
+          "That may be one of the most durable forms of digital care: to build a place that remembers what matters, so the visitor can keep hold of what matters to them."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Talk through your website's customer path",
+      "href": "/#contact"
+    },
+    "ogImage": "/insights-og/good-website-does-not-ask-you-remember-everything.svg"
   }
 ]
