@@ -757,15 +757,8 @@
 
 .ew-result__section-heading {
   display: grid;
-  grid-template-columns: 58px minmax(0, 780px);
-  gap: 1.2rem;
+  grid-template-columns: minmax(0, 780px);
   margin-bottom: 2.5rem;
-}
-
-.ew-result__section-heading > span {
-  color: var(--ew-teal);
-  font-size: 0.8rem;
-  font-weight: 850;
 }
 
 .ew-result__section-heading h2 {

@@ -480,7 +480,6 @@ export function SnapshotResultPage({ token }: { token: string }) {
 
       <section className="ew-result__section" aria-labelledby="concept-title">
         <div className="ew-result__section-heading">
-          <span>01</span>
           <div>
             <h2 id="concept-title">Homepage concept direction</h2>
             <p>This concept preview shows one possible direction for clearer hierarchy, stronger calls to action, and a more polished customer path.</p>
@@ -492,7 +491,6 @@ export function SnapshotResultPage({ token }: { token: string }) {
 
       <section className="ew-result__section" aria-labelledby="impression-title">
         <div className="ew-result__section-heading">
-          <span>02</span>
           <div>
             <h2 id="impression-title">Overall impression</h2>
             <p>{report.overallImpression}</p>
@@ -510,12 +508,11 @@ export function SnapshotResultPage({ token }: { token: string }) {
         </dl>
       </section>
 
-      <OpportunitySection number="03" title="UI and UX priorities" opportunities={report.uiUxOpportunities} />
-      <OpportunitySection number="04" title="SEO priorities" opportunities={report.seoOpportunities} />
+      <OpportunitySection title="UI and UX priorities" opportunities={report.uiUxOpportunities} />
+      <OpportunitySection title="SEO priorities" opportunities={report.seoOpportunities} />
 
       <section className="ew-result__section" aria-labelledby="structure-title">
         <div className="ew-result__section-heading">
-          <span>05</span>
           <div>
             <h2 id="structure-title">Suggested homepage structure</h2>
             <p>These notes focus on what to clarify, what to restructure, and what to fix first.</p>
@@ -534,7 +531,6 @@ export function SnapshotResultPage({ token }: { token: string }) {
 
       <section className="ew-result__section" aria-labelledby="metadata-title">
         <div className="ew-result__section-heading">
-          <span>06</span>
           <div>
             <h2 id="metadata-title">Search preview direction</h2>
           </div>
@@ -548,7 +544,6 @@ export function SnapshotResultPage({ token }: { token: string }) {
 
       <section className="ew-result__section" aria-labelledby="ai-ready-title">
         <div className="ew-result__section-heading">
-          <span>07</span>
           <div>
             <h2 id="ai-ready-title">AI and search-readiness</h2>
           </div>
@@ -575,12 +570,11 @@ export function SnapshotResultPage({ token }: { token: string }) {
   );
 }
 
-function OpportunitySection({ number, title, opportunities }: { number: string; title: string; opportunities: Opportunity[] }) {
+function OpportunitySection({ title, opportunities }: { title: string; opportunities: Opportunity[] }) {
   const id = `${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-title`;
   return (
     <section className="ew-result__section" aria-labelledby={id}>
       <div className="ew-result__section-heading">
-        <span>{number}</span>
         <div>
           <h2 id={id}>{title}</h2>
           <p>Prioritized around what will make the page clearer and more useful first.</p>
