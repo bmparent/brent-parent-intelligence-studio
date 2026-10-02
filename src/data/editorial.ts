@@ -53,11 +53,11 @@ export const serviceFamilies = [
     title: 'Digital Experiences',
     summary: 'Customer-facing websites, interactive experiences, campaigns, commerce journeys, and platform extensions that make the offer easier to understand and the next step easier to take.',
     includes: [
-      'Website and UX redesign',
+      'Responsive website and UI/UX design',
       'Interactive and campaign experiences',
-      'Hosted commerce and portal UX',
-      'Platform and frontend extensions',
-      'Accessibility, performance, and search foundations'
+      'InkSoft storefront customization and ecommerce UX',
+      'React and TypeScript frontend development',
+      'Accessibility, performance, and technical SEO'
     ],
     image: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1500/v1786042295/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-full-storefront-reference-v2.webp',
     imageAlt: 'Holidays in Hollywood storefront design reference with a theatrical holiday entrance and apparel categories.',
@@ -69,8 +69,8 @@ export const serviceFamilies = [
     title: 'Business Systems',
     summary: 'Internal tools, dashboards, workflow applications, reporting, and automation built around the way the work actually happens.',
     includes: [
-      'Operational dashboards',
-      'Internal applications',
+      'Operational dashboards and reporting interfaces',
+      'Custom web applications and React components',
       'Workflow and reporting tools',
       'Existing-tool and API integrations',
       'Automation and handoff systems'
@@ -85,7 +85,7 @@ export const serviceFamilies = [
     title: 'Intelligent Systems',
     summary: 'Focused AI assistants, agentic workflows, and decision-support tools designed around a specific job, real context, and explicit boundaries.',
     includes: [
-      'Focused AI assistants',
+      'Focused AI assistant development',
       'Retrieval over approved business knowledge',
       'Agentic workflows with permissions',
       'AI-enhanced internal tools',

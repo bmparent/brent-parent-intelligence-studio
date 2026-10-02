@@ -19,33 +19,33 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/account/unsubscribe': { title: 'Email Preferences | Eidos Works', description: 'Unsubscribe from article emails.', type: 'website', noIndex: true, noReferrer: true },
   '/lab/access': { title: 'Request Lab Access | Eidos Works', description: 'Message Eidos Works to request an Eidos Brain / Sentinel access code.', type: 'website' },
   '/work/nighttime-spectaculars': {
-    title: 'Nighttime Spectaculars Storefront | Eidos Works',
+    title: 'Nighttime Spectaculars: React & Canvas | Eidos Works',
     description:
-      'A cinematic Hollywood Studios collection entrance, built within InkSoft. Interactive fireworks, collection browsing, and product design preview.',
+      'Inspect an InkSoft storefront design and its React reconstruction: TypeScript product browsing, Canvas 2D fireworks, responsive CSS, and motion controls.',
     type: 'website',
   },
   '/work/holidays-in-hollywood': {
-    title: 'Holidays in Hollywood Storefront | Eidos Works',
+    title: 'Holidays in Hollywood: Custom Storefront UX | Eidos Works',
     description:
-      'A theatrical cast-and-crew storefront design with custom artwork, collection hierarchy, and responsive development.',
+      'Explore custom InkSoft storefront design and a React portfolio reconstruction with TypeScript, scoped CSS, layered artwork, and responsive product browsing.',
     type: 'website',
   },
   '/work/disney-villains': {
     title: 'Disney Villains Storefront | Eidos Works',
     description:
-      'An enchanted mirror, a darker palette, and a cast-and-crew collection with character.',
+      'See a branded InkSoft storefront design reconstructed with reusable React components, TypeScript theme data, scoped CSS, and keyboard-friendly browsing.',
     type: 'website',
   },
   '/work/beauty-and-the-beast': {
     title: 'Beauty and the Beast Storefront | Eidos Works',
     description:
-      'A gilded theatre entrance, anniversary artwork, and a collection that carries the story beyond the stage.',
+      'Explore a theatre-led InkSoft storefront design and its React reconstruction, with editorial product layouts, responsive CSS, and typed collection data.',
     type: 'website',
   },
   '/work/jingle-bell-jingle-bam': {
-    title: 'Jingle Bell, Jingle BAM! Storefront | Eidos Works',
+    title: 'Jingle Bell, Jingle BAM! React Storefront | Eidos Works',
     description:
-      'A festive theatre, falling snow, and snow-globe collection paths with front-and-back product inspection.',
+      'Behind a custom InkSoft design: a React and TypeScript reconstruction with SVG snow globes, Canvas animation, garment inspection, and a temporary demo cart.',
     type: 'website',
   },
   '/lab': {
@@ -151,21 +151,21 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
     type: 'website',
   },
   '/services/digital-experiences': {
-    title: 'Digital Experience Design & Development | Eidos Works',
+    title: 'React Development & InkSoft Storefront Design | Eidos Works',
     description:
-      'Explore Eidos Works storefronts, games, and interactive experiments, including Holidays in Hollywood, the MDCA Webstore, Little House, and Tidal. See how each experience was built.',
+      'Custom React and TypeScript websites, InkSoft storefront customization, responsive UI/UX, and Canvas animation. Explore the work and the build details.',
     type: 'website',
   },
   '/services/business-systems': {
-    title: 'Business Systems & Workflow Tools | Eidos Works',
+    title: 'Custom Web Apps & Workflow Automation | Eidos Works',
     description:
-      'Internal tools, dashboards, workflow applications, reporting, integrations, and automation built around the way the organization actually operates.',
+      'Custom web applications, React dashboards, workflow automation, and API integrations. Explore operator-focused examples and inspect how the demos are built.',
     type: 'website',
   },
   '/services/intelligent-systems': {
-    title: 'Focused AI & Intelligent Systems | Eidos Works',
+    title: 'AI Assistant & React Application Development | Eidos Works',
     description:
-      'Focused AI assistants, agentic workflows, and decision-support tools designed around a specific job, approved context, explicit boundaries, and human control.',
+      'Focused AI assistants, published-source retrieval, and React application development. Inspect Wellway, Ask Eidos, their technology, and their evidence boundaries.',
     type: 'website',
   },
   '/services/storefront-access-systems': {

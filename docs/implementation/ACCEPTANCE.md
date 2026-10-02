@@ -97,3 +97,13 @@ The paired candidate now incorporates the September 30 public gallery/service re
 ## October 1 storefront gallery follow-up
 
 The current Liberty Christian Prep, MDCA and Disney Junior homepages replace their old cropped references with dated complete captures and full-page reading. Real storefronts retain client-services attribution and live links; fictional concepts retain their separate disclosure. Animated demo source and all other gallery records remain unchanged. Candidate scope, image provenance, current verification and the `7f03936` rollback baseline are recorded in [STOREFRONT_GALLERY_2026-10-01.md](STOREFRONT_GALLERY_2026-10-01.md). The held paired runtime gates above remain open.
+
+## October 1 service-copy candidate
+
+The service build-story update was initially checked on public main `7f03936366016f8bd005f2e3740896759e930889`, then rebased onto `435be02b30f1d983e19b9e915c665ebc38a56668` to preserve the storefront gallery refresh, on `codex/service-build-details-20261001`. It adds source-grounded stack and implementation notes to Digital Experiences, all five existing storefront reconstructions, the Business Systems concept applications, and the Wellway/Ask Eidos Intelligent Systems examples. Page metadata and Service JSON-LD describe those visible services. The copy format for future completed projects is in `docs/service-case-study-copy.md`.
+
+The source and browser checks for this candidate do not close the held #73/#67 provider or account gates. The public changes have no backend, account, payment, provider, migration, or private-data dependency. Acceptance requires lint/typecheck, production build, existing route/editorial checks, desktop and phone-width browser checks, and exact-head CI. Source rollback is the latest public-main SHA above; production state must be read back separately before publication is claimed.
+
+## October 1 homepage candidate
+
+An illustrated services invitation moves above Selected work, which now features Jingle Bell, Jingle BAM!, Wellway, Holidays in Hollywood and Nighttime Spectaculars. The candidate began at main `435be02` and incorporated current main `8aec889` after #83 merged, preserving the gallery refresh and service build stories. Scope, public asset provenance, desktop/responsive navigation evidence and the local Wellway HTTP limitation are recorded in [HOMEPAGE_SERVICES_2026-10-01.md](HOMEPAGE_SERVICES_2026-10-01.md). Its PR tracks exact-head CI and production promotion separately. The existing runtime acceptance gates remain open.

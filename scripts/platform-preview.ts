@@ -74,6 +74,13 @@ export function platformPreview(): Plugin {
       };
       server.middlewares.use(async (req, res, next) => {
         const path = (req.url || '/').split('?')[0];
+        // Pages serves this standalone app's directory index in production.
+        // Vite's SPA fallback otherwise turns its public link into a studio 404.
+        if (path === '/demos/wellway/') {
+          res.setHeader('content-type', 'text/html; charset=utf-8');
+          res.end(readFileSync('public/demos/wellway/index.html', 'utf8'));
+          return;
+        }
         if (path === '/kit-preview') {
           res.writeHead(307, { location: '/kit-preview/' });
           res.end();
