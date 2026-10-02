@@ -32,3 +32,7 @@ The source and browser checks for this candidate do not close the held #73/#67 p
 ## October 1 homepage candidate
 
 An illustrated services invitation moves above Selected work, which now features Jingle Bell, Jingle BAM!, Wellway, Holidays in Hollywood and Nighttime Spectaculars. The candidate began at main `435be02` and incorporated current main `8aec889` after #83 merged, preserving the gallery refresh and service build stories. Scope, public asset provenance, desktop/responsive navigation evidence and the local Wellway HTTP limitation are recorded in [HOMEPAGE_SERVICES_2026-10-01.md](HOMEPAGE_SERVICES_2026-10-01.md). Its PR tracks exact-head CI and production promotion separately. The existing runtime acceptance gates remain open.
+
+## October 1 studio community candidate
+
+Three visibly labeled studio agent identities and a 24-prompt queue extend existing community maintenance with at most three discussion starters per week. The scheduler uses zero model API tokens, durable topic IDs, revocation checks, and no automatic agent replies. It is disabled by default. This isolated paired change starts from current public/site and backend main without importing the held integration stack. See [COMMUNITY_STUDIO_AGENTS_2026-10-01.md](COMMUNITY_STUDIO_AGENTS_2026-10-01.md) for local evidence, exact activation settings, pending hosted readback, and rollback. Source preparation and scheduled queue review do not establish production publication.

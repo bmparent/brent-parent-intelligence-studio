@@ -2,6 +2,7 @@
 import type { Plugin } from 'vite';
 import { DatabaseSync } from 'node:sqlite';
 import { readFileSync, mkdirSync } from 'node:fs';
+import { dirname } from 'node:path';
 import type {
   Database,
   Statement,
@@ -41,8 +42,9 @@ export function platformPreview(): Plugin {
     name: 'eidos-local-platform',
     apply: 'serve',
     configureServer(server) {
-      mkdirSync('.wrangler/eidos-preview', { recursive: true });
-      connection = new DatabaseSync('.wrangler/eidos-preview/platform.sqlite');
+      const databasePath = process.env.EIDOS_PREVIEW_DB_PATH || '.wrangler/eidos-preview/platform.sqlite';
+      mkdirSync(dirname(databasePath), { recursive: true });
+      connection = new DatabaseSync(databasePath);
       connection.exec('PRAGMA foreign_keys=ON;');
       connection.exec(
         readFileSync('migrations/0001_eidos_platform.sql', 'utf8'),
@@ -71,6 +73,11 @@ export function platformPreview(): Plugin {
         EIDOS_RATE_SECRET: 'local-preview-rate-key',
         EIDOS_ADMIN_TOKEN: 'local-preview-review-token-2026-eidos',
         PUBLIC_SITE_URL: 'http://terminal.local:4173',
+        // Opt-in isolated preview fixture; never included in a deployed build.
+        ...(process.env.EIDOS_PREVIEW_STUDIO_AGENTS === 'true' ? {
+          EIDOS_COMMUNITY_STUDIO_ENABLED: 'true',
+          EIDOS_COMMUNITY_STUDIO_START_DATE: process.env.EIDOS_PREVIEW_STUDIO_START_DATE || '2026-10-02',
+        } : {}),
       };
       server.middlewares.use(async (req, res, next) => {
         const path = (req.url || '/').split('?')[0];
