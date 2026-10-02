@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { fingerprint, previewBranch, previewProject, requireIsolatedProject, withoutRelayUrl } from './works-paired-preview.mjs';
+import { fingerprint, previewBranch, previewProject, relayBinding, requireIsolatedProject, withoutRelayUrl } from './works-paired-preview.mjs';
 
 const project = () => ({
   name: previewProject, production_branch: previewBranch,
@@ -27,6 +27,16 @@ test('preview deployment refuses missing protected relay bindings', () => {
     delete changed.deployment_configs.production.env_vars[key];
     assert.throws(() => requireIsolatedProject(changed));
   }
+});
+
+test('relay reconciliation preserves encrypted binding type without disclosing masked values', () => {
+  assert.deepEqual(relayBinding({ type: 'secret_text', value: 'masked-provider-value' }), { type: 'secret_text', previousOrigin: null, masked: true });
+  assert.deepEqual(relayBinding({ type: 'plain_text', value: 'https://old-preview.vercel.app/' }), { type: 'plain_text', previousOrigin: 'https://old-preview.vercel.app', masked: false });
+  for (const value of ['https://unrelated.example', 'https://user:secret@preview.vercel.app', 'https://preview.vercel.app/?token=secret', 'http://preview.vercel.app']) {
+    assert.throws(() => relayBinding({ type: 'plain_text', value }));
+    assert.equal(relayBinding({ type: 'secret_text', value }).previousOrigin, null);
+  }
+  assert.throws(() => relayBinding(undefined));
 });
 
 test('URL-only reconciliation detects credential, environment and service-binding drift', () => {

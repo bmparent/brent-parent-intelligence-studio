@@ -32,6 +32,17 @@ export function withoutRelayUrl(configs) {
   return copy;
 }
 
+export function relayBinding(previous) {
+  assert.ok(previous && ['plain_text', 'secret_text'].includes(previous.type), 'The existing relay URL binding is missing or has an unsupported type.');
+  let previousOrigin = null;
+  try {
+    const url = new URL(previous.value);
+    if (url.protocol === 'https:' && url.hostname.endsWith('.vercel.app') && !url.username && !url.password && !url.port && url.pathname === '/' && !url.search && !url.hash) previousOrigin = url.origin;
+  } catch { /* Cloudflare masks existing secret_text values on read. */ }
+  assert.ok(previousOrigin || previous.type === 'secret_text', 'The readable relay URL is not a bounded Vercel origin.');
+  return { type: previous.type, previousOrigin, masked: previousOrigin === null };
+}
+
 async function main(mode) {
   assert.ok(['preflight', 'verify'].includes(mode), 'Use preflight or verify.');
   assert.match(process.env.GITHUB_SHA || '', /^[a-f0-9]{40}$/, 'An exact candidate commit is required.');
@@ -62,25 +73,30 @@ async function main(mode) {
   if (mode === 'preflight') {
     const before = fingerprint(withoutRelayUrl(isolated.deployment_configs));
     const previousRelay = isolated.deployment_configs.production.env_vars.EIDOS_PLATFORM_URL;
-    assert.ok(previousRelay && /^https:\/\/[^/]+\.vercel\.app\/?$/.test(previousRelay.value || ''), 'The current relay URL cannot be safely preserved; configure it through the provider.');
-    if (previousRelay.value.replace(/\/$/, '') !== backendOrigin) {
+    const relay = relayBinding(previousRelay);
+    if (relay.previousOrigin !== backendOrigin) {
       // PATCH only this ordinary URL; absent variable keys are retained by the
       // provider. Credentials, databases, mailer and Access bindings stay intact.
       await project(previewProject, 'PATCH', { deployment_configs: { production: { env_vars: {
-        EIDOS_PLATFORM_URL: { type: 'plain_text', value: backendOrigin },
+        EIDOS_PLATFORM_URL: { type: relay.type, value: backendOrigin },
       } } } });
     }
     const configured = await project(previewProject);
     requireIsolatedProject(configured);
     assert.equal(fingerprint(withoutRelayUrl(configured.deployment_configs)), before, 'A binding other than the preview relay URL changed. Stop before deployment.');
-    assert.equal(configured.deployment_configs.production.env_vars.EIDOS_PLATFORM_URL.value.replace(/\/$/, ''), backendOrigin, 'The immutable paired backend is not configured.');
+    // Encrypted values remain masked in GET responses. Exact destination
+    // behavior is checked through the deployed relay, not by decrypting it.
+    const configuredRelay = relayBinding(configured.deployment_configs.production.env_vars.EIDOS_PLATFORM_URL);
+    assert.equal(configuredRelay.type, relay.type, 'The relay binding type changed.');
+    if (!configuredRelay.masked) assert.equal(configuredRelay.previousOrigin, backendOrigin, 'The immutable paired backend is not configured.');
     const productionAfter = await project('eidosworks');
     assert.equal(fingerprint(productionAfter.deployment_configs), fingerprint(production.deployment_configs), 'Production configuration changed; inspect before continuing.');
     await writeFile(receiptPath, JSON.stringify({
       checkedAt: new Date().toISOString(), siteRevision: process.env.GITHUB_SHA,
       backendRevision, backendOrigin, previewOrigin, previewProject, previewBranch,
       projectId: isolated.id, previousPreviewDeploymentId: isolated.canonical_deployment?.id || null,
-      previousRelayOrigin: previousRelay.value, previewConfigFingerprint: fingerprint(configured.deployment_configs),
+      previousRelayOrigin: relay.previousOrigin, relayBindingType: relay.type, priorRelayMasked: relay.masked,
+      previewConfigFingerprint: fingerprint(configured.deployment_configs),
       productionConfigFingerprint: fingerprint(productionAfter.deployment_configs),
       productionDeploymentId: productionAfter.canonical_deployment?.id || null,
       productionRevision: productionAfter.canonical_deployment?.deployment_trigger?.metadata?.commit_hash || null,
