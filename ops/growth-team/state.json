@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-03T22:09:02.935067Z",
+  "operator": "studio_manager",
+  "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
+  "activeOffer": "quote-desk",
+  "recurringRevenueStatus": "NOT_VERIFIED",
+  "newCashCommitmentCapCents": 0,
+  "items": [
+    {
+      "id": "REV-001",
+      "owner": "studio_manager",
+      "stage": "in_progress",
+      "task": "Reliable, discoverable free Quote Desk",
+      "doneCondition": "Desktop/mobile storage denial, invalid-input recovery, print and inquiry navigation verified; existing CI/release green and production readback recorded.",
+      "evidence": [
+        "../../scripts/verify-quote-desk-browser.mjs",
+        "receipts/2026-10-03-operator-bootstrap.md"
+      ],
+      "blocker": null,
+      "nextAction": "Finish local verification, focused PR, CI and owned-site release; read linked PR/Actions for final release receipt before repeating work."
+    },
+    {
+      "id": "REV-002",
+      "owner": "studio_manager",
+      "stage": "blocked",
+      "task": "Accepted paid Quote Desk workspace",
+      "doneCondition": "Correct merchant and authorized provider bindings; complete hosted lifecycle and customer acceptance in app README before live checkout.",
+      "evidence": [
+        "../../apps/quote-desk/README.md",
+        "../../docs/revenue/REVENUE_PROGRAM_2026-09-29.md"
+      ],
+      "blocker": "Intended merchant readiness, provider bindings, sender and hosted acceptance not verified. Current account listing does not establish charge/payout readiness.",
+      "nextAction": "Read accessible provider configuration; implement and test missing lifecycle work without making paid commitments or inventing owner identity. Record exact missing setup facts once."
+    },
+    {
+      "id": "REV-003",
+      "owner": "studio_manager",
+      "stage": "queued",
+      "task": "Measure actual expense coverage and independent recurring cash",
+      "doneCondition": "Authorized private expense/provider/bank records reconcile and documented recurring-revenue evidence standard is evaluated.",
+      "evidence": [
+        "../../docs/revenue/REVENUE_PROGRAM_2026-09-29.md"
+      ],
+      "blocker": "Complete actual expenses, product cash, renewals and bank reconciliation unavailable.",
+      "nextAction": "Use the private workbook and authorized receipts; keep unknowns explicit and private details out of this repository."
+    }
+  ],
+  "latestReceipt": "receipts/2026-10-03-operator-bootstrap.md",
+  "notes": [
+    "One active commercial offer and one supporting blocker task maximum.",
+    "Interactive bootstrap is not an independent scheduled or specialist run.",
+    "Final release evidence can be appended to the source PR after merge without a status-only redeployment."
+  ]
+}

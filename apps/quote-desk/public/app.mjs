@@ -16,7 +16,9 @@ for(const [key,label]of Object.entries(labels)){
 function notice(message){$('status').textContent=message;clearTimeout(notice.timer);notice.timer=setTimeout(()=>{$('status').textContent='';},13000);}
 function readForm(){const output={};for(const key of Object.keys(labels)){const value=$('field-'+key).value;output[key]=value===''?NaN:Number(value)/(percent.has(key)?100:1);}return normalize(output);}
 function draw(){
-  try {parameters=readForm();quoteResult=estimate(parameters);localStorage.setItem('eidos-quote-draft',JSON.stringify(parameters));
+  try {parameters=readForm();quoteResult=estimate(parameters);
+    try {localStorage.setItem('eidos-quote-draft',JSON.stringify(parameters));$('draft-status').textContent='Inputs are kept in this browser when storage is available. Print or save a PDF to keep this estimate.';}
+    catch {$('draft-status').textContent='Browser storage is unavailable. You can still calculate and print; these inputs will not be kept after you leave.';}
     $('quote-price').textContent=money(quoteResult.suggestedTotal);$('unit-price').textContent=money(quoteResult.unitPrice);$('production-time').textContent=duration(quoteResult.elapsedSeconds);$('margin').textContent=(quoteResult.margin*100).toFixed(1)+'%';$('cycles').textContent=String(quoteResult.cycles);
     $('profit').textContent=`${money(quoteResult.grossProfit)} estimated gross profit · ${money(quoteResult.totalCost)} estimated cost`;
     $('cost-bars').replaceChildren();const names={goods:'Goods',labor:'Labor',machine:'Machine',overhead:'Overhead',digitizing:'Digitizing',shipping:'Shipping'};
@@ -26,12 +28,16 @@ function draw(){
       const amount=document.createElement('span');amount.textContent=money(value);row.append(label,track,amount);$('cost-bars').append(row);
     }
     $('print').disabled=false;
-  }catch(error){quoteResult=null;$('quote-price').textContent='Check inputs';$('print').disabled=true;$('profit').textContent=error.message;}
+  }catch(error){
+    quoteResult=null;$('quote-price').textContent='Check inputs';$('print').disabled=true;$('profit').textContent=error.message;
+    for(const id of ['unit-price','production-time','margin','cycles'])$(id).textContent='—';
+    $('cost-bars').replaceChildren();
+  }
 }
 $('job-form').addEventListener('submit',event=>event.preventDefault());$('job-form').addEventListener('input',draw);
 function apply(input,name){parameters=normalize(input);for(const key of Object.keys(labels))$('field-'+key).value=String(percent.has(key)?parameters[key]*100:parameters[key]);if(name)$('job-name').value=name;draw();$('desk').scrollIntoView({behavior:'smooth'});}
 $('reset').onclick=()=>apply(defaults,'Sample · 48 embroidered hats');
-$('print').onclick=()=>{const title=document.title;document.title=($('job-name').value.trim()||'Embroidery estimate')+' — Eidos Quote Desk';window.print();document.title=title;};
+$('print').onclick=()=>{if(!quoteResult)return;const title=document.title;document.title=($('job-name').value.trim()||'Embroidery estimate')+' — Eidos Quote Desk';window.print();document.title=title;};
 async function api(path,options={}){
   const response=await fetch('/api/'+path,{credentials:'same-origin',...options,headers:{'content-type':'application/json',...options.headers}});let payload;
   try{payload=await response.json();}catch{throw Error('This service could not be reached. Your estimate remains on this page.');}

@@ -17,7 +17,9 @@ for(const [key,label]of Object.entries(labels)){
 function notice(message){$('status').textContent=message;clearTimeout(notice.timer);notice.timer=setTimeout(()=>{$('status').textContent='';},13000);}
 function readForm(){const output={};for(const key of Object.keys(labels)){const value=$('field-'+key).value;output[key]=value===''?NaN:Number(value)/(percent.has(key)?100:1);}return normalize(output);}
 function draw(){
-  try {parameters=readForm();quoteResult=estimate(parameters);localStorage.setItem('eidos-quote-draft',JSON.stringify(parameters));
+  try {parameters=readForm();quoteResult=estimate(parameters);
+    try {localStorage.setItem('eidos-quote-draft',JSON.stringify(parameters));$('draft-status').textContent='Inputs are kept in this browser when storage is available. Print or save a PDF to keep this estimate.';}
+    catch {$('draft-status').textContent='Browser storage is unavailable. You can still calculate and print; these inputs will not be kept after you leave.';}
     $('quote-price').textContent=money(quoteResult.suggestedTotal);$('unit-price').textContent=money(quoteResult.unitPrice);$('production-time').textContent=duration(quoteResult.elapsedSeconds);$('margin').textContent=(quoteResult.margin*100).toFixed(1)+'%';$('cycles').textContent=String(quoteResult.cycles);
     $('profit').textContent=`${money(quoteResult.grossProfit)} estimated gross profit · ${money(quoteResult.totalCost)} estimated cost`;
     $('cost-bars').replaceChildren();const names={goods:'Goods',labor:'Labor',machine:'Machine',overhead:'Overhead',digitizing:'Digitizing',shipping:'Shipping'};
@@ -27,12 +29,16 @@ function draw(){
       const amount=document.createElement('span');amount.textContent=money(value);row.append(label,track,amount);$('cost-bars').append(row);
     }
     $('print').disabled=false;
-  }catch(error){quoteResult=null;$('quote-price').textContent='Check inputs';$('print').disabled=true;$('profit').textContent=error.message;}
+  }catch(error){
+    quoteResult=null;$('quote-price').textContent='Check inputs';$('print').disabled=true;$('profit').textContent=error.message;
+    for(const id of ['unit-price','production-time','margin','cycles'])$(id).textContent='—';
+    $('cost-bars').replaceChildren();
+  }
 }
 $('job-form').addEventListener('submit',event=>event.preventDefault());$('job-form').addEventListener('input',draw);
 function apply(input,name){parameters=normalize(input);for(const key of Object.keys(labels))$('field-'+key).value=String(percent.has(key)?parameters[key]*100:parameters[key]);if(name)$('job-name').value=name;draw();$('desk').scrollIntoView({behavior:'smooth'});}
 $('reset').onclick=()=>apply(defaults,'Sample · 48 embroidered hats');
-$('print').onclick=()=>{const title=document.title;document.title=($('job-name').value.trim()||'Embroidery estimate')+' — Eidos Quote Desk';window.print();document.title=title;};
+$('print').onclick=()=>{if(!quoteResult)return;const title=document.title;document.title=($('job-name').value.trim()||'Embroidery estimate')+' — Eidos Quote Desk';window.print();document.title=title;};
 async function api(path,options={}){
   if(STATIC_PREVIEW)throw Error('Saved workspaces and billing are not available in this preview. Your estimate remains in this browser.');
   const response=await fetch('/api/'+path,{credentials:'same-origin',...options,headers:{'content-type':'application/json',...options.headers}});let payload;
@@ -44,7 +50,7 @@ $('account-toggle').onclick=openWorkspace;$('pricing-start').onclick=openWorkspa
 async function busy(button,action){button.disabled=true;try{await action();}catch(e){notice(e.message);}finally{button.disabled=false;}}
 function drawAccount(){
   $('login-form').hidden=Boolean(user)||Boolean(loginToken);$('verify-panel').hidden=!loginToken;$('signed-in').hidden=!user;
-  $('account-toggle').textContent=user?'Saved workspace':'Your workspace';
+  $('account-toggle').textContent=user?'Saved workspace':STATIC_PREVIEW?'Planned workspace':'Your workspace';
   if(user){$('identity').textContent=user.email+' · '+(user.paid?'Paid access active':'Free estimator · saved data remains exportable');$('subscribe').hidden=user.paid;}
 }
 function download(name,content,type){const url=URL.createObjectURL(new Blob([content],{type}));const link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),3000);}
@@ -77,14 +83,16 @@ $('logout').onclick=()=>busy($('logout'),async()=>{await api('logout',{method:'P
 $('delete-account').onclick=()=>busy($('delete-account'),async()=>{if(!confirm('Delete all saved work and cancel this subscription? Export your data first.'))return;await api('account',{method:'DELETE',body:JSON.stringify({confirmEmail:$('delete-email').value})});user=null;saved=[];drawAccount();drawSaved();notice('Account deleted and subscription cancellation requested successfully.');});
 async function start(){
   draw();
-  const fragment=new URLSearchParams(location.hash.slice(1));loginToken=fragment.get('login');if(loginToken){history.replaceState(null,'',location.pathname+location.search);openWorkspace();}
+  const fragment=new URLSearchParams(location.hash.slice(1));loginToken=STATIC_PREVIEW?null:fragment.get('login');if(loginToken){history.replaceState(null,'',location.pathname+location.search);openWorkspace();}
   drawAccount();
   if(STATIC_PREVIEW){
     config={environment:'test',priceCents:1900,checkoutEnabled:false,signInEnabled:false};
     $('environment').hidden=false;
     $('environment').textContent='Free preview · The estimator works in this browser. Sign-in and paid checkout are unavailable.';
     $('send-login').disabled=true;
-    $('send-login').textContent='Saved workspace sign in is being prepared';
+    $('email').disabled=true;
+    $('send-login').textContent='Saved workspace is not yet available';
+    $('save-quote').disabled=true;$('save-preset').disabled=true;
     return;
   }
   try{config=await api('config');if(config.environment!=='live'||!config.checkoutEnabled){$('environment').hidden=false;$('environment').textContent='Preview · The free estimator works. Paid checkout is being prepared; no live payment is available here.';}

@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "ownerApprovedMonthlyCashCapCents": 0,
+  "ownerApprovedPerCommitmentCashCapCents": 0,
+  "ownerApprovalReference": null,
+  "currency": "USD",
+  "notes": "Initial unfunded state. The finance agent may decide allocations within this ceiling but cannot increase the ceiling. No spending connector is installed."
+}

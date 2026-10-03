@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'apps/quote-desk/**'
+      - 'public/quote-desk/**'
       - 'docs/revenue/**'
       - '.github/workflows/quote-desk.yml'
 permissions:
