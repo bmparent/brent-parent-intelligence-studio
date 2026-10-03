@@ -43,6 +43,7 @@ jobs:
           node scripts/verify-hero-browser.mjs
           node scripts/verify-digital-experiences-browser.mjs
           node scripts/verify-business-systems-browser.mjs
+          node scripts/verify-quote-desk-browser.mjs
           node scripts/verify-intelligent-systems-browser.mjs
       - name: Growth desktop and mobile acceptance with controlled delivery
         env:
@@ -100,7 +101,9 @@ jobs:
           PG_EVIDENCE_DIR: ${{ runner.temp }}/pg-production-evidence
           PG_BASE_URL: https://eidosworks.pages.dev
           PG_ENGINES: chromium
-        run: node scripts/verify-playground-editor-browser.mjs
+        run: |
+          node scripts/verify-playground-editor-browser.mjs
+          node scripts/verify-quote-desk-browser.mjs
       - name: M2 live Friction Review desktop and mobile acceptance
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[m2-friction-qa]')
         env:
