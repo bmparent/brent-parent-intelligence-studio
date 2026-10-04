@@ -92,11 +92,17 @@ async function refreshAccount(env,stripe,owner){
   return Boolean(row);
 }
 async function requirePaid(request,env,stripe,owner){await quota(env,'billing-read:'+owner.id,60,3600);if(!await refreshAccount(env,stripe,owner))fail(402,'An active paid subscription is required to save work. Your saved data can still be exported.');}
+export function liveMerchantReady(owner){
+  const requirements=owner?.requirements||{};
+  const unresolved=['currently_due','past_due','pending_verification'].some(key=>Array.isArray(requirements[key])&&requirements[key].length>0);
+  const payoutBank=owner?.external_accounts?.data?.some(account=>account?.object==='bank_account'&&account.deleted!==true);
+  return owner?.details_submitted===true&&owner?.charges_enabled===true&&owner?.payouts_enabled===true&&!requirements.disabled_reason&&!unresolved&&payoutBank===true;
+}
 async function checkoutReady(env,stripe){
   if(env.QUOTE_CHECKOUT_ENABLED!=='true'||!env.STRIPE_PRICE_ID||!env.STRIPE_ACCOUNT_ID||!env.STRIPE_WEBHOOK_SECRET||!env.STRIPE_PORTAL_CONFIGURATION_ID)fail(503,'Checkout is being prepared. The free estimator is available now.');
-  const [price,owner,portal]=await Promise.all([stripe.prices.retrieve(env.STRIPE_PRICE_ID),stripe.accounts.retrieve(),stripe.billingPortal.configurations.retrieve(env.STRIPE_PORTAL_CONFIGURATION_ID)]);
+  const [price,owner,portal]=await Promise.all([stripe.prices.retrieve(env.STRIPE_PRICE_ID),stripe.accounts.retrieve(null,{expand:['external_accounts']}),stripe.billingPortal.configurations.retrieve(env.STRIPE_PORTAL_CONFIGURATION_ID)]);
   if(owner.id!==env.STRIPE_ACCOUNT_ID)fail(503,'The payment account has not been verified.');
-  if(env.QUOTE_ENVIRONMENT==='live'&&(!owner.charges_enabled||!owner.payouts_enabled))fail(503,'The payment account is not ready to accept and pay out funds.');
+  if(env.QUOTE_ENVIRONMENT==='live'&&!liveMerchantReady(owner))fail(503,'The payment account is not ready to accept and settle funds.');
   if(!price.active||price.livemode!==(env.QUOTE_ENVIRONMENT==='live')||price.currency!=='usd'||price.unit_amount!==1900||price.recurring?.interval!=='month'||price.recurring.interval_count!==1)fail(503,'The subscription price has not been verified.');
   if(!portal.active||portal.features?.subscription_cancel?.enabled!==true||portal.features.subscription_cancel.mode!=='at_period_end')fail(503,'Self-service cancellation has not been verified.');
 }
