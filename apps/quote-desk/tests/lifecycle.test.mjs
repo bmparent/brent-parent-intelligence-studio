@@ -105,14 +105,18 @@ test('live account without charges or payouts fails before any checkout',async()
   const requestLive=new Request('https://desk.example.invalid/api/checkout',{method:'POST',headers:{origin:'https://desk.example.invalid','content-type':'application/json',cookie:'__Host-quote_session='+token},body:JSON.stringify({attemptId:crypto.randomUUID(),acceptTerms:true})});f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
   assert.equal((await f.worker.fetch(requestLive,f.env)).status,503);assert.equal(f.calls.filter(c=>c[0]==='checkout').length,0);f.env.QUOTE_DB.sqlite.close();
 });
-test('live checkout requires submitted identity, clear requirements and a payout bank',async()=>{
-  const ready={id:'acct_a',details_submitted:true,charges_enabled:true,payouts_enabled:true,requirements:{disabled_reason:null,currently_due:[],past_due:[],pending_verification:[]},external_accounts:{data:[{id:'ba_a',object:'bank_account'}]}};
+test('live checkout requires submitted identity, clear requirements and a usable payout bank',async()=>{
+  const ready={id:'acct_a',details_submitted:true,charges_enabled:true,payouts_enabled:true,requirements:{disabled_reason:null,currently_due:[],past_due:[],pending_verification:[]},external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'verified'}]}};
   assert.equal(liveMerchantReady(ready),true);
   for(const changed of [
     {details_submitted:false},
     {requirements:{...ready.requirements,disabled_reason:'requirements.pending_verification'}},
     {requirements:{...ready.requirements,pending_verification:['company.tax_id']}},
     {external_accounts:{data:[]}},
+    {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'errored'}]}},
+    {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'verification_failed'}]}},
+    {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'tokenized_account_number_deactivated'}]}},
+    {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'unexpected_status'}]}},
   ])assert.equal(liveMerchantReady({...ready,...changed}),false);
   const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}});
   const attempts=[];f.stripe.accounts.retrieve=async(...args)=>{attempts.push(args);return {...ready,details_submitted:false};};
