@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03T22:09:02.935067Z",
+  "updatedAt": "2026-10-04T13:00:26Z",
   "operator": "studio_manager",
   "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
   "activeOffer": "quote-desk",
@@ -10,15 +10,17 @@
     {
       "id": "REV-001",
       "owner": "studio_manager",
-      "stage": "in_progress",
+      "stage": "complete",
       "task": "Reliable, discoverable free Quote Desk",
       "doneCondition": "Desktop/mobile storage denial, invalid-input recovery, print and inquiry navigation verified; existing CI/release green and production readback recorded.",
       "evidence": [
         "../../scripts/verify-quote-desk-browser.mjs",
-        "receipts/2026-10-03-operator-bootstrap.md"
+        "receipts/2026-10-03-operator-bootstrap.md",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/90",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/37158584567"
       ],
       "blocker": null,
-      "nextAction": "Finish local verification, focused PR, CI and owned-site release; read linked PR/Actions for final release receipt before repeating work."
+      "nextAction": "Do not repeat the completed free-estimator bootstrap; retain the production and rollback evidence from PR #90."
     },
     {
       "id": "REV-002",
@@ -28,10 +30,11 @@
       "doneCondition": "Correct merchant and authorized provider bindings; complete hosted lifecycle and customer acceptance in app README before live checkout.",
       "evidence": [
         "../../apps/quote-desk/README.md",
-        "../../docs/revenue/REVENUE_PROGRAM_2026-09-29.md"
+        "../../docs/revenue/REVENUE_PROGRAM_2026-09-29.md",
+        "receipts/2026-10-04-revenue-operator.md"
       ],
-      "blocker": "Intended merchant readiness, provider bindings, sender and hosted acceptance not verified. Current account listing does not establish charge/payout readiness.",
-      "nextAction": "Read accessible provider configuration; implement and test missing lifecycle work without making paid commitments or inventing owner identity. Record exact missing setup facts once."
+      "blocker": "October 4 readback: the only connected LIVE account is still unnamed for business use, details are unsubmitted, charges/payouts are disabled, no payout bank or product/cash records exist; Cloudflare CLI and Quote Desk runtime bindings are unavailable in this execution environment.",
+      "nextAction": "Brent confirms the intended Eidos Works Stripe account and personally completes its real business identity and payout-bank onboarding. Then re-read readiness and use an authenticated provider environment to bind isolated preview D1, sandbox Stripe, transactional sender and Turnstile before hosted acceptance."
     },
     {
       "id": "REV-003",
@@ -46,7 +49,7 @@
       "nextAction": "Use the private workbook and authorized receipts; keep unknowns explicit and private details out of this repository."
     }
   ],
-  "latestReceipt": "receipts/2026-10-03-operator-bootstrap.md",
+  "latestReceipt": "receipts/2026-10-04-revenue-operator.md",
   "notes": [
     "One active commercial offer and one supporting blocker task maximum.",
     "Interactive bootstrap is not an independent scheduled or specialist run.",

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {DatabaseSync} from 'node:sqlite';
 import Stripe from 'stripe';
-import {createWorker,hash,processEvent,subscriptionAccess} from '../worker.mjs';
+import {createWorker,hash,liveMerchantReady,processEvent,subscriptionAccess} from '../worker.mjs';
 import {defaults} from '../public/estimator.mjs';
 const schema=await readFile(new URL('../migrations/0001_quote_desk.sql',import.meta.url),'utf8');
 // Real SQLite executes the exact migration and ownership queries. Provider calls are fixtures.
@@ -104,6 +104,20 @@ test('live account without charges or payouts fails before any checkout',async()
   const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.accounts.retrieve=async()=>({id:'acct_a',charges_enabled:false,payouts_enabled:false});f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}});
   const requestLive=new Request('https://desk.example.invalid/api/checkout',{method:'POST',headers:{origin:'https://desk.example.invalid','content-type':'application/json',cookie:'__Host-quote_session='+token},body:JSON.stringify({attemptId:crypto.randomUUID(),acceptTerms:true})});f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
   assert.equal((await f.worker.fetch(requestLive,f.env)).status,503);assert.equal(f.calls.filter(c=>c[0]==='checkout').length,0);f.env.QUOTE_DB.sqlite.close();
+});
+test('live checkout requires submitted identity, clear requirements and a payout bank',async()=>{
+  const ready={id:'acct_a',details_submitted:true,charges_enabled:true,payouts_enabled:true,requirements:{disabled_reason:null,currently_due:[],past_due:[],pending_verification:[]},external_accounts:{data:[{id:'ba_a',object:'bank_account'}]}};
+  assert.equal(liveMerchantReady(ready),true);
+  for(const changed of [
+    {details_submitted:false},
+    {requirements:{...ready.requirements,disabled_reason:'requirements.pending_verification'}},
+    {requirements:{...ready.requirements,pending_verification:['company.tax_id']}},
+    {external_accounts:{data:[]}},
+  ])assert.equal(liveMerchantReady({...ready,...changed}),false);
+  const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}});
+  const attempts=[];f.stripe.accounts.retrieve=async(...args)=>{attempts.push(args);return {...ready,details_submitted:false};};
+  const requestLive=new Request('https://desk.example.invalid/api/checkout',{method:'POST',headers:{origin:'https://desk.example.invalid','content-type':'application/json',cookie:'__Host-quote_session='+token},body:JSON.stringify({attemptId:crypto.randomUUID(),acceptTerms:true})});f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
+  assert.equal((await f.worker.fetch(requestLive,f.env)).status,503);assert.deepEqual(attempts,[[null,{expand:['external_accounts']}]]);assert.equal(f.calls.filter(c=>c[0]==='checkout').length,0);f.env.QUOTE_DB.sqlite.close();
 });
 test('magic link is hashed, one-use, expires, and creates an HttpOnly account session',async()=>{
   const f=fixture();const res=await f.worker.fetch(request('login',null,'POST',{email:'First@Example.invalid'}),f.env);assert.equal(res.status,200);
