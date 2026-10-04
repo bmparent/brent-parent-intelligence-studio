@@ -95,7 +95,8 @@ async function requirePaid(request,env,stripe,owner){await quota(env,'billing-re
 export function liveMerchantReady(owner){
   const requirements=owner?.requirements||{};
   const unresolved=['currently_due','past_due','pending_verification'].some(key=>Array.isArray(requirements[key])&&requirements[key].length>0);
-  const payoutBank=owner?.external_accounts?.data?.some(account=>account?.object==='bank_account'&&account.deleted!==true);
+  const usableBankStatuses=new Set(['new','validated','verified']);
+  const payoutBank=owner?.external_accounts?.data?.some(account=>account?.object==='bank_account'&&account.deleted!==true&&usableBankStatuses.has(account.status));
   return owner?.details_submitted===true&&owner?.charges_enabled===true&&owner?.payouts_enabled===true&&!requirements.disabled_reason&&!unresolved&&payoutBank===true;
 }
 async function checkoutReady(env,stripe){
