@@ -38,6 +38,7 @@ try {
         assert.match(await page.title(), /Eidos Quote Desk/);
         assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, follow');
         await page.waitForFunction(() => document.getElementById('quote-price').textContent.startsWith('$'));
+        assert.equal(await page.locator('.print-details').isVisible(), false, 'print-only assumptions stay out of the screen estimate');
         const initial = await page.locator('#quote-price').innerText();
         await page.getByLabel('Job name', { exact: true }).fill('School hats · job 101');
         await page.getByLabel('Quantity', { exact: true }).fill('60');
@@ -78,6 +79,7 @@ try {
         assert.equal(await page.locator('#print-assumptions dt').count(), 23, 'print retains every editable assumption');
         if (storage === 'available') await page.pdf({ path: path.join(evidence, `quote-desk-internal-estimate-${width}.pdf`), format: 'A4', printBackground: true });
         await page.emulateMedia({ media: 'screen' });
+        assert.equal(await page.locator('.print-details').isVisible(), false, 'leaving print restores the compact screen estimate');
 
         assert.match(await page.locator('#pricing').innerText(), /NOT YET FOR SALE/);
         assert.equal(await page.locator('#save-quote').isDisabled(), true);

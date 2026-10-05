@@ -46,6 +46,7 @@ try {
         assert.match(await page.title(), /Eidos Quote Desk/);
         await page.getByRole('heading', { name: 'Keep the useful details.' }).waitFor();
         assert.match(await page.locator('#quote-price').innerText(), /^\$/);
+        assert.equal(await page.locator('.print-details').isVisible(), false, 'workspace screen hides print-only assumptions');
         if (scenario === 'billing-outage') {
           assert.match(await page.locator('#identity').innerText(), /can still open and export/);
           assert.equal(await page.locator('#subscribe').isVisible(), false, 'unknown billing never offers a duplicate subscription');

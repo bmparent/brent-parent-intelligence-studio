@@ -52,3 +52,9 @@ At `2709fe8`, Site quality, Wellway and the dedicated Quote Desk checks passed, 
 5. Review applicable tax configuration and final subscription terms before opening LIVE sales. Any actual LIVE charge/refund requires separate explicit transaction authorization. Customer payment and renewal evidence remain separate from source and fixture passes.
 
 Public release scope is the free estimator's presentation/recovery improvements. The separate paid candidate remains gated. Rollback is public main `9acb459` and the prior successful Pages deployment; no schema migration or customer-data change is part of the static release.
+
+## Canonical customer readback and stylesheet follow-up
+
+PR #94 merged as `bec16070c716b63ecb9b6c486cfd0409fd7ac095`. [Production run 37374437685](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/37374437685) passed all gates, uploaded to the existing Pages project, verified the production commit/delivered assets/provider configuration and passed all six live estimator combinations. The deployment preview was `07a82309.eidosworks.pages.dev`; provider settings were unchanged.
+
+The canonical customer walkthrough retained a named 60-hat estimate after reload, focused Quantity through the correction button and restored the $1,138.80 estimate. No site error was reported; separate browser-extension metadata errors were excluded. This returning browser still loaded an older stylesheet whose rule list lacked `.print-details`, exposing print-only assumptions in the screen layout. The follow-up versions the stylesheet URL with its actual content hash in both app entry pages and adds screen/print visibility checks. Its exact-head checks and final production readback are recorded on the follow-up PR. Paid hosting/payment gates remain blocked as above.
