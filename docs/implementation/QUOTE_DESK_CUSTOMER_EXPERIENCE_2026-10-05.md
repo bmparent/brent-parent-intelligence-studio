@@ -39,6 +39,8 @@ A read-only hosting check ran at source `a957310c2e216e9edeb192e51f2552ea97d9e30
 
 The local browser install returned truncated archives in this execution environment. Browser validation therefore uses the existing isolated GitHub Actions browser workflow and canonical Cloud Browser readback. It does not route around a browser security warning or host a blocked harness.
 
+The initial exact-head site quality and full public browser workflows passed at `fbe3360`; all six free Quote Desk combinations (1440/390 pixels with available, denied and full storage) passed, including named reload, error correction and print/PDF content. The dedicated Quote Desk and unrelated Wellway jobs never acquired hosted runners and were cancelled with no steps executed. GitHub's annotation reported a hosted-runner acquisition failure. Those two workflows are pinned to the supported Ubuntu 22.04 image for the next attempt; no application behavior or resource access is changed by that pin. Final exact-head checks and production readback are recorded on [PR #94](https://github.com/bmparent/brent-parent-intelligence-studio/pull/94).
+
 ## Remaining setup, in order
 
 1. Provide a scoped Cloudflare deployment credential with the necessary isolated Worker/D1 access through repository/provider secrets. Do not paste credentials into chat. Provision only `eidos-quote-desk-preview`, apply the additive migration and read back the intended binding, version, HTTPS route and CSP.
