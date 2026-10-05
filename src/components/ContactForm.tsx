@@ -27,9 +27,12 @@ const initialForm: FormState = {
   website: '',
 };
 
-const subscribeToLocation = () => () => {};
-const browserSearch = () => window.location.search;
-const serverSearch = () => '';
+const subscribeToLocation = (notify: () => void) => {
+  window.addEventListener('popstate', notify);
+  return () => window.removeEventListener('popstate', notify);
+};
+const quoteDeskFeedbackSnapshot = () => isQuoteDeskFeedback(window.location.search);
+const serverQuoteDeskFeedbackSnapshot = () => false;
 
 type SubmitState =
   | { status: 'idle'; message: '' }
@@ -44,7 +47,7 @@ export function ContactForm() {
   const [form, setForm] = useState(initialForm);
   const [serviceTouched, setServiceTouched] = useState(false);
   const [foundViaTouched, setFoundViaTouched] = useState(false);
-  const quoteDeskFeedback = isQuoteDeskFeedback(useSyncExternalStore(subscribeToLocation, browserSearch, serverSearch));
+  const quoteDeskFeedback = useSyncExternalStore(subscribeToLocation, quoteDeskFeedbackSnapshot, serverQuoteDeskFeedbackSnapshot);
   const selectedService = quoteDeskFeedback && !serviceTouched ? quoteDeskFeedbackService : form.service;
   const selectedFoundVia = quoteDeskFeedback && !foundViaTouched ? 'Saw one of our projects' : form.foundVia;
   const [submitState, setSubmitState] = useState<SubmitState>({
