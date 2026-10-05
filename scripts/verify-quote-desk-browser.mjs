@@ -88,6 +88,7 @@ try {
           await page.getByRole('heading', { name: /Tell us what needs to become better/ }).waitFor();
           assert.equal(new URL(page.url()).pathname.replace(/\/$/, ''), '/contact');
           assert.equal(new URL(page.url()).searchParams.get('utm_source'), 'quote-desk');
+          await page.waitForFunction(() => document.querySelector('.ew-contact-form select')?.value === 'Quote Desk workspace feedback');
           assert.equal(await page.getByLabel('What can we help with?').inputValue(), 'Quote Desk workspace feedback');
           assert.equal(await page.getByLabel('How did you find Eidos Works?').inputValue(), 'Saw one of our projects');
           assert.match(await page.locator('.ew-contact-form').innerText(), /whether the proposed \$19\/month feels justified/);
