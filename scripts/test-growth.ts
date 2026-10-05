@@ -7,6 +7,7 @@ import { onRequestGet as report } from '../functions/api/growth/report';
 import { onRequestPost as inquiry } from '../functions/api/project-inquiries';
 import { publicPath, safeReferral, campaignToken, emptyAttribution, validateContext } from '../src/lib/growthContract';
 import { growthPageView, growthTrack, clearGrowth, growthContext, inquiryAttribution } from '../src/lib/growth';
+import { isQuoteDeskFeedback } from '../src/lib/contactIntent';
 import { reportSql, summarize } from './growth-report.mjs';
 import type { Statement, Database } from '../functions/_shared/platform/core';
 
@@ -36,6 +37,15 @@ test('campaign/referrer sanitization removes queries, fragments, credentials and
   assert.equal(safeReferral('https://example.com/customer/secret?token=x'),'https://example.com/');
   assert.equal(safeReferral('https://eidos-works.com/account/verify?token=x'),'https://eidos-works.com/');
   for(const x of ['javascript:alert(1)','https://user:pass@example.com/','http://127.0.0.1/private'])assert.equal(safeReferral(x),'');
+});
+test('Quote Desk feedback intent requires the exact owned validation campaign',()=>{
+  assert.equal(isQuoteDeskFeedback('?utm_source=quote-desk&utm_medium=owned-tool&utm_campaign=quote-desk-validation'),true);
+  for(const query of [
+    '',
+    '?utm_source=quote-desk&utm_medium=owned-tool&utm_campaign=other',
+    '?utm_source=someone-else&utm_medium=owned-tool&utm_campaign=quote-desk-validation',
+    '?utm_source=quote-desk&utm_medium=email&utm_campaign=quote-desk-validation',
+  ]) assert.equal(isQuoteDeskFeedback(query),false);
 });
 test('unknown events/fields, denied consent, malformed contexts and oversized requests are rejected',async()=>{
   const {env,sql}=setup();

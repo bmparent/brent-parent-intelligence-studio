@@ -79,10 +79,27 @@ try {
         assert.deepEqual(errors, [], 'no browser errors');
 
         if (storage === 'available') {
+          let submittedFeedback;
+          await page.route('**/api/project-inquiries', async route => {
+            submittedFeedback = route.request().postDataJSON();
+            await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ submitted: true, message: 'Synthetic browser acceptance.' }) });
+          });
           await page.locator('#feedback-link').click();
           await page.getByRole('heading', { name: /Tell us what needs to become better/ }).waitFor();
           assert.equal(new URL(page.url()).pathname.replace(/\/$/, ''), '/contact');
           assert.equal(new URL(page.url()).searchParams.get('utm_source'), 'quote-desk');
+          await page.waitForFunction(() => document.querySelector('.ew-contact-form select')?.value === 'Quote Desk workspace feedback');
+          assert.equal(await page.getByLabel('What can we help with?').inputValue(), 'Quote Desk workspace feedback');
+          assert.equal(await page.getByLabel('How did you find Eidos Works?').inputValue(), 'Saw one of our projects');
+          assert.match(await page.locator('.ew-contact-form').innerText(), /whether the proposed \$19\/month feels justified/);
+          assert.equal(await page.getByRole('button', { name: 'Send Quote Desk Feedback' }).isVisible(), true);
+          await page.getByLabel('Name', { exact: true }).fill('Eidos Works QA');
+          await page.getByLabel('Email', { exact: true }).fill('qa@example.invalid');
+          await page.getByLabel('What should Quote Desk save, reuse, or plan for you?').fill('Synthetic browser check for the Quote Desk feedback classification.');
+          await page.getByRole('button', { name: 'Send Quote Desk Feedback' }).click();
+          await page.getByText('Synthetic browser acceptance.').waitFor();
+          assert.equal(submittedFeedback.projectType, 'Quote Desk workspace feedback');
+          assert.equal(submittedFeedback.foundVia, 'Saw one of our projects');
         }
         console.log(`PASS Quote Desk ${width}/${storage}: discovery, estimate, print, validation recovery, honest availability, no account requests${storage === 'available' ? ', inquiry navigation' : ''}`);
       } finally { await context.close(); }

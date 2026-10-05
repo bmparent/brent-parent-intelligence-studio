@@ -1,6 +1,7 @@
 import { growthContext, inquiryAttribution } from '../lib/growth';
 import { track } from '../lib/analytics';
-import { FormEvent, useState } from 'react';
+import { isQuoteDeskFeedback, quoteDeskFeedbackService } from '../lib/contactIntent';
+import { FormEvent, useState, useSyncExternalStore } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
 import { EmailAddress, SafeEmailLink } from './EmailAddress';
 
@@ -26,6 +27,13 @@ const initialForm: FormState = {
   website: '',
 };
 
+const subscribeToLocation = (notify: () => void) => {
+  window.addEventListener('popstate', notify);
+  return () => window.removeEventListener('popstate', notify);
+};
+const quoteDeskFeedbackSnapshot = () => isQuoteDeskFeedback(window.location.search);
+const serverQuoteDeskFeedbackSnapshot = () => false;
+
 type SubmitState =
   | { status: 'idle'; message: '' }
   | { status: 'sending'; message: string }
@@ -37,6 +45,11 @@ type SubmitState =
 
 export function ContactForm() {
   const [form, setForm] = useState(initialForm);
+  const [serviceTouched, setServiceTouched] = useState(false);
+  const [foundViaTouched, setFoundViaTouched] = useState(false);
+  const quoteDeskFeedback = useSyncExternalStore(subscribeToLocation, quoteDeskFeedbackSnapshot, serverQuoteDeskFeedbackSnapshot);
+  const selectedService = quoteDeskFeedback && !serviceTouched ? quoteDeskFeedbackService : form.service;
+  const selectedFoundVia = quoteDeskFeedback && !foundViaTouched ? 'Saw one of our projects' : form.foundVia;
   const [submitState, setSubmitState] = useState<SubmitState>({
     status: 'idle',
     message: '',
@@ -45,12 +58,12 @@ export function ContactForm() {
   const brief = [
     'Eidos Works project inquiry',
     '',
-    `Service: ${form.service}`,
+    `Service: ${selectedService}`,
     `Name: ${form.name}`,
     `Email: ${form.email}`,
     `Company: ${form.company || 'Not provided'}`,
     `Current website: ${form.currentUrl || 'Not provided'}`,
-    `Found Eidos Works via: ${form.foundVia || 'Not provided'}`,
+    `Found Eidos Works via: ${selectedFoundVia || 'Not provided'}`,
     '',
     form.problem,
   ].join('\n');
@@ -73,13 +86,13 @@ export function ContactForm() {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          projectType: form.service,
+          projectType: selectedService,
           problem: form.problem,
           currentUrl: form.currentUrl,
           name: form.name,
           email: form.email,
           company: form.company,
-          foundVia: form.foundVia,
+          foundVia: selectedFoundVia,
           website: form.website,
           brief,
           ...inquiryAttribution(),
@@ -139,6 +152,12 @@ export function ContactForm() {
 
   return (
     <form className="ew-contact-form" onSubmit={submit}>
+      {quoteDeskFeedback ? (
+        <div className="ew-form-result" role="note">
+          <p><strong>Quote Desk feedback</strong></p>
+          <p>Tell us which part of repeat quoting should be saved, reused, or planned. If you would consider a paid workspace, say which feature would earn a place in your workflow and whether the proposed $19/month feels justified. It is useful to say when it does not.</p>
+        </div>
+      ) : null}
       <div className="ew-form-grid">
         <label>
           <span>Name</span>
@@ -175,11 +194,12 @@ export function ContactForm() {
         <label>
           <span>What can we help with?</span>
           <select
-            value={form.service}
-            onChange={(event) => update('service', event.target.value)}
+            value={selectedService}
+            onChange={(event) => { setServiceTouched(true); update('service', event.target.value); }}
           >
             <option>Digital Experiences</option>
             <option>Business Systems</option>
+            <option>{quoteDeskFeedbackService}</option>
             <option>Intelligent Systems</option>
             <option>Prototype / Product Exploration</option>
             <option>Agentic SEO</option>
@@ -199,7 +219,7 @@ export function ContactForm() {
           />
         </label>
         <label className="ew-form-grid__wide">
-          <span>What needs to become clearer, easier, or more useful?</span>
+          <span>{quoteDeskFeedback ? 'What should Quote Desk save, reuse, or plan for you?' : 'What needs to become clearer, easier, or more useful?'}</span>
           <textarea
             required
             minLength={20}
@@ -211,7 +231,7 @@ export function ContactForm() {
         </label>
         <label className="ew-form-grid__wide">
           <span>How did you find Eidos Works?</span>
-          <select value={form.foundVia} onChange={(event) => update('foundVia', event.target.value)}>
+          <select value={selectedFoundVia} onChange={(event) => { setFoundViaTouched(true); update('foundVia', event.target.value); }}>
             <option value="">Choose one</option>
             <option>LinkedIn</option>
             <option>Google / search</option>
@@ -240,7 +260,7 @@ export function ContactForm() {
           type="submit"
           disabled={submitState.status === 'sending'}
         >
-          {submitState.status === 'sending' ? 'Sending…' : 'Send Project Note'}
+          {submitState.status === 'sending' ? 'Sending…' : quoteDeskFeedback ? 'Send Quote Desk Feedback' : 'Send Project Note'}
         </button>
         <SafeEmailLink
           className="ew-text-link"
