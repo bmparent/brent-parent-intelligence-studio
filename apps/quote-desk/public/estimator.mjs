@@ -7,7 +7,7 @@ export const defaults = Object.freeze({
   overheadHourly: 5, blankUnit: 7, materialsUnit: 0.35, digitizing: 30,
   shipping: 12, spoilage: 0.03, margin: 0.45
 });
-const limits = {
+export const inputLimits = {
   quantity:[1,100000,true],stitches:[1,1000000,true],heads:[1,100,true],rpm:[1,2000],
   efficiency:[0.05,1],colorChanges:[0,1000,true],colorChangeSeconds:[0,600],
   breakSecondsPerThousand:[0,600],setupSeconds:[0,86400],hoopSeconds:[0,3600],
@@ -19,10 +19,13 @@ const limits = {
 export function normalize(input) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw Error('Enter a valid job.');
   const output={};
-  for (const [key,[min,max,integer]] of Object.entries(limits)) {
+  for (const [key,[min,max,integer]] of Object.entries(inputLimits)) {
     const value=input[key];
-    if (typeof value !== 'number' || !Number.isFinite(value) || value<min || value>max || (integer&&!Number.isInteger(value)))
-      throw Error(`${key} must be ${integer?'a whole number':'a number'} between ${min} and ${max}.`);
+    if (typeof value !== 'number' || !Number.isFinite(value) || value<min || value>max || (integer&&!Number.isInteger(value))) {
+      const error=Error(`${key} must be ${integer?'a whole number':'a number'} between ${min} and ${max}.`);
+      error.field=key;
+      throw error;
+    }
     output[key]=value;
   }
   return output;

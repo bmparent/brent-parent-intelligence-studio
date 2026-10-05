@@ -1,5 +1,9 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 5 Quote Desk customer-experience follow-up
+
+Brent authorized the next paid-launch work and a customer-perspective walkthrough after Stripe onboarding. The free estimator fixes draft naming, field correction and printed job details; the isolated paid candidate adds sign-in/checkout/billing-outage recovery without opening checkout. The intended merchant and inactive $19/month catalog setup are verified; hosted D1 access returns HTTP 401, the Worker is absent and real email/sandbox acceptance remains blocked. Exact evidence, candidate gates and rollback are recorded in [QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md](QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md). This work does not accept the held paired account runtime or assert revenue.
+
 Brent explicitly authorized merging the gallery and other mergeable PRs and taking the result live on September 30. This release starts from production/main `e0f5ca9c0b81542929960aa6ada075f81ad0240b` and extracts public presentation changes from the previously stacked branches. It does not merge the paired implementation candidate in site #73 or backend #67.
 
 ## Scope and impact
