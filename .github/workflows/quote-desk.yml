@@ -5,6 +5,7 @@ on:
       - 'apps/quote-desk/**'
       - 'public/quote-desk/**'
       - 'docs/revenue/**'
+      - 'scripts/verify-quote-desk-workspace-browser.mjs'
       - '.github/workflows/quote-desk.yml'
 permissions:
   contents: read
@@ -24,3 +25,25 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm test
       - run: npm run build
+      - name: Install isolated UI test tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/quote-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/quote-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Customer recovery on desktop and phone widths with controlled API responses
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/quote-browser/node_modules/playwright
+          QUOTE_WORKSPACE_EVIDENCE_DIR: ${{ runner.temp }}/quote-workspace
+        run: |
+          npm run preview >"$RUNNER_TEMP/quote-workspace-preview.log" 2>&1 &
+          QUOTE_PREVIEW_PID=$!
+          trap 'kill "$QUOTE_PREVIEW_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4178/ >/dev/null && break || sleep 1; done
+          node ../../scripts/verify-quote-desk-workspace-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quote-workspace-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/quote-workspace
+            ${{ runner.temp }}/quote-workspace-preview.log
+          retention-days: 14

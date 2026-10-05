@@ -39,6 +39,7 @@ try {
         assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, follow');
         await page.waitForFunction(() => document.getElementById('quote-price').textContent.startsWith('$'));
         const initial = await page.locator('#quote-price').innerText();
+        await page.getByLabel('Job name', { exact: true }).fill('School hats · job 101');
         await page.getByLabel('Quantity', { exact: true }).fill('60');
         assert.notEqual(await page.locator('#quote-price').innerText(), initial, 'quantity changes the estimate');
         assert.equal(await page.locator('#print').isEnabled(), true);
@@ -47,6 +48,7 @@ try {
         if (storage === 'available') {
           await page.reload({ waitUntil: 'networkidle' });
           assert.equal(await page.getByLabel('Quantity', { exact: true }).inputValue(), '60', 'available storage restores inputs');
+          assert.equal(await page.getByLabel('Job name', { exact: true }).inputValue(), 'School hats · job 101', 'reload retains the job name with its inputs');
         } else {
           assert.match(await page.locator('#draft-status').innerText(), /storage is unavailable/);
           assert.match(await page.locator('#quote-price').innerText(), /^\$/);
@@ -58,10 +60,24 @@ try {
         for (const id of ['unit-price', 'production-time', 'margin', 'cycles']) assert.equal(await page.locator('#' + id).innerText(), '—', `invalid input clears ${id}`);
         assert.equal(await page.locator('#cost-bars').locator('.cost-row').count(), 0, 'invalid input clears stale breakdown');
         assert.notEqual(await page.locator('#profit').innerText(), '', 'validation explains the problem');
+        assert.equal(await page.getByLabel('Quantity', { exact: true }).getAttribute('aria-invalid'), 'true');
+        assert.match(await page.locator('#error-quantity').innerText(), /Quantity: enter a whole number from 1 to 100,000/);
+        await page.getByRole('button', { name: 'Fix Quantity', exact: true }).click();
+        assert.equal(await page.getByLabel('Quantity', { exact: true }).evaluate(element => element === document.activeElement), true, 'error correction focuses the offending field');
         await page.getByRole('button', { name: 'Load sample job', exact: true }).click();
         assert.match(await page.locator('#quote-price').innerText(), /^\$/);
         assert.equal(await page.locator('#cost-bars .cost-row').count(), 6, 'correction restores cost breakdown');
         assert.equal(await page.locator('#print').isEnabled(), true);
+        assert.equal(await page.getByLabel('Quantity', { exact: true }).getAttribute('aria-invalid'), null);
+        await page.getByLabel('Job name', { exact: true }).fill('School hats · job 101');
+        await page.emulateMedia({ media: 'print' });
+        assert.equal(await page.locator('#estimate-name').isVisible(), true, 'printed estimate includes its job name');
+        assert.match(await page.locator('#estimate-job').innerText(), /48 items.*8,500 stitches.*6 active head/);
+        assert.equal(await page.locator('#print-assumptions').isVisible(), true, 'printed estimate includes shop assumptions');
+        assert.match(await page.locator('#print-assumptions').innerText(), /Blank cost.*7/s);
+        assert.equal(await page.locator('#print-assumptions dt').count(), 23, 'print retains every editable assumption');
+        if (storage === 'available') await page.pdf({ path: path.join(evidence, `quote-desk-internal-estimate-${width}.pdf`), format: 'A4', printBackground: true });
+        await page.emulateMedia({ media: 'screen' });
 
         assert.match(await page.locator('#pricing').innerText(), /NOT YET FOR SALE/);
         assert.equal(await page.locator('#save-quote').isDisabled(), true);
