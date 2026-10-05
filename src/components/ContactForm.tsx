@@ -60,7 +60,7 @@ export function ContactForm() {
     `Email: ${form.email}`,
     `Company: ${form.company || 'Not provided'}`,
     `Current website: ${form.currentUrl || 'Not provided'}`,
-    `Found Eidos Works via: ${form.foundVia || 'Not provided'}`,
+    `Found Eidos Works via: ${selectedFoundVia || 'Not provided'}`,
     '',
     form.problem,
   ].join('\n');
@@ -89,7 +89,7 @@ export function ContactForm() {
           name: form.name,
           email: form.email,
           company: form.company,
-          foundVia: form.foundVia,
+          foundVia: selectedFoundVia,
           website: form.website,
           brief,
           ...inquiryAttribution(),
