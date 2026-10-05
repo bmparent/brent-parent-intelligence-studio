@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-04T13:00:26Z",
+  "updatedAt": "2026-10-05T13:12:10Z",
   "operator": "studio_manager",
   "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
   "activeOffer": "quote-desk",
@@ -33,8 +33,8 @@
         "../../docs/revenue/REVENUE_PROGRAM_2026-09-29.md",
         "receipts/2026-10-04-revenue-operator.md"
       ],
-      "blocker": "October 4 readback: the only connected LIVE account is still unnamed for business use, details are unsubmitted, charges/payouts are disabled, no payout bank or product/cash records exist; Cloudflare CLI and Quote Desk runtime bindings are unavailable in this execution environment.",
-      "nextAction": "Brent confirms the intended Eidos Works Stripe account and personally completes its real business identity and payout-bank onboarding. Then re-read readiness and use an authenticated provider environment to bind isolated preview D1, sandbox Stripe, transactional sender and Turnstile before hosted acceptance."
+      "blocker": "October 5 readback: the only connected LIVE account is still unnamed for business use, details are unsubmitted, requirements report pending verification, charges/payouts are disabled, and no payout bank or product/cash records exist; authenticated Quote Desk runtime bindings remain unavailable in this execution environment.",
+      "nextAction": "Brent confirms the intended Eidos Works Stripe account and personally completes its real business identity, pending-verification and payout-bank onboarding. Then re-read readiness and use an authenticated provider environment to bind isolated preview D1, sandbox Stripe, transactional sender and Turnstile before hosted acceptance."
     },
     {
       "id": "REV-003",
@@ -47,9 +47,24 @@
       ],
       "blocker": "Complete actual expenses, product cash, renewals and bank reconciliation unavailable.",
       "nextAction": "Use the private workbook and authorized receipts; keep unknowns explicit and private details out of this repository."
+    },
+    {
+      "id": "REV-004",
+      "owner": "studio_manager",
+      "stage": "release_candidate",
+      "task": "Attribute Quote Desk workflow feedback to the active offer",
+      "doneCondition": "The owned Quote Desk campaign opens a specific feedback form, provider-confirmed submissions retain the Quote Desk service classification, exact-head checks pass and the production handoff is read back without sending a message.",
+      "evidence": [
+        "../../src/lib/contactIntent.ts",
+        "../../src/components/ContactForm.tsx",
+        "../../scripts/verify-quote-desk-browser.mjs",
+        "receipts/2026-10-05-revenue-operator.md"
+      ],
+      "blocker": "Exact-head CI, merge, deployment and production readback are still required; local browser execution was unavailable in this runner.",
+      "nextAction": "Open the focused PR, require the existing browser and site-quality checks on its exact head, merge only when green, then verify the production Quote Desk feedback link and selected service without submitting the form."
     }
   ],
-  "latestReceipt": "receipts/2026-10-04-revenue-operator.md",
+  "latestReceipt": "receipts/2026-10-05-revenue-operator.md",
   "notes": [
     "One active commercial offer and one supporting blocker task maximum.",
     "Interactive bootstrap is not an independent scheduled or specialist run.",
