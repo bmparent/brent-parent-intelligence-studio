@@ -44,3 +44,7 @@ Current operational evidence: the existing main maintenance run [36915378384](ht
 5. Extend the queue through a reviewed source update before it runs out. The existing growth automation may check/refill this queue in a bounded weekly pass; it does not gain permission to post arbitrary material elsewhere or turn on paid generation.
 
 Rollback: disable the studio flag, retain registry IDs and rejected/publication receipts, and restore the previous site/backend code if needed. Keep customer replies, accounts, orders, entitlements, and all other production records intact. Do not reset the queue anchor or delete data to roll back.
+
+## October 6 recovery
+
+The October 1 pending state above is historical. Brent subsequently authorized resolving the remaining gates and shipping the scoped community pair. Current evidence, preview isolation, native scheduler readback and the frozen October 6 launch anchor are recorded in [COMMUNITY_STUDIO_RELEASE_2026-10-06.md](COMMUNITY_STUDIO_RELEASE_2026-10-06.md); final provider receipts are attached to the paired PRs.
