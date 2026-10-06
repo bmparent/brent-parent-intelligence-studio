@@ -57,7 +57,7 @@ Initial bounds: 500 saved records/account, 5 checkout requests/account/day, 60 b
 
 See `../../docs/revenue/REVENUE_PROGRAM_2026-09-29.md` and `revenue-gate.mjs`. Verify actual attributed provider receipts and bank settlement against real expenses. The structured checker cannot authenticate a fabricated ledger; fixture passes are never business evidence. Review the latest eight closed weeks in America/New_York, using settled net cash rather than promised MRR. Keep prepaid annual cash, tax liabilities, capital transfers, self-payments and test money out of the recurring-cash proof.
 
-The provider read on October 4, 2026 still found the only connected LIVE account incomplete: account details were not submitted, charges and payouts were disabled, no payout bank was attached, and the product, subscription, charge, payout and balance-transaction lists were empty. The local Cloudflare CLI was also unauthenticated and no Quote Desk provider variables were available. No provider setting was changed; owner identity and banking remain an owner-only dependency.
+The October 4 provider read is historical and was superseded on October 5. The intended LIVE Eidos Works merchant is now verified as described in step 1, while the separate hosted workspace and sandbox acceptance remain blocked. The local Cloudflare CLI is still unauthenticated, the repository credential cannot read isolated D1, no Quote Desk Worker exists, and only a LIVE Stripe connection is exposed to this execution environment. No LIVE checkout, customer payment or revenue is claimed.
 
 ## October 5 customer-experience follow-up
 

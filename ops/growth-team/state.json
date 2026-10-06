@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-05T13:12:10Z",
+  "updatedAt": "2026-10-06T12:16:35Z",
   "operator": "studio_manager",
   "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
   "activeOffer": "quote-desk",
@@ -25,16 +25,19 @@
     {
       "id": "REV-002",
       "owner": "studio_manager",
-      "stage": "blocked",
+      "stage": "blocked_hosting",
       "task": "Accepted paid Quote Desk workspace",
       "doneCondition": "Correct merchant and authorized provider bindings; complete hosted lifecycle and customer acceptance in app README before live checkout.",
       "evidence": [
         "../../apps/quote-desk/README.md",
         "../../docs/revenue/REVENUE_PROGRAM_2026-09-29.md",
-        "receipts/2026-10-04-revenue-operator.md"
+        "receipts/2026-10-04-revenue-operator.md",
+        "../../docs/implementation/QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/95",
+        "receipts/2026-10-06-revenue-operator.md"
       ],
-      "blocker": "October 5 readback: the only connected LIVE account is still unnamed for business use, details are unsubmitted, requirements report pending verification, charges/payouts are disabled, and no payout bank or product/cash records exist; authenticated Quote Desk runtime bindings remain unavailable in this execution environment.",
-      "nextAction": "Brent confirms the intended Eidos Works Stripe account and personally completes its real business identity, pending-verification and payout-bank onboarding. Then re-read readiness and use an authenticated provider environment to bind isolated preview D1, sandbox Stripe, transactional sender and Turnstile before hosted acceptance."
+      "blocker": "October 6 readback: the intended LIVE Eidos Works merchant is verified and its inactive $19/month catalog entry exists, but the separate paid workspace still has no hosted Worker/D1, accepted sender/Turnstile bindings or connected Stripe sandbox. The repository Cloudflare credential can read Workers/Pages but the isolated D1 endpoint returned HTTP 401, and the local CLI is unauthenticated.",
+      "nextAction": "Update the repository Cloudflare credential with least-privilege Workers Scripts Edit, D1 Edit and intended-zone Workers Routes Edit access. Then provision only the isolated preview Worker/D1, keep checkout disabled, connect a separate Stripe sandbox and run hosted login, two-owner, webhook, recovery and device acceptance."
     },
     {
       "id": "REV-003",
@@ -51,7 +54,7 @@
     {
       "id": "REV-004",
       "owner": "studio_manager",
-      "stage": "release_candidate",
+      "stage": "complete",
       "task": "Attribute Quote Desk workflow feedback to the active offer",
       "doneCondition": "The owned Quote Desk campaign opens a specific feedback form, provider-confirmed submissions retain the Quote Desk service classification, exact-head checks pass and the production handoff is read back without sending a message.",
       "evidence": [
@@ -60,11 +63,25 @@
         "../../scripts/verify-quote-desk-browser.mjs",
         "receipts/2026-10-05-revenue-operator.md"
       ],
-      "blocker": "Exact-head CI, merge, deployment and production readback are still required; local browser execution was unavailable in this runner.",
-      "nextAction": "Open the focused PR, require the existing browser and site-quality checks on its exact head, merge only when green, then verify the production Quote Desk feedback link and selected service without submitting the form."
+      "blocker": null,
+      "nextAction": "Retain PR #93 and release run 37321478908 as the production receipt; do not repeat this handoff release."
+    },
+    {
+      "id": "REV-005",
+      "owner": "studio_manager",
+      "stage": "release_candidate",
+      "task": "Measure structured Quote Desk willingness to pay",
+      "doneCondition": "The owned Quote Desk feedback path asks weekly quote volume and direct $19/month intent, includes both signals in the provider-confirmed inquiry, keeps ordinary contact visits unchanged, passes exact-head checks and is verified in production without submitting a message.",
+      "evidence": [
+        "../../src/components/ContactForm.tsx",
+        "../../scripts/verify-quote-desk-browser.mjs",
+        "receipts/2026-10-06-revenue-operator.md"
+      ],
+      "blocker": "Exact-head CI, merge, deployment and production readback are required.",
+      "nextAction": "Open the focused PR, require the existing browser and site-quality checks, merge only when green, then verify both structured fields on the live Quote Desk handoff without submitting the form."
     }
   ],
-  "latestReceipt": "receipts/2026-10-05-revenue-operator.md",
+  "latestReceipt": "receipts/2026-10-06-revenue-operator.md",
   "notes": [
     "One active commercial offer and one supporting blocker task maximum.",
     "Interactive bootstrap is not an independent scheduled or specialist run.",
