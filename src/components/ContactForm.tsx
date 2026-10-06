@@ -1,6 +1,7 @@
 import { growthContext, inquiryAttribution } from '../lib/growth';
 import { track } from '../lib/analytics';
-import { FormEvent, useState } from 'react';
+import { isQuoteDeskFeedback, quoteDeskFeedbackService } from '../lib/contactIntent';
+import { FormEvent, useState, useSyncExternalStore } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
 import { EmailAddress, SafeEmailLink } from './EmailAddress';
 
@@ -12,6 +13,8 @@ type FormState = {
   currentUrl: string;
   problem: string;
   foundVia: string;
+  quoteDeskVolume: string;
+  quoteDeskPriceIntent: string;
   website: string;
 };
 
@@ -23,8 +26,17 @@ const initialForm: FormState = {
   currentUrl: '',
   problem: '',
   foundVia: '',
+  quoteDeskVolume: '',
+  quoteDeskPriceIntent: '',
   website: '',
 };
+
+const subscribeToLocation = (notify: () => void) => {
+  window.addEventListener('popstate', notify);
+  return () => window.removeEventListener('popstate', notify);
+};
+const quoteDeskFeedbackSnapshot = () => isQuoteDeskFeedback(window.location.search);
+const serverQuoteDeskFeedbackSnapshot = () => false;
 
 type SubmitState =
   | { status: 'idle'; message: '' }
@@ -37,22 +49,37 @@ type SubmitState =
 
 export function ContactForm() {
   const [form, setForm] = useState(initialForm);
+  const [serviceTouched, setServiceTouched] = useState(false);
+  const [foundViaTouched, setFoundViaTouched] = useState(false);
+  const quoteDeskCampaign = useSyncExternalStore(subscribeToLocation, quoteDeskFeedbackSnapshot, serverQuoteDeskFeedbackSnapshot);
+  const selectedService = quoteDeskCampaign && !serviceTouched ? quoteDeskFeedbackService : form.service;
+  const selectedFoundVia = quoteDeskCampaign && !foundViaTouched ? 'Saw one of our projects' : form.foundVia;
+  const quoteDeskFeedback = selectedService === quoteDeskFeedbackService;
   const [submitState, setSubmitState] = useState<SubmitState>({
     status: 'idle',
     message: '',
   });
 
+  const submittedProblem = quoteDeskFeedback
+    ? [
+        `Typical weekly embroidery quotes: ${form.quoteDeskVolume || 'Not provided'}`,
+        `Interest at the proposed $19/month: ${form.quoteDeskPriceIntent || 'Not provided'}`,
+        '',
+        form.problem,
+      ].join('\n').slice(0, 1_600)
+    : form.problem;
+
   const brief = [
     'Eidos Works project inquiry',
     '',
-    `Service: ${form.service}`,
+    `Service: ${selectedService}`,
     `Name: ${form.name}`,
     `Email: ${form.email}`,
     `Company: ${form.company || 'Not provided'}`,
     `Current website: ${form.currentUrl || 'Not provided'}`,
-    `Found Eidos Works via: ${form.foundVia || 'Not provided'}`,
+    `Found Eidos Works via: ${selectedFoundVia || 'Not provided'}`,
     '',
-    form.problem,
+    submittedProblem,
   ].join('\n');
 
   const fallbackMailto = `${projectMailto()}&body=${encodeURIComponent(brief)}`;
@@ -73,13 +100,13 @@ export function ContactForm() {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          projectType: form.service,
-          problem: form.problem,
+          projectType: selectedService,
+          problem: submittedProblem,
           currentUrl: form.currentUrl,
           name: form.name,
           email: form.email,
           company: form.company,
-          foundVia: form.foundVia,
+          foundVia: selectedFoundVia,
           website: form.website,
           brief,
           ...inquiryAttribution(),
@@ -139,6 +166,12 @@ export function ContactForm() {
 
   return (
     <form className="ew-contact-form" onSubmit={submit}>
+      {quoteDeskFeedback ? (
+        <div className="ew-form-result" role="note">
+          <p><strong>Quote Desk feedback</strong></p>
+          <p>Tell us which part of repeat quoting should be saved, reused, or planned. Two quick signals help us decide whether the proposed $19/month workspace is worth building. It is useful to say when it is not.</p>
+        </div>
+      ) : null}
       <div className="ew-form-grid">
         <label>
           <span>Name</span>
@@ -175,11 +208,12 @@ export function ContactForm() {
         <label>
           <span>What can we help with?</span>
           <select
-            value={form.service}
-            onChange={(event) => update('service', event.target.value)}
+            value={selectedService}
+            onChange={(event) => { setServiceTouched(true); update('service', event.target.value); }}
           >
             <option>Digital Experiences</option>
             <option>Business Systems</option>
+            <option>{quoteDeskFeedbackService}</option>
             <option>Intelligent Systems</option>
             <option>Prototype / Product Exploration</option>
             <option>Agentic SEO</option>
@@ -198,12 +232,45 @@ export function ContactForm() {
             onChange={(event) => update('currentUrl', event.target.value)}
           />
         </label>
+        {quoteDeskFeedback ? (
+          <>
+            <label>
+              <span>About how many embroidery quotes do you build in a typical week?</span>
+              <select
+                required
+                value={form.quoteDeskVolume}
+                onChange={(event) => update('quoteDeskVolume', event.target.value)}
+              >
+                <option value="">Choose one</option>
+                <option>1–5</option>
+                <option>6–15</option>
+                <option>16–30</option>
+                <option>31+</option>
+                <option>I do not quote embroidery work</option>
+              </select>
+            </label>
+            <label>
+              <span>If it handled that workflow well, how does $19/month feel?</span>
+              <select
+                required
+                value={form.quoteDeskPriceIntent}
+                onChange={(event) => update('quoteDeskPriceIntent', event.target.value)}
+              >
+                <option value="">Choose one</option>
+                <option>I would try it</option>
+                <option>I might try it</option>
+                <option>Too expensive for me</option>
+                <option>I would not use it</option>
+              </select>
+            </label>
+          </>
+        ) : null}
         <label className="ew-form-grid__wide">
-          <span>What needs to become clearer, easier, or more useful?</span>
+          <span>{quoteDeskFeedback ? 'What should Quote Desk save, reuse, or plan for you?' : 'What needs to become clearer, easier, or more useful?'}</span>
           <textarea
             required
             minLength={20}
-            maxLength={1600}
+            maxLength={quoteDeskFeedback ? 1_400 : 1_600}
             rows={6}
             value={form.problem}
             onChange={(event) => update('problem', event.target.value)}
@@ -211,7 +278,7 @@ export function ContactForm() {
         </label>
         <label className="ew-form-grid__wide">
           <span>How did you find Eidos Works?</span>
-          <select value={form.foundVia} onChange={(event) => update('foundVia', event.target.value)}>
+          <select value={selectedFoundVia} onChange={(event) => { setFoundViaTouched(true); update('foundVia', event.target.value); }}>
             <option value="">Choose one</option>
             <option>LinkedIn</option>
             <option>Google / search</option>
@@ -240,7 +307,7 @@ export function ContactForm() {
           type="submit"
           disabled={submitState.status === 'sending'}
         >
-          {submitState.status === 'sending' ? 'Sending…' : 'Send Project Note'}
+          {submitState.status === 'sending' ? 'Sending…' : quoteDeskFeedback ? 'Send Quote Desk Feedback' : 'Send Project Note'}
         </button>
         <SafeEmailLink
           className="ew-text-link"

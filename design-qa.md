@@ -1,42 +1,34 @@
-# Design QA — Eidos Works Studio Ledger
+# Homepage services — visual acceptance
 
-## Source and implementation evidence
+Source visual truth: approved `exec-99dc68e3-763b-4045-8f04-2db1bbc9fa29.png` (1190 × 1322); its SHA-256 is recorded in [the asset manifest](docs/implementation/homepage-folio-assets.json). The selected design is the warm ivory paper collage folio with six service illustrations, serif/italic headline and dark teal invitation.
 
-- Selected source: `artifacts/editorial-redesign-2026-07-11/selected-option-3.png`
-- Final implementation: `artifacts/editorial-redesign-2026-07-11/qa/home-desktop-1536x1024-final.png`
-- Exact side-by-side comparison: `artifacts/editorial-redesign-2026-07-11/qa/source-vs-home-final.png`
-- Focused evidence rail: `artifacts/editorial-redesign-2026-07-11/qa/home-case-rail-verified.png`
-- Mobile implementation: `artifacts/editorial-redesign-2026-07-11/qa/home-mobile-390-final-verified.png`
-- Desktop comparison state: homepage at 1536 × 1024, top of page, default navigation state.
-- Mobile state: homepage at 390 CSS pixels, closed navigation, top of page.
+Implementation: actual homepage `#services`, served at `http://terminal.local:4173/` and rendered in Cloud Browser Chromium. Initial desktop viewport is 1363 × 926 CSS pixels. The final full-height capture uses the actual homepage in a 1348 × 1900 iframe (1333 CSS-pixel layout width after the scrollbar). Phone and tablet reviews use 320 × 844, 390 × 844 and 768 × 844 iframe contexts, with layout widths of 305, 375 and 753 pixels. These temporary files are excluded from production.
 
-## Comparison history
+## Comparison history and resolved findings
 
-1. Pass 1 found a P1 layout mismatch: the hero was too tall and the portrait was oversized relative to the reference. The hero grid, portrait sizing, type scale, and vertical padding were tightened.
-2. Pass 2 found a P1 image-layout defect: HTML image height attributes overrode the intended evidence-rail aspect ratio and stretched all three case images vertically. Explicit `height: auto` rules were added to the homepage rail and Work index imagery.
-3. Pass 3 used a matched 1536 × 1024 viewport and a literal side-by-side comparison. The source hierarchy, editorial rhythm, founder identity, dark evidence rail, and three-case emphasis are preserved without remaining P0, P1, or P2 findings.
+- [P2, spacing] First desktop pass measured 1946px section height at 1348px content width. The illustration boxes and metadata rows introduced excess whitespace. Art/meta spacing and card padding were reduced; the required three-family navigation moved into the introduction column. The intermediate section measured 1628px. Final comparison then prompted larger card type and middle-row illustrations with tighter surrounding spacing. The final section is 1596px at 1333px width.
+- [P2, content] The initial removed family navigation failed the existing editorial contract. Digital Experiences, Business Systems and Intelligent Systems are restored as visible native links. Final editorial verification passes for all 34 routes.
+- An initial long-page clipped browser capture included the fixed site navigation halfway through the screenshot. The final full-height iframe capture keeps that header in its real position above the section. The final comparison uses an observed section crop, with no reconstructed page content.
 
-## Fidelity surfaces
+The [whole section comparison](docs/implementation/homepage-folio-evidence/desktop-comparison.jpg) places the approved source and final browser-rendered section in one image at the same 674px width. The [first-row comparison](docs/implementation/homepage-folio-evidence/first-row-comparison.jpg) compares the art, labels, scope text and arrows at a similar density. Both were opened and inspected after the final CSS correction. [The complete desktop rendering](docs/implementation/homepage-folio-evidence/desktop.jpg) preserves surrounding site context.
 
-- Layout: passed. Flat header, founder-led two-column hero, CTA pair, and three-column evidence rail match the chosen direction. The implementation extends the direction into complete service, process, Insights, and contact sections.
-- Spacing: passed. Desktop, tablet, and mobile checks found no overlap, clipped sections, fixed-height crop, or horizontal overflow.
-- Typography: passed. Newsreader supplies the editorial display voice; the system sans stack handles utility text. Heading order is logical and every verified public route has one H1.
-- Color and surfaces: passed. Warm ivory, near-black ink, restrained teal rules, and the dark work rail replace the prior gradient/glass/pill language. Runtime inspection found zero gradient backgrounds and zero backdrop blur on the homepage.
-- Imagery: passed. The founder portrait and all three evidence images are real project or safely recreated interface evidence. Final image dimensions render at their intended 4:3 ratio without stretching.
-- Icons: passed. The supplied Eidos Works logo is used as a real image asset. The mobile menu is a plain text control; no fabricated CSS/SVG illustration is used.
-- Content: passed. Copy identifies Brent, the work, the audience, role boundaries, and next action without unsupported metrics or generalized agency claims.
-- Responsiveness: passed at 360, 390, 430, 768, 1024, and 1440 widths. The 390 check measured a 153-pixel H1 and no horizontal overflow.
-- Accessibility: passed for the available manual and structural checks. Skip navigation, focus visibility, keyboard menu use, Escape-to-close/focus return, labels, alt text, touch targets, heading order, and semantic landmarks were checked. This is not a claim of complete WCAG conformance.
+## Required fidelity surfaces
 
-## Interaction and state checks
+- Typography: Newsreader display and italic preserve the source's hierarchy, paired with existing Inter/body sans-serif. Card type was increased after the combined comparison. Native text has readable line height and no clipped labels. On the narrowest phone, the headline deliberately wraps across three lines; the capability titles and descriptions remain readable. The studio keeps its existing wordmark and navigation.
+- Spacing/layout rhythm: asymmetric first pair, two even pairs, fine dividers and a full-width invitation preserve the folio structure. Mobile removes the vertical dividers and stacks the cards. The final browser uses extra room for the established service-family links, support scope and intrinsic illustration proportions; it is taller than the flattened mockup. No generic rounded widget boxes or fake shadows were introduced.
+- Color/tokens: warm ivory paper, near-black teal text and dividers, dark teal invitation, mint action match the source. Text colors #0b2530 and #34515c have ample contrast on #f7f5ee; the invitation and button maintain high text/background contrast. Focus rings remain explicit in normal and forced-color modes.
+- Image quality: all six subjects are represented as separate transparent raster illustrations. Browser renders original aspect ratios with contain fitting; no subject is cropped or stretched. Paper integrates with alpha edges without visible masking artifacts. Responsive 1280/640 WebP sources remain sharp. Some paper/layout details differ from the source because each asset is individually generated; no illustrative chart values are represented as real results.
+- Copy/content: all six approved capability labels, descriptions and scope lists appear as HTML. The coherent introduction, family destinations and project action are preserved. Decorative section numbers remain absent. Illustrated product UI is a visual metaphor and does not substitute for real controls.
+- Icons: unmodified MIT Tabler arrow-up-right asset replaces handmade substitutes. Native arrows are consistently sized and aligned across cards, family links and the action.
 
-- Primary navigation and route links: passed.
-- Mobile menu open, first-link focus, Escape close, and focus restoration: passed.
-- Contact form local failure/fallback state: passed with visible status and an email alternative.
-- PERNR fictional approved state (`EIDOS-1042`): passed.
-- PERNR fictional denied state (`NOT-VALID`): passed.
-- Browser console: no errors in the final homepage, route, form, and PERNR checks.
+## Responsive, interactions and accessibility
 
-## Final result
+- Browser DOM measurements show no horizontal overflow at 1363, 305, 375 and 753px layout widths. At 375px all cards are 335px wide. At 753px all paired cards are 342px wide. All six selected 640-width phone images loaded; all six desktop 1280-width images loaded.
+- [Phone first-row review](docs/implementation/homepage-folio-evidence/mobile-top.jpg), [final phone context](docs/implementation/homepage-folio-evidence/mobile-context.jpg), [final phone invitation](docs/implementation/homepage-folio-evidence/mobile-bottom.jpg) and [narrow-phone/tablet review](docs/implementation/homepage-folio-evidence/widths.jpg) show stacking, wrapping, final CTA and the next section. The first-row/width captures precede the final 1px scope-type and desktop-density adjustment; final phone context, invitation and DOM review confirm the final layout. The mint action is fully visible without overlap in the settled phone invitation capture.
+- Native links and h2/h3 semantics remain keyboard-accessible. Decorative images have empty alt text/aria-hidden, with live text naming each service. Tab from Websites & experiences focuses Online stores with `:focus-visible` and a 3px teal outline. Enter opens the Digital Experiences page. Business apps opens Business Systems; AI assistants opens Intelligent Systems; Start a project opens the Contact page and its intended project choices. All six card hrefs, three family hrefs and contact href were read back.
+- Each entire card is a large tap target; the project action is at least 50px high. Family links have 32px height and horizontal separation. Reduced-motion CSS disables translation/transitions; forced colors maps text, links and focus rings to system colors.
+- Browser console review contains no application errors or warnings. The browser extension reports metadata-delivery errors from its own chrome-extension URL; these are outside site code. This report does not claim physical-device, screen-reader or OS high-contrast acceptance.
 
-passed
+No unresolved P0, P1 or P2 design findings remain. Local lint/type/build/prerender/editorial/article/URL checks pass. PR CI and production release evidence are recorded separately on the PR.
+
+final result: passed

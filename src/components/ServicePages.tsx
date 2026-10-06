@@ -111,9 +111,9 @@ function DigitalStartingPaths() {
     <div><h2 id="digital-start-title">Start with a draft. Take it as far as you want.</h2>
       <p>Make the first page in Playground, hand its files to your team, or bring the idea to Eidos Works for a scoped build.</p></div>
     <div className="service-start-paths__options">
-      <a href="/playground/"><span>01 · Free tool</span><strong>Build a page in Playground</strong><small>Arrange content, preview it and download your own editable files.</small><b aria-hidden="true">↗</b></a>
-      <a href="/shop/cinematic-starter/"><span>02 · $29 product</span><strong>Get the Cinematic Starter kit</strong><small>A separate ready-made page kit with its own checkout and terms.</small><b aria-hidden="true">↗</b></a>
-      <a href="/contact/#project-form"><span>03 · Custom service</span><strong>Ask Eidos Works to design and build it</strong><small>Tell us the goal and constraints; custom work is scoped and quoted separately.</small><b aria-hidden="true">↗</b></a>
+      <a href="/playground/"><span>Free tool</span><strong>Build a page in Playground</strong><small>Arrange content, preview it and download your own editable files.</small><b aria-hidden="true">↗</b></a>
+      <a href="/shop/cinematic-starter/"><span>$29 product</span><strong>Get the Cinematic Starter kit</strong><small>A separate ready-made page kit with its own checkout and terms.</small><b aria-hidden="true">↗</b></a>
+      <a href="/contact/#project-form"><span>Custom service</span><strong>Ask Eidos Works to design and build it</strong><small>Tell us the goal and constraints; custom work is scoped and quoted separately.</small><b aria-hidden="true">↗</b></a>
     </div>
   </section>;
 }
@@ -162,7 +162,6 @@ export function ServiceFamiliesSection() {
         <div className="ew-service-index">
           {serviceFamilies.map((service) => (
             <article key={service.slug}>
-              <span>{service.number}</span>
               <figure className={`ew-service-index__image ew-service-index__image--${service.slug}`}>
                 <img
                   src={service.image}
@@ -208,7 +207,7 @@ export function ServiceDetailPage({ slug }: { slug: ServiceSlug }) {
   return (
     <>
       <ServiceHero
-        eyebrow={`Service ${service.number}`}
+        eyebrow="Our services"
         title={service.title}
         lede={service.summary}
       />

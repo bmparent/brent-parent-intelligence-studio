@@ -92,13 +92,21 @@ async function refreshAccount(env,stripe,owner){
   return Boolean(row);
 }
 async function requirePaid(request,env,stripe,owner){await quota(env,'billing-read:'+owner.id,60,3600);if(!await refreshAccount(env,stripe,owner))fail(402,'An active paid subscription is required to save work. Your saved data can still be exported.');}
+export function liveMerchantReady(owner){
+  const requirements=owner?.requirements||{};
+  const unresolved=['currently_due','past_due','pending_verification'].some(key=>Array.isArray(requirements[key])&&requirements[key].length>0);
+  const usableBankStatuses=new Set(['new','validated','verified']);
+  const payoutBank=owner?.external_accounts?.data?.some(account=>account?.object==='bank_account'&&account.deleted!==true&&usableBankStatuses.has(account.status));
+  return owner?.details_submitted===true&&owner?.charges_enabled===true&&owner?.payouts_enabled===true&&!requirements.disabled_reason&&!unresolved&&payoutBank===true;
+}
 async function checkoutReady(env,stripe){
   if(env.QUOTE_CHECKOUT_ENABLED!=='true'||!env.STRIPE_PRICE_ID||!env.STRIPE_ACCOUNT_ID||!env.STRIPE_WEBHOOK_SECRET||!env.STRIPE_PORTAL_CONFIGURATION_ID)fail(503,'Checkout is being prepared. The free estimator is available now.');
-  const [price,owner,portal]=await Promise.all([stripe.prices.retrieve(env.STRIPE_PRICE_ID),stripe.accounts.retrieve(),stripe.billingPortal.configurations.retrieve(env.STRIPE_PORTAL_CONFIGURATION_ID)]);
+  const [price,owner,portal]=await Promise.all([stripe.prices.retrieve(env.STRIPE_PRICE_ID),stripe.accounts.retrieve(null,{expand:['external_accounts']}),stripe.billingPortal.configurations.retrieve(env.STRIPE_PORTAL_CONFIGURATION_ID)]);
   if(owner.id!==env.STRIPE_ACCOUNT_ID)fail(503,'The payment account has not been verified.');
-  if(env.QUOTE_ENVIRONMENT==='live'&&(!owner.charges_enabled||!owner.payouts_enabled))fail(503,'The payment account is not ready to accept and pay out funds.');
+  if(env.QUOTE_ENVIRONMENT==='live'&&!liveMerchantReady(owner))fail(503,'The payment account is not ready to accept and settle funds.');
   if(!price.active||price.livemode!==(env.QUOTE_ENVIRONMENT==='live')||price.currency!=='usd'||price.unit_amount!==1900||price.recurring?.interval!=='month'||price.recurring.interval_count!==1)fail(503,'The subscription price has not been verified.');
   if(!portal.active||portal.features?.subscription_cancel?.enabled!==true||portal.features.subscription_cancel.mode!=='at_period_end')fail(503,'Self-service cancellation has not been verified.');
+  if(portal.features?.payment_method_update?.enabled!==true)fail(503,'Self-service payment recovery has not been verified.');
 }
 function hostedUrl(value,host){let u;try{u=new URL(value);}catch{fail(502,'The billing link was invalid.');}if(u.protocol!=='https:'||u.hostname!==host)fail(502,'The billing link was invalid.');return u.href;}
 async function chargeSubscriptions(stripe,chargeId){
@@ -180,8 +188,13 @@ export function createWorker(services={}){
           await db.prepare('DELETE FROM quote_sessions WHERE token_hash=?').bind(await hash(token)).run();const res=json({signedOut:true});res.headers.set('set-cookie',sessionCookie(request,env,'',0));return res;
         }
         if(path==='/api/me'&&request.method==='GET'){
-          await quota(env,'me:'+owner.id,120,3600);const paid=owner.stripe_customer_id?await refreshAccount(env,stripeFor(env),owner):false;
-          return json({email:owner.email,paid});
+          await quota(env,'me:'+owner.id,120,3600);
+          let paid=false,billingStatus='not_started';
+          if(owner.stripe_customer_id){
+            try{paid=await refreshAccount(env,stripeFor(env),owner);billingStatus=paid?'active':'inactive';}
+            catch{paid=null;billingStatus='unavailable';}
+          }
+          return json({email:owner.email,paid,billingStatus,hasBillingAccount:Boolean(owner.stripe_customer_id)});
         }
         if(path==='/api/checkout'&&request.method==='POST'){
           const input=await body(request);if(input.acceptTerms!==true)fail(400,'Accept the subscription terms first.');

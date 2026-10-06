@@ -115,6 +115,7 @@ export default function Playground() {
     <div className={`pg-app ${!editing ? "pg-trying" : ""}`} data-panel={panel}>
       <header className="pg-toolbar">
         <a href="/" className="pg-brand">
+          <img className="pg-brand-mark" src="/brand/eidos-mark.svg" alt="" width="30" height="30" />
           <strong>Eidos</strong>
           <span>/ Playground</span>
         </a>

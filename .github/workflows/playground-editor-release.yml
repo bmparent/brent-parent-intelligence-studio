@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   local-editor:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -43,7 +43,24 @@ jobs:
           node scripts/verify-hero-browser.mjs
           node scripts/verify-digital-experiences-browser.mjs
           node scripts/verify-business-systems-browser.mjs
+          node scripts/verify-quote-desk-browser.mjs
           node scripts/verify-intelligent-systems-browser.mjs
+      - name: Quote Desk candidate tests and Worker dry build
+        working-directory: apps/quote-desk
+        run: |
+          npm ci --no-audit --no-fund
+          npm test
+          npm run build
+      - name: Quote Desk customer recovery with controlled API responses
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
+          QUOTE_WORKSPACE_EVIDENCE_DIR: ${{ runner.temp }}/quote-workspace
+        run: |
+          npm --prefix apps/quote-desk run preview >"$RUNNER_TEMP/quote-workspace-preview.log" 2>&1 &
+          QUOTE_PREVIEW_PID=$!
+          trap 'kill "$QUOTE_PREVIEW_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4178/ >/dev/null && break || sleep 1; done
+          node scripts/verify-quote-desk-workspace-browser.mjs
       - name: Growth desktop and mobile acceptance with controlled delivery
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
@@ -55,9 +72,9 @@ jobs:
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8788/ >/dev/null && break || sleep 1; done
           node scripts/verify-growth-browser.mjs
           npm run verify:growth-seo
-      - name: Repeat full site gates before a production upload
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Full site gates on the exact candidate before any production upload
         run: |
+          git diff --exit-code -- src/playground/glassBundle.ts functions/_shared/platform/playgroundSchema.ts
           npm run lint
           npm run test:platform
           npm run test:playground
@@ -100,7 +117,9 @@ jobs:
           PG_EVIDENCE_DIR: ${{ runner.temp }}/pg-production-evidence
           PG_BASE_URL: https://eidosworks.pages.dev
           PG_ENGINES: chromium
-        run: node scripts/verify-playground-editor-browser.mjs
+        run: |
+          node scripts/verify-playground-editor-browser.mjs
+          node scripts/verify-quote-desk-browser.mjs
       - name: M2 live Friction Review desktop and mobile acceptance
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[m2-friction-qa]')
         env:
@@ -129,6 +148,8 @@ jobs:
             ${{ runner.temp }}/growth-local
             ${{ runner.temp }}/growth-production
             ${{ runner.temp }}/growth-local.log
+            ${{ runner.temp }}/quote-workspace
+            ${{ runner.temp }}/quote-workspace-preview.log
             dist
           if-no-files-found: warn
           retention-days: 14

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {DatabaseSync} from 'node:sqlite';
 import Stripe from 'stripe';
-import {createWorker,hash,processEvent,subscriptionAccess} from '../worker.mjs';
+import {createWorker,hash,liveMerchantReady,processEvent,subscriptionAccess} from '../worker.mjs';
 import {defaults} from '../public/estimator.mjs';
 const schema=await readFile(new URL('../migrations/0001_quote_desk.sql',import.meta.url),'utf8');
 // Real SQLite executes the exact migration and ownership queries. Provider calls are fixtures.
@@ -21,7 +21,7 @@ function fixture(){
   const stripe={webhooks:signing.webhooks,prices:{async retrieve(){return {active:true,livemode:false,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}};}},accounts:{async retrieve(){return {id:'acct_a',charges_enabled:true,payouts_enabled:true};}},
     subscriptions:{async retrieve(id){calls.push(['retrieve',id]);if(!subscriptions.has(id))throw Error('not found');return subscriptions.get(id);},async list({customer}){return {data:[...subscriptions.values()].filter(s=>s.customer===customer),has_more:false};},async cancel(id){calls.push(['cancel',id]);const current=subscriptions.get(id);current.status='canceled';return current;}},
     customers:{async create(){calls.push(['customer']);return {id:'cus_new'};}},checkout:{sessions:{async create(input,options){calls.push(['checkout',input,options]);return {id:'cs_a',url:'https://checkout.stripe.com/c/pay/cs_a'};}}},
-    billingPortal:{configurations:{async retrieve(){return {active:true,features:{subscription_cancel:{enabled:true,mode:'at_period_end'}}};}},sessions:{async create(input){calls.push(['portal',input]);return {url:'https://billing.stripe.com/p/session/test_a'};}}},
+    billingPortal:{configurations:{async retrieve(){return {active:true,features:{subscription_cancel:{enabled:true,mode:'at_period_end'},payment_method_update:{enabled:true}}};}},sessions:{async create(input){calls.push(['portal',input]);return {url:'https://billing.stripe.com/p/session/test_a'};}}},
     charges:{async retrieve(){return {id:'ch_a',payment_intent:'pi_a',refunded:true};}},invoicePayments:{async list(){return {data:[{invoice:'in_a'}],has_more:false};}},invoices:{async retrieve(){return {parent:{subscription_details:{subscription:'sub_a'}}};}}
   };
   const worker=createWorker({stripeFactory:()=>stripe,fetch:async(url,options)=>{calls.push(['mail',url,JSON.parse(options.body)]);return new Response('{"id":"mail_fixture"}',{status:200});}});
@@ -46,6 +46,28 @@ test('canonical failed renewal revokes saves; data export and deletion remain av
   assert.equal((await f.worker.fetch(request('records',token,'POST',{kind:'quote',name:'Unpaid',input:defaults}),f.env)).status,402);
   const list=await (await f.worker.fetch(request('records',token),f.env)).json();assert.equal(list.records.length,1);
   assert.equal((await f.worker.fetch(request('records/'+list.records[0].id,token,'DELETE',{revision:1}),f.env)).status,200);f.env.QUOTE_DB.sqlite.close();
+});
+test('billing outage preserves authenticated read/export access without granting paid saves',async()=>{
+  const f=fixture(),token=await user(f,'a','a@example.invalid','cus_a');
+  await f.worker.fetch(request('records',token,'POST',{kind:'quote',name:'Recoverable job',input:defaults}),f.env);
+  f.stripe.subscriptions.list=async()=>{throw Error('provider unavailable');};
+  const identity=await f.worker.fetch(request('me',token),f.env);
+  assert.equal(identity.status,200);
+  assert.deepEqual(await identity.json(),{email:'a@example.invalid',paid:null,billingStatus:'unavailable',hasBillingAccount:true});
+  const records=await (await f.worker.fetch(request('records',token),f.env)).json();
+  assert.equal(records.records[0].name,'Recoverable job');
+  assert.equal((await f.worker.fetch(request('records',token,'POST',{kind:'quote',name:'Unverified save',input:defaults}),f.env)).status,503);
+  assert.equal((await f.worker.fetch(request('records',undefined),f.env)).status,401);
+  f.env.QUOTE_DB.sqlite.close();
+});
+test('checkout requires self-service payment method recovery before creating a customer or session',async()=>{
+  const f=fixture(),token=await user(f,'a','a@example.invalid',null);
+  f.stripe.billingPortal.configurations.retrieve=async()=>({active:true,features:{subscription_cancel:{enabled:true,mode:'at_period_end'},payment_method_update:{enabled:false}}});
+  const response=await f.worker.fetch(request('checkout',token,'POST',{acceptTerms:true,attemptId:crypto.randomUUID()}),f.env);
+  assert.equal(response.status,503);
+  assert.match((await response.json()).error,/payment recovery/);
+  assert.equal(f.calls.filter(call=>['customer','checkout'].includes(call[0])).length,0);
+  f.env.QUOTE_DB.sqlite.close();
 });
 test('unpaid async checkout never grants access, then paid lifecycle grants it',async()=>{
   const f=fixture(),token=await user(f,'a','a@example.invalid','cus_a');f.subscriptions.set('sub_a',sub('sub_a','cus_a',{status:'incomplete',latest_invoice:{status:'open',amount_paid:0}}));
@@ -104,6 +126,24 @@ test('live account without charges or payouts fails before any checkout',async()
   const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.accounts.retrieve=async()=>({id:'acct_a',charges_enabled:false,payouts_enabled:false});f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}});
   const requestLive=new Request('https://desk.example.invalid/api/checkout',{method:'POST',headers:{origin:'https://desk.example.invalid','content-type':'application/json',cookie:'__Host-quote_session='+token},body:JSON.stringify({attemptId:crypto.randomUUID(),acceptTerms:true})});f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
   assert.equal((await f.worker.fetch(requestLive,f.env)).status,503);assert.equal(f.calls.filter(c=>c[0]==='checkout').length,0);f.env.QUOTE_DB.sqlite.close();
+});
+test('live checkout requires submitted identity, clear requirements and a usable payout bank',async()=>{
+  const ready={id:'acct_a',details_submitted:true,charges_enabled:true,payouts_enabled:true,requirements:{disabled_reason:null,currently_due:[],past_due:[],pending_verification:[]},external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'verified'}]}};
+  assert.equal(liveMerchantReady(ready),true);
+  for(const changed of [
+    {details_submitted:false},
+    {requirements:{...ready.requirements,disabled_reason:'requirements.pending_verification'}},
+    {requirements:{...ready.requirements,pending_verification:['company.tax_id']}},
+    {external_accounts:{data:[]}},
+    {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'errored'}]}},
+    {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'verification_failed'}]}},
+    {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'tokenized_account_number_deactivated'}]}},
+    {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'unexpected_status'}]}},
+  ])assert.equal(liveMerchantReady({...ready,...changed}),false);
+  const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}});
+  const attempts=[];f.stripe.accounts.retrieve=async(...args)=>{attempts.push(args);return {...ready,details_submitted:false};};
+  const requestLive=new Request('https://desk.example.invalid/api/checkout',{method:'POST',headers:{origin:'https://desk.example.invalid','content-type':'application/json',cookie:'__Host-quote_session='+token},body:JSON.stringify({attemptId:crypto.randomUUID(),acceptTerms:true})});f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
+  assert.equal((await f.worker.fetch(requestLive,f.env)).status,503);assert.deepEqual(attempts,[[null,{expand:['external_accounts']}]]);assert.equal(f.calls.filter(c=>c[0]==='checkout').length,0);f.env.QUOTE_DB.sqlite.close();
 });
 test('magic link is hashed, one-use, expires, and creates an HttpOnly account session',async()=>{
   const f=fixture();const res=await f.worker.fetch(request('login',null,'POST',{email:'First@Example.invalid'}),f.env);assert.equal(res.status,200);

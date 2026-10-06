@@ -1,5 +1,9 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 5 Quote Desk customer-experience follow-up
+
+Brent authorized the next paid-launch work and a customer-perspective walkthrough after Stripe onboarding. The free estimator fixes draft naming, field correction and printed job details; the isolated paid candidate adds sign-in/checkout/billing-outage recovery without opening checkout. The intended merchant and inactive $19/month catalog setup are verified; hosted D1 access returns HTTP 401, the Worker is absent and real email/sandbox acceptance remains blocked. Exact evidence, candidate gates and rollback are recorded in [QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md](QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md). This work does not accept the held paired account runtime or assert revenue.
+
 Brent explicitly authorized merging the gallery and other mergeable PRs and taking the result live on September 30. This release starts from production/main `e0f5ca9c0b81542929960aa6ada075f81ad0240b` and extracts public presentation changes from the previously stacked branches. It does not merge the paired implementation candidate in site #73 or backend #67.
 
 ## Scope and impact
@@ -36,3 +40,29 @@ An illustrated services invitation moves above Selected work, which now features
 ## October 1 studio community candidate
 
 Three visibly labeled studio agent identities and a 24-prompt queue extend existing community maintenance with at most three discussion starters per week. The scheduler uses zero model API tokens, durable topic IDs, revocation checks, and no automatic agent replies. It is disabled by default. This isolated paired change starts from current public/site and backend main without importing the held integration stack. See [COMMUNITY_STUDIO_AGENTS_2026-10-01.md](COMMUNITY_STUDIO_AGENTS_2026-10-01.md) for local evidence, exact activation settings, pending hosted readback, and rollback. Source preparation and scheduled queue review do not establish production publication.
+
+## October 2 studio branding
+
+The branding update starts from public main `cf7f791db84aa886b3e1064dfc28345579f18225` and aligns favicon, previews, Organization logo, gallery assets, Playground, Quote Desk and article-card branding with the current header's lowercase e. Source scope, local checks, desktop/phone-width browser evidence, release readback requirements and rollback are recorded in [BRANDING_2026-10-02.md](BRANDING_2026-10-02.md). This public presentation change does not accept the held paired runtime. A third-party advertising draft may retain its selected image and requires regeneration or manual upload.
+
+## October 2 section numbering update
+
+Brent requested removing the numbering of sections throughout Eidos Works. Branch `codex/remove-section-numbering-20261002` starts at public main `2f403a936f0737fa5d8b3f4f3e2ba9833537ed72`. It removes decorative section, service, project, option and benefit indexes from the homepage, portfolio, service pages/overview, contact, Friction Review, Snapshot landing/report sections and account introduction. Number-only elements are removed from rendered HTML, and affected navigation/service/foundation grids close the former number columns. Titles, project disclosures, arrows, destinations and existing fragment IDs remain intact. Ordered process/build instructions, form progression, prices, data and structured-data positions retain their meaning.
+
+Local lint has zero errors and the existing Wellway fast-refresh advisory. TypeScript, client/SSR production build, prerender, editorial checks for 34 routes, source/built article validation, URL checks and Snapshot validation/signature smoke checks pass. Cloud Browser reads the canonical baseline; this session's internal preview URL returns `ERR_BLOCKED_BY_CLIENT`, and the local Playwright browser executable is unavailable. The existing exact-head CI provides desktop and 390-pixel service interaction/image/layout checks before merge. CI and post-release canonical readback are recorded on the PR; publication is not claimed by this pre-release record. No browser environment or repository browser dependency changes are included.
+
+The existing main workflow builds and verifies the source, deploys to the established Cloudflare Pages project and reads back the exact production identity. Rollback is public-main `2f403a9`. This change has no backend, provider, payment, migration or account-behavior change and does not accept the held paired-runtime gates.
+
+## October 2 creative homepage folio
+
+Brent approved the paper-collage homepage widget direction and requested implementation. The scoped candidate begins at public main `24ea6e5d25d16ff7014e32cedce9444b197c6082`. Six generated illustrations, responsive WebP sources, native service text/links and the warm-paper folio replace the previous widget art. The existing three service families, destinations, fragment ID and section-numbering removal are preserved. Local build, route, editorial and visual checks are recorded in [HOMEPAGE_FOLIO_2026-10-02.md](HOMEPAGE_FOLIO_2026-10-02.md) and the root design QA report. Exact-head CI and production readback are recorded on the PR before publication is claimed. Rollback is the baseline above. The existing held runtime gates remain open.
+
+## October 6 contact service-selection correction
+
+This narrow candidate starts from public main `5b88d3017c7dca30855d224775048cca9f2c1982` after the Quote Desk willingness-to-pay update. A campaign visitor who selected another service still saw required embroidery/price questions and submitted their answers as part of an unrelated project note. Campaign arrival now determines only the untouched service/discovery defaults; the current service determines the survey, required controls, prompt, text limit, button and inquiry/email-fallback contents. Selecting Quote Desk manually also uses the same feedback form. Campaign attribution remains governed by the existing consent rules.
+
+The existing desktop/390px Quote Desk browser gate now covers empty-survey switching away and back, every unrelated service, exclusion of retained survey answers from project payloads/email fallback, restoration of feedback answers, preserved campaign attribution and explicit discovery choice, ordinary contact entry, and manual Quote Desk selection. All inquiry and growth submissions in these checks are intercepted synthetic responses; no public inquiry or email is sent.
+
+Local lint (zero errors; existing Wellway warning), 27 platform, 22 Playground, 14 growth, 1 analytics and 6 glass tests, Snapshot smoke checks, TypeScript/client/SSR build, prerender, editorial, source/built article validation URL checks and Pages Functions compilation pass. Article source fetching is skipped because no article content changes. Local Chromium cannot open its required process socket in this execution environment; rendered verification is performed by the existing exact-head GitHub browser workflow and recorded on the draft PR. Final exact-head CI results are recorded there before claiming readiness.
+
+No provider configuration, backend, credentials, billing, deployment workflow or held runtime #73/#67 changes are included. This draft does not authorize merge or deployment. Source rollback is the public-main baseline above; no data migration is involved.

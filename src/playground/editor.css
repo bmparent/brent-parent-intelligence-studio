@@ -100,6 +100,12 @@
   font-size: 23px;
   letter-spacing: -1px;
 }
+.pg-brand-mark {
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  flex-shrink: 0;
+}
 .pg-brand span {
   font-size: 16px;
   font-weight: 400;
