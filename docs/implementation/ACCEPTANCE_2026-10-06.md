@@ -32,6 +32,8 @@ The existing isolated-preview workflow recognizes the successor branch in additi
 
 The successor PR must retain the final exact-head quality, three-engine editor, desktop/390px contact selection, Playground handoff, service, growth and Wellway checks. Its guarded isolated upload must record the exact site/backend pair, provider deployment and delivered asset hashes. Failed or missing evidence remains open.
 
+The first recovered browser run exposed a WebKit desktop reload race: the device-save status painted before the passive effect removed the old unsaved-work exit guard. The guard now installs/removes in a layout effect in the same commit as the status, retaining the warning for dirty work. Exact browser reload and document equality assertions remain intact; a fresh exact-head run is required.
+
 ## Release and remaining gates
 
 #97 merged at public main `a6faf20fbedffda38f01f3052a3df9a8d541c4b4`. Its own main release workflow must finish deployment and production readback before the correction is called live. Rollback for that narrow correction is `5b88d3017c7dca30855d224775048cca9f2c1982`.

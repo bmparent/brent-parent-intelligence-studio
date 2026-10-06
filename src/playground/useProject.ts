@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useReducer, useState } from "react";
 import { createProject, type Project } from "./model";
 import { enableBlocks } from './authoring';
 import { loadWorkspace, saveWorkspace, type Snapshot } from "./storage";
@@ -70,7 +70,9 @@ export function useProject() {
   const dirty =
     ready &&
     (savedState?.project !== project || savedState?.snapshots !== snapshots || savedState?.generation !== editVersion);
-  useEffect(() => {
+  // Keep the exit guard in the same commit as the visible save status. A passive
+  // cleanup can leave the old warning active after "Saved on this device" paints.
+  useLayoutEffect(() => {
     if (!dirty) return;
     const beforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
