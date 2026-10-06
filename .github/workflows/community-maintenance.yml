@@ -3,25 +3,24 @@ on:
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch:
-permissions: {}
+  push:
+    branches: [main]
+    paths: ['functions/_shared/platform/studioAgents.ts', 'scripts/community-maintenance.mjs', '.github/workflows/community-maintenance.yml']
+permissions:
+  contents: read
 jobs:
   maintain:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
       - name: Run maintenance when connected
         env:
           EIDOS_MAINTENANCE_TOKEN: ${{ secrets.EIDOS_MAINTENANCE_TOKEN }}
           EIDOS_PLATFORM_TOKEN: ${{ secrets.EIDOS_PLATFORM_TOKEN }}
-        shell: bash
-        run: |
-          if [ -z "$EIDOS_MAINTENANCE_TOKEN" ] || [ -z "$EIDOS_PLATFORM_TOKEN" ]; then
-            echo "Maintenance requires both configured service credentials; no request was made."
-            exit 1
-          fi
-          curl --fail-with-body --silent --show-error --max-time 45 \
-            --request POST \
-            --header "Authorization: Bearer $EIDOS_MAINTENANCE_TOKEN" \
-            --header "x-eidos-platform-token: $EIDOS_PLATFORM_TOKEN" \
-            --header "x-eidos-site-origin: https://eidos-works.com" \
-            https://eidos-sentinel-lab.vercel.app/api/works/v1/api/community/maintenance
+        run: node scripts/community-maintenance.mjs
