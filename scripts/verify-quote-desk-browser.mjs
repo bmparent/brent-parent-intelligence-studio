@@ -9,6 +9,125 @@ const evidence = process.env.PG_EVIDENCE_DIR || '/tmp/eidos-quote-desk';
 await mkdir(evidence, { recursive: true });
 const browser = await chromium.launch();
 
+async function verifyContactServiceSelection(page, width) {
+  const feedbackService = 'Quote Desk workspace feedback';
+  const generalPrompt = 'What needs to become clearer, easier, or more useful?';
+  const feedbackPrompt = 'What should Quote Desk save, reuse, or plan for you?';
+  const volumeLabel = 'About how many embroidery quotes do you build in a typical week?';
+  const priceLabel = 'If it handled that workflow well, how does $19/month feel?';
+  const problem = 'Synthetic browser check: please improve our project inquiry workflow.';
+  const submissions = [];
+  await page.route(/^https:\/\/([^/]+\.)?(googletagmanager|google-analytics)\.com\//, route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
+  await page.route('**/api/growth/events', route => route.fulfill({ status: 200, contentType: 'application/json', body: '{"accepted":true}' }));
+  await page.route('**/api/project-inquiries', async route => {
+    submissions.push(route.request().postDataJSON());
+    // Keep the draft so repeated service changes and email fallback can be inspected.
+    await route.fulfill({ status: 200, contentType: 'application/json', body: '{"state":"fallback","message":"Synthetic service-switch acceptance."}' });
+  });
+  // Synthetic consent lets this check prove attribution survives changing the service.
+  await page.evaluate(() => {
+    localStorage.setItem('eidos.analytics.v1', 'granted');
+    sessionStorage.removeItem('eidos.growth.v1');
+  });
+  await page.reload({ waitUntil: 'networkidle' });
+  const form = page.locator('.ew-contact-form');
+  const service = page.getByLabel('What can we help with?');
+  const foundVia = page.getByLabel('How did you find Eidos Works?');
+  await page.waitForFunction(() => document.querySelector('.ew-contact-form select')?.value === 'Quote Desk workspace feedback');
+  await page.getByLabel('Name', { exact: true }).fill('Eidos Works QA');
+  await page.getByLabel('Email', { exact: true }).fill('qa@example.invalid');
+  await page.getByLabel(feedbackPrompt).fill(problem);
+  assert.equal(await form.evaluate(element => element.checkValidity()), false, 'feedback questions are required');
+
+  await service.selectOption({ label: 'Digital Experiences' });
+  await page.getByLabel(generalPrompt).fill('');
+  await page.getByLabel(generalPrompt).focus();
+  await page.keyboard.insertText('x'.repeat(1600));
+  assert.equal(await page.getByLabel(generalPrompt).evaluate(element => element.checkValidity()), true);
+  await service.selectOption({ label: feedbackService });
+  assert.equal((await page.getByLabel(feedbackPrompt).inputValue()).length, 1600, 'switching services never trims the project draft');
+  assert.equal(await page.getByLabel(feedbackPrompt).evaluate(element => element.validity.tooLong), true, 'feedback text limit requires correction before submission');
+  await service.selectOption({ label: 'Digital Experiences' });
+  assert.equal((await page.getByLabel(generalPrompt).inputValue()).length, 1600);
+  assert.equal(await page.getByLabel(generalPrompt).evaluate(element => element.checkValidity()), true);
+  await page.getByLabel(generalPrompt).fill(problem);
+
+  async function submitFixture(buttonName) {
+    const count = submissions.length;
+    const response = page.waitForResponse(response => new URL(response.url()).pathname === '/api/project-inquiries');
+    await page.getByRole('button', { name: buttonName, exact: true }).click();
+    await response;
+    await page.getByRole('button', { name: buttonName, exact: true }).waitFor();
+    assert.equal(submissions.length, count + 1);
+    return submissions.at(-1);
+  }
+  async function assertGeneralService(label) {
+    await service.selectOption({ label });
+    assert.equal(await page.getByLabel(volumeLabel).count(), 0, 'unrelated service has no embroidery requirement');
+    assert.equal(await page.getByLabel(priceLabel).count(), 0, 'unrelated service has no price-intent requirement');
+    assert.equal(await form.getByRole('note').count(), 0, 'unrelated service has no Quote Desk explanation');
+    assert.equal(await page.getByLabel(generalPrompt).getAttribute('maxlength'), '1600');
+    assert.equal(await page.getByRole('button', { name: 'Send Project Note', exact: true }).isVisible(), true);
+    assert.equal(await form.evaluate(element => element.checkValidity()), true, 'project submission is not blocked by hidden survey fields');
+    const submitted = await submitFixture('Send Project Note');
+    assert.equal(submitted.projectType, label);
+    assert.equal(submitted.problem, problem, 'survey answers are excluded from unrelated service payloads');
+    assert.ok(!submitted.brief.includes('Typical weekly embroidery quotes:'), 'email brief excludes survey answers');
+    assert.ok(!submitted.brief.includes('Interest at the proposed $19/month:'));
+    const mailto = new URL(await page.getByRole('link', { name: 'Email this note', exact: true }).getAttribute('href'));
+    assert.ok(!mailto.searchParams.get('body').includes('Typical weekly embroidery quotes:'));
+    assert.equal(submitted.utmSource, 'quote-desk', 'campaign attribution survives a changed service');
+    assert.equal(submitted.utmMedium, 'owned-tool');
+    assert.equal(submitted.utmCampaign, 'quote-desk-validation');
+    return submitted;
+  }
+
+  const switched = await assertGeneralService('Digital Experiences');
+  assert.equal(switched.foundVia, 'Saw one of our projects', 'campaign discovery default is preserved');
+  await page.screenshot({ path: path.join(evidence, `contact-service-switch-${width}.png`), fullPage: true });
+  await service.selectOption({ label: feedbackService });
+  assert.equal(await form.evaluate(element => element.checkValidity()), false, 'switching back restores required questions');
+  await page.getByLabel(volumeLabel).selectOption({ label: '6–15' });
+  await page.getByLabel(priceLabel).selectOption({ label: 'I might try it' });
+  await foundVia.selectOption({ label: 'Referral' });
+  for (const label of ['Digital Experiences', 'Business Systems', 'Intelligent Systems', 'Prototype / Product Exploration', 'Agentic SEO', 'Eidos Snapshot', 'Something else']) {
+    const submitted = await assertGeneralService(label);
+    assert.equal(submitted.foundVia, 'Referral', 'explicit discovery choice is preserved');
+  }
+  await service.selectOption({ label: feedbackService });
+  assert.equal(await page.getByLabel(volumeLabel).inputValue(), '6–15', 'switching back retains the feedback draft');
+  assert.equal(await page.getByLabel(priceLabel).inputValue(), 'I might try it');
+  assert.equal(await page.getByLabel(feedbackPrompt).getAttribute('maxlength'), '1400');
+  const restored = await submitFixture('Send Quote Desk Feedback');
+  assert.equal(restored.projectType, feedbackService);
+  assert.match(restored.problem, /Typical weekly embroidery quotes: 6–15/);
+  assert.match(restored.problem, /Interest at the proposed \$19\/month: I might try it/);
+  const feedbackMailto = new URL(await page.getByRole('link', { name: 'Email this note', exact: true }).getAttribute('href'));
+  assert.match(feedbackMailto.searchParams.get('body'), /Typical weekly embroidery quotes: 6–15/);
+
+  await page.goto(base + '/contact/', { waitUntil: 'networkidle' });
+  assert.equal(await service.inputValue(), 'Digital Experiences', 'ordinary visits keep the existing default');
+  assert.equal(await foundVia.inputValue(), '', 'ordinary visits do not infer discovery source');
+  assert.equal(await page.getByLabel(volumeLabel).count(), 0);
+  assert.equal(await page.getByLabel(generalPrompt).getAttribute('maxlength'), '1600');
+  await page.getByLabel('Name', { exact: true }).fill('Eidos Works QA');
+  await page.getByLabel('Email', { exact: true }).fill('qa@example.invalid');
+  await page.getByLabel(generalPrompt).fill(problem);
+  const ordinary = await submitFixture('Send Project Note');
+  assert.equal(ordinary.projectType, 'Digital Experiences');
+  assert.equal(ordinary.problem, problem);
+  await service.selectOption({ label: feedbackService });
+  assert.equal(await page.getByLabel(volumeLabel).isVisible(), true, 'manually selected feedback gets the same questions without a campaign URL');
+  assert.equal(await page.getByLabel(priceLabel).isVisible(), true);
+  assert.equal(await form.evaluate(element => element.checkValidity()), false);
+  await page.getByLabel(volumeLabel).selectOption({ label: '1–5' });
+  await page.getByLabel(priceLabel).selectOption({ label: 'Too expensive for me' });
+  const manual = await submitFixture('Send Quote Desk Feedback');
+  assert.equal(manual.projectType, feedbackService);
+  assert.match(manual.problem, /Typical weekly embroidery quotes: 1–5/);
+  assert.match(manual.problem, /Interest at the proposed \$19\/month: Too expensive for me/);
+}
+
 // Real customer flow: owned service page -> free estimate -> printable result -> inquiry.
 // No inquiry, account, email or payment is submitted by this check.
 try {
@@ -122,6 +241,8 @@ try {
           assert.equal(submittedFeedback.foundVia, 'Saw one of our projects');
           assert.match(submittedFeedback.problem, /Typical weekly embroidery quotes: 6–15/);
           assert.match(submittedFeedback.problem, /Interest at the proposed \$19\/month: I might try it/);
+          await verifyContactServiceSelection(page, width);
+          assert.deepEqual(errors, [], 'no browser errors after contact service changes');
         }
         console.log(`PASS Quote Desk ${width}/${storage}: discovery, estimate, print, validation recovery, honest availability, no account requests${storage === 'available' ? ', inquiry navigation' : ''}`);
       } finally { await context.close(); }

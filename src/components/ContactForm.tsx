@@ -51,9 +51,10 @@ export function ContactForm() {
   const [form, setForm] = useState(initialForm);
   const [serviceTouched, setServiceTouched] = useState(false);
   const [foundViaTouched, setFoundViaTouched] = useState(false);
-  const quoteDeskFeedback = useSyncExternalStore(subscribeToLocation, quoteDeskFeedbackSnapshot, serverQuoteDeskFeedbackSnapshot);
-  const selectedService = quoteDeskFeedback && !serviceTouched ? quoteDeskFeedbackService : form.service;
-  const selectedFoundVia = quoteDeskFeedback && !foundViaTouched ? 'Saw one of our projects' : form.foundVia;
+  const quoteDeskCampaign = useSyncExternalStore(subscribeToLocation, quoteDeskFeedbackSnapshot, serverQuoteDeskFeedbackSnapshot);
+  const selectedService = quoteDeskCampaign && !serviceTouched ? quoteDeskFeedbackService : form.service;
+  const selectedFoundVia = quoteDeskCampaign && !foundViaTouched ? 'Saw one of our projects' : form.foundVia;
+  const quoteDeskFeedback = selectedService === quoteDeskFeedbackService;
   const [submitState, setSubmitState] = useState<SubmitState>({
     status: 'idle',
     message: '',
