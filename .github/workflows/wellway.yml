@@ -7,14 +7,7 @@ permissions:
   contents: read
 jobs:
   wellway:
-    runs-on: ubuntu-latest
-    container:
-      # Match the isolated Playwright package; browsers and OS dependencies are preinstalled.
-      image: mcr.microsoft.com/playwright:v1.58.2-noble
-      options: --user 1001
-    defaults:
-      run:
-        shell: bash
+    runs-on: ubuntu-22.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -32,9 +25,10 @@ jobs:
         run: |
           node scripts/update-wellway-demo.mjs
           git diff --exit-code -- public/demos/wellway/index.html
-      - name: Install isolated version-matched browser tooling
+      - name: Install isolated browser tooling
         run: |
           npm install --prefix "$RUNNER_TEMP/wellway-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/wellway-browser/node_modules/.bin/playwright" install --with-deps chromium firefox webkit
       - name: Actual member and advisor workflows, plus mocked AI
         env:
           WELLWAY_AI_ENABLED: 'false'

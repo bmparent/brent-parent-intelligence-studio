@@ -1,5 +1,9 @@
 # Candidate acceptance and release gates
 
+## Current paired-candidate recovery — 2026-10-06
+
+The successor branch `codex/works-paired-recovery-20261006` preserves #73 and merges public main through the #97 contact correction, retaining the unchanged #67 backend. [The October 6 recovery record](ACCEPTANCE_2026-10-06.md) names the recovery owner, parents, conflict resolutions, local checks, guarded preview path and still-open hosted gates. Use the successor PR's final exact SHA and receipts, not historical uploads below. The paired candidate remains draft / production NO-GO; branded-mailbox work is deferred.
+
 ## Current paired-preview work — 2026-10-02
 
 The paired site draft now incorporates public main through `6ae67b5e8e2927dfe18c610ba499d22a518f50e2`, preserving the candidate account and Playground work alongside the current homepage, service pages and branding. The backend remains `97d806d4d0a7a71575090e10d5e81aca1036b4e4`. Local checks and 76-file contract parity pass. The earlier exact isolated upload and bounded HTTP checks passed on site `9c26b1549d24aa18f198d74322d5c6fd2a6175ed`; account/Google configuration is present but checkout reports unavailable. Protected database/provider configuration and real user/payment checks remain open. [The October 2 record](ACCEPTANCE_2026-10-02.md) describes the narrowly scoped CI upload to the existing test Pages project and separates exact hosted receipts from still-open consent, ownership, inbox, signed TEST payment and physical-device gates. Production remains NO-GO; the historical sections below describe their own revisions.
@@ -75,6 +79,10 @@ The paired candidate now incorporates current main's editorial voice and studio/
 
 ## Public-site release acceptance — 2026-09-30
 
+## October 5 Quote Desk customer-experience follow-up
+
+Brent authorized the next paid-launch work and a customer-perspective walkthrough after Stripe onboarding. The free estimator fixes draft naming, field correction and printed job details; the isolated paid candidate adds sign-in/checkout/billing-outage recovery without opening checkout. The intended merchant and inactive $19/month catalog setup are verified; hosted D1 access returns HTTP 401, the Worker is absent and real email/sandbox acceptance remains blocked. Exact evidence, candidate gates and rollback are recorded in [QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md](QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md). This work does not accept the held paired account runtime or assert revenue.
+
 Brent explicitly authorized merging the gallery and other mergeable PRs and taking the result live on September 30. This release starts from production/main `e0f5ca9c0b81542929960aa6ada075f81ad0240b` and extracts public presentation changes from the previously stacked branches. It does not merge the paired implementation candidate in site #73 or backend #67.
 
 ### Scope and impact
@@ -127,3 +135,13 @@ The existing main workflow builds and verifies the source, deploys to the establ
 ## October 2 creative homepage folio
 
 Brent approved the paper-collage homepage widget direction and requested implementation. The scoped candidate begins at public main `24ea6e5d25d16ff7014e32cedce9444b197c6082`. Six generated illustrations, responsive WebP sources, native service text/links and the warm-paper folio replace the previous widget art. The existing three service families, destinations, fragment ID and section-numbering removal are preserved. Local build, route, editorial and visual checks are recorded in [HOMEPAGE_FOLIO_2026-10-02.md](HOMEPAGE_FOLIO_2026-10-02.md) and the root design QA report. Exact-head CI and production readback are recorded on the PR before publication is claimed. Rollback is the baseline above. The existing held runtime gates remain open.
+
+## October 6 contact service-selection correction
+
+This narrow candidate starts from public main `5b88d3017c7dca30855d224775048cca9f2c1982` after the Quote Desk willingness-to-pay update. A campaign visitor who selected another service still saw required embroidery/price questions and submitted their answers as part of an unrelated project note. Campaign arrival now determines only the untouched service/discovery defaults; the current service determines the survey, required controls, prompt, text limit, button and inquiry/email-fallback contents. Selecting Quote Desk manually also uses the same feedback form. Campaign attribution remains governed by the existing consent rules.
+
+The existing desktop/390px Quote Desk browser gate now covers empty-survey switching away and back, every unrelated service, exclusion of retained survey answers from project payloads/email fallback, restoration of feedback answers, preserved campaign attribution and explicit discovery choice, ordinary contact entry, and manual Quote Desk selection. All inquiry and growth submissions in these checks are intercepted synthetic responses; no public inquiry or email is sent.
+
+Local lint (zero errors; existing Wellway warning), 27 platform, 22 Playground, 14 growth, 1 analytics and 6 glass tests, Snapshot smoke checks, TypeScript/client/SSR build, prerender, editorial, source/built article validation URL checks and Pages Functions compilation pass. Article source fetching is skipped because no article content changes. Local Chromium cannot open its required process socket in this execution environment; rendered verification is performed by the existing exact-head GitHub browser workflow and recorded on the draft PR. Final exact-head CI results are recorded there before claiming readiness.
+
+No provider configuration, backend, credentials, billing, deployment workflow or held runtime #73/#67 changes are included. This draft does not authorize merge or deployment. Source rollback is the public-main baseline above; no data migration is involved.
