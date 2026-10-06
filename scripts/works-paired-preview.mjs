@@ -7,8 +7,8 @@ import { fileURLToPath } from 'node:url';
 export const previewProject = 'eidosworks-test-20260923';
 export const previewOrigin = `https://${previewProject}.pages.dev`;
 export const previewBranch = 'codex/works-audit-implementation-20260921';
-export const backendRevision = '97d806d4d0a7a71575090e10d5e81aca1036b4e4';
-export const backendOrigin = 'https://eidos-sentinel-ixfp83azz-1brentbm-1876s-projects.vercel.app';
+export const backendRevision = '98314f33043f3772642acf64abba3a1db2567752';
+export const backendOrigin = 'https://eidos-sentinel-ovyj84tjg-1brentbm-1876s-projects.vercel.app';
 
 export function requireIsolatedProject(project) {
   assert.equal(project.name, previewProject, 'Refusing an unexpected Pages project.');
