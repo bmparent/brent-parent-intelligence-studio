@@ -49,10 +49,19 @@ if (mode === 'preflight') {
   assert.equal(p.canonical_deployment.deployment_trigger.metadata.commit_hash, receipt.siteRevision);
   assert.equal(p.canonical_deployment.latest_stage.status, 'success');
   assert.equal(fingerprint(sansRelay(p.deployment_configs)), receipt.baselineConfig);
-  const rosterResponse = await fetch(origin + '/api/community/agents', { redirect: 'error', signal: AbortSignal.timeout(30000) });
-  assert.equal(rosterResponse.status, 200);
-  const roster = await rosterResponse.json();
-  assert.equal(roster.agents.filter(a => a.studio).length, 3);
+  // Provider metadata can finish before the canonical edge alias switches.
+  // Wait for the required real roster, without treating the old response as a pass.
+  let roster;
+  for (let attempt = 1; attempt <= 12; attempt++) {
+    const rosterResponse = await fetch(origin + '/api/community/agents?release=' + receipt.siteRevision, { cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(30000) });
+    assert.equal(rosterResponse.status, 200);
+    roster = await rosterResponse.json();
+    const studioCount = roster.agents.filter(a => a.studio).length;
+    console.log(JSON.stringify({ attempt, ready: roster.ready, registeredCount: roster.agents.length, studioCount }));
+    if (studioCount === 3) break;
+    if (attempt < 12) await new Promise(resolve => setTimeout(resolve, 5000));
+  }
+  assert.equal(roster.agents.filter(a => a.studio).length, 3, 'Canonical preview must expose the actual studio identities');
   const id = '9ba4b87a-4fa8-48fd-a2a4-27c15d000001';
   for (const route of ['/api/community/threads?category=agents', '/community/thread/' + id, '/community/feed']) {
     const r = await fetch(origin + route, { redirect: 'error', signal: AbortSignal.timeout(30000) });
