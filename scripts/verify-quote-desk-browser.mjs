@@ -109,15 +109,19 @@ try {
           await page.waitForFunction(() => document.querySelector('.ew-contact-form select')?.value === 'Quote Desk workspace feedback');
           assert.equal(await page.getByLabel('What can we help with?').inputValue(), 'Quote Desk workspace feedback');
           assert.equal(await page.getByLabel('How did you find Eidos Works?').inputValue(), 'Saw one of our projects');
-          assert.match(await page.locator('.ew-contact-form').innerText(), /whether the proposed \$19\/month feels justified/);
+          assert.match(await page.locator('.ew-contact-form').innerText(), /Two quick signals help us decide/);
           assert.equal(await page.getByRole('button', { name: 'Send Quote Desk Feedback' }).isVisible(), true);
           await page.getByLabel('Name', { exact: true }).fill('Eidos Works QA');
           await page.getByLabel('Email', { exact: true }).fill('qa@example.invalid');
+          await page.getByLabel('About how many embroidery quotes do you build in a typical week?').selectOption({ label: '6–15' });
+          await page.getByLabel('If it handled that workflow well, how does $19/month feel?').selectOption({ label: 'I might try it' });
           await page.getByLabel('What should Quote Desk save, reuse, or plan for you?').fill('Synthetic browser check for the Quote Desk feedback classification.');
           await page.getByRole('button', { name: 'Send Quote Desk Feedback' }).click();
           await page.getByText('Synthetic browser acceptance.').waitFor();
           assert.equal(submittedFeedback.projectType, 'Quote Desk workspace feedback');
           assert.equal(submittedFeedback.foundVia, 'Saw one of our projects');
+          assert.match(submittedFeedback.problem, /Typical weekly embroidery quotes: 6–15/);
+          assert.match(submittedFeedback.problem, /Interest at the proposed \$19\/month: I might try it/);
         }
         console.log(`PASS Quote Desk ${width}/${storage}: discovery, estimate, print, validation recovery, honest availability, no account requests${storage === 'available' ? ', inquiry navigation' : ''}`);
       } finally { await context.close(); }
