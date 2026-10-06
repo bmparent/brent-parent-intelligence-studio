@@ -1,0 +1,6 @@
+import {mkdir,writeFile} from 'node:fs/promises';
+const base=process.argv[2]||'http://127.0.0.1:5173';
+const u=new URL(base);if(!['127.0.0.1','localhost','eidos-works.com'].includes(u.hostname))throw Error('Use local or canonical site.');
+const paths=['/','/services/','/services/digital-experiences/','/services/business-systems/','/services/intelligent-systems/','/insights/','/friction-review/','/contact/','/account/','/account/reset/','/shop/cinematic-starter/','/kit-preview/','/playground/','/demos/wellway/'];
+const results=[];for(const path of paths){try{const r=await fetch(base+path,{headers:{'user-agent':'EidosWorksRouteCheck/1.0'},signal:AbortSignal.timeout(15000)});const html=await r.text();results.push({path,status:r.status,title:html.match(/<title>(.*?)<\/title>/s)?.[1]||null,ok:r.ok&&html.includes('<html')&&!html.includes('That page does not exist.')});}catch{results.push({path,ok:false,reason:'request_failed'})}}
+await mkdir('artifacts/implementation/2026-09-21',{recursive:true});await writeFile('artifacts/implementation/2026-09-21/route-crawl.json',JSON.stringify({base,at:new Date().toISOString(),meaning:'HTTP and document checks; browser interaction is separate.',results},null,2));console.log(JSON.stringify(results));if(results.some(r=>!r.ok))process.exitCode=1;

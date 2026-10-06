@@ -1,0 +1,91 @@
+{
+  "base": "http://127.0.0.1:4173",
+  "at": "2026-09-21T23:55:04.255Z",
+  "meaning": "HTTP and document checks; browser interaction is separate.",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "title": "Eidos Works | Creative Development &amp; Intelligent Systems",
+      "ok": true
+    },
+    {
+      "path": "/services/",
+      "status": 200,
+      "title": "Services | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/services/digital-experiences/",
+      "status": 200,
+      "title": "Digital Experience Design &amp; Development | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/services/business-systems/",
+      "status": 200,
+      "title": "Business Systems &amp; Workflow Tools | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/services/intelligent-systems/",
+      "status": 200,
+      "title": "Focused AI &amp; Intelligent Systems | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/insights/",
+      "status": 200,
+      "title": "Insights | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/friction-review/",
+      "status": 200,
+      "title": "Friction Review | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/contact/",
+      "status": 200,
+      "title": "Start a Project | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/account/",
+      "status": 200,
+      "title": "Your Account | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/account/reset/",
+      "status": 200,
+      "title": "Eidos Works | Creative Development &amp; Intelligent Systems",
+      "ok": true
+    },
+    {
+      "path": "/shop/cinematic-starter/",
+      "status": 200,
+      "title": "Cinematic Starter — $29 | Eidos Works",
+      "ok": true
+    },
+    {
+      "path": "/kit-preview/",
+      "status": 200,
+      "title": "Afterlight — Cinematic Starter",
+      "ok": true
+    },
+    {
+      "path": "/playground/",
+      "status": 200,
+      "title": "Eidos Playground | Shape your next website",
+      "ok": true
+    },
+    {
+      "path": "/demos/wellway/",
+      "status": 200,
+      "title": "Wellway · Your wellness journey",
+      "ok": true
+    }
+  ]
+}

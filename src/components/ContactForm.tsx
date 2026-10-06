@@ -1,9 +1,10 @@
 import { growthContext, inquiryAttribution } from '../lib/growth';
 import { track } from '../lib/analytics';
 import { isQuoteDeskFeedback, quoteDeskFeedbackService } from '../lib/contactIntent';
-import { FormEvent, useState, useSyncExternalStore } from 'react';
+import { FormEvent, useEffect, useState, useSyncExternalStore } from 'react';
 import { projectMailto, siteConfig } from '../config/site';
 import { EmailAddress, SafeEmailLink } from './EmailAddress';
+import { Turnstile } from './Turnstile';
 
 type FormState = {
   name: string;
@@ -48,7 +49,17 @@ type SubmitState =
     };
 
 export function ContactForm() {
-  const [form, setForm] = useState(initialForm);
+  // An explicit Playground handoff carries context only; no design content is
+  // placed in the URL or submitted without the visitor reviewing this note.
+  const [form, setForm] = useState<FormState>(initialForm);
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('from') !== 'playground') return;
+    const timer = window.setTimeout(() => setForm(current => ({ ...current,
+      foundVia: current.foundVia || 'Eidos Playground',
+      problem: current.problem || 'I made a draft in the Eidos Playground and would like help refining and launching it. I can share my exported starter pack after we connect.',
+    })), 0);
+    return () => window.clearTimeout(timer);
+  }, []);
   const [serviceTouched, setServiceTouched] = useState(false);
   const [foundViaTouched, setFoundViaTouched] = useState(false);
   const quoteDeskCampaign = useSyncExternalStore(subscribeToLocation, quoteDeskFeedbackSnapshot, serverQuoteDeskFeedbackSnapshot);
@@ -59,6 +70,8 @@ export function ContactForm() {
     status: 'idle',
     message: '',
   });
+  const [challenge, setChallenge] = useState('');
+  const [challengeReset, setChallengeReset] = useState(0);
 
   const submittedProblem = quoteDeskFeedback
     ? [
@@ -111,8 +124,11 @@ export function ContactForm() {
           brief,
           ...inquiryAttribution(),
           growth: growthContext(),
+          challenge,
         }),
       });
+      setChallenge('');
+      setChallengeReset(value => value + 1);
       const data = (await response.json()) as {
         state?: string;
         submitted?: boolean;
@@ -155,6 +171,8 @@ export function ContactForm() {
         mailto: fallbackMailto,
       });
     } catch {
+      setChallenge('');
+      setChallengeReset(value => value + 1);
       setSubmitState({
         status: 'fallback',
         message:
@@ -285,6 +303,7 @@ export function ContactForm() {
             <option>Reddit / community</option>
             <option>Referral</option>
             <option>Saw one of our projects</option>
+            <option>Eidos Playground</option>
             <option>Other</option>
           </select>
         </label>
@@ -301,6 +320,7 @@ export function ContactForm() {
         </label>
       </div>
 
+      <Turnstile onToken={setChallenge} action="inquiry" resetKey={challengeReset} />
       <div className="ew-form-actions">
         <button
           className="ew-button ew-button--primary"

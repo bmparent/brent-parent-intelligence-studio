@@ -52,7 +52,11 @@ Stripe webhook route: `https://eidos-works.com/api/stripe/webhook`
 
 ### Optional Cloudflare provisioning values
 
-`CLOUDFLARE_ACCOUNT_ID`, `D1_DATABASE_ID`, `KV_NAMESPACE_ID`, and `R2_BUCKET` are optional provisioning references, not browser variables. The current runtime uses the named `SNAPSHOT_STORE` KV binding; it does not assume D1 or R2 exists. `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` are reserved for the required pre-launch abuse-control work and should not be set as though Turnstile were already implemented.
+`CLOUDFLARE_ACCOUNT_ID`, `D1_DATABASE_ID`, `KV_NAMESPACE_ID`, and `R2_BUCKET` are optional provisioning references, not browser variables. The current Snapshot runtime uses the named `SNAPSHOT_STORE` KV binding; it does not assume Snapshot D1 or R2 exists. Turnstile is implemented for member/community flows and the candidate inquiry form; that does not close Snapshot's separate pre-launch abuse-control gate.
+
+### Security sprint candidate
+
+The paired owner Access, audit, inquiry quotas, daily AI budgets and enforced static CSP have separate preview configuration and acceptance gates in [the security sprint record](implementation/SECURITY_SPRINT_2026-09-25.md). Apply the additive platform and growth migrations before deploying this code. In particular, direct form delivery requires `EIDOS_GROWTH_DB`, `EIDOS_PLATFORM_TOKEN`, `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` on Pages; absent bindings yield the prepared email fallback.
 
 ### Optional inquiry and Command Center delivery
 

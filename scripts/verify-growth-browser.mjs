@@ -13,7 +13,10 @@ for(const [engine,width,height] of [['chromium',1440,1000],['webkit',390,844]]) 
     // QA headers belong only to our origin; adding them to fonts/scripts triggers foreign CORS preflights.
     await context.route(`${new URL(base).origin}/**`,route=>route.continue({headers:{...route.request().headers(),'x-eidos-qa':'automation'}}));
     // Local acceptance isolates the third-party tag; production acceptance uses the actual tag.
-    if(local)await context.route('https://www.googletagmanager.com/**',route=>route.fulfill({status:200,body:''}));
+    if(local){
+      await context.route('https://www.googletagmanager.com/**',route=>route.fulfill({status:200,body:''}));
+      await context.route('https://challenges.cloudflare.com/turnstile/v0/api.js**',route=>route.fulfill({status:200,contentType:'application/javascript',body:'window.turnstile={render:(element,options)=>{element.dataset.verified="true";options.callback("verified-local-token");return "local-widget"},remove:()=>{},reset:()=>{}};'}));
+    }
     const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
     page.on('console',m=>{if(m.type()==='error' && !(m.text().includes('404') && m.location().url.includes('/growth-nonexistent-page')))errors.push(m.text());});
     page.on('request',r=>{if(r.url().includes('/api/growth/events')&&r.method()==='POST')events.push(r.postDataJSON());});
@@ -41,6 +44,7 @@ for(const [engine,width,height] of [['chromium',1440,1000],['webkit',390,844]]) 
     await form.locator('textarea').first().fill('Eidos Works QA: controlled growth release validation. This is not a customer lead.');
     await page.keyboard.press('Tab');assert.ok(await page.evaluate(()=>document.activeElement!==document.body),'Keyboard focus missing');
     if(submit && (local||engine==='chromium')) {
+      if(local)await page.waitForFunction(()=>document.querySelector('.ew-friction-form .ew-turnstile')?.dataset.verified==='true');
       const [r]=await Promise.all([page.waitForResponse(r=>r.url().endsWith('/api/project-inquiries')&&r.request().method()==='POST'),form.getByRole('button',{name:'Send the Friction →'}).click()]);
       const sent=r.request().postDataJSON(),body=await r.json();assert.equal(body.submitted,true);assert.equal(body.measurementRecorded,true);assert.equal(sent.landingPage,'/central-florida');assert.equal(sent.utmSource,'linkedin');
       await page.getByText('Got it. We’ll take a look.',{exact:true}).waitFor();

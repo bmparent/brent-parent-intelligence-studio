@@ -1,0 +1,187 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+export const previewProject = 'eidosworks-test-20260923';
+export const previewOrigin = `https://${previewProject}.pages.dev`;
+export const previewBranch = 'codex/works-audit-implementation-20260921';
+export const backendRevision = '98314f33043f3772642acf64abba3a1db2567752';
+export const backendOrigin = 'https://eidos-sentinel-ovyj84tjg-1brentbm-1876s-projects.vercel.app';
+
+export function requireIsolatedProject(project) {
+  assert.equal(project.name, previewProject, 'Refusing an unexpected Pages project.');
+  assert.equal(project.production_branch, previewBranch, 'The validation project branch changed.');
+  assert.deepEqual([...project.domains].sort(), [`${previewProject}.pages.dev`], 'The validation project must have no customer/custom domain.');
+  assert.ok(project.deployment_configs?.production?.env_vars?.EIDOS_PLATFORM_TOKEN, 'The existing validation relay credential is missing.');
+  assert.ok(project.deployment_configs?.production?.env_vars?.EIDOS_PLATFORM_PREVIEW_BYPASS, 'The existing protected-preview relay binding is missing.');
+}
+
+function stable(value) {
+  if (Array.isArray(value)) return value.map(stable);
+  if (value && typeof value === 'object') return Object.fromEntries(Object.keys(value).sort().map(key => [key, stable(value[key])]));
+  return value;
+}
+export function fingerprint(value) {
+  return createHash('sha256').update(JSON.stringify(stable(value))).digest('hex');
+}
+export function withoutRelayUrl(configs) {
+  const copy = structuredClone(configs);
+  if (copy.production?.env_vars) delete copy.production.env_vars.EIDOS_PLATFORM_URL;
+  return copy;
+}
+
+export function relayBinding(previous) {
+  assert.ok(previous && ['plain_text', 'secret_text'].includes(previous.type), 'The existing relay URL binding is missing or has an unsupported type.');
+  let previousOrigin = null;
+  try {
+    const url = new URL(previous.value);
+    if (url.protocol === 'https:' && url.hostname.endsWith('.vercel.app') && !url.username && !url.password && !url.port && url.pathname === '/' && !url.search && !url.hash) previousOrigin = url.origin;
+  } catch { /* Cloudflare masks existing secret_text values on read. */ }
+  assert.ok(previousOrigin || previous.type === 'secret_text', 'The readable relay URL is not a bounded Vercel origin.');
+  return { type: previous.type, previousOrigin, masked: previousOrigin === null };
+}
+
+async function main(mode) {
+  assert.ok(['preflight', 'verify'].includes(mode), 'Use preflight or verify.');
+  assert.match(process.env.GITHUB_SHA || '', /^[a-f0-9]{40}$/, 'An exact candidate commit is required.');
+  const account = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const token = process.env.CLOUDFLARE_API_TOKEN;
+  assert.ok(account && token, 'The existing deployment credentials are unavailable.');
+  const output = resolve(process.env.RUNNER_TEMP || '/tmp', 'works-paired-preview');
+  await mkdir(output, { recursive: true });
+  const receiptPath = resolve(output, 'receipt.json');
+  async function project(name, method = 'GET', body) {
+    assert.ok([previewProject, 'eidosworks'].includes(name), 'Unapproved metadata target.');
+    assert.ok(method === 'GET' || (name === previewProject && method === 'PATCH'), 'Production writes are forbidden.');
+    const response = await fetch(`https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(account)}/pages/projects/${name}`, {
+      method, redirect: 'error', signal: AbortSignal.timeout(20000),
+      headers: { authorization: `Bearer ${token}`, ...(body ? { 'content-type': 'application/json' } : {}) },
+      ...(body ? { body: JSON.stringify(body) } : {}),
+    });
+    assert.ok(response.ok, `Cloudflare ${method} ${name} failed with HTTP ${response.status}; no response values are logged.`);
+    const value = await response.json();
+    assert.equal(value.success, true, 'Cloudflare did not confirm the operation.');
+    return value.result;
+  }
+  const isolated = await project(previewProject);
+  requireIsolatedProject(isolated);
+  const production = await project('eidosworks');
+  assert.ok(production.domains.includes('eidos-works.com'), 'Production baseline identity could not be established.');
+
+  if (mode === 'preflight') {
+    const before = fingerprint(withoutRelayUrl(isolated.deployment_configs));
+    const previousRelay = isolated.deployment_configs.production.env_vars.EIDOS_PLATFORM_URL;
+    const relay = relayBinding(previousRelay);
+    if (relay.previousOrigin !== backendOrigin) {
+      // PATCH only this ordinary URL; absent variable keys are retained by the
+      // provider. Credentials, databases, mailer and Access bindings stay intact.
+      await project(previewProject, 'PATCH', { deployment_configs: { production: { env_vars: {
+        EIDOS_PLATFORM_URL: { type: relay.type, value: backendOrigin },
+      } } } });
+    }
+    const configured = await project(previewProject);
+    requireIsolatedProject(configured);
+    assert.equal(fingerprint(withoutRelayUrl(configured.deployment_configs)), before, 'A binding other than the preview relay URL changed. Stop before deployment.');
+    // Encrypted values remain masked in GET responses. Exact destination
+    // behavior is checked through the deployed relay, not by decrypting it.
+    const configuredRelay = relayBinding(configured.deployment_configs.production.env_vars.EIDOS_PLATFORM_URL);
+    assert.equal(configuredRelay.type, relay.type, 'The relay binding type changed.');
+    if (!configuredRelay.masked) assert.equal(configuredRelay.previousOrigin, backendOrigin, 'The immutable paired backend is not configured.');
+    const productionAfter = await project('eidosworks');
+    assert.equal(fingerprint(productionAfter.deployment_configs), fingerprint(production.deployment_configs), 'Production configuration changed; inspect before continuing.');
+    await writeFile(receiptPath, JSON.stringify({
+      checkedAt: new Date().toISOString(), siteRevision: process.env.GITHUB_SHA,
+      backendRevision, backendOrigin, previewOrigin, previewProject, previewBranch,
+      projectId: isolated.id, previousPreviewDeploymentId: isolated.canonical_deployment?.id || null,
+      previousRelayOrigin: relay.previousOrigin, relayBindingType: relay.type, priorRelayMasked: relay.masked,
+      previewConfigFingerprint: fingerprint(configured.deployment_configs),
+      productionConfigFingerprint: fingerprint(productionAfter.deployment_configs),
+      productionDeploymentId: productionAfter.canonical_deployment?.id || null,
+      productionRevision: productionAfter.canonical_deployment?.deployment_trigger?.metadata?.commit_hash || null,
+      bindingPresence: {
+        inquiryMailer: Boolean(configured.deployment_configs.production.services?.EIDOS_INQUIRY_MAILER),
+        growthDatabase: Boolean(configured.deployment_configs.production.d1_databases?.EIDOS_GROWTH_DB),
+      },
+      acceptance: 'deployment preparation only; identity, ownership, signed TEST payment and delivery remain open',
+    }, null, 2) + '\n');
+    console.log('Verified the isolated test project and immutable backend relay. Production was read only; no credential values were recorded.');
+    return;
+  }
+
+  const receipt = JSON.parse(await readFile(receiptPath, 'utf8'));
+  assert.equal(receipt.siteRevision, process.env.GITHUB_SHA);
+  assert.equal(fingerprint(isolated.deployment_configs), receipt.previewConfigFingerprint, 'Preview bindings drifted after preflight.');
+  assert.equal(fingerprint(production.deployment_configs), receipt.productionConfigFingerprint, 'Production bindings drifted.');
+  let latest = isolated;
+  const deadline = Date.now() + 180000;
+  while (Date.now() < deadline) {
+    requireIsolatedProject(latest);
+    assert.equal(fingerprint(latest.deployment_configs), receipt.previewConfigFingerprint, 'Preview bindings drifted during upload.');
+    const deployment = latest.canonical_deployment;
+    if (deployment?.deployment_trigger?.metadata?.commit_hash === receipt.siteRevision && deployment.latest_stage?.status === 'success') break;
+    await new Promise(done => setTimeout(done, 3000));
+    latest = await project(previewProject);
+  }
+  const deployment = latest.canonical_deployment;
+  assert.equal(deployment?.deployment_trigger?.metadata?.commit_hash, receipt.siteRevision, 'The exact preview commit has not been deployed.');
+  assert.equal(deployment.latest_stage?.status, 'success', 'The isolated upload did not succeed.');
+  const localHtml = await readFile('dist/account/index.html', 'utf8');
+  const entryAssets = [...localHtml.matchAll(/(?:src|href)="(\/assets\/[^" ]+\.(?:js|css))"/g)].map(match => match[1]);
+  assert.ok(entryAssets.length, 'No built account assets were found.');
+  // A successful provider upload can precede stable-origin edge propagation.
+  // Wait only for the exact built assets; never accept the previous build.
+  let accountHtml = '', accountStatus = 0, accountAttempts = 0;
+  const assetDeadline = Date.now() + 90000;
+  do {
+    const accountResponse = await fetch(`${previewOrigin}/account/?candidate=${receipt.siteRevision}`, { redirect: 'error', signal: AbortSignal.timeout(20000) });
+    accountStatus = accountResponse.status;
+    accountHtml = await accountResponse.text();
+    accountAttempts++;
+    if (accountStatus === 200 && entryAssets.every(asset => accountHtml.includes(asset))) break;
+    assert.ok([200, 404, 503].includes(accountStatus), `The preview account page returned HTTP ${accountStatus}; stop rather than retry an access block.`);
+    await new Promise(done => setTimeout(done, 3000));
+  } while (Date.now() < assetDeadline);
+  assert.equal(accountStatus, 200, 'The preview account page is unavailable.');
+  assert.ok(entryAssets.every(asset => accountHtml.includes(asset)), 'The preview is serving a different account build.');
+  const deliveredAssetHashes = [];
+  for (const asset of entryAssets) {
+    const response = await fetch(previewOrigin + asset, { redirect: 'error', signal: AbortSignal.timeout(20000) });
+    assert.equal(response.status, 200, 'A built account asset is unavailable.');
+    const delivered = createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex');
+    const expected = createHash('sha256').update(await readFile('dist' + asset)).digest('hex');
+    assert.equal(delivered, expected, 'A delivered account asset differs from the candidate.');
+    deliveredAssetHashes.push({ path: asset, sha256: delivered });
+  }
+  const configResponse = await fetch(`${previewOrigin}/api/public-config`, { redirect: 'error', signal: AbortSignal.timeout(30000) });
+  assert.equal(configResponse.status, 200, 'The paired public configuration could not be read.');
+  const config = await configResponse.json();
+  assert.equal(config.localTest, false, 'Hosted fixture bypass must never be enabled.');
+  assert.equal(config.accountsReady, true, 'The paired accounts are not configured.');
+  assert.equal(config.passwordsReady, true, 'The paired password service is not configured.');
+  assert.equal(config.googleReady, true, 'The paired Google service is not configured.');
+  const checks = [];
+  for (const [name, route, options, allowed] of [
+    ['anonymous account access', '/api/members/account', {}, [200]],
+    ['unsigned owner readiness', '/api/operations/readiness', {}, [401, 403]],
+    ['forged owner assertion', '/api/operations/readiness', { headers: { 'cf-access-jwt-assertion': 'invalid-qa-assertion' } }, [401, 403]],
+    ['wrong-origin logout', '/api/members/auth', { method: 'POST', headers: { origin: 'https://unrelated.example', 'content-type': 'application/json' }, body: JSON.stringify({ action: 'logout' }) }, [403]],
+    ['unsigned kit event', '/api/shop/webhook', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ id: 'works-paired-unsigned-qa', type: 'checkout.session.completed' }) }, [400, 503]],
+  ]) {
+    const response = await fetch(previewOrigin + route, { ...options, redirect: 'error', signal: AbortSignal.timeout(30000) });
+    assert.ok(allowed.includes(response.status), `${name} returned unexpected HTTP ${response.status}.`);
+    if (name === 'anonymous account access') assert.equal((await response.json()).member, null, 'An anonymous request exposed a member.');
+    else await response.body?.cancel();
+    checks.push({ name, status: response.status, meaning: name === 'unsigned kit event' && response.status === 503 ? 'not configured; not signed-payment acceptance' : 'HTTP boundary observation only' });
+  }
+  await writeFile(receiptPath, JSON.stringify({ ...receipt, verifiedAt: new Date().toISOString(),
+    deploymentId: deployment.id, deploymentUrl: deployment.url, deliveredAccountAssets: entryAssets, deliveredAssetHashes, accountAttempts,
+    configuredFeatures: { accounts: config.accountsReady, passwords: config.passwordsReady, google: config.googleReady, shop: config.shopReady, localTest: config.localTest },
+    checks, productionConfigUnchanged: true,
+    acceptance: 'exact frontend upload and paired HTTP boundaries verified; real consent, two-owner reopen, inbox and signed TEST lifecycle remain open',
+  }, null, 2) + '\n');
+  console.log('Exact isolated frontend upload, paired account configuration and anonymous/owner/origin/event boundaries verified. Provider and user acceptance remain separate.');
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main(process.argv[2]);

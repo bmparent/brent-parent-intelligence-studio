@@ -1,0 +1,28 @@
+{
+  "siteHeadTested": "caaed7e6c844f21b3e3d0e3e8201027124e9f4f6",
+  "siteApplicationCodeCommit": "bba430f6390606b5d4daa9b9e2f042cffedbb157",
+  "siteDeploymentId": "658f2695-07cb-409f-a7bc-2015abbb351d",
+  "siteUrl": "https://eidosworks-test-20260923.pages.dev",
+  "backendHeadTested": "4099a63d495aa1aae225794da7e464f68b19cfb6",
+  "backendDeploymentId": "dpl_8JrQAhUwph2Rqch36wvD8wYVQXUh",
+  "backendUrl": "https://eidos-sentinel-lab-git-codex-wor-f8ceaf-1brentbm-1876s-projects.vercel.app",
+  "configurationFingerprint": "729479eef30dcc347540fd607d39e9c7f1e83c19bf9805861d579a51c9f3a476",
+  "checks": {
+    "sharedContractGitBlobs": "75/75 matching at site head and backend head",
+    "hostedPublicBrowser": "26/26 passing after deployment of site head; Playwright Chromium viewport emulation only",
+    "frozenKitRegression": "3/3 passing with actual delivered bytes and SHA-256 compared to frozen archive",
+    "siteVerifyCI": "passed: https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/35903289372/job/107324558742",
+    "siteLocalEditorCI": "passed: https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/35903289505/job/107324560148",
+    "siteWellwayCI": "passed: https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/35903289308/job/107324558024",
+    "backendCI": "passed: https://github.com/bmparent/eidos/actions/runs/35771675198"
+  },
+  "openGates": [
+    "Google provider rejects the preview callback with redirect_uri_mismatch",
+    "Human Turnstile and controlled inbox account flows unverified",
+    "Stripe TEST checkout, genuine webhook, recovery, refund, dispute and exact hosted archive unverified",
+    "Owned Playground roundtrip and approved paid AI allowance unverified",
+    "Snapshot egress, cost, storage and legacy recovery gates remain open; generation disabled",
+    "Physical mobile device and screen reader checks unavailable"
+  ],
+  "releaseDecision": "NO-GO"
+}

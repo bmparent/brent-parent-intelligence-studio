@@ -1,0 +1,8 @@
+{
+  "environment": "isolated Pages preview using branch-specific Google OAuth callback",
+  "action": "POST /api/members/google start, then open returned Google authorization URL without completing consent",
+  "expected": "Google accepts the registered redirect URI and presents consent/sign-in",
+  "actual": "Google returned an HTML page containing redirect_uri_mismatch for https://eidosworks-test-20260923.pages.dev/api/members/google",
+  "status": "blocked at provider configuration; no Google identity or session was created",
+  "ownerAction": "Add the exact preview callback to the existing web OAuth client's Authorized redirect URIs, preserving production callbacks"
+}
