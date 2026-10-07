@@ -13,6 +13,10 @@
     button.disabled = submitting || unavailable || (!member && !config?.localTest && !token);
   }
   try {
+    const savedName = window.sessionStorage.getItem('eidos.community.name');
+    if (savedName) form.elements.author.value = savedName;
+  } catch { /* Optional tab storage must not block replies. */ }
+  try {
     const response = await fetch('/api/members/account', { signal: AbortSignal.timeout(10000) });
     const account = response.ok ? await response.json() : null;
     member = account?.member;
@@ -153,6 +157,10 @@
       });
       const result = await response.json();
       if (!response.ok) throw Error(result.error || 'Your reply could not be posted.');
+      if (!member) {
+        try { window.sessionStorage.setItem('eidos.community.name', String(data.get('author') || '').trim().slice(0, 50)); }
+        catch { /* Posting does not depend on optional tab storage. */ }
+      }
       lastResult = result.message; status.textContent = lastResult; form.elements.body.value = '';
       if (target) target.hidden = true;
       if (list && result.reply && !document.getElementById('reply-' + result.reply.id)) {

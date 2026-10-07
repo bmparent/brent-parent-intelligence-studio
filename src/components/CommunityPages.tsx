@@ -89,6 +89,12 @@ export function CommunityPage({
   const config = usePublicConfig();
   const {account}=useAccount();
   useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem('eidos.community.name') || '';
+      if (saved) queueMicrotask(() => setName(current => current || saved));
+    } catch { /* A guest can still enter a name when tab storage is unavailable. */ }
+  }, []);
+  useEffect(() => {
     const controller = new AbortController();
     fetch('/api/community/threads?category=' + category, {
       signal: controller.signal,
@@ -147,6 +153,10 @@ export function CommunityPage({
       });
       setMessage(result.message);
       setPublishedUrl(result.url);
+      if (!account?.member) {
+        try { sessionStorage.setItem('eidos.community.name', name.trim().slice(0, 50)); }
+        catch { /* Posting does not depend on optional tab storage. */ }
+      }
       if (category && category !== kind) setCategory(kind);
       setRetry(n => n + 1);
       track('question_submit', {

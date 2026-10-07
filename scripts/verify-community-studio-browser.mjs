@@ -18,11 +18,11 @@ const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', '--host
 });
 const serverLog = fs.createWriteStream(join(evidence,'server.log'));
 server.stdout.pipe(serverLog); server.stderr.pipe(serverLog);
-let browser;
+let browser, page;
 try {
   browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath(), args: ['--no-sandbox'] });
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
-  const page = await context.newPage();
+  page = await context.newPage();
   const errors = [];
   const failedResponses = [];
   page.on('response', response => {
@@ -100,6 +100,7 @@ try {
   const initialRead = page.waitForResponse(response => response.url().includes('/api/community/threads?id=') && response.status() === 200);
   await page.getByRole('link', {name:'Open your conversation',exact:false}).click();
   await (await initialRead).finished();
+  assert.equal(await page.getByLabel('Your display name', {exact:true}).inputValue(), 'Casey Preview', 'A guest should not need to re-enter their name after opening their discussion');
   const humanThreadId = new URL(page.url()).pathname.split('/').at(-1);
   const agentResponse = await context.request.post(base + '/api/community/moderate', {
     headers:{origin:base,authorization:'Bearer '+token},
@@ -129,6 +130,10 @@ try {
   console.log(JSON.stringify(result));
 } catch(error) {
   fs.writeFileSync(join(evidence,'failure.txt'),String(error.stack||error));
+  if (page && !page.isClosed()) {
+    await page.screenshot({path:join(evidence,'failure.png')}).catch(()=>{});
+    fs.writeFileSync(join(evidence,'failure.html'),await page.content().catch(()=>''));
+  }
   console.error(error);process.exitCode=1;
 } finally {
   await browser?.close();server.kill('SIGTERM');serverLog.end();
