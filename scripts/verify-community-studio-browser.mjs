@@ -18,11 +18,11 @@ const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', '--host
 });
 const serverLog = fs.createWriteStream(join(evidence,'server.log'));
 server.stdout.pipe(serverLog); server.stderr.pipe(serverLog);
-let browser;
+let browser, page;
 try {
   browser = await chromium.launch({ headless: true, executablePath: chromium.executablePath(), args: ['--no-sandbox'] });
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
-  const page = await context.newPage();
+  page = await context.newPage();
   const errors = [];
   const failedResponses = [];
   page.on('response', response => {
@@ -65,21 +65,20 @@ try {
   await page.getByLabel('Your display name', { exact: true }).fill('Casey Preview');
   const visitorReply = 'I would start with turning each website inquiry into a short checklist, with a person reviewing the response before it goes out.';
   await page.getByLabel('Your reply', { exact: true }).fill(visitorReply);
-  await page.getByRole('button', { name: 'Submit for review', exact: false }).click();
-  await page.getByRole('status').filter({ hasText: 'Your reply has been saved for review.' }).waitFor();
+  await page.getByRole('button', { name: 'Post reply', exact: false }).click();
+  await page.getByRole('status').filter({ hasText: 'Your reply is live.' }).waitFor();
+  await page.getByText(visitorReply, { exact: true }).waitFor();
+  assert.equal(await page.locator('.reply').count(), 1);
   const token = 'local-preview-review-token-2026-eidos';
   const review = await context.request.get(base + '/api/community/moderate', { headers: { authorization: 'Bearer ' + token } });
   assert.equal(review.status(), 200);
-  const queue = await review.json();
-  const reply = queue.replies.find(item => item.body === visitorReply);
-  assert.ok(reply, 'Actual visitor reply must persist in the review queue');
-  const approved = await context.request.post(base + '/api/community/moderate', {
-    headers: { origin: base, authorization: 'Bearer ' + token }, data: { action: 'publish', kind: 'reply', id: reply.id },
-  });
-  assert.equal(approved.status(), 200);
-  await page.reload({ waitUntil: 'networkidle' });
-  await page.getByText(visitorReply, { exact: true }).waitFor();
-  assert.equal(await page.locator('.reply').count(), 1);
+  assert.equal((await review.json()).replies.length, 0, 'Published replies never enter the pending queue');
+  await page.getByRole('button', { name: 'Reply to Casey Preview', exact: true }).click();
+  assert.equal(await page.getByLabel('Your reply', {exact:true}).inputValue(), 'Casey Preview, ');
+  await page.getByLabel('Your reply', {exact:true}).fill('Thanks!');
+  await page.getByRole('button', {name:'Post reply',exact:false}).click();
+  await page.getByText('Thanks!', {exact:true}).waitFor();
+  assert.equal(await page.locator('.reply').count(), 2);
   await page.screenshot({ path: join(evidence,'thread.png') });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(base + '/community', { waitUntil: 'networkidle' });
@@ -91,11 +90,50 @@ try {
   await page.getByText(visitorReply, { exact: true }).waitFor();
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
   assert.equal(errors.length, 0, JSON.stringify({ errors, failedResponses }));
-  const result = { passed: true, browserPath: 'Isolated CI/local Playwright', desktop: '1440x1000', mobile: '390x844', checks: ['real registered roster', 'visible AI labels', 'category filter', 'thread navigation', 'visitor reply persistence', 'moderation publication', 'no bot reply', 'phone layout without overflow', 'no browser errors'], errors };
+  await page.goto(base + '/community', {waitUntil:'networkidle'});
+  await page.getByLabel('Your display name', {exact:true}).fill('Casey Preview');
+  await page.getByLabel('A clear title', {exact:true}).fill('How can a small team simplify its website?');
+  await page.locator('#ask').getByLabel('Your question', {exact:true}).fill('Which part of a website should a small team simplify first, and why?');
+  await page.getByRole('button', {name:'Post conversation',exact:false}).click();
+  await page.getByRole('link', {name:'Open your conversation',exact:false}).waitFor();
+  await page.getByRole('heading', {name:'How can a small team simplify its website?',exact:true}).waitFor();
+  const initialRead = page.waitForResponse(response => response.url().includes('/api/community/threads?id=') && response.status() === 200);
+  await page.getByRole('link', {name:'Open your conversation',exact:false}).click();
+  await (await initialRead).finished();
+  assert.equal(await page.getByLabel('Your display name', {exact:true}).inputValue(), 'Casey Preview', 'A guest should not need to re-enter their name after opening their discussion');
+  const humanThreadId = new URL(page.url()).pathname.split('/').at(-1);
+  const agentResponse = await context.request.post(base + '/api/community/moderate', {
+    headers:{origin:base,authorization:'Bearer '+token},
+    data:{action:'register-agent',name:'Browser QA Agent',profileUrl:'https://example.com/qa-operator'},
+  });
+  const agent = await agentResponse.json();
+  const agentBody = 'An agent can help identify the most-used path. <img src=x onerror=alert(1)> is untrusted example text.';
+  const agentReply = await context.request.post(base + '/api/community/agents', {
+    headers:{authorization:'Bearer '+agent.key},data:{threadId:humanThreadId,body:agentBody},
+  });
+  assert.equal(agentReply.status(),201);
+  assert.equal((await agentReply.json()).state,'published');
+  await page.getByText(agentBody,{exact:true}).waitFor({timeout:35000});
+  assert.match(await page.locator('.reply .eyebrow').innerText(),/AI agent/i);
+  assert.equal(await page.locator('#reply-list img').count(),0,'Live user HTML must remain text');
+  await page.getByRole('button',{name:'Reply to Browser QA Agent',exact:true}).click();
+  assert.equal(await page.getByLabel('Your reply',{exact:true}).inputValue(),'Browser QA Agent, ');
+  assert.equal(await page.getByLabel('Your reply',{exact:true}).evaluate(element=>element===document.activeElement),true);
+  await page.getByLabel('Your reply',{exact:true}).fill('Thanks for joining!');
+  await page.getByRole('button',{name:'Post reply',exact:false}).click();
+  await page.getByText('Thanks for joining!',{exact:true}).waitFor();
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth));
+  await page.screenshot({path:join(evidence,'mobile-live-conversation.png')});
+  assert.equal(errors.length,0,JSON.stringify({errors,failedResponses}));
+  const result = { passed: true, browserPath: 'Isolated CI/local Playwright', desktop: '1440x1000', mobile: '390x844', checks: ['real registered roster', 'visible AI labels', 'category filter', 'thread navigation', 'immediate visitor reply', 'no pending review', 'one-click reply focus', 'short replies', 'immediate human discussion and list refresh', 'agent reply in human community', 'live update without reload', 'safe HTML text', 'phone layout without overflow', 'no browser errors'], errors };
   fs.writeFileSync(join(evidence,'browser.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result));
 } catch(error) {
   fs.writeFileSync(join(evidence,'failure.txt'),String(error.stack||error));
+  if (page && !page.isClosed()) {
+    await page.screenshot({path:join(evidence,'failure.png')}).catch(()=>{});
+    fs.writeFileSync(join(evidence,'failure.html'),await page.content().catch(()=>''));
+  }
   console.error(error);process.exitCode=1;
 } finally {
   await browser?.close();server.kill('SIGTERM');serverLog.end();

@@ -28,7 +28,7 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/community-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/community-browser/node_modules/.bin/playwright" install --with-deps chromium
-      - name: Registered AI roster, visitor reply, review, and responsive layout
+      - name: Immediate human/agent conversation, live replies, and responsive layout
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/community-browser/node_modules/playwright
           COMMUNITY_EVIDENCE_DIR: ${{ runner.temp }}/community-evidence

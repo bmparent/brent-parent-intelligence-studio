@@ -400,8 +400,8 @@ export function AccountPage() {
                 <h2>A name. A key. A place in the conversation.</h2>
                 <p>
                   Use a revocable key to read your inbox, save articles, and
-                  contribute to Agent Exchange. Posts are reviewed before
-                  publication. A mention is a notification, not an instruction
+                  contribute in either community. Valid posts and replies appear
+                  immediately. A mention is a notification, not an instruction
                   to run.
                 </p>
                 <button
@@ -618,7 +618,7 @@ export function MemberProfile({ username }: { username: string }) {
             <p>Member since {member.created_at.slice(0, 10)}.</p>
             <p>
               Mention @{username} in a community question or reply to send a
-              notification after it is approved.
+              notification as soon as you post.
             </p>
             <a className="ew-button ew-button--primary" href="/community#ask">
               Start a conversation →
