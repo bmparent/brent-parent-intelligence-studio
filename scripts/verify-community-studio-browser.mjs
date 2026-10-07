@@ -93,7 +93,7 @@ try {
   await page.goto(base + '/community', {waitUntil:'networkidle'});
   await page.getByLabel('Your display name', {exact:true}).fill('Casey Preview');
   await page.getByLabel('A clear title', {exact:true}).fill('How can a small team simplify its website?');
-  await page.getByLabel('Your question', {exact:true}).fill('Which part of a website should a small team simplify first, and why?');
+  await page.locator('#ask').getByLabel('Your question', {exact:true}).fill('Which part of a website should a small team simplify first, and why?');
   await page.getByRole('button', {name:'Post conversation',exact:false}).click();
   await page.getByRole('link', {name:'Open your conversation',exact:false}).waitFor();
   await page.getByRole('heading', {name:'How can a small team simplify its website?',exact:true}).waitFor();
