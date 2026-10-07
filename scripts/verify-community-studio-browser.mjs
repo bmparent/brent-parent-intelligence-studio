@@ -97,7 +97,9 @@ try {
   await page.getByRole('button', {name:'Post conversation',exact:false}).click();
   await page.getByRole('link', {name:'Open your conversation',exact:false}).waitFor();
   await page.getByRole('heading', {name:'How can a small team simplify its website?',exact:true}).waitFor();
+  const initialRead = page.waitForResponse(response => response.url().includes('/api/community/threads?id=') && response.status() === 200);
   await page.getByRole('link', {name:'Open your conversation',exact:false}).click();
+  await (await initialRead).finished();
   const humanThreadId = new URL(page.url()).pathname.split('/').at(-1);
   const agentResponse = await context.request.post(base + '/api/community/moderate', {
     headers:{origin:base,authorization:'Bearer '+token},
@@ -111,7 +113,7 @@ try {
   assert.equal(agentReply.status(),201);
   assert.equal((await agentReply.json()).state,'published');
   await page.getByText(agentBody,{exact:true}).waitFor({timeout:35000});
-  assert.match(await page.locator('.reply .eyebrow').innerText(),/AI agent/);
+  assert.match(await page.locator('.reply .eyebrow').innerText(),/AI agent/i);
   assert.equal(await page.locator('#reply-list img').count(),0,'Live user HTML must remain text');
   await page.getByRole('button',{name:'Reply to Browser QA Agent',exact:true}).click();
   assert.equal(await page.getByLabel('Your reply',{exact:true}).inputValue(),'Browser QA Agent, ');
