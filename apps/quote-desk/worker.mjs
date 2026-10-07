@@ -99,11 +99,17 @@ export function liveMerchantReady(owner){
   const payoutBank=owner?.external_accounts?.data?.some(account=>account?.object==='bank_account'&&account.deleted!==true&&usableBankStatuses.has(account.status));
   return owner?.details_submitted===true&&owner?.charges_enabled===true&&owner?.payouts_enabled===true&&!requirements.disabled_reason&&!unresolved&&payoutBank===true;
 }
+export function productAttributionReady(price,expectedName){
+  const product=price?.product;
+  return Boolean(typeof expectedName==='string'&&expectedName.length>0&&product&&typeof product==='object'&&product.deleted!==true&&product.active===true&&product.name===expectedName);
+}
 async function checkoutReady(env,stripe){
-  if(env.QUOTE_CHECKOUT_ENABLED!=='true'||!env.STRIPE_PRICE_ID||!env.STRIPE_ACCOUNT_ID||!env.STRIPE_WEBHOOK_SECRET||!env.STRIPE_PORTAL_CONFIGURATION_ID)fail(503,'Checkout is being prepared. The free estimator is available now.');
-  const [price,owner,portal]=await Promise.all([stripe.prices.retrieve(env.STRIPE_PRICE_ID),stripe.accounts.retrieve(null,{expand:['external_accounts']}),stripe.billingPortal.configurations.retrieve(env.STRIPE_PORTAL_CONFIGURATION_ID)]);
+  if(env.QUOTE_CHECKOUT_ENABLED!=='true'||!env.STRIPE_PRICE_ID||!env.STRIPE_PRODUCT_NAME||!env.STRIPE_ACCOUNT_ID||!env.STRIPE_WEBHOOK_SECRET||!env.STRIPE_PORTAL_CONFIGURATION_ID||(env.QUOTE_ENVIRONMENT==='live'&&!env.STRIPE_MERCHANT_PROFILE_NAME))fail(503,'Checkout is being prepared. The free estimator is available now.');
+  const [price,owner,portal]=await Promise.all([stripe.prices.retrieve(env.STRIPE_PRICE_ID,{expand:['product']}),stripe.accounts.retrieve(null,{expand:['external_accounts']}),stripe.billingPortal.configurations.retrieve(env.STRIPE_PORTAL_CONFIGURATION_ID)]);
   if(owner.id!==env.STRIPE_ACCOUNT_ID)fail(503,'The payment account has not been verified.');
+  if(env.QUOTE_ENVIRONMENT==='live'&&owner.business_profile?.name!==env.STRIPE_MERCHANT_PROFILE_NAME)fail(503,'The payment account has not been attributed to Eidos Works.');
   if(env.QUOTE_ENVIRONMENT==='live'&&!liveMerchantReady(owner))fail(503,'The payment account is not ready to accept and settle funds.');
+  if(!productAttributionReady(price,env.STRIPE_PRODUCT_NAME))fail(503,'The subscription product has not been verified.');
   if(!price.active||price.livemode!==(env.QUOTE_ENVIRONMENT==='live')||price.currency!=='usd'||price.unit_amount!==1900||price.recurring?.interval!=='month'||price.recurring.interval_count!==1)fail(503,'The subscription price has not been verified.');
   if(!portal.active||portal.features?.subscription_cancel?.enabled!==true||portal.features.subscription_cancel.mode!=='at_period_end')fail(503,'Self-service cancellation has not been verified.');
   if(portal.features?.payment_method_update?.enabled!==true)fail(503,'Self-service payment recovery has not been verified.');

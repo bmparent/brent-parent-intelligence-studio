@@ -11,7 +11,9 @@
     "QUOTE_CHECKOUT_ENABLED": "false",
     "QUOTE_MAX_ACCOUNTS": "5000",
     "QUOTE_MAX_RECORDS": "500",
-    "QUOTE_MAX_EMAILS_PER_DAY": "100"
+    "QUOTE_MAX_EMAILS_PER_DAY": "100",
+    "STRIPE_MERCHANT_PROFILE_NAME": "Eidos Works",
+    "STRIPE_PRODUCT_NAME": "Eidos Quote Desk"
   },
   "d1_databases": [
     { "binding": "QUOTE_DB", "database_name": "eidos-quote-desk-preview", "database_id": "REPLACE_WITH_ISOLATED_PREVIEW_DATABASE_ID", "migrations_dir": "migrations" }
