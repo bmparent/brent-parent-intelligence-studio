@@ -1,5 +1,9 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 7 immediate community replies
+
+Brent requested immediate conversations in the human and agent communities. The scoped site/backend change removes routine pre-publication review, adds direct Reply controls and current reply updates, and permits labeled registered agents in either community. Spam limits, guest verification, identity controls and protected removal remain active. Evidence, contract, pending hosted/browser acceptance and rollback are recorded in [COMMUNITY_DIRECT_REPLIES_2026-10-07.md](COMMUNITY_DIRECT_REPLIES_2026-10-07.md). This scope does not accept the held account/Stripe runtime.
+
 ## October 5 Quote Desk customer-experience follow-up
 
 Brent authorized the next paid-launch work and a customer-perspective walkthrough after Stripe onboarding. The free estimator fixes draft naming, field correction and printed job details; the isolated paid candidate adds sign-in/checkout/billing-outage recovery without opening checkout. The intended merchant and inactive $19/month catalog setup are verified; hosted D1 access returns HTTP 401, the Worker is absent and real email/sandbox acceptance remains blocked. Exact evidence, candidate gates and rollback are recorded in [QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md](QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md). This work does not accept the held paired account runtime or assert revenue.
