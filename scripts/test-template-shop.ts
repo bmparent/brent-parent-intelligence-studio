@@ -12,7 +12,22 @@ const { TemplateChooser, TemplateCollection, TemplateDetail, TemplateStart, Temp
 const { templateProducts } = await vite.ssrLoadModule('/src/data/templateCatalog.ts');
 const { pageMetadata, prerenderPagePaths } = await vite.ssrLoadModule('/src/data/pages.ts');
 const { templateProducts: serverProducts } = await vite.ssrLoadModule('/functions/_shared/platform/templateCatalog.ts');
+const { TemplateInstallGuide } = await vite.ssrLoadModule('/src/components/TemplateInstallGuide.tsx');
 await vite.close();
+
+test('all eight buyer guides separate section headings, instructions, steps, and inline filenames', () => {
+  for (const product of templateProducts) {
+    for (const platform of ['developer', 'wordpress']) {
+      const markup = renderToStaticMarkup(createElement(TemplateInstallGuide, { path: `/templates/guides/${product.slug}/${platform}` }));
+      assert.match(markup, /<h2>What this edition is<\/h2><p>/, 'Body copy must not become heading text');
+      assert.doesNotMatch(markup, /<h2>[^<]*\n/, 'Soft-wrapped instructions must not be part of headings');
+      assert.match(markup, platform === 'developer' ? /<h2>Quick start<\/h2><ol><li>/ : /<h2>Install on a fresh or backed-up site<\/h2><ol><li>/, 'Setup steps must be a numbered list');
+      assert.match(markup, /<h2>Troubleshooting and common mistakes<\/h2><ul><li>/, 'Troubleshooting must be readable list items');
+      assert.match(markup, /<code>INSTALL\.md<\/code>|<code>LICENSE\.txt<\/code>/, 'Inline filenames must be formatted as code');
+      assert.doesNotMatch(markup, /<code>[^<]*`/, 'Backtick delimiters must not appear in code');
+    }
+  }
+});
 
 test('each collection entry points to its actual demo and independent five-page product detail', () => {
   const markup = renderToStaticMarkup(createElement(TemplateCollection));

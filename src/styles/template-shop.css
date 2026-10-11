@@ -8,7 +8,7 @@
 /* Collection lives on the light Works surface; the purchase panel has its own dark surface. */
 .et-candidate,.et-filters label,.et-result,.et-product-heading span,.et-meta,.et-demo-actions p{color:#48605b}.et-filters,.et-existing,.et-faq details,.et-start-status{border-color:#24463a35}.et-preview{border-color:#24463a35}.et-purchase{color:#f1f6ef}.et-purchase .et-candidate,.et-purchase .ew-field{color:#c3d6cd}.et-purchase a{color:#d4f3de}.et-shop :focus-visible,.et-guide :focus-visible{outline-color:#357666}.et-purchase :focus-visible{outline-color:#a5e4d6}
 
-.et-install-block{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;margin:1.5rem 0;font-family:inherit}
+.et-install p,.et-install li{overflow-wrap:anywhere}.et-install ol,.et-install ul{padding-left:1.6rem;margin:1.25rem 0}.et-install li+li{margin-top:.6rem}
 .et-purchase h2,.et-purchase .et-price{color:#f1f6ef}.et-purchase p,.et-purchase label{color:#c3d6cd}.et-purchase .ew-button{color:#10221e}
 .et-purchase .ew-button.ew-button--primary{color:#f1f6ef}
 

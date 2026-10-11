@@ -21,7 +21,7 @@ out = Path(args.out)
 out.mkdir(parents=True, exist_ok=True)
 catalog = json.loads(Path('products/templates/catalog.json').read_text(encoding='utf-8'))
 report = {'base': args.base, 'scope': 'rendered static/source and shop, no provider transactions',
-          'browserRoute': 'Python Playwright fallback; in-app browser timed out at 30 seconds',
+          'browserRoute': 'Repository Python Playwright automation; provider transactions are outside this browser suite',
           'checks': [], 'failures': [], 'performance': [], 'limitations': ['Local lab only; no field metrics or certification.']}
 report['result'] = 'incomplete'
 def save_receipt():
@@ -286,6 +286,40 @@ def turnstile_action_contract(browser, width):
     finally:
         context.close()
 
+def installation_guides(page, browser_name, width):
+    for product in catalog['products']:
+        for platform in ['developer', 'wordpress']:
+            path = f'/templates/guides/{product["slug"]}/{platform}/'
+            try:
+                open_page(page, path)
+                article = page.locator('.et-install')
+                section = article.get_by_role('heading', name='What this edition is', exact=True)
+                require(section.is_visible(), 'Section heading includes its body instructions')
+                require(section.evaluate('(h)=>h.nextElementSibling.tagName') == 'P', 'Heading must be followed by body copy')
+                require(article.locator('ol > li').count() == (5 if platform == 'developer' else 7), 'Setup steps must be separate numbered items')
+                require(article.locator('ul > li').count() >= 6, 'Troubleshooting must be separate bullet items')
+                require(article.locator('code').count() > 0, 'Inline filenames need code formatting')
+                require(all('\n' not in title for title in article.locator('h2').all_text_contents()), 'Instructions leaked into heading outline')
+                no_overflow(page, f'{browser_name}/{path}/{width}')
+                # Exercise the normal return path without touching checkout.
+                article.get_by_role('link', name=f'← {product["name"]} editions', exact=True).focus()
+                page.keyboard.press('Enter')
+                page.locator('.et-purchase').wait_for(state='visible')
+                require(page.url.rstrip('/').endswith('/shop/' + product['slug']), 'Guide return link failed')
+                open_page(page, path)
+                if browser_name == 'chromium' and product['slug'] == 'switchboard':
+                    page.screenshot(path=str(out / f'guide-{platform}-{width}.jpg'), type='jpeg', quality=80)
+                report['checks'].append({'browser': browser_name, 'scope': 'buyer installation guide',
+                                         'product': product['slug'], 'edition': platform, 'viewport': width,
+                                         'headingOutline': 'passed', 'numberedSteps': 'passed',
+                                         'bulletInstructions': 'passed', 'inlineCode': 'passed',
+                                         'overflow': 'passed', 'keyboardReturn': 'passed'})
+            except Exception as error:
+                report['failures'].append({'browser': browser_name, 'scope': 'buyer installation guide',
+                                           'path': path, 'viewport': width, 'error': str(error)})
+                print(f'FAIL guide/{browser_name}/{width}/{path}: {error}', flush=True)
+
+
 with sync_playwright() as playwright:
     for browser_name in args.browsers.split(','):
         browser = getattr(playwright, browser_name).launch()
@@ -376,6 +410,9 @@ with sync_playwright() as playwright:
                 except Exception as error:
                     report['failures'].append({'browser': browser_name, 'scope': 'shop', 'viewport': width, 'error': str(error)})
                     print(f'FAIL shop/{width}: {error}', flush=True)
+            if not args.source_only:
+                installation_guides(page, browser_name, width)
+                require(not errors, f'Runtime errors: {errors}')
             context.close()
         nightjar_breakpoint_words(browser, browser_name)
         if browser_name == 'chromium':

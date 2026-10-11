@@ -1,5 +1,15 @@
 # Paid templates — candidate acceptance
 
+## October 11 guide readability continuation
+
+A hosted buyer walkthrough of site `0ecc60d64c7389b95c12f7d078353fd1e0b19b3b` reproduced an installation-guide rendering defect: a section heading and its following instructions were placed together in one large `h2`. The guide renderer now separates heading lines, body paragraphs, numbered setup steps, troubleshooting bullets and inline filenames. This changes the public guide presentation only; all eight rebuilt buyer ZIPs retain their frozen versions, byte lengths and SHA-256 hashes. Backend `f9f8cd30839d36127786b7b7826e6c44de92d2c7` and its receipt-retry repair remain the paired backend.
+
+The new eight-guide SSR regression fails against the original renderer and passes after the fix. Six storefront tests, 803 package checks, six manifest checks, lint (zero errors; existing Wellway warning), typecheck, build, prerender, shop/editorial/URL contracts, source/built article validation and Functions compilation pass locally. Exact-head browser CI now also checks all eight guides at 390/1440 pixels in Chromium, Firefox and WebKit, including keyboard return to the correct product. Its run and hosted readback remain separate gates and must be recorded on draft PR102 before claiming preview acceptance.
+
+Production remains **NO-GO**. Current provider metadata still shows no candidate-scoped `RESEND_API_KEY`; the existing sensitive key is production-only and has not been read or broadened. The preview explicitly has `EIDOS_ACCOUNTS_ENABLED=false`. Its existing TEST challenge exception permits checkout/recovery only, so authenticated two-member testing additionally requires an accepted candidate member-verification setup and staged account activation. Mail setup alone does not establish that gate. Genuine provider/inbox receipt, expired-link recovery and paid-event acknowledgement must still be observed. Squarespace 7.1 and GoDaddy Websites + Marketing pilots remain unavailable pending authorized editors, observed plans, approved destinations and publication acceptance. The reported WordPress 6.6 supplemental font-weight crash remains an explicit limitation in the frozen continuation handoff; the guide formatting repair does not resolve or re-certify WordPress runtime behavior.
+
+The frozen `final-handoff.md` and `plain_language_test_analysis.md` have been located and read through Google Drive in the personal account. This proves those two documents are cloud-readable; it does not re-audit all 13 referenced evidence hashes or the complete mirror. Preserve the original snapshot and failure evidence. Both PRs remain draft and unmerged; this continuation has no production configuration, migration, LIVE transaction or price change.
+
 Prepared October 10, 2026. This is a review candidate, not authorization for a production release. No LIVE sales, production merge, live price change, subscription, or service purchase is part of this work.
 
 ## Starting point and scope
