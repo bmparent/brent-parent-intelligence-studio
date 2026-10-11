@@ -20,10 +20,12 @@ async function api(path, method = 'GET', body) {
   return result.result;
 }
 const projects = [];
+// Keep inventory requests small; the provider rejected per_page=100 (8000024).
+const pageSize = 10;
 for (let page = 1; ; page++) {
-  const chunk = await api(`?per_page=100&page=${page}`);
+  const chunk = await api(`?per_page=${pageSize}&page=${page}`);
   projects.push(...chunk);
-  if (chunk.length < 100) break;
+  if (chunk.length < pageSize) break;
   if (page >= 100) throw Error('Pages project inventory exceeded the bounded limit.');
 }
 const liveBefore = projects.find((p) => p.name === 'eidosworks');
