@@ -1,0 +1,4 @@
+# Buyer archive bytes must remain identical across clean Windows/Linux checkouts.
+products/templates/** text eol=lf
+products/platform-pilots/** text eol=lf
+public/template-demos/** text eol=lf

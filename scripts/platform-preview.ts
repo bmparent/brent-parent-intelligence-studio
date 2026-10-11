@@ -50,6 +50,7 @@ export function platformPreview(): Plugin {
         readFileSync('migrations/0001_eidos_platform.sql', 'utf8'),
       );
       connection.exec(readFileSync('migrations/0002_members.sql', 'utf8'));
+      connection.exec(readFileSync('migrations/0004_paid_templates.sql', 'utf8'));
       const database: Database = {
         prepare: (sql) => new LocalStatement(connection!, sql),
         batch: async (statements) => {

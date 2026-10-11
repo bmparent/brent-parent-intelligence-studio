@@ -1,0 +1,19 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:templates
+> node scripts/test-template-packages.mjs && node --import tsx --test scripts/test-template-shop.ts
+
+PASSED: 765 package checks passed; 0 failed. See artifacts/templates/package-tests.json.
+(node:7128) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ each collection entry points to its actual demo and independent five-page product detail (175.9262ms)
+✔ candidate price and guide records match the server-owned edition contract (3.6702ms)
+✔ platform help, terms, and recovery disclose product boundaries (16.0818ms)
+✔ new candidate preserves Cinematic Starter product files and price (27.9609ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19014.0462

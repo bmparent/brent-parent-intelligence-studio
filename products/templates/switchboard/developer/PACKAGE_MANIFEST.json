@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "editionId": "switchboard-developer-v1",
+  "product": "switchboard",
+  "version": "1.0.0",
+  "catalogVersion": "2026-10-10.1",
+  "availability": "unavailable",
+  "status": "candidate",
+  "distribution": "private-fulfillment-package",
+  "files": [
+    {
+      "path": "ASSETS.md",
+      "bytes": 735,
+      "sha256": "8afcb3bef22ed80de5a39f3e5a8b4895d97e32c8a3dd08ef953451c3a6a71ec7"
+    },
+    {
+      "path": "INSTALL.md",
+      "bytes": 4850,
+      "sha256": "d243d74e1012e633e3cb0eb77febcb88a52c7244beee23fc733263a73d89ae21"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 1553,
+      "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 479,
+      "sha256": "ac29f34aaf5f211004a7374bfc9333566c071bdf27a52b32d80de15e075a2ab7"
+    },
+    {
+      "path": "SUPPORT.md",
+      "bytes": 1361,
+      "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+    },
+    {
+      "path": "assets/service-plan.svg",
+      "bytes": 1174,
+      "sha256": "5b92a311cdf5bd0e069ca1c52c3d4dd57b3371ac52d839b1e7a5f05b31450301"
+    },
+    {
+      "path": "contact.html",
+      "bytes": 6006,
+      "sha256": "4029178fc0f83d7f1c3bd78a953ba3bf96adceef94ae4064d4d7005ced937346"
+    },
+    {
+      "path": "index.html",
+      "bytes": 6760,
+      "sha256": "2586c1d08c3d88328c84731938e861ac8035d9b8d7ad70558201b7f8f961bd03"
+    },
+    {
+      "path": "legal.html",
+      "bytes": 4644,
+      "sha256": "b94ec402f19ad276609de821dfb85e73596121bb358cb46150414c25f030af27"
+    },
+    {
+      "path": "process.html",
+      "bytes": 5024,
+      "sha256": "f4608c334ab3845a6ab41351997959d6acd1c024fcc76524bba727e327d9ed17"
+    },
+    {
+      "path": "script.js",
+      "bytes": 8149,
+      "sha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73"
+    },
+    {
+      "path": "service-detail.html",
+      "bytes": 4989,
+      "sha256": "4fbb4bbf7d0fe9d6a1e131b5d3f9b7e97e13e590c402c9b2632bd89444ad0ef9"
+    },
+    {
+      "path": "services.html",
+      "bytes": 5839,
+      "sha256": "3d96e0a5e68976b8dfc69eef108dbc20ced61355ea4d75dcd68be9d6480c5b38"
+    },
+    {
+      "path": "site-config.js",
+      "bytes": 878,
+      "sha256": "56835746a97621f715f8994f83788167809a9b87ba0e3961b88c0f271e0550b0"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 8403,
+      "sha256": "81c9e853a07903f6dfdf28fccf59a22858fd0c1ca8042d2695755b85c1afbb08"
+    }
+  ],
+  "license": "Eidos Works Commercial Template License 1.0",
+  "integrations": "No live form server, booking engine, payment processing, ticket inventory, analytics, or proprietary Eidos service included."
+}

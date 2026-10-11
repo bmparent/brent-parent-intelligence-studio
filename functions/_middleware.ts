@@ -12,6 +12,7 @@ const routes = new Set([
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
   '/api/community/moderate', '/api/community/maintenance',
   '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook',
+  '/api/shop/catalog', '/api/shop/recover', '/api/shop/redeem',
   '/community/feed', '/community/sitemap.xml',
 ]);
 

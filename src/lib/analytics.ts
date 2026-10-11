@@ -57,7 +57,7 @@ export function setConsent(value: 'granted' | 'denied') {
 }
 export function safePagePath() {
   const path = window.location.pathname;
-  if (path.startsWith('/snapshot/') || path === '/shop/success' || path === '/account' || path.startsWith('/account/') || path.startsWith('/members/'))
+  if (path.startsWith('/snapshot/') || path === '/shop/success' || path === '/shop/start' || path === '/account' || path.startsWith('/account/') || path.startsWith('/members/'))
     return '/private';
   if (path.startsWith('/community/thread/')) return '/community/thread';
   return publicPath(path) || '/private';

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "editionId": "matter-developer-v1",
+  "product": "matter",
+  "version": "1.0.0",
+  "catalogVersion": "2026-10-10.1",
+  "availability": "unavailable",
+  "status": "candidate",
+  "distribution": "private-fulfillment-package",
+  "files": [
+    {
+      "path": "ASSETS.md",
+      "bytes": 736,
+      "sha256": "7fff743a5af38ebd7119a85407e090c0ce4edef638641a222e1dddbb834c6412"
+    },
+    {
+      "path": "INSTALL.md",
+      "bytes": 4840,
+      "sha256": "6433f3e6b703bf6c935d7e17aaf3c60fe8a5b68c186cdc1d75cc177fc1032171"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 1553,
+      "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 468,
+      "sha256": "75cb75fc56400bcbcefe4fb978f02a3249467643f4a7c55f2c3b1b4b19ada396"
+    },
+    {
+      "path": "SUPPORT.md",
+      "bytes": 1361,
+      "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+    },
+    {
+      "path": "assets/timber.svg",
+      "bytes": 946,
+      "sha256": "770a9127c4bd1278fb3358cc1ab3f500592fcd6ee4459b9074d5adb9ef41ed2b"
+    },
+    {
+      "path": "assets/vessel.svg",
+      "bytes": 1551,
+      "sha256": "689a6147923d70614f1975dcf1c4aaf8fc2d6acf68ee9fc4630366978c3b3db9"
+    },
+    {
+      "path": "collection.html",
+      "bytes": 5064,
+      "sha256": "b5703740dde4fac866b416a11110ec8fac24faca696ee0c90c341b80a9896240"
+    },
+    {
+      "path": "contact.html",
+      "bytes": 5958,
+      "sha256": "fd86e053b878a2e224740bf4ecea01234303510a307fdb0e57e7a98060b56294"
+    },
+    {
+      "path": "index.html",
+      "bytes": 6100,
+      "sha256": "98c286e51e279b9fe096525068e1bd792c8fcefde0fa298ecd47a37de8ef90c2"
+    },
+    {
+      "path": "legal.html",
+      "bytes": 4597,
+      "sha256": "4830fb68e15131f9b0e7cd78aed94628c80abba15809318537bc8ddbbb9d1387"
+    },
+    {
+      "path": "object.html",
+      "bytes": 5194,
+      "sha256": "5c3eb033734b821fb2988140ce84f0be392b3aa8be6cba75547ddd3c85688445"
+    },
+    {
+      "path": "process.html",
+      "bytes": 5441,
+      "sha256": "28bddf63b04c753b68f46d6996cd5b1f40e2171e7d78731560b435485f4b7021"
+    },
+    {
+      "path": "script.js",
+      "bytes": 8149,
+      "sha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73"
+    },
+    {
+      "path": "site-config.js",
+      "bytes": 827,
+      "sha256": "fdff472575e63b84ea8ee0e996ac24a7fd3ea31ae1e896b42dc5de3b134c9b13"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 9470,
+      "sha256": "830d105d689e1ffe033c7e376cf4d3afffb337916d362bbeb35e7c54e0489c12"
+    }
+  ],
+  "license": "Eidos Works Commercial Template License 1.0",
+  "integrations": "No live form server, booking engine, payment processing, ticket inventory, analytics, or proprietary Eidos service included."
+}

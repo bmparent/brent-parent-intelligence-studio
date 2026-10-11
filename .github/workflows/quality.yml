@@ -20,6 +20,7 @@ jobs:
           npm run playground:glass
           git diff --exit-code -- src/playground/glassBundle.ts functions/_shared/platform/playgroundSchema.ts
       - run: npm run lint
+      - run: npm run test:templates
       - run: npm run test:platform
       - run: npm run test:playground
       - run: npm run test:growth
@@ -28,6 +29,7 @@ jobs:
       - run: npm run test:snapshot
       - run: npm run build
       - run: npm run verify:prerender
+      - run: npm run verify:templates
       - run: npm run verify:editorial
       - run: npm run validate:insights -- --skip-source-fetch
       - run: npm run validate:insights:dist

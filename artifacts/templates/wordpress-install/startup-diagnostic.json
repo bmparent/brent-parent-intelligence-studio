@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "timestamp_utc": "2026-10-11T00:27:24.556775+00:00",
+  "attempts": [
+    {
+      "node": "v24.14.0",
+      "jspi": false,
+      "workers": 1,
+      "result": "interrupted before ready; worker count warning"
+    },
+    {
+      "node": "v24.14.0",
+      "jspi": true,
+      "workers": 6,
+      "result": "interrupted before ready; package engine requirement not met"
+    },
+    {
+      "node": "v24.18.0",
+      "jspi": true,
+      "workers": 6,
+      "process_id": 17372,
+      "process_start_time": "2026-10-11T00:23:12.4198274Z",
+      "result": "interrupted before ready; zero WordPress files, HTTP not ready"
+    }
+  ],
+  "future_runner_startup_timeout_ms": 180000,
+  "tooling_bytes": {
+    "playground_node_modules": 589163039,
+    "temporary_node_runtime": 185079352,
+    "abandoned_first_site": 216299346,
+    "abandoned_second_site": 172922222,
+    "last_site": 172026537
+  },
+  "last_observed_c_free_bytes": 85504000,
+  "cleanup": {
+    "attempted": "Only two exact abandoned task-created Playground temp sites after verifying process stopped and absolute targets under task scratch prefix.",
+    "status": "rejected",
+    "reason": "Automatic approval review rejected Remove-Item command as blocked by policy. No deletion occurred; no alternate cleanup attempted."
+  }
+}

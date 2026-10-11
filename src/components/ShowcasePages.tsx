@@ -61,6 +61,7 @@ export function ShowcasePage() {
         </p>
       </section>
       <section className="ew-reading ew-shell" aria-labelledby="proof-start">
+        <p><a className="ew-text-link" href="/shop">Explore original website templates and working demos →</a></p>
         <p className="ew-eyebrow">Four useful places to start</p><h2 id="proof-start">See the problem behind the interface.</h2>
         <h3><a href="/work/production-dashboard">Production dashboard · Internal tool</a></h3><p>Problem: operational information is difficult to scan. Built: a reporting interface with filters and attention cues. Why it matters: it shows how information can support the next decision. The public case study excludes customer rows.</p>
         <h3><a href="/work/pernr-access-gate">Store eligibility · Implemented workflow</a></h3><p>Problem: a private store needs a clear, controlled entry path. Built: a roster-backed eligibility flow with recovery states. Why it matters: an existing platform can gain a focused capability without a wholesale replacement. Private roster data is not exposed.</p>

@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "version": "2026-10-10.1",
+  "currency": "USD",
+  "pricingStatus": "draft",
+  "rights": "Original Eidos Works artwork and source. Developer source uses included commercial license; WordPress theme code GPL-2.0-or-later.",
+  "products": [
+    {
+      "slug": "switchboard",
+      "name": "Switchboard",
+      "audience": "Service businesses",
+      "summary": "A clear five-page service website that turns a visitor's problem into a useful next step.",
+      "signature": "Accessible problem-to-service selector",
+      "pages": [
+        "Home",
+        "Services",
+        "Service detail",
+        "Work and process",
+        "Contact"
+      ],
+      "palette": [
+        "#14302b",
+        "#f6f6ee",
+        "#d8f35f"
+      ],
+      "editions": [
+        {
+          "id": "switchboard-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "label": "Developer source",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/switchboard/developer",
+          "packagePath": "artifacts/templates/packages/switchboard-developer-v1.zip",
+          "demoPath": "/template-demos/switchboard/",
+          "installationGuide": "INSTALL.md"
+        },
+        {
+          "id": "switchboard-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "label": "WordPress block theme",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/switchboard/wordpress",
+          "packagePath": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+          "installationGuide": "INSTALL.md"
+        },
+        {
+          "id": "switchboard-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "label": "Squarespace 7.1 kit",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable",
+          "pilotPath": "products/platform-pilots/switchboard-squarespace-7.1"
+        },
+        {
+          "id": "switchboard-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "label": "GoDaddy visual add-on",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable",
+          "pilotPath": "products/platform-pilots/switchboard-godaddy"
+        }
+      ]
+    },
+    {
+      "slug": "tideglass",
+      "name": "Tideglass",
+      "audience": "Retreats and hospitality",
+      "summary": "An atmospheric five-page stay website with clear room details, a local guide, and an inquiry path.",
+      "signature": "Keyboard and touch time-of-day scene explorer",
+      "pages": [
+        "Home",
+        "Stays and experiences",
+        "Stay detail",
+        "Local guide",
+        "Contact and booking"
+      ],
+      "palette": [
+        "#182f38",
+        "#eff3ed",
+        "#d3b27f"
+      ],
+      "editions": [
+        {
+          "id": "tideglass-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "label": "Developer source",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/tideglass/developer",
+          "packagePath": "artifacts/templates/packages/tideglass-developer-v1.zip",
+          "demoPath": "/template-demos/tideglass/",
+          "installationGuide": "INSTALL.md"
+        },
+        {
+          "id": "tideglass-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "label": "WordPress block theme",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/tideglass/wordpress",
+          "packagePath": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+          "installationGuide": "INSTALL.md"
+        },
+        {
+          "id": "tideglass-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "label": "Squarespace 7.1 kit",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        },
+        {
+          "id": "tideglass-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "label": "GoDaddy visual add-on",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        }
+      ]
+    },
+    {
+      "slug": "matter",
+      "name": "Matter",
+      "audience": "Makers and design brands",
+      "summary": "A material-led five-page studio website for collections, product details, process, and considered inquiries.",
+      "signature": "Close-inspection material explorer",
+      "pages": [
+        "Home",
+        "Collection",
+        "Object detail",
+        "Our process",
+        "Contact"
+      ],
+      "palette": [
+        "#34261f",
+        "#f0e8dc",
+        "#a4472b"
+      ],
+      "editions": [
+        {
+          "id": "matter-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "label": "Developer source",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/matter/developer",
+          "packagePath": "artifacts/templates/packages/matter-developer-v1.zip",
+          "demoPath": "/template-demos/matter/",
+          "installationGuide": "INSTALL.md"
+        },
+        {
+          "id": "matter-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "label": "WordPress block theme",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/matter/wordpress",
+          "packagePath": "artifacts/templates/packages/matter-wordpress-v1.zip",
+          "installationGuide": "INSTALL.md"
+        },
+        {
+          "id": "matter-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "label": "Squarespace 7.1 kit",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        },
+        {
+          "id": "matter-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "label": "GoDaddy visual add-on",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        }
+      ]
+    },
+    {
+      "slug": "nightjar",
+      "name": "Nightjar",
+      "audience": "Culture and creative events",
+      "summary": "A bold five-page program website that makes events, access information, and ticket destinations easy to find.",
+      "signature": "Accessible layered program and day/night treatment",
+      "pages": [
+        "Home",
+        "Program",
+        "Event detail",
+        "About",
+        "Contact"
+      ],
+      "palette": [
+        "#201e39",
+        "#fff5d8",
+        "#ff7553"
+      ],
+      "editions": [
+        {
+          "id": "nightjar-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "label": "Developer source",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/nightjar/developer",
+          "packagePath": "artifacts/templates/packages/nightjar-developer-v1.zip",
+          "demoPath": "/template-demos/nightjar/",
+          "installationGuide": "INSTALL.md"
+        },
+        {
+          "id": "nightjar-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "label": "WordPress block theme",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/nightjar/wordpress",
+          "packagePath": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+          "installationGuide": "INSTALL.md"
+        },
+        {
+          "id": "nightjar-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "label": "Squarespace 7.1 kit",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        },
+        {
+          "id": "nightjar-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "label": "GoDaddy visual add-on",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        }
+      ]
+    }
+  ]
+}

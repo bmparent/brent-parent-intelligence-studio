@@ -1,0 +1,131 @@
+{
+  "timestamp_utc": "2026-10-11T00:20:35.370628+00:00",
+  "scope": "local source and iframe harness only",
+  "browser_method": "Python Playwright fallback: IAB unavailable and Chrome extension create-tab timed out",
+  "hosted_platform_acceptance": "blocked: no authorized Squarespace or GoDaddy editor/test site supplied",
+  "checks": [
+    {
+      "target": "godaddy-local-harness",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "status": "passed",
+      "iframe_dimensions": {
+        "scrollHeight": 720,
+        "clientHeight": 720
+      },
+      "assertions": [
+        "no horizontal overflow",
+        "native header unaffected",
+        "three service choices",
+        "single-open enhancement",
+        "Space/Enter disclosure",
+        "new-tab contact context links",
+        "reduced-motion context"
+      ],
+      "limitations": [
+        "contact URLs remain explicit example.com placeholders; live destination not exercised",
+        "local sandbox/height fixture does not establish provider iframe attributes or sizing"
+      ]
+    },
+    {
+      "target": "squarespace-optional-selector",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "status": "passed",
+      "assertions": [
+        "all three descriptions visible before script",
+        "enhancement selects correct panel",
+        "ordinary-link keyboard activation",
+        "aria-current and polite status",
+        "no horizontal overflow"
+      ],
+      "limitations": [
+        "native section recipe not installed in Squarespace",
+        "optional script requires eligible actual plan",
+        "contact URLs are placeholders"
+      ]
+    },
+    {
+      "target": "godaddy-local-harness",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "passed",
+      "iframe_dimensions": {
+        "scrollHeight": 1060,
+        "clientHeight": 1060
+      },
+      "assertions": [
+        "no horizontal overflow",
+        "native header unaffected",
+        "three service choices",
+        "single-open enhancement",
+        "Space/Enter disclosure",
+        "new-tab contact context links",
+        "reduced-motion context"
+      ],
+      "limitations": [
+        "contact URLs remain explicit example.com placeholders; live destination not exercised",
+        "local sandbox/height fixture does not establish provider iframe attributes or sizing"
+      ]
+    },
+    {
+      "target": "squarespace-optional-selector",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "passed",
+      "assertions": [
+        "all three descriptions visible before script",
+        "enhancement selects correct panel",
+        "ordinary-link keyboard activation",
+        "aria-current and polite status",
+        "no horizontal overflow"
+      ],
+      "limitations": [
+        "native section recipe not installed in Squarespace",
+        "optional script requires eligible actual plan",
+        "contact URLs are placeholders"
+      ]
+    },
+    {
+      "target": "both-static-fallbacks",
+      "status": "passed",
+      "assertions": [
+        "JavaScript disabled",
+        "native details still opens",
+        "all GoDaddy contact links retained",
+        "all Squarespace descriptions visible",
+        "ordinary anchor navigation works"
+      ]
+    }
+  ],
+  "screenshots": [
+    "artifacts\\templates\\platform-pilots\\godaddy-harness-desktop.png",
+    "artifacts\\templates\\platform-pilots\\squarespace-selector-desktop.png",
+    "artifacts\\templates\\platform-pilots\\godaddy-harness-phone.png",
+    "artifacts\\templates\\platform-pilots\\squarespace-selector-phone.png"
+  ],
+  "errors": [],
+  "chromium_version": "145.0.7632.6",
+  "status": "passed",
+  "source_sha256": {
+    "products\\platform-pilots\\switchboard-godaddy\\compatibility.json": "d83d826c18fa0b88e91d83ae0c839f72850ef1b6d28bee42daad3f0f088cc52f",
+    "products\\platform-pilots\\switchboard-godaddy\\iframe-harness.html": "8431e54674fbe5c607d1f1ef94826cc3ace44c19579f60da28de7772b3e99480",
+    "products\\platform-pilots\\switchboard-godaddy\\README.md": "bad4d60dedc09d487a3926bd26c98e2f4cd0c8affd63e078dcadca715bcd2526",
+    "products\\platform-pilots\\switchboard-godaddy\\section.html": "334670cf57e07112af7b30b3eb47dc424405a1fb132e63819ce72e5306f6f168",
+    "products\\platform-pilots\\switchboard-squarespace-7.1\\compatibility.json": "84e976192a81159858243690c9a457df81ba614460c4ca02940df7ec58d9b2be",
+    "products\\platform-pilots\\switchboard-squarespace-7.1\\effects.js": "34dd1fa1cb4ef532eabbc6afb6afa0eb6188384b0bc09a42a0ccd949d58426e7",
+    "products\\platform-pilots\\switchboard-squarespace-7.1\\native-section-recipe.md": "846e0afd03a3a80e9a4891fb1f26d4b449f4748b9f43f0ed761928f6790d1a6d",
+    "products\\platform-pilots\\switchboard-squarespace-7.1\\preview.html": "77f0aeb9bef44f50114918fc08bb7d878dbf51ab60817efebb9ac14245effae1",
+    "products\\platform-pilots\\switchboard-squarespace-7.1\\README.md": "ea68b0f93c010374dc54f5e92424ae0fa4f3bb505b7e0202f03ca705394ed456",
+    "products\\platform-pilots\\switchboard-squarespace-7.1\\selector.html": "d0690c18b3046fac8a56c2e41a31cfa353912a27fad93f11b71a20f821f23b95",
+    "products\\platform-pilots\\switchboard-squarespace-7.1\\styles.css": "0ac274cf701368002f32d9ba8cb042084dc190143820888406a7fb32f85c3f12"
+  }
+}

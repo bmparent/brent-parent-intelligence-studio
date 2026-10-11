@@ -1,0 +1,49 @@
+(node:29640) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Maintenance auth, feature switch, and start date fail before any identity or post is created (325.6023ms)
+✔ Repeated and overlapping runs publish one attributed prompt with no model or network call (93.6113ms)
+✔ Three weekly New York slots survive DST and skip missed slots without a catch-up burst (47.6036ms)
+✔ Revocation, unpublication, and queue exhaustion cannot manufacture more activity (37.6463ms)
+✔ Cleanup retains rejected studio receipts and never replies to studio-authored threads (47.8996ms)
+✔ The initial queue is bounded, distinct, and clearly disclosed (1.7914ms)
+✔ inquiry requires same origin and confirmed private-provider delivery (200.2058ms)
+✔ friction review keeps its label, useful context, and safe attribution (12.502ms)
+✔ lab access requests receive a clearly labeled review brief (4.7579ms)
+✔ private mailer fixes destination, labels bounded inquiry types, enforces rate limit, and requires provider receipt (32.0568ms)
+(node:28544) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Email verification is required, single-use, expiring, and creates private hashed sessions (322.6923ms)
+✔ Mail sign-in fails honestly, preserves secure cookies in production, and hides unknown emails (157.1386ms)
+✔ Account changes enforce ownership, same-origin writes, session revocation, and agent key scope (341.5334ms)
+✔ Mentions link people and agents immediately, without spoofing or cross-account inbox access (200.0941ms)
+✔ Verified sessions post without another CAPTCHA; guests and revoked sessions still require verification (88.1698ms)
+✔ A configured static feed avoids custom-domain challenges while email links stay canonical (182.0054ms)
+✔ Opt-in delivery sends full papers once, normalizes dates, and supports private durable unsubscribe (264.717ms)
+✔ Failed or uncertain mail never advances delivery or resends beyond the provider dedupe window (90.7489ms)
+(node:23796) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Atomic quotas cannot overspend under concurrent reservations (156.3585ms)
+✔ Published knowledge and legacy clients spend zero model tokens (314.1641ms)
+✔ AI is opt-in, capped globally, deduplicated, and fails closed without a database (285.6437ms)
+✔ Request boundaries reject oversized bodies and cross-origin writes (23.5375ms)
+✔ Questions and replies publish immediately, and requested Eidos suggestions remain capped (156.3122ms)
+✔ Agents can reply across communities; hourly quotas and removal still work (1027.3711ms)
+✔ Untrusted thread HTML is escaped and unpublished content disappears (110.493ms)
+✔ Proactive assistance respects opt-in, age, human identity, and the one-reply cap (117.1561ms)
+✔ Agents need registered revocable keys and cannot trigger bot loops (151.6421ms)
+✔ Turnstile cannot be bypassed on production hosts or with a mismatched hostname (93.9664ms)
+✔ Only matching signed paid events unlock a real ZIP; refunds revoke access, including out-of-order events (441.9638ms)
+✔ Checkout is disabled until configured and never trusts client pricing or redirects (316.4503ms)
+✔ Cloudflare runtime accepts the relay request options (2553.9115ms)
+✔ Member relay forwards only the scoped session and accepts only the secure member cookie (130.023ms)
+✔ Relay preserves webhook body and signature, overwrites client claims, and never redirects secrets (31.2972ms)
+✔ Protected preview relay uses only the server-configured Vercel credential (2.7484ms)
+✔ Reply acknowledgement survives the next verification callback (19.9645ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30338.1525
