@@ -223,3 +223,23 @@ This proposal contains no verified sales, refund frequency, current provider fee
 support average, CAC, unit margin, setup price, or demand ranking. It does not
 assert that an edition has passed installation, purchase, delivery, or production
 acceptance. Those claims require their own current receipts.
+
+## Release manifest and archive status
+
+`products/templates/catalog.json` owns market/style/tagline/design-direction
+metadata; the frontend adapter derives the existing display strings from it.
+`npm run templates:build` builds packages/guides and generates the joined
+`products/templates/release-manifest.json`. It records all editions, the eight
+frozen 1.0.0 archive checksums, licenses, draft support windows, original asset
+receipts, candidate change notes, and scoped compatibility evidence. Provider
+price IDs are intentionally null here because server commerce owns those values.
+The manifest and all edition availability records remain unavailable.
+
+The checksum mirror is optional and bounded to final ZIPs and small proof docs.
+Its first configured `G:\My Drive` attempt reported sufficient capacity, then
+returned ENOSPC for every copy: zero copies were checksum-verified. The failure
+is retained in `artifacts/templates/drive_manifest-initial-enospc.json`; the
+current `drive_manifest.json` records later capacity measurements and skips.
+Automatic retries to the failed destination are suppressed. No screenshots,
+browser profiles, source photos, provider configuration, or secrets are mirrored.
+Mounted-file verification would still leave remote cloud synchronization unproven.

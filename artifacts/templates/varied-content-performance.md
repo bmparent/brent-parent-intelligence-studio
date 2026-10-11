@@ -1,6 +1,6 @@
 # Varied-content and constrained-performance acceptance
 
-Source acceptance: passed. Shop visual review: partial pending disabled primary button contrast fix.
+Focused source and mobile shop acceptance: passed.
 
 Local Chromium, 390 × 844 touch viewport, reduced motion. CPU slowdown 4×; 150 ms network latency; 200000 B/s download; 75000 B/s upload; cache disabled. One cold observation per family, not field data, Lighthouse, INP, or a performance guarantee.
 
@@ -25,6 +25,8 @@ Runtime/network image failures intentionally induced for the missing-image negat
 
 ## Fresh mobile shop visual review
 
-Actual collection and phone iframe previews paint correctly when visible. Blank offscreen iframe areas in full-page screenshots are a capture limitation, not a failed live preview.
+Actual collection and phone iframe previews paint correctly when visible. Blank offscreen iframe areas in full-page screenshots are a capture limitation.
 
-Root corrected purchase heading/price/body/label contrast; fresh computed text/background ratios were15.1 and10.89. The disabled primary button still has a dark foreground on dark background (raw contrast1.04, opacity0.6); an explicit light primary-button foreground is required and has been sent to the owning agent. See external computed-style/viewport receipts. No source/archive bytes changed by this acceptance run.
+Root corrected purchase heading/price/body/labels and the primary-button foreground. Fresh computed heading/price ratios were15.1; body/labels10.89 against the panel. The corrected disabled primary button uses rgb(241,246,239) on rgb(20,37,41): raw ratio14.45 and opacity-composited estimate6.04 at opacity0.6. Its unavailable/disabled state remains intact. See external shop-primary-button-final.json and purchase-button-final-390.jpg. This is sampled local contrast/layout inspection, not accessibility certification.
+
+Source/archive bytes were untouched. The initial test harness raced anchor navigation; its corrected rerun waits explicitly around Enter/tap. Full cross-engine CI, CMS installation, provider checkout/email, physical devices, and production remain separate gates.

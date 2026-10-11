@@ -574,16 +574,18 @@
     "Original raster/SVG fixture uses test-only DOM replacement; no purchased archive is personalized.",
     "Contrast review is limited to sampled visible UI and screenshots, not an accessibility certification."
   ],
-  "result": "partial",
-  "visualReview": "Screenshots saved for separate human/model inspection; geometry assertions alone do not establish contrast.",
+  "result": "passed",
+  "visualReview": "Fresh mobile screenshots and computed purchase-panel colors reviewed. Findings corrected by root and reverified; limited sampled inspection, not accessibility certification.",
   "sourceAcceptance": "passed",
   "shopVisualReview": {
-    "status": "partial pending disabled primary button contrast fix",
-    "actualIframeViewportPaint": "passed; collection and phone previews render when visible. Offscreen lazy iframe areas may be blank in full-page screenshots.",
-    "purchaseHeadingPriceBodyLabels": "corrected by root and verified from fresh computed styles",
-    "disabledPrimaryButton": "confirmed raw foreground/background contrast1.04 with opacity0.6; scoped foreground fix sent to root",
+    "status": "passed within focused local mobile scope",
+    "actualIframeViewportPaint": "passed; collection and phone previews render when visible. Blank offscreen lazy iframe areas in full-page screenshots are a capture limitation.",
+    "purchaseHeadingPriceBodyLabels": "root fixes verified from fresh computed styles; sampled ratios15.1 and10.89",
+    "primaryButton": "root specific light foreground verified; raw contrast14.45, opacity-composited estimate6.04, disabled state retained",
     "evidence": [
       "E:/CodexArtifacts/paid-templates-20261010/shop-computed-contrast-final.json",
+      "E:/CodexArtifacts/paid-templates-20261010/shop-primary-button-final.json",
+      "E:/CodexArtifacts/paid-templates-20261010/purchase-button-final-390.jpg",
       "E:/CodexArtifacts/paid-templates-20261010/fresh-collection-tile-viewport.jpg",
       "E:/CodexArtifacts/paid-templates-20261010/fresh-phone-preview-viewport.jpg"
     ]

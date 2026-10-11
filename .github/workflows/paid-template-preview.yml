@@ -63,6 +63,7 @@ jobs:
           path: |
             artifacts/templates/package-report.json
             artifacts/templates/package-tests.json
+            artifacts/templates/release-manifest.json
             artifacts/templates/shop-contract.json
             artifacts/templates/preview-configuration.json
             artifacts/templates/browser-ci/

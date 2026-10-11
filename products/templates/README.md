@@ -33,6 +33,7 @@ Run from repository root:
 python products/templates/generate-products.py
 node scripts/build-template-packages.mjs
 node scripts/test-template-packages.mjs
+npm run test:templates
 ```
 
 The generator is optional maintainer tooling; buyers need no Python or build.
@@ -54,6 +55,29 @@ local-link, source-parity, fallback, block-structure, and GPL checks produce
 Do not mutate an archive after commerce pins its SHA-256/version. Rebuild an
 unreleased candidate explicitly and refresh all references and installation
 receipts. Version a released product before changing fulfillment bytes.
+
+The catalog also owns market, visual style, tagline, and design direction. The
+shop adapter derives its existing display values from those records. Server
+commerce configuration remains the authority for price IDs and charged prices.
+`templates:build` generates `release-manifest.json` after packaging and guides;
+the manifest joins all sixteen edition records, eight private archive hashes,
+license/support/asset files, candidate changelogs, and scoped compatibility
+receipts. It keeps every edition unavailable and rejects a changed archive hash
+for an existing edition/version. It does not automatically accept compatibility
+or enable commerce. `test:templates` builds ignored archives before checking
+integrity, release metadata, and server-rendered shop behavior on a clean checkout.
+
+The release helper optionally mirrors only final ZIPs and a bounded list of
+small proof documents to `EIDOS_PROOF_DRIVE_DIR`, then `EIDOS_ARTIFACT_ROOT`.
+It reserves 64 MiB free space and verifies each destination checksum. It never
+copies screenshots, browser profiles, credentials, or provider secrets. Local
+`artifacts/templates/drive_manifest.json` records absent destinations, capacity
+skips, failures, and verified copies; mounted copying does not prove cloud sync.
+The observed first Drive attempt failed with ENOSPC and zero verified copies;
+`drive_manifest-initial-enospc.json` preserves that failure. Automatic retries to
+that same destination stay blocked while the failure receipt is present. Do not
+remove the receipt or partial files as routine cleanup; reassess the destination
+explicitly before a later archival attempt.
 
 ## Commercial boundaries
 

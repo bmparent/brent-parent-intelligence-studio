@@ -35,3 +35,7 @@ Remove page injection first, then the optional code block/CSS. Native content re
 A separately built/verified starter could be duplicated into a new trial, then transferred after the buyer accepts a contributor invitation. Each duplicate needs its own billing plan; selling settings and authenticated integrations must be reconnected. That future manually fulfilled edition needs separate status, timing, ownership-transfer receipts, and account access. It is not this existing-site kit.
 
 Official references are recorded in `docs/paid-templates/platform-research.md` in the source repository.
+
+## Source rights
+
+Read `LICENSE.txt` for draft one-finished-site commercial terms. This pilot remains unavailable for purchase; platform subscriptions and native platform terms are separate. No third-party imagery, fonts, or scripts are redistributed.

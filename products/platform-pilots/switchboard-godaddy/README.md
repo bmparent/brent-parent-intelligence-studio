@@ -26,3 +26,7 @@ Do not paste an entire Eidos website into the HTML section, promise native theme
 Official route: https://www.godaddy.com/help/add-html-or-custom-code-to-my-site-27252
 
 Iframe, height, HTTPS, and link limits: https://www.godaddy.com/help/troubleshoot-html-or-custom-code-not-displaying-properly-28025
+
+## Source rights
+
+Read `LICENSE.txt` for draft one-finished-site commercial terms. This pilot remains unavailable for purchase; platform subscriptions and native platform terms are separate. No third-party imagery, fonts, or scripts are redistributed.

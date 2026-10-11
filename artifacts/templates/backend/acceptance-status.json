@@ -1,0 +1,89 @@
+{
+  "timestampUtc": "2026-10-11T01:02:13.022Z",
+  "scope": "TEST candidate; no production promotion",
+  "tests": {
+    "command": "npm --prefix apps/sentinel-lab test",
+    "passed": 63,
+    "failed": 0,
+    "skipped": 0,
+    "log": "tests-final.log"
+  },
+  "typecheck": {
+    "command": "npm --prefix apps/sentinel-lab run lint -- --incremental false",
+    "status": "passed",
+    "log": "typecheck-final.log"
+  },
+  "localBuild": {
+    "command": "npm --prefix apps/sentinel-lab run build -- --webpack",
+    "status": "passed before final additive async-failure and TEST challenge changes; final remote build pending",
+    "log": "build-webpack-retry.log",
+    "defaultTurbopack": "failed because node_modules junction resolved outside isolated worktree",
+    "finalVerification": "passed by final source remote Vercel build"
+  },
+  "archives": {
+    "count": 8,
+    "receipt": "private-archive-receipt-final.json",
+    "private": true,
+    "verifiedEditions": [
+      "switchboard-developer-v1",
+      "tideglass-developer-v1",
+      "matter-developer-v1",
+      "nightjar-developer-v1"
+    ],
+    "wordpress": "installation acceptance blocked",
+    "builderPilots": "unavailable"
+  },
+  "providers": {
+    "stripe": "existing Eidos Works TEST key verified against acct_1Rj03gKC8pRG5Tr9",
+    "database": "existing named validation database; updated additive migration preserved 6 of 6 legacy orders",
+    "mail": "blocked: selected sensitive Resend key unavailable for readback; no received-email claim",
+    "turnstile": "official public TEST keys and server validation; not live bot protection"
+  },
+  "hosted": {
+    "backend": "passed: final protected READY; authenticated catalog200; anonymous302",
+    "catalog": "passed: exact final source pin; four developer editions available; WP and pilots blocked",
+    "negativeControls": "passed: client price override400; unsupported WP503; unknown receipt404",
+    "testChallenge": "passed: actual official public TEST siteverify and generic recovery200",
+    "testCheckout": "passed preparation only: actual Stripe TEST session USD9900, livemodefalse, open/unpaid; no payment submitted",
+    "providerWebhook": "pending: waiting for paired Pages READY before submitting TEST payment",
+    "receivedEmail": "blocked: usable Resend key unavailable",
+    "purchaseRecoveryEmail": "blocked: usable Resend key unavailable",
+    "downloadArchive": "pending: payment and actual signed delivery needed"
+  },
+  "productionChanged": false,
+  "brainResearchChanged": false,
+  "cleanup": "automatic execution review rejected candidate .next removal; no deletion performed",
+  "remoteBuild": {
+    "status": "passed",
+    "deploymentId": "dpl_66UCK5WJyvERLmYDSKKpeoEPEi1E",
+    "sourceCommit": "58e4a60859c6bc590bc3c4ea5b2689256330066d",
+    "log": "remote-build-final.json"
+  },
+  "backendSource": "58e4a60859c6bc590bc3c4ea5b2689256330066d",
+  "backendSourceBundle": "6fef7d46dea0be4721303898ca0a9f77a169a9885072cc8c9a49511e815a347e",
+  "backendPreview": "https://eidos-sentinel-234h0a2qe-1brentbm-1876s-projects.vercel.app",
+  "production": {
+    "changed": false,
+    "latestDeployment": "dpl_BDUhZ7W9Akz58SDaVXJ2bXVF4rNQ",
+    "source": "4c746ffccf9249c7ddabd58f839ecb5fcece4fd0"
+  },
+  "providerHooks": {
+    "existingThreeRetained": true,
+    "newCandidateTestHook": "we_1UPAlBKC8pRG5Tr9zQ7h8O5A",
+    "newEvents": [
+      "checkout.session.completed",
+      "checkout.session.async_payment_succeeded",
+      "checkout.session.async_payment_failed",
+      "checkout.session.expired",
+      "charge.refunded",
+      "charge.dispute.created"
+    ]
+  },
+  "draftPr": "https://github.com/bmparent/eidos/pull/71",
+  "githubChecks": {
+    "runner": "passed",
+    "verify": "passed",
+    "note": "Git integration preview excludes ignored ZIPs; manual protected preview is acceptance target"
+  },
+  "artifactNote": "Historical c074 receipts retained. Final hosted receipts and subsequent TEST evidence are on E because C has zero free space."
+}

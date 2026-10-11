@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "2026-10-10.1",
+  "releaseStatus": "unavailable",
+  "saleEnabled": false,
+  "catalog": {
+    "path": "products/templates/catalog.json",
+    "bytes": 12260,
+    "sha256": "68c57db7cac1c4a07905dcaa2a637f620937e394ef44141927d2b81071f05fd9"
+  },
+  "generation": {
+    "command": "node scripts/build-template-release-manifest.mjs",
+    "packageRebuild": "npm run templates:build",
+    "rule": "This helper reads frozen archives. An existing edition/version checksum may not change. Release evidence never enables commerce automatically."
+  },
+  "priceIds": null,
+  "priceIdsReason": "Intentionally omitted: backend owns provider IDs, mode, availability, and price validation.",
+  "products": [
+    {
+      "slug": "switchboard",
+      "name": "Switchboard",
+      "market": "Services",
+      "visualStyle": "Crisp & practical",
+      "tagline": "A clearer path to the next inquiry.",
+      "designDirection": {
+        "artCaption": "A useful place to start.",
+        "structure": "Problem-led service routing with a compact inquiry path.",
+        "typography": "System sans with strong labels and measured content density.",
+        "visualLanguage": "Warm white, forest ink, lime accents, and original service diagrams.",
+        "navigation": "Home, services, focused service detail, process, and contact.",
+        "interaction": "Problem-to-service selector with ordinary links as the fallback."
+      },
+      "pages": [
+        "Home",
+        "Services",
+        "Service detail",
+        "Work and process",
+        "Contact"
+      ],
+      "editions": [
+        {
+          "id": "switchboard-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "status": "candidate",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": "1.0.0",
+          "package": {
+            "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
+            "sha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+            "bytes": 26816
+          },
+          "compatibility": {
+            "acceptance": "local-source-install-passed",
+            "scope": "Local HTTP installation, copy/image edits, and email draft preparation. No remote host or sent email acceptance.",
+            "evidence": "artifacts/templates/source-install-receipt.json",
+            "browserEvidence": "artifacts/templates/varied-content-performance.json"
+          }
+        },
+        {
+          "id": "switchboard-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "status": "candidate",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": "1.0.0",
+          "package": {
+            "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+            "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+            "bytes": 29391
+          },
+          "compatibility": {
+            "acceptance": "incomplete",
+            "declaredMinimums": {
+              "wordpress": "6.6",
+              "php": "8.1"
+            },
+            "actualTestedVersions": {
+              "wordpress": null,
+              "php": null
+            },
+            "browserPlaygroundChecks": null,
+            "browserPlaygroundStatus": "not_run",
+            "cliStatus": "blocked",
+            "evidence": [
+              "docs/paid-templates/platform-install-evidence.json",
+              "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
+            ],
+            "limits": "Install/activation observations are distinct from native content/image edit, publish, ordinary contact action, native PHP/MySQL host, and WordPress.com plan acceptance. No general compatibility claim."
+          }
+        },
+        {
+          "id": "switchboard-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "status": "unavailable",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": null,
+          "package": null,
+          "compatibility": {
+            "acceptance": "unverified",
+            "reason": "No accepted hosted builder installation. Local pilots are separate evidence.",
+            "pilotPath": "products/platform-pilots/switchboard-squarespace-7.1"
+          }
+        },
+        {
+          "id": "switchboard-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "status": "unavailable",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": null,
+          "package": null,
+          "compatibility": {
+            "acceptance": "unverified",
+            "reason": "No accepted hosted builder installation. Local pilots are separate evidence.",
+            "pilotPath": "products/platform-pilots/switchboard-godaddy"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "tideglass",
+      "name": "Tideglass",
+      "market": "Hospitality",
+      "visualStyle": "Quiet & atmospheric",
+      "tagline": "Room to slow down. A clear way to stay.",
+      "designDirection": {
+        "artCaption": "Stay a little longer.",
+        "structure": "Spacious stay discovery with room details and a local guide.",
+        "typography": "Large system serif headlines and readable sans-serif body copy.",
+        "visualLanguage": "Coastal blue, pale stone, sand accents, and original landscape artwork.",
+        "navigation": "Home, stays and experiences, stay detail, local guide, and booking inquiry.",
+        "interaction": "Time-of-day scene explorer with a static illustrated fallback."
+      },
+      "pages": [
+        "Home",
+        "Stays and experiences",
+        "Stay detail",
+        "Local guide",
+        "Contact and booking"
+      ],
+      "editions": [
+        {
+          "id": "tideglass-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "status": "candidate",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": "1.0.0",
+          "package": {
+            "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
+            "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+            "bytes": 26836
+          },
+          "compatibility": {
+            "acceptance": "local-source-install-passed",
+            "scope": "Local HTTP installation, copy/image edits, and email draft preparation. No remote host or sent email acceptance.",
+            "evidence": "artifacts/templates/source-install-receipt.json",
+            "browserEvidence": "artifacts/templates/varied-content-performance.json"
+          }
+        },
+        {
+          "id": "tideglass-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "status": "candidate",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": "1.0.0",
+          "package": {
+            "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+            "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+            "bytes": 30016
+          },
+          "compatibility": {
+            "acceptance": "incomplete",
+            "declaredMinimums": {
+              "wordpress": "6.6",
+              "php": "8.1"
+            },
+            "actualTestedVersions": {
+              "wordpress": null,
+              "php": null
+            },
+            "browserPlaygroundChecks": null,
+            "browserPlaygroundStatus": "not_run",
+            "cliStatus": "blocked",
+            "evidence": [
+              "docs/paid-templates/platform-install-evidence.json",
+              "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
+            ],
+            "limits": "Install/activation observations are distinct from native content/image edit, publish, ordinary contact action, native PHP/MySQL host, and WordPress.com plan acceptance. No general compatibility claim."
+          }
+        },
+        {
+          "id": "tideglass-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "status": "unavailable",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": null,
+          "package": null,
+          "compatibility": {
+            "acceptance": "unverified",
+            "reason": "No accepted hosted builder installation. Local pilots are separate evidence.",
+            "pilotPath": null
+          }
+        },
+        {
+          "id": "tideglass-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "status": "unavailable",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": null,
+          "package": null,
+          "compatibility": {
+            "acceptance": "unverified",
+            "reason": "No accepted hosted builder installation. Local pilots are separate evidence.",
+            "pilotPath": null
+          }
+        }
+      ]
+    },
+    {
+      "slug": "matter",
+      "name": "Matter",
+      "market": "Makers",
+      "visualStyle": "Warm & editorial",
+      "tagline": "Let the details do the talking.",
+      "designDirection": {
+        "artCaption": "Made with intention.",
+        "structure": "Editorial collection browsing centered on material, process, and a considered inquiry.",
+        "typography": "Serif editorial headings with compact sans-serif labels.",
+        "visualLanguage": "Clay, dark brown, warm paper, and original object studies.",
+        "navigation": "Home, collection, object detail, studio journal, and inquiry.",
+        "interaction": "Material lens controlled by pointer, keyboard, or touch, with static artwork fallback."
+      },
+      "pages": [
+        "Home",
+        "Collection",
+        "Object detail",
+        "Our process",
+        "Contact"
+      ],
+      "editions": [
+        {
+          "id": "matter-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "status": "candidate",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": "1.0.0",
+          "package": {
+            "path": "artifacts/templates/packages/matter-developer-v1.zip",
+            "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+            "bytes": 27533
+          },
+          "compatibility": {
+            "acceptance": "local-source-install-passed",
+            "scope": "Local HTTP installation, copy/image edits, and email draft preparation. No remote host or sent email acceptance.",
+            "evidence": "artifacts/templates/source-install-receipt.json",
+            "browserEvidence": "artifacts/templates/varied-content-performance.json"
+          }
+        },
+        {
+          "id": "matter-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "status": "candidate",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": "1.0.0",
+          "package": {
+            "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
+            "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+            "bytes": 30739
+          },
+          "compatibility": {
+            "acceptance": "incomplete",
+            "declaredMinimums": {
+              "wordpress": "6.6",
+              "php": "8.1"
+            },
+            "actualTestedVersions": {
+              "wordpress": null,
+              "php": null
+            },
+            "browserPlaygroundChecks": null,
+            "browserPlaygroundStatus": "not_run",
+            "cliStatus": "blocked",
+            "evidence": [
+              "docs/paid-templates/platform-install-evidence.json",
+              "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
+            ],
+            "limits": "Install/activation observations are distinct from native content/image edit, publish, ordinary contact action, native PHP/MySQL host, and WordPress.com plan acceptance. No general compatibility claim."
+          }
+        },
+        {
+          "id": "matter-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "status": "unavailable",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": null,
+          "package": null,
+          "compatibility": {
+            "acceptance": "unverified",
+            "reason": "No accepted hosted builder installation. Local pilots are separate evidence.",
+            "pilotPath": null
+          }
+        },
+        {
+          "id": "matter-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "status": "unavailable",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": null,
+          "package": null,
+          "compatibility": {
+            "acceptance": "unverified",
+            "reason": "No accepted hosted builder installation. Local pilots are separate evidence.",
+            "pilotPath": null
+          }
+        }
+      ]
+    },
+    {
+      "slug": "nightjar",
+      "name": "Nightjar",
+      "market": "Culture & events",
+      "visualStyle": "Bold & expressive",
+      "tagline": "Find your people. Find your next night.",
+      "designDirection": {
+        "artCaption": "Meet after dark.",
+        "structure": "High-contrast event discovery with a practical program and venue path.",
+        "typography": "Oversized system sans headlines and compact program metadata.",
+        "visualLanguage": "Charcoal, electric blue, warm white, and original poster artwork.",
+        "navigation": "Home, program, event detail, venue, and contact.",
+        "interaction": "Event mood filters with ordinary full program content as the fallback."
+      },
+      "pages": [
+        "Home",
+        "Program",
+        "Event detail",
+        "About",
+        "Contact"
+      ],
+      "editions": [
+        {
+          "id": "nightjar-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "status": "candidate",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": "1.0.0",
+          "package": {
+            "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
+            "sha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8",
+            "bytes": 26765
+          },
+          "compatibility": {
+            "acceptance": "local-source-install-passed",
+            "scope": "Local HTTP installation, copy/image edits, and email draft preparation. No remote host or sent email acceptance.",
+            "evidence": "artifacts/templates/source-install-receipt.json",
+            "browserEvidence": "artifacts/templates/varied-content-performance.json"
+          }
+        },
+        {
+          "id": "nightjar-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "status": "candidate",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": "1.0.0",
+          "package": {
+            "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+            "sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+            "bytes": 29728
+          },
+          "compatibility": {
+            "acceptance": "incomplete",
+            "declaredMinimums": {
+              "wordpress": "6.6",
+              "php": "8.1"
+            },
+            "actualTestedVersions": {
+              "wordpress": null,
+              "php": null
+            },
+            "browserPlaygroundChecks": null,
+            "browserPlaygroundStatus": "not_run",
+            "cliStatus": "blocked",
+            "evidence": [
+              "docs/paid-templates/platform-install-evidence.json",
+              "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
+            ],
+            "limits": "Install/activation observations are distinct from native content/image edit, publish, ordinary contact action, native PHP/MySQL host, and WordPress.com plan acceptance. No general compatibility claim."
+          }
+        },
+        {
+          "id": "nightjar-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "status": "unavailable",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": null,
+          "package": null,
+          "compatibility": {
+            "acceptance": "unverified",
+            "reason": "No accepted hosted builder installation. Local pilots are separate evidence.",
+            "pilotPath": null
+          }
+        },
+        {
+          "id": "nightjar-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "status": "unavailable",
+          "releaseStatus": "unavailable",
+          "commercialAvailability": "unavailable",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "priceIds": null,
+          "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
+          "version": null,
+          "package": null,
+          "compatibility": {
+            "acceptance": "unverified",
+            "reason": "No accepted hosted builder installation. Local pilots are separate evidence.",
+            "pilotPath": null
+          }
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "product": "switchboard",
+      "platform": "developer",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "sha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "bytes": 26816,
+      "sourceManifest": {
+        "path": "products/templates/switchboard/developer/PACKAGE_MANIFEST.json",
+        "bytes": 2687,
+        "sha256": "fe903224d6bfaa4c7e416463f5e18c8a910322d7b241b0b3a70fae056ffb1aa3"
+      },
+      "distribution": "private-fulfillment-only",
+      "releaseStatus": "unavailable",
+      "license": {
+        "identifier": "Eidos-one-finished-website",
+        "rights": "One finished commercial website; see included license for transfer and resale boundaries."
+      },
+      "support": {
+        "status": "draft",
+        "installationGuidanceDays": 30,
+        "suppliedFileDefectDays": 90,
+        "responseTimeSla": null
+      },
+      "documentationAndAssets": [
+        {
+          "path": "products/templates/switchboard/developer/ASSETS.md",
+          "bytes": 735,
+          "sha256": "8afcb3bef22ed80de5a39f3e5a8b4895d97e32c8a3dd08ef953451c3a6a71ec7"
+        },
+        {
+          "path": "products/templates/switchboard/developer/INSTALL.md",
+          "bytes": 4850,
+          "sha256": "d243d74e1012e633e3cb0eb77febcb88a52c7244beee23fc733263a73d89ae21"
+        },
+        {
+          "path": "products/templates/switchboard/developer/LICENSE.txt",
+          "bytes": 1553,
+          "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+        },
+        {
+          "path": "products/templates/switchboard/developer/SUPPORT.md",
+          "bytes": 1361,
+          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+        },
+        {
+          "path": "products/templates/switchboard/developer/assets/service-plan.svg",
+          "bytes": 1174,
+          "sha256": "5b92a311cdf5bd0e069ca1c52c3d4dd57b3371ac52d839b1e7a5f05b31450301"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "status": "candidate",
+          "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
+        }
+      ]
+    },
+    {
+      "editionId": "switchboard-wordpress-v1",
+      "product": "switchboard",
+      "platform": "wordpress",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+      "bytes": 29391,
+      "sourceManifest": {
+        "path": "products/templates/switchboard/wordpress/PACKAGE_MANIFEST.json",
+        "bytes": 4556,
+        "sha256": "75629cec61c1a59eca9f88da7f2b0bfce565861cf29497742fcdf0921552f0bf"
+      },
+      "distribution": "private-fulfillment-only",
+      "releaseStatus": "unavailable",
+      "license": {
+        "identifier": "GPL-2.0-or-later",
+        "rights": "GPL rights are unrestricted by the developer one-site commercial terms."
+      },
+      "support": {
+        "status": "draft",
+        "installationGuidanceDays": 30,
+        "suppliedFileDefectDays": 90,
+        "responseTimeSla": null
+      },
+      "documentationAndAssets": [
+        {
+          "path": "products/templates/switchboard/wordpress/ASSETS.md",
+          "bytes": 404,
+          "sha256": "17b1dead82965d398f751c13c325d9bf5c392ce360a5ce69cf2f544df04f5be2"
+        },
+        {
+          "path": "products/templates/switchboard/wordpress/COPYING",
+          "bytes": 17984,
+          "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+        },
+        {
+          "path": "products/templates/switchboard/wordpress/INSTALL.md",
+          "bytes": 4539,
+          "sha256": "fe341bc30b2fa9567d8d91079b30e02b2139dc4b464326b07ffe8fb07c3ec2cf"
+        },
+        {
+          "path": "products/templates/switchboard/wordpress/LICENSE.txt",
+          "bytes": 732,
+          "sha256": "554a8362bae4352e249dd3d1211f09a10b34ae530ea5efe3eaf84d52ba6b086f"
+        },
+        {
+          "path": "products/templates/switchboard/wordpress/SUPPORT.md",
+          "bytes": 1361,
+          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+        },
+        {
+          "path": "products/templates/switchboard/wordpress/assets/service-plan.svg",
+          "bytes": 1174,
+          "sha256": "5b92a311cdf5bd0e069ca1c52c3d4dd57b3371ac52d839b1e7a5f05b31450301"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "status": "candidate",
+          "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
+        }
+      ]
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "product": "tideglass",
+      "platform": "developer",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+      "bytes": 26836,
+      "sourceManifest": {
+        "path": "products/templates/tideglass/developer/PACKAGE_MANIFEST.json",
+        "bytes": 2668,
+        "sha256": "e10734903932a082add031d66ee5fe9da287d7ef9a9419df570f830ec265a505"
+      },
+      "distribution": "private-fulfillment-only",
+      "releaseStatus": "unavailable",
+      "license": {
+        "identifier": "Eidos-one-finished-website",
+        "rights": "One finished commercial website; see included license for transfer and resale boundaries."
+      },
+      "support": {
+        "status": "draft",
+        "installationGuidanceDays": 30,
+        "suppliedFileDefectDays": 90,
+        "responseTimeSla": null
+      },
+      "documentationAndAssets": [
+        {
+          "path": "products/templates/tideglass/developer/ASSETS.md",
+          "bytes": 726,
+          "sha256": "6651df21f5fa5ef4c5d28ed8ab8ef055d2ce441b3d258be1fd493211d167a00b"
+        },
+        {
+          "path": "products/templates/tideglass/developer/INSTALL.md",
+          "bytes": 4839,
+          "sha256": "092f5281264c85e39c2c856aa49cbb448e49666fedda46b653e2a42f18ae5c76"
+        },
+        {
+          "path": "products/templates/tideglass/developer/LICENSE.txt",
+          "bytes": 1553,
+          "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+        },
+        {
+          "path": "products/templates/tideglass/developer/SUPPORT.md",
+          "bytes": 1361,
+          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+        },
+        {
+          "path": "products/templates/tideglass/developer/assets/coast.svg",
+          "bytes": 1434,
+          "sha256": "4a411c25830bf7bda4ed562850cafb7047916301e1a81567d8d98421deb55615"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "status": "candidate",
+          "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
+        }
+      ]
+    },
+    {
+      "editionId": "tideglass-wordpress-v1",
+      "product": "tideglass",
+      "platform": "wordpress",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+      "bytes": 30016,
+      "sourceManifest": {
+        "path": "products/templates/tideglass/wordpress/PACKAGE_MANIFEST.json",
+        "bytes": 4529,
+        "sha256": "b5637f627aa6a5801d77e8521a7b74413774ef16bffa9c1ce60c66b9c8639568"
+      },
+      "distribution": "private-fulfillment-only",
+      "releaseStatus": "unavailable",
+      "license": {
+        "identifier": "GPL-2.0-or-later",
+        "rights": "GPL rights are unrestricted by the developer one-site commercial terms."
+      },
+      "support": {
+        "status": "draft",
+        "installationGuidanceDays": 30,
+        "suppliedFileDefectDays": 90,
+        "responseTimeSla": null
+      },
+      "documentationAndAssets": [
+        {
+          "path": "products/templates/tideglass/wordpress/ASSETS.md",
+          "bytes": 404,
+          "sha256": "17b1dead82965d398f751c13c325d9bf5c392ce360a5ce69cf2f544df04f5be2"
+        },
+        {
+          "path": "products/templates/tideglass/wordpress/COPYING",
+          "bytes": 17984,
+          "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+        },
+        {
+          "path": "products/templates/tideglass/wordpress/INSTALL.md",
+          "bytes": 4521,
+          "sha256": "b47308b21b48006336f36b609330f609bc947d2903564035b6829f65f7cf04ae"
+        },
+        {
+          "path": "products/templates/tideglass/wordpress/LICENSE.txt",
+          "bytes": 732,
+          "sha256": "554a8362bae4352e249dd3d1211f09a10b34ae530ea5efe3eaf84d52ba6b086f"
+        },
+        {
+          "path": "products/templates/tideglass/wordpress/SUPPORT.md",
+          "bytes": 1361,
+          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+        },
+        {
+          "path": "products/templates/tideglass/wordpress/assets/coast.svg",
+          "bytes": 1434,
+          "sha256": "4a411c25830bf7bda4ed562850cafb7047916301e1a81567d8d98421deb55615"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "status": "candidate",
+          "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
+        }
+      ]
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "product": "matter",
+      "platform": "developer",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/matter-developer-v1.zip",
+      "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+      "bytes": 27533,
+      "sourceManifest": {
+        "path": "products/templates/matter/developer/PACKAGE_MANIFEST.json",
+        "bytes": 2816,
+        "sha256": "cf0fcbabe034c95caa9eea9fd3970000eae4ecd539afedf10f6f02e103cae278"
+      },
+      "distribution": "private-fulfillment-only",
+      "releaseStatus": "unavailable",
+      "license": {
+        "identifier": "Eidos-one-finished-website",
+        "rights": "One finished commercial website; see included license for transfer and resale boundaries."
+      },
+      "support": {
+        "status": "draft",
+        "installationGuidanceDays": 30,
+        "suppliedFileDefectDays": 90,
+        "responseTimeSla": null
+      },
+      "documentationAndAssets": [
+        {
+          "path": "products/templates/matter/developer/ASSETS.md",
+          "bytes": 736,
+          "sha256": "7fff743a5af38ebd7119a85407e090c0ce4edef638641a222e1dddbb834c6412"
+        },
+        {
+          "path": "products/templates/matter/developer/INSTALL.md",
+          "bytes": 4840,
+          "sha256": "6433f3e6b703bf6c935d7e17aaf3c60fe8a5b68c186cdc1d75cc177fc1032171"
+        },
+        {
+          "path": "products/templates/matter/developer/LICENSE.txt",
+          "bytes": 1553,
+          "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+        },
+        {
+          "path": "products/templates/matter/developer/SUPPORT.md",
+          "bytes": 1361,
+          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+        },
+        {
+          "path": "products/templates/matter/developer/assets/timber.svg",
+          "bytes": 946,
+          "sha256": "770a9127c4bd1278fb3358cc1ab3f500592fcd6ee4459b9074d5adb9ef41ed2b"
+        },
+        {
+          "path": "products/templates/matter/developer/assets/vessel.svg",
+          "bytes": 1551,
+          "sha256": "689a6147923d70614f1975dcf1c4aaf8fc2d6acf68ee9fc4630366978c3b3db9"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "status": "candidate",
+          "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
+        }
+      ]
+    },
+    {
+      "editionId": "matter-wordpress-v1",
+      "product": "matter",
+      "platform": "wordpress",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+      "bytes": 30739,
+      "sourceManifest": {
+        "path": "products/templates/matter/wordpress/PACKAGE_MANIFEST.json",
+        "bytes": 4679,
+        "sha256": "910fff85b1c32597d7d8bc883aff799d3715938dd785153c9867efb7ae2f692e"
+      },
+      "distribution": "private-fulfillment-only",
+      "releaseStatus": "unavailable",
+      "license": {
+        "identifier": "GPL-2.0-or-later",
+        "rights": "GPL rights are unrestricted by the developer one-site commercial terms."
+      },
+      "support": {
+        "status": "draft",
+        "installationGuidanceDays": 30,
+        "suppliedFileDefectDays": 90,
+        "responseTimeSla": null
+      },
+      "documentationAndAssets": [
+        {
+          "path": "products/templates/matter/wordpress/ASSETS.md",
+          "bytes": 404,
+          "sha256": "17b1dead82965d398f751c13c325d9bf5c392ce360a5ce69cf2f544df04f5be2"
+        },
+        {
+          "path": "products/templates/matter/wordpress/COPYING",
+          "bytes": 17984,
+          "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+        },
+        {
+          "path": "products/templates/matter/wordpress/INSTALL.md",
+          "bytes": 4508,
+          "sha256": "283afbed3597a9f3f1ad8239eb93464d3d60773cf43be0368782d85f72dc692b"
+        },
+        {
+          "path": "products/templates/matter/wordpress/LICENSE.txt",
+          "bytes": 732,
+          "sha256": "554a8362bae4352e249dd3d1211f09a10b34ae530ea5efe3eaf84d52ba6b086f"
+        },
+        {
+          "path": "products/templates/matter/wordpress/SUPPORT.md",
+          "bytes": 1361,
+          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+        },
+        {
+          "path": "products/templates/matter/wordpress/assets/timber.svg",
+          "bytes": 946,
+          "sha256": "770a9127c4bd1278fb3358cc1ab3f500592fcd6ee4459b9074d5adb9ef41ed2b"
+        },
+        {
+          "path": "products/templates/matter/wordpress/assets/vessel.svg",
+          "bytes": 1551,
+          "sha256": "689a6147923d70614f1975dcf1c4aaf8fc2d6acf68ee9fc4630366978c3b3db9"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "status": "candidate",
+          "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
+        }
+      ]
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "product": "nightjar",
+      "platform": "developer",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
+      "sha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8",
+      "bytes": 26765,
+      "sourceManifest": {
+        "path": "products/templates/nightjar/developer/PACKAGE_MANIFEST.json",
+        "bytes": 2663,
+        "sha256": "93ab1ab1b1ab998bfa2329587ac4b69e25ea97c6e06f4739985af1f0489c7b2e"
+      },
+      "distribution": "private-fulfillment-only",
+      "releaseStatus": "unavailable",
+      "license": {
+        "identifier": "Eidos-one-finished-website",
+        "rights": "One finished commercial website; see included license for transfer and resale boundaries."
+      },
+      "support": {
+        "status": "draft",
+        "installationGuidanceDays": 30,
+        "suppliedFileDefectDays": 90,
+        "responseTimeSla": null
+      },
+      "documentationAndAssets": [
+        {
+          "path": "products/templates/nightjar/developer/ASSETS.md",
+          "bytes": 726,
+          "sha256": "7e3f2b966702b1316085bf3d0266cd634474fb2005c9b3e85aa6bd7c63cf403c"
+        },
+        {
+          "path": "products/templates/nightjar/developer/INSTALL.md",
+          "bytes": 4826,
+          "sha256": "0acfd9c35592eaccc093df8266fb571effb57eb98e7e5a2a19f2a6acf6e158cd"
+        },
+        {
+          "path": "products/templates/nightjar/developer/LICENSE.txt",
+          "bytes": 1553,
+          "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+        },
+        {
+          "path": "products/templates/nightjar/developer/SUPPORT.md",
+          "bytes": 1361,
+          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+        },
+        {
+          "path": "products/templates/nightjar/developer/assets/poster.svg",
+          "bytes": 1078,
+          "sha256": "f97123c0ea0fe2b06550f3ddddd863638c8b5baefd03b8e877af6469df970118"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "status": "candidate",
+          "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
+        }
+      ]
+    },
+    {
+      "editionId": "nightjar-wordpress-v1",
+      "product": "nightjar",
+      "platform": "wordpress",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+      "bytes": 29728,
+      "sourceManifest": {
+        "path": "products/templates/nightjar/wordpress/PACKAGE_MANIFEST.json",
+        "bytes": 4520,
+        "sha256": "03a9f79817765cadff4a3243cbb9a2e3b40d4b5d87f01ad9a7d2d1ddbd8bd148"
+      },
+      "distribution": "private-fulfillment-only",
+      "releaseStatus": "unavailable",
+      "license": {
+        "identifier": "GPL-2.0-or-later",
+        "rights": "GPL rights are unrestricted by the developer one-site commercial terms."
+      },
+      "support": {
+        "status": "draft",
+        "installationGuidanceDays": 30,
+        "suppliedFileDefectDays": 90,
+        "responseTimeSla": null
+      },
+      "documentationAndAssets": [
+        {
+          "path": "products/templates/nightjar/wordpress/ASSETS.md",
+          "bytes": 404,
+          "sha256": "17b1dead82965d398f751c13c325d9bf5c392ce360a5ce69cf2f544df04f5be2"
+        },
+        {
+          "path": "products/templates/nightjar/wordpress/COPYING",
+          "bytes": 17984,
+          "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+        },
+        {
+          "path": "products/templates/nightjar/wordpress/INSTALL.md",
+          "bytes": 4512,
+          "sha256": "605c22fd67462b61e212c1ea810caf9aca78e40e6eb77a41e36fadc20f799398"
+        },
+        {
+          "path": "products/templates/nightjar/wordpress/LICENSE.txt",
+          "bytes": 732,
+          "sha256": "554a8362bae4352e249dd3d1211f09a10b34ae530ea5efe3eaf84d52ba6b086f"
+        },
+        {
+          "path": "products/templates/nightjar/wordpress/SUPPORT.md",
+          "bytes": 1361,
+          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+        },
+        {
+          "path": "products/templates/nightjar/wordpress/assets/poster.svg",
+          "bytes": 1078,
+          "sha256": "f97123c0ea0fe2b06550f3ddddd863638c8b5baefd03b8e877af6469df970118"
+        }
+      ],
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "status": "candidate",
+          "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
+        }
+      ]
+    }
+  ],
+  "compatibilityEvidence": [
+    {
+      "path": "artifacts/templates/package-tests.json",
+      "bytes": 83428,
+      "sha256": "31514d286c611f0e1708f9188e33abfaefa8e88de5baa7b32466c13cb214e876",
+      "status": "passed",
+      "scope": "Read the referenced receipt for exact scope and limitations."
+    },
+    {
+      "path": "artifacts/templates/source-install-receipt.json",
+      "bytes": 1811,
+      "sha256": "780e36eafb8d4120b39532d1809449b0aef5c426e1f67a7ffefd24eb2807240a",
+      "status": "passed",
+      "scope": "buyer developer source installation; local published HTTP test, no remote deployment or email send"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.json",
+      "bytes": 18223,
+      "sha256": "d8e334689236a77d68c68af24975b171c31be03330f9417c840c4d3b611f8cc4",
+      "status": "passed",
+      "scope": "Local final developer-source and shop acceptance; no provider transaction or installation claims"
+    },
+    {
+      "path": "artifacts/templates/real-photo-content-receipt.json",
+      "bytes": 12731,
+      "sha256": "395868dc32dc4e84cb9091b8e64b171ad86d190c69d22d0f77bd6baa415bf61a",
+      "status": "passed",
+      "scope": "Final developer source; test-only DOM replacement with an existing Windows photographic JPEG, long copy and ordinary primary navigation at 390 and 1440 CSS pixels"
+    },
+    {
+      "path": "docs/paid-templates/platform-install-evidence.json",
+      "bytes": 5638,
+      "sha256": "5c62814fea971595c2596f467ac3de6d69c242cb2e5f3912db62e3cba3183e83",
+      "status": "partial",
+      "scope": "Read the referenced receipt for exact scope and limitations."
+    },
+    {
+      "path": "artifacts/templates/wordpress-install-external/browser-ui-receipt.json",
+      "status": "missing"
+    },
+    {
+      "path": "artifacts/templates/platform-pilots/browser-receipt.json",
+      "bytes": 5983,
+      "sha256": "542697ef843a80361e7a9a82e9e05a3433c2b1182f57d830c7854c0aa56b6bba",
+      "status": "passed",
+      "scope": "local source and iframe harness only"
+    }
+  ]
+}

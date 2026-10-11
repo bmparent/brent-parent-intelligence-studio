@@ -1,0 +1,207 @@
+{
+  "timestamp_utc": "2026-10-11T01:07:41.461Z",
+  "drive_copy_attempted": false,
+  "drive_copy_success": false,
+  "drive_root": "G:\\My Drive",
+  "drive_run_dir": null,
+  "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied.",
+  "files_considered": [
+    {
+      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "bytes": 26816,
+      "sha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a"
+    },
+    {
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "bytes": 29391,
+      "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846"
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "bytes": 26836,
+      "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7"
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "bytes": 30016,
+      "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5"
+    },
+    {
+      "path": "artifacts/templates/packages/matter-developer-v1.zip",
+      "bytes": 27533,
+      "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6"
+    },
+    {
+      "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "bytes": 30739,
+      "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8"
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
+      "bytes": 26765,
+      "sha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8"
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "bytes": 29728,
+      "sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d"
+    },
+    {
+      "path": "products/templates/release-manifest.json",
+      "bytes": 43404,
+      "sha256": "e7666775d72135c7547eb0d03e66fc424778d9032acd7a4aea3f9e4dce23dc85"
+    },
+    {
+      "path": "artifacts/templates/package-report.json",
+      "bytes": 2992,
+      "sha256": "9d22c16b93b34be90722beb30fa58e764c9e628cf6bc761bea692d81fef22362"
+    },
+    {
+      "path": "artifacts/templates/package-tests.json",
+      "bytes": 83428,
+      "sha256": "31514d286c611f0e1708f9188e33abfaefa8e88de5baa7b32466c13cb214e876"
+    },
+    {
+      "path": "artifacts/templates/package-tests.md",
+      "bytes": 473,
+      "sha256": "52949daa8520abe80d94fd07e140d4f81b6b022f347876061a23ec0c1464aebe"
+    },
+    {
+      "path": "artifacts/templates/source-install-receipt.json",
+      "bytes": 1811,
+      "sha256": "780e36eafb8d4120b39532d1809449b0aef5c426e1f67a7ffefd24eb2807240a"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.json",
+      "bytes": 18223,
+      "sha256": "d8e334689236a77d68c68af24975b171c31be03330f9417c840c4d3b611f8cc4"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.md",
+      "bytes": 2481,
+      "sha256": "ba8d71ddcfb250087bedf959df358290ec6b26653ea75bd919aea970cfba597b"
+    },
+    {
+      "path": "artifacts/templates/real-photo-content-receipt.json",
+      "bytes": 12731,
+      "sha256": "395868dc32dc4e84cb9091b8e64b171ad86d190c69d22d0f77bd6baa415bf61a"
+    },
+    {
+      "path": "docs/paid-templates/platform-install-evidence.json",
+      "bytes": 5638,
+      "sha256": "5c62814fea971595c2596f467ac3de6d69c242cb2e5f3912db62e3cba3183e83"
+    },
+    {
+      "path": "docs/paid-templates/product-operations.md",
+      "bytes": 18303,
+      "sha256": "d073bcd73ca5e73de5f039979e8e2fd85ed4a9563c6c89e566b1a23690fba70d"
+    },
+    {
+      "path": "docs/paid-templates/ACCEPTANCE.md",
+      "bytes": 8583,
+      "sha256": "b875a74125abec6050b9e995046d562a30357bf7d5c4dd9031237c0d7f34a916"
+    },
+    {
+      "path": "docs/paid-templates/security-review.md",
+      "bytes": 2699,
+      "sha256": "6344e65f2a5a1a7fd05758084960ea2fdaff4d60c51a9d423507a9197048dcf7"
+    }
+  ],
+  "files_copied": [],
+  "files_skipped": [
+    {
+      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/matter-developer-v1.zip",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "products/templates/release-manifest.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/package-report.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/package-tests.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/package-tests.md",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/source-install-receipt.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.md",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/real-photo-content-receipt.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "docs/paid-templates/platform-install-evidence.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "docs/paid-templates/product-operations.md",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "docs/paid-templates/ACCEPTANCE.md",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
+      "path": "docs/paid-templates/security-review.md",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    }
+  ],
+  "cloud_sync_confirmed": false,
+  "cloud_sync_note": "A verified mounted-folder copy does not establish remote cloud synchronization.",
+  "destinations_checked": [
+    {
+      "variable": "EIDOS_PROOF_DRIVE_DIR",
+      "root": "G:\\My Drive",
+      "payload_bytes": 428590,
+      "free_bytes": 66514944,
+      "reserve_bytes": 67108864,
+      "required_free_bytes": 67537454,
+      "sufficient": false,
+      "reason": "Previous mounted copy failed ENOSPC; no automatic retry. See artifacts/templates/drive_manifest-initial-enospc.json."
+    }
+  ]
+}

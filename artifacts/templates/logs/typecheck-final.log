@@ -1,0 +1,28 @@
+
+> brent-parent-intelligence-studio@1.1.0 typecheck
+> tsc -b --pretty false
+
+
+<--- Last few GCs --->
+
+[2496:00000222DBB41000]     3320 ms: Scavenge 29.7 (38.7) -> 26.2 (57.5) MB, pooled: 0 MB, 9.85 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[2496:00000222DBB41000]     5228 ms: Scavenge 41.6 (59.0) -> 36.8 (61.0) MB, pooled: 0 MB, 15.93 / 0.02 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[2496:00000222DBB41000]     6959 ms: Scavenge 44.0 (61.0) -> 41.6 (70.5) MB, pooled: 2 MB, 19.73 / 0.03 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Committing semi space failed. Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 00007FF6D08AC36F 
+ 2: 00007FF6D14F4D77 
+ 3: 00007FF6D12F5467 
+ 4: 00007FF6D128DE8B 
+ 5: 00007FF6D12B61FA 
+ 6: 00007FF6D12F7846 
+ 7: 00007FF6D12F6E96 
+ 8: 00007FF6D1307E22 
+ 9: 00007FF6D130794B 
+10: 00007FF6D278DAED 
+11: 00007FF6D12F2F30 
+12: 00007FF6D1376C09 
+13: 00007FF6D0EECA18 
+14: 000002229FE7733A 

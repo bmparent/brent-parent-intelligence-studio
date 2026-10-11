@@ -73,7 +73,18 @@
           "commercialAvailability": "unavailable",
           "pilotPath": "products/platform-pilots/switchboard-godaddy"
         }
-      ]
+      ],
+      "market": "Services",
+      "visualStyle": "Crisp & practical",
+      "tagline": "A clearer path to the next inquiry.",
+      "designDirection": {
+        "artCaption": "A useful place to start.",
+        "structure": "Problem-led service routing with a compact inquiry path.",
+        "typography": "System sans with strong labels and measured content density.",
+        "visualLanguage": "Warm white, forest ink, lime accents, and original service diagrams.",
+        "navigation": "Home, services, focused service detail, process, and contact.",
+        "interaction": "Problem-to-service selector with ordinary links as the fallback."
+      }
     },
     {
       "slug": "tideglass",
@@ -141,7 +152,18 @@
           "status": "unavailable",
           "commercialAvailability": "unavailable"
         }
-      ]
+      ],
+      "market": "Hospitality",
+      "visualStyle": "Quiet & atmospheric",
+      "tagline": "Room to slow down. A clear way to stay.",
+      "designDirection": {
+        "artCaption": "Stay a little longer.",
+        "structure": "Spacious stay discovery with room details and a local guide.",
+        "typography": "Large system serif headlines and readable sans-serif body copy.",
+        "visualLanguage": "Coastal blue, pale stone, sand accents, and original landscape artwork.",
+        "navigation": "Home, stays and experiences, stay detail, local guide, and booking inquiry.",
+        "interaction": "Time-of-day scene explorer with a static illustrated fallback."
+      }
     },
     {
       "slug": "matter",
@@ -209,7 +231,18 @@
           "status": "unavailable",
           "commercialAvailability": "unavailable"
         }
-      ]
+      ],
+      "market": "Makers",
+      "visualStyle": "Warm & editorial",
+      "tagline": "Let the details do the talking.",
+      "designDirection": {
+        "artCaption": "Made with intention.",
+        "structure": "Editorial collection browsing centered on material, process, and a considered inquiry.",
+        "typography": "Serif editorial headings with compact sans-serif labels.",
+        "visualLanguage": "Clay, dark brown, warm paper, and original object studies.",
+        "navigation": "Home, collection, object detail, studio journal, and inquiry.",
+        "interaction": "Material lens controlled by pointer, keyboard, or touch, with static artwork fallback."
+      }
     },
     {
       "slug": "nightjar",
@@ -277,7 +310,18 @@
           "status": "unavailable",
           "commercialAvailability": "unavailable"
         }
-      ]
+      ],
+      "market": "Culture & events",
+      "visualStyle": "Bold & expressive",
+      "tagline": "Find your people. Find your next night.",
+      "designDirection": {
+        "artCaption": "Meet after dark.",
+        "structure": "High-contrast event discovery with a practical program and venue path.",
+        "typography": "Oversized system sans headlines and compact program metadata.",
+        "visualLanguage": "Charcoal, electric blue, warm white, and original poster artwork.",
+        "navigation": "Home, program, event detail, venue, and contact.",
+        "interaction": "Event mood filters with ordinary full program content as the fallback."
+      }
     }
   ]
 }
