@@ -261,3 +261,9 @@ all other current archives keep their hashes.
 The final Nightjar developer candidate is 1.0.3: its measured 2.7rem minimum
 also corrects the immediate 641px breakpoint; phone and wide desktop sizes stay
 the same. Versions 1.0.1 and 1.0.2 remain retained rather than overwritten.
+
+Switchboard developer 1.0.1 corrects the desktop sample headline word split with
+measured hero font sizing and a phone clamp retaining the original 3rem ceiling.
+The original actual paid TEST proof belongs to retained 1.0.0 bytes; it is not
+retrospectively proof of a paid 1.0.1 delivery. Other current versions remain
+unchanged, including Nightjar developer 1.0.3 and four WordPress 1.0.1 editions.

@@ -5,8 +5,8 @@
   "saleEnabled": false,
   "catalog": {
     "path": "products/templates/catalog.json",
-    "bytes": 12430,
-    "sha256": "bbad8965cd5d6d296267e62227394390b50aac3c957e522c8cf1adebebc33af9"
+    "bytes": 12464,
+    "sha256": "87430d3c1d85ccee07031a6df77a257d4a2b49bfcbfd81b84a16e95081ab9b06"
   },
   "generation": {
     "command": "node scripts/build-template-release-manifest.mjs",
@@ -49,11 +49,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "package": {
-            "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
-            "sha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
-            "bytes": 26816
+            "path": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+            "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
+            "bytes": 27055
           },
           "compatibility": {
             "acceptance": "local-source-install-passed",
@@ -719,14 +719,14 @@
       "editionId": "switchboard-developer-v1",
       "product": "switchboard",
       "platform": "developer",
-      "version": "1.0.0",
-      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
-      "sha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
-      "bytes": 26816,
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+      "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
+      "bytes": 27055,
       "sourceManifest": {
         "path": "products/templates/switchboard/developer/PACKAGE_MANIFEST.json",
         "bytes": 2687,
-        "sha256": "fe903224d6bfaa4c7e416463f5e18c8a910322d7b241b0b3a70fae056ffb1aa3"
+        "sha256": "01f0fc390a962d21d5c3a9145a6195c814fe733d9dd9705738d68a753f649b06"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -748,8 +748,8 @@
         },
         {
           "path": "products/templates/switchboard/developer/INSTALL.md",
-          "bytes": 4850,
-          "sha256": "d243d74e1012e633e3cb0eb77febcb88a52c7244beee23fc733263a73d89ae21"
+          "bytes": 5284,
+          "sha256": "abe3fea16609a7b03b78e9f781a670ef63bc21b2e0987bd39612a7969576f9a4"
         },
         {
           "path": "products/templates/switchboard/developer/LICENSE.txt",
@@ -768,6 +768,11 @@
         }
       ],
       "changelog": [
+        {
+          "version": "1.0.1",
+          "status": "candidate",
+          "description": "Measured responsive hero font sizing keeps ordinary sample words intact, with a phone clamp retaining the previous 3rem ceiling. CSS typography and editing guidance only."
+        },
         {
           "version": "1.0.0",
           "status": "candidate",
@@ -1265,14 +1270,14 @@
     {
       "path": "artifacts/templates/package-tests.json",
       "bytes": 83542,
-      "sha256": "8a4a093e6b7a75da63a25f53a7a65290509cc95893fbf9b5980dd01e224dca99",
+      "sha256": "092565712d482c26fc7f267344c73aedea0e26827ff5d5157f37dd3cd372fc57",
       "status": "passed",
       "scope": "Read the referenced receipt for exact scope and limitations."
     },
     {
       "path": "artifacts/templates/source-install-receipt.json",
       "bytes": 1919,
-      "sha256": "2a1657964760de6680a3ca0548a3de090a77c422ab227a81b4c02fb05b997aa3",
+      "sha256": "5cf2782f3a16f1f3f79b7bece12b6cb98ff2f0ffaa0a0d28a97555a04deea64f",
       "status": "passed",
       "scope": "buyer developer source installation; local published HTTP test, no remote deployment or email send"
     },
@@ -1335,16 +1340,23 @@
     {
       "path": "artifacts/templates/version-transition-receipt.json",
       "bytes": 5791,
-      "sha256": "e4040b6a17f4fdb1d250d15083b459d45d736e9d259d3bf0420bb6f52817f7c1",
+      "sha256": "e02790e1cf614124528d746668e892fdfbc90ab6afe868faf87e828e9f394e33",
       "status": "passed",
-      "scope": "Exact 1.0.2 to 1.0.3 archive comparison. Nightjar developer hero minimum font clamp and INSTALL guidance only; seven other current archives byte-identical. Prior transition receipts and immutable archives preserved."
+      "scope": "Switchboard developer1.0.0 to1.0.1 exact archive comparison: hero font clamp and INSTALL guidance only; seven other current archives byte-identical. Original paid1.0.0 evidence and archive remain historical."
     },
     {
       "path": "artifacts/templates/generator-parity.json",
-      "bytes": 339,
-      "sha256": "40e37f43cd1b6d81f5e974f3dddd846f933a801c0e703e25c8db5a16cef03a28",
+      "bytes": 391,
+      "sha256": "bca644b7cdb9ec13db843a9b77b6d5971a1188937725750acb4bef9f17950e36",
       "status": "passed",
-      "scope": "Nightjar developer 1.0.3 breakpoint typography; seven other current sources unchanged"
+      "scope": "Switchboard developer1.0.1 measured typography; seven other current sources unchanged including Nightjar1.0.3 and fourWP1.0.1"
+    },
+    {
+      "path": "artifacts/templates/switchboard-typography-fit.json",
+      "bytes": 75899,
+      "sha256": "df2affc137b531186a8505a39008f00ff4d8a43234d1e4037d3a8359da62957c",
+      "status": "passed",
+      "scope": "Switchboard1.0.0 baseline and proposed1.0.1 hero font sizing, test-only DOM injection before freeze; no source/ZIP mutation."
     },
     {
       "path": "artifacts/templates/nightjar-typography-fit.json",

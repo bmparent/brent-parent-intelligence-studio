@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "timestamp_utc": "2026-10-11T02:05:52.724774+00:00",
+  "status": "passed",
+  "scope": "Exact 1.0.2 to 1.0.3 archive comparison. Nightjar developer hero minimum font clamp and INSTALL guidance only; seven other current archives byte-identical. Prior transition receipts and immutable archives preserved.",
+  "checks": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.0",
+      "previousArchive": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "currentArchive": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "previousSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "currentSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "switchboard-wordpress-v1",
+      "previousVersion": "1.0.1",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+      "currentArchive": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+      "previousSha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+      "currentSha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.0",
+      "previousArchive": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "currentArchive": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "previousSha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+      "currentSha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "tideglass-wordpress-v1",
+      "previousVersion": "1.0.1",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+      "currentArchive": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+      "previousSha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+      "currentSha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.0",
+      "previousArchive": "artifacts/templates/packages/matter-developer-v1.zip",
+      "currentArchive": "artifacts/templates/packages/matter-developer-v1.zip",
+      "previousSha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+      "currentSha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "matter-wordpress-v1",
+      "previousVersion": "1.0.1",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+      "currentArchive": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+      "previousSha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+      "currentSha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "previousVersion": "1.0.2",
+      "currentVersion": "1.0.3",
+      "previousArchive": "artifacts/templates/packages/nightjar-developer-v1.0.2.zip",
+      "currentArchive": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
+      "previousSha256": "1026635e095129dfff9bc2c0a21baa1cf313a64041e9b66bd1fecf065d89487f",
+      "currentSha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [
+        "nightjar-developer-v1/INSTALL.md",
+        "nightjar-developer-v1/PACKAGE_MANIFEST.json",
+        "nightjar-developer-v1/styles.css"
+      ],
+      "unchangedArchive": false
+    },
+    {
+      "editionId": "nightjar-wordpress-v1",
+      "previousVersion": "1.0.1",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+      "currentArchive": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+      "previousSha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+      "currentSha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    }
+  ],
+  "limitations": [
+    "Local source and ZIP comparison only; final three-engine candidate CI pending.",
+    "All commercial editions remain unavailable; no LIVE claim."
+  ]
+}

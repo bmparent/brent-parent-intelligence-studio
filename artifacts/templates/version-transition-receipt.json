@@ -1,21 +1,25 @@
 {
   "schemaVersion": 1,
-  "timestamp_utc": "2026-10-11T02:05:52.724774+00:00",
+  "timestamp_utc": "2026-10-11T02:15:31.685564+00:00",
   "status": "passed",
-  "scope": "Exact 1.0.2 to 1.0.3 archive comparison. Nightjar developer hero minimum font clamp and INSTALL guidance only; seven other current archives byte-identical. Prior transition receipts and immutable archives preserved.",
+  "scope": "Switchboard developer1.0.0 to1.0.1 exact archive comparison: hero font clamp and INSTALL guidance only; seven other current archives byte-identical. Original paid1.0.0 evidence and archive remain historical.",
   "checks": [
     {
       "editionId": "switchboard-developer-v1",
       "previousVersion": "1.0.0",
-      "currentVersion": "1.0.0",
+      "currentVersion": "1.0.1",
       "previousArchive": "artifacts/templates/packages/switchboard-developer-v1.zip",
-      "currentArchive": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "currentArchive": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
       "previousSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
-      "currentSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "currentSha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
       "oldArchivePreservedHashVerified": true,
       "currentArchiveHashVerified": true,
-      "changedFiles": [],
-      "unchangedArchive": true
+      "changedFiles": [
+        "switchboard-developer-v1/INSTALL.md",
+        "switchboard-developer-v1/PACKAGE_MANIFEST.json",
+        "switchboard-developer-v1/styles.css"
+      ],
+      "unchangedArchive": false
     },
     {
       "editionId": "switchboard-wordpress-v1",
@@ -84,20 +88,16 @@
     },
     {
       "editionId": "nightjar-developer-v1",
-      "previousVersion": "1.0.2",
+      "previousVersion": "1.0.3",
       "currentVersion": "1.0.3",
-      "previousArchive": "artifacts/templates/packages/nightjar-developer-v1.0.2.zip",
+      "previousArchive": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
       "currentArchive": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
-      "previousSha256": "1026635e095129dfff9bc2c0a21baa1cf313a64041e9b66bd1fecf065d89487f",
+      "previousSha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
       "currentSha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
       "oldArchivePreservedHashVerified": true,
       "currentArchiveHashVerified": true,
-      "changedFiles": [
-        "nightjar-developer-v1/INSTALL.md",
-        "nightjar-developer-v1/PACKAGE_MANIFEST.json",
-        "nightjar-developer-v1/styles.css"
-      ],
-      "unchangedArchive": false
+      "changedFiles": [],
+      "unchangedArchive": true
     },
     {
       "editionId": "nightjar-wordpress-v1",
@@ -113,8 +113,8 @@
       "unchangedArchive": true
     }
   ],
-  "limitations": [
-    "Local source and ZIP comparison only; final three-engine candidate CI pending.",
-    "All commercial editions remain unavailable; no LIVE claim."
+  "limits": [
+    "Final Linux three-engine CI pending; local Windows measured-fit checks passed.",
+    "All editions commercially unavailable; no LIVE sale claim."
   ]
 }

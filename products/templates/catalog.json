@@ -34,9 +34,10 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/switchboard/developer",
-          "packagePath": "artifacts/templates/packages/switchboard-developer-v1.zip",
+          "packagePath": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
           "demoPath": "/template-demos/switchboard/",
-          "installationGuide": "INSTALL.md"
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.1"
         },
         {
           "id": "switchboard-wordpress-v1",

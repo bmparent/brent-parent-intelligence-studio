@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "switchboard-developer-v1",
   "product": "switchboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -15,8 +15,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 4850,
-      "sha256": "d243d74e1012e633e3cb0eb77febcb88a52c7244beee23fc733263a73d89ae21"
+      "bytes": 5284,
+      "sha256": "abe3fea16609a7b03b78e9f781a670ef63bc21b2e0987bd39612a7969576f9a4"
     },
     {
       "path": "LICENSE.txt",
@@ -80,8 +80,8 @@
     },
     {
       "path": "styles.css",
-      "bytes": 8403,
-      "sha256": "81c9e853a07903f6dfdf28fccf59a22858fd0c1ca8042d2695755b85c1afbb08"
+      "bytes": 8543,
+      "sha256": "cbcaeab6cb8aaf5c2fc092bbcda5825fafca8522b0f4fcb03c3dfaee0293771e"
     }
   ],
   "license": "Eidos Works Commercial Template License 1.0",

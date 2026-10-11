@@ -116,3 +116,8 @@ per-word browser measurements. The phone override is unchanged; the original
 Nightjar developer 1.0.3 lowers the desktop minimum to2.7rem after the641px
 breakpoint check. It retains the 1.0.2 wide-desktop and existing phone sizes.
 All earlier archives and receipts remain preserved.
+
+Switchboard developer 1.0.1 is the current candidate after a three-engine desktop
+word-split check caught the oversized original heading. Only responsive hero
+font sizing and editing guidance changed; the paid TEST 1.0.0 archive and its
+evidence remain retained. The other seven current archives are unchanged.

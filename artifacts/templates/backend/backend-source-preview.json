@@ -1,9 +1,9 @@
 {
-  "timestampUtc": "2026-10-11T02:03:38.700Z",
+  "timestampUtc": "2026-10-11T02:17:31.878Z",
   "scope": "protected preview only",
   "branch": "codex/paid-templates-20261010",
-  "commit": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6",
-  "bundleHash": "060fa5b52b945059d43362bc6c4a0f7c7b0c0fdd530f63bfb107bbacc41d6832",
+  "commit": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
+  "bundleHash": "75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7",
   "dirty": true,
   "files": [
     {
@@ -293,8 +293,8 @@
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/templateCatalog.ts",
-      "bytes": 1773,
-      "sha256": "a5997934e1eae86967030e65fb97da6f05802bf4dcc836dce6eebc44777c8720"
+      "bytes": 1799,
+      "sha256": "e43ea034a8c24283ccc429bc37edad16c916f1b518b385a17eb9b88bf06fddb2"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/templateShop.ts",
@@ -572,6 +572,11 @@
       "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846"
     },
     {
+      "file": "apps/sentinel-lab/private/templates/switchboard/1.0.1/developer.zip",
+      "bytes": 27055,
+      "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678"
+    },
+    {
       "file": "apps/sentinel-lab/private/templates/switchboard/1.0.1/wordpress.zip",
       "bytes": 29399,
       "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb"
@@ -608,8 +613,8 @@
     },
     {
       "file": "apps/sentinel-lab/scripts/import-template-packages.mjs",
-      "bytes": 3428,
-      "sha256": "2e1378202a604f086ff30c70cb375ec331e1fa975504bda79416401357d7e6bc"
+      "bytes": 3454,
+      "sha256": "75686e6934cc47d22fc2b17fca504d79b22338f3ad6a7a04ed7b22da0fd5fa18"
     },
     {
       "file": "apps/sentinel-lab/scripts/inspect-template-provider.mjs",
@@ -678,5 +683,5 @@
     }
   ],
   "uploaded": false,
-  "sourceRevision": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6-bundle-060fa5b52b945059"
+  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9"
 }

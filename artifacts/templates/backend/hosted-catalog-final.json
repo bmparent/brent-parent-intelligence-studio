@@ -1,18 +1,18 @@
 {
-  "timestampUtc": "2026-10-11T02:06:03.730Z",
-  "backendUrl": "https://eidos-sentinel-adncox6z0-1brentbm-1876s-projects.vercel.app",
+  "timestampUtc": "2026-10-11T02:19:50.436Z",
+  "backendUrl": "https://eidos-sentinel-pmb8qllat-1brentbm-1876s-projects.vercel.app",
   "anonymousHttp": 302,
   "catalogHttp": 200,
   "catalog": {
     "mode": "test",
     "ready": true,
-    "sourceRevision": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6-bundle-060fa5b52b945059",
+    "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
     "editions": [
       {
         "id": "switchboard-developer-v1",
         "productId": "switchboard-developer-v1",
         "editionId": "developer",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "priceCents": 9900,
         "guidePath": "/templates/guides/switchboard/developer/",
         "available": true,

@@ -3,8 +3,8 @@
   "checks": [
     {
       "editionId": "switchboard-developer-v1",
-      "version": "1.0.0",
-      "archiveSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "version": "1.0.1",
+      "archiveSha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
       "install": "passed",
       "editedBusiness": "passed",
       "editedImage": "passed",

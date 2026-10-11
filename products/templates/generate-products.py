@@ -236,6 +236,8 @@ def write(path,value):
 def developer(slug,f):
     out=ROOT/slug/'developer'
     css = BASE_CSS+FAMILY_CSS[slug]+RESPONSIVE_FIXES+'\n.js-ready .inquiry-form.enhancement{display:grid}.motion-off *,.motion-off *:before,.motion-off *:after{transition:none!important;animation:none!important}\n'
+    if slug == 'switchboard':
+        css += '\n.switchboard .hero h1{font-size:clamp(2.2rem,6vw,6rem)}@media(max-width:640px){.switchboard .hero h1{font-size:clamp(2.4rem,12.3vw,3rem)}}\n'
     if slug == 'nightjar':
         css = css.replace('.nightjar[data-theme=night]{--paper:#201e39;--ink:#fff5d8;--panel:#3e355b;--line:#776980;--accent:#674bad}', '.nightjar[data-theme=night]{--paper:#201e39!important;--ink:#fff5d8!important;--panel:#3e355b!important;--line:#776980!important;--accent:#674bad!important}')
         css = css.replace('.nightjar .hero h1{font-size:clamp(4.2rem,8.5vw,9rem)', '.nightjar .hero h1{font-size:clamp(2.7rem,7vw,7rem)')
@@ -343,6 +345,9 @@ The developer license covers one finished website, including a client handoff.
 Read `LICENSE.txt`, `SUPPORT.md`, and `ASSETS.md` before purchasing or publishing.
 ''')
     write(out/'README.md',f'# {f["name"]} — Developer source v1\n\n{f["intro"]}\n\nStart with [INSTALL.md](INSTALL.md). Six linked static pages including legal notes,\none signature interaction, original artwork, and no mandatory build.\n\nStatus: release candidate. Prices and availability are controlled by the catalog.\nNo connected booking, payment, ticketing, emergency dispatch, or message server.\n')
+    if slug == 'switchboard':
+        guide = out/'INSTALL.md'
+        write(guide, guide.read_text(encoding='utf-8') + '\n## Hero typography\n\nVersion 1.0.1 sizes the hero headline with `clamp(2.2rem,6vw,6rem)` and a\nphone rule of `clamp(2.4rem,12.3vw,3rem)`. Ordinary sample words stay intact\nin the tested layouts; the phone rule retains the original 3rem ceiling.\nAfter changing the headline or font, check individual words at phone, tablet,\nand desktop widths as well as the overall text box. Long custom words may\nneed a smaller font or shorter copy.\n')
     if slug == 'nightjar':
         guide = out/'INSTALL.md'
         write(guide, guide.read_text(encoding='utf-8') + '\n## Day and night palette\n\nThe `colors` values in `site-config.js` configure the day palette. Night mode\nuses the fixed high-contrast token set in `.nightjar[data-theme=night]` in\n`styles.css`; those tokens intentionally override configured day colors. Change\nthe night palette in that CSS rule if needed, and check normal text, cards,\nbuttons, navigation, and contact fields in both modes after editing. Version\n1.0.1 corrects the original day-token precedence in night mode.\n')

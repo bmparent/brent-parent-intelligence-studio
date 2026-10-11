@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-10-11T02:07:08.302Z",
+  "timestamp_utc": "2026-10-11T02:20:42.524Z",
   "drive_copy_attempted": false,
   "drive_copy_success": false,
   "drive_root": "G:\\My Drive",
@@ -7,9 +7,9 @@
   "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied.",
   "files_considered": [
     {
-      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
-      "bytes": 26816,
-      "sha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a"
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+      "bytes": 27055,
+      "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678"
     },
     {
       "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
@@ -48,18 +48,18 @@
     },
     {
       "path": "products/templates/release-manifest.json",
-      "bytes": 61004,
-      "sha256": "6ce6fbf43895115b341785554bfc5bb20205a433b57255bfc312c7ed829045fa"
+      "bytes": 61682,
+      "sha256": "033bb740be55a12167c62d7a00a32bfea86d7168d78ca07787059245444eeb18"
     },
     {
       "path": "artifacts/templates/package-report.json",
-      "bytes": 3220,
-      "sha256": "88393f32a12225daf3278fd5c7befc1f95188621bdef3fa6c032744642c43e83"
+      "bytes": 3224,
+      "sha256": "ace8905448bef3b1acf41d9fa00c20371dc8a43bcec1d264166b96ccd711b848"
     },
     {
       "path": "artifacts/templates/package-tests.json",
       "bytes": 83542,
-      "sha256": "8a4a093e6b7a75da63a25f53a7a65290509cc95893fbf9b5980dd01e224dca99"
+      "sha256": "092565712d482c26fc7f267344c73aedea0e26827ff5d5157f37dd3cd372fc57"
     },
     {
       "path": "artifacts/templates/package-tests.md",
@@ -69,7 +69,7 @@
     {
       "path": "artifacts/templates/source-install-receipt.json",
       "bytes": 1919,
-      "sha256": "2a1657964760de6680a3ca0548a3de090a77c422ab227a81b4c02fb05b997aa3"
+      "sha256": "5cf2782f3a16f1f3f79b7bece12b6cb98ff2f0ffaa0a0d28a97555a04deea64f"
     },
     {
       "path": "artifacts/templates/varied-content-performance.json",
@@ -93,13 +93,13 @@
     },
     {
       "path": "docs/paid-templates/product-operations.md",
-      "bytes": 19195,
-      "sha256": "8f4f45934e26fe568795bb9dbd2973b9e804da18ae221642bd11aa9dc197ee16"
+      "bytes": 19596,
+      "sha256": "1c234b6abe4778c3027d2cb8381f6069b21de456ba6fc436de9fedf7ea81d6a4"
     },
     {
       "path": "docs/paid-templates/ACCEPTANCE.md",
-      "bytes": 16489,
-      "sha256": "2202ec1a9f0925a51a3b7de7e2b5d60b2e38aece1fe8cb8781059af154922809"
+      "bytes": 17317,
+      "sha256": "c5c8c1aa3186b9820daef5e9d50a169beefb2aeb132e566788ffafd65ea47785"
     },
     {
       "path": "docs/paid-templates/security-review.md",
@@ -109,12 +109,17 @@
     {
       "path": "artifacts/templates/version-transition-receipt.json",
       "bytes": 5791,
-      "sha256": "e4040b6a17f4fdb1d250d15083b459d45d736e9d259d3bf0420bb6f52817f7c1"
+      "sha256": "e02790e1cf614124528d746668e892fdfbc90ab6afe868faf87e828e9f394e33"
     },
     {
       "path": "artifacts/templates/generator-parity.json",
-      "bytes": 339,
-      "sha256": "40e37f43cd1b6d81f5e974f3dddd846f933a801c0e703e25c8db5a16cef03a28"
+      "bytes": 391,
+      "sha256": "bca644b7cdb9ec13db843a9b77b6d5971a1188937725750acb4bef9f17950e36"
+    },
+    {
+      "path": "artifacts/templates/switchboard-typography-fit.json",
+      "bytes": 75899,
+      "sha256": "df2affc137b531186a8505a39008f00ff4d8a43234d1e4037d3a8359da62957c"
     },
     {
       "path": "artifacts/templates/nightjar-typography-fit.json",
@@ -165,7 +170,7 @@
   "files_copied": [],
   "files_skipped": [
     {
-      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
@@ -253,6 +258,10 @@
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
+      "path": "artifacts/templates/switchboard-typography-fit.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
       "path": "artifacts/templates/nightjar-typography-fit.json",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
@@ -295,10 +304,10 @@
     {
       "variable": "EIDOS_PROOF_DRIVE_DIR",
       "root": "G:\\My Drive",
-      "payload_bytes": 624187,
-      "free_bytes": 11195199488,
+      "payload_bytes": 702288,
+      "free_bytes": 10425405440,
       "reserve_bytes": 67108864,
-      "required_free_bytes": 67733051,
+      "required_free_bytes": 67811152,
       "sufficient": true,
       "reason": "Previous mounted copy failed ENOSPC; no automatic retry. See artifacts/templates/drive_manifest-initial-enospc.json."
     }

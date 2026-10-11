@@ -1,0 +1,2988 @@
+{
+  "scope": "Switchboard1.0.0 baseline and proposed1.0.1 hero font sizing, test-only DOM injection before freeze; no source/ZIP mutation.",
+  "proposedDesktopClamp": "clamp(2.2rem,6vw,6rem)",
+  "phoneOverride": "Phone clamp(2.4rem,12.3vw,3rem) keeps the original48px ceiling while fitting320px.",
+  "checks": [
+    {
+      "engine": "webkit",
+      "viewport": 320,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "48px",
+        "heading": {
+          "x": 16,
+          "y": 202.96875,
+          "width": 288,
+          "height": 200
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 195.96875,
+                "width": 111,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 136,
+                "y": 195.96875,
+                "width": 101,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 245.96875,
+                "width": 108,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 133,
+                "y": 245.96875,
+                "width": 88,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 230,
+                "y": 245.96875,
+                "width": 23.140625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 295.96875,
+                "width": 91.9781265258789,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 345.96875,
+                "width": 262.4165954589844,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "39.360001px",
+        "heading": {
+          "x": 16,
+          "y": 202.96875,
+          "width": 288,
+          "height": 123
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 196.96875,
+                "width": 91,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 114,
+                "y": 196.96875,
+                "width": 84,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 205,
+                "y": 196.96875,
+                "width": 88.421875,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 237.96875,
+                "width": 72,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 95,
+                "y": 237.96875,
+                "width": 20,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 122,
+                "y": 237.96875,
+                "width": 75.984375,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 278.96875,
+                "width": 215.18154907226562,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "webkit",
+      "viewport": 390,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "48px",
+        "heading": {
+          "x": 19.5,
+          "y": 164.96875,
+          "width": 351,
+          "height": 150
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 157.96875,
+                "width": 111,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 139.5,
+                "y": 157.96875,
+                "width": 102,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 250.5,
+                "y": 157.96875,
+                "width": 107.3125,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 207.96875,
+                "width": 88,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 116.5,
+                "y": 207.96875,
+                "width": 23,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 148.5,
+                "y": 207.96875,
+                "width": 92.9375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 257.96875,
+                "width": 262.4165954589844,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "47.970001px",
+        "heading": {
+          "x": 19.5,
+          "y": 164.96875,
+          "width": 351,
+          "height": 150
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 157.96875,
+                "width": 110,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 139.5,
+                "y": 157.96875,
+                "width": 101,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 249.5,
+                "y": 157.96875,
+                "width": 108.109375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 207.96875,
+                "width": 87,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 116.5,
+                "y": 207.96875,
+                "width": 23,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 148.5,
+                "y": 207.96875,
+                "width": 92.796875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 257.96875,
+                "width": 262.25250244140625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "webkit",
+      "viewport": 641,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "48px",
+        "heading": {
+          "x": 32.046875,
+          "y": 234.984375,
+          "width": 274.609375,
+          "height": 200
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 227.984375,
+                "width": 111,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 152.046875,
+                "y": 227.984375,
+                "width": 101,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 277.984375,
+                "width": 108,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 149.046875,
+                "y": 277.984375,
+                "width": 88,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 246.046875,
+                "y": 277.984375,
+                "width": 23.140625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 327.984375,
+                "width": 91.9781265258789,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 377.984375,
+                "width": 262.4165954589844,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "38.459999px",
+        "heading": {
+          "x": 32.046875,
+          "y": 234.984375,
+          "width": 274.609375,
+          "height": 120
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 228.984375,
+                "width": 89,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 128.046875,
+                "y": 228.984375,
+                "width": 82,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 217.046875,
+                "y": 228.984375,
+                "width": 86.078125,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 268.984375,
+                "width": 70,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 109.046875,
+                "y": 268.984375,
+                "width": 20,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 136.046875,
+                "y": 268.984375,
+                "width": 73.828125,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 308.984375,
+                "width": 210.26119995117188,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "webkit",
+      "viewport": 768,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "53.759998px",
+        "heading": {
+          "x": 38.390625,
+          "y": 183.984375,
+          "width": 333.96875,
+          "height": 224
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 175.984375,
+                "width": 124,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 172.390625,
+                "y": 175.984375,
+                "width": 113.53125,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 231.984375,
+                "width": 121,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 169.390625,
+                "y": 231.984375,
+                "width": 98,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 278.390625,
+                "y": 231.984375,
+                "width": 25.59375,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 287.984375,
+                "width": 103.01545715332031,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 343.984375,
+                "width": 293.9064636230469,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "46.079998px",
+        "heading": {
+          "x": 38.390625,
+          "y": 183.984375,
+          "width": 333.96875,
+          "height": 144
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 176.984375,
+                "width": 106,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 153.390625,
+                "y": 176.984375,
+                "width": 98,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 259.390625,
+                "y": 176.984375,
+                "width": 103.78125,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 224.984375,
+                "width": 84,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 131.390625,
+                "y": 224.984375,
+                "width": 23,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 162.390625,
+                "y": 224.984375,
+                "width": 89.0625,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 272.984375,
+                "width": 251.91986083984375,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "webkit",
+      "viewport": 900,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "63px",
+        "heading": {
+          "x": 45,
+          "y": 183.984375,
+          "width": 395.640625,
+          "height": 264
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 174.984375,
+                "width": 145,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 202,
+                "y": 174.984375,
+                "width": 133.078125,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 240.984375,
+                "width": 141,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 198,
+                "y": 240.984375,
+                "width": 116,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 326,
+                "y": 240.984375,
+                "width": 30.25,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 306.984375,
+                "width": 120.72129821777344,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 372.984375,
+                "width": 344.4217224121094,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "54px",
+        "heading": {
+          "x": 45,
+          "y": 183.984375,
+          "width": 395.640625,
+          "height": 171
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 175.984375,
+                "width": 124,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 180,
+                "y": 175.984375,
+                "width": 114,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 305,
+                "y": 175.984375,
+                "width": 120.609375,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 232.984375,
+                "width": 98,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 154,
+                "y": 232.984375,
+                "width": 26,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 191,
+                "y": 232.984375,
+                "width": 103.671875,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 289.984375,
+                "width": 295.2186584472656,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "webkit",
+      "viewport": 1024,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "76.799995px",
+        "heading": {
+          "x": 40.953125,
+          "y": 207.984375,
+          "width": 462.578125,
+          "height": 324
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 196.984375,
+                "width": 177,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 232.953125,
+                "y": 196.984375,
+                "width": 161.609375,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 277.984375,
+                "width": 172,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 227.953125,
+                "y": 277.984375,
+                "width": 140,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 383.953125,
+                "y": 277.984375,
+                "width": 36.4375,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 358.984375,
+                "width": 147.16494750976562,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 439.984375,
+                "width": 419.8664245605469,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "61.439999px",
+        "heading": {
+          "x": 40.953125,
+          "y": 250.265625,
+          "width": 462.578125,
+          "height": 195
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 242.265625,
+                "width": 141,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 193.953125,
+                "y": 242.265625,
+                "width": 130,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 335.953125,
+                "y": 242.265625,
+                "width": 138.046875,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 307.265625,
+                "width": 112,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 164.953125,
+                "y": 307.265625,
+                "width": 30,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 206.953125,
+                "y": 307.265625,
+                "width": 118.078125,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 372.265625,
+                "width": 335.8931579589844,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "webkit",
+      "viewport": 1440,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "108px",
+        "heading": {
+          "x": 57.59375,
+          "y": 207.984375,
+          "width": 650.484375,
+          "height": 456
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 192.984375,
+                "width": 248,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 327.59375,
+                "y": 192.984375,
+                "width": 227.265625,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 306.984375,
+                "width": 242,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 320.59375,
+                "y": 306.984375,
+                "width": 197,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 539.59375,
+                "y": 306.984375,
+                "width": 51.578125,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 420.984375,
+                "width": 206.95077514648438,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 534.984375,
+                "width": 590.4373168945312,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "86.399994px",
+        "heading": {
+          "x": 57.59375,
+          "y": 290.046875,
+          "width": 650.484375,
+          "height": 273
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 278.046875,
+                "width": 199,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 273.59375,
+                "y": 278.046875,
+                "width": 182,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 473.59375,
+                "y": 278.046875,
+                "width": 192.96875,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 369.046875,
+                "width": 157,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 231.59375,
+                "y": 369.046875,
+                "width": 42,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 290.59375,
+                "y": 369.046875,
+                "width": 166.484375,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 460.046875,
+                "width": 472.349609375,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 320,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "48px",
+        "heading": {
+          "x": 16,
+          "y": 203.765625,
+          "width": 288,
+          "height": 203.5
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 196.765625,
+                "width": 110.0625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 136.171875,
+                "y": 196.765625,
+                "width": 100.84375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 247.640625,
+                "width": 107.1875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 133.296875,
+                "y": 247.640625,
+                "width": 87.03125,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 230.4375,
+                "y": 247.640625,
+                "width": 22.71875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 298.515625,
+                "width": 91.984375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 349.390625,
+                "width": 262.421875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "39.36px",
+        "heading": {
+          "x": 16,
+          "y": 203.765625,
+          "width": 288,
+          "height": 125.15625
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 197.765625,
+                "width": 90.25,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 114.53125,
+                "y": 197.765625,
+                "width": 82.703125,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 205.53125,
+                "y": 197.765625,
+                "width": 87.90625,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 239.484375,
+                "width": 71.359375,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 95.640625,
+                "y": 239.484375,
+                "width": 18.640625,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 122.5625,
+                "y": 239.484375,
+                "width": 75.4375,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 16,
+                "y": 281.203125,
+                "width": 215.1875,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 390,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "48px",
+        "heading": {
+          "x": 19.5,
+          "y": 165.765625,
+          "width": 351,
+          "height": 152.625
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 158.765625,
+                "width": 110.0625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 139.671875,
+                "y": 158.765625,
+                "width": 100.84375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 250.625,
+                "y": 158.765625,
+                "width": 107.203125,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 209.640625,
+                "width": 87.015625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 116.625,
+                "y": 209.640625,
+                "width": 22.71875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 149.453125,
+                "y": 209.640625,
+                "width": 92,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 260.515625,
+                "width": 262.421875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "47.97px",
+        "heading": {
+          "x": 19.5,
+          "y": 165.765625,
+          "width": 351,
+          "height": 152.53125
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 158.765625,
+                "width": 109.984375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 139.59375,
+                "y": 158.765625,
+                "width": 100.796875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 250.484375,
+                "y": 158.765625,
+                "width": 107.140625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 209.609375,
+                "width": 86.96875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 116.5625,
+                "y": 209.609375,
+                "width": 22.71875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 149.375,
+                "y": 209.609375,
+                "width": 91.9375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 19.5,
+                "y": 260.453125,
+                "width": 262.265625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 641,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "48px",
+        "heading": {
+          "x": 32.046875,
+          "y": 236.28125,
+          "width": 274.609375,
+          "height": 203.5
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 229.28125,
+                "width": 110.0625,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 152.21875,
+                "y": 229.28125,
+                "width": 100.84375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 280.15625,
+                "width": 107.1875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 149.34375,
+                "y": 280.15625,
+                "width": 87.03125,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 246.484375,
+                "y": 280.15625,
+                "width": 22.71875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 331.03125,
+                "width": 91.984375,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 381.90625,
+                "width": 262.421875,
+                "height": 64
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "38.46px",
+        "heading": {
+          "x": 32.046875,
+          "y": 236.28125,
+          "width": 274.609375,
+          "height": 122.25
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 230.28125,
+                "width": 88.1875,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 128.328125,
+                "y": 230.28125,
+                "width": 80.8125,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 217.234375,
+                "y": 230.28125,
+                "width": 85.90625,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 271.03125,
+                "width": 69.71875,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 109.875,
+                "y": 271.03125,
+                "width": 18.203125,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 136.171875,
+                "y": 271.03125,
+                "width": 73.71875,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 311.78125,
+                "width": 210.265625,
+                "height": 52
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 768,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "53.76px",
+        "heading": {
+          "x": 38.390625,
+          "y": 185.03125,
+          "width": 333.96875,
+          "height": 227.9375
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 178.03125,
+                "width": 123.265625,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 172.984375,
+                "y": 178.03125,
+                "width": 112.953125,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 235.015625,
+                "width": 120.0625,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 169.765625,
+                "y": 235.015625,
+                "width": 97.46875,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 278.5625,
+                "y": 235.015625,
+                "width": 25.4375,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 292,
+                "width": 103.015625,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 348.984375,
+                "width": 293.921875,
+                "height": 71
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "46.08px",
+        "heading": {
+          "x": 38.390625,
+          "y": 185.03125,
+          "width": 333.96875,
+          "height": 146.484375
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 178.03125,
+                "width": 105.65625,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 153.75,
+                "y": 178.03125,
+                "width": 96.828125,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 260.265625,
+                "y": 178.03125,
+                "width": 102.921875,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 226.859375,
+                "width": 83.546875,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 131.625,
+                "y": 226.859375,
+                "width": 21.828125,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 163.15625,
+                "y": 226.859375,
+                "width": 88.3125,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 275.6875,
+                "width": 251.921875,
+                "height": 62
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 900,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "63px",
+        "heading": {
+          "x": 45,
+          "y": 185.03125,
+          "width": 395.640625,
+          "height": 267.0625
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 176.03125,
+                "width": 144.453125,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 202.71875,
+                "y": 176.03125,
+                "width": 132.375,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 242.796875,
+                "width": 140.6875,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 198.953125,
+                "y": 242.796875,
+                "width": 114.21875,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 326.453125,
+                "y": 242.796875,
+                "width": 29.8125,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 309.5625,
+                "width": 120.734375,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 376.328125,
+                "width": 344.4375,
+                "height": 84
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "54px",
+        "heading": {
+          "x": 45,
+          "y": 185.03125,
+          "width": 395.640625,
+          "height": 171.703125
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 177.03125,
+                "width": 123.8125,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 180.1875,
+                "y": 177.03125,
+                "width": 113.453125,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 305.015625,
+                "y": 177.03125,
+                "width": 120.609375,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 234.265625,
+                "width": 97.890625,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 154.265625,
+                "y": 234.265625,
+                "width": 25.5625,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 191.203125,
+                "y": 234.265625,
+                "width": 103.484375,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 291.5,
+                "width": 295.21875,
+                "height": 72
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 1024,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "76.8px",
+        "heading": {
+          "x": 40.953125,
+          "y": 209.03125,
+          "width": 462.578125,
+          "height": 325.5625
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 198.03125,
+                "width": 176.09375,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 233.21875,
+                "y": 198.03125,
+                "width": 161.359375,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 279.421875,
+                "width": 171.5,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 228.640625,
+                "y": 279.421875,
+                "width": 139.234375,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 384.046875,
+                "y": 279.421875,
+                "width": 36.359375,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 360.8125,
+                "width": 147.171875,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 442.203125,
+                "width": 419.875,
+                "height": 102
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "61.44px",
+        "heading": {
+          "x": 40.953125,
+          "y": 250.5625,
+          "width": 462.578125,
+          "height": 195.328125
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 242.5625,
+                "width": 140.875,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 194.765625,
+                "y": 242.5625,
+                "width": 129.09375,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 336.796875,
+                "y": 242.5625,
+                "width": 137.21875,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 307.671875,
+                "width": 111.390625,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 165.28125,
+                "y": 307.671875,
+                "width": 29.078125,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 207.296875,
+                "y": 307.671875,
+                "width": 117.75,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 372.78125,
+                "width": 335.90625,
+                "height": 81
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 1440,
+      "baseline": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "108px",
+        "heading": {
+          "x": 57.59375,
+          "y": 209.03125,
+          "width": 650.484375,
+          "height": 457.875
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 194.03125,
+                "width": 247.625,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 327.96875,
+                "y": 194.03125,
+                "width": 226.90625,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 308.5,
+                "width": 241.171875,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 321.53125,
+                "y": 308.5,
+                "width": 195.796875,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 540.078125,
+                "y": 308.5,
+                "width": 51.109375,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 422.96875,
+                "width": 206.953125,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 537.4375,
+                "width": 590.4375,
+                "height": 144
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+        "fontSize": "86.4px",
+        "heading": {
+          "x": 57.59375,
+          "y": 289.640625,
+          "width": 650.484375,
+          "height": 274.734375
+        },
+        "words": [
+          {
+            "word": "Good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 277.640625,
+                "width": 198.09375,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "work",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 273.890625,
+                "y": 277.640625,
+                "width": 181.53125,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "starts",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 473.625,
+                "y": 277.640625,
+                "width": 192.953125,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "with",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 369.21875,
+                "width": 156.625,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "a",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 232.421875,
+                "y": 369.21875,
+                "width": 40.890625,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "clear",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 291.515625,
+                "y": 369.21875,
+                "width": 165.578125,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "conversation.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 57.59375,
+                "y": 460.796875,
+                "width": 472.359375,
+                "height": 115
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    }
+  ],
+  "failures": [],
+  "timestamp_utc": "2026-10-11T02:13:46.384802+00:00",
+  "result": "passed",
+  "candidateArchive": {
+    "editionId": "switchboard-developer-v1",
+    "version": "1.0.1",
+    "packagePath": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+    "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
+    "bytes": 27055
+  },
+  "limits": [
+    "Proposed DOM-only measurements before source freeze; Windows system fonts differ from CI Linux fonts. Baseline local word-fit passed while prior exact CI1.0.0 failed in all three engines. Final CI verifies the real candidate across three engines."
+  ]
+}

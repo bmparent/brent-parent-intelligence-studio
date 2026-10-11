@@ -77,3 +77,12 @@ A browser, text editor, and static hosting are sufficient. No paid font, plugin,
 Eidos service, analytics, backend, booking engine, cart, or mandatory build is included.
 The developer license covers one finished website, including a client handoff.
 Read `LICENSE.txt`, `SUPPORT.md`, and `ASSETS.md` before purchasing or publishing.
+
+## Hero typography
+
+Version 1.0.1 sizes the hero headline with `clamp(2.2rem,6vw,6rem)` and a
+phone rule of `clamp(2.4rem,12.3vw,3rem)`. Ordinary sample words stay intact
+in the tested layouts; the phone rule retains the original 3rem ceiling.
+After changing the headline or font, check individual words at phone, tablet,
+and desktop widths as well as the overall text box. Long custom words may
+need a smaller font or shorter copy.

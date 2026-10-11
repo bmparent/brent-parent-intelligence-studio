@@ -5,3 +5,5 @@ body{--ink:#14302b;--paper:#f6f6ee;--accent:#d8f35f;--panel:#e5ece4;--line:#b5c4
 @media(max-width:640px){.nightjar .hero h1{font-size:clamp(2.7rem,10.7vw,4.1rem)}}
 
 .js-ready .inquiry-form.enhancement{display:grid}.motion-off *,.motion-off *:before,.motion-off *:after{transition:none!important;animation:none!important}
+
+.switchboard .hero h1{font-size:clamp(2.2rem,6vw,6rem)}@media(max-width:640px){.switchboard .hero h1{font-size:clamp(2.4rem,12.3vw,3rem)}}

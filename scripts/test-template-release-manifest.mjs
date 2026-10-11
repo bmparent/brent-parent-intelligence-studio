@@ -11,7 +11,7 @@ const manifest = await createReleaseManifest(root);
 const catalog = await read('products/templates/catalog.json');
 const saved = await read('products/templates/release-manifest.json');
 const frozen = {
-  'switchboard-developer-v1': 'e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a',
+  'switchboard-developer-v1': '5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678',
   'switchboard-wordpress-v1': 'da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb',
   'tideglass-developer-v1': '34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7',
   'tideglass-wordpress-v1': '4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785',
@@ -26,7 +26,7 @@ test('release manifest joins exactly eight unchanged private buyer archives', ()
   assert.deepEqual(manifest.packages.map(item => [item.editionId, item.sha256]), saved.packages.map(item => [item.editionId, item.sha256]));
   for (const archive of manifest.packages) {
     assert.equal(archive.sha256, frozen[archive.editionId]);
-    assert.equal(archive.version, archive.platform === 'wordpress' ? '1.0.1' : archive.product === 'nightjar' ? '1.0.3' : '1.0.0');
+    assert.equal(archive.version, archive.platform === 'wordpress' ? '1.0.1' : archive.product === 'nightjar' ? '1.0.3' : archive.product === 'switchboard' ? '1.0.1' : '1.0.0');
     assert.equal(archive.distribution, 'private-fulfillment-only');
     for (const file of ['LICENSE.txt', 'SUPPORT.md', 'ASSETS.md', 'INSTALL.md']) assert.ok(archive.documentationAndAssets.some(item => item.path.endsWith(`/${file}`)));
     assert.ok(archive.documentationAndAssets.some(item => item.path.includes('/assets/')));

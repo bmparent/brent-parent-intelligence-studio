@@ -1,38 +1,38 @@
 {
-  "timestampUtc": "2026-10-11T02:07:14.324Z",
+  "timestampUtc": "2026-10-11T02:21:11.187Z",
   "scope": "TEST candidate; no production promotion or LIVE transaction",
   "source": {
-    "sha": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6",
-    "bundleHash": "060fa5b52b945059d43362bc6c4a0f7c7b0c0fdd530f63bfb107bbacc41d6832",
-    "sourceRevision": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6-bundle-060fa5b52b945059",
-    "url": "https://eidos-sentinel-adncox6z0-1brentbm-1876s-projects.vercel.app",
-    "deploymentId": "dpl_2ELKmjc3L2yig4jxzhK2ZQknXCBy",
+    "sha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
+    "bundleHash": "75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7",
+    "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
+    "url": "https://eidos-sentinel-pmb8qllat-1brentbm-1876s-projects.vercel.app",
+    "deploymentId": "dpl_BvDduBrE4TvK7pjNEZbRCp9yHDRg",
     "state": "READY",
-    "files": 134,
+    "files": 135,
     "previewOnly": true
   },
   "review": {
     "url": "https://github.com/bmparent/eidos/pull/71",
     "state": "OPEN",
     "draft": true,
-    "checks": "4 passed at exact823b61b head"
+    "checks": "4 passed at exact9bb328b head"
   },
   "tests": {
     "command": "npm --prefix apps/sentinel-lab test",
     "passed": 65,
     "failed": 0,
     "skipped": 0,
-    "log": "final-tests.log",
+    "log": "switchboard-version-tests.log",
     "focused": {
       "passed": 11,
       "failed": 0,
-      "log": "final-race-regression-tests.log"
+      "log": "switchboard-retention-tests.log"
     }
   },
   "typecheck": {
     "command": "npm --prefix apps/sentinel-lab run lint -- --incremental false",
     "status": "passed",
-    "log": "final-typecheck.log"
+    "log": "switchboard-version-typecheck.log"
   },
   "build": {
     "status": "passed",
@@ -44,13 +44,13 @@
   "archives": {
     "private": true,
     "current": 8,
-    "retained": 7,
-    "total": 15,
+    "retained": 8,
+    "total": 16,
     "priorThirteenArchiveHashesPreserved": true,
     "previousNightjar102HashPreserved": true,
     "receipt": "private-archive-receipt-final.json",
     "currentVersions": {
-      "switchboardDeveloper": "1.0.0",
+      "switchboardDeveloper": "1.0.1",
       "tideglassDeveloper": "1.0.0",
       "matterDeveloper": "1.0.0",
       "nightjarDeveloper": "1.0.3",
@@ -63,7 +63,9 @@
       "nightjar-developer-v1"
     ],
     "wordpress": "unavailable by explicit allowlist",
-    "builderPilots": "unavailable"
+    "builderPilots": "unavailable",
+    "priorFifteenArchiveHashesPreserved": true,
+    "actualPurchasedSwitchboard100Preserved": true
   },
   "providers": {
     "stripe": "existing Eidos Works TEST account only",
@@ -77,7 +79,7 @@
     "protectedBackend": "READY; anonymous302/authenticatedcatalog200",
     "catalog": "exact sourceRevision and current4developer editions verified; WP/pilotsclosed",
     "negativeControls": "unknown404/clientpriceoverride400/unavailableWP503 passed on final protected backend",
-    "publicPairedSite": "earlier e20b pairing accepted; root will reconfigure/upload final frontend with new backend pin",
+    "publicPairedSite": "Prior pair preserved; root will reconfigure/upload corrected frontend after current CI passes.",
     "actualPurchase": {
       "status": "passed",
       "transactionSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
@@ -99,6 +101,8 @@
       "finalSourceObservation": {
         "status": "refunded",
         "fulfillmentStatus": "ready",
+        "purchasedVersion": "1.0.0",
+        "currentCatalogVersion": "1.0.1",
         "downloadHttp": 403,
         "downloadTokenGranted": false
       }
@@ -133,5 +137,23 @@
     "No LIVE payment, live prices, production migration or production deployment.",
     "WP and builder editions remain unavailable regardless of package/demo evidence.",
     "Local exact final build was replaced by an exact protected remote build; C remains full."
-  ]
+  ],
+  "switchboardVersionTransition": {
+    "from": "1.0.0",
+    "to": "1.0.1",
+    "actualPurchased100ArchiveUnchanged": true,
+    "exactBuyerZipInstall": "passed",
+    "archiveSha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
+    "archiveBytes": 27055,
+    "priorFailedFrontendRun": "38104163542; failed actual word-fit assertion before configure/upload; preserved",
+    "receipt": "switchboard-version-validation.json"
+  },
+  "provenance": {
+    "trackedFiles": 119,
+    "trackedUploadedFilesMatchHead": true,
+    "privateArchiveFiles": 16,
+    "bundleHashRecomputed": true,
+    "noRuntimeDirtyPaths": true,
+    "receipt": "source-provenance-final.json"
+  }
 }
