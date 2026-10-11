@@ -46,6 +46,41 @@ def no_overflow(page, label):
     heading = page.locator('h1').first.bounding_box()
     require(heading and heading['x'] >= -2 and heading['x'] + heading['width'] <= dimensions['width'] + 2, f'{label}: heading clipped {heading}')
 
+
+def original_headline_words(page):
+    # Bounds alone missed a readable-width word being split by overflow-wrap.
+    # Inspect each normal demo word before inserting long-copy stress fixtures.
+    words = page.evaluate(r"""() => {
+      const heading=document.querySelector('.hero h1');
+      const walker=document.createTreeWalker(heading,NodeFilter.SHOW_TEXT), words=[];
+      for(let node=walker.nextNode();node;node=walker.nextNode()) {
+        for(const match of node.textContent.matchAll(/\S+/g)) {
+          const range=document.createRange();
+          range.setStart(node,match.index);range.setEnd(node,match.index+match[0].length);
+          const rects=[...range.getClientRects()].filter(r=>r.width>0&&r.height>0);
+          words.push({word:match[0],lineFragments:new Set(rects.map(r=>Math.round(r.y))).size});
+        }
+      }
+      return words;
+    }""")
+    require(words, 'Original headline has no measurable words')
+    require(all(word['lineFragments'] == 1 for word in words), f'Original headline splits a word: {words}')
+    return words
+
+
+def nightjar_breakpoint_words(browser, browser_name):
+    context = browser.new_context(viewport={'width':641,'height':844}, reduced_motion='reduce')
+    try:
+        page = context.new_page()
+        open_page(page, '/template-demos/nightjar/index.html')
+        no_overflow(page, f'{browser_name}/nightjar/641')
+        words = original_headline_words(page)
+        report['checks'].append({'browser':browser_name,'product':'nightjar','viewport':641,
+                                 'scope':'immediate phone breakpoint',
+                                 'originalHeadlineWords':'passed','words':words})
+    finally:
+        context.close()
+
 def night_text_contrast(page):
     # Inspect rendered inherited colors, including inline configured day tokens.
     # Merely checking data-theme missed the original unreadable night palette.
@@ -124,6 +159,52 @@ def shop_catalog_contract(page, width):
     finally:
         page.remove_listener('request', observe)
 
+
+def turnstile_action_contract(browser, width):
+    # Observe component render options only. The spy issues no token and never
+    # invokes callbacks; production verification and submit paths are untouched.
+    context = browser.new_context(viewport={'width': width, 'height': 844})
+    context.add_init_script("""(() => {
+      window.__qaTurnstileActions = [];
+      window.turnstile = {
+        render: (_element, options) => {
+          window.__qaTurnstileActions.push(options.action);
+          return 'qa-options-only-widget';
+        },
+        remove: () => {}, reset: () => {}
+      };
+    })();""")
+    config = {'gaMeasurementId': '', 'turnstileSiteKey': 'qa-options-only-placeholder',
+              'communityReady': False, 'accountsReady': False, 'aiReady': False,
+              'shopReady': False, 'localTest': False}
+    context.route('**/api/public-config', lambda route: route.fulfill(
+        status=200, content_type='application/json', body=json.dumps(config)))
+    context.route('**/api/shop/catalog', lambda route: route.fulfill(
+        status=200, content_type='application/json',
+        body=json.dumps({'mode': 'test', 'ready': False, 'editions': []})))
+    page = context.new_page()
+    submitted = []
+    page.on('request', lambda request: submitted.append(request.url)
+            if request.method == 'POST' and any(path in request.url for path in
+                ['/api/shop/checkout', '/api/shop/recover']) else None)
+    try:
+        for path, action, label in [('/shop/nightjar', 'checkout', 'Purchasing unavailable'),
+                                     ('/shop/start', 'recovery', 'Send a private recovery link')]:
+            open_page(page, path)
+            page.wait_for_function('window.__qaTurnstileActions.length > 0', timeout=15000)
+            observed = page.evaluate('window.__qaTurnstileActions')
+            require(set(observed) == {action}, f'{path}: wrong widget action {observed}; expected {action}')
+            require(page.get_by_role('button', name=label, exact=True).is_disabled(),
+                    'Options-only widget spy must not enable submission')
+            require(not submitted, 'Action contract must not submit payment or recovery')
+            report['checks'].append({'scope': 'Turnstile component action contract',
+                                     'path': path, 'viewport': width, 'expectedAction': action,
+                                     'observedActions': observed, 'result': 'passed',
+                                     'challengeCallbackInvoked': False, 'tokensIssued': 0,
+                                     'paymentOrRecoverySubmitted': False})
+    finally:
+        context.close()
+
 with sync_playwright() as playwright:
     for browser_name in args.browsers.split(','):
         browser = getattr(playwright, browser_name).launch()
@@ -137,6 +218,8 @@ with sync_playwright() as playwright:
                 try:
                     open_page(page, f'/template-demos/{slug}/index.html')
                     no_overflow(page, f'{browser_name}/{slug}/{width}')
+                    words = original_headline_words(page)
+                    report['checks'].append({'browser':browser_name,'product':slug,'viewport':width,'originalHeadlineWords':'passed','words':words})
                     for picture in page.locator('img').all():
                         picture.scroll_into_view_if_needed()
                         picture.evaluate('(i)=>i.decode()')
@@ -202,6 +285,7 @@ with sync_playwright() as playwright:
                         no_overflow(page, f'detail/{product["slug"]}/{width}')
                         page.screenshot(path=str(out / f'detail-{product["slug"]}-{width}.jpg'), full_page=True, type='jpeg', quality=75)
                     shop_catalog_contract(page, width)
+                    turnstile_action_contract(browser, width)
                     open_page(page, '/shop/start')
                     require(page.get_by_role('button', name='Send a private recovery link').is_disabled(), 'Recovery must require verification')
                     report['checks'].append({'browser': browser_name, 'scope': 'shop', 'viewport': width, 'filter': 'passed', 'editions': 'passed', 'closedCheckout': 'passed', 'recovery': 'passed'})
@@ -209,6 +293,7 @@ with sync_playwright() as playwright:
                     report['failures'].append({'browser': browser_name, 'scope': 'shop', 'viewport': width, 'error': str(error)})
                     print(f'FAIL shop/{width}: {error}', flush=True)
             context.close()
+        nightjar_breakpoint_words(browser, browser_name)
         if browser_name == 'chromium':
             context = browser.new_context(java_script_enabled=False, viewport={'width':390,'height':844})
             page = context.new_page()

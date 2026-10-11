@@ -1,0 +1,25 @@
+{
+  "timestamp_utc": "2026-10-11T01:40:11.711Z",
+  "headSha": "6b6ced37da71c374482fa9ce9aa7cb567f394ba5",
+  "scope": "Existing Wellway Vercel provider deployment state; not hosted paid-template acceptance.",
+  "vercel": {
+    "id": "dpl_6mx8PtWwtaR5FuWg29EWbiSuHmpf",
+    "name": "wellway",
+    "readyState": "READY",
+    "errorCode": null,
+    "createdAt": 1791682659412,
+    "ready": 1791682669376,
+    "buildingAt": 1791682660726,
+    "gitCommitSha": "6b6ced37da71c374482fa9ce9aa7cb567f394ba5",
+    "githubCommitStatus": "success",
+    "githubDescription": "Deployment has completed"
+  },
+  "priorFailure": {
+    "headSha": "537e629e40939f49d4057480ca4bd13773ef1d7f",
+    "errorCode": "git_info_fail",
+    "evidence": "artifacts/templates/ci-provider-status.json",
+    "preserved": true
+  },
+  "interpretation": "The later candidate head reached provider READY successfully. The earlier exact head failed before a recorded build; no helper/build failure was demonstrated there.",
+  "limits": "No retry or configuration mutation was performed. READY does not establish application behavior, payment delivery or production acceptance."
+}

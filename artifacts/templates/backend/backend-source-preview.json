@@ -1,10 +1,10 @@
 {
-  "timestampUtc": "2026-10-11T00:52:29.524Z",
+  "timestampUtc": "2026-10-11T02:03:38.700Z",
   "scope": "protected preview only",
   "branch": "codex/paid-templates-20261010",
-  "commit": "58e4a60859c6bc590bc3c4ea5b2689256330066d",
-  "bundleHash": "6fef7d46dea0be4721303898ca0a9f77a169a9885072cc8c9a49511e815a347e",
-  "dirty": false,
+  "commit": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6",
+  "bundleHash": "060fa5b52b945059d43362bc6c4a0f7c7b0c0fdd530f63bfb107bbacc41d6832",
+  "dirty": true,
   "files": [
     {
       "file": "apps/sentinel-lab/.gitignore",
@@ -218,8 +218,8 @@
     },
     {
       "file": "apps/sentinel-lab/lib/works/templateArchives.ts",
-      "bytes": 873,
-      "sha256": "9ca8a16348e2e4f361ea3474f814fc75c038d112c47a4c1721460a7750b37c58"
+      "bytes": 891,
+      "sha256": "299245688a898877b72596fe49bff654d1ccd6e732e843fce4dc0c3c4a86f3dc"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/README.md",
@@ -293,13 +293,13 @@
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/templateCatalog.ts",
-      "bytes": 1554,
-      "sha256": "4fcc6c612ba2af86bdab21f147d0d98888a101a696e1fc893990e8824d0d16a1"
+      "bytes": 1773,
+      "sha256": "a5997934e1eae86967030e65fb97da6f05802bf4dcc836dce6eebc44777c8720"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/templateShop.ts",
-      "bytes": 21512,
-      "sha256": "63d7806f5248683cf71b0c16f59609c72dbc651dbc7e4515fbd37b78df4ee4ad"
+      "bytes": 21763,
+      "sha256": "f178f081f25b47b329191a8fdaa1e2d96590ce7d1fd877bc18cd0f415f12476a"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/snapshot/http.ts",
@@ -393,8 +393,8 @@
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/catalog.ts",
-      "bytes": 79,
-      "sha256": "7c3a64e623184d3554e47f52e5d7e8bd5febe522b8902f727f965cb285102733"
+      "bytes": 80,
+      "sha256": "19050aa14f53055ab4ddc56b698bb4f6edced4b87eac71b521f1cd60b9af8a71"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/checkout.ts",
@@ -408,13 +408,13 @@
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/recover.ts",
-      "bytes": 80,
-      "sha256": "b3b08ff62fe84238fcadf088e4b4b9c1e4ca8858b7ceeead7353d2f3e71e354b"
+      "bytes": 81,
+      "sha256": "181ff3dddea4757e2884d321c30b72af2f194675d57f118dac2b14cd0ab36d7a"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/redeem.ts",
-      "bytes": 79,
-      "sha256": "f1165bc9f914c98e411a0b0f6c9e467a39b2c51e6122caca8a0e6934608b4b30"
+      "bytes": 80,
+      "sha256": "bfdf7961edc7bdf164fc764186e510c8693783c5cb6e9f77b2237540a28dca6c"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/status.ts",
@@ -423,8 +423,8 @@
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/webhook.ts",
-      "bytes": 4157,
-      "sha256": "dfaf40bb27fdd70f725fc23242f87c80fde8f7a39e7661d99685da4bd7a47fd9"
+      "bytes": 4842,
+      "sha256": "cb5bc33a77246cc12c1dcc76c9d35b7439ce7b301569411110ca47bdebda7ade"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/community/feed.ts",
@@ -458,8 +458,8 @@
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/migrations/0004_paid_templates.sql",
-      "bytes": 1761,
-      "sha256": "686db6df8285720ee6439fa93a41eb82be4dba60dcde6d5dc07cb9ef04295262"
+      "bytes": 1770,
+      "sha256": "787985c873868805712b6a72f459a5554349688d515d10ccc910edd134f9f5a7"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/src/playground/approved-glass-preset.json",
@@ -503,8 +503,8 @@
     },
     {
       "file": "apps/sentinel-lab/next.config.ts",
-      "bytes": 471,
-      "sha256": "09451e966b567dd1c79d24063dfb3cd8e3762c68300a8060d78469b7b1cb5bfb"
+      "bytes": 488,
+      "sha256": "58fc318f3566c42b6a118bbe1e5c707a25069dc435345027e0ea48e9dca44624"
     },
     {
       "file": "apps/sentinel-lab/package-lock.json",
@@ -527,6 +527,11 @@
       "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8"
     },
     {
+      "file": "apps/sentinel-lab/private/templates/matter/1.0.1/wordpress.zip",
+      "bytes": 30748,
+      "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe"
+    },
+    {
       "file": "apps/sentinel-lab/private/templates/nightjar/1.0.0/developer.zip",
       "bytes": 26765,
       "sha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8"
@@ -535,6 +540,26 @@
       "file": "apps/sentinel-lab/private/templates/nightjar/1.0.0/wordpress.zip",
       "bytes": 29728,
       "sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d"
+    },
+    {
+      "file": "apps/sentinel-lab/private/templates/nightjar/1.0.1/developer.zip",
+      "bytes": 26978,
+      "sha256": "f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39"
+    },
+    {
+      "file": "apps/sentinel-lab/private/templates/nightjar/1.0.1/wordpress.zip",
+      "bytes": 29742,
+      "sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739"
+    },
+    {
+      "file": "apps/sentinel-lab/private/templates/nightjar/1.0.2/developer.zip",
+      "bytes": 27165,
+      "sha256": "1026635e095129dfff9bc2c0a21baa1cf313a64041e9b66bd1fecf065d89487f"
+    },
+    {
+      "file": "apps/sentinel-lab/private/templates/nightjar/1.0.3/developer.zip",
+      "bytes": 27236,
+      "sha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d"
     },
     {
       "file": "apps/sentinel-lab/private/templates/switchboard/1.0.0/developer.zip",
@@ -547,6 +572,11 @@
       "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846"
     },
     {
+      "file": "apps/sentinel-lab/private/templates/switchboard/1.0.1/wordpress.zip",
+      "bytes": 29399,
+      "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb"
+    },
+    {
       "file": "apps/sentinel-lab/private/templates/tideglass/1.0.0/developer.zip",
       "bytes": 26836,
       "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7"
@@ -557,29 +587,34 @@
       "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5"
     },
     {
+      "file": "apps/sentinel-lab/private/templates/tideglass/1.0.1/wordpress.zip",
+      "bytes": 30027,
+      "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785"
+    },
+    {
       "file": "apps/sentinel-lab/scripts/browser-qa.mjs",
       "bytes": 30410,
       "sha256": "3134d6f6c7ba13c349ef58099f1b594f648ff33ab1173498ed502389a59ccecd"
     },
     {
       "file": "apps/sentinel-lab/scripts/configure-templates-preview.mjs",
-      "bytes": 6889,
-      "sha256": "3384c8b185011704ad52ea292f3c1a66ec2aa4c4a23cf98af38d6c3ad6371186"
+      "bytes": 6961,
+      "sha256": "fea34f80c9181fb134e43300a351771c45e7f253b279906f38aa03e58a878cb5"
     },
     {
       "file": "apps/sentinel-lab/scripts/deploy-templates-preview.mjs",
-      "bytes": 5271,
-      "sha256": "19a26aa90dbffd1cf6dc1ddc1abb90ee878888a56f4330786a1abf21dd0f6c76"
+      "bytes": 5695,
+      "sha256": "1bd7812ac1187b22cac93efbefca8325898f543c0d385ae2ae84073d558c67bb"
     },
     {
       "file": "apps/sentinel-lab/scripts/import-template-packages.mjs",
-      "bytes": 2440,
-      "sha256": "9f5c5567e6c370a2ac07a6dfa6bce589b562a7a911b6ee49e550b3d37c02055a"
+      "bytes": 3428,
+      "sha256": "2e1378202a604f086ff30c70cb375ec331e1fa975504bda79416401357d7e6bc"
     },
     {
       "file": "apps/sentinel-lab/scripts/inspect-template-provider.mjs",
-      "bytes": 1441,
-      "sha256": "4461184cb4ddb36239222c953dd9104a69512b0613bb10e8408a316b717c5e56"
+      "bytes": 1456,
+      "sha256": "599aada2d88df70fce231f08894d0521f51093a5a753f13ac430d05fa9b33c2c"
     },
     {
       "file": "apps/sentinel-lab/scripts/migrate-works.mjs",
@@ -588,13 +623,13 @@
     },
     {
       "file": "apps/sentinel-lab/scripts/prepare-templates-preview.mjs",
-      "bytes": 1853,
-      "sha256": "591fd65921b5df86f8f58bd3ef7d08dfb864318f2714efca1f5b087c65e4f80f"
+      "bytes": 1874,
+      "sha256": "68bb4fa1cfb669d88f70898caf0862059d5885d65c6fa37d73e7057d05a295a6"
     },
     {
       "file": "apps/sentinel-lab/scripts/vercel-preview-client.mjs",
-      "bytes": 863,
-      "sha256": "8be8917b6325fd39c775571b646a9efe7ea9a417ed810d62faa57b554005e7bd"
+      "bytes": 875,
+      "sha256": "df05ac0b13cff30d23331a438f882927deb41d339a1eede45d588387fde37c3f"
     },
     {
       "file": "apps/sentinel-lab/scripts/verify-admission.ts",
@@ -642,13 +677,6 @@
       "sha256": "88ad291abc4e5b3401b0d68d35222438cf02452378ae83733f246d6ba48b0767"
     }
   ],
-  "uploaded": true,
-  "sourceRevision": "58e4a60859c6bc590bc3c4ea5b2689256330066d-bundle-6fef7d46dea0be47",
-  "deployment": {
-    "id": "dpl_66UCK5WJyvERLmYDSKKpeoEPEi1E",
-    "url": "https://eidos-sentinel-234h0a2qe-1brentbm-1876s-projects.vercel.app",
-    "state": "READY",
-    "target": "preview"
-  },
-  "configuration": "24 variables scoped only to candidate preview branch; production untouched"
+  "uploaded": false,
+  "sourceRevision": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6-bundle-060fa5b52b945059"
 }

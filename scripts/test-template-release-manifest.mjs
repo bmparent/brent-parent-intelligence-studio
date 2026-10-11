@@ -17,7 +17,7 @@ const frozen = {
   'tideglass-wordpress-v1': '4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785',
   'matter-developer-v1': 'f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6',
   'matter-wordpress-v1': '3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe',
-  'nightjar-developer-v1': 'f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39',
+  'nightjar-developer-v1': '99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d',
   'nightjar-wordpress-v1': '558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739',
 };
 
@@ -26,7 +26,7 @@ test('release manifest joins exactly eight unchanged private buyer archives', ()
   assert.deepEqual(manifest.packages.map(item => [item.editionId, item.sha256]), saved.packages.map(item => [item.editionId, item.sha256]));
   for (const archive of manifest.packages) {
     assert.equal(archive.sha256, frozen[archive.editionId]);
-    assert.equal(archive.version, archive.platform === 'wordpress' || archive.product === 'nightjar' ? '1.0.1' : '1.0.0');
+    assert.equal(archive.version, archive.platform === 'wordpress' ? '1.0.1' : archive.product === 'nightjar' ? '1.0.3' : '1.0.0');
     assert.equal(archive.distribution, 'private-fulfillment-only');
     for (const file of ['LICENSE.txt', 'SUPPORT.md', 'ASSETS.md', 'INSTALL.md']) assert.ok(archive.documentationAndAssets.some(item => item.path.endsWith(`/${file}`)));
     assert.ok(archive.documentationAndAssets.some(item => item.path.includes('/assets/')));

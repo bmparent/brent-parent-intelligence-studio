@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-11T01:34:31.699Z",
+  "generatedAt": "2026-10-11T02:05:52.956Z",
   "checks": [
     {
       "name": "catalog: four distinct families, unique edition IDs, unavailable until accepted",

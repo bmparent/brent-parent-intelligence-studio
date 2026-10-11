@@ -139,10 +139,11 @@ not turn expansion into recolors. Platform adapters remain separately accepted.
    Packaging discovers catalog `sourcePath` entries. Supply complete pages,
    editable configuration, static fallback, original licensed assets, metadata,
    `INSTALL.md`, `LICENSE.txt`, `ASSETS.md`, and `SUPPORT.md`.
-4. Add a short visual-recipe entry in `src/data/templateCatalog.ts` when collection
-   art needs one. Product copy/prices/availability stay in the catalog. This is a
-   data-adapter addition, not a shop/detail component rewrite. Extend route/SEO
-   metadata through the existing path and verify generated routes/canonicals.
+4. Put market, visualStyle, tagline, and designDirection records in
+   `products/templates/catalog.json`; the existing adapter derives their display
+   values. Keep product copy, draft prices, and availability in that authoritative
+   catalog. Extend route/SEO metadata and explicit scope assertions as needed;
+   verify generated routes/canonicals without hardcoding duplicate visual copy.
 5. From repository root, package source and generate its public guide:
 
    ```sh
@@ -251,3 +252,12 @@ automatic update service. Nightjar developer 1.0.1 fixes night-palette precedenc
 and documents day/night color editing. The other three developer 1.0.0 archives
 remain byte-identical. Original 1.0.0 ZIPs and receipts are retained; evidence for
 old-byte native edits and final-byte replacement checks must remain distinct.
+
+Nightjar developer 1.0.2 also reduces the desktop headline clamp after measured
+WebKit/Chromium word-range checks reproduced and corrected a split ordinary
+word. Its phone rule is unchanged. The 1.0.1 archive and receipts remain retained;
+all other current archives keep their hashes.
+
+The final Nightjar developer candidate is 1.0.3: its measured 2.7rem minimum
+also corrects the immediate 641px breakpoint; phone and wide desktop sizes stay
+the same. Versions 1.0.1 and 1.0.2 remain retained rather than overwritten.

@@ -25,3 +25,4 @@ artifacts/templates/browser/
 artifacts/templates/browser-review/
 artifacts/templates/wordpress-browser/*.png
 artifacts/templates/wordpress-browser/*.py
+products/templates/__pycache__/

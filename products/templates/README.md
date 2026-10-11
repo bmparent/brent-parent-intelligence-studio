@@ -108,3 +108,11 @@ Switchboard, Tideglass, and Matter developer 1.0.0 archives retain their hashes.
 Original archives and `*-v1.0.0.json` receipts stay retained. See the version
 transition receipt for exact changed files and byte comparisons; all candidates
 remain commercially unavailable.
+
+Nightjar developer 1.0.2 additionally adjusts the desktop hero font clamp after
+per-word browser measurements. The phone override is unchanged; the original
+1.0.1 archive, receipts, and successful Drive snapshot remain retained.
+
+Nightjar developer 1.0.3 lowers the desktop minimum to2.7rem after the641px
+breakpoint check. It retains the 1.0.2 wide-desktop and existing phone sizes.
+All earlier archives and receipts remain preserved.

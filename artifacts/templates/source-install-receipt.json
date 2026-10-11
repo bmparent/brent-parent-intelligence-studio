@@ -36,8 +36,8 @@
     },
     {
       "editionId": "nightjar-developer-v1",
-      "version": "1.0.1",
-      "archiveSha256": "f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39",
+      "version": "1.0.3",
+      "archiveSha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
       "install": "passed",
       "editedBusiness": "passed",
       "editedImage": "passed",

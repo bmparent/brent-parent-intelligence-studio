@@ -86,3 +86,14 @@ uses the fixed high-contrast token set in `.nightjar[data-theme=night]` in
 the night palette in that CSS rule if needed, and check normal text, cards,
 buttons, navigation, and contact fields in both modes after editing. Version
 1.0.1 corrects the original day-token precedence in night mode.
+
+## Hero typography
+
+Version 1.0.3 uses `clamp(2.7rem,7vw,7rem)` for the desktop hero headline and
+retains the existing phone override. This keeps ordinary sample words intact
+across the tested browser fonts. After changing the headline or heading font,
+check individual words on phone and desktop as well as the overall text box.
+Long custom words still need an appropriately sized font or shorter copy.
+
+The 1.0.3 minimum also keeps the sample word intact immediately above the phone
+breakpoint (641px), where the prior 3rem minimum was still too large.

@@ -14,6 +14,8 @@ const proofPaths = [
   'docs/paid-templates/platform-install-evidence.json', 'docs/paid-templates/product-operations.md',
   'docs/paid-templates/ACCEPTANCE.md', 'docs/paid-templates/security-review.md',
   'artifacts/templates/version-transition-receipt.json', 'artifacts/templates/generator-parity.json',
+  'artifacts/templates/nightjar-typography-fit.json',
+  'artifacts/templates/nightjar-intermediate-width-fit.json', 'artifacts/templates/nightjar-final-typography-fit.json',
   'artifacts/templates/wordpress-browser/baseline-native-ui-receipt.json',
   'artifacts/templates/wordpress-browser/installation-receipt.json',
   'artifacts/templates/wordpress-browser/final-metadata-receipt.json',
@@ -30,6 +32,8 @@ const evidencePaths = [
   'artifacts/templates/wordpress-browser/installation-receipt.json',
   'artifacts/templates/wordpress-browser/final-metadata-receipt.json',
   'artifacts/templates/version-transition-receipt.json', 'artifacts/templates/generator-parity.json',
+  'artifacts/templates/nightjar-typography-fit.json',
+  'artifacts/templates/nightjar-intermediate-width-fit.json', 'artifacts/templates/nightjar-final-typography-fit.json',
 ];
 
 function localPath(root, relative) {
@@ -107,8 +111,10 @@ export async function createReleaseManifest(root) {
           support: { status: 'draft', installationGuidanceDays: 30, suppliedFileDefectDays: 90, responseTimeSla: null },
           documentationAndAssets: documents,
           changelog: [
+            ...(edition.platform === 'developer' && product.slug === 'nightjar' && published.version === '1.0.3' ? [{ version: '1.0.3', status: 'candidate', description: 'Measured 2.7rem desktop minimum keeps ordinary headline words intact at the immediate 641px breakpoint; wide desktop and existing phone sizes are unchanged from1.0.2.' }] : []),
+            ...(edition.platform === 'developer' && product.slug === 'nightjar' && ['1.0.2', '1.0.3'].includes(published.version) ? [{ version: '1.0.2', status: 'candidate', description: 'Measured desktop hero font clamp keeps ordinary headline words intact across tested browser fonts while preserving the existing phone rule. CSS typography and editing guidance only.' }] : []),
             ...(edition.platform === 'wordpress' && published.version === '1.0.1' ? [{ version: '1.0.1', status: 'candidate', description: 'Theme identity metadata: explicit Update URI prevents WordPress.org same-slug update confusion. Header, stylesheet cache version, and install filename/version documentation only; no automatic updater is supplied.' }] : []),
-            ...(edition.platform === 'developer' && product.slug === 'nightjar' && published.version === '1.0.1' ? [{ version: '1.0.1', status: 'candidate', description: 'Night mode uses the fixed contrasting palette above configured day tokens; day palette customization remains available. CSS precedence and corresponding editing guidance only.' }] : []),
+            ...(edition.platform === 'developer' && product.slug === 'nightjar' && ['1.0.1', '1.0.2', '1.0.3'].includes(published.version) ? [{ version: '1.0.1', status: 'candidate', description: 'Night mode uses the fixed contrasting palette above configured day tokens; day palette customization remains available. CSS precedence and corresponding editing guidance only.' }] : []),
             { version: '1.0.0', status: 'candidate', description: 'Initial portable source/native-block-theme candidate; not a record of a commercial release.' },
           ] };
         packages.push(archive);

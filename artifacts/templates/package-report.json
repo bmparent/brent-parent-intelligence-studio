@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-11T01:33:20.044Z",
+  "generatedAt": "2026-10-11T02:02:09.401Z",
   "catalogVersion": "2026-10-10.1",
   "packages": [
     {
@@ -65,11 +65,11 @@
     },
     {
       "editionId": "nightjar-developer-v1",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "sourcePath": "products/templates/nightjar/developer",
-      "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.1.zip",
-      "sha256": "f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39",
-      "bytes": 26978,
+      "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
+      "sha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
+      "bytes": 27236,
       "files": 16,
       "demoPath": "/template-demos/nightjar/"
     },

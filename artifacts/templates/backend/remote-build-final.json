@@ -1,345 +1,424 @@
 {
-  "deploymentId": "dpl_66UCK5WJyvERLmYDSKKpeoEPEi1E",
+  "timestampUtc": "2026-10-11T02:06:21.167Z",
+  "scope": "protected preview only",
+  "deployment": {
+    "id": "dpl_2ELKmjc3L2yig4jxzhK2ZQknXCBy",
+    "url": "https://eidos-sentinel-adncox6z0-1brentbm-1876s-projects.vercel.app",
+    "state": "READY",
+    "target": "preview"
+  },
+  "sourceSha": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6",
+  "bundleHash": "060fa5b52b945059d43362bc6c4a0f7c7b0c0fdd530f63bfb107bbacc41d6832",
+  "buildStatus": "READY",
+  "eventCount": 68,
   "events": [
     {
+      "created": 1791684258366,
+      "date": 1791684258366,
       "type": "stdout",
-      "created": 1791679985836,
       "text": "Running build in Washington, D.C., USA (East) – iad1"
     },
     {
+      "created": 1791684258367,
+      "date": 1791684258367,
       "type": "stdout",
-      "created": 1791679985837,
       "text": "Build machine configuration: 2 cores, 8 GB"
     },
     {
+      "created": 1791684258414,
+      "date": 1791684258414,
       "type": "stdout",
-      "created": 1791679985871,
       "text": "Retrieving list of deployment files..."
     },
     {
+      "created": 1791684258446,
+      "date": 1791684258446,
       "type": "stdout",
-      "created": 1791679985895,
       "text": "Skipping build cache, deployment was triggered without cache."
     },
     {
+      "created": 1791684258742,
+      "date": 1791684258742,
       "type": "stdout",
-      "created": 1791679986197,
-      "text": "Downloading 127 deployment files..."
+      "text": "Downloading 134 deployment files..."
     },
     {
+      "created": 1791684260163,
+      "date": 1791684260163,
       "type": "stdout",
-      "created": 1791679988127,
       "text": "Running \"vercel build\""
     },
     {
+      "created": 1791684260181,
+      "date": 1791684260181,
       "type": "stderr",
-      "created": 1791679988146,
       "text": "Vercel CLI 62.7.0"
     },
     {
+      "created": 1791684260588,
+      "date": 1791684260588,
       "type": "stderr",
-      "created": 1791679988436,
       "text": "Warning: Detected \"engines\": { \"node\": \">=24\" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version"
     },
     {
+      "created": 1791684260601,
+      "date": 1791684260601,
       "type": "stdout",
-      "created": 1791679988447,
       "text": "Installing dependencies..."
     },
     {
+      "created": 1791684270995,
+      "date": 1791684270995,
       "type": "stdout",
-      "created": 1791679996530,
       "text": ""
     },
     {
+      "created": 1791684270996,
+      "date": 1791684270996,
       "type": "stdout",
-      "created": 1791679996531,
-      "text": "added 68 packages in 8s"
+      "text": "added 68 packages in 10s"
     },
     {
+      "created": 1791684270996,
+      "date": 1791684270996,
       "type": "stdout",
-      "created": 1791679996531,
       "text": ""
     },
     {
+      "created": 1791684270996,
+      "date": 1791684270996,
       "type": "stdout",
-      "created": 1791679996531,
       "text": "10 packages are looking for funding"
     },
     {
+      "created": 1791684270996,
+      "date": 1791684270996,
       "type": "stdout",
-      "created": 1791679996531,
       "text": "  run `npm fund` for details"
     },
     {
+      "created": 1791684270998,
+      "date": 1791684270998,
       "type": "stderr",
-      "created": 1791679996531,
       "text": "npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:"
     },
     {
+      "created": 1791684270998,
+      "date": 1791684270998,
       "type": "stderr",
-      "created": 1791679996532,
       "text": "npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)"
     },
     {
+      "created": 1791684270998,
+      "date": 1791684270998,
       "type": "stderr",
-      "created": 1791679996532,
       "text": "npm warn install-scripts"
     },
     {
+      "created": 1791684270998,
+      "date": 1791684270998,
       "type": "stderr",
-      "created": 1791679996532,
       "text": "npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow."
     },
     {
+      "created": 1791684271071,
+      "date": 1791684271071,
       "type": "stdout",
-      "created": 1791679996593,
       "text": "Detected Next.js version: 16.3.4"
     },
     {
+      "created": 1791684271077,
+      "date": 1791684271077,
       "type": "stdout",
-      "created": 1791679996601,
       "text": "Running \"npm run build\""
     },
     {
+      "created": 1791684271213,
+      "date": 1791684271213,
       "type": "stdout",
-      "created": 1791679996860,
       "text": ""
     },
     {
+      "created": 1791684271213,
+      "date": 1791684271213,
       "type": "stdout",
-      "created": 1791679996860,
       "text": "> eidos-sentinel-lab@0.2.0 build"
     },
     {
+      "created": 1791684271213,
+      "date": 1791684271213,
       "type": "stdout",
-      "created": 1791679996860,
       "text": "> next build"
     },
     {
+      "created": 1791684271213,
+      "date": 1791684271213,
       "type": "stdout",
-      "created": 1791679996860,
       "text": ""
     },
     {
+      "created": 1791684271771,
+      "date": 1791684271771,
       "type": "stdout",
-      "created": 1791679997273,
       "text": "▲ Next.js 16.3.4 (Turbopack)"
     },
     {
+      "created": 1791684271890,
+      "date": 1791684271890,
       "type": "stdout",
-      "created": 1791679997390,
       "text": "  Applying modifyConfig from Vercel"
     },
     {
+      "created": 1791684271892,
+      "date": 1791684271892,
       "type": "stdout",
-      "created": 1791679997392,
-      "text": "✓ Running next.config.ts took 119ms"
+      "text": "✓ Running next.config.ts took 121ms"
     },
     {
+      "created": 1791684271919,
+      "date": 1791684271919,
       "type": "stdout",
-      "created": 1791679997428,
       "text": "Attention: Next.js now collects completely anonymous telemetry regarding usage."
     },
     {
+      "created": 1791684271919,
+      "date": 1791684271919,
       "type": "stdout",
-      "created": 1791679997428,
       "text": "This information is used to shape Next.js' roadmap and prioritize features."
     },
     {
+      "created": 1791684271920,
+      "date": 1791684271920,
       "type": "stdout",
-      "created": 1791679997429,
       "text": "You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:"
     },
     {
+      "created": 1791684271920,
+      "date": 1791684271920,
       "type": "stdout",
-      "created": 1791679997429,
       "text": "https://nextjs.org/telemetry"
     },
     {
+      "created": 1791684271920,
+      "date": 1791684271920,
       "type": "stdout",
-      "created": 1791679997429,
       "text": ""
     },
     {
+      "created": 1791684271943,
+      "date": 1791684271943,
       "type": "stdout",
-      "created": 1791679997449,
       "text": ""
     },
     {
+      "created": 1791684271987,
+      "date": 1791684271987,
       "type": "stdout",
-      "created": 1791679997492,
       "text": "  Creating an optimized production build ..."
     },
     {
+      "created": 1791684279694,
+      "date": 1791684279694,
       "type": "stdout",
-      "created": 1791680004439,
-      "text": "✓ Compiled successfully in 6.1s"
+      "text": "✓ Compiled successfully in 6.9s"
     },
     {
+      "created": 1791684279801,
+      "date": 1791684279801,
       "type": "stdout",
-      "created": 1791680004442,
       "text": "  Running TypeScript ..."
     },
     {
+      "created": 1791684285588,
+      "date": 1791684285588,
       "type": "stdout",
-      "created": 1791680008501,
-      "text": "  Finished TypeScript in 4.1s ..."
+      "text": "  Finished TypeScript in 5.8s ..."
     },
     {
+      "created": 1791684285592,
+      "date": 1791684285592,
       "type": "stdout",
-      "created": 1791680008505,
       "text": "  Collecting page data using 1 worker ..."
     },
     {
+      "created": 1791684286303,
+      "date": 1791684286303,
       "type": "stdout",
-      "created": 1791680009029,
       "text": "  Generating static pages using 1 worker (0/7) ..."
     },
     {
+      "created": 1791684286329,
+      "date": 1791684286329,
       "type": "stdout",
-      "created": 1791680009044,
       "text": "  Generating static pages using 1 worker (1/7) \r"
     },
     {
+      "created": 1791684286330,
+      "date": 1791684286330,
       "type": "stdout",
-      "created": 1791680009045,
       "text": "  Generating static pages using 1 worker (3/7) \r"
     },
     {
+      "created": 1791684286533,
+      "date": 1791684286533,
       "type": "stdout",
-      "created": 1791680009313,
       "text": "  Generating static pages using 1 worker (5/7) \r"
     },
     {
+      "created": 1791684286534,
+      "date": 1791684286534,
       "type": "stdout",
-      "created": 1791680009314,
-      "text": "✓ Generating static pages using 1 worker (7/7) in 285ms"
+      "text": "✓ Generating static pages using 1 worker (7/7) in 231ms"
     },
     {
+      "created": 1791684286539,
+      "date": 1791684286539,
       "type": "stdout",
-      "created": 1791680009319,
       "text": "  Finalizing page optimization ..."
     },
     {
+      "created": 1791684286586,
+      "date": 1791684286586,
       "type": "stdout",
-      "created": 1791680009362,
       "text": "  Running onBuildComplete from Vercel"
     },
     {
+      "created": 1791684286617,
+      "date": 1791684286617,
       "type": "stderr",
-      "created": 1791680009394,
       "text": "Warning: Detected \"engines\": { \"node\": \">=24\" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version"
     },
     {
+      "created": 1791684286666,
+      "date": 1791684286666,
       "type": "stdout",
-      "created": 1791680009433,
       "text": ""
     },
     {
+      "created": 1791684286667,
+      "date": 1791684286667,
       "type": "stdout",
-      "created": 1791680009436,
       "text": "Route (app)"
     },
     {
+      "created": 1791684286668,
+      "date": 1791684286668,
       "type": "stdout",
-      "created": 1791680009436,
       "text": "┌ ○ /"
     },
     {
+      "created": 1791684286668,
+      "date": 1791684286668,
       "type": "stdout",
-      "created": 1791680009436,
       "text": "├ ○ /_not-found"
     },
     {
+      "created": 1791684286668,
+      "date": 1791684286668,
       "type": "stdout",
-      "created": 1791680009437,
       "text": "├ ƒ /api/datasets"
     },
     {
+      "created": 1791684286668,
+      "date": 1791684286668,
       "type": "stdout",
-      "created": 1791680009437,
       "text": "├ ƒ /api/experiments"
     },
     {
+      "created": 1791684286668,
+      "date": 1791684286668,
       "type": "stdout",
-      "created": 1791680009437,
       "text": "├ ƒ /api/experiments/[jobId]"
     },
     {
+      "created": 1791684286668,
+      "date": 1791684286668,
       "type": "stdout",
-      "created": 1791680009437,
       "text": "├ ƒ /api/experiments/preflight"
     },
     {
+      "created": 1791684286669,
+      "date": 1791684286669,
       "type": "stdout",
-      "created": 1791680009437,
       "text": "├ ƒ /api/smoke"
     },
     {
+      "created": 1791684286669,
+      "date": 1791684286669,
       "type": "stdout",
-      "created": 1791680009437,
       "text": "└ ƒ /api/works/v1/[...path]"
     },
     {
+      "created": 1791684286669,
+      "date": 1791684286669,
       "type": "stdout",
-      "created": 1791680009437,
       "text": ""
     },
     {
+      "created": 1791684286669,
+      "date": 1791684286669,
       "type": "stdout",
-      "created": 1791680009437,
       "text": ""
     },
     {
+      "created": 1791684286669,
+      "date": 1791684286669,
       "type": "stdout",
-      "created": 1791680009437,
       "text": "○  (Static)   prerendered as static content"
     },
     {
+      "created": 1791684286669,
+      "date": 1791684286669,
       "type": "stdout",
-      "created": 1791680009437,
       "text": "ƒ  (Dynamic)  server-rendered on demand"
     },
     {
+      "created": 1791684286669,
+      "date": 1791684286669,
       "type": "stdout",
-      "created": 1791680009437,
       "text": ""
     },
     {
+      "created": 1791684287161,
+      "date": 1791684287161,
       "type": "stderr",
-      "created": 1791680009956,
-      "text": "Build Completed in /vercel/output [22s]"
+      "text": "Build Completed in /vercel/output [27s]"
     },
     {
+      "created": 1791684287187,
+      "date": 1791684287187,
       "type": "stdout",
-      "created": 1791680009999,
       "text": "Deploying outputs..."
     },
     {
+      "created": 1791684294836,
+      "date": 1791684294836,
       "type": "stdout",
-      "created": 1791680017534,
       "text": "Deployment completed"
     },
     {
+      "created": 1791684294839,
+      "date": 1791684294839,
       "type": "stdout",
-      "created": 1791680017537,
       "text": "Creating build cache..."
     },
     {
+      "created": 1791684302555,
+      "date": 1791684302555,
       "type": "stdout",
-      "created": 1791680024589,
-      "text": "Created build cache: 7s"
+      "text": "Created build cache: 8s"
     },
     {
+      "created": 1791684302555,
+      "date": 1791684302555,
       "type": "stdout",
-      "created": 1791680024589,
-      "text": "Uploading build cache [169.93 MB]"
+      "text": "Uploading build cache [169.91 MB]"
     },
     {
+      "created": 1791684305529,
+      "date": 1791684305529,
       "type": "stdout",
-      "created": 1791680027083,
-      "text": "Build cache uploaded: 2.494s"
+      "text": "Build cache uploaded: 2.974s"
     }
   ]
 }

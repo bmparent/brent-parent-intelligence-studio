@@ -276,10 +276,10 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/nightjar/developer",
-          "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.1.zip",
+          "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
           "demoPath": "/template-demos/nightjar/",
           "installationGuide": "INSTALL.md",
-          "version": "1.0.1"
+          "version": "1.0.3"
         },
         {
           "id": "nightjar-wordpress-v1",

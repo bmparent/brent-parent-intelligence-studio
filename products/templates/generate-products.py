@@ -238,6 +238,7 @@ def developer(slug,f):
     css = BASE_CSS+FAMILY_CSS[slug]+RESPONSIVE_FIXES+'\n.js-ready .inquiry-form.enhancement{display:grid}.motion-off *,.motion-off *:before,.motion-off *:after{transition:none!important;animation:none!important}\n'
     if slug == 'nightjar':
         css = css.replace('.nightjar[data-theme=night]{--paper:#201e39;--ink:#fff5d8;--panel:#3e355b;--line:#776980;--accent:#674bad}', '.nightjar[data-theme=night]{--paper:#201e39!important;--ink:#fff5d8!important;--panel:#3e355b!important;--line:#776980!important;--accent:#674bad!important}')
+        css = css.replace('.nightjar .hero h1{font-size:clamp(4.2rem,8.5vw,9rem)', '.nightjar .hero h1{font-size:clamp(2.7rem,7vw,7rem)')
     pages={'index.html':homepage(slug,f),**inner_pages(slug,f),'contact.html':contact_page(slug,f),'legal.html':legal_page()}
     for filename,body in pages.items():
         title=next((label for url,label in f['links'] if url==filename),'Privacy and site notes')
@@ -345,6 +346,8 @@ Read `LICENSE.txt`, `SUPPORT.md`, and `ASSETS.md` before purchasing or publishin
     if slug == 'nightjar':
         guide = out/'INSTALL.md'
         write(guide, guide.read_text(encoding='utf-8') + '\n## Day and night palette\n\nThe `colors` values in `site-config.js` configure the day palette. Night mode\nuses the fixed high-contrast token set in `.nightjar[data-theme=night]` in\n`styles.css`; those tokens intentionally override configured day colors. Change\nthe night palette in that CSS rule if needed, and check normal text, cards,\nbuttons, navigation, and contact fields in both modes after editing. Version\n1.0.1 corrects the original day-token precedence in night mode.\n')
+        write(guide, guide.read_text(encoding='utf-8') + '\n## Hero typography\n\nVersion 1.0.3 uses `clamp(2.7rem,7vw,7rem)` for the desktop hero headline and\nretains the existing phone override. This keeps ordinary sample words intact\nacross the tested browser fonts. After changing the headline or heading font,\ncheck individual words on phone and desktop as well as the overall text box.\nLong custom words still need an appropriately sized font or shorter copy.\n')
+        write(guide, guide.read_text(encoding='utf-8') + '\nThe 1.0.3 minimum also keeps the sample word intact immediately above the phone\nbreakpoint (641px), where the prior 3rem minimum was still too large.\n')
     return pages
 
 # WordPress output uses native blocks. HTML is confined to a block's valid saved
