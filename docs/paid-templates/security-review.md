@@ -21,3 +21,26 @@ The current version-only backend follow-up retains all sixteen previous archive 
 One genuine TEST refund retry was requested with the official Stripe CLI using the existing authorized TEST configuration. Stripe returned the same TEST event and exit status zero. The original order was already refunded/revoked immediately before retry; afterwards it remained revoked with its purchased snapshot preserved and download denied. The initial correction's cause is unknown. No endpoint-specific HTTP delivery receipt was available, so the CLI acknowledgement is not reported as a delivery response or causal repair.
 
 Mail configuration was checked using environment metadata without decrypting values. The candidate lacks a valid scoped receipt/recovery provider binding; the existing sensitive key is production-only and was not copied or read. A subsequent official Vercel CLI63.1.2 metadata-only query verified the exact project/team and returned zero team shared environment variables, with pagination count0 and no next page. There is no existing shared preview mail reference to attach. `mail-shared-inventory.json` records that result. Actual inbox delivery, expired-link recovery via delivered email, and authenticated hosted two-member acceptance remain open. Guest receipts are bearer capabilities; a cross-order token check establishes order binding, not authenticated identity isolation.
+
+## Delayed receipt-mail retry correction
+
+A subsequent audit found that the stable receipt-mail token's original
+30-minute expiry survived every retry. If delivery failed for more than that
+window, the first successful retry could send an already-expired link. The new
+regression reproduced that failure before the source correction.
+
+Receipt-mail retries now extend only the matching order's unused stable token
+to at least 30 minutes after the attempt. The email text, token and provider
+idempotency key stay identical. The SQL update requires `used=0` and matching
+order identity, and never shortens an existing expiry. Consumed tokens remain
+consumed even on a later receipt retry; they require the ordinary fresh recovery
+route. Random user-requested recovery tokens retain their existing expiry and
+single-use policy. Payment verification, refund revocation, archive bytes and
+the retry-on-mail-failure acknowledgement policy are unchanged.
+
+Two controlled regressions advance the clock by 31 minutes: one verifies that
+the legitimate mail retry renews an unused link, rotates the receipt once and
+rejects replay; the other verifies that a consumed link is never revived.
+These are local fixtures, not delivered-mail or hosted-provider proof. New
+source/deployment/test receipts must be read separately from the frozen
+4593b4d/d66ed7c handoff and its earlier real TEST transactions.

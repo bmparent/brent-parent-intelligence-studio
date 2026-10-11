@@ -101,3 +101,31 @@ CI/handoff/Drive receipts remain source-pinned; a new report/mirror must name th
 new pair and all twenty-four archive hashes. The production decision remains
 NO-GO. No merge, canonical deployment, LIVE payment, new subscription or paid
 service purchase was authorized or performed.
+
+## Continuation — delayed receipt retry and native visual acceptance
+
+The next read-only audit found an independently fixable recovery defect:
+receipt email retries reused a stable token whose expiry was set only by its
+first attempt. A 31-minute controlled retry reproduced an expired link before
+the fix. The narrow correction renews only the matching unused stable receipt
+token while preserving email/provider idempotency, consumed-link protection,
+ordinary recovery expiry, payment verification and refund behavior. Two new
+regressions cover delayed recovery/receipt rotation and used-link
+non-resurrection. No package bytes, prices, database schema or Brain research
+code changed.
+
+This continuation also checks the actual native Site Editor screens on the four
+already independent WordPress6.6/PHP8.1.34/MariaDB10.11.19 installations. The clean
+native API installation proof remains valid and separately labeled; rendered
+editor edits/save/publication are additional evidence. Task-generated local
+credentials stay private. Existing runtimes are preserved and stopped normally
+after the checks. This does not establish WordPress.com, managed hosting,
+physical-device or connected-service acceptance.
+
+The final source-pinned continuation report records commands, exact results,
+the new paired preview and additional evidence. The frozen194-file Drive
+snapshot and earlier handoff remain intact and historical. Missing valid
+candidate-scoped mail configuration still prevents receipt/recovery inbox and
+paid webhook acknowledgement proof; missing authorized Squarespace/GoDaddy
+editors still prevents hosted pilot acceptance. No production or LIVE action
+is authorized by this continuation.
