@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "switchboard-wordpress-v1",
   "product": "switchboard",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -20,8 +20,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 4543,
-      "sha256": "6642175999a51ff5d4c21622fe52e08cf002d32122fbeeacdc7879873a0c8135"
+      "bytes": 7394,
+      "sha256": "af6321b2e660aebae8c699e20c5642a6dd4f7286fad1b5fad0ec61ab0183006d"
     },
     {
       "path": "LICENSE.txt",
@@ -31,7 +31,7 @@
     {
       "path": "README.md",
       "bytes": 282,
-      "sha256": "1d3d2e2bd14bae81fd8febfe25adb6af60b4cd86382ccc8e5f1544f6629a59b9"
+      "sha256": "12cc9a003ab638d2ced8a356abf3ae95dab43a4a0cf1ff1b9d2d7342de4c1f86"
     },
     {
       "path": "SUPPORT.md",
@@ -51,7 +51,7 @@
     {
       "path": "functions.php",
       "bytes": 500,
-      "sha256": "2ffb2ab2ee42d8411a1eb26f3062f4e02295b7d2ee9672f560372dbd6846b266"
+      "sha256": "04ba48a8a931ae2d35091ed0142c289850f4cbc3e65369afb3332f5580f357d9"
     },
     {
       "path": "parts/footer.html",
@@ -91,7 +91,7 @@
     {
       "path": "style.css",
       "bytes": 10575,
-      "sha256": "519f42a4f41be89cc5c6849caa4c96c0646ac9f7ce9a037edc02f7e364175525"
+      "sha256": "eba2f53b112d47fdfe48b16d04167d2e428bc5f8ec9325230c8a11cc8b19f1c3"
     },
     {
       "path": "templates/404.html",

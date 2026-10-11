@@ -1,0 +1,32 @@
+{
+  "timestampUtc": "2026-10-11T02:18:47.441Z",
+  "sha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
+  "bundleHash": "75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7",
+  "bundleHashRecomputed": true,
+  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
+  "manifestFiles": 135,
+  "trackedRuntimeFiles": 119,
+  "trackedRuntimeMatchesHead": true,
+  "comparison": "Every uploaded tracked file matches frozen manifest SHA256/size; git hash-object --path --stdin applies repository clean filters and equals git ls-tree HEAD blob. CRLF normalization follows repository Git rules.",
+  "privateArchiveFiles": 16,
+  "privateArchives": "Sixteen ignored private buyerZIPs are outside Git and independently hash/size checked against frozen current and retained manifests.",
+  "remainingDirtyPaths": [
+    {
+      "status": " M",
+      "path": "artifacts/paid-templates-20261010/acceptance-status.json",
+      "category": "evidence-only"
+    },
+    {
+      "status": " M",
+      "path": "artifacts/paid-templates-20261010/backend-source-preview.json",
+      "category": "evidence-only"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/paid-templates-20261010/actual-paid-ledger.json",
+      "category": "evidence-only"
+    }
+  ],
+  "noRuntimeDirtyPaths": true,
+  "actualPurchasedSwitchboard100HashPreserved": true
+}

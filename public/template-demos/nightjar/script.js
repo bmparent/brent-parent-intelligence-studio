@@ -61,3 +61,18 @@
     text('.form-status','Your draft is ready. Open the email draft below, then review and send it in your email app. Nothing has been sent or stored by this website.');
   });
 })();
+
+/* Poster-layer selection reveals information; ordinary event links stay available. */
+(() => {
+  const layers = [...document.querySelectorAll('[data-poster-layer]')];
+  if (!layers.length) return;
+  const panels = [...document.querySelectorAll('[data-poster-panel]')];
+  const status = document.querySelector('[data-poster-status]');
+  function reveal(layer) {
+    layers.forEach(button => button.setAttribute('aria-pressed', String(button === layer)));
+    panels.forEach(panel => { panel.hidden = panel.dataset.posterPanel !== layer.dataset.posterLayer; });
+    if (status) status.textContent = layer.dataset.posterTitle + ' — event information revealed.';
+  }
+  layers.forEach(layer => layer.addEventListener('click', () => reveal(layer)));
+  reveal(layers[0]);
+})();

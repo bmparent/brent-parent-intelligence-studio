@@ -1,0 +1,22 @@
+{
+  "timestampUtc": "2026-10-11T02:19:50.432Z",
+  "scope": "protected final backend",
+  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
+  "controls": [
+    {
+      "name": "unknown receipt",
+      "http": 404,
+      "result": "passed"
+    },
+    {
+      "name": "client price override",
+      "http": 400,
+      "result": "passed"
+    },
+    {
+      "name": "unavailable WordPress",
+      "http": 503,
+      "result": "passed"
+    }
+  ]
+}

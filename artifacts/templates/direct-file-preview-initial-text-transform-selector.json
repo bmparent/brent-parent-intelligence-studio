@@ -1,0 +1,39 @@
+{
+  "scope": "Exact new developer ZIP extracted fixture opened directly as file://, no server/build/account; no email sent",
+  "checks": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "version": "1.0.2",
+      "archiveSha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
+      "filePreview": "passed",
+      "scriptConfigAndImage": "passed",
+      "ordinaryContactNavigation": "passed",
+      "posterReveal": null
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "version": "1.0.1",
+      "archiveSha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
+      "filePreview": "passed",
+      "scriptConfigAndImage": "passed",
+      "ordinaryContactNavigation": "passed",
+      "posterReveal": null
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "version": "1.0.1",
+      "archiveSha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
+      "filePreview": "passed",
+      "scriptConfigAndImage": "passed",
+      "ordinaryContactNavigation": "passed",
+      "posterReveal": null
+    }
+  ],
+  "failures": [
+    {
+      "product": "nightjar",
+      "error": ""
+    }
+  ],
+  "status": "failed"
+}

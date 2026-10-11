@@ -21,7 +21,7 @@ GoDaddy Websites + Marketing is a separate product and cannot import this ZIP.
 1. Back up the existing site and test in staging. Do not replace an active theme
    on a customer site without reviewing its existing templates, menus, and content.
 2. In Appearance → Themes → Add New → Upload Theme, select the separately
-   supplied `matter-wordpress-v1.0.1.zip`. Install and activate `Matter by Eidos Works`.
+   supplied `matter-wordpress-v1.0.2.zip`. Install and activate `Matter by Eidos Works`.
 3. In Settings → General, set your site title and tagline. In Appearance → Editor,
    open Styles to edit the palette, typography, and spacing. Header site title and
    Navigation are ordinary core blocks. No account or key is needed.
@@ -57,11 +57,52 @@ commerce, ticketing, SMTP, forms, inventory, analytics, and live availability ar
 not included. Install a suitable plugin/service only if you need it and verify
 the complete flow. Do not put secrets in blocks, theme files, or public pages.
 
-## Updates, rollback, and rights
+## Email and optional integrations
+Contact buttons are ordinary `mailto:` links. WordPress edition has no included
+contact form, SMTP setup, message storage, or delivery guarantee. Replace the
+sample address in the Contact template/pattern and test a real message to your
+inbox using your own email app. For a web form, use a separately chosen plugin or
+provider, insert its supported block, configure its recipient and privacy/spam
+settings, and test delivery plus failure handling on your host. Booking, carts,
+payment processing, ticket inventory, analytics, accounts, and fees are separate.
+Do not paste private keys into public blocks or theme files.
+
+## Troubleshooting and common mistakes
+- Theme ZIP rejected: upload the supplied WordPress ZIP in Appearance → Themes,
+  not the developer ZIP or `demo-content.xml`. Check host upload permissions and
+  file-size limits; do not bypass your hosting plan's theme restrictions.
+- Wrong layout or unchanged edits: check the page's selected template and the
+  static homepage setting. Designed templates render their own blocks. To use
+  Page editor content, choose the default Page template and insert the pattern.
+- Bundled update not visible: saved Site Editor templates/styles can override
+  theme files. Export or back up edits before reviewing/resetting overrides;
+  clear host/browser caches only after verifying the saved content.
+- Navigation or artwork is broken: update Navigation to your real page URLs,
+  especially in a subdirectory or with plain permalinks. Replace Image blocks
+  through Media Library; do not assume example root URLs fit your installation.
+- Demo XML did not create a finished site: it creates page records, not external
+  media or accounts. Review template assignments, Reading, Navigation and contact
+  details. Manual page creation is available without the optional importer.
+- Email does not send: `mailto:` needs a configured visitor email app. No form
+  server is included; a separately configured/tested form plugin may be needed.
+
+## Updates, rollback, and removal
 Back up customizations first. Site Editor changes are stored in the WordPress
 database and can override bundled templates. Review those saved changes when
 installing an update; preserve or export them before resetting a template.
-Rollback by restoring the backup or reactivating the previous theme.
+Rollback by restoring the complete known-good site/database backup, or activate
+the previous theme and review its saved templates, navigation, and Styles. Keep
+the previous immutable ZIP and export your customizations before replacement.
+The `Update URI` header uniquely identifies this theme and avoids unrelated
+WordPress.org updates; it is not an automatic update or remote support service.
+To remove this theme, activate a different theme first, verify the replacement
+frontend, then delete only this inactive theme in Appearance → Themes. Export or
+back up its Site Editor customizations before deleting. Do not delete Pages,
+Posts, Media Library uploads, users, plugins, or the database to remove a theme;
+those are separate site content. Remove optional integrations in their own
+settings only if desired. Deleting this theme does not close a provider account.
+
+## Rights and support
 All WordPress edition code and original art are GPL-2.0-or-later. Read `LICENSE.txt`,
 `COPYING`, `ASSETS.md`, and `SUPPORT.md`. No one-site commercial restriction limits
 your GPL rights. Hosting and optional services cost extra.

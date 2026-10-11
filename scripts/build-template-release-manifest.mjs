@@ -21,6 +21,7 @@ const proofPaths = [
   'artifacts/templates/wordpress-browser/installation-receipt.json',
   'artifacts/templates/wordpress-browser/final-metadata-receipt.json',
   'artifacts/templates/wordpress-install-external/browser-ui-receipt.json',
+  'artifacts/templates/wordpress-install-external/native-php-receipt.json',
   'artifacts/templates/ci-status.json', 'artifacts/templates/ci-provider-status.json',
 ];
 const evidencePaths = [
@@ -70,6 +71,7 @@ export async function createReleaseManifest(root) {
   const previous = await readJson(root, manifestPath, true);
   const sourceReceipt = await readJson(root, 'artifacts/templates/source-install-receipt.json', true);
   const wpReceipt = await readJson(root, 'artifacts/templates/wordpress-install-external/browser-ui-receipt.json', true);
+  const historicalCliReceipt = await readJson(root, 'artifacts/templates/wordpress-install-external/installation-receipt.json', true);
   const platformReceipt = await readJson(root, 'docs/paid-templates/platform-install-evidence.json', true);
   if (report.catalogVersion !== catalog.version) throw new Error('Catalog/package receipt version mismatch');
   const evidence = [];
@@ -113,11 +115,11 @@ export async function createReleaseManifest(root) {
           support: { status: 'draft', installationGuidanceDays: 30, suppliedFileDefectDays: 90, responseTimeSla: null },
           documentationAndAssets: documents,
           changelog: [
-            ...(edition.platform === 'developer' && product.slug === 'switchboard' && published.version === '1.0.1' ? [{ version: '1.0.1', status: 'candidate', description: 'Measured responsive hero font sizing keeps ordinary sample words intact, with a phone clamp retaining the previous 3rem ceiling. CSS typography and editing guidance only.' }] : []),
-            ...(edition.platform === 'developer' && product.slug === 'nightjar' && published.version === '1.0.3' ? [{ version: '1.0.3', status: 'candidate', description: 'Measured 2.7rem desktop minimum keeps ordinary headline words intact at the immediate 641px breakpoint; wide desktop and existing phone sizes are unchanged from1.0.2.' }] : []),
-            ...(edition.platform === 'developer' && product.slug === 'nightjar' && ['1.0.2', '1.0.3'].includes(published.version) ? [{ version: '1.0.2', status: 'candidate', description: 'Measured desktop hero font clamp keeps ordinary headline words intact across tested browser fonts while preserving the existing phone rule. CSS typography and editing guidance only.' }] : []),
-            ...(edition.platform === 'wordpress' && published.version === '1.0.1' ? [{ version: '1.0.1', status: 'candidate', description: 'Theme identity metadata: explicit Update URI prevents WordPress.org same-slug update confusion. Header, stylesheet cache version, and install filename/version documentation only; no automatic updater is supplied.' }] : []),
-            ...(edition.platform === 'developer' && product.slug === 'nightjar' && ['1.0.1', '1.0.2', '1.0.3'].includes(published.version) ? [{ version: '1.0.1', status: 'candidate', description: 'Night mode uses the fixed contrasting palette above configured day tokens; day palette customization remains available. CSS precedence and corresponding editing guidance only.' }] : []),
+            { version: published.version, status: 'candidate', description: 'Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope.' + (edition.platform === 'developer' && product.slug === 'nightjar' ? ' Original overlapping poster layers reveal each event format and access notes with keyboard/touch controls, pressed/live state, always-reachable ordinary event links, all-information no-JavaScript fallback and reduced motion. Category filter and day/night modes remain available.' : ' Other supplied content and interaction behavior are unchanged; WordPress header/cache metadata follows the new immutable archive version.') },
+            ...(edition.platform === 'developer' && product.slug === 'switchboard' ? [{ version: '1.0.1', status: 'candidate', description: 'Measured responsive hero font sizing keeps ordinary sample words intact, with a phone clamp retaining the previous 3rem ceiling. CSS typography and editing guidance only.' }] : []),
+            ...(edition.platform === 'developer' && product.slug === 'nightjar' ? [{ version: '1.0.3', status: 'candidate', description: 'Measured 2.7rem desktop minimum keeps ordinary headline words intact at the immediate 641px breakpoint; wide desktop and existing phone sizes are unchanged from1.0.2.' }, { version: '1.0.2', status: 'candidate', description: 'Measured desktop hero font clamp keeps ordinary headline words intact across tested browser fonts while preserving the existing phone rule. CSS typography and editing guidance only.' }] : []),
+            ...(edition.platform === 'wordpress' ? [{ version: '1.0.1', status: 'candidate', description: 'Theme identity metadata: explicit Update URI prevents WordPress.org same-slug update confusion. Header, stylesheet cache version, and install filename/version documentation only; no automatic updater is supplied.' }] : []),
+            ...(edition.platform === 'developer' && product.slug === 'nightjar' ? [{ version: '1.0.1', status: 'candidate', description: 'Night mode uses the fixed contrasting palette above configured day tokens; day palette customization remains available. CSS precedence and corresponding editing guidance only.' }] : []),
             { version: '1.0.0', status: 'candidate', description: 'Initial portable source/native-block-theme candidate; not a record of a commercial release.' },
           ] };
         packages.push(archive);
@@ -129,16 +131,22 @@ export async function createReleaseManifest(root) {
             evidence: 'artifacts/templates/source-install-receipt.json', browserEvidence: 'artifacts/templates/varied-content-performance.json' };
         } else {
           const check = wpReceipt?.themes?.find(item => item.product === product.slug && item.archive_sha256 === actual.sha256);
+          const nativeApi = check?.native_api_gate === 'passed' && wpReceipt?.native_api_gate === 'passed';
           published.compatibility = { acceptance: 'incomplete', declaredMinimums: { wordpress: '6.6', php: '8.1' },
             actualTestedVersions: { wordpress: wpReceipt?.wordpress ?? null, php: wpReceipt?.php ?? null },
-            browserPlaygroundChecks: check?.checks ?? null, browserPlaygroundStatus: check?.status ?? 'not_run',
-            browserPlaygroundScope: wpReceipt?.scope ?? null,
+            browserPlaygroundChecks: nativeApi ? null : check?.checks ?? null, browserPlaygroundStatus: nativeApi ? 'historical-only' : check?.status ?? 'not_run',
+            browserPlaygroundScope: nativeApi ? 'Historical prior-version native browser UI remains in the preserved WordPress browser receipts; current PHP API checks are separate.' : wpReceipt?.scope ?? null,
+            nativeApiStatus: nativeApi ? 'passed' : 'not_run', nativeApiChecks: nativeApi ? check.checks : null,
+            nativeApiMethod: nativeApi ? wpReceipt.method : null, nativeApiScope: nativeApi ? wpReceipt.scope : null, nativeDatabase: nativeApi ? wpReceipt.database : null,
             installedThemeMetadata: check?.installed_header ?? null,
             baselineNativeContentProof: check?.baseline_native_checks ?? null,
             baselineNativeContentReuse: check?.baseline_native_content_ui_reuse ?? null,
-            cliStatus: platformReceipt?.wordpress?.local_cli_outcome?.status ?? 'missing',
+            cliStatus: platformReceipt?.wordpress?.local_cli_outcome?.status ?? historicalCliReceipt?.status ?? 'missing',
+            cliScope: 'Historical Playground CLI startup attempt only; current native PHP API acceptance is separate.',
             evidence: ['docs/paid-templates/platform-install-evidence.json', 'artifacts/templates/wordpress-install-external/browser-ui-receipt.json'],
-            limits: 'Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Native PHP/MySQL hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified. Contact href only; no message sent. No general compatibility claim.' };
+            limits: nativeApi
+              ? 'Exact current ZIPs passed native PHP API installation/edit/publication/export on four independent WordPress6.6/PHP8.1.34/MariaDB10.11.19 sites and survived graceful process restart. Fresh visual admin installation/editor workflows on all four current sites, managed production hosting, WordPress.com upload plans, physical devices, export reimport and connected action delivery remain unverified. Historical browser UI proof is separately scoped; no general compatibility claim.'
+              : 'Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Current conventional hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified until matching native receipts. Contact href only; no message sent. No general compatibility claim.' };
         }
       }
       editions.push(published);

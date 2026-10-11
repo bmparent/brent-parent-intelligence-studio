@@ -258,7 +258,7 @@ WebKit/Chromium word-range checks reproduced and corrected a split ordinary
 word. Its phone rule is unchanged. The 1.0.1 archive and receipts remain retained;
 all other current archives keep their hashes.
 
-The final Nightjar developer candidate is 1.0.3: its measured 2.7rem minimum
+The earlier Nightjar developer candidate was 1.0.3: its measured 2.7rem minimum
 also corrects the immediate 641px breakpoint; phone and wide desktop sizes stay
 the same. Versions 1.0.1 and 1.0.2 remain retained rather than overwritten.
 
@@ -267,3 +267,16 @@ measured hero font sizing and a phone clamp retaining the original 3rem ceiling.
 The original actual paid TEST proof belongs to retained 1.0.0 bytes; it is not
 retrospectively proof of a paid 1.0.1 delivery. Other current versions remain
 unchanged, including Nightjar developer 1.0.3 and four WordPress 1.0.1 editions.
+
+The current release advances Switchboard developer to1.0.2, Tideglass and Matter
+developer to1.0.1, Nightjar developer to1.0.4, and all four WordPress editions
+to1.0.2. Every packaged guide now includes rollback/removal, common mistakes,
+troubleshooting and explicit integration boundaries. Configuration documentation
+identifies the actual editable marker scope: five designed pages' title/intro,
+home CTA/image, shared contact data and design tokens; legal HTML is edited
+directly. Nightjar additionally gains an accessible poster-layer event reveal
+on Home/Program with independent ordinary links and visible no-JavaScript
+information. All sixteen prior archives remain byte-identical; eight new ZIPs
+make twenty-four private archives. Current hashes and the exact changed members
+are recorded in `version-transition-receipt.json`. No price, update promise or
+older purchaser's snapshot changes with these versions.

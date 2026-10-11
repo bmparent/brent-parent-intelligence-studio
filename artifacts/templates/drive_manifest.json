@@ -1,5 +1,5 @@
 {
-  "timestamp_utc": "2026-10-11T02:20:42.524Z",
+  "timestamp_utc": "2026-10-11T03:13:10.485Z",
   "drive_copy_attempted": false,
   "drive_copy_success": false,
   "drive_root": "G:\\My Drive",
@@ -7,69 +7,69 @@
   "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied.",
   "files_considered": [
     {
-      "path": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
-      "bytes": 27055,
-      "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678"
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.2.zip",
+      "bytes": 28547,
+      "sha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60"
     },
     {
-      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
-      "bytes": 29399,
-      "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb"
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.2.zip",
+      "bytes": 30418,
+      "sha256": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93"
     },
     {
-      "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
-      "bytes": 26836,
-      "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7"
+      "path": "artifacts/templates/packages/tideglass-developer-v1.0.1.zip",
+      "bytes": 28338,
+      "sha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638"
     },
     {
-      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
-      "bytes": 30027,
-      "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785"
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.2.zip",
+      "bytes": 31040,
+      "sha256": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d"
     },
     {
-      "path": "artifacts/templates/packages/matter-developer-v1.zip",
-      "bytes": 27533,
-      "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6"
+      "path": "artifacts/templates/packages/matter-developer-v1.0.1.zip",
+      "bytes": 29031,
+      "sha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779"
     },
     {
-      "path": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
-      "bytes": 30748,
-      "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe"
+      "path": "artifacts/templates/packages/matter-wordpress-v1.0.2.zip",
+      "bytes": 31762,
+      "sha256": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b"
     },
     {
-      "path": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
-      "bytes": 27236,
-      "sha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d"
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.4.zip",
+      "bytes": 31190,
+      "sha256": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1"
     },
     {
-      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
-      "bytes": 29742,
-      "sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739"
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.2.zip",
+      "bytes": 30759,
+      "sha256": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96"
     },
     {
       "path": "products/templates/release-manifest.json",
-      "bytes": 61682,
-      "sha256": "033bb740be55a12167c62d7a00a32bfea86d7168d78ca07787059245444eeb18"
+      "bytes": 64954,
+      "sha256": "cf56ad3a29dfc26953f03803e7342349f5e711ce718944cdfdcf9af0fb6c37bc"
     },
     {
       "path": "artifacts/templates/package-report.json",
-      "bytes": 3224,
-      "sha256": "ace8905448bef3b1acf41d9fa00c20371dc8a43bcec1d264166b96ccd711b848"
+      "bytes": 3232,
+      "sha256": "79d767fee1238fabbf300713da26946e171f728aa45d795687a02321aa00f028"
     },
     {
       "path": "artifacts/templates/package-tests.json",
-      "bytes": 83542,
-      "sha256": "092565712d482c26fc7f267344c73aedea0e26827ff5d5157f37dd3cd372fc57"
+      "bytes": 87887,
+      "sha256": "317a1e1b791da0878b3bc91019673e3c32d5d12ce32b7c0e28a2d970b32c477e"
     },
     {
       "path": "artifacts/templates/package-tests.md",
       "bytes": 473,
-      "sha256": "aef497ab2510ea0fb1cab0f9ee5db0c8b85ec75b84f7c8724c7671ba621941a8"
+      "sha256": "79103f10a55b8e572a0b0f29d511d4ad48e8b7c3a31d2ec8e2e492f23747c2ec"
     },
     {
       "path": "artifacts/templates/source-install-receipt.json",
-      "bytes": 1919,
-      "sha256": "5cf2782f3a16f1f3f79b7bece12b6cb98ff2f0ffaa0a0d28a97555a04deea64f"
+      "bytes": 4593,
+      "sha256": "63a97f3e4ce90c91445b9f22392b473680bb66111e07f17c45bf511b5b784a96"
     },
     {
       "path": "artifacts/templates/varied-content-performance.json",
@@ -88,33 +88,33 @@
     },
     {
       "path": "docs/paid-templates/platform-install-evidence.json",
-      "bytes": 22493,
-      "sha256": "58361706b2c223974bd4080a622628235b28a494707ecc588be2b8ab2bd56846"
+      "bytes": 46859,
+      "sha256": "0c4f8aa5aef0697498151acc41261049a1b00702d4022a21f2bd7460fbe6c78d"
     },
     {
       "path": "docs/paid-templates/product-operations.md",
-      "bytes": 19596,
-      "sha256": "1c234b6abe4778c3027d2cb8381f6069b21de456ba6fc436de9fedf7ea81d6a4"
+      "bytes": 20519,
+      "sha256": "1a078510e6613297ace94ac06cc5a997a9ad7e5cd414dc77be01e5f722ccc879"
     },
     {
       "path": "docs/paid-templates/ACCEPTANCE.md",
-      "bytes": 17317,
-      "sha256": "c5c8c1aa3186b9820daef5e9d50a169beefb2aeb132e566788ffafd65ea47785"
+      "bytes": 19442,
+      "sha256": "2f4924f7edd0143c67c18340b3f3c08b550a381f8f8bea6939932dcdf5a5de60"
     },
     {
       "path": "docs/paid-templates/security-review.md",
-      "bytes": 4547,
-      "sha256": "ec660e7befdc59c72c32a15fba65aaa1bdc0302936377296d6e344663dcaa635"
+      "bytes": 6235,
+      "sha256": "2b49be20596271ffd1c58450b34e024fe8d04c910cfa6f9a0af6f98e9d26c2f3"
     },
     {
       "path": "artifacts/templates/version-transition-receipt.json",
-      "bytes": 5791,
-      "sha256": "e02790e1cf614124528d746668e892fdfbc90ab6afe868faf87e828e9f394e33"
+      "bytes": 4407,
+      "sha256": "0ae45260f44e54ef2cbdf90de5e2d326c0a155959d197ee2ca3d530461fa5fb7"
     },
     {
       "path": "artifacts/templates/generator-parity.json",
-      "bytes": 391,
-      "sha256": "bca644b7cdb9ec13db843a9b77b6d5971a1188937725750acb4bef9f17950e36"
+      "bytes": 25471,
+      "sha256": "858564f1f14c114a6674a2085445910756f2df1ef369717592fd774a96f41762"
     },
     {
       "path": "artifacts/templates/switchboard-typography-fit.json",
@@ -153,8 +153,13 @@
     },
     {
       "path": "artifacts/templates/wordpress-install-external/browser-ui-receipt.json",
-      "bytes": 16399,
-      "sha256": "743c78247ffeec8ed8c06d0f9d207ef3a96c4e61c944ca869ed650d969e35114"
+      "bytes": 23397,
+      "sha256": "dac20b3e0a3ca9e75781a39698f31635946baa1ccebcdcd3e9f4ef53efb9c736"
+    },
+    {
+      "path": "artifacts/templates/wordpress-install-external/native-php-receipt.json",
+      "bytes": 23397,
+      "sha256": "dac20b3e0a3ca9e75781a39698f31635946baa1ccebcdcd3e9f4ef53efb9c736"
     },
     {
       "path": "artifacts/templates/ci-status.json",
@@ -170,35 +175,35 @@
   "files_copied": [],
   "files_skipped": [
     {
-      "path": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.2.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
-      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.2.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
-      "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "path": "artifacts/templates/packages/tideglass-developer-v1.0.1.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
-      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.2.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
-      "path": "artifacts/templates/packages/matter-developer-v1.zip",
+      "path": "artifacts/templates/packages/matter-developer-v1.0.1.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
-      "path": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+      "path": "artifacts/templates/packages/matter-wordpress-v1.0.2.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
-      "path": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.4.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
-      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.2.zip",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
@@ -290,6 +295,10 @@
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
     {
+      "path": "artifacts/templates/wordpress-install-external/native-php-receipt.json",
+      "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
+    },
+    {
       "path": "artifacts/templates/ci-status.json",
       "reason": "Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied."
     },
@@ -304,10 +313,10 @@
     {
       "variable": "EIDOS_PROOF_DRIVE_DIR",
       "root": "G:\\My Drive",
-      "payload_bytes": 702288,
-      "free_bytes": 10425405440,
+      "payload_bytes": 808289,
+      "free_bytes": 12194295808,
       "reserve_bytes": 67108864,
-      "required_free_bytes": 67811152,
+      "required_free_bytes": 67917153,
       "sufficient": true,
       "reason": "Previous mounted copy failed ENOSPC; no automatic retry. See artifacts/templates/drive_manifest-initial-enospc.json."
     }

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "tideglass-wordpress-v1",
   "product": "tideglass",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -20,8 +20,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 4525,
-      "sha256": "27cce17800fc185223f18a1e8a2aa213ff804ad42b482f559e8fec6598624f75"
+      "bytes": 7376,
+      "sha256": "b3a5d997953fda836c01545d8c75000e61cd407745bed9237c32b27c2ecffa0b"
     },
     {
       "path": "LICENSE.txt",
@@ -31,7 +31,7 @@
     {
       "path": "README.md",
       "bytes": 280,
-      "sha256": "8e00f9bb912b512655032224646ced8575134598409177ca0d0572a20d7fdb11"
+      "sha256": "9d8fd801764b304f0f176ee94bf7574c20530cdbeb21678ed8f88eec4ec86d80"
     },
     {
       "path": "SUPPORT.md",
@@ -51,7 +51,7 @@
     {
       "path": "functions.php",
       "bytes": 496,
-      "sha256": "aaba7532c03c038cc741c979e213c2a134423ae1255176de217cb5978b42a681"
+      "sha256": "b7dd82ab1f4a77ea833fc6fe1c07d6f27ee237c4e069ee717a6bb4fa3a681a30"
     },
     {
       "path": "parts/footer.html",
@@ -91,7 +91,7 @@
     {
       "path": "style.css",
       "bytes": 11764,
-      "sha256": "72f08451843ad0c9f76976fafd697fdd15b27b382558c18f395e5cc6958df636"
+      "sha256": "3ae2a67a7477c009bcd8c6ef03f1914ccfa4fc569a6b1cd53d9915904b595448"
     },
     {
       "path": "templates/404.html",

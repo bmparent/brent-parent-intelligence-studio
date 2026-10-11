@@ -11,14 +11,14 @@ const manifest = await createReleaseManifest(root);
 const catalog = await read('products/templates/catalog.json');
 const saved = await read('products/templates/release-manifest.json');
 const frozen = {
-  'switchboard-developer-v1': '5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678',
-  'switchboard-wordpress-v1': 'da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb',
-  'tideglass-developer-v1': '34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7',
-  'tideglass-wordpress-v1': '4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785',
-  'matter-developer-v1': 'f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6',
-  'matter-wordpress-v1': '3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe',
-  'nightjar-developer-v1': '99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d',
-  'nightjar-wordpress-v1': '558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739',
+  "switchboard-developer-v1": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
+  "switchboard-wordpress-v1": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93",
+  "tideglass-developer-v1": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
+  "tideglass-wordpress-v1": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d",
+  "matter-developer-v1": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
+  "matter-wordpress-v1": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b",
+  "nightjar-developer-v1": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1",
+  "nightjar-wordpress-v1": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96"
 };
 
 test('release manifest joins exactly eight unchanged private buyer archives', () => {
@@ -26,7 +26,8 @@ test('release manifest joins exactly eight unchanged private buyer archives', ()
   assert.deepEqual(manifest.packages.map(item => [item.editionId, item.sha256]), saved.packages.map(item => [item.editionId, item.sha256]));
   for (const archive of manifest.packages) {
     assert.equal(archive.sha256, frozen[archive.editionId]);
-    assert.equal(archive.version, archive.platform === 'wordpress' ? '1.0.1' : archive.product === 'nightjar' ? '1.0.3' : archive.product === 'switchboard' ? '1.0.1' : '1.0.0');
+    const edition = catalog.products.find(item => item.slug === archive.product).editions.find(item => item.id === archive.editionId);
+    assert.equal(archive.version, edition.version || '1.0.0');
     assert.equal(archive.distribution, 'private-fulfillment-only');
     for (const file of ['LICENSE.txt', 'SUPPORT.md', 'ASSETS.md', 'INSTALL.md']) assert.ok(archive.documentationAndAssets.some(item => item.path.endsWith(`/${file}`)));
     assert.ok(archive.documentationAndAssets.some(item => item.path.includes('/assets/')));
@@ -64,13 +65,31 @@ test('WordPress acceptance stays incomplete with version provenance and GPL righ
     const edition = product.editions.find(item => item.platform === 'wordpress');
     assert.equal(edition.compatibility.acceptance, 'incomplete');
     assert.ok(Object.hasOwn(edition.compatibility.actualTestedVersions, 'wordpress'));
-    assert.equal(edition.compatibility.browserPlaygroundStatus, 'partial');
-    assert.equal(edition.compatibility.browserPlaygroundChecks.final_exact_zip_activation, 'passed');
-    assert.equal(edition.compatibility.installedThemeMetadata.version, '1.0.1');
-    assert.equal(edition.compatibility.installedThemeMetadata.update_uri, `https://eidos-works.com/shop/templates/${product.slug}/`);
-    assert.notEqual(edition.compatibility.baselineNativeContentProof.archive_sha256, edition.package.sha256);
-    assert.equal(edition.compatibility.baselineNativeContentProof.checks.native_heading_edit_publish, 'passed');
-    assert.equal(edition.compatibility.cliStatus, 'blocked_before_installation');
+    if (edition.compatibility.nativeApiStatus === 'passed') {
+      assert.equal(edition.compatibility.browserPlaygroundStatus, 'historical-only');
+      assert.equal(edition.compatibility.browserPlaygroundChecks, null, 'Native PHP APIs must not be labeled as browser UI proof');
+      for (const check of ['final_exact_zip_activation', 'four_independent_database_document_root_baseline', 'native_heading_edit_publish', 'native_image_upload_publish', 'five_published_page_templates_and_navigation', 'core_site_editor_export_contains_saved_edits', 'graceful_database_and_php_restart', 'native_text_image_navigation_contact_persist_after_restart', 'minimum_wordpress_6_6_php_8_1_34']) assert.equal(edition.compatibility.nativeApiChecks[check], 'passed');
+      assert.deepEqual(edition.compatibility.actualTestedVersions, { wordpress: '6.6', php: '8.1.34' });
+      assert.equal(edition.compatibility.nativeDatabase.engine, 'MariaDB');
+      assert.equal(edition.compatibility.nativeDatabase.version, '10.11.19');
+      assert.equal(edition.compatibility.nativeDatabase.independent_databases, 4);
+      assert.equal(edition.compatibility.installedThemeMetadata.version, edition.version);
+      assert.match(edition.compatibility.nativeApiMethod, /Native PHP WordPress APIs/);
+      assert.match(edition.compatibility.limits, /Fresh visual admin/);
+    } else if (edition.compatibility.browserPlaygroundStatus === 'not_run') {
+      assert.equal(edition.compatibility.browserPlaygroundChecks, null, 'Prior-version proof must not be attributed to new bytes');
+      assert.equal(edition.compatibility.installedThemeMetadata, null);
+    } else {
+      assert.equal(edition.compatibility.browserPlaygroundChecks.final_exact_zip_activation, 'passed');
+      assert.equal(edition.compatibility.installedThemeMetadata.version, edition.version);
+      assert.equal(edition.compatibility.installedThemeMetadata.update_uri, `https://eidos-works.com/shop/templates/${product.slug}/`);
+      if (edition.compatibility.baselineNativeContentProof) {
+        assert.notEqual(edition.compatibility.baselineNativeContentProof.archive_sha256, edition.package.sha256);
+        assert.equal(edition.compatibility.baselineNativeContentProof.checks.native_heading_edit_publish, 'passed');
+      }
+    }
+    assert.match(edition.compatibility.cliStatus, /^blocked(?:_before_installation)?$/);
+    assert.match(edition.compatibility.cliScope, /Historical Playground CLI/);
     const archive = manifest.packages.find(item => item.editionId === edition.id);
     assert.equal(archive.license.identifier, 'GPL-2.0-or-later');
     assert.ok(archive.documentationAndAssets.some(item => item.path.endsWith('/COPYING')));

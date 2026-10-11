@@ -8,6 +8,10 @@ import html
 import xml.sax.saxutils as xml
 
 ROOT = Path(__file__).resolve().parent
+CATALOG = json.loads((ROOT/'catalog.json').read_text(encoding='utf-8'))
+def edition_version(slug, platform):
+    product = next(item for item in CATALOG['products'] if item['slug'] == slug)
+    return next(item for item in product['editions'] if item['platform'] == platform).get('version', '1.0.0')
 FAMILIES = {
     'switchboard': {'name': 'Switchboard', 'tag': 'A clear next step.', 'business': 'Switchboard Services', 'links': [('index.html','Home'),('services.html','Services'),('service-detail.html','Service detail'),('process.html','Our process'),('contact.html','Contact')], 'color': '#14302b', 'paper':'#f6f6ee', 'accent':'#d8f35f', 'font':'system-ui, -apple-system, "Segoe UI", sans-serif', 'hero':'Good work starts with\na clear conversation.', 'intro':'Practical help for the places you live and work. Tell us what needs attention. We will help you understand the next step.', 'image':'service-plan.svg', 'cta':'Explore services', 'target':'services.html'},
     'tideglass': {'name': 'Tideglass', 'tag': 'Make room for quiet.', 'business':'Tideglass House', 'links':[('index.html','Home'),('stays.html','Stays'),('stay-detail.html','The house'),('guide.html','Local guide'),('contact.html','Plan your stay')], 'color':'#182f38','paper':'#eff3ed','accent':'#d3b27f','font':'Georgia, "Times New Roman", serif','hero':'A little closer\nto the horizon.', 'intro':'Slow mornings. Long walks. A place to spend time well. Explore a sample coastal retreat designed around the rhythm of the day.', 'image':'coast.svg','cta':'Find your place','target':'stays.html'},
@@ -116,8 +120,40 @@ def service_picker():
 
 def material_explorer(): return '''<section class="shell section-divider"><div class="split"><div><p class="eyebrow">Up close</p><h2>What the surface tells you.</h2><p>Choose a material, then inspect its surface. The details below stay readable while you explore.</p><div class="material-control enhancement" aria-label="Choose material"><button type="button" data-material="clay" aria-pressed="true">Clay</button><button type="button" data-material="timber" aria-pressed="false">Timber</button></div><p class="material-notes" data-material-notes>Clay: an unglazed outer surface shows the turning lines. A glazed interior is easier to clean.</p><p>Timber: visible grain and a shaped seat. Use indoors and wipe spills promptly.</p><p class="caption">Illustrative materials only. Replace these notes with your real specifications and care guidance.</p><p class="sr-only" role="status" aria-live="polite" data-interaction-status></p></div><div class="material-stage"><img data-material-image src="assets/vessel.svg" alt="Original study of a clay vessel, showing its surface lines." width="900" height="1100"><button class="lens-toggle enhancement" type="button" data-lens aria-pressed="false">Inspect surface</button></div></div></section>'''
 
+# Nightjar source-only poster layers. Native WordPress keeps its core Details blocks.
+POSTER_CSS = """
+.poster-explorer{margin:2rem 0 3rem;padding:2rem;border:1px solid var(--line)}.poster-explorer h3{max-width:23ch}.poster-explorer-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}.poster-stack{flex-direction:column;align-items:stretch;padding:0 1rem 1rem 0;isolation:isolate}.poster-layer{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:1rem;min-height:11rem;width:100%;padding:1.5rem 1.5rem 3rem;border:2px solid #201e39;text-align:left;background:#ff7553;color:#201e39;box-shadow:.35rem .35rem 0 #201e39;transition:transform .2s ease;overflow:hidden}.poster-layer+.poster-layer{margin-top:-2.5rem}.poster-layer:nth-child(2){background:#d4c6ff;margin-left:.45rem}.poster-layer:nth-child(3){background:#fff5d8;margin-left:.9rem}.poster-layer::after{content:"";position:absolute;right:-1rem;bottom:1rem;width:6rem;height:6rem;border:1.2rem solid currentColor;border-radius:50%;opacity:.18;pointer-events:none}.poster-layer:nth-child(2)::after{border-radius:0;transform:rotate(25deg)}.poster-layer:nth-child(3)::after{border-radius:0;border-width:0 1rem 1rem 0;transform:rotate(45deg)}.poster-layer strong{position:relative;font:800 clamp(1.4rem,3vw,2.5rem)/1 system-ui,sans-serif;letter-spacing:-.045em}.poster-layer span{position:relative;font:650 .75rem/1.4 system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase}.poster-layer[aria-pressed=true]{z-index:4;transform:translateX(.65rem);box-shadow:.4rem .4rem 0 #201e39}.poster-layer:focus-visible{z-index:5;outline:3px solid #1473e6;outline-offset:5px}.poster-panel{padding:1.25rem 0;border-top:1px solid var(--line)}.poster-panel h4{font:700 1.5rem/1.15 system-ui,sans-serif;margin:.5rem 0 1rem}.poster-panel p{margin:.6rem 0}.poster-state{font:600 .8rem/1.5 system-ui,sans-serif;min-height:1.5em}.poster-event-links{display:flex;gap:1rem 1.5rem;flex-wrap:wrap;padding:1.25rem 0 0;margin:1rem 0 0;list-style:none;border-top:1px solid var(--line)}.poster-event-links a{display:inline-block;min-height:44px;padding:.6rem 0;font-size:.9rem}.poster-hint{font-size:.85rem}@media(max-width:640px){.poster-explorer{padding:1.25rem}.poster-explorer-layout{grid-template-columns:1fr;gap:1rem}.poster-layer{min-height:9rem;padding:1.1rem 1rem 2.75rem}.poster-layer strong{font-size:1.65rem}}
+"""
+POSTER_JS = r"""
+/* Poster-layer selection reveals information; ordinary event links stay available. */
+(() => {
+  const layers = [...document.querySelectorAll('[data-poster-layer]')];
+  if (!layers.length) return;
+  const panels = [...document.querySelectorAll('[data-poster-panel]')];
+  const status = document.querySelector('[data-poster-status]');
+  function reveal(layer) {
+    layers.forEach(button => button.setAttribute('aria-pressed', String(button === layer)));
+    panels.forEach(panel => { panel.hidden = panel.dataset.posterPanel !== layer.dataset.posterLayer; });
+    if (status) status.textContent = layer.dataset.posterTitle + ' — event information revealed.';
+  }
+  layers.forEach(layer => layer.addEventListener('click', () => reveal(layer)));
+  reveal(layers[0]);
+})();
+"""
+
+def poster_explorer():
+    events = [
+        ('sound', '01 / Sound', 'Listening room', 'Listen closely. Talk openly.', 'A close listening session followed by a conversation about sound, place, and making together.', 'Seated listening and conversation. Ask the organizers about sound levels, breaks, and access before attending.'),
+        ('film', '02 / Film', 'After the light', 'Short films. A longer conversation.', 'A screening format for short films and an open discussion with their makers.', 'Screening and discussion. Publish confirmed running time, captions, seating, and access notes before announcing the event.'),
+        ('ideas', '03 / Ideas', 'An open table', 'Bring a question. Pull up a chair.', 'A small-group conversation about the things a creative community can make possible.', 'Facilitated conversation. Ask about seating, step-free access, and participation options. No experience is required by this sample format.')
+    ]
+    layers = ''.join(f'<button class="poster-layer" type="button" data-poster-layer="{key}" data-poster-title="{title}" aria-pressed="{str(i == 0).lower()}" aria-controls="poster-{key}"><span>{label}</span><strong>{title}</strong><span>{tag}</span></button>' for i,(key,label,title,tag,body,access) in enumerate(events))
+    panels = ''.join(f'<section class="poster-panel" id="poster-{key}" data-poster-panel="{key}" aria-labelledby="poster-heading-{key}"><p class="eyebrow">{label}</p><h4 id="poster-heading-{key}">{title}</h4><p>{body}</p><p><strong>Format and access:</strong> {access}</p><p class="caption">Program example. No date, venue, ticket inventory, or reservation is confirmed.</p>{a("event.html#"+key,"Read full event notes")}</section>' for key,label,title,tag,body,access in events)
+    links = ''.join(f'<li>{a("event.html#"+key,title)}</li>' for key,label,title,tag,body,access in events)
+    return '<div class="poster-explorer" data-poster-explorer><h3>Peel back the program.</h3><p class="poster-hint">Choose a poster layer to reveal the event behind it. Use Tab and Enter or Space, or tap a poster. Full event links are always below.</p><p class="no-js-note">All three event notes and their links are shown below. No interaction is required.</p><div class="poster-explorer-layout"><div class="poster-stack enhancement" role="group" aria-label="Reveal a program poster">'+layers+'</div><div data-poster-panels>'+panels+'</div></div><p class="poster-state" data-poster-status role="status" aria-live="polite"></p><ul class="poster-event-links" aria-label="All event pages">'+links+'</ul></div>'
+
 def program_cards():
-    return '<div class="program-control enhancement" aria-label="Explore the program"><button type="button" data-program="all" aria-pressed="true">Everything</button><button type="button" data-program="sound" aria-pressed="false">Sound</button><button type="button" data-program="film" aria-pressed="false">Film</button><button type="button" data-program="ideas" aria-pressed="false">Ideas</button></div><p class="sr-only" role="status" aria-live="polite" data-interaction-status></p><div class="grid">'+''.join([
+    return poster_explorer()+'<div class="program-control enhancement" aria-label="Explore the program"><button type="button" data-program="all" aria-pressed="true">Everything</button><button type="button" data-program="sound" aria-pressed="false">Sound</button><button type="button" data-program="film" aria-pressed="false">Film</button><button type="button" data-program="ideas" aria-pressed="false">Ideas</button></div><p class="sr-only" role="status" aria-live="polite" data-interaction-status></p><div class="grid">'+''.join([
         card('SOUND / PROGRAM EXAMPLE','Listening room','A close listening session followed by a conversation about sound, place, and making together.','event.html#sound','Explore the session',attrs='data-event="sound"'),
         card('FILM / PROGRAM EXAMPLE','After the light','A screening format for short films and an open discussion with their makers. Running time and access notes belong here.','event.html#film','Read the film notes',attrs='data-event="film"'),
         card('IDEAS / PROGRAM EXAMPLE','An open table','A small-group conversation about the things a creative community can make possible.','event.html#ideas','Find out more',attrs='data-event="ideas"')])+'</div>'
@@ -241,6 +277,7 @@ def developer(slug,f):
     if slug == 'nightjar':
         css = css.replace('.nightjar[data-theme=night]{--paper:#201e39;--ink:#fff5d8;--panel:#3e355b;--line:#776980;--accent:#674bad}', '.nightjar[data-theme=night]{--paper:#201e39!important;--ink:#fff5d8!important;--panel:#3e355b!important;--line:#776980!important;--accent:#674bad!important}')
         css = css.replace('.nightjar .hero h1{font-size:clamp(4.2rem,8.5vw,9rem)', '.nightjar .hero h1{font-size:clamp(2.7rem,7vw,7rem)')
+        css += POSTER_CSS
     pages={'index.html':homepage(slug,f),**inner_pages(slug,f),'contact.html':contact_page(slug,f),'legal.html':legal_page()}
     for filename,body in pages.items():
         title=next((label for url,label in f['links'] if url==filename),'Privacy and site notes')
@@ -248,7 +285,7 @@ def developer(slug,f):
         body=body.replace('class="card" class=""','class="card service-card"')
         write(out/filename,document(slug,f,filename,body,title))
     write(out/'styles.css',css)
-    write(out/'script.js',JS)
+    write(out/'script.js',JS+(POSTER_JS if slug == 'nightjar' else ''))
     config={'version':1,'brand':f['business'],'email':'hello@example.com','phone':'','motion':True,'colors':{'ink':f['color'],'paper':f['paper'],'accent':f['accent']},'fonts':{'heading':f['font'],'body':'system-ui, -apple-system, "Segoe UI", sans-serif'},'pages':{'index':{'title':f['hero'].replace('\n',' '),'intro':f['intro'],'ctaLabel':f['cta'],'ctaHref':f['target'],'image':'assets/'+f['image'],'imageAlt':'Original '+f['name']+' illustration'}}}
     write(out/'site-config.js','/* Edit values below. Keep the static HTML in sync for visitors without JavaScript. */\nwindow.SITE_CONFIG = '+json.dumps(config,indent=2)+';\n')
     for name,svg in SVG.items():
@@ -290,11 +327,19 @@ verified native/platform edition if that is what you need.
 ## Editing surface
 - Copy: every page is ordinary HTML. Change headings, paragraphs, lists, captions,
   and policy notes directly; no template language is required.
-- Branding, links, hero copy and artwork, colors, system-font stacks, and motion:
-  edit `site-config.js`. The `pages` object accepts the filename without `.html`;
-  each page can override `title`, `intro`, `ctaLabel`, `ctaHref`, `image`, `imageAlt`.
-  Keep the corresponding HTML default and the CSS color variables in sync so the
-  no-JavaScript version presents the same business information.
+- Progressive configuration: edit `site-config.js` for `brand` (`[data-brand]`),
+  `email` (`[data-email]`), `colors` (`ink`, `paper`, `accent`, `panel`, `line`),
+  `fonts.heading`, `fonts.body`, and `motion` (`false` disables motion).
+  The `pages` keys are filenames without `.html`. On the five designed pages,
+  `title` and `intro` replace `[data-hero-title]` and `[data-hero-intro]`.
+  Only `pages.index` has `[data-primary-link]` and `[data-hero-image]`: its
+  `ctaLabel`, `ctaHref`, `image`, and `imageAlt` configure the home hero action
+  and artwork. These fields do not create markers or edit inner-page images or
+  buttons. `legal.html` has no page-copy markers; edit it directly in HTML.
+  The optional `phone` value targets `[data-phone]`; no telephone link is present
+  in the supplied pages. Add an actual HTML `tel:` link and this marker if needed.
+  Keep the corresponding HTML defaults and CSS tokens in sync for no-JavaScript
+  visitors. Other page copy, actions, navigation, and metadata require HTML edits.
 - Colors and detailed layout: edit `styles.css`. The last family-specific block
   defines design tokens. Check contrast after changing colors.
 - Images: put your own licensed files in `assets/` and replace the HTML `src`,
@@ -338,6 +383,51 @@ real mobile devices; the included checks do not certify legal accessibility.
 - Add analytics only intentionally and update your privacy/cookie disclosures.
 - Keep secrets and credentials out of these public source files.
 
+## Email form and optional integrations
+The included contact form validates fields and prepares a `mailto:` draft. It
+never sends or stores a message. The visitor needs a configured email app and
+must review and send the draft. The ordinary email link works without JavaScript;
+the draft-preparation form is an enhancement. Test delivery to your own inbox on
+your host before relying on email. This package includes no form endpoint, spam
+filter, attachment upload, SMTP, booking engine, cart, ticket inventory, analytics,
+or payment processing. For a web form, replace the form action/script with your
+chosen provider's documented integration, add its required privacy disclosures,
+and test successful delivery and failure handling. Provider accounts, fees, keys,
+and operational support are separate; never put secret keys in browser code.
+
+## Rollback and removal
+Before editing or uploading, keep the original ZIP and a dated copy of your
+current working folder and hosted files. To roll back, restore that complete
+known-good folder to the same document root, keeping relative paths intact, then
+refresh the browser and check all pages and contact links. Do not mix only an old
+HTML page with newer CSS/config files. Retain your own content changes separately.
+To remove this template, first publish your replacement site or a holding page,
+then use your host's file manager/SFTP to remove only this template's uploaded
+files from its document root. Do not remove unrelated applications, customer
+uploads, host configuration, DNS, or an email account. Disconnect any optional
+third-party form, booking, analytics, or ticket integration in that provider's
+settings if it should stop operating; removing this static site does not close
+those services. The package itself creates no remote account or database.
+
+## Troubleshooting and common mistakes
+- Missing artwork or styles: upload the complete extracted folder contents,
+  including `assets/`, with case-sensitive filenames and unchanged relative paths.
+  Open the actual `index.html`, not the ZIP or its parent folder.
+- Edits appear unchanged: save the file, refresh without browser cache, and clear
+  the host cache if applicable. A configured value overrides its matching HTML
+  marker only when JavaScript runs; keep both defaults in sync.
+- An inner-page button/image or legal text did not change: those lack the home
+  hero markers. Edit that page's HTML rather than adding unsupported config keys.
+- An email draft does not open or arrive: check the real address and email-app
+  setup. Preparing a draft does not send it; test sending yourself or connect and
+  verify a web form provider. Do not advertise guaranteed delivery.
+- Phone navigation or selection does not respond: retain `site-config.js` and
+  `script.js` in their original order and check the browser console for syntax
+  errors. Without JavaScript, ordinary page/event links remain available.
+- Custom text clips or colors become hard to read: check phone, tablet, desktop,
+  keyboard focus, reduced motion, and any day/night modes after changing copy,
+  fonts, or tokens. Shorten long words or reduce the relevant CSS heading size.
+
 ## Requirements, support, and rights
 A browser, text editor, and static hosting are sufficient. No paid font, plugin,
 Eidos service, analytics, backend, booking engine, cart, or mandatory build is included.
@@ -353,6 +443,9 @@ Read `LICENSE.txt`, `SUPPORT.md`, and `ASSETS.md` before purchasing or publishin
         write(guide, guide.read_text(encoding='utf-8') + '\n## Day and night palette\n\nThe `colors` values in `site-config.js` configure the day palette. Night mode\nuses the fixed high-contrast token set in `.nightjar[data-theme=night]` in\n`styles.css`; those tokens intentionally override configured day colors. Change\nthe night palette in that CSS rule if needed, and check normal text, cards,\nbuttons, navigation, and contact fields in both modes after editing. Version\n1.0.1 corrects the original day-token precedence in night mode.\n')
         write(guide, guide.read_text(encoding='utf-8') + '\n## Hero typography\n\nVersion 1.0.3 uses `clamp(2.7rem,7vw,7rem)` for the desktop hero headline and\nretains the existing phone override. This keeps ordinary sample words intact\nacross the tested browser fonts. After changing the headline or heading font,\ncheck individual words on phone and desktop as well as the overall text box.\nLong custom words still need an appropriately sized font or shorter copy.\n')
         write(guide, guide.read_text(encoding='utf-8') + '\nThe 1.0.3 minimum also keeps the sample word intact immediately above the phone\nbreakpoint (641px), where the prior 3rem minimum was still too large.\n')
+    if slug == 'nightjar':
+        guide = out/'INSTALL.md'
+        write(guide, guide.read_text(encoding='utf-8') + '\n## Poster-layer exploration\n\nVersion 1.0.4 adds three overlapping original poster buttons on Home and Program.\nTab to a poster and press Enter or Space, or tap it, to reveal its event format\nand access notes. Pressed state and a live status identify the selected layer.\nThe separate full event links remain available in every state; without JavaScript\nall event panels are readable. The category filter and day/night mode are separate\ncontrols. Reduced motion disables the short poster transition. Edit poster titles,\nnotes, and event destinations in both index.html and program.html, and keep the\ncorresponding event.html sections accurate. No ticket dates or inventory are supplied.\n')
     return pages
 
 # WordPress output uses native blocks. HTML is confined to a block's valid saved
@@ -414,13 +507,14 @@ RESPONSIVE_FIXES='''
 
 def wordpress(slug,f):
     out=ROOT/slug/'wordpress'
+    version=edition_version(slug, 'wordpress')
     write(out/'style.css',f'''/*
 Theme Name: {f['name']} by Eidos Works
 Theme URI: https://eidos-works.com/shop/templates/{slug}/
 Author: Eidos Works
 Author URI: https://eidos-works.com/
 Description: Original editable five-page block theme for {f['business']}. Native core blocks, original artwork, no paid page builder. Candidate pending declared clean-install verification.
-Version: 1.0.1
+Version: {version}
 Update URI: https://eidos-works.com/shop/templates/{slug}/
 Requires at least: 6.6
 Requires PHP: 8.1
@@ -440,7 +534,7 @@ add_action( 'after_setup_theme', function () {{
     add_editor_style( 'style.css' );
 }} );
 add_action( 'wp_enqueue_scripts', function () {{
-    wp_enqueue_style( 'eidos-{slug}', get_stylesheet_uri(), array(), '1.0.1' );
+    wp_enqueue_style( 'eidos-{slug}', get_stylesheet_uri(), array(), '{version}' );
 }} );
 add_filter( 'body_class', function ( $classes ) {{ $classes[] = '{slug}'; return $classes; }} );
 ''')
@@ -523,7 +617,7 @@ GoDaddy Websites + Marketing is a separate product and cannot import this ZIP.
 1. Back up the existing site and test in staging. Do not replace an active theme
    on a customer site without reviewing its existing templates, menus, and content.
 2. In Appearance → Themes → Add New → Upload Theme, select the separately
-   supplied `{slug}-wordpress-v1.0.1.zip`. Install and activate `{f['name']} by Eidos Works`.
+   supplied `{slug}-wordpress-v{version}.zip`. Install and activate `{f['name']} by Eidos Works`.
 3. In Settings → General, set your site title and tagline. In Appearance → Editor,
    open Styles to edit the palette, typography, and spacing. Header site title and
    Navigation are ordinary core blocks. No account or key is needed.
@@ -559,16 +653,57 @@ commerce, ticketing, SMTP, forms, inventory, analytics, and live availability ar
 not included. Install a suitable plugin/service only if you need it and verify
 the complete flow. Do not put secrets in blocks, theme files, or public pages.
 
-## Updates, rollback, and rights
+## Email and optional integrations
+Contact buttons are ordinary `mailto:` links. WordPress edition has no included
+contact form, SMTP setup, message storage, or delivery guarantee. Replace the
+sample address in the Contact template/pattern and test a real message to your
+inbox using your own email app. For a web form, use a separately chosen plugin or
+provider, insert its supported block, configure its recipient and privacy/spam
+settings, and test delivery plus failure handling on your host. Booking, carts,
+payment processing, ticket inventory, analytics, accounts, and fees are separate.
+Do not paste private keys into public blocks or theme files.
+
+## Troubleshooting and common mistakes
+- Theme ZIP rejected: upload the supplied WordPress ZIP in Appearance → Themes,
+  not the developer ZIP or `demo-content.xml`. Check host upload permissions and
+  file-size limits; do not bypass your hosting plan's theme restrictions.
+- Wrong layout or unchanged edits: check the page's selected template and the
+  static homepage setting. Designed templates render their own blocks. To use
+  Page editor content, choose the default Page template and insert the pattern.
+- Bundled update not visible: saved Site Editor templates/styles can override
+  theme files. Export or back up edits before reviewing/resetting overrides;
+  clear host/browser caches only after verifying the saved content.
+- Navigation or artwork is broken: update Navigation to your real page URLs,
+  especially in a subdirectory or with plain permalinks. Replace Image blocks
+  through Media Library; do not assume example root URLs fit your installation.
+- Demo XML did not create a finished site: it creates page records, not external
+  media or accounts. Review template assignments, Reading, Navigation and contact
+  details. Manual page creation is available without the optional importer.
+- Email does not send: `mailto:` needs a configured visitor email app. No form
+  server is included; a separately configured/tested form plugin may be needed.
+
+## Updates, rollback, and removal
 Back up customizations first. Site Editor changes are stored in the WordPress
 database and can override bundled templates. Review those saved changes when
 installing an update; preserve or export them before resetting a template.
-Rollback by restoring the backup or reactivating the previous theme.
+Rollback by restoring the complete known-good site/database backup, or activate
+the previous theme and review its saved templates, navigation, and Styles. Keep
+the previous immutable ZIP and export your customizations before replacement.
+The `Update URI` header uniquely identifies this theme and avoids unrelated
+WordPress.org updates; it is not an automatic update or remote support service.
+To remove this theme, activate a different theme first, verify the replacement
+frontend, then delete only this inactive theme in Appearance → Themes. Export or
+back up its Site Editor customizations before deleting. Do not delete Pages,
+Posts, Media Library uploads, users, plugins, or the database to remove a theme;
+those are separate site content. Remove optional integrations in their own
+settings only if desired. Deleting this theme does not close a provider account.
+
+## Rights and support
 All WordPress edition code and original art are GPL-2.0-or-later. Read `LICENSE.txt`,
 `COPYING`, `ASSETS.md`, and `SUPPORT.md`. No one-site commercial restriction limits
 your GPL rights. Hosting and optional services cost extra.
 ''')
-    write(out/'README.md',f'# {f["name"]} — WordPress block theme 1.0.1\n\nRead [INSTALL.md](INSTALL.md). Core blocks, five editable page designs, shared\nparts, patterns, original art, and no mandatory plugins. Candidate pending\ndeclared clean-install validation. No live payments, booking, or ticket service.\n')
+    write(out/'README.md',f'# {f["name"]} — WordPress block theme {version}\n\nRead [INSTALL.md](INSTALL.md). Core blocks, five editable page designs, shared\nparts, patterns, original art, and no mandatory plugins. Candidate pending\ndeclared clean-install validation. No live payments, booking, or ticket service.\n')
 
 def main():
     for slug,f in FAMILIES.items():

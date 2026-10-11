@@ -6,6 +6,6 @@ add_action( 'after_setup_theme', function () {
     add_editor_style( 'style.css' );
 } );
 add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_style( 'eidos-tideglass', get_stylesheet_uri(), array(), '1.0.1' );
+    wp_enqueue_style( 'eidos-tideglass', get_stylesheet_uri(), array(), '1.0.2' );
 } );
 add_filter( 'body_class', function ( $classes ) { $classes[] = 'tideglass'; return $classes; } );

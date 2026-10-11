@@ -1,38 +1,39 @@
 {
-  "timestampUtc": "2026-10-11T02:21:11.187Z",
+  "timestampUtc": "2026-10-11T02:59:11.866Z",
   "scope": "TEST candidate; no production promotion or LIVE transaction",
   "source": {
-    "sha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
-    "bundleHash": "75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7",
-    "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
-    "url": "https://eidos-sentinel-pmb8qllat-1brentbm-1876s-projects.vercel.app",
-    "deploymentId": "dpl_BvDduBrE4TvK7pjNEZbRCp9yHDRg",
+    "sha": "d66ed7c081a211e402d39a23d4222135a4cb022e",
+    "bundleHash": "bea44f211cc7229c5803097d6023095b50f354a966342e094055ef420b6caa6e",
+    "sourceRevision": "d66ed7c081a211e402d39a23d4222135a4cb022e-bundle-bea44f211cc7229c",
+    "url": "https://eidos-sentinel-nwov7dvp8-1brentbm-1876s-projects.vercel.app",
+    "deploymentId": "dpl_E6nV3JcmtfVXGMtj275Lkkc3eCoo",
     "state": "READY",
-    "files": 135,
+    "files": 143,
     "previewOnly": true
   },
   "review": {
     "url": "https://github.com/bmparent/eidos/pull/71",
     "state": "OPEN",
     "draft": true,
-    "checks": "4 passed at exact9bb328b head"
+    "checks": "4 passed at exact d66ed7c081a211e402d39a23d4222135a4cb022e; Actions38106706567"
   },
   "tests": {
     "command": "npm --prefix apps/sentinel-lab test",
     "passed": 65,
     "failed": 0,
     "skipped": 0,
-    "log": "switchboard-version-tests.log",
+    "log": "guide-patch-tests.log",
     "focused": {
       "passed": 11,
       "failed": 0,
-      "log": "switchboard-retention-tests.log"
+      "retainedSnapshotCases": 16,
+      "log": "guide-patch-retention-tests.log"
     }
   },
   "typecheck": {
-    "command": "npm --prefix apps/sentinel-lab run lint -- --incremental false",
     "status": "passed",
-    "log": "switchboard-version-typecheck.log"
+    "command": "npm --prefix apps/sentinel-lab run lint -- --incremental false",
+    "log": "guide-patch-typecheck.log"
   },
   "build": {
     "status": "passed",
@@ -44,17 +45,17 @@
   "archives": {
     "private": true,
     "current": 8,
-    "retained": 8,
-    "total": 16,
-    "priorThirteenArchiveHashesPreserved": true,
-    "previousNightjar102HashPreserved": true,
+    "retained": 16,
+    "total": 24,
+    "priorSixteenArchiveHashesPreserved": true,
+    "actualPurchasedSwitchboard100Preserved": true,
     "receipt": "private-archive-receipt-final.json",
     "currentVersions": {
-      "switchboardDeveloper": "1.0.1",
-      "tideglassDeveloper": "1.0.0",
-      "matterDeveloper": "1.0.0",
-      "nightjarDeveloper": "1.0.3",
-      "allWordPress": "1.0.1"
+      "switchboardDeveloper": "1.0.2",
+      "tideglassDeveloper": "1.0.1",
+      "matterDeveloper": "1.0.1",
+      "nightjarDeveloper": "1.0.4",
+      "allWordPress": "1.0.2"
     },
     "eligibleDeveloperEditions": [
       "switchboard-developer-v1",
@@ -63,9 +64,7 @@
       "nightjar-developer-v1"
     ],
     "wordpress": "unavailable by explicit allowlist",
-    "builderPilots": "unavailable",
-    "priorFifteenArchiveHashesPreserved": true,
-    "actualPurchasedSwitchboard100Preserved": true
+    "builderPilots": "unavailable"
   },
   "providers": {
     "stripe": "existing Eidos Works TEST account only",
@@ -100,9 +99,9 @@
       "financialAndArchiveSnapshotRetained": true,
       "finalSourceObservation": {
         "status": "refunded",
-        "fulfillmentStatus": "ready",
+        "fulfillmentStatus": "revoked",
         "purchasedVersion": "1.0.0",
-        "currentCatalogVersion": "1.0.1",
+        "currentCatalogVersion": "1.0.2",
         "downloadHttp": 403,
         "downloadTokenGranted": false
       }
@@ -122,38 +121,41 @@
     "receivedReceiptEmail": "blocked",
     "receivedRecoveryEmail": "blocked",
     "twoBuyerAuthentication": "controlled local fixtures passed; actual hosted two-buyer flow not exercised",
-    "delayedPayment": "controlled local fixtures passed; real delayed-method transaction not attempted"
+    "delayedPayment": "controlled local fixtures passed; real delayed-method transaction not attempted",
+    "twoGuestBuyerIsolation": "Not exercised yet; legitimate UI plan awaits exact paired source CI/deploy and root GO. Independent of missing mail."
   },
   "reconciliation": {
-    "status": "implemented and deployed; eleven focused tests pass",
+    "status": "deployed; eleven focused tests passed",
     "controlledProof": "old hook consumes shared event ID first; signed TEST refund/dispute reconciles side table, denies unexpired token, preserves snapshot and unrelated buyer, rejects matching LIVE event and late revival",
-    "actualOldRefundSideState": "ready",
-    "actualProviderReplay": "not performed: no available installed Stripe CLI or connected event-resend capability",
+    "actualOldRefundSideState": "revoked",
+    "initialSideRevocationCause": "unknown",
+    "actualProviderRetry": "one genuine original TEST refund retry acknowledged through official verified CLI; target-specific delivery HTTP unobserved",
+    "retryPreState": "already revoked",
+    "retryReceipt": "genuine-test-refund-retry.json",
     "genuineVsControlledEvidenceSeparated": true
   },
   "limits": [
-    "No usable Resend secret; received inbox delivery and email recovery remain blocked.",
-    "Actual old refund already denies access; secondary side-table reconciliation is controlled regression evidence, not actual provider re-delivery.",
-    "No LIVE payment, live prices, production migration or production deployment.",
-    "WP and builder editions remain unavailable regardless of package/demo evidence.",
-    "Local exact final build was replaced by an exact protected remote build; C remains full."
+    "No candidate RESEND_API_KEY binding; actual received receipt/recovery inbox delivery remains blocked.",
+    "Original actual refund denied an unexpired token on e20b. Fresh side state was already revoked before one genuine CLI retry; cause unknown and target-specific retry HTTP response unobserved.",
+    "No LIVE payment, production migration or production deployment.",
+    "WordPress and builder editions remain unavailable through explicit allowlist.",
+    "Exact-source protected remote build used; no new local build under C disk pressure.",
+    "Actual two-guest order-token isolation is planned independently of mail; authenticated-member and recovery-mail acceptance remain separate."
   ],
-  "switchboardVersionTransition": {
-    "from": "1.0.0",
-    "to": "1.0.1",
-    "actualPurchased100ArchiveUnchanged": true,
-    "exactBuyerZipInstall": "passed",
-    "archiveSha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
-    "archiveBytes": 27055,
-    "priorFailedFrontendRun": "38104163542; failed actual word-fit assertion before configure/upload; preserved",
-    "receipt": "switchboard-version-validation.json"
-  },
   "provenance": {
     "trackedFiles": 119,
     "trackedUploadedFilesMatchHead": true,
-    "privateArchiveFiles": 16,
+    "privateArchiveFiles": 24,
     "bundleHashRecomputed": true,
     "noRuntimeDirtyPaths": true,
     "receipt": "source-provenance-final.json"
+  },
+  "buyerGuideVersionTransition": {
+    "receipt": "guide-version-validation.json",
+    "currentPackages": 8,
+    "retainedPriorPackages": 16,
+    "allPriorBytesPreserved": true,
+    "exactDeveloperZipInstall": "4/4 passed",
+    "wordpress": "Separate native acceptance pending; checkout remains closed"
   }
 }

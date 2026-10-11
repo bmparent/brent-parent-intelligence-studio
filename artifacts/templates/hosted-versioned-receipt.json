@@ -1,19 +1,19 @@
 {
-  "timestampUtc": "2026-10-11T01:41:34.712Z",
+  "timestampUtc": "2026-10-11T02:27:14.123Z",
   "base": "https://eidosworks-templates-test-20261010.pages.dev",
-  "siteSource": "6b6ced37da71c374482fa9ce9aa7cb567f394ba5",
-  "backendSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+  "siteSource": "85ced14b954194e013a47b50a511778f4daf7bfe",
+  "backendSource": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
   "checks": [
     {
       "label": "paired TEST catalog",
       "http": 200,
-      "sourceRevision": "e20b6207ad2f80e1497b83ece56e66c316dc5124-bundle-b10fa5afe2852d8e",
+      "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
       "editions": [
         {
           "id": "switchboard-developer-v1",
           "productId": "switchboard-developer-v1",
           "editionId": "developer",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "priceCents": 9900,
           "guidePath": "/templates/guides/switchboard/developer/",
           "available": true,
@@ -73,7 +73,7 @@
           "id": "nightjar-developer-v1",
           "productId": "nightjar-developer-v1",
           "editionId": "developer",
-          "version": "1.0.1",
+          "version": "1.0.3",
           "priceCents": 9900,
           "guidePath": "/templates/guides/nightjar/developer/",
           "available": true,
@@ -150,8 +150,8 @@
         {
           "path": "/template-demos/switchboard/styles.css",
           "http": 200,
-          "sha256": "81c9e853a07903f6dfdf28fccf59a22858fd0c1ca8042d2695755b85c1afbb08",
-          "bytes": 8403
+          "sha256": "cbcaeab6cb8aaf5c2fc092bbcda5825fafca8522b0f4fcb03c3dfaee0293771e",
+          "bytes": 8543
         },
         {
           "path": "/template-demos/switchboard/script.js",
@@ -162,13 +162,13 @@
         {
           "path": "/template-demos/switchboard/INSTALL.md",
           "http": 200,
-          "sha256": "d243d74e1012e633e3cb0eb77febcb88a52c7244beee23fc733263a73d89ae21",
-          "bytes": 4850
+          "sha256": "abe3fea16609a7b03b78e9f781a670ef63bc21b2e0987bd39612a7969576f9a4",
+          "bytes": 5284
         },
         {
           "path": "/template-demos/switchboard/PACKAGE_MANIFEST.json",
           "http": 200,
-          "sha256": "fe903224d6bfaa4c7e416463f5e18c8a910322d7b241b0b3a70fae056ffb1aa3",
+          "sha256": "01f0fc390a962d21d5c3a9145a6195c814fe733d9dd9705738d68a753f649b06",
           "bytes": 2687
         }
       ],
@@ -312,8 +312,8 @@
         {
           "path": "/template-demos/nightjar/styles.css",
           "http": 200,
-          "sha256": "926da222c7fe6d48df7d2f6d882f1b4f0e639bf4172a7bc90d95c4bd737aca9d",
-          "bytes": 9990
+          "sha256": "55e67a2176c08a94d510c3cde636ab68faa820fd1263485daac37a209522f4d9",
+          "bytes": 9988
         },
         {
           "path": "/template-demos/nightjar/script.js",
@@ -324,13 +324,13 @@
         {
           "path": "/template-demos/nightjar/INSTALL.md",
           "http": 200,
-          "sha256": "3730f33005bff3eed08a2e1f8d2dbbd260df334a4335c2751b9b35f8835bef4f",
-          "bytes": 5303
+          "sha256": "40d9d3029af291292b0f0954adba20966a39ad496ffec9ac3365854331591a2c",
+          "bytes": 5859
         },
         {
           "path": "/template-demos/nightjar/PACKAGE_MANIFEST.json",
           "http": 200,
-          "sha256": "1ec8cb4a454ed388d9282b91efada21a397198afedb965f3eb3d121df5db0dfb",
+          "sha256": "4058a7cbabfc03af2e71dfe435de1345de8eba6c731f96dad8ccd1d24b9b8474",
           "bytes": 2663
         }
       ],
@@ -338,10 +338,56 @@
     },
     {
       "label": "private archive absent from static hosting",
-      "path": "/artifacts/templates/packages/nightjar-developer-v1.0.1.zip",
-      "http": 404,
-      "contentType": "text/html; charset=utf-8",
-      "zipSignature": false,
+      "archives": [
+        {
+          "path": "/artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+          "http": 404,
+          "contentType": "text/html; charset=utf-8",
+          "zipSignature": false
+        },
+        {
+          "path": "/artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+          "http": 404,
+          "contentType": "text/html; charset=utf-8",
+          "zipSignature": false
+        },
+        {
+          "path": "/artifacts/templates/packages/tideglass-developer-v1.zip",
+          "http": 404,
+          "contentType": "text/html; charset=utf-8",
+          "zipSignature": false
+        },
+        {
+          "path": "/artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+          "http": 404,
+          "contentType": "text/html; charset=utf-8",
+          "zipSignature": false
+        },
+        {
+          "path": "/artifacts/templates/packages/matter-developer-v1.zip",
+          "http": 404,
+          "contentType": "text/html; charset=utf-8",
+          "zipSignature": false
+        },
+        {
+          "path": "/artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+          "http": 404,
+          "contentType": "text/html; charset=utf-8",
+          "zipSignature": false
+        },
+        {
+          "path": "/artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
+          "http": 404,
+          "contentType": "text/html; charset=utf-8",
+          "zipSignature": false
+        },
+        {
+          "path": "/artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+          "http": 404,
+          "contentType": "text/html; charset=utf-8",
+          "zipSignature": false
+        }
+      ],
       "status": "passed"
     }
   ],

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "nightjar-wordpress-v1",
   "product": "nightjar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -20,8 +20,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 4516,
-      "sha256": "8c76fea6ba2f5f8c59a0e730db6979af53628a61778def7602cccaafec8ffa71"
+      "bytes": 7367,
+      "sha256": "7b6f7915a65b177cf3c64ab334041ccdf649111407665e95154197b09225326b"
     },
     {
       "path": "LICENSE.txt",
@@ -31,7 +31,7 @@
     {
       "path": "README.md",
       "bytes": 279,
-      "sha256": "abb5a3c326ccadc6658b0ac4af12525447dcc5db026682a0bbb96e007aa665b9"
+      "sha256": "0f189624326f7874f45ee462e50aa015a3c611b5c26946d64446141e7a4a12f8"
     },
     {
       "path": "SUPPORT.md",
@@ -51,7 +51,7 @@
     {
       "path": "functions.php",
       "bytes": 494,
-      "sha256": "4860d12bc218d0f350d2ba9568d6af42603bce095d3f3e44ade042a58544865e"
+      "sha256": "86fd183b60a29faa7a4bbd446bd86200ab56cea0aa770209f2bb6af844126d3f"
     },
     {
       "path": "parts/footer.html",
@@ -91,7 +91,7 @@
     {
       "path": "style.css",
       "bytes": 12097,
-      "sha256": "f2c5d882e0e2b4ddd6ee4a81419c3312fafe81e06819dd132d2efdb15ad1c3c9"
+      "sha256": "cb5f79284afa03117ba650626ac86afef8062d0afa7b6aeaec6fcb3ac7000ff7"
     },
     {
       "path": "templates/404.html",

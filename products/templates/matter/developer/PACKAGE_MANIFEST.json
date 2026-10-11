@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "matter-developer-v1",
   "product": "matter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -15,8 +15,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 4840,
-      "sha256": "6433f3e6b703bf6c935d7e17aaf3c60fe8a5b68c186cdc1d75cc177fc1032171"
+      "bytes": 8637,
+      "sha256": "c9903017fa4d3e926e821ed83729c477152a4dede0f322c297122f1342614286"
     },
     {
       "path": "LICENSE.txt",

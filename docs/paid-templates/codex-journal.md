@@ -43,3 +43,61 @@ Final protected backend 823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6 is READY with b
 Exact site12d664f passed all static/build checks but failed the three-engine browser gate because original Switchboard desktop copy split `conversation.` mid-word. No candidate configuration or upload occurred. The new assertion correctly exposed a product defect visible in older screenshots. Switchboard developer1.0.1 receives a measured heading-only correction; original1.0.0 purchased bytes stay immutable. The failed run and package receipts are preserved, and the next source must pass the full workflow again.
 
 Switchboard developer1.0.1 frozen ZIP is27,055bytes/SHA2565ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678. Exact buyer installation4/4, package766, generator166 and storefront4 checks passed; seven other current archives did not change. Backend9bb328b5b90b66fdbad4c3a70a7c9997accfd06f is READY with bundle75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7 and16 private archives. All119 tracked deployed files match committed Git blobs. Full65/65/typecheck and protected exact catalog/negative controls passed; provider/production state remained unchanged.
+
+## Continuation — final package and acceptance audit
+
+An independent read of the full brief found two real gaps: packaged guides did
+not contain the promised rollback/removal and troubleshooting procedures, and
+Nightjar's category filter did not implement its requested poster-layer reveal.
+Both are corrected in new immutable versions: Switchboard developer1.0.2,
+Tideglass/Matter developer1.0.1, Nightjar developer1.0.4 and four WordPress1.0.2
+editions. Nightjar uses native buttons, selected-state/event panels and ordinary
+links, with all event information visible without JavaScript. No new service,
+price or external integration was introduced. Sixteen earlier ZIPs remain
+unchanged, including the actual original purchaser's1.0.0 archive.
+
+Current local validation passed803 package checks,6 joined-manifest tests,
+166 generator comparisons,26 focused Chromium checks,4 exact-ZIP configured
+installations and4 direct-file previews. The latter load directly from the
+extracted buyer ZIP without a server/build/account. Configuration edits include
+colors/fonts/motion, business text, image/alt and ordinary contact action. The
+no-JavaScript test traverses all twenty designed pages. Exact-head full CI and
+hosted source checks remain separately required. Root lint passed with the
+existing Wellway fast-refresh warning and no errors.
+
+Official native Windows PHP8.1.34 and MariaDB10.11.19 were obtained from vendor
+archives with published checksum checks, alongside official WordPress6.6.
+Four independent localhost development installations have separate databases and
+document roots. Acceptance uses native core APIs for exact ZIP installation,
+editing and persistence, separately labeled from historical native browser UI
+proof. The external helper initially retained a PHP foreach reference that
+duplicated Contact navigation; root browser inspection caught it. The helper
+was corrected and checks must prove five distinct pages before acceptance.
+The product ZIP was unaffected. Final native results are in the platform
+receipt; WordPress.com plans, production hosting and physical devices are
+separate limits. Temporary database/server credentials remain private and are
+excluded from the repository and Drive.
+
+The official Stripe CLI acknowledged a genuine TEST retry of the historical
+refund event. Before retry the order was already refunded/revoked; the initial
+correction's cause is unknown. Afterwards its purchased snapshot remained intact
+and download stayed403. No endpoint-specific delivery status was observed and
+the retry is not credited with causing the initial correction. Candidate mail
+metadata still shows no scoped provider binding; the production-only sensitive
+key was neither read nor copied. Actual receipt/recovery inbox proof remains
+blocked. Current guest-order tests, if completed, get their own receipt and do
+not replace authenticated-member acceptance or delivered email recovery.
+
+A metadata-only team inventory using the official external Vercel CLI63.1.2
+closed the remaining shared-variable uncertainty: the exact existing team has
+zero shared environment variables and no next page. There is no configured
+preview-scoped shared mail reference to attach. Official CLI installation and
+existing authentication worked without changing production or reading secret
+values. The sanitized inventory and revised blocker audit are saved beside the
+backend receipts.
+
+All material evidence is local under artifacts/templates. Historical85ced14
+CI/handoff/Drive receipts remain source-pinned; a new report/mirror must name the
+new pair and all twenty-four archive hashes. The production decision remains
+NO-GO. No merge, canonical deployment, LIVE payment, new subscription or paid
+service purchase was authorized or performed.

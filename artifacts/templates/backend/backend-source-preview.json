@@ -1,9 +1,9 @@
 {
-  "timestampUtc": "2026-10-11T02:17:31.878Z",
+  "timestampUtc": "2026-10-11T02:55:36.987Z",
   "scope": "protected preview only",
   "branch": "codex/paid-templates-20261010",
-  "commit": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
-  "bundleHash": "75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7",
+  "commit": "d66ed7c081a211e402d39a23d4222135a4cb022e",
+  "bundleHash": "bea44f211cc7229c5803097d6023095b50f354a966342e094055ef420b6caa6e",
   "dirty": true,
   "files": [
     {
@@ -294,7 +294,7 @@
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/templateCatalog.ts",
       "bytes": 1799,
-      "sha256": "e43ea034a8c24283ccc429bc37edad16c916f1b518b385a17eb9b88bf06fddb2"
+      "sha256": "57c4ce460fa9c1471f21de28c9046206b89da2a57517ab4eb830a3c99b44c7f3"
     },
     {
       "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/templateShop.ts",
@@ -527,9 +527,19 @@
       "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8"
     },
     {
+      "file": "apps/sentinel-lab/private/templates/matter/1.0.1/developer.zip",
+      "bytes": 29031,
+      "sha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779"
+    },
+    {
       "file": "apps/sentinel-lab/private/templates/matter/1.0.1/wordpress.zip",
       "bytes": 30748,
       "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe"
+    },
+    {
+      "file": "apps/sentinel-lab/private/templates/matter/1.0.2/wordpress.zip",
+      "bytes": 31762,
+      "sha256": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b"
     },
     {
       "file": "apps/sentinel-lab/private/templates/nightjar/1.0.0/developer.zip",
@@ -557,9 +567,19 @@
       "sha256": "1026635e095129dfff9bc2c0a21baa1cf313a64041e9b66bd1fecf065d89487f"
     },
     {
+      "file": "apps/sentinel-lab/private/templates/nightjar/1.0.2/wordpress.zip",
+      "bytes": 30759,
+      "sha256": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96"
+    },
+    {
       "file": "apps/sentinel-lab/private/templates/nightjar/1.0.3/developer.zip",
       "bytes": 27236,
       "sha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d"
+    },
+    {
+      "file": "apps/sentinel-lab/private/templates/nightjar/1.0.4/developer.zip",
+      "bytes": 31190,
+      "sha256": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1"
     },
     {
       "file": "apps/sentinel-lab/private/templates/switchboard/1.0.0/developer.zip",
@@ -582,6 +602,16 @@
       "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb"
     },
     {
+      "file": "apps/sentinel-lab/private/templates/switchboard/1.0.2/developer.zip",
+      "bytes": 28547,
+      "sha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60"
+    },
+    {
+      "file": "apps/sentinel-lab/private/templates/switchboard/1.0.2/wordpress.zip",
+      "bytes": 30418,
+      "sha256": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93"
+    },
+    {
       "file": "apps/sentinel-lab/private/templates/tideglass/1.0.0/developer.zip",
       "bytes": 26836,
       "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7"
@@ -592,9 +622,19 @@
       "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5"
     },
     {
+      "file": "apps/sentinel-lab/private/templates/tideglass/1.0.1/developer.zip",
+      "bytes": 28338,
+      "sha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638"
+    },
+    {
       "file": "apps/sentinel-lab/private/templates/tideglass/1.0.1/wordpress.zip",
       "bytes": 30027,
       "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785"
+    },
+    {
+      "file": "apps/sentinel-lab/private/templates/tideglass/1.0.2/wordpress.zip",
+      "bytes": 31040,
+      "sha256": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d"
     },
     {
       "file": "apps/sentinel-lab/scripts/browser-qa.mjs",
@@ -614,7 +654,7 @@
     {
       "file": "apps/sentinel-lab/scripts/import-template-packages.mjs",
       "bytes": 3454,
-      "sha256": "75686e6934cc47d22fc2b17fca504d79b22338f3ad6a7a04ed7b22da0fd5fa18"
+      "sha256": "16db81edebd5371efdc2333a6d794655bcb48850723fa35daa863a4809b38c26"
     },
     {
       "file": "apps/sentinel-lab/scripts/inspect-template-provider.mjs",
@@ -682,6 +722,12 @@
       "sha256": "88ad291abc4e5b3401b0d68d35222438cf02452378ae83733f246d6ba48b0767"
     }
   ],
-  "uploaded": false,
-  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9"
+  "uploaded": true,
+  "sourceRevision": "d66ed7c081a211e402d39a23d4222135a4cb022e-bundle-bea44f211cc7229c",
+  "deployment": {
+    "id": "dpl_E6nV3JcmtfVXGMtj275Lkkc3eCoo",
+    "url": "https://eidos-sentinel-nwov7dvp8-1brentbm-1876s-projects.vercel.app",
+    "state": "READY",
+    "target": "preview"
+  }
 }

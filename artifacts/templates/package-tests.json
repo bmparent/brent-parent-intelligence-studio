@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-11T02:15:31.950Z",
+  "generatedAt": "2026-10-11T03:13:10.837Z",
   "checks": [
     {
       "name": "catalog: four distinct families, unique edition IDs, unavailable until accepted",
@@ -136,6 +136,10 @@
     },
     {
       "name": "switchboard-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
     {
@@ -575,6 +579,10 @@
       "status": "passed"
     },
     {
+      "name": "switchboard-developer-v1: guide describes exact config marker scope",
+      "status": "passed"
+    },
+    {
       "name": "switchboard-developer-v1: responsive, reduced motion, focus, progressive JS",
       "status": "passed"
     },
@@ -692,6 +700,10 @@
     },
     {
       "name": "switchboard-wordpress-v1: theme.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
     {
@@ -892,6 +904,10 @@
     },
     {
       "name": "tideglass-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
     {
@@ -1323,6 +1339,10 @@
       "status": "passed"
     },
     {
+      "name": "tideglass-developer-v1: guide describes exact config marker scope",
+      "status": "passed"
+    },
+    {
       "name": "tideglass-developer-v1: responsive, reduced motion, focus, progressive JS",
       "status": "passed"
     },
@@ -1440,6 +1460,10 @@
     },
     {
       "name": "tideglass-wordpress-v1: theme.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
     {
@@ -1648,6 +1672,10 @@
     },
     {
       "name": "matter-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
     {
@@ -2091,6 +2119,10 @@
       "status": "passed"
     },
     {
+      "name": "matter-developer-v1: guide describes exact config marker scope",
+      "status": "passed"
+    },
+    {
       "name": "matter-developer-v1: responsive, reduced motion, focus, progressive JS",
       "status": "passed"
     },
@@ -2212,6 +2244,10 @@
     },
     {
       "name": "matter-wordpress-v1: theme.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
     {
@@ -2412,6 +2448,10 @@
     },
     {
       "name": "nightjar-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
     {
@@ -2687,6 +2727,30 @@
       "status": "passed"
     },
     {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
       "name": "nightjar-developer-v1: index.html → about.html",
       "status": "passed"
     },
@@ -2708,6 +2772,30 @@
     },
     {
       "name": "nightjar-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor ideas",
       "status": "passed"
     },
     {
@@ -2835,6 +2923,30 @@
       "status": "passed"
     },
     {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
       "name": "nightjar-developer-v1: program.html → contact.html",
       "status": "passed"
     },
@@ -2864,6 +2976,38 @@
     },
     {
       "name": "nightjar-developer-v1: program.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: guide describes exact config marker scope",
+      "status": "passed"
+    },
+    {
+      "name": "Nightjar: real poster layers and independent fallback event information",
       "status": "passed"
     },
     {
@@ -2987,6 +3131,10 @@
       "status": "passed"
     },
     {
+      "name": "nightjar-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
       "name": "nightjar-wordpress-v1: native block theme structure and GPL",
       "status": "passed"
     },
@@ -3072,6 +3220,6 @@
     "Static structure and archive checks do not establish WordPress activation/editing, real device behavior, live checkout, or platform-builder acceptance. See separate clean-install/browser receipts."
   ],
   "status": "passed",
-  "passed": 766,
+  "passed": 803,
   "failed": 0
 }

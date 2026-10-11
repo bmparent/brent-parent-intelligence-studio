@@ -1,22 +1,26 @@
 {
-  "timestampUtc": "2026-10-11T02:19:50.432Z",
-  "scope": "protected final backend",
-  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
-  "controls": [
+  "timestampUtc": "2026-10-11T02:59:11.784Z",
+  "sourceRevision": "d66ed7c081a211e402d39a23d4222135a4cb022e-bundle-bea44f211cc7229c",
+  "url": "https://eidos-sentinel-nwov7dvp8-1brentbm-1876s-projects.vercel.app",
+  "cases": [
     {
       "name": "unknown receipt",
-      "http": 404,
-      "result": "passed"
+      "expected": 404,
+      "actual": 404,
+      "passed": true
     },
     {
       "name": "client price override",
-      "http": 400,
-      "result": "passed"
+      "expected": 400,
+      "actual": 400,
+      "passed": true
     },
     {
       "name": "unavailable WordPress",
-      "http": 503,
-      "result": "passed"
+      "expected": 503,
+      "actual": 503,
+      "passed": true
     }
-  ]
+  ],
+  "passed": true
 }

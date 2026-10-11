@@ -1,32 +1,753 @@
 {
-  "timestampUtc": "2026-10-11T02:18:47.441Z",
-  "sha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
-  "bundleHash": "75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7",
-  "bundleHashRecomputed": true,
-  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
-  "manifestFiles": 135,
+  "timestampUtc": "2026-10-11T02:57:00.364Z",
+  "commit": "d66ed7c081a211e402d39a23d4222135a4cb022e",
+  "sourceRevision": "d66ed7c081a211e402d39a23d4222135a4cb022e-bundle-bea44f211cc7229c",
+  "bundleHash": "bea44f211cc7229c5803097d6023095b50f354a966342e094055ef420b6caa6e",
+  "bundleRecomputed": true,
+  "totalUploadedFiles": 143,
   "trackedRuntimeFiles": 119,
-  "trackedRuntimeMatchesHead": true,
-  "comparison": "Every uploaded tracked file matches frozen manifest SHA256/size; git hash-object --path --stdin applies repository clean filters and equals git ls-tree HEAD blob. CRLF normalization follows repository Git rules.",
-  "privateArchiveFiles": 16,
-  "privateArchives": "Sixteen ignored private buyerZIPs are outside Git and independently hash/size checked against frozen current and retained manifests.",
-  "remainingDirtyPaths": [
+  "trackedFilesMatchGitCommit": true,
+  "method": "Each uploaded tracked runtime/source file SHA256 and size matched manifest; Git clean-filter blob ID matched HEAD ls-tree blob, respecting CRLF normalization. Complete file-manifest bundle recomputed. Private files matched frozen archive receipt.",
+  "privateArchives": {
+    "total": 24,
+    "current": 8,
+    "retained": 16,
+    "allMatchFrozenReceipts": true,
+    "prior16HashesAndBytesPreserved": true,
+    "ignoredByGit": true
+  },
+  "worktree": {
+    "dirty": true,
+    "remainingDirtyPaths": [
+      {
+        "path": "rtifacts/paid-templates-20261010/acceptance-status.json",
+        "category": "evidence-only"
+      },
+      {
+        "path": "artifacts/paid-templates-20261010/backend-source-preview.json",
+        "category": "evidence-only"
+      },
+      {
+        "path": "artifacts/paid-templates-20261010/actual-paid-ledger.json",
+        "category": "evidence-only"
+      }
+    ],
+    "runtimeDifferencePaths": []
+  },
+  "uploadedTrackedFiles": [
     {
-      "status": " M",
-      "path": "artifacts/paid-templates-20261010/acceptance-status.json",
-      "category": "evidence-only"
+      "file": "apps/sentinel-lab/.gitignore",
+      "gitBlob": "187bb464c55d370762812b3863ba8196d99cc59d",
+      "sha256": "02915aece00d4193a23735fe0a7638cdd7cb3c6fb1c112f886424a9865da61d9",
+      "bytes": 115
     },
     {
-      "status": " M",
-      "path": "artifacts/paid-templates-20261010/backend-source-preview.json",
-      "category": "evidence-only"
+      "file": "apps/sentinel-lab/.vercelignore",
+      "gitBlob": "38d61caf5399ece535a133de115bd85684eb46b4",
+      "sha256": "f6f1b6a146bca3e4cd5f3659483b4b43b4b205dbcefd4b57261b0db2d1ffe185",
+      "bytes": 41
     },
     {
-      "status": "??",
-      "path": "artifacts/paid-templates-20261010/actual-paid-ledger.json",
-      "category": "evidence-only"
+      "file": "apps/sentinel-lab/AGENTS.md",
+      "gitBlob": "643577dfaef36ee8032915ef80a0f0638f7beda0",
+      "sha256": "ec1b6e023814ae1a510b02ea62229e5eb035d75e39e3335d5ea7f5ce5654d567",
+      "bytes": 687
+    },
+    {
+      "file": "apps/sentinel-lab/CLAUDE.md",
+      "gitBlob": "43c994c2d3617f947bcb5adf1933e21dabe46bb5",
+      "sha256": "d631d88045f74623d568adfb4783b72e3d1b732330d749bc6c72e6648d4581d3",
+      "bytes": 12
+    },
+    {
+      "file": "apps/sentinel-lab/README.md",
+      "gitBlob": "9d841114c13d445034c2d2e50e3580bddf3496d0",
+      "sha256": "bef18bd17fa07bc15fca9d7d633e141cde8b60a382ea272e94a10652eafbbccf",
+      "bytes": 6633
+    },
+    {
+      "file": "apps/sentinel-lab/WORKS_PLATFORM.md",
+      "gitBlob": "273454bb2456e352dc4951b8e22155476b84ddf5",
+      "sha256": "454924f4cce21846a2559037af388254111b3b0505e8384ac518636cc10e937c",
+      "bytes": 10487
+    },
+    {
+      "file": "apps/sentinel-lab/app/api/datasets/route.ts",
+      "gitBlob": "bf659aa0d44ed6d19ba517d3f49c725d262a8b8d",
+      "sha256": "1b607a4df53f13d43ce08f96cbcbc446ad4d5cdc9aa4f9f3c33277c45929940e",
+      "bytes": 2329
+    },
+    {
+      "file": "apps/sentinel-lab/app/api/experiments/[jobId]/route.ts",
+      "gitBlob": "260baf6bb7ef45ff522ea0f873e6ad802ed01b1f",
+      "sha256": "3451405876c3382ecde8eb9fd5647f739a3d85d5370dcb22b335afeecf089653",
+      "bytes": 729
+    },
+    {
+      "file": "apps/sentinel-lab/app/api/experiments/preflight/route.ts",
+      "gitBlob": "b9e96a92f3d85495851df1a8c25a0919005bbe56",
+      "sha256": "d24a571adf90149819f1a34c588f7f1399e44558f37c0df88d2d620ca3dc68d3",
+      "bytes": 1516
+    },
+    {
+      "file": "apps/sentinel-lab/app/api/experiments/route.ts",
+      "gitBlob": "100d5663c0b760733a8725fbc8d9b2a0218eddc9",
+      "sha256": "a275cf88d0154e927565992aeab475f2ef3db3146ddfe22ecbfcb1a8bf37d319",
+      "bytes": 4506
+    },
+    {
+      "file": "apps/sentinel-lab/app/api/smoke/route.ts",
+      "gitBlob": "7f0cb8c03a9584152306ec8cc85f4fbed2c852d5",
+      "sha256": "a7c4b77675d2ad876e9b00cdcc2c46c1bdc15fb7c13f5733139f8890972e6f70",
+      "bytes": 593
+    },
+    {
+      "file": "apps/sentinel-lab/app/api/works/v1/[...path]/route.ts",
+      "gitBlob": "b3dc18059198c56eb9efa49550c420f46804038d",
+      "sha256": "e045a7cda04bbe8c4c5008a1e21b521ea5781891012b70726f9251f6b278f44a",
+      "bytes": 297
+    },
+    {
+      "file": "apps/sentinel-lab/app/error.tsx",
+      "gitBlob": "4019d62c0878f450c6253d62a893a4f63a6ba2a1",
+      "sha256": "1ab00ee9c6f0ba7c5afec3f87c4636eae99057e3c53ce676c8543d2437b696d9",
+      "bytes": 440
+    },
+    {
+      "file": "apps/sentinel-lab/app/globals.css",
+      "gitBlob": "39281bbbc3aa4a2630d92faa733fd5d62821e27a",
+      "sha256": "b0c0f5e07f95538d8978c6fee30d739290b15791ae0f12a79648667c53df006e",
+      "bytes": 46922
+    },
+    {
+      "file": "apps/sentinel-lab/app/layout.tsx",
+      "gitBlob": "e6c8e50a6c3f4bf32c32933c72655035fc821340",
+      "sha256": "37bcd30a6bcc1313e48d8d6234dae84f1a1681d26c25645c3f039d951a20a707",
+      "bytes": 564
+    },
+    {
+      "file": "apps/sentinel-lab/app/page.tsx",
+      "gitBlob": "b53ef82567d05d89fda01f4a9c093e34d3dbf1c4",
+      "sha256": "5f20ccef46bbc6e53c4f57780549019cd49e3a57a176efa0fb7f4067d26d30e3",
+      "bytes": 432
+    },
+    {
+      "file": "apps/sentinel-lab/components/engine-observatory.tsx",
+      "gitBlob": "7d18ccd4f517fcca59d0699fb71295997070e35e",
+      "sha256": "db61ec8f869007dcc72405b7428c8864e0ebcacb56cb694261ae3219ecd7be27",
+      "bytes": 9602
+    },
+    {
+      "file": "apps/sentinel-lab/components/experiment-run-monitor.tsx",
+      "gitBlob": "7928cb315aa468161d843eb10b6286111be8d5f6",
+      "sha256": "747fdc8d81ce74e4e19b6c0a8d0329ddb8d5f5709dc19856b02b28b96f97d641",
+      "bytes": 9197
+    },
+    {
+      "file": "apps/sentinel-lab/components/icons.tsx",
+      "gitBlob": "4760c9774250b245f53bf119719e2af71e66e953",
+      "sha256": "c44d91112fbd1acedf29c326fb14dd6e866f2270f605302ddc8bfbf01e2224c1",
+      "bytes": 2044
+    },
+    {
+      "file": "apps/sentinel-lab/components/real-data-lab.tsx",
+      "gitBlob": "32e50f061a64b4ea2a5c7f347af048fd2fc9774a",
+      "sha256": "6ea4443087b38893d18d8f6b698bd42956f72547fdd3f0141e6d4ebacf93fc84",
+      "bytes": 19959
+    },
+    {
+      "file": "apps/sentinel-lab/components/sentinel-lab.tsx",
+      "gitBlob": "5d8b14ad7838365021d148ee5d36e47ebbfad4ae",
+      "sha256": "391edbce8ed695d9635312c324f32934bdb11726ce125893f653eba6f909b020",
+      "bytes": 20559
+    },
+    {
+      "file": "apps/sentinel-lab/components/trace-chart.tsx",
+      "gitBlob": "96a5efeaae9f22ab7380d5b91fee7dcfdb88a2cd",
+      "sha256": "49f6160181cd23d4f1331552f4c572f81aa82463bd031cf897a097f720133b37",
+      "bytes": 5309
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/admission.ts",
+      "gitBlob": "9fec89a4994deaee34050e538f3705f563d716c3",
+      "sha256": "acd0e2fbf6a5d217bf5c09ddbbab5890a889c7538a48299c5abaf5d49f464f5c",
+      "bytes": 6353
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/artifact-verifier.ts",
+      "gitBlob": "8bdd4dfef286e9aed53f283ec65b2227f8e18ede",
+      "sha256": "fb7a35be6a10c652710f8ed9717656683f5e3b0ce392df7c1876dd725a6dc1c9",
+      "bytes": 2475
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/client.ts",
+      "gitBlob": "353e3291be2d7f2ba5a9ce31d2efc830bb8f13fb",
+      "sha256": "f9edd4ea3b4e3b7046b2994462dee56e53b98c7f784bd1a06c3fde4f66af9ac7",
+      "bytes": 1517
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/dispatch-diagnostics.js",
+      "gitBlob": "66469f64fdb908a2aaf882b198537f350ad73a2a",
+      "sha256": "d2b1fcc98a8d39d7c679cc09d3baf499235861780cf3cb4bfd5bfecbae117dca",
+      "bytes": 7689
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/lock.js",
+      "gitBlob": "202ec0ff860b4bf8746ecff09edd23ce6d41a34b",
+      "sha256": "25ae77863084c5a5378179405b8e507ac47b6128d94eb513c85169d201e487ee",
+      "bytes": 504
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/operator-auth.ts",
+      "gitBlob": "2f90efc1de6baf42ca9ad38f8b645ca0f1627107",
+      "sha256": "9db820eb4ee9920e83fc7e4972c0e49abc3140a93e21c6996a46f656142e6e7a",
+      "bytes": 2107
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/profiles.js",
+      "gitBlob": "9ee4b9389fdf71fee2108ba3bcb4632f4b042ea3",
+      "sha256": "c58b9d2f7f983efc440eef36da5971fbda49563c6ee640419103a6e7fe2254af",
+      "bytes": 1776
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/read-error.ts",
+      "gitBlob": "f4e71d87447de0e8ed68e51fd48f745a80f64ade",
+      "sha256": "415a68f1ed3d1c16df0281e0bc8062079aa64ea724a41a914302aec2faeb63f8",
+      "bytes": 1302
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/reference-run.json",
+      "gitBlob": "55ce191265750edc8b7babd63acc84c9a5d245ee",
+      "sha256": "74763416977cf1b89467bf12fcaa685e2f37be5613e235a1a08ee30ecc4c279e",
+      "bytes": 159493
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/request-body.ts",
+      "gitBlob": "fe798faeadee2a85ce66df45a54a3420ea70ac76",
+      "sha256": "f5de899f12c2ddf220727766016dbaef14d74dde989caaab0e139926c0e536d7",
+      "bytes": 1050
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/runner.ts",
+      "gitBlob": "f4378dbb8ad0b82f6982ab4962dad8450f2c2a8e",
+      "sha256": "ec5ba1fe7f8cee2240745b1361484d47ecfd7347e4b8c6c73e0a401cfd209d3b",
+      "bytes": 8210
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/sandbox-source.ts",
+      "gitBlob": "9e7a177843cb0b3e2b97cb081d99a4563a7d2c23",
+      "sha256": "7bda0bc0829bae9f3dd736ed7ec1fbc13dd4302032300bc7dbd4f7ec19778a38",
+      "bytes": 3314
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/sandbox-state.js",
+      "gitBlob": "f5496fab64f0e59e186e93684350c4559b65375b",
+      "sha256": "24cf5eb2fb2c40369c7c995a9ba19eac25f7c0bed9ff33d61c08f0d9af01442f",
+      "bytes": 1499
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/sandbox.ts",
+      "gitBlob": "882f19ae851d476acbe39d299acfa32a5b5b875d",
+      "sha256": "d022c11fc749b97e84852dc4301c7895b390b1b858cd8d8ac90521a406863ef8",
+      "bytes": 21988
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/shared.js",
+      "gitBlob": "0051b9674b355f549358783d9a48586d817222a8",
+      "sha256": "e306aa62d208ca4b3d42a464cc5a49ee6acf5d80475b5ed77339177b0bae7037",
+      "bytes": 12351
+    },
+    {
+      "file": "apps/sentinel-lab/lib/experiments/types.ts",
+      "gitBlob": "c14ce47ad617d1e6ce7de1a33e81e97a72f37d6a",
+      "sha256": "36cdd22a755dff08443152fe576ff647be09c77e6212ef475cafd49a469c2094",
+      "bytes": 3901
+    },
+    {
+      "file": "apps/sentinel-lab/lib/sentinel/simulate.js",
+      "gitBlob": "c9ae157622498cd952514ca58bcc67498d47c91f",
+      "sha256": "ad51121e69bfec9212565a634e45b77b59e9ac3e6afdcf28202027cd17d88d30",
+      "bytes": 14090
+    },
+    {
+      "file": "apps/sentinel-lab/lib/sentinel/types.ts",
+      "gitBlob": "370a8981ef2b939cc2478d91945679dd5788903f",
+      "sha256": "e38a88f6163a8d70c37c0c449a9fa7b2fd07cbd30605afd422eeb851ae6afdb8",
+      "bytes": 2042
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/database.ts",
+      "gitBlob": "41058361ed60e8a63fc70ba6b5a782b62eb2abce",
+      "sha256": "94a23967da10e9cf150e1e4b0f74cc0eec5420b0acedfe3d1ccece17a314a3f3",
+      "bytes": 2895
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/dispatch.ts",
+      "gitBlob": "adf4e66dbc6445fc08175c4fedcf8789906b08eb",
+      "sha256": "fccf2c146581dee25b2497da45bd00295251a5326696fe69d88965f539b7291e",
+      "bytes": 7475
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/templateArchives.ts",
+      "gitBlob": "a6664de82cd0028f071c165bbc3f4471a4853337",
+      "sha256": "299245688a898877b72596fe49bff654d1ccd6e732e843fce4dc0c3c4a86f3dc",
+      "bytes": 891
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/README.md",
+      "gitBlob": "1454edfde8679882d7dc14398d1d79cc01e24a94",
+      "sha256": "52d89f0c78660d5312fd995dbf664c517155492114f36c43fc50f10987068c78",
+      "bytes": 375
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/community.ts",
+      "gitBlob": "7c65f59d83d0590577d68d4a7c6f6a3f3031a76b",
+      "sha256": "2e628aa1790c95bad5c70127b08eb1c5a1963bc3e2464cc9e1f032af596dd2c5",
+      "bytes": 4250
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/core.ts",
+      "gitBlob": "235aae65749f25be04aa3e3026c09d735567b037",
+      "sha256": "72a924a524687ee32aa4b937ed0442333ca92ae8e47bbabd6247fdecf7d5cba9",
+      "bytes": 10640
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/kitArchive.ts",
+      "gitBlob": "7c999e85c191d69e8101e288ec63d48d1a015a8c",
+      "sha256": "e9e45c0cb0a71f1a0da63e148f249963303db6443eefe466d7117232bc28b266",
+      "bytes": 8133
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/knowledge.ts",
+      "gitBlob": "8f5ea59069132dd1c2aa03d28094d4ca43787c63",
+      "sha256": "b0bd32646b25e1de6622a33e5390be7e7b0b5f9db94ef0186307b611c125ecf9",
+      "bytes": 4473
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/memberAuth.ts",
+      "gitBlob": "c9a5e09a486d327d33e46d30bbfa46917dcc9bb3",
+      "sha256": "4e3c63564044b0140cdf16086e284ccbd371483fbba1d9239219f6efa977c244",
+      "bytes": 3960
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/memberMail.ts",
+      "gitBlob": "4bb455f09bb5ce89a89daa8a66e70cfedb150106",
+      "sha256": "edfa3fed8512d0e92d1122006ec7ca5b9d464c40d9a1ebb50c877d36c7a95840",
+      "bytes": 1542
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/mentions.ts",
+      "gitBlob": "501ef1abc170297e0e68df11eaf7fe24416a03de",
+      "sha256": "b1b2296b492ffd7a20111b984279423f3b346a2f7549a00b1e3510eeb908f664",
+      "bytes": 1822
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/newsletter.ts",
+      "gitBlob": "b5eda7f12c75328e0977d72d2c6346ce1d918b5f",
+      "sha256": "fe7db163e329a9126032e2878e4e001b1791597ab014d6ffc7db9038adbc62d9",
+      "bytes": 9006
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/playground.ts",
+      "gitBlob": "fd8853688477516c9b9c537997d34f1b09c3fb85",
+      "sha256": "4673d266aad186d902977ef0965b2e48026c6cbee4a815e4c71531c903e455b1",
+      "bytes": 5419
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/playgroundOrders.ts",
+      "gitBlob": "d46365f0e5ad0a7e89c9b3413a565a5251b58efa",
+      "sha256": "414647d3d342f4f9d731a4dd80f38cc3856bc1731f3095651493902d69a7f39d",
+      "bytes": 4628
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/playgroundSchema.ts",
+      "gitBlob": "447999d374404dcaef9d2cab46182b77f7dfb516",
+      "sha256": "5ac48c62fc8983544198e76a29decfb0053e21e04c1b55b111f2a83c68af4b5e",
+      "bytes": 1515
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/shop.ts",
+      "gitBlob": "d50303a6e7f80e99df337f701a1fe6bbc9c4332b",
+      "sha256": "83a9e1c10e38ebe4345486f765daa4966a389a59f597cf32ee6f07ad2266bc79",
+      "bytes": 1160
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/studioAgents.ts",
+      "gitBlob": "fcb92f710f793ceb5ccb4ad5d79d48c2a26f6e44",
+      "sha256": "0a0cdef9e5b7a2a7498bfb8822abd7c92a329cbe59a433cfdce9f0224bef4af6",
+      "bytes": 15517
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/templateCatalog.ts",
+      "gitBlob": "a661db83a4be3d14fb33752a99c091ba06eec997",
+      "sha256": "57c4ce460fa9c1471f21de28c9046206b89da2a57517ab4eb830a3c99b44c7f3",
+      "bytes": 1799
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/platform/templateShop.ts",
+      "gitBlob": "1653573ead6b0b93a6b65728b1528541fffb647c",
+      "sha256": "f178f081f25b47b329191a8fdaa1e2d96590ce7d1fd877bc18cd0f415f12476a",
+      "bytes": 21763
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/snapshot/http.ts",
+      "gitBlob": "a0b56bc4b88d38718fa70b687da9dd35cd539081",
+      "sha256": "c954edebeef188607d8600a63f029d263f930a7302c735b05706b422df184d12",
+      "bytes": 3237
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/snapshot/stripe.ts",
+      "gitBlob": "41a87c8464f914559100e62b7eaed7e138ff682b",
+      "sha256": "2e393ddf148ab0c9db568a26e56db3529b8c8878823556b0609ef337b74e895c",
+      "bytes": 6994
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/_shared/snapshot/types.ts",
+      "gitBlob": "07ad164839a58a60038efe7673ec0bf09a37e328",
+      "sha256": "c5bb1225c6bcc86fde3e4e9192db6e177038d021939817e24c7036fa9c7af50d",
+      "bytes": 3300
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/assistant.ts",
+      "gitBlob": "fe8d920f67c7925feb05f693d62745778b7473c1",
+      "sha256": "72537d7fc869b442f29af1e69c94fc120fd1552f200d200d97f89261f19fbb82",
+      "bytes": 6687
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/community/agents.ts",
+      "gitBlob": "d17d1d422a9750528638c5af5928b4a462d4740c",
+      "sha256": "2b898c31bcd5f7a16c369d3cc38378873edc4f85ff3bbf087d9ebbc387616a48",
+      "bytes": 4232
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/community/maintenance.ts",
+      "gitBlob": "51861c014bb475bb552a1014c87331cfa018169a",
+      "sha256": "14e43bbb54fe3559dfd0fc97e00d385907d540002ddc48b6ea64fe2cbb82fc1f",
+      "bytes": 2486
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/community/moderate.ts",
+      "gitBlob": "3513760a514bb7f1b5e92c23028d1cf28965dc84",
+      "sha256": "66f3c1d57e7251e4fad2b3296b4e4734a3633ac7b032610952e203eda15db907",
+      "bytes": 4174
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/community/replies.ts",
+      "gitBlob": "53dd7c7e90793b40436e600d1d2459a18a6c8c84",
+      "sha256": "4eee005ed6ac576d71056be774a8e459934017361d1135d16638295a7c6db06e",
+      "bytes": 2753
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/community/threads.ts",
+      "gitBlob": "fcaa8a464dcc8b589de29562b82ac3c511e3ebdf",
+      "sha256": "4fa3a60a38f2419383601ae85e02ace6b73ca18503cfe7f68435b0bebb40ab38",
+      "bytes": 4244
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/members/account.ts",
+      "gitBlob": "1f9ffb8f434a9380d9bca5964f8f1e0b30b006d6",
+      "sha256": "9a4a154ac411b6223e2be09dae69001feacf9c247a4fe0700b6f724bde2c786a",
+      "bytes": 6245
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/members/auth.ts",
+      "gitBlob": "7ab5bb50451a53ce9fdc3f7bd879e6698397082a",
+      "sha256": "41ab0f0915623a7223435c386adafc891d8e4e9be3f653edf5fae4db5e339ae8",
+      "bytes": 6230
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/members/directory.ts",
+      "gitBlob": "3f3f0c3ebfce267dab842b0e208b0d16a1937051",
+      "sha256": "5f92189aae896460a7a9873bab00c1e8a8c11440af9d793fe0cbd9bd160166eb",
+      "bytes": 750
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/members/unsubscribe.ts",
+      "gitBlob": "d643ae55a9f861641f9d11fa587aae9ef07989db",
+      "sha256": "d6d7a3ffd4e1420af8b003a9630a2914f0096018bf3d1ff70860600296a734ab",
+      "bytes": 1398
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/playground/checkout.ts",
+      "gitBlob": "e3c17df8df539b36ca51b990bcde2f26c53bf663",
+      "sha256": "84698a9d6458bd32aa1e6e8593f86043a7a32715f499998e60f88b944da98259",
+      "bytes": 549
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/playground/projects.ts",
+      "gitBlob": "b1cb99da65fe77ec388779b79f17734acb69cc34",
+      "sha256": "0f70f213a80a7419fe4bef869003e062a06f4938aa11cc6e2925b69986b26156",
+      "bytes": 1461
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/playground/purchases.ts",
+      "gitBlob": "fe8b00fd65c73e129cc5ee452b0c577946c38c13",
+      "sha256": "3dda4a6a0eab1d3187261e05652fbc697f5bdab5f3ddc34f57b10bcf88d39f05",
+      "bytes": 1753
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/playground/webhook.ts",
+      "gitBlob": "269d2a47f035e4fb914b9ffe243b96d7d899e17a",
+      "sha256": "cf285d6cc590789c6a1c0cbf82ae5b6bc69e27478750c7efa142785226e7ab8a",
+      "bytes": 3654
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/public-config.ts",
+      "gitBlob": "4e0824f086dca970d2a58398a4a6ecb7d810e53b",
+      "sha256": "58e2b162e17733cfdd2288f1cb77e375e66917f6815397594e276ca943c4d98a",
+      "bytes": 1102
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/catalog.ts",
+      "gitBlob": "08792da76fb2d93e20649db7c3aaed1827f50842",
+      "sha256": "19050aa14f53055ab4ddc56b698bb4f6edced4b87eac71b521f1cd60b9af8a71",
+      "bytes": 80
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/checkout.ts",
+      "gitBlob": "9c136e59c03278b8191925ee11c4daab22bd7b90",
+      "sha256": "ab336783453544f44e37a281258fada440a01403c057e3a37d24352c9b0dbb1a",
+      "bytes": 3899
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/download.ts",
+      "gitBlob": "2da72183de0462ed35f68e7ea8b060d289bb6676",
+      "sha256": "51f989cc8662cd0f8ca57229941f567075adc6b8a3174a6eca672608504d5ea9",
+      "bytes": 1235
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/recover.ts",
+      "gitBlob": "2e0a7e9a5ce24c87808ea8c5043970a6eecd044a",
+      "sha256": "181ff3dddea4757e2884d321c30b72af2f194675d57f118dac2b14cd0ab36d7a",
+      "bytes": 81
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/redeem.ts",
+      "gitBlob": "fff52cd01d6ef3c92ce54da82a7d3d679d35e476",
+      "sha256": "bfdf7961edc7bdf164fc764186e510c8693783c5cb6e9f77b2237540a28dca6c",
+      "bytes": 80
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/status.ts",
+      "gitBlob": "23037e3dc64a622ee4af50571c3dfb9963dbeb9e",
+      "sha256": "9a68f8aad869e7d84695cde2efc9a57b50d6a307fa1dbc8c8f295ac3ffd7e93e",
+      "bytes": 625
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/api/shop/webhook.ts",
+      "gitBlob": "9d3b850890b893ca5e729f4aa1417072eed566f8",
+      "sha256": "cb5bc33a77246cc12c1dcc76c9d35b7439ce7b301569411110ca47bdebda7ade",
+      "bytes": 4842
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/community/feed.ts",
+      "gitBlob": "82d329fcae5011edb2e1550dcf6c301044c1017f",
+      "sha256": "be5d527e2f014cb5a0287e81bd6a9a226a56bc6a114317f07dab143184c8272e",
+      "bytes": 1847
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/community/sitemap.xml.ts",
+      "gitBlob": "931c57ac71e7cf3c715de77bc3a5bc32671c950b",
+      "sha256": "363becb37bc637001b9da464cc77316c04fb1e907b8c6724f4c7fd11fb7e617b",
+      "bytes": 1142
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/functions/community/thread/[id].ts",
+      "gitBlob": "b2a1ee0deb193ccc83d933c845b27e3a521b9574",
+      "sha256": "ff29ac6b3a6fc645c75ef877d9a867b224f9b7b1440f5d81eff7bf4037dc60e1",
+      "bytes": 7226
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/migrations/0001_eidos_platform.sql",
+      "gitBlob": "2bd694baeddb8b48a46e981831f81f53e910f154",
+      "sha256": "291326de7f52818ec88026f66fb5bbb558f5f8ed44a2fbcd4a824d22fac2d7c9",
+      "bytes": 2438
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/migrations/0002_members.sql",
+      "gitBlob": "9095bc41535e8e30f7d0660bed858c93b043a22a",
+      "sha256": "bf1bbfeb59646c8234addd3220c46850afcc92918203ee69704f0a20381edae5",
+      "bytes": 2540
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/migrations/0003_playground.sql",
+      "gitBlob": "6614423e2f6a805f2738f5d37291e4ee98f3992b",
+      "sha256": "de72422190fe3dba1e255905d7f30b9699d0b120d6a873a4555177cdb095d999",
+      "bytes": 1440
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/migrations/0004_paid_templates.sql",
+      "gitBlob": "11ab394bc8151cfdd482e99f219f6b4140785402",
+      "sha256": "787985c873868805712b6a72f459a5554349688d515d10ccc910edd134f9f5a7",
+      "bytes": 1770
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/src/playground/approved-glass-preset.json",
+      "gitBlob": "10b31a4b7d6d186cc0cf21908775f6b375c5e10a",
+      "sha256": "af30287e45e2a465c0e8d9a3f88f1b265892344bd2c1e2d6abe6e8a4e3206143",
+      "bytes": 1115
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/src/playground/export.ts",
+      "gitBlob": "17489ddc893e9f1727a029a150798dfb6b6fc599",
+      "sha256": "d49e4235b72a2ffc83c16958c28ee61f0cf8423b841b9ad59b722e1214339003",
+      "bytes": 10745
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/src/playground/glassBundle.ts",
+      "gitBlob": "1fb284ca18655d19e2258d0ed54bd98276afc73e",
+      "sha256": "77709502d61c5f722cbd86df73c924e7e1ecd8fbbf2a9135916d4a3f37fa861e",
+      "bytes": 18630
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/src/playground/model.ts",
+      "gitBlob": "1249ae756f92a1a1c0a191c48150639d205dd353",
+      "sha256": "6c5e5638c571cde6a4fdae9130a4542cab748898882d92688b9a00da685c67d5",
+      "bytes": 10481
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/src/playground/pageStyles.ts",
+      "gitBlob": "b4f254cf743a0b176b0f04943099586e0e41ab9d",
+      "sha256": "d1388f66aae4598a15b8037911ee100092e973d2cdcd4e88fd6e8f7b01061cd2",
+      "bytes": 6303
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/src/playground/renderer.ts",
+      "gitBlob": "e6730f0304e2ba581e95ff34dfd95fec731a0157",
+      "sha256": "3c770d7b11f495a73008050d57b837c7c6f0590895313cce213b6b8874ee2c8a",
+      "bytes": 6483
+    },
+    {
+      "file": "apps/sentinel-lab/lib/works/vendor/src/playground/runtime.ts",
+      "gitBlob": "7c0c731c68dfc6432a6b82a5d5b9890c441f41c8",
+      "sha256": "a229fe59795f8bd406ecf51d921a4b102e3e073b2a208332f4091d1ce695449a",
+      "bytes": 11739
+    },
+    {
+      "file": "apps/sentinel-lab/next-env.d.ts",
+      "gitBlob": "ce4e94a6b10f160ee021fe18939af160d2927dcf",
+      "sha256": "1b59d4c6b83807db275d43f3cf2cc8e9323f465fab764eea091cc5becd5bad37",
+      "bytes": 295
+    },
+    {
+      "file": "apps/sentinel-lab/next.config.ts",
+      "gitBlob": "53d1790cecde718e9838c5dd72b9064769ff22f2",
+      "sha256": "58fc318f3566c42b6a118bbe1e5c707a25069dc435345027e0ea48e9dca44624",
+      "bytes": 488
+    },
+    {
+      "file": "apps/sentinel-lab/package-lock.json",
+      "gitBlob": "6c2e2f92dc206e137e677727327b45f2b5ed9e5c",
+      "sha256": "eed42e2e6987304697f010f95e7412c9f2fe9b350cd8c964fa7e1a7bd9ab20d0",
+      "bytes": 67198
+    },
+    {
+      "file": "apps/sentinel-lab/package.json",
+      "gitBlob": "2ea98602436f17771b54db311c8377f7ac99bd21",
+      "sha256": "5d990f886b71505bc58bb9d4571afd9f8c57446c7bf930d10b85b92b85362a68",
+      "bytes": 849
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/browser-qa.mjs",
+      "gitBlob": "ab2ab37d8ade4b71ea058450409cf30e66120e8a",
+      "sha256": "3134d6f6c7ba13c349ef58099f1b594f648ff33ab1173498ed502389a59ccecd",
+      "bytes": 30410
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/configure-templates-preview.mjs",
+      "gitBlob": "c02f32f5ae41a83e1255944e52977976bbfc29c7",
+      "sha256": "fea34f80c9181fb134e43300a351771c45e7f253b279906f38aa03e58a878cb5",
+      "bytes": 6961
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/deploy-templates-preview.mjs",
+      "gitBlob": "4aa5f546d94713fdb6553e15196e7122b1a7c9ca",
+      "sha256": "1bd7812ac1187b22cac93efbefca8325898f543c0d385ae2ae84073d558c67bb",
+      "bytes": 5695
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/import-template-packages.mjs",
+      "gitBlob": "03df9aa19ebd5b03f47b8e7ce44f567a79f0600e",
+      "sha256": "16db81edebd5371efdc2333a6d794655bcb48850723fa35daa863a4809b38c26",
+      "bytes": 3454
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/inspect-template-provider.mjs",
+      "gitBlob": "8d89c73f7785aafab705207628e4e692ae5ad721",
+      "sha256": "599aada2d88df70fce231f08894d0521f51093a5a753f13ac430d05fa9b33c2c",
+      "bytes": 1456
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/migrate-works.mjs",
+      "gitBlob": "a71be336c7e373e97153409b4bcd748897b56c76",
+      "sha256": "5c7f6e42e16a643bec7429c709ebe15fc526b7b00df9319b56b4b7f18ef201f9",
+      "bytes": 873
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/prepare-templates-preview.mjs",
+      "gitBlob": "9981ad984fc8d594d426a40f4cb20ebde7434eef",
+      "sha256": "68bb4fa1cfb669d88f70898caf0862059d5885d65c6fa37d73e7057d05a295a6",
+      "bytes": 1874
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/vercel-preview-client.mjs",
+      "gitBlob": "dff02ad4377c2afb7c9fa5f7db6405af747c242f",
+      "sha256": "df05ac0b13cff30d23331a438f882927deb41d339a1eede45d588387fde37c3f",
+      "bytes": 875
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/verify-admission.ts",
+      "gitBlob": "b80e62ca4d5543a5b91c0c7cabe324e44c13f6db",
+      "sha256": "e2e9510e98c2967a37edc48b83cc978118cb938b5caa99fd415fb1f4fec151d5",
+      "bytes": 3308
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/verify-community-direct-hosted.ts",
+      "gitBlob": "88fab8bd45e01f3243ad689ac60218fe4f6224f3",
+      "sha256": "1ec5ff4b630561b59fbff253f0430368b45e7d8440dbfa1cd2e25539fa5bbba1",
+      "bytes": 6404
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/verify-community-hosted.ts",
+      "gitBlob": "33436092548f9bdfe8e367ea7472ac910c4e2142",
+      "sha256": "a853278de50caebd7bfb8f65626afd4185108f543bceaa3c9882ba3b2ebd03fe",
+      "bytes": 6493
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/verify-live-evidence.mjs",
+      "gitBlob": "4951689119fd7898606b6f0e4e7a63a03c92b5c3",
+      "sha256": "5170f3b36b235e744c63e9871859654af23b4ce7cfe6231a8c1d82128a2bd965",
+      "bytes": 5248
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/verify-production-access.mjs",
+      "gitBlob": "f1494642965728b17253904b146702545d95e64a",
+      "sha256": "e9f6bd6a619b107b99e62996baa60d70c3bbd656f8d3dfa6eb112f28a13cdb0e",
+      "bytes": 2497
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/verify-works-ai.ts",
+      "gitBlob": "f8cb74a7bb5a4fe23af893428d3cc292df184499",
+      "sha256": "0a71978994261f147817d75d19a122613b496d76e0690178ecc16a7f385a781b",
+      "bytes": 4351
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/verify-works-proactive.ts",
+      "gitBlob": "352e9e3e85ae721be377a67b8f191b80744bbb2b",
+      "sha256": "9905c9b68902b37b7800dc1e1b059a7f3be3f171bd7371f9fab41943c80a1a69",
+      "bytes": 3569
+    },
+    {
+      "file": "apps/sentinel-lab/scripts/verify-works-storage.ts",
+      "gitBlob": "ab1cc3daa1513aa61eab430c5f76ad6e5b7f6457",
+      "sha256": "ae5ceaa060dedd29c2fe0fceb8b885f3f5310f35f89f46158e981f0e37b3af0e",
+      "bytes": 3901
+    },
+    {
+      "file": "apps/sentinel-lab/tsconfig.json",
+      "gitBlob": "1335c467b4d4a4aa99bd8138356031883a85f68c",
+      "sha256": "88ad291abc4e5b3401b0d68d35222438cf02452378ae83733f246d6ba48b0767",
+      "bytes": 762
     }
-  ],
-  "noRuntimeDirtyPaths": true,
-  "actualPurchasedSwitchboard100HashPreserved": true
+  ]
 }

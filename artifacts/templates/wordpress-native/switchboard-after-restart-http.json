@@ -1,0 +1,104 @@
+{
+  "product": "switchboard",
+  "phase": "after-restart",
+  "pages": [
+    {
+      "page": "home",
+      "url": "http://127.0.0.1:8971/",
+      "http_status": 200,
+      "h1": "Switchboard business copy saved on native WordPress",
+      "bytes": 46688,
+      "sha256": "a14404613c63c10a372d3bb600a1561d9fa00bdd5d3748a4881975c16567c26d",
+      "native_details_count": 3
+    },
+    {
+      "page": "services",
+      "url": "http://127.0.0.1:8971/services/",
+      "http_status": 200,
+      "h1": "Services",
+      "bytes": 39156,
+      "sha256": "c7bb5edb3a998cd74e20f8ddcc247b56e276f2483d394ee81a12511f083a512d",
+      "native_details_count": 3
+    },
+    {
+      "page": "service-detail",
+      "url": "http://127.0.0.1:8971/service-detail/",
+      "http_status": 200,
+      "h1": "Service detail",
+      "bytes": 46021,
+      "sha256": "741e597b93a03a148447fabece499764e3b6e87bbfcab769dd5c7ae3288786ab",
+      "native_details_count": 0
+    },
+    {
+      "page": "process",
+      "url": "http://127.0.0.1:8971/process/",
+      "http_status": 200,
+      "h1": "Our process",
+      "bytes": 38673,
+      "sha256": "7f0098cd0d3be81879e9d89e287f65a35c45e53303d4daa5b947948649c44fd9",
+      "native_details_count": 0
+    },
+    {
+      "page": "contact",
+      "url": "http://127.0.0.1:8971/contact/",
+      "http_status": 200,
+      "h1": "Contact",
+      "bytes": 39819,
+      "sha256": "d0a57e91c8d333bd7612f2e83bf29f3e4bdf2a9d80c4303daf9d87b1812e7c7c",
+      "native_details_count": 1
+    }
+  ],
+  "all_five_pages_http_200": true,
+  "all_html_referenced_local_assets_http_200": true,
+  "assets": {
+    "http://127.0.0.1:8971/wp-includes/blocks/navigation/style.min.css?ver=6.6": {
+      "status": 200,
+      "bytes": 16507,
+      "sha256": "4a8714a7f45ff22f002ebb62a7f1e91f3f14d1938e21789710cfad199561b62c"
+    },
+    "http://127.0.0.1:8971/wp-content/themes/switchboard/style.css?ver=1.0.2": {
+      "status": 200,
+      "bytes": 10575,
+      "sha256": "eba2f53b112d47fdfe48b16d04167d2e428bc5f8ec9325230c8a11cc8b19f1c3"
+    },
+    "http://127.0.0.1:8971/wp-includes/blocks/navigation/view.min.js?ver=6.6": {
+      "status": 200,
+      "bytes": 3300,
+      "sha256": "cef72ad53596109595c152da16e28c2799d53b4c151274c7b28c0324e7230f24"
+    },
+    "http://127.0.0.1:8971/wp-content/uploads/2026/10/native-replacement-switchboard.png": {
+      "status": 200,
+      "bytes": 1627,
+      "sha256": "470b7f179cb9566b0d0748928b6124d6ec1eb78324bb43a3443612c3287efb14"
+    },
+    "http://127.0.0.1:8971/wp-content/themes/switchboard/assets/service-plan.svg": {
+      "status": 200,
+      "bytes": 1174,
+      "sha256": "5b92a311cdf5bd0e069ca1c52c3d4dd57b3371ac52d839b1e7a5f05b31450301"
+    }
+  },
+  "phone_user_agent_html_200": true,
+  "phone_visual_render_test": false,
+  "saved_navigation_links_verified": true,
+  "primary_action_http_chain": [
+    {
+      "url": "http://127.0.0.1:8971/services/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8971/contact/",
+      "status": 200
+    },
+    {
+      "target": "mailto:native-switchboard@example.test",
+      "verified": "href only; not opened or sent"
+    }
+  ],
+  "contact_mailto_verified": true,
+  "contact_mailto": [
+    "mailto:native-switchboard@example.test",
+    "mailto:native-switchboard@example.test"
+  ],
+  "email_sent": false,
+  "email_client_opened": false
+}

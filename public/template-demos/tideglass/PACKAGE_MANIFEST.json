@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "tideglass-developer-v1",
   "product": "tideglass",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -15,8 +15,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 4839,
-      "sha256": "092f5281264c85e39c2c856aa49cbb448e49666fedda46b653e2a42f18ae5c76"
+      "bytes": 8636,
+      "sha256": "0e08af966116f26ac043c74cb3fa0faae247833094547b2f2555d5a90ecb0992"
     },
     {
       "path": "LICENSE.txt",

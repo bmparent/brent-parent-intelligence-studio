@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "switchboard-developer-v1",
   "product": "switchboard",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -15,8 +15,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 5284,
-      "sha256": "abe3fea16609a7b03b78e9f781a670ef63bc21b2e0987bd39612a7969576f9a4"
+      "bytes": 9081,
+      "sha256": "9a50df231e6c2f05620d9813d3b88e189e46dbf538c37af7239f925e2fd7c8b8"
     },
     {
       "path": "LICENSE.txt",

@@ -1,5 +1,5 @@
 {
-  "timestampUtc": "2026-10-11T02:21:11.273Z",
+  "timestampUtc": "2026-10-11T02:59:11.866Z",
   "scope": "local controlled backend tests",
   "tests": {
     "passed": 65,
@@ -22,7 +22,7 @@
     "npm --prefix apps/sentinel-lab run lint -- --incremental false"
   ],
   "refundReconciliation": "Signed matching TEST refund/dispute reconciles template side state after legacy handler consumes shared event ID. Controlled regression covers unrelated intent, LIVE rejection, duplicate delivery, unexpired token denial, immutable snapshot and late paid events.",
-  "archiveRetention": "Current Switchboard developer1.0.1, Nightjar developer1.0.3, WP1.0.1, Tideglass/Matter developer1.0.0. Old paid Switchboard1.0.0, Nightjar0/1/2 and WP0 snapshots retain original archives.",
+  "archiveRetention": "Current8 patch packages plus all16 retained immutable archives; meaningful regression verifies all16 previous snapshots retain original keys/hashes/names.",
   "actualProviderEvidenceSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124-bundle-b10fa5afe2852d8e",
   "actualGates": {
     "paidCheckout": "passed",
@@ -39,23 +39,33 @@
     "realDelayedPayment": "not attempted"
   },
   "limits": [
-    "Local reconciliation regression is not a provider event replay.",
-    "Actual e20b refund denied access but exposed fulfillment side-table readiness race; new source fixes it with regression.",
-    "No usable Resend secret; actual paid UI correctly reported email delivery failure.",
-    "No LIVE transaction or production promotion."
+    "No candidate RESEND_API_KEY binding; actual received receipt/recovery inbox delivery remains blocked.",
+    "Original actual refund denied an unexpired token on e20b. Fresh side state was already revoked before one genuine CLI retry; cause unknown and target-specific retry HTTP response unobserved.",
+    "No LIVE payment, production migration or production deployment.",
+    "WordPress and builder editions remain unavailable through explicit allowlist.",
+    "Exact-source protected remote build used; no new local build under C disk pressure.",
+    "Actual two-guest order-token isolation is planned independently of mail; authenticated-member and recovery-mail acceptance remain separate."
   ],
-  "currentBackendSha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
-  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
-  "bundleHash": "75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7",
+  "currentBackendSha": "d66ed7c081a211e402d39a23d4222135a4cb022e",
+  "sourceRevision": "d66ed7c081a211e402d39a23d4222135a4cb022e-bundle-bea44f211cc7229c",
+  "bundleHash": "bea44f211cc7229c5803097d6023095b50f354a966342e094055ef420b6caa6e",
   "archives": {
     "current": 8,
-    "retained": 8,
-    "total": 16,
-    "previousFifteenHashesPreserved": true,
+    "retained": 16,
+    "total": 24,
+    "previousSixteenHashesPreserved": true,
     "actualPurchasedSwitchboard100Unchanged": true
   },
   "protectedBuild": "READY",
-  "trackedSourceProvenance": "119 uploaded tracked files match exactHEAD blobs after repository clean filters; sixteen ignored archives match frozen receipts; bundle hash recomputed.",
-  "newVersionInstallation": "Switchboard1.0.1 exact buyer ZIP passed all source installation checks",
-  "currentValidation": "switchboard-version-validation.json"
+  "trackedSourceProvenance": "119 tracked uploaded runtime/source files match exactHEAD clean-filter blobs;24 ignored private archives match frozen receipt; complete manifest bundle recomputed.",
+  "newVersionInstallation": "All4 current developer exact buyer ZIP configuration/install checks passed",
+  "currentValidation": "guide-version-validation.json",
+  "genuineRefundRetry": {
+    "providerAcknowledged": true,
+    "attempts": 1,
+    "targetSpecificHttp": "unknown",
+    "preRetrySideState": "already revoked",
+    "initialSideRevocationCause": "unknown",
+    "receipt": "genuine-test-refund-retry.json"
+  }
 }

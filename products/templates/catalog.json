@@ -34,10 +34,10 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/switchboard/developer",
-          "packagePath": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+          "packagePath": "artifacts/templates/packages/switchboard-developer-v1.0.2.zip",
           "demoPath": "/template-demos/switchboard/",
           "installationGuide": "INSTALL.md",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "id": "switchboard-wordpress-v1",
@@ -49,9 +49,9 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/switchboard/wordpress",
-          "packagePath": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+          "packagePath": "artifacts/templates/packages/switchboard-wordpress-v1.0.2.zip",
           "installationGuide": "INSTALL.md",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "id": "switchboard-squarespace-v1",
@@ -117,9 +117,10 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/tideglass/developer",
-          "packagePath": "artifacts/templates/packages/tideglass-developer-v1.zip",
+          "packagePath": "artifacts/templates/packages/tideglass-developer-v1.0.1.zip",
           "demoPath": "/template-demos/tideglass/",
-          "installationGuide": "INSTALL.md"
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.1"
         },
         {
           "id": "tideglass-wordpress-v1",
@@ -131,9 +132,9 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/tideglass/wordpress",
-          "packagePath": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+          "packagePath": "artifacts/templates/packages/tideglass-wordpress-v1.0.2.zip",
           "installationGuide": "INSTALL.md",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "id": "tideglass-squarespace-v1",
@@ -197,9 +198,10 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/matter/developer",
-          "packagePath": "artifacts/templates/packages/matter-developer-v1.zip",
+          "packagePath": "artifacts/templates/packages/matter-developer-v1.0.1.zip",
           "demoPath": "/template-demos/matter/",
-          "installationGuide": "INSTALL.md"
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.1"
         },
         {
           "id": "matter-wordpress-v1",
@@ -211,9 +213,9 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/matter/wordpress",
-          "packagePath": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+          "packagePath": "artifacts/templates/packages/matter-wordpress-v1.0.2.zip",
           "installationGuide": "INSTALL.md",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "id": "matter-squarespace-v1",
@@ -277,10 +279,10 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/nightjar/developer",
-          "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
+          "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.4.zip",
           "demoPath": "/template-demos/nightjar/",
           "installationGuide": "INSTALL.md",
-          "version": "1.0.3"
+          "version": "1.0.4"
         },
         {
           "id": "nightjar-wordpress-v1",
@@ -292,9 +294,9 @@
           "status": "candidate",
           "commercialAvailability": "unavailable",
           "sourcePath": "products/templates/nightjar/wordpress",
-          "packagePath": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+          "packagePath": "artifacts/templates/packages/nightjar-wordpress-v1.0.2.zip",
           "installationGuide": "INSTALL.md",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "id": "nightjar-squarespace-v1",

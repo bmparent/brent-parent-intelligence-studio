@@ -8,7 +8,7 @@ import { createServer } from 'vite';
 // The production modules use Vite's import.meta.env replacement. Load through
 // the same SSR transform rather than changing product code for the test runner.
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
-const { TemplateChooser, TemplateCollection, TemplateDetail, TemplateStart, TemplateTerms } = await vite.ssrLoadModule('/src/components/TemplateShop.tsx');
+const { TemplateChooser, TemplateCollection, TemplateDetail, TemplateStart, TemplateTerms, TemplatePackageContents } = await vite.ssrLoadModule('/src/components/TemplateShop.tsx');
 const { templateProducts } = await vite.ssrLoadModule('/src/data/templateCatalog.ts');
 const { pageMetadata, prerenderPagePaths } = await vite.ssrLoadModule('/src/data/pages.ts');
 const { templateProducts: serverProducts } = await vite.ssrLoadModule('/functions/_shared/platform/templateCatalog.ts');
@@ -41,6 +41,24 @@ test('candidate price and guide records match the server-owned edition contract'
       assert.equal(server.version, edition.version || '1.0.0');
       assert.ok(prerenderPagePaths().includes(server.guidePath.replace(/\/$/, '')));
     }
+  }
+});
+
+test('all eight selected-edition guides and exact file/art contents are public before checkout', async () => {
+  for (const product of templateProducts) {
+    for (const edition of product.editions.filter((e: { platform: string }) => ['developer', 'wordpress'].includes(e.platform))) {
+      const manifest = JSON.parse(await readFile(`${edition.sourcePath}/PACKAGE_MANIFEST.json`, 'utf8'));
+      const contents = renderToStaticMarkup(createElement(TemplatePackageContents, { edition }));
+      assert.ok(contents.includes(`/templates/guides/${product.slug}/${edition.platform}/`), 'Public guide missing');
+      assert.ok(contents.includes(`Package version ${edition.version || '1.0.0'}`));
+      for (const file of [...manifest.files.map((item: { path: string }) => item.path), 'PACKAGE_MANIFEST.json']) assert.ok(contents.includes(`<code>${file}</code>`), `Missing exact file ${file}`);
+      for (const art of manifest.files.filter((item: { path: string }) => item.path.startsWith('assets/'))) assert.ok(contents.includes(art.path));
+      assert.match(contents, /no font files or stock photography/);
+    }
+    const detail = renderToStaticMarkup(createElement(TemplateDetail, { slug: product.slug }));
+    const guideIndex = detail.indexOf(`/templates/guides/${product.slug}/developer/`);
+    assert.ok(guideIndex >= 0 && guideIndex < detail.indexOf('type="checkbox"'), 'Installation guide must be visible before terms/checkout, without a purchase');
+    assert.ok(detail.includes('Included files and artwork'));
   }
 });
 

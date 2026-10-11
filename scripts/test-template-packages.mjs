@@ -65,11 +65,22 @@ for (const product of catalog.products) {
         catch(error) { report.failures.push({name:`${edition.id}: ${name} demo parity`,reason:error.message}); }
       }
     }
+    const install = await fs.readFile(path.join(source, 'INSTALL.md'), 'utf8');
+    check(`${edition.id}: buyer guide covers rollback, removal, common mistakes and integration limits`, () => {
+      for (const section of [/^## .*rollback/im, /^## .*removal/im, /^## Troubleshooting and common mistakes/m, /^## Email.*integrations/m]) assert.match(install, section);
+      assert.match(install, /back.?up/i);
+      assert.match(install, /mailto:/);
+      assert.match(install, /never sends|no included\s+contact form/);
+      assert.match(install, /never put secret|Do not paste private keys/);
+    });
     if (edition.platform === 'wordpress') {
       const css = await fs.readFile(path.join(source,'style.css'),'utf8'), theme = JSON.parse(await fs.readFile(path.join(source,'theme.json'),'utf8'));
       check(`${edition.id}: native block theme structure and GPL`, () => {
         assert.match(css,/Theme Name:/); assert.match(css,/License: GNU General Public License/); assert.equal(theme.version,3);
-        assert.match(css, /^Version: 1\.0\.1$/m);
+        assert.equal(css.match(/^Version: (.+)$/m)?.[1], edition.version || '1.0.0');
+        const functions = archive.get(`${prefix}/functions.php`).toString('utf8');
+        assert(functions.includes(`array(), '${edition.version || '1.0.0'}'`), 'stylesheet cache must follow edition version');
+        assert(install.includes(`${product.slug}-wordpress-v${edition.version || '1.0.0'}.zip`));
         assert(css.includes(`Update URI: https://eidos-works.com/shop/templates/${product.slug}/`));
         for (const file of ['templates/index.html','templates/front-page.html','parts/header.html','parts/footer.html','COPYING','demo-content.xml','INSTALL.md']) assert(names.includes(file),`missing ${file}`);
         assert.equal(names.filter(n => n.startsWith('patterns/')).length,5);
@@ -109,6 +120,26 @@ for (const product of catalog.products) {
     }
     const css = await fs.readFile(path.join(source,'styles.css'),'utf8');
     const js = await fs.readFile(path.join(source,'script.js'),'utf8');
+    check(`${edition.id}: guide describes exact config marker scope`, () => {
+      for (const marker of ['[data-brand]', '[data-email]', '[data-hero-title]', '[data-hero-intro]', '[data-primary-link]', '[data-hero-image]']) assert(install.includes(marker));
+      assert.match(install, /Only `pages.index`/);
+      assert.match(install, /`legal.html` has no page-copy markers/);
+      assert.match(install, /Other page copy, actions, navigation, and metadata require HTML edits/);
+    });
+    if (product.slug === 'nightjar') check('Nightjar: real poster layers and independent fallback event information', () => {
+      for (const name of ['index.html', 'program.html']) {
+        const html = archive.get(`${prefix}/${name}`).toString('utf8');
+        for (const key of ['sound', 'film', 'ideas']) {
+          assert(html.includes(`data-poster-layer="${key}"`));
+          assert(html.includes(`aria-controls="poster-${key}"`));
+          assert(html.includes(`data-poster-panel="${key}"`));
+        }
+        assert(html.includes('class="poster-event-links"'));
+        assert(!/<section[^>]+data-poster-panel[^>]+hidden/.test(html), 'all event information must be static before JS');
+      }
+      assert.match(css, /margin-top:-2\.5rem/);
+      assert.match(js, /panel\.hidden = panel\.dataset\.posterPanel/);
+    });
     check(`${edition.id}: responsive, reduced motion, focus, progressive JS`, () => {
       assert.match(css,/@media\(max-width:640px\)/); assert.match(css,/prefers-reduced-motion/); assert.match(css,/:focus-visible/); assert.match(css,/min-height:44px/);
       assert.match(css,/\.enhancement\{display:none\}/); assert.match(css,/\.js-ready \.enhancement/);
