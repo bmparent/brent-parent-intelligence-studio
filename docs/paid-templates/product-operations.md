@@ -180,9 +180,10 @@ not turn expansion into recolors. Platform adapters remain separately accepted.
 
 For a second version, allocate a new immutable version/archive location; keep the
 old order mapping and bytes. Add changelog, compatibility changes, and explicit
-update eligibility. The current packager's `version: 1.0.0` is the first-release
-constant: make version a validated per-edition field before packaging a second
-immutable version. Never reuse a released `-v1` ID/path for different bytes.
+update eligibility. Packaging and release metadata derive the validated version
+from each edition, with `1.0.0` as the initial-version fallback. An edition ID
+identifies the product/platform; a new immutable version needs its own archive
+path. Never replace bytes at an existing edition/version location.
 Retest affected source/platform/commerce gates. Price changes require approved
 server-owned records, never a client override. No weekly auto-publication or new
 subscription is implied.
@@ -230,7 +231,7 @@ acceptance. Those claims require their own current receipts.
 metadata; the frontend adapter derives the existing display strings from it.
 `npm run templates:build` builds packages/guides and generates the joined
 `products/templates/release-manifest.json`. It records all editions, the eight
-frozen 1.0.0 archive checksums, licenses, draft support windows, original asset
+current versioned archive checksums, licenses, draft support windows, original asset
 receipts, candidate change notes, and scoped compatibility evidence. Provider
 price IDs are intentionally null here because server commerce owns those values.
 The manifest and all edition availability records remain unavailable.
@@ -243,3 +244,10 @@ current `drive_manifest.json` records later capacity measurements and skips.
 Automatic retries to the failed destination are suppressed. No screenshots,
 browser profiles, source photos, provider configuration, or secrets are mirrored.
 Mounted-file verification would still leave remote cloud synchronization unproven.
+
+The four WordPress candidates use version 1.0.1 to set an owned `Update URI`
+identifier and avoid WordPress.org same-slug update confusion. It is not an
+automatic update service. Nightjar developer 1.0.1 fixes night-palette precedence
+and documents day/night color editing. The other three developer 1.0.0 archives
+remain byte-identical. Original 1.0.0 ZIPs and receipts are retained; evidence for
+old-byte native edits and final-byte replacement checks must remain distinct.

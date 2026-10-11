@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "nightjar-developer-v1",
   "product": "nightjar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -15,8 +15,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 4826,
-      "sha256": "0acfd9c35592eaccc093df8266fb571effb57eb98e7e5a2a19f2a6acf6e158cd"
+      "bytes": 5303,
+      "sha256": "3730f33005bff3eed08a2e1f8d2dbbd260df334a4335c2751b9b35f8835bef4f"
     },
     {
       "path": "LICENSE.txt",
@@ -80,8 +80,8 @@
     },
     {
       "path": "styles.css",
-      "bytes": 9940,
-      "sha256": "724496c84c8e89160120bd6191cb332152bd1a60fa4f65b994db58daee7392fa"
+      "bytes": 9990,
+      "sha256": "926da222c7fe6d48df7d2f6d882f1b4f0e639bf4172a7bc90d95c4bd737aca9d"
     }
   ],
   "license": "Eidos Works Commercial Template License 1.0",

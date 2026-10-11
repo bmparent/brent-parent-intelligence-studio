@@ -1,0 +1,25 @@
+{
+  "timestamp_utc": "2026-10-11T01:11:30.411992+00:00",
+  "headSha": "537e629e40939f49d4057480ca4bd13773ef1d7f",
+  "githubSiteQuality": {
+    "runId": 38100778699,
+    "status": "passed"
+  },
+  "vercel": {
+    "deploymentId": "dpl_26ANFKKKtPYFdj9cS3gRVPiLCsQa",
+    "project": "wellway",
+    "readyState": "ERROR",
+    "errorCode": "git_info_fail",
+    "createdAtMs": 1791680866580,
+    "readyAtMs": 1791680869431,
+    "elapsedMs": 2851,
+    "buildLogEvents": [],
+    "evidence": "Authenticated Vercel get_deployment and list_deployment_events read-only APIs; GitHub commit status for same SHA",
+    "interpretation": "Provider Git retrieval or metadata stage failed before recorded build execution. No build log evidence of a template helper or root build failure.",
+    "limits": "Whether transient or persistent Git connection/access failure is unproven. No provider retry, redeploy, configuration, or source mutation was performed.",
+    "priorHead": {
+      "sha": "6c69ff3de98148038c94e38a2afae39ca4de4be8",
+      "githubVercelStatus": "success"
+    }
+  }
+}

@@ -77,3 +77,12 @@ A browser, text editor, and static hosting are sufficient. No paid font, plugin,
 Eidos service, analytics, backend, booking engine, cart, or mandatory build is included.
 The developer license covers one finished website, including a client handoff.
 Read `LICENSE.txt`, `SUPPORT.md`, and `ASSETS.md` before purchasing or publishing.
+
+## Day and night palette
+
+The `colors` values in `site-config.js` configure the day palette. Night mode
+uses the fixed high-contrast token set in `.nightjar[data-theme=night]` in
+`styles.css`; those tokens intentionally override configured day colors. Change
+the night palette in that CSS rule if needed, and check normal text, cards,
+buttons, navigation, and contact fields in both modes after editing. Version
+1.0.1 corrects the original day-token precedence in night mode.

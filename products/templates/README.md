@@ -96,3 +96,15 @@ font, third-party package, or remote script is bundled. Browser, real-device,
 WordPress installation/editing, builder-host acceptance, and Stripe TEST commerce
 remain separate proof gates. See current compatibility and test receipts for
 actual acceptance; keep unverified editions unavailable in the catalog.
+
+## Candidate version transition
+
+The current catalog uses per-edition versions. Four WordPress themes are 1.0.1:
+`Update URI` identifies the owned product route and prevents same-slug WordPress.org
+update confusion; it does not supply an automatic update service. Their theme
+content, blocks, art, settings, and import content are unchanged from 1.0.0.
+Nightjar developer 1.0.1 fixes night-color precedence and documents palette editing.
+Switchboard, Tideglass, and Matter developer 1.0.0 archives retain their hashes.
+Original archives and `*-v1.0.0.json` receipts stay retained. See the version
+transition receipt for exact changed files and byte comparisons; all candidates
+remain commercially unavailable.

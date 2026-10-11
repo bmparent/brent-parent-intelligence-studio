@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "timestamp_utc": "2026-10-11T00:35:55.028402+00:00",
+  "timestamp_utc": "2026-10-11T01:35:01.495357+00:00",
   "status": "partial",
   "sale_enabled": false,
   "wordpress": {
-    "status": "blocked",
+    "status": "partial",
     "declared_minimums": {
       "wordpress": "6.6",
       "php": "8.1"
@@ -18,25 +18,370 @@
       "database": "SQLite",
       "execution": "PHP WebAssembly"
     },
-    "receipt": "artifacts/templates/wordpress-install/installation-receipt.json",
-    "acceptance": "Actual final buyer ZIPs must install/activate, the packaged native Home pattern must support changed business text/image and publish a working ordinary contact action.",
+    "receipt": "artifacts/templates/wordpress-install-external/browser-ui-receipt.json",
+    "acceptance": "Exact ZIP install/activation, native Site Editor heading and image upload/save/publish, packaged WXR page setup, five published theme pages through native navigation, native Details keyboard and ordinary primary/contact action in the recorded browser sandbox.",
     "limitations": [
-      "No native PHP/MySQL host tested.",
-      "Visual Site Editor UI editing not yet exercised.",
-      "WordPress.com plan/upload acceptance untested.",
-      "Runtime did not boot; all WordPress edit/publish/action checks remain not_run."
+      "Both runtimes are PHP.wasm with MySQL-compatible SQLite layer, not native PHP/MySQL hosting.",
+      "One initially clean runtime per phase, sequential themes; page records/media shared in baseline phase.",
+      "Native WordPress Save/frontend changes passed within baseline session. Playground outer toolbar Autosave failed; no restart durability/export tested.",
+      "Final1.0.1 native business/image edits and five-page setup were not repeated; reused only because content/layout/data are byte-identical and stylesheet change is header only.",
+      "WordPress.com plan/upload, independent native hosts, minimum WP6.6/PHP8.1, physical devices and connected email/form/booking/payment delivery untested.",
+      "Native overwrite link did not work in Playground; final packages tested as fresh installs in second runtime."
     ],
-    "sale_status": "candidate unavailable; installation not accepted",
-    "reason": "Clean Playground startup unresolved. Supported temporary Node24.18.0 with explicit WASM JSPI/six workers failed both on C: scratch and on new E: scratch; E: startup timed out at180240ms before installation. No running WordPress/PHP version or theme acceptance established.",
+    "sale_status": "candidate unavailable; native-host, durability and hosted-plan gates remain",
+    "reason": "Final1.0.1 exact ZIPs freshly installed and activated in second official browser runtime. Full native content UI proof retained from baseline with explicit metadata-only byte comparison. Overall gate partial, all sales disabled.",
     "actual_tested_versions": {
-      "wordpress": null,
-      "php": null,
-      "node": "v24.18.0",
-      "playground_cli": "3.1.57"
+      "wordpress": "7.1.2",
+      "php": "8.3.33",
+      "browser": "Chromium 145.0.7632.6",
+      "server": "PHP.wasm",
+      "server_architecture": "Emscripten 4.0.19 wasm32",
+      "playground_remote_build": "63df6816ce0d40bce164631d45fa7b80f271648c",
+      "database": "SQLite/WASM; exact SQLite version not inspected"
     },
     "diagnostic": "artifacts/templates/wordpress-install/startup-diagnostic.json",
     "external_attempt_receipt": "artifacts/templates/wordpress-install-external/installation-receipt.json",
     "archive_targets": [
+      {
+        "edition": "switchboard-wordpress-v1",
+        "version": "1.0.1",
+        "archive": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+        "archive_sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+        "archive_bytes": 29399
+      },
+      {
+        "edition": "tideglass-wordpress-v1",
+        "version": "1.0.1",
+        "archive": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+        "archive_sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+        "archive_bytes": 30027
+      },
+      {
+        "edition": "matter-wordpress-v1",
+        "version": "1.0.1",
+        "archive": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+        "archive_sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+        "archive_bytes": 30748
+      },
+      {
+        "edition": "nightjar-wordpress-v1",
+        "version": "1.0.1",
+        "archive": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+        "archive_sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+        "archive_bytes": 29742
+      }
+    ],
+    "bounded_browser_native_acceptance": "passed",
+    "previous_cli_receipt": "artifacts/templates/wordpress-install/installation-receipt.json",
+    "local_cli_outcome": {
+      "status": "blocked_before_installation",
+      "node": "24.18.0",
+      "playground_cli": "3.1.57",
+      "downloaded_wordpress": "7.1.3",
+      "running_wordpress": null,
+      "running_php": null,
+      "bounded_startup_timeout_ms": 180000,
+      "observed_external_timeout_ms": 180240,
+      "reason": "CLI startup never became ready on C or new E scratch. Official browser runtime succeeded; cause of CLI stall remains unresolved."
+    },
+    "scope": "Two initially clean official browser Playground runtimes, each with sequential theme activation. Runtime1: full native edit/page/action checks on1.0.0 baseline ZIPs. Runtime2: final exact1.0.1 ZIP fresh install/activation and native header/default frontend checks. No four independent clean sites.",
+    "theme_results": [
+      {
+        "product": "switchboard",
+        "version": "1.0.1",
+        "archive_path": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+        "archive_sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+        "archive_bytes": 29399,
+        "status": "partial",
+        "baseline_archive_sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+        "metadata_only_changed_members": [
+          "switchboard/INSTALL.md",
+          "switchboard/PACKAGE_MANIFEST.json",
+          "switchboard/README.md",
+          "switchboard/functions.php",
+          "switchboard/style.css"
+        ],
+        "unchanged_core_content_members": 19,
+        "checks": {
+          "archive_hash": "passed",
+          "style_change_only_version_and_update_uri": "passed",
+          "native_layout_content_assets_byte_unchanged": "passed",
+          "final_exact_zip_fresh_install": "passed",
+          "final_exact_zip_activation": "passed",
+          "installed_header_native_file_editor_read": "passed",
+          "final_default_frontend_and_cache_version": "passed"
+        },
+        "baseline_native_ui_proof": "artifacts/templates/wordpress-browser/installation-receipt.json",
+        "installed_header": {
+          "version": "1.0.1",
+          "update_uri": "https://eidos-works.com/shop/templates/switchboard/",
+          "method": "Read visible native Theme File Editor source; no update/save performed."
+        },
+        "screenshot": {
+          "private_file": "switchboard-wordpress-v1.0.1-native-header.png",
+          "sha256": "0d9bffbce2f602029c1d0451394da1e2d9507947d172ccee1e4aa92e78326fb3"
+        },
+        "baseline_native_content_ui_reuse": "Prior heading/image edit, page import, five-page navigation, keyboard Details, main action/contact checks passed on baseline bytes. Native content/layout/art data now byte-identical; functions difference only cache version. Those edits/pages were not repeated in this second clean browser runtime.",
+        "baseline_native_checks": {
+          "archive_sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+          "checks": {
+            "exact_zip_install": "passed",
+            "activation": "passed",
+            "native_heading_edit_publish": "passed",
+            "native_image_upload_publish": "passed",
+            "supplied_wxr_import": "passed",
+            "ordinary_primary_action_to_contact": "passed",
+            "five_published_page_templates_and_navigation": "passed",
+            "native_details_keyboard": "passed",
+            "phone_home_no_horizontal_overflow": "passed"
+          },
+          "five_pages": [
+            {
+              "path": "/",
+              "heading": "Switchboard revised test studio"
+            },
+            {
+              "path": "/contact/",
+              "heading": "Contact"
+            },
+            {
+              "path": "/process/",
+              "heading": "Our process"
+            },
+            {
+              "path": "/service-detail/",
+              "heading": "Service detail"
+            },
+            {
+              "path": "/services/",
+              "heading": "Services"
+            }
+          ],
+          "contact_target": "mailto:hello@example.com; verified href only, no email client/draft opened and no message sent."
+        }
+      },
+      {
+        "product": "tideglass",
+        "version": "1.0.1",
+        "archive_path": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+        "archive_sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+        "archive_bytes": 30027,
+        "status": "partial",
+        "baseline_archive_sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+        "metadata_only_changed_members": [
+          "tideglass/INSTALL.md",
+          "tideglass/PACKAGE_MANIFEST.json",
+          "tideglass/README.md",
+          "tideglass/functions.php",
+          "tideglass/style.css"
+        ],
+        "unchanged_core_content_members": 19,
+        "checks": {
+          "archive_hash": "passed",
+          "style_change_only_version_and_update_uri": "passed",
+          "native_layout_content_assets_byte_unchanged": "passed",
+          "final_exact_zip_fresh_install": "passed",
+          "final_exact_zip_activation": "passed",
+          "installed_header_native_file_editor_read": "passed",
+          "final_default_frontend_and_cache_version": "passed"
+        },
+        "baseline_native_ui_proof": "artifacts/templates/wordpress-browser/installation-receipt.json",
+        "installed_header": {
+          "version": "1.0.1",
+          "update_uri": "https://eidos-works.com/shop/templates/tideglass/",
+          "method": "Read visible native Theme File Editor source; no update/save performed."
+        },
+        "screenshot": {
+          "private_file": "tideglass-wordpress-v1.0.1-native-header.png",
+          "sha256": "a2a2e49b5ee1140feb35b0d990e4a81612bc887ede603e426690429314d01fec"
+        },
+        "baseline_native_content_ui_reuse": "Prior heading/image edit, page import, five-page navigation, keyboard Details, main action/contact checks passed on baseline bytes. Native content/layout/art data now byte-identical; functions difference only cache version. Those edits/pages were not repeated in this second clean browser runtime.",
+        "baseline_native_checks": {
+          "archive_sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+          "checks": {
+            "exact_zip_install": "passed",
+            "activation": "passed",
+            "native_heading_edit_publish": "passed",
+            "native_image_upload_publish": "passed",
+            "supplied_wxr_import": "passed",
+            "five_published_page_templates_and_navigation": "passed",
+            "native_details_keyboard": "passed",
+            "ordinary_primary_action_to_contact": "passed"
+          },
+          "five_pages": [
+            {
+              "path": "/",
+              "heading": "Tideglass revised test studio"
+            },
+            {
+              "path": "/contact/",
+              "heading": "Plan your stay"
+            },
+            {
+              "path": "/guide/",
+              "heading": "Local guide"
+            },
+            {
+              "path": "/stay-detail/",
+              "heading": "The house"
+            },
+            {
+              "path": "/stays/",
+              "heading": "Stays"
+            }
+          ],
+          "contact_target": "mailto:hello@example.com; verified href only, no email client/draft opened and no message sent."
+        }
+      },
+      {
+        "product": "matter",
+        "version": "1.0.1",
+        "archive_path": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+        "archive_sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+        "archive_bytes": 30748,
+        "status": "partial",
+        "baseline_archive_sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+        "metadata_only_changed_members": [
+          "matter/INSTALL.md",
+          "matter/PACKAGE_MANIFEST.json",
+          "matter/README.md",
+          "matter/functions.php",
+          "matter/style.css"
+        ],
+        "unchanged_core_content_members": 20,
+        "checks": {
+          "archive_hash": "passed",
+          "style_change_only_version_and_update_uri": "passed",
+          "native_layout_content_assets_byte_unchanged": "passed",
+          "final_exact_zip_fresh_install": "passed",
+          "final_exact_zip_activation": "passed",
+          "installed_header_native_file_editor_read": "passed",
+          "final_default_frontend_and_cache_version": "passed"
+        },
+        "baseline_native_ui_proof": "artifacts/templates/wordpress-browser/installation-receipt.json",
+        "installed_header": {
+          "version": "1.0.1",
+          "update_uri": "https://eidos-works.com/shop/templates/matter/",
+          "method": "Read visible native Theme File Editor source; no update/save performed."
+        },
+        "screenshot": {
+          "private_file": "matter-wordpress-v1.0.1-native-header.png",
+          "sha256": "2d94980c16ea8379d0275a5b52bc4c0ac413648d995f7d326802de4924300290"
+        },
+        "baseline_native_content_ui_reuse": "Baseline native business/image/page/action proof reused only with explicit metadata/cache-only diff; not repeated in second runtime.",
+        "runner_adjustment": "Native editor loaded beyond initial5s; retried actual visible CodeMirror, no theme edits.",
+        "baseline_native_checks": {
+          "archive_sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+          "checks": {
+            "exact_zip_install": "passed",
+            "activation": "passed",
+            "native_heading_edit_publish": "passed",
+            "native_image_upload_publish": "passed",
+            "supplied_wxr_import": "passed",
+            "five_published_page_templates_and_navigation": "passed",
+            "native_details_keyboard": "passed",
+            "ordinary_primary_action_to_contact": "passed"
+          },
+          "five_pages": [
+            {
+              "path": "/",
+              "heading": "Matter revised test studio"
+            },
+            {
+              "path": "/collection/",
+              "heading": "Collection"
+            },
+            {
+              "path": "/contact/",
+              "heading": "Contact"
+            },
+            {
+              "path": "/object/",
+              "heading": "Object detail"
+            },
+            {
+              "path": "/process/",
+              "heading": "Our process"
+            }
+          ],
+          "contact_target": "mailto:hello@example.com; verified href only, no email client/draft opened and no message sent."
+        }
+      },
+      {
+        "product": "nightjar",
+        "version": "1.0.1",
+        "archive_path": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+        "archive_sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+        "archive_bytes": 29742,
+        "status": "partial",
+        "baseline_archive_sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+        "metadata_only_changed_members": [
+          "nightjar/INSTALL.md",
+          "nightjar/PACKAGE_MANIFEST.json",
+          "nightjar/README.md",
+          "nightjar/functions.php",
+          "nightjar/style.css"
+        ],
+        "unchanged_core_content_members": 19,
+        "checks": {
+          "archive_hash": "passed",
+          "style_change_only_version_and_update_uri": "passed",
+          "native_layout_content_assets_byte_unchanged": "passed",
+          "final_exact_zip_fresh_install": "passed",
+          "final_exact_zip_activation": "passed",
+          "installed_header_native_file_editor_read": "passed",
+          "final_default_frontend_and_cache_version": "passed"
+        },
+        "baseline_native_ui_proof": "artifacts/templates/wordpress-browser/installation-receipt.json",
+        "installed_header": {
+          "version": "1.0.1",
+          "update_uri": "https://eidos-works.com/shop/templates/nightjar/",
+          "method": "Read visible native Theme File Editor source; no update/save performed."
+        },
+        "screenshot": {
+          "private_file": "nightjar-wordpress-v1.0.1-native-header.png",
+          "sha256": "5b5cb3239896280dfe9708ac08cf6b623fe7bf5db8549666465595a0d05380ed"
+        },
+        "baseline_native_content_ui_reuse": "Prior heading/image edit, page import, five-page navigation, keyboard Details, main action/contact checks passed on baseline bytes. Native content/layout/art data now byte-identical; functions difference only cache version. Those edits/pages were not repeated in this second clean browser runtime.",
+        "baseline_native_checks": {
+          "archive_sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+          "checks": {
+            "exact_zip_install": "passed",
+            "activation": "passed",
+            "native_heading_edit_publish": "passed",
+            "native_image_upload_publish": "passed",
+            "supplied_wxr_import": "passed",
+            "five_published_page_templates_and_navigation": "passed",
+            "native_details_keyboard": "passed",
+            "ordinary_primary_action_to_contact": "passed"
+          },
+          "five_pages": [
+            {
+              "path": "/",
+              "heading": "Nightjar revised test studio"
+            },
+            {
+              "path": "/about/",
+              "heading": "About"
+            },
+            {
+              "path": "/contact/",
+              "heading": "Contact"
+            },
+            {
+              "path": "/event/",
+              "heading": "Event detail"
+            },
+            {
+              "path": "/program/",
+              "heading": "Program"
+            }
+          ],
+          "contact_target": "mailto:hello@example.com; verified href only, no email client/draft opened and no message sent."
+        }
+      }
+    ],
+    "baseline_archive_targets": [
       {
         "edition": "switchboard-wordpress-v1",
         "archive": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
@@ -61,7 +406,10 @@
         "archive_sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
         "archive_bytes": 29728
       }
-    ]
+    ],
+    "baseline_native_ui_receipt": "artifacts/templates/wordpress-browser/installation-receipt.json",
+    "final_exact_byte_install_activation": "passed",
+    "final_metadata_header_read": "passed"
   },
   "pilots": [
     {
@@ -120,6 +468,7 @@
     "No Squarespace or GoDaddy hosted installation.",
     "No live connected inquiry, booking, payment, or ticket fulfillment from these pilots.",
     "Local Chromium phone emulation is not physical-device acceptance.",
-    "WordPress clean-install acceptance blocked before activation."
+    "Four independent clean native PHP/MySQL WordPress hosts were not tested.",
+    "WordPress.com plan/upload and connected delivery remain untested."
   ]
 }

@@ -1,0 +1,42 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:templates
+> npm run templates:build && node scripts/test-template-packages.mjs && node --test scripts/test-template-release-manifest.mjs && node --import tsx --test scripts/test-template-shop.ts
+
+
+> brent-parent-intelligence-studio@1.1.0 templates:build
+> node scripts/build-template-packages.mjs && node scripts/build-template-guides.mjs && node scripts/build-template-release-manifest.mjs
+
+Built 8 private template packages. Published four byte-identical source demos. No ZIP copied to public/.
+Generated 8 public installation guides from the packaged source instructions.
+Release manifest: 4 products, 8 frozen archives; commerce unavailable. Drive: Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied.
+PASSED: 765 package checks passed; 0 failed. See artifacts/templates/package-tests.json.
+✔ release manifest joins exactly eight unchanged private buyer archives (6.1912ms)
+✔ catalog presentation records retain prior UI strings and public prices remain drafts (1.3529ms)
+✔ WordPress acceptance stays incomplete with version provenance and GPL rights (0.9567ms)
+✔ archive mismatch and existing-version mutation are rejected without writing bytes (3.0742ms)
+✔ Drive mirror reserves 64 MiB and skips unknown or insufficient capacity (1.268ms)
+✔ clean checkout test command builds ignored archives before integrity and SSR tests (69.492ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 812.6616
+(node:21412) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+9:33:32 PM [vite] (client) [optimizer] scanning dependencies...
+✔ each collection entry points to its actual demo and independent five-page product detail (223.2731ms)
+✔ candidate price and guide records match the server-owned edition contract (1.2001ms)
+✔ platform help, terms, and recovery disclose product boundaries (14.8985ms)
+✔ new candidate preserves Cinematic Starter product files and price (106.8893ms)
+9:33:42 PM [vite] (client) [optimizer] bundling dependencies...
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17548.4175

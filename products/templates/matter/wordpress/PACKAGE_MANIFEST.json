@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "matter-wordpress-v1",
   "product": "matter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -20,8 +20,8 @@
     },
     {
       "path": "INSTALL.md",
-      "bytes": 4508,
-      "sha256": "283afbed3597a9f3f1ad8239eb93464d3d60773cf43be0368782d85f72dc692b"
+      "bytes": 4512,
+      "sha256": "f07734e2ab8bba856a064296f18259eb75818961089821044e4ba883e40bd2be"
     },
     {
       "path": "LICENSE.txt",
@@ -31,7 +31,7 @@
     {
       "path": "README.md",
       "bytes": 277,
-      "sha256": "d62f31cc3d1a6335b205125eb4c756fe97f881523df7e5ba022b23e13402296c"
+      "sha256": "a14d66da03ab3efca1b60e66f3b9b519c6c9935011d298207d5707487c04c695"
     },
     {
       "path": "SUPPORT.md",
@@ -56,7 +56,7 @@
     {
       "path": "functions.php",
       "bytes": 490,
-      "sha256": "8fdb1c01edef0b1b657b15cd6d30820f30ff26f040146d7c8c3d252f1b37b958"
+      "sha256": "6e9ccbdb1248404e7a62cb03dc6686320f07ac0b60ab8ea215df74e6b03eb4d2"
     },
     {
       "path": "parts/footer.html",
@@ -95,8 +95,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 11556,
-      "sha256": "78a187ece2e0c69c01ace0c7e186da83cfe6b4bd15df52f432d0112f88b6396c"
+      "bytes": 11615,
+      "sha256": "962b9b69c739f4280255e72d1f54537078e525d12dae7ac2dce106aeb706867e"
     },
     {
       "path": "templates/404.html",

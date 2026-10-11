@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "timestamp_utc": "2026-10-11T01:29:44.504882+00:00",
+  "status": "passed",
+  "scope": "Exact archived-file comparisons for versioned WordPress identity metadata and Nightjar developer palette fix; not a compatibility or commercial release claim.",
+  "checks": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.0",
+      "previousArchive": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "currentArchive": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "previousSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "currentSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "switchboard-wordpress-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "currentArchive": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+      "previousSha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+      "currentSha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "README.md",
+        "functions.php",
+        "style.css"
+      ],
+      "unchangedArchive": false
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.0",
+      "previousArchive": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "currentArchive": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "previousSha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+      "currentSha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "tideglass-wordpress-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "currentArchive": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+      "previousSha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+      "currentSha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "README.md",
+        "functions.php",
+        "style.css"
+      ],
+      "unchangedArchive": false
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.0",
+      "previousArchive": "artifacts/templates/packages/matter-developer-v1.zip",
+      "currentArchive": "artifacts/templates/packages/matter-developer-v1.zip",
+      "previousSha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+      "currentSha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [],
+      "unchangedArchive": true
+    },
+    {
+      "editionId": "matter-wordpress-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "currentArchive": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+      "previousSha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+      "currentSha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "README.md",
+        "functions.php",
+        "style.css"
+      ],
+      "unchangedArchive": false
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/nightjar-developer-v1.zip",
+      "currentArchive": "artifacts/templates/packages/nightjar-developer-v1.0.1.zip",
+      "previousSha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8",
+      "currentSha256": "f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "styles.css"
+      ],
+      "unchangedArchive": false
+    },
+    {
+      "editionId": "nightjar-wordpress-v1",
+      "previousVersion": "1.0.0",
+      "currentVersion": "1.0.1",
+      "previousArchive": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "currentArchive": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+      "previousSha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+      "currentSha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+      "oldArchivePreservedHashVerified": true,
+      "currentArchiveHashVerified": true,
+      "changedFiles": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "README.md",
+        "functions.php",
+        "style.css"
+      ],
+      "unchangedArchive": false
+    }
+  ],
+  "wpMetadataOnly": "style.css header/version/Update URI, functions.php stylesheet cache version, README version, INSTALL archive name, generated package manifest only. Native blocks, templates, parts, patterns, theme.json, SVG art and WXR remain byte-identical.",
+  "nightjarDeveloperOnly": "Fixed night palette precedence in CSS and corresponding INSTALL guidance; generated package manifest updated.",
+  "retention": "All eight original 1.0.0 ZIPs retained; five superseded and three still current.",
+  "availability": "All editions remain unavailable."
+}

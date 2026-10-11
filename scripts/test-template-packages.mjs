@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { inflateRawSync } from 'node:zlib';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
-import { crc32, filesBelow } from './build-template-packages.mjs';
+import { crc32, filesBelow, verifyExistingArchive } from './build-template-packages.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = JSON.parse(await fs.readFile(path.join(root, 'products/templates/catalog.json'), 'utf8'));
@@ -50,6 +50,7 @@ for (const product of catalog.products) {
     const prefix = edition.platform === 'wordpress' ? product.slug : edition.id;
     check(`${edition.id}: ZIP bytes equal reviewed source; manifest hashes complete`, () => {
       assert.equal(manifest.editionId, edition.id); assert.equal(archive.size, names.length);
+      assert.equal(manifest.version, edition.version || '1.0.0');
       assert.deepEqual(manifest.files.map(f => f.path).sort(), names.filter(n => n !== 'PACKAGE_MANIFEST.json').sort());
     });
     for (const name of names) {
@@ -68,6 +69,8 @@ for (const product of catalog.products) {
       const css = await fs.readFile(path.join(source,'style.css'),'utf8'), theme = JSON.parse(await fs.readFile(path.join(source,'theme.json'),'utf8'));
       check(`${edition.id}: native block theme structure and GPL`, () => {
         assert.match(css,/Theme Name:/); assert.match(css,/License: GNU General Public License/); assert.equal(theme.version,3);
+        assert.match(css, /^Version: 1\.0\.1$/m);
+        assert(css.includes(`Update URI: https://eidos-works.com/shop/templates/${product.slug}/`));
         for (const file of ['templates/index.html','templates/front-page.html','parts/header.html','parts/footer.html','COPYING','demo-content.xml','INSTALL.md']) assert(names.includes(file),`missing ${file}`);
         assert.equal(names.filter(n => n.startsWith('patterns/')).length,5);
       });
@@ -113,6 +116,12 @@ for (const product of catalog.products) {
     });
   }
 }
+check('Existing archive mutation is rejected before any ZIP write', () => {
+  const frozen = Buffer.from('frozen version bytes');
+  assert.doesNotThrow(() => verifyExistingArchive(frozen, Buffer.from(frozen), 'version.zip'));
+  assert.doesNotThrow(() => verifyExistingArchive(undefined, frozen, 'new-version.zip'));
+  assert.throws(() => verifyExistingArchive(frozen, Buffer.from('changed bytes'), 'version.zip'), /Immutable archive already exists/);
+});
 check('Every static page has distinct content',()=>assert.equal(new Set(allHtmlHashes).size,allHtmlHashes.length));
 const publicFiles = await filesBelow(path.join(root,'public/template-demos'));
 check('No public downloadable ZIP, credential, or third-party bundle',()=>assert(!publicFiles.some(n => /\.(zip|pem|key|pfx|p12)$|(^|\/)\.env/.test(n))));

@@ -12,13 +12,13 @@ const catalog = await read('products/templates/catalog.json');
 const saved = await read('products/templates/release-manifest.json');
 const frozen = {
   'switchboard-developer-v1': 'e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a',
-  'switchboard-wordpress-v1': 'f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846',
+  'switchboard-wordpress-v1': 'da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb',
   'tideglass-developer-v1': '34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7',
-  'tideglass-wordpress-v1': '09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5',
+  'tideglass-wordpress-v1': '4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785',
   'matter-developer-v1': 'f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6',
-  'matter-wordpress-v1': 'bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8',
-  'nightjar-developer-v1': 'd27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8',
-  'nightjar-wordpress-v1': '30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d',
+  'matter-wordpress-v1': '3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe',
+  'nightjar-developer-v1': 'f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39',
+  'nightjar-wordpress-v1': '558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739',
 };
 
 test('release manifest joins exactly eight unchanged private buyer archives', () => {
@@ -26,13 +26,14 @@ test('release manifest joins exactly eight unchanged private buyer archives', ()
   assert.deepEqual(manifest.packages.map(item => [item.editionId, item.sha256]), saved.packages.map(item => [item.editionId, item.sha256]));
   for (const archive of manifest.packages) {
     assert.equal(archive.sha256, frozen[archive.editionId]);
-    assert.equal(archive.version, '1.0.0');
+    assert.equal(archive.version, archive.platform === 'wordpress' || archive.product === 'nightjar' ? '1.0.1' : '1.0.0');
     assert.equal(archive.distribution, 'private-fulfillment-only');
     for (const file of ['LICENSE.txt', 'SUPPORT.md', 'ASSETS.md', 'INSTALL.md']) assert.ok(archive.documentationAndAssets.some(item => item.path.endsWith(`/${file}`)));
     assert.ok(archive.documentationAndAssets.some(item => item.path.includes('/assets/')));
     assert.equal(archive.support.installationGuidanceDays, 30);
     assert.equal(archive.support.suppliedFileDefectDays, 90);
     assert.equal(archive.changelog[0].status, 'candidate');
+    assert.equal(archive.changelog[0].version, archive.version);
   }
 });
 
@@ -63,6 +64,13 @@ test('WordPress acceptance stays incomplete with version provenance and GPL righ
     const edition = product.editions.find(item => item.platform === 'wordpress');
     assert.equal(edition.compatibility.acceptance, 'incomplete');
     assert.ok(Object.hasOwn(edition.compatibility.actualTestedVersions, 'wordpress'));
+    assert.equal(edition.compatibility.browserPlaygroundStatus, 'partial');
+    assert.equal(edition.compatibility.browserPlaygroundChecks.final_exact_zip_activation, 'passed');
+    assert.equal(edition.compatibility.installedThemeMetadata.version, '1.0.1');
+    assert.equal(edition.compatibility.installedThemeMetadata.update_uri, `https://eidos-works.com/shop/templates/${product.slug}/`);
+    assert.notEqual(edition.compatibility.baselineNativeContentProof.archive_sha256, edition.package.sha256);
+    assert.equal(edition.compatibility.baselineNativeContentProof.checks.native_heading_edit_publish, 'passed');
+    assert.equal(edition.compatibility.cliStatus, 'blocked_before_installation');
     const archive = manifest.packages.find(item => item.editionId === edition.id);
     assert.equal(archive.license.identifier, 'GPL-2.0-or-later');
     assert.ok(archive.documentationAndAssets.some(item => item.path.endsWith('/COPYING')));

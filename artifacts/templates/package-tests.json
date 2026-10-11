@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-11T01:03:45.032Z",
+  "generatedAt": "2026-10-11T01:34:31.699Z",
   "checks": [
     {
       "name": "catalog: four distinct families, unique edition IDs, unavailable until accepted",
@@ -3055,6 +3055,10 @@
       "status": "passed"
     },
     {
+      "name": "Existing archive mutation is rejected before any ZIP write",
+      "status": "passed"
+    },
+    {
       "name": "Every static page has distinct content",
       "status": "passed"
     },
@@ -3068,6 +3072,6 @@
     "Static structure and archive checks do not establish WordPress activation/editing, real device behavior, live checkout, or platform-builder acceptance. See separate clean-install/browser receipts."
   ],
   "status": "passed",
-  "passed": 765,
+  "passed": 766,
   "failed": 0
 }

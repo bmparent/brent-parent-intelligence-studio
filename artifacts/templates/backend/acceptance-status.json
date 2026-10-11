@@ -1,27 +1,35 @@
 {
-  "timestampUtc": "2026-10-11T01:02:13.022Z",
+  "timestampUtc": "2026-10-11T01:35:32.652Z",
   "scope": "TEST candidate; no production promotion",
   "tests": {
     "command": "npm --prefix apps/sentinel-lab test",
-    "passed": 63,
+    "passed": 64,
     "failed": 0,
     "skipped": 0,
-    "log": "tests-final.log"
+    "log": "version-update-tests.log",
+    "focusedRetention": {
+      "passed": 10,
+      "failed": 0,
+      "log": "version-regression-tests.log"
+    }
   },
   "typecheck": {
     "command": "npm --prefix apps/sentinel-lab run lint -- --incremental false",
     "status": "passed",
-    "log": "typecheck-final.log"
+    "log": "version-update-typecheck.log"
   },
   "localBuild": {
     "command": "npm --prefix apps/sentinel-lab run build -- --webpack",
-    "status": "passed before final additive async-failure and TEST challenge changes; final remote build pending",
+    "status": "passed before final additive async-failure and TEST challenge changes; exact final source remote Vercel build passed",
     "log": "build-webpack-retry.log",
     "defaultTurbopack": "failed because node_modules junction resolved outside isolated worktree",
     "finalVerification": "passed by final source remote Vercel build"
   },
   "archives": {
-    "count": 8,
+    "count": 13,
+    "currentPackages": 8,
+    "retainedVersions": 5,
+    "allEightOriginalHashesPreserved": true,
     "receipt": "private-archive-receipt-final.json",
     "private": true,
     "verifiedEditions": [
@@ -30,7 +38,12 @@
       "matter-developer-v1",
       "nightjar-developer-v1"
     ],
-    "wordpress": "installation acceptance blocked",
+    "versions": {
+      "unchangedDeveloper": "Switchboard/Tideglass/Matter1.0.0",
+      "updatedDeveloper": "Nightjar1.0.1",
+      "wordpress": "all four1.0.1; current native reacceptance pending"
+    },
+    "wordpress": "unavailable",
     "builderPilots": "unavailable"
   },
   "providers": {
@@ -40,28 +53,29 @@
     "turnstile": "official public TEST keys and server validation; not live bot protection"
   },
   "hosted": {
-    "backend": "passed: final protected READY; authenticated catalog200; anonymous302",
-    "catalog": "passed: exact final source pin; four developer editions available; WP and pilots blocked",
+    "backend": "passed: updated protected READY; authenticated catalog200; anonymous302",
+    "catalog": "passed: exact updated source pin; four accepted developer editions current versions available; WP and pilots blocked",
     "negativeControls": "passed: client price override400; unsupported WP503; unknown receipt404",
     "testChallenge": "passed: actual official public TEST siteverify and generic recovery200",
-    "testCheckout": "passed preparation only: actual Stripe TEST session USD9900, livemodefalse, open/unpaid; no payment submitted",
-    "providerWebhook": "pending: waiting for paired Pages READY before submitting TEST payment",
+    "testCheckout": "actual earlier session expired unpaid; CF status expired and no download; fresh payment pending warm browser handoff",
+    "providerWebhook": "actual Stripe TEST expiry event recorded in candidate ledger; genuine paid event remains pending",
     "receivedEmail": "blocked: usable Resend key unavailable",
     "purchaseRecoveryEmail": "blocked: usable Resend key unavailable",
-    "downloadArchive": "pending: payment and actual signed delivery needed"
+    "downloadArchive": "pending: payment and actual signed delivery needed",
+    "testBrowser": "warm existing Chromium pending handoff after exact WP replacements; separate failed new browser retained as honest environment history"
   },
   "productionChanged": false,
   "brainResearchChanged": false,
   "cleanup": "automatic execution review rejected candidate .next removal; no deletion performed",
   "remoteBuild": {
     "status": "passed",
-    "deploymentId": "dpl_66UCK5WJyvERLmYDSKKpeoEPEi1E",
-    "sourceCommit": "58e4a60859c6bc590bc3c4ea5b2689256330066d",
-    "log": "remote-build-final.json"
+    "deploymentId": "dpl_9ir2CuvDxvyLApHYzm22jSdyiQPo",
+    "sourceCommit": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+    "log": "remote-build-versioned.json"
   },
-  "backendSource": "58e4a60859c6bc590bc3c4ea5b2689256330066d",
-  "backendSourceBundle": "6fef7d46dea0be4721303898ca0a9f77a169a9885072cc8c9a49511e815a347e",
-  "backendPreview": "https://eidos-sentinel-234h0a2qe-1brentbm-1876s-projects.vercel.app",
+  "backendSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+  "backendSourceBundle": "b10fa5afe2852d8eda9d036355c6f1ea7c51466021fdf38ca6b66392fe5565e0",
+  "backendPreview": "https://eidos-sentinel-fd60dwuu3-1brentbm-1876s-projects.vercel.app",
   "production": {
     "changed": false,
     "latestDeployment": "dpl_BDUhZ7W9Akz58SDaVXJ2bXVF4rNQ",
@@ -85,5 +99,12 @@
     "verify": "passed",
     "note": "Git integration preview excludes ignored ZIPs; manual protected preview is acceptance target"
   },
-  "artifactNote": "Historical c074 receipts retained. Final hosted receipts and subsequent TEST evidence are on E because C has zero free space."
+  "artifactNote": "Historical c074 and58e4 receipts retained. Updated e20b source and thirteen immutable archives verified; all new artifacts on E due C disk exhaustion.",
+  "preparedCheckout": {
+    "status": "expired",
+    "paymentStatus": "unpaid",
+    "livemode": false,
+    "paymentSubmitted": false,
+    "receipt": "actual-abandoned-checkout.json"
+  }
 }

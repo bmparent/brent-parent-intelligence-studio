@@ -236,6 +236,8 @@ def write(path,value):
 def developer(slug,f):
     out=ROOT/slug/'developer'
     css = BASE_CSS+FAMILY_CSS[slug]+RESPONSIVE_FIXES+'\n.js-ready .inquiry-form.enhancement{display:grid}.motion-off *,.motion-off *:before,.motion-off *:after{transition:none!important;animation:none!important}\n'
+    if slug == 'nightjar':
+        css = css.replace('.nightjar[data-theme=night]{--paper:#201e39;--ink:#fff5d8;--panel:#3e355b;--line:#776980;--accent:#674bad}', '.nightjar[data-theme=night]{--paper:#201e39!important;--ink:#fff5d8!important;--panel:#3e355b!important;--line:#776980!important;--accent:#674bad!important}')
     pages={'index.html':homepage(slug,f),**inner_pages(slug,f),'contact.html':contact_page(slug,f),'legal.html':legal_page()}
     for filename,body in pages.items():
         title=next((label for url,label in f['links'] if url==filename),'Privacy and site notes')
@@ -340,6 +342,9 @@ The developer license covers one finished website, including a client handoff.
 Read `LICENSE.txt`, `SUPPORT.md`, and `ASSETS.md` before purchasing or publishing.
 ''')
     write(out/'README.md',f'# {f["name"]} — Developer source v1\n\n{f["intro"]}\n\nStart with [INSTALL.md](INSTALL.md). Six linked static pages including legal notes,\none signature interaction, original artwork, and no mandatory build.\n\nStatus: release candidate. Prices and availability are controlled by the catalog.\nNo connected booking, payment, ticketing, emergency dispatch, or message server.\n')
+    if slug == 'nightjar':
+        guide = out/'INSTALL.md'
+        write(guide, guide.read_text(encoding='utf-8') + '\n## Day and night palette\n\nThe `colors` values in `site-config.js` configure the day palette. Night mode\nuses the fixed high-contrast token set in `.nightjar[data-theme=night]` in\n`styles.css`; those tokens intentionally override configured day colors. Change\nthe night palette in that CSS rule if needed, and check normal text, cards,\nbuttons, navigation, and contact fields in both modes after editing. Version\n1.0.1 corrects the original day-token precedence in night mode.\n')
     return pages
 
 # WordPress output uses native blocks. HTML is confined to a block's valid saved
@@ -407,7 +412,8 @@ Theme URI: https://eidos-works.com/shop/templates/{slug}/
 Author: Eidos Works
 Author URI: https://eidos-works.com/
 Description: Original editable five-page block theme for {f['business']}. Native core blocks, original artwork, no paid page builder. Candidate pending declared clean-install verification.
-Version: 1.0.0
+Version: 1.0.1
+Update URI: https://eidos-works.com/shop/templates/{slug}/
 Requires at least: 6.6
 Requires PHP: 8.1
 License: GNU General Public License v2 or later
@@ -426,7 +432,7 @@ add_action( 'after_setup_theme', function () {{
     add_editor_style( 'style.css' );
 }} );
 add_action( 'wp_enqueue_scripts', function () {{
-    wp_enqueue_style( 'eidos-{slug}', get_stylesheet_uri(), array(), '1.0.0' );
+    wp_enqueue_style( 'eidos-{slug}', get_stylesheet_uri(), array(), '1.0.1' );
 }} );
 add_filter( 'body_class', function ( $classes ) {{ $classes[] = '{slug}'; return $classes; }} );
 ''')
@@ -509,7 +515,7 @@ GoDaddy Websites + Marketing is a separate product and cannot import this ZIP.
 1. Back up the existing site and test in staging. Do not replace an active theme
    on a customer site without reviewing its existing templates, menus, and content.
 2. In Appearance → Themes → Add New → Upload Theme, select the separately
-   supplied `{slug}-wordpress-v1.zip`. Install and activate `{f['name']} by Eidos Works`.
+   supplied `{slug}-wordpress-v1.0.1.zip`. Install and activate `{f['name']} by Eidos Works`.
 3. In Settings → General, set your site title and tagline. In Appearance → Editor,
    open Styles to edit the palette, typography, and spacing. Header site title and
    Navigation are ordinary core blocks. No account or key is needed.
@@ -554,7 +560,7 @@ All WordPress edition code and original art are GPL-2.0-or-later. Read `LICENSE.
 `COPYING`, `ASSETS.md`, and `SUPPORT.md`. No one-site commercial restriction limits
 your GPL rights. Hosting and optional services cost extra.
 ''')
-    write(out/'README.md',f'# {f["name"]} — WordPress block theme 1.0.0\n\nRead [INSTALL.md](INSTALL.md). Core blocks, five editable page designs, shared\nparts, patterns, original art, and no mandatory plugins. Candidate pending\ndeclared clean-install validation. No live payments, booking, or ticket service.\n')
+    write(out/'README.md',f'# {f["name"]} — WordPress block theme 1.0.1\n\nRead [INSTALL.md](INSTALL.md). Core blocks, five editable page designs, shared\nparts, patterns, original art, and no mandatory plugins. Candidate pending\ndeclared clean-install validation. No live payments, booking, or ticket service.\n')
 
 def main():
     for slug,f in FAMILIES.items():

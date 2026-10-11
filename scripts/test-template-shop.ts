@@ -38,7 +38,7 @@ test('candidate price and guide records match the server-owned edition contract'
       assert.ok(server, `Missing server edition ${edition.id}`);
       assert.equal(server.priceCents, edition.draftPriceCents);
       assert.equal(server.guidePath, `/templates/guides/${product.slug}/${edition.platform}/`);
-      assert.equal(server.version, '1.0.0');
+      assert.equal(server.version, edition.version || '1.0.0');
       assert.ok(prerenderPagePaths().includes(server.guidePath.replace(/\/$/, '')));
     }
   }

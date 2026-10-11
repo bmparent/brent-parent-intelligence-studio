@@ -18,6 +18,11 @@ export function crc32(data) {
   return (crc ^ 0xffffffff) >>> 0;
 }
 
+/** Refuse to replace bytes at any existing private archive path. */
+export function verifyExistingArchive(existing, candidate, archivePath) {
+  if (existing && !existing.equals(candidate)) throw new Error(`Immutable archive already exists with different bytes: ${archivePath}`);
+}
+
 export async function filesBelow(directory) {
   const result = [];
   async function visit(relative) {
@@ -77,7 +82,7 @@ async function build() {
       if (blocked.length) throw new Error(`Forbidden package files: ${blocked.join(', ')}`);
       const contents = await Promise.all(names.map(async name => ({ name, data: await fs.readFile(path.join(source, name)) })));
       const manifest = {
-        schemaVersion: 1, editionId: edition.id, product: product.slug, version: '1.0.0', catalogVersion: catalog.version,
+        schemaVersion: 1, editionId: edition.id, product: product.slug, version: edition.version || '1.0.0', catalogVersion: catalog.version,
         availability: edition.commercialAvailability, status: edition.status,
         distribution: 'private-fulfillment-package',
         files: contents.map(({ name, data }) => ({ path: name, bytes: data.length, sha256: sha256(data) })),
@@ -93,7 +98,11 @@ async function build() {
       const output = path.resolve(root, outputRelative);
       if (!output.startsWith(path.join(root, 'artifacts/templates/packages') + path.sep)) throw new Error('ZIP must stay in private artifacts/templates/packages');
       await fs.mkdir(path.dirname(output), { recursive: true });
-      await fs.writeFile(output, zip);
+      let existing;
+      try { existing = await fs.readFile(output); }
+      catch (error) { if (error.code !== 'ENOENT') throw error; }
+      verifyExistingArchive(existing, zip, outputRelative);
+      if (!existing) await fs.writeFile(output, zip, { flag: 'wx' });
       if (edition.platform === 'developer') {
         const demo = path.join(root, 'public/template-demos', product.slug);
         for (const name of names) {
@@ -102,7 +111,7 @@ async function build() {
           await fs.copyFile(path.join(source, name), target);
         }
       }
-      reports.push({ editionId: edition.id, sourcePath: edition.sourcePath, packagePath: outputRelative, sha256: sha256(zip), bytes: zip.length, files: names.length, demoPath: edition.platform === 'developer' ? `/template-demos/${product.slug}/` : null });
+      reports.push({ editionId: edition.id, version: manifest.version, sourcePath: edition.sourcePath, packagePath: outputRelative, sha256: sha256(zip), bytes: zip.length, files: names.length, demoPath: edition.platform === 'developer' ? `/template-demos/${product.slug}/` : null });
     }
   }
   await fs.mkdir(path.join(root, 'artifacts/templates'), { recursive: true });

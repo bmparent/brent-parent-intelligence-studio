@@ -6,6 +6,7 @@ Local lab timings are not field performance or an accessibility certification.
 import argparse
 import atexit
 import json
+import re
 import time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -45,6 +46,84 @@ def no_overflow(page, label):
     heading = page.locator('h1').first.bounding_box()
     require(heading and heading['x'] >= -2 and heading['x'] + heading['width'] <= dimensions['width'] + 2, f'{label}: heading clipped {heading}')
 
+def night_text_contrast(page):
+    # Inspect rendered inherited colors, including inline configured day tokens.
+    # Merely checking data-theme missed the original unreadable night palette.
+    values = page.evaluate('''() => {
+      const rgb = value => value.match(/[\\d.]+/g).map(Number);
+      const luminance = value => rgb(value).slice(0,3).map(v => {
+        v /= 255; return v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4;
+      }).reduce((sum,v,i) => sum + v * [.2126,.7152,.0722][i],0);
+      const background = element => {
+        for(let current=element;current;current=current.parentElement) {
+          const color=getComputedStyle(current).backgroundColor, channels=rgb(color);
+          if(channels.length===3 || channels[3]===1) return color;
+        }
+        return 'rgb(255,255,255)';
+      };
+      return [...document.querySelectorAll('.hero h1,.hero .lede,.card p,.card h3,.card a,.site-header a,.site-header button')]
+        .filter(el=>el.getClientRects().length).map(el=>{
+          const fg=getComputedStyle(el).color,bg=background(el),a=luminance(fg),b=luminance(bg);
+          return {text:el.textContent.trim().slice(0,80),foreground:fg,background:bg,
+            ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05),minimum:el.tagName==='H1'?3:4.5};
+        });
+    }''')
+    require(values, 'No rendered night-mode text samples')
+    for value in values:
+        require(value['ratio'] >= value['minimum'], f'Night-mode text contrast failed: {value}')
+    return values
+
+
+def shop_catalog_contract(page, width):
+    # Mock only the read-only catalog. Terms/challenge remain untouched and no
+    # checkout request is made. Exercise both initial and corrected versions.
+    checkout_requests = []
+    def observe(request):
+        if '/api/shop/checkout' in request.url:
+            checkout_requests.append(request.method)
+    page.on('request', observe)
+    try:
+        for slug in ['switchboard', 'nightjar']:
+            product = next(item for item in catalog['products'] if item['slug'] == slug)
+            edition = next(item for item in product['editions'] if item['platform'] == 'developer')
+            expected = {'id': edition['id'], 'available': True,
+                        'priceCents': edition['draftPriceCents'],
+                        'version': edition.get('version', '1.0.0')}
+            for case in ['matching', 'stale-version', 'wrong-price', 'unavailable']:
+                offered = dict(expected)
+                if case == 'stale-version':
+                    offered['version'] = '0.0.0-stale'
+                elif case == 'wrong-price':
+                    offered['priceCents'] += 100
+                elif case == 'unavailable':
+                    offered['available'] = False
+                payload = {'mode': 'test', 'ready': True, 'editions': [offered]}
+                def fulfill(route):
+                    route.fulfill(status=200, content_type='application/json', body=json.dumps(payload))
+                page.route('**/api/shop/catalog', fulfill)
+                try:
+                    with page.expect_response(lambda response: response.url.endswith('/api/shop/catalog')) as received:
+                        open_page(page, '/shop/' + slug)
+                    require(received.value.status == 200, 'Mock catalog was not read')
+                    received.value.finished()
+                    page.evaluate('() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
+                    label = re.compile(r'^Try TEST checkout') if case == 'matching' else 'Purchasing unavailable'
+                    button = page.get_by_role('button', name=label, exact=True)
+                    button.wait_for(state='visible', timeout=15000)
+                    require(button.is_disabled(), 'Readiness must not bypass ordinary terms/challenge')
+                    if case != 'matching':
+                        require(page.get_by_role('button', name=re.compile(r'^Try TEST checkout')).count() == 0,
+                                'Mismatched or unavailable catalog enabled checkout')
+                    report['checks'].append({'scope': 'mocked TEST catalog contract', 'product': slug,
+                                             'viewport': width, 'case': case, 'version': expected['version'],
+                                             'result': 'passed', 'checkoutSubmitted': False,
+                                             'challengeInteracted': False})
+                finally:
+                    page.unroute('**/api/shop/catalog', fulfill)
+        require(not checkout_requests, 'Catalog-only checks must not submit checkout')
+    finally:
+        page.remove_listener('request', observe)
+
 with sync_playwright() as playwright:
     for browser_name in args.browsers.split(','):
         browser = getattr(playwright, browser_name).launch()
@@ -78,6 +157,8 @@ with sync_playwright() as playwright:
                     else:
                         page.locator('[data-theme-toggle]').click()
                         require(page.locator('body').get_attribute('data-theme') == 'night', 'Day/night did not change')
+                        contrast = night_text_contrast(page)
+                        report['checks'].append({'browser': browser_name, 'product': slug, 'viewport': width, 'nightModeComputedTextContrast': 'passed', 'samples': contrast})
                         page.locator('[data-program="sound"]').click()
                         require(page.locator('[data-event]:visible').count() >= 1, 'Program filter lost events')
                     if width == 390:
@@ -120,6 +201,7 @@ with sync_playwright() as playwright:
                         require('WordPress' in page.locator('.et-purchase').inner_text(), 'Edition state failed')
                         no_overflow(page, f'detail/{product["slug"]}/{width}')
                         page.screenshot(path=str(out / f'detail-{product["slug"]}-{width}.jpg'), full_page=True, type='jpeg', quality=75)
+                    shop_catalog_contract(page, width)
                     open_page(page, '/shop/start')
                     require(page.get_by_role('button', name='Send a private recovery link').is_disabled(), 'Recovery must require verification')
                     report['checks'].append({'browser': browser_name, 'scope': 'shop', 'viewport': width, 'filter': 'passed', 'editions': 'passed', 'closedCheckout': 'passed', 'recovery': 'passed'})

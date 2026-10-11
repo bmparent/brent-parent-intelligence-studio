@@ -1,7 +1,7 @@
 import catalog from '../../products/templates/catalog.json';
 
 export type TemplateEdition = {
-  id: string; platform: string; kind: string; draftPriceCents: number;
+  id: string; platform: string; kind: string; draftPriceCents: number; version?: string;
   currency: string; commercialAvailability: string; status: string;
   packagePath?: string; sourcePath?: string; pilotPath?: string; demoPath?: string; installationGuide: string;
 };

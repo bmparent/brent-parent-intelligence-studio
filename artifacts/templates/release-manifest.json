@@ -5,8 +5,8 @@
   "saleEnabled": false,
   "catalog": {
     "path": "products/templates/catalog.json",
-    "bytes": 12260,
-    "sha256": "68c57db7cac1c4a07905dcaa2a637f620937e394ef44141927d2b81071f05fd9"
+    "bytes": 12430,
+    "sha256": "8cae7aae48fcadf46437861719e16afdc4a57d56014735f3062fb5962271ac72"
   },
   "generation": {
     "command": "node scripts/build-template-release-manifest.mjs",
@@ -73,11 +73,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "package": {
-            "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
-            "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
-            "bytes": 29391
+            "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+            "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+            "bytes": 29399
           },
           "compatibility": {
             "acceptance": "incomplete",
@@ -86,17 +86,69 @@
               "php": "8.1"
             },
             "actualTestedVersions": {
-              "wordpress": null,
-              "php": null
+              "wordpress": "7.1.2",
+              "php": "8.3.33"
             },
-            "browserPlaygroundChecks": null,
-            "browserPlaygroundStatus": "not_run",
-            "cliStatus": "blocked",
+            "browserPlaygroundChecks": {
+              "archive_hash": "passed",
+              "style_change_only_version_and_update_uri": "passed",
+              "native_layout_content_assets_byte_unchanged": "passed",
+              "final_exact_zip_fresh_install": "passed",
+              "final_exact_zip_activation": "passed",
+              "installed_header_native_file_editor_read": "passed",
+              "final_default_frontend_and_cache_version": "passed"
+            },
+            "browserPlaygroundStatus": "partial",
+            "browserPlaygroundScope": "Two initially clean official browser Playground runtimes, each with sequential theme activation. Runtime1: full native edit/page/action checks on1.0.0 baseline ZIPs. Runtime2: final exact1.0.1 ZIP fresh install/activation and native header/default frontend checks. No four independent clean sites.",
+            "installedThemeMetadata": {
+              "version": "1.0.1",
+              "update_uri": "https://eidos-works.com/shop/templates/switchboard/",
+              "method": "Read visible native Theme File Editor source; no update/save performed."
+            },
+            "baselineNativeContentProof": {
+              "archive_sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+              "checks": {
+                "exact_zip_install": "passed",
+                "activation": "passed",
+                "native_heading_edit_publish": "passed",
+                "native_image_upload_publish": "passed",
+                "supplied_wxr_import": "passed",
+                "ordinary_primary_action_to_contact": "passed",
+                "five_published_page_templates_and_navigation": "passed",
+                "native_details_keyboard": "passed",
+                "phone_home_no_horizontal_overflow": "passed"
+              },
+              "five_pages": [
+                {
+                  "path": "/",
+                  "heading": "Switchboard revised test studio"
+                },
+                {
+                  "path": "/contact/",
+                  "heading": "Contact"
+                },
+                {
+                  "path": "/process/",
+                  "heading": "Our process"
+                },
+                {
+                  "path": "/service-detail/",
+                  "heading": "Service detail"
+                },
+                {
+                  "path": "/services/",
+                  "heading": "Services"
+                }
+              ],
+              "contact_target": "mailto:hello@example.com; verified href only, no email client/draft opened and no message sent."
+            },
+            "baselineNativeContentReuse": "Prior heading/image edit, page import, five-page navigation, keyboard Details, main action/contact checks passed on baseline bytes. Native content/layout/art data now byte-identical; functions difference only cache version. Those edits/pages were not repeated in this second clean browser runtime.",
+            "cliStatus": "blocked_before_installation",
             "evidence": [
               "docs/paid-templates/platform-install-evidence.json",
               "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
             ],
-            "limits": "Install/activation observations are distinct from native content/image edit, publish, ordinary contact action, native PHP/MySQL host, and WordPress.com plan acceptance. No general compatibility claim."
+            "limits": "Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Native PHP/MySQL hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified. Contact href only; no message sent. No general compatibility claim."
           }
         },
         {
@@ -196,11 +248,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "package": {
-            "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
-            "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
-            "bytes": 30016
+            "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+            "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+            "bytes": 30027
           },
           "compatibility": {
             "acceptance": "incomplete",
@@ -209,17 +261,68 @@
               "php": "8.1"
             },
             "actualTestedVersions": {
-              "wordpress": null,
-              "php": null
+              "wordpress": "7.1.2",
+              "php": "8.3.33"
             },
-            "browserPlaygroundChecks": null,
-            "browserPlaygroundStatus": "not_run",
-            "cliStatus": "blocked",
+            "browserPlaygroundChecks": {
+              "archive_hash": "passed",
+              "style_change_only_version_and_update_uri": "passed",
+              "native_layout_content_assets_byte_unchanged": "passed",
+              "final_exact_zip_fresh_install": "passed",
+              "final_exact_zip_activation": "passed",
+              "installed_header_native_file_editor_read": "passed",
+              "final_default_frontend_and_cache_version": "passed"
+            },
+            "browserPlaygroundStatus": "partial",
+            "browserPlaygroundScope": "Two initially clean official browser Playground runtimes, each with sequential theme activation. Runtime1: full native edit/page/action checks on1.0.0 baseline ZIPs. Runtime2: final exact1.0.1 ZIP fresh install/activation and native header/default frontend checks. No four independent clean sites.",
+            "installedThemeMetadata": {
+              "version": "1.0.1",
+              "update_uri": "https://eidos-works.com/shop/templates/tideglass/",
+              "method": "Read visible native Theme File Editor source; no update/save performed."
+            },
+            "baselineNativeContentProof": {
+              "archive_sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+              "checks": {
+                "exact_zip_install": "passed",
+                "activation": "passed",
+                "native_heading_edit_publish": "passed",
+                "native_image_upload_publish": "passed",
+                "supplied_wxr_import": "passed",
+                "five_published_page_templates_and_navigation": "passed",
+                "native_details_keyboard": "passed",
+                "ordinary_primary_action_to_contact": "passed"
+              },
+              "five_pages": [
+                {
+                  "path": "/",
+                  "heading": "Tideglass revised test studio"
+                },
+                {
+                  "path": "/contact/",
+                  "heading": "Plan your stay"
+                },
+                {
+                  "path": "/guide/",
+                  "heading": "Local guide"
+                },
+                {
+                  "path": "/stay-detail/",
+                  "heading": "The house"
+                },
+                {
+                  "path": "/stays/",
+                  "heading": "Stays"
+                }
+              ],
+              "contact_target": "mailto:hello@example.com; verified href only, no email client/draft opened and no message sent."
+            },
+            "baselineNativeContentReuse": "Prior heading/image edit, page import, five-page navigation, keyboard Details, main action/contact checks passed on baseline bytes. Native content/layout/art data now byte-identical; functions difference only cache version. Those edits/pages were not repeated in this second clean browser runtime.",
+            "cliStatus": "blocked_before_installation",
             "evidence": [
               "docs/paid-templates/platform-install-evidence.json",
               "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
             ],
-            "limits": "Install/activation observations are distinct from native content/image edit, publish, ordinary contact action, native PHP/MySQL host, and WordPress.com plan acceptance. No general compatibility claim."
+            "limits": "Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Native PHP/MySQL hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified. Contact href only; no message sent. No general compatibility claim."
           }
         },
         {
@@ -319,11 +422,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "package": {
-            "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
-            "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
-            "bytes": 30739
+            "path": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+            "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+            "bytes": 30748
           },
           "compatibility": {
             "acceptance": "incomplete",
@@ -332,17 +435,68 @@
               "php": "8.1"
             },
             "actualTestedVersions": {
-              "wordpress": null,
-              "php": null
+              "wordpress": "7.1.2",
+              "php": "8.3.33"
             },
-            "browserPlaygroundChecks": null,
-            "browserPlaygroundStatus": "not_run",
-            "cliStatus": "blocked",
+            "browserPlaygroundChecks": {
+              "archive_hash": "passed",
+              "style_change_only_version_and_update_uri": "passed",
+              "native_layout_content_assets_byte_unchanged": "passed",
+              "final_exact_zip_fresh_install": "passed",
+              "final_exact_zip_activation": "passed",
+              "installed_header_native_file_editor_read": "passed",
+              "final_default_frontend_and_cache_version": "passed"
+            },
+            "browserPlaygroundStatus": "partial",
+            "browserPlaygroundScope": "Two initially clean official browser Playground runtimes, each with sequential theme activation. Runtime1: full native edit/page/action checks on1.0.0 baseline ZIPs. Runtime2: final exact1.0.1 ZIP fresh install/activation and native header/default frontend checks. No four independent clean sites.",
+            "installedThemeMetadata": {
+              "version": "1.0.1",
+              "update_uri": "https://eidos-works.com/shop/templates/matter/",
+              "method": "Read visible native Theme File Editor source; no update/save performed."
+            },
+            "baselineNativeContentProof": {
+              "archive_sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+              "checks": {
+                "exact_zip_install": "passed",
+                "activation": "passed",
+                "native_heading_edit_publish": "passed",
+                "native_image_upload_publish": "passed",
+                "supplied_wxr_import": "passed",
+                "five_published_page_templates_and_navigation": "passed",
+                "native_details_keyboard": "passed",
+                "ordinary_primary_action_to_contact": "passed"
+              },
+              "five_pages": [
+                {
+                  "path": "/",
+                  "heading": "Matter revised test studio"
+                },
+                {
+                  "path": "/collection/",
+                  "heading": "Collection"
+                },
+                {
+                  "path": "/contact/",
+                  "heading": "Contact"
+                },
+                {
+                  "path": "/object/",
+                  "heading": "Object detail"
+                },
+                {
+                  "path": "/process/",
+                  "heading": "Our process"
+                }
+              ],
+              "contact_target": "mailto:hello@example.com; verified href only, no email client/draft opened and no message sent."
+            },
+            "baselineNativeContentReuse": "Baseline native business/image/page/action proof reused only with explicit metadata/cache-only diff; not repeated in second runtime.",
+            "cliStatus": "blocked_before_installation",
             "evidence": [
               "docs/paid-templates/platform-install-evidence.json",
               "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
             ],
-            "limits": "Install/activation observations are distinct from native content/image edit, publish, ordinary contact action, native PHP/MySQL host, and WordPress.com plan acceptance. No general compatibility claim."
+            "limits": "Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Native PHP/MySQL hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified. Contact href only; no message sent. No general compatibility claim."
           }
         },
         {
@@ -418,11 +572,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "package": {
-            "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
-            "sha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8",
-            "bytes": 26765
+            "path": "artifacts/templates/packages/nightjar-developer-v1.0.1.zip",
+            "sha256": "f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39",
+            "bytes": 26978
           },
           "compatibility": {
             "acceptance": "local-source-install-passed",
@@ -442,11 +596,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.0",
+          "version": "1.0.1",
           "package": {
-            "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
-            "sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
-            "bytes": 29728
+            "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+            "sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+            "bytes": 29742
           },
           "compatibility": {
             "acceptance": "incomplete",
@@ -455,17 +609,68 @@
               "php": "8.1"
             },
             "actualTestedVersions": {
-              "wordpress": null,
-              "php": null
+              "wordpress": "7.1.2",
+              "php": "8.3.33"
             },
-            "browserPlaygroundChecks": null,
-            "browserPlaygroundStatus": "not_run",
-            "cliStatus": "blocked",
+            "browserPlaygroundChecks": {
+              "archive_hash": "passed",
+              "style_change_only_version_and_update_uri": "passed",
+              "native_layout_content_assets_byte_unchanged": "passed",
+              "final_exact_zip_fresh_install": "passed",
+              "final_exact_zip_activation": "passed",
+              "installed_header_native_file_editor_read": "passed",
+              "final_default_frontend_and_cache_version": "passed"
+            },
+            "browserPlaygroundStatus": "partial",
+            "browserPlaygroundScope": "Two initially clean official browser Playground runtimes, each with sequential theme activation. Runtime1: full native edit/page/action checks on1.0.0 baseline ZIPs. Runtime2: final exact1.0.1 ZIP fresh install/activation and native header/default frontend checks. No four independent clean sites.",
+            "installedThemeMetadata": {
+              "version": "1.0.1",
+              "update_uri": "https://eidos-works.com/shop/templates/nightjar/",
+              "method": "Read visible native Theme File Editor source; no update/save performed."
+            },
+            "baselineNativeContentProof": {
+              "archive_sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+              "checks": {
+                "exact_zip_install": "passed",
+                "activation": "passed",
+                "native_heading_edit_publish": "passed",
+                "native_image_upload_publish": "passed",
+                "supplied_wxr_import": "passed",
+                "five_published_page_templates_and_navigation": "passed",
+                "native_details_keyboard": "passed",
+                "ordinary_primary_action_to_contact": "passed"
+              },
+              "five_pages": [
+                {
+                  "path": "/",
+                  "heading": "Nightjar revised test studio"
+                },
+                {
+                  "path": "/about/",
+                  "heading": "About"
+                },
+                {
+                  "path": "/contact/",
+                  "heading": "Contact"
+                },
+                {
+                  "path": "/event/",
+                  "heading": "Event detail"
+                },
+                {
+                  "path": "/program/",
+                  "heading": "Program"
+                }
+              ],
+              "contact_target": "mailto:hello@example.com; verified href only, no email client/draft opened and no message sent."
+            },
+            "baselineNativeContentReuse": "Prior heading/image edit, page import, five-page navigation, keyboard Details, main action/contact checks passed on baseline bytes. Native content/layout/art data now byte-identical; functions difference only cache version. Those edits/pages were not repeated in this second clean browser runtime.",
+            "cliStatus": "blocked_before_installation",
             "evidence": [
               "docs/paid-templates/platform-install-evidence.json",
               "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
             ],
-            "limits": "Install/activation observations are distinct from native content/image edit, publish, ordinary contact action, native PHP/MySQL host, and WordPress.com plan acceptance. No general compatibility claim."
+            "limits": "Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Native PHP/MySQL hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified. Contact href only; no message sent. No general compatibility claim."
           }
         },
         {
@@ -574,14 +779,14 @@
       "editionId": "switchboard-wordpress-v1",
       "product": "switchboard",
       "platform": "wordpress",
-      "version": "1.0.0",
-      "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
-      "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
-      "bytes": 29391,
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+      "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+      "bytes": 29399,
       "sourceManifest": {
         "path": "products/templates/switchboard/wordpress/PACKAGE_MANIFEST.json",
         "bytes": 4556,
-        "sha256": "75629cec61c1a59eca9f88da7f2b0bfce565861cf29497742fcdf0921552f0bf"
+        "sha256": "8e7e6b10f189fad2606e4117c5758b14e2c4a718d8eec347daea08eae82838f4"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -608,8 +813,8 @@
         },
         {
           "path": "products/templates/switchboard/wordpress/INSTALL.md",
-          "bytes": 4539,
-          "sha256": "fe341bc30b2fa9567d8d91079b30e02b2139dc4b464326b07ffe8fb07c3ec2cf"
+          "bytes": 4543,
+          "sha256": "6642175999a51ff5d4c21622fe52e08cf002d32122fbeeacdc7879873a0c8135"
         },
         {
           "path": "products/templates/switchboard/wordpress/LICENSE.txt",
@@ -628,6 +833,11 @@
         }
       ],
       "changelog": [
+        {
+          "version": "1.0.1",
+          "status": "candidate",
+          "description": "Theme identity metadata: explicit Update URI prevents WordPress.org same-slug update confusion. Header, stylesheet cache version, and install filename/version documentation only; no automatic updater is supplied."
+        },
         {
           "version": "1.0.0",
           "status": "candidate",
@@ -699,14 +909,14 @@
       "editionId": "tideglass-wordpress-v1",
       "product": "tideglass",
       "platform": "wordpress",
-      "version": "1.0.0",
-      "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
-      "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
-      "bytes": 30016,
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+      "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+      "bytes": 30027,
       "sourceManifest": {
         "path": "products/templates/tideglass/wordpress/PACKAGE_MANIFEST.json",
         "bytes": 4529,
-        "sha256": "b5637f627aa6a5801d77e8521a7b74413774ef16bffa9c1ce60c66b9c8639568"
+        "sha256": "24e8cf1756d995b9a805e3a3c336de12f4db080b710179c42ff38fd00fc9f885"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -733,8 +943,8 @@
         },
         {
           "path": "products/templates/tideglass/wordpress/INSTALL.md",
-          "bytes": 4521,
-          "sha256": "b47308b21b48006336f36b609330f609bc947d2903564035b6829f65f7cf04ae"
+          "bytes": 4525,
+          "sha256": "27cce17800fc185223f18a1e8a2aa213ff804ad42b482f559e8fec6598624f75"
         },
         {
           "path": "products/templates/tideglass/wordpress/LICENSE.txt",
@@ -753,6 +963,11 @@
         }
       ],
       "changelog": [
+        {
+          "version": "1.0.1",
+          "status": "candidate",
+          "description": "Theme identity metadata: explicit Update URI prevents WordPress.org same-slug update confusion. Header, stylesheet cache version, and install filename/version documentation only; no automatic updater is supplied."
+        },
         {
           "version": "1.0.0",
           "status": "candidate",
@@ -829,14 +1044,14 @@
       "editionId": "matter-wordpress-v1",
       "product": "matter",
       "platform": "wordpress",
-      "version": "1.0.0",
-      "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
-      "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
-      "bytes": 30739,
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+      "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+      "bytes": 30748,
       "sourceManifest": {
         "path": "products/templates/matter/wordpress/PACKAGE_MANIFEST.json",
         "bytes": 4679,
-        "sha256": "910fff85b1c32597d7d8bc883aff799d3715938dd785153c9867efb7ae2f692e"
+        "sha256": "cf25002dce2b669de7884783fcf3e6878ff89df632918ae3551a2af93a6d07dd"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -863,8 +1078,8 @@
         },
         {
           "path": "products/templates/matter/wordpress/INSTALL.md",
-          "bytes": 4508,
-          "sha256": "283afbed3597a9f3f1ad8239eb93464d3d60773cf43be0368782d85f72dc692b"
+          "bytes": 4512,
+          "sha256": "f07734e2ab8bba856a064296f18259eb75818961089821044e4ba883e40bd2be"
         },
         {
           "path": "products/templates/matter/wordpress/LICENSE.txt",
@@ -889,6 +1104,11 @@
       ],
       "changelog": [
         {
+          "version": "1.0.1",
+          "status": "candidate",
+          "description": "Theme identity metadata: explicit Update URI prevents WordPress.org same-slug update confusion. Header, stylesheet cache version, and install filename/version documentation only; no automatic updater is supplied."
+        },
+        {
           "version": "1.0.0",
           "status": "candidate",
           "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
@@ -899,14 +1119,14 @@
       "editionId": "nightjar-developer-v1",
       "product": "nightjar",
       "platform": "developer",
-      "version": "1.0.0",
-      "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
-      "sha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8",
-      "bytes": 26765,
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.1.zip",
+      "sha256": "f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39",
+      "bytes": 26978,
       "sourceManifest": {
         "path": "products/templates/nightjar/developer/PACKAGE_MANIFEST.json",
         "bytes": 2663,
-        "sha256": "93ab1ab1b1ab998bfa2329587ac4b69e25ea97c6e06f4739985af1f0489c7b2e"
+        "sha256": "1ec8cb4a454ed388d9282b91efada21a397198afedb965f3eb3d121df5db0dfb"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -928,8 +1148,8 @@
         },
         {
           "path": "products/templates/nightjar/developer/INSTALL.md",
-          "bytes": 4826,
-          "sha256": "0acfd9c35592eaccc093df8266fb571effb57eb98e7e5a2a19f2a6acf6e158cd"
+          "bytes": 5303,
+          "sha256": "3730f33005bff3eed08a2e1f8d2dbbd260df334a4335c2751b9b35f8835bef4f"
         },
         {
           "path": "products/templates/nightjar/developer/LICENSE.txt",
@@ -949,6 +1169,11 @@
       ],
       "changelog": [
         {
+          "version": "1.0.1",
+          "status": "candidate",
+          "description": "Night mode uses the fixed contrasting palette above configured day tokens; day palette customization remains available. CSS precedence and corresponding editing guidance only."
+        },
+        {
           "version": "1.0.0",
           "status": "candidate",
           "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
@@ -959,14 +1184,14 @@
       "editionId": "nightjar-wordpress-v1",
       "product": "nightjar",
       "platform": "wordpress",
-      "version": "1.0.0",
-      "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
-      "sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
-      "bytes": 29728,
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+      "sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+      "bytes": 29742,
       "sourceManifest": {
         "path": "products/templates/nightjar/wordpress/PACKAGE_MANIFEST.json",
         "bytes": 4520,
-        "sha256": "03a9f79817765cadff4a3243cbb9a2e3b40d4b5d87f01ad9a7d2d1ddbd8bd148"
+        "sha256": "c0ec7a228f251be7bad63bbb00ae8f96e740c5818b3ecbc92e3f01d4af38ab23"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -993,8 +1218,8 @@
         },
         {
           "path": "products/templates/nightjar/wordpress/INSTALL.md",
-          "bytes": 4512,
-          "sha256": "605c22fd67462b61e212c1ea810caf9aca78e40e6eb77a41e36fadc20f799398"
+          "bytes": 4516,
+          "sha256": "8c76fea6ba2f5f8c59a0e730db6979af53628a61778def7602cccaafec8ffa71"
         },
         {
           "path": "products/templates/nightjar/wordpress/LICENSE.txt",
@@ -1014,6 +1239,11 @@
       ],
       "changelog": [
         {
+          "version": "1.0.1",
+          "status": "candidate",
+          "description": "Theme identity metadata: explicit Update URI prevents WordPress.org same-slug update confusion. Header, stylesheet cache version, and install filename/version documentation only; no automatic updater is supplied."
+        },
+        {
           "version": "1.0.0",
           "status": "candidate",
           "description": "Initial portable source/native-block-theme candidate; not a record of a commercial release."
@@ -1024,15 +1254,15 @@
   "compatibilityEvidence": [
     {
       "path": "artifacts/templates/package-tests.json",
-      "bytes": 83428,
-      "sha256": "31514d286c611f0e1708f9188e33abfaefa8e88de5baa7b32466c13cb214e876",
+      "bytes": 83542,
+      "sha256": "6a8e32cbc7c46b562b0af39fe4041d68d6feb3e3ff6770fc77322f6b97c9bfac",
       "status": "passed",
       "scope": "Read the referenced receipt for exact scope and limitations."
     },
     {
       "path": "artifacts/templates/source-install-receipt.json",
-      "bytes": 1811,
-      "sha256": "780e36eafb8d4120b39532d1809449b0aef5c426e1f67a7ffefd24eb2807240a",
+      "bytes": 1919,
+      "sha256": "cd5cb385c3b58afe98b3f9845052519f29a24fb350fe1001b58e20a19fcd7533",
       "status": "passed",
       "scope": "buyer developer source installation; local published HTTP test, no remote deployment or email send"
     },
@@ -1052,14 +1282,17 @@
     },
     {
       "path": "docs/paid-templates/platform-install-evidence.json",
-      "bytes": 5638,
-      "sha256": "5c62814fea971595c2596f467ac3de6d69c242cb2e5f3912db62e3cba3183e83",
+      "bytes": 22493,
+      "sha256": "58361706b2c223974bd4080a622628235b28a494707ecc588be2b8ab2bd56846",
       "status": "partial",
       "scope": "Read the referenced receipt for exact scope and limitations."
     },
     {
       "path": "artifacts/templates/wordpress-install-external/browser-ui-receipt.json",
-      "status": "missing"
+      "bytes": 16399,
+      "sha256": "743c78247ffeec8ed8c06d0f9d207ef3a96c4e61c944ca869ed650d969e35114",
+      "status": "partial",
+      "scope": "Two initially clean official browser Playground runtimes, each with sequential theme activation. Runtime1: full native edit/page/action checks on1.0.0 baseline ZIPs. Runtime2: final exact1.0.1 ZIP fresh install/activation and native header/default frontend checks. No four independent clean sites."
     },
     {
       "path": "artifacts/templates/platform-pilots/browser-receipt.json",
@@ -1067,6 +1300,41 @@
       "sha256": "542697ef843a80361e7a9a82e9e05a3433c2b1182f57d830c7854c0aa56b6bba",
       "status": "passed",
       "scope": "local source and iframe harness only"
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/baseline-native-ui-receipt.json",
+      "bytes": 7566,
+      "sha256": "6f2f1b1202a9f4ccffd48ac29265e3eefbc2e0a292b73d63839528515a3ec24c",
+      "status": "see-receipt",
+      "scope": "One initially clean official browser Playground; four sequential ZIP installs/activation and native UI edits, not four independent clean sites"
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/installation-receipt.json",
+      "bytes": 9687,
+      "sha256": "408589afad9843acd16e102f306a3830a44ca9dc177432f6e2661066c2549db1",
+      "status": "see-receipt",
+      "scope": "One initially clean official browser Playground; four sequential ZIP installs/activation and native UI edits, not four independent clean sites"
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/final-metadata-receipt.json",
+      "bytes": 16399,
+      "sha256": "743c78247ffeec8ed8c06d0f9d207ef3a96c4e61c944ca869ed650d969e35114",
+      "status": "partial",
+      "scope": "Two initially clean official browser Playground runtimes, each with sequential theme activation. Runtime1: full native edit/page/action checks on1.0.0 baseline ZIPs. Runtime2: final exact1.0.1 ZIP fresh install/activation and native header/default frontend checks. No four independent clean sites."
+    },
+    {
+      "path": "artifacts/templates/version-transition-receipt.json",
+      "bytes": 6427,
+      "sha256": "00a47f1a06c5f0f79a5ca3d09d5177a6b31b0e183e007553c039fa36f9f267c5",
+      "status": "passed",
+      "scope": "Exact archived-file comparisons for versioned WordPress identity metadata and Nightjar developer palette fix; not a compatibility or commercial release claim."
+    },
+    {
+      "path": "artifacts/templates/generator-parity.json",
+      "bytes": 246,
+      "sha256": "ca00f19b7991d086b7e1e3f206ba6f4c5eeac9125946fe450423466f0ebd1396",
+      "status": "passed",
+      "scope": "1.0.1 versioned metadata and Nightjar source fix"
     }
   ]
 }

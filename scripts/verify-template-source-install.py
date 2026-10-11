@@ -78,7 +78,7 @@ try:
                 link = page.locator('[data-prepared-email]')
                 assert link.is_visible() and unquote(link.get_attribute('href')).startswith('mailto:qa@example.com?')
                 assert hashlib.sha256(archive.read_bytes()).hexdigest() == before
-                receipt['checks'].append({'editionId': edition['id'], 'archiveSha256': before, 'install': 'passed', 'editedBusiness': 'passed', 'editedImage': 'passed', 'publishedTestPage': 'local HTTP passed', 'mainAction': 'email draft prepared to configured recipient; not sent', 'archiveUnchanged': True})
+                receipt['checks'].append({'editionId': edition['id'], 'version': edition.get('version', '1.0.0'), 'archiveSha256': before, 'install': 'passed', 'editedBusiness': 'passed', 'editedImage': 'passed', 'publishedTestPage': 'local HTTP passed', 'mainAction': 'email draft prepared to configured recipient; not sent', 'archiveUnchanged': True})
             except Exception as error:
                 receipt['failures'].append({'editionId': edition['id'], 'error': str(error), 'trace': traceback.format_exc()})
         browser.close()

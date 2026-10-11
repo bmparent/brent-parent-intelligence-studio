@@ -1,4 +1,4 @@
-# Switchboard — WordPress block theme 1.0.0
+# Switchboard — WordPress block theme 1.0.1
 
 Read [INSTALL.md](INSTALL.md). Core blocks, five editable page designs, shared
 parts, patterns, original art, and no mandatory plugins. Candidate pending
