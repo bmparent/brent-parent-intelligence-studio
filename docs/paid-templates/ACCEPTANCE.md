@@ -1,5 +1,33 @@
 # Paid templates — candidate acceptance
 
+## October 12 hosted checks and compatibility-filter correction
+
+Starting site `1f1781c612407408a470f8c9936ad6b67ddab1d3` and backend `f9f8cd30839d36127786b7b7826e6c44de92d2c7` still match draft PR102/PR71. All five site workflows and the backend workflow passed on those exact sources. Vercel reports the pinned candidate deployment `dpl_7jzs9wCj686f3u4vxisiA5CZV4eJ` READY; the production alias still resolves to separate deployment `dpl_BDUhZ7W9Akz58SDaVXJ2bXVF4rNQ`, main source `4c746ffccf9249c7ddabd58f839ecb5fcece4fd0`.
+
+A fresh hosted walkthrough reproduced a buyer-facing compatibility error: choosing **WordPress + Visual add-on** displayed Switchboard despite no single edition supporting that combination. The collection previously matched platform and product type against different editions. Both filters now must match one edition that actually has source or a pilot. The rendered browser gate adds fifteen compatible/incompatible combinations, visible count and empty-state assertions, and clearing-filter recovery at 390/1440 pixels in Chromium, Firefox and WebKit. No package or backend source changes are required. Exact-head CI and the repaired hosted readback are recorded on [PR102](https://github.com/bmparent/brent-parent-intelligence-studio/pull/102); local compilation alone is not hosted acceptance.
+
+Actual hosted HTTP observations at `https://eidosworks-templates-test-20261010.pages.dev`, October 12, 2026:
+
+| Requirement | Observation | State |
+| --- | --- | --- |
+| Paired TEST catalog | HTTP 200, `f9f8cd3` source revision/bundle; exactly four developer editions available; WordPress and builder editions unavailable | Pass |
+| Actual public configuration | HTTP 200; accounts, local-test bypass and AI unavailable | Pass |
+| Unknown receipt and download grant | Both returned HTTP 404; no archive bytes | Pass |
+| Unknown recovery token | HTTP 401 | Pass |
+| Cross-origin status and redemption | Both returned HTTP 403 | Pass |
+| Unsigned webhook | HTTP 400 | Pass |
+| Client price override and missing terms | Both returned HTTP 400 | Pass |
+| Unverified WordPress checkout | HTTP 503 before any checkout session | Pass |
+| Direct public private-archive path | HTTP 404, no ZIP | Pass |
+
+These twelve actual HTTP checks use invalid inputs only. They create no order, session, member, message or payment. API responses use `no-store`. The new filter was reproduced in the real browser; Squarespace edition selection also displayed its unverified installation boundary and disabled purchase control. Relevant app errors were absent from the observed console; unrelated browser-extension metadata errors were present.
+
+Local verification: 803 package checks, six manifest tests, six storefront tests, 67 backend tests (16 MJS + 51 TypeScript), backend typecheck, site lint/typecheck/build, prerender, storefront/editorial/URL contracts, source/built article validation and Functions compilation passed. Lint retains the existing Wellway fast-refresh advisory. All eight actually rebuilt ZIPs retain their baseline version, byte length and SHA-256. Commerce/member shared modules match the deployed backend; unrelated pre-existing knowledge/Playground/growth differences were inspected and preserved. No native WordPress runtime or physical device was retested.
+
+**Production remains NO-GO.** Fresh preview metadata confirms no branch or generic Preview `RESEND_API_KEY`; the existing production-only sensitive key was not read, copied or broadened. This candidate's sender is `Eidos Works <papers@eidos-works.com>` and daily limit is 30; a configured sender is not provider-verification or inbox proof. Accounts explicitly remain disabled. The current official TEST-key exception still covers only checkout/recovery. Enable accounts only after a valid scoped mail binding and a member verification setup that accepts the preview hostname and `member` action exist. Two real owner-controlled inboxes and normal delivered sign-in flows are required; local fixture sessions do not close hosted buyer identity acceptance. Both builder pilots still require authorized editors, observed plans, approved destinations and publication proof. No purchase or upgrade is authorized by these checks.
+
+The next concrete steps are to configure the branch-scoped Preview mail key securely, verify sender/provider and inbox delivery, stage member verification and accounts, then run genuine TEST paid-event acknowledgement, recovery expiry/single-use and two-buyer access checks. Install the Squarespace 7.1 and GoDaddy Websites + Marketing pilots when their authorized editor URLs are available. Keep all twenty-four private archives and historical receipts. Filter-only rollback restores site `1f1781c` with backend `f9f8cd3`; no rollback, production configuration, migration, LIVE transaction, merge or price change occurred.
+
 ## October 11 guide readability continuation
 
 A hosted buyer walkthrough of site `0ecc60d64c7389b95c12f7d078353fd1e0b19b3b` reproduced an installation-guide rendering defect: a section heading and its following instructions were placed together in one large `h2`. The guide renderer now separates heading lines, body paragraphs, numbered setup steps, troubleshooting bullets and inline filenames. This changes the public guide presentation only; all eight rebuilt buyer ZIPs retain their frozen versions, byte lengths and SHA-256 hashes. Backend `f9f8cd30839d36127786b7b7826e6c44de92d2c7` and its receipt-retry repair remain the paired backend.

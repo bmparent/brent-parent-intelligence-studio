@@ -49,7 +49,12 @@ function Preview({ product, mobile = false }: { product: TemplateProduct; mobile
 }
 export function TemplateCollection() {
   const [platform, setPlatform] = useState('all'), [market, setMarket] = useState('all'), [style, setStyle] = useState('all'), [type, setType] = useState('all');
-  const shown = templateProducts.filter((p) => (market === 'all' || templateStyles[p.slug].market === market) && (style === 'all' || templateStyles[p.slug].style === style) && (platform === 'all' || p.editions.some((e) => e.platform === platform && (e.sourcePath || e.pilotPath))) && (type === 'all' || p.editions.some((e) => e.kind === type && (e.sourcePath || e.pilotPath))));
+  const shown = templateProducts.filter((p) =>
+    (market === 'all' || templateStyles[p.slug].market === market) &&
+    (style === 'all' || templateStyles[p.slug].style === style) &&
+    p.editions.some((e) => (e.sourcePath || e.pilotPath) &&
+      (platform === 'all' || e.platform === platform) &&
+      (type === 'all' || e.kind === type)));
   return <div className="et-shop">
     <section className="ew-shell et-intro"><h1>Distinctive websites.<br /><em>Make one your own.</em></h1><p>Choose a design for your business, select your platform, replace the sample content, and launch.</p><div className="ew-actions"><a className="ew-button ew-button--primary" href="#designs">Explore the designs</a><a className="ew-text-link" href="/shop/choose">Which version do I need?</a></div><p className="et-candidate">Preview collection · proposed prices · TEST purchases only when enabled</p></section>
     <section className="ew-shell" id="designs" aria-label="Template collection">

@@ -190,6 +190,47 @@ def night_text_contrast(page):
     return values
 
 
+def shop_filter_contract(page, browser_name, width):
+    open_page(page, '/shop')
+    cases = [
+        ('wordpress', 'visual-add-on', 0),
+        ('wordpress', 'complete-site-source', 0),
+        ('wordpress', 'native-block-theme', 4),
+        ('developer', 'native-block-theme', 0),
+        ('developer', 'visual-add-on', 0),
+        ('developer', 'complete-site-source', 4),
+        ('squarespace', 'complete-site-source', 0),
+        ('squarespace', 'native-block-theme', 0),
+        ('squarespace', 'visual-add-on', 1),
+        ('godaddy', 'complete-site-source', 0),
+        ('godaddy', 'native-block-theme', 0),
+        ('godaddy', 'visual-add-on', 1),
+        ('all', 'visual-add-on', 1),
+        ('all', 'native-block-theme', 4),
+        ('all', 'complete-site-source', 4),
+    ]
+    for platform, kind, expected in cases:
+        page.get_by_role('combobox', name='Platform', exact=True).select_option(platform)
+        page.get_by_role('combobox', name='Product type', exact=True).select_option(kind)
+        require(page.locator('.et-product').count() == expected,
+                f'{platform}/{kind}: expected {expected} compatible designs')
+        require(page.locator('.et-result').inner_text().startswith(f'{expected} '),
+                'Filter count announcement does not match the visible products')
+        if expected == 0:
+            require(page.get_by_text('No designs match that combination.', exact=False).is_visible(),
+                    'Incompatible filters must show the empty-state guidance')
+        if expected == 1:
+            require('Switchboard' in page.locator('.et-product').inner_text(),
+                    'Builder visual add-on must show only the Switchboard pilot')
+        no_overflow(page, f'collection/{platform}/{kind}/{width}')
+    page.get_by_role('combobox', name='Platform', exact=True).select_option('all')
+    page.get_by_role('combobox', name='Product type', exact=True).select_option('all')
+    require(page.locator('.et-product').count() == 4, 'Clearing filters must restore all four designs')
+    report['checks'].append({'browser': browser_name, 'scope': 'combined platform/package filters',
+                             'viewport': width, 'cases': len(cases), 'sameEditionCompatibility': 'passed',
+                             'emptyState': 'passed', 'clearedFilters': 'passed'})
+
+
 def shop_catalog_contract(page, width):
     # Mock only the read-only catalog. Terms/challenge remain untouched and no
     # checkout request is made. Exercise both initial and corrected versions.
@@ -411,6 +452,12 @@ with sync_playwright() as playwright:
                     report['failures'].append({'browser': browser_name, 'scope': 'shop', 'viewport': width, 'error': str(error)})
                     print(f'FAIL shop/{width}: {error}', flush=True)
             if not args.source_only:
+                try:
+                    shop_filter_contract(page, browser_name, width)
+                except Exception as error:
+                    report['failures'].append({'browser': browser_name, 'scope': 'combined platform/package filters',
+                                               'viewport': width, 'error': str(error)})
+                    print(f'FAIL combined filters/{browser_name}/{width}: {error}', flush=True)
                 installation_guides(page, browser_name, width)
                 require(not errors, f'Runtime errors: {errors}')
             context.close()
