@@ -192,6 +192,7 @@ def night_text_contrast(page):
 
 def shop_filter_contract(page, browser_name, width):
     open_page(page, '/shop')
+    page.wait_for_load_state('networkidle')
     cases = [
         ('wordpress', 'visual-add-on', 0),
         ('wordpress', 'existing-site-kit', 0),
@@ -352,6 +353,9 @@ def installation_guides(page, browser_name, width):
                 page.keyboard.press('Enter')
                 page.locator('.et-purchase').wait_for(state='visible')
                 require(page.url.rstrip('/').endswith('/shop/' + product['slug']), 'Guide return link failed')
+                # Let the returned detail's readiness requests finish before
+                # navigating away; WebKit reports cancelled fetches as page errors.
+                page.wait_for_load_state('networkidle')
                 open_page(page, path)
                 if browser_name == 'chromium' and product['slug'] == 'switchboard':
                     page.screenshot(path=str(out / f'guide-{platform}-{width}.jpg'), type='jpeg', quality=80)
