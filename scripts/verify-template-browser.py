@@ -194,18 +194,23 @@ def shop_filter_contract(page, browser_name, width):
     open_page(page, '/shop')
     cases = [
         ('wordpress', 'visual-add-on', 0),
+        ('wordpress', 'existing-site-kit', 0),
         ('wordpress', 'complete-site-source', 0),
         ('wordpress', 'native-block-theme', 4),
         ('developer', 'native-block-theme', 0),
         ('developer', 'visual-add-on', 0),
+        ('developer', 'existing-site-kit', 0),
         ('developer', 'complete-site-source', 4),
         ('squarespace', 'complete-site-source', 0),
         ('squarespace', 'native-block-theme', 0),
-        ('squarespace', 'visual-add-on', 1),
+        ('squarespace', 'visual-add-on', 0),
+        ('squarespace', 'existing-site-kit', 1),
         ('godaddy', 'complete-site-source', 0),
         ('godaddy', 'native-block-theme', 0),
         ('godaddy', 'visual-add-on', 1),
+        ('godaddy', 'existing-site-kit', 0),
         ('all', 'visual-add-on', 1),
+        ('all', 'existing-site-kit', 1),
         ('all', 'native-block-theme', 4),
         ('all', 'complete-site-source', 4),
     ]
@@ -221,7 +226,7 @@ def shop_filter_contract(page, browser_name, width):
                     'Incompatible filters must show the empty-state guidance')
         if expected == 1:
             require('Switchboard' in page.locator('.et-product').inner_text(),
-                    'Builder visual add-on must show only the Switchboard pilot')
+                    'Builder kits/add-ons must show only the Switchboard pilot')
         no_overflow(page, f'collection/{platform}/{kind}/{width}')
     page.get_by_role('combobox', name='Platform', exact=True).select_option('all')
     page.get_by_role('combobox', name='Product type', exact=True).select_option('all')
@@ -366,6 +371,16 @@ with sync_playwright() as playwright:
         browser = getattr(playwright, browser_name).launch()
         for width, height in [(1440, 1000), (390, 844)]:
             context = browser.new_context(viewport={'width': width, 'height': height}, reduced_motion='reduce')
+            # This suite serves dist with a static HTTP server, without an API.
+            # Model that absence explicitly; separate tests override the catalog
+            # for version/price mismatch assertions. No provider call is accepted.
+            context.route('**/api/public-config', lambda route: route.fulfill(
+                status=200, content_type='application/json', body=json.dumps({
+                    'gaMeasurementId': '', 'turnstileSiteKey': '', 'communityReady': False,
+                    'accountsReady': False, 'aiReady': False, 'shopReady': False, 'localTest': False})))
+            context.route('**/api/shop/catalog', lambda route: route.fulfill(
+                status=200, content_type='application/json', body=json.dumps({
+                    'mode': 'test', 'ready': False, 'editions': []})))
             page = context.new_page()
             errors = []
             page.on('pageerror', lambda error: errors.append(str(error)))
