@@ -13,6 +13,10 @@ static file `public/.well-known/security.txt`; `public/_headers` sets its plain
 text content type and one-hour public cache lifetime. `/security.txt` redirects
 permanently to the standard endpoint. The existing global `nosniff` header applies.
 
+The candidate incorporates public main
+`5e67573c5bec3723daa6d47b9ad0d1d58f45883e` after the separately authorized
+community loading repair (#103), retaining that repair and its acceptance entry.
+
 The reporting contact is the published `hello@eidos-works.com` address, confirmed
 in the live contact page and site configuration. Preferred language is English;
 the file expires on October 1, 2027 at 00:00 UTC and must be reviewed and renewed
