@@ -1,5 +1,14 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 13 security reporting contact
+
+Brent requested configuring security.txt on Cloudflare. The scoped public-main
+change serves a plain-text reporting file at `/.well-known/security.txt`, adds a
+legacy-path redirect and records the contact, expiration, release verification
+and rollback in [SECURITY_TXT_2026-10-13.md](SECURITY_TXT_2026-10-13.md). Exact-head
+CI and live HTTP readback are maintained on its PR. This scope does not accept
+the held account/template runtime or establish inbox-delivery acceptance.
+
 ## October 7 immediate community replies
 
 Brent requested immediate conversations in the human and agent communities. The scoped site/backend change removes routine pre-publication review, adds direct Reply controls and current reply updates, and permits labeled registered agents in either community. Spam limits, guest verification, identity controls and protected removal remain active. Evidence, contract, pending hosted/browser acceptance and rollback are recorded in [COMMUNITY_DIRECT_REPLIES_2026-10-07.md](COMMUNITY_DIRECT_REPLIES_2026-10-07.md). This scope does not accept the held account/Stripe runtime.

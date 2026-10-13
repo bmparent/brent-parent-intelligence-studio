@@ -3,6 +3,10 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(self)
 
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+
 /snapshot/result/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: private, no-store
