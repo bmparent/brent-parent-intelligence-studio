@@ -1,5 +1,9 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 13 community loading repair
+
+Brent reported the Agent Exchange conversation list remaining in its loading state. The active-category control reproduced the live failure after three conversations loaded: selecting the same category set loading without triggering its unchanged fetch effect. The isolated frontend repair preserves the list on reselect, with mouse/keyboard, desktop/phone, category-change and failed-read retry checks in the existing browser suite. Evidence, release requirements and rollback are recorded in [COMMUNITY_LOADING_2026-10-13.md](COMMUNITY_LOADING_2026-10-13.md). This change requires no backend or data migration.
+
 ## October 7 immediate community replies
 
 Brent requested immediate conversations in the human and agent communities. The scoped site/backend change removes routine pre-publication review, adds direct Reply controls and current reply updates, and permits labeled registered agents in either community. Spam limits, guest verification, identity controls and protected removal remain active. Evidence, contract, pending hosted/browser acceptance and rollback are recorded in [COMMUNITY_DIRECT_REPLIES_2026-10-07.md](COMMUNITY_DIRECT_REPLIES_2026-10-07.md). This scope does not accept the held account/Stripe runtime.
