@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { fingerprint, previewBranch, previewProject, relayBinding, requireIsolatedProject, withoutRelayUrl } from './works-paired-preview.mjs';
+import { fingerprint, previewBranch, previewProject, previewOrigin, relayBinding, requireIsolatedProject, verifyAccountOriginRedirect, withoutRelayUrl } from './works-paired-preview.mjs';
 
 const project = () => ({
   name: previewProject, production_branch: previewBranch,
@@ -54,4 +54,47 @@ test('URL-only reconciliation detects credential, environment and service-bindin
     assert.notEqual(fingerprint(withoutRelayUrl(before)), fingerprint(withoutRelayUrl(changed)));
   }
   assert.equal(before.production.env_vars.EIDOS_PLATFORM_URL.value, 'https://old-preview.vercel.app');
+});
+
+test('account redirect acceptance tolerates new-alias propagation and records every observed response', async () => {
+  const statuses = [404, 503, 307];
+  let clock = 0;
+  const checked = await verifyAccountOriginRedirect('https://b2e285ac.eidosworks-test-20260923.pages.dev', '/account/', {
+    now: () => clock, pause: async ms => { clock += ms; },
+    fetcher: async (url, options) => {
+      assert.equal(url, 'https://b2e285ac.eidosworks-test-20260923.pages.dev/account/');
+      assert.equal(options.redirect, 'manual');
+      return new Response(null, { status: statuses.shift(), headers: { location: previewOrigin + '/account/', 'cache-control': 'no-store' } });
+    },
+  });
+  assert.deepEqual(checked.observedStatuses, [404, 503, 307]);
+  assert.equal(checked.attempts, 3);
+});
+
+test('account redirect acceptance stops on access denials, wrong destinations, cookies and rendered alias pages', async () => {
+  for (const [status, headers] of [
+    [401, {}], [403, {}], [429, {}], [200, {}],
+    [307, { location: 'https://attacker.example/account/', 'cache-control': 'no-store' }],
+    [307, { location: previewOrigin + '/account/', 'cache-control': 'no-store', 'set-cookie': 'unexpected=identity' }],
+  ]) {
+    let calls = 0;
+    await assert.rejects(verifyAccountOriginRedirect('https://b2e285ac.eidosworks-test-20260923.pages.dev', '/account/', {
+      fetcher: async () => { calls++; return new Response(null, { status, headers }); },
+      pause: async () => { throw Error('Must not retry an access or authority failure'); },
+    }));
+    assert.equal(calls, 1);
+  }
+});
+
+test('account redirect acceptance bounds propagation and rejects unknown hosts and paths before fetching', async () => {
+  let clock = 0;
+  let calls = 0;
+  await assert.rejects(verifyAccountOriginRedirect('https://b2e285ac.eidosworks-test-20260923.pages.dev', '/account/', {
+    now: () => clock, pause: async ms => { clock += ms; },
+    fetcher: async () => { calls++; return new Response(null, { status: 404 }); },
+  }));
+  assert.equal(clock, 90000);assert.equal(calls, 31);
+  for (const [host, path] of [['https://eidos-works.com','/account/'],['https://b2e285ac.eidosworks-test-20260923.pages.dev','/api/members/account']]) {
+    await assert.rejects(verifyAccountOriginRedirect(host, path, { fetcher: async () => { throw Error('No fetch allowed'); } }));
+  }
 });

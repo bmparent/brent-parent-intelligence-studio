@@ -43,6 +43,34 @@ export function relayBinding(previous) {
   return { type: previous.type, previousOrigin, masked: previousOrigin === null };
 }
 
+export async function verifyAccountOriginRedirect(immutableOrigin, path, {
+  fetcher = fetch, now = Date.now, pause = ms => new Promise(done => setTimeout(done, ms)),
+} = {}) {
+  assert.match(immutableOrigin, /^https:\/\/[a-z0-9-]+\.eidosworks-test-20260923\.pages\.dev$/, 'Unexpected immutable preview origin.');
+  assert.ok(['/account/', '/account/verify?intent=signup', '/account/reset', '/playground/'].includes(path), 'Unexpected account acceptance path.');
+  const deadline = now() + 90000;
+  let attempts = 0;
+  const observedStatuses = [];
+  while (true) {
+    const response = await fetcher(immutableOrigin + path, { redirect: 'manual', signal: AbortSignal.timeout(30000) });
+    attempts++;
+    observedStatuses.push(response.status);
+    const location = response.headers.get('location');
+    await response.body?.cancel();
+    if ([404, 503].includes(response.status) && now() < deadline) {
+      // A new immutable alias can propagate after the canonical asset upload.
+      // Access denials and a rendered non-redirecting page are never retried.
+      await pause(3000);
+      continue;
+    }
+    assert.equal(response.status, 307, `Isolated account alias ${path} must redirect before collecting credentials.`);
+    assert.equal(location, previewOrigin + path, 'The alias must use the configured exact account origin.');
+    assert.equal(response.headers.get('cache-control'), 'no-store');
+    assert.equal(response.headers.get('set-cookie'), null, 'The alias must not mint or transfer identity cookies.');
+    return { path, status: response.status, location, attempts, observedStatuses };
+  }
+}
+
 async function main(mode) {
   assert.ok(['preflight', 'verify'].includes(mode), 'Use preflight or verify.');
   assert.match(process.env.GITHUB_SHA || '', /^[a-f0-9]{40}$/, 'An exact candidate commit is required.');
@@ -163,16 +191,8 @@ async function main(mode) {
   assert.equal(config.googleReady, true, 'The paired Google service is not configured.');
   const accountOriginChecks = [];
   const immutableOrigin = new URL(deployment.url).origin;
-  assert.match(immutableOrigin, /^https:\/\/[a-z0-9-]+\.eidosworks-test-20260923\.pages\.dev$/, 'Unexpected immutable preview origin.');
   for (const path of ['/account/', '/account/verify?intent=signup', '/account/reset', '/playground/']) {
-    const response = await fetch(immutableOrigin + path, { redirect: 'manual', signal: AbortSignal.timeout(30000) });
-    const location = response.headers.get('location');
-    assert.equal(response.status, 307, 'An isolated account alias must redirect before collecting credentials.');
-    assert.equal(location, previewOrigin + path, 'The alias must use the configured exact account origin.');
-    assert.equal(response.headers.get('cache-control'), 'no-store');
-    assert.equal(response.headers.get('set-cookie'), null, 'The alias must not mint or transfer identity cookies.');
-    await response.body?.cancel();
-    accountOriginChecks.push({ path, status: response.status, location });
+    accountOriginChecks.push(await verifyAccountOriginRedirect(immutableOrigin, path));
   }
   const checks = [];
   for (const [name, route, options, allowed] of [
