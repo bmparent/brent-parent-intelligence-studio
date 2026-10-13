@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-06T12:16:35Z",
+  "updatedAt": "2026-10-07T17:03:25Z",
   "operator": "studio_manager",
   "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
   "activeOffer": "quote-desk",
@@ -25,7 +25,7 @@
     {
       "id": "REV-002",
       "owner": "studio_manager",
-      "stage": "blocked_hosting",
+      "stage": "blocked_merchant_attribution",
       "task": "Accepted paid Quote Desk workspace",
       "doneCondition": "Correct merchant and authorized provider bindings; complete hosted lifecycle and customer acceptance in app README before live checkout.",
       "evidence": [
@@ -34,10 +34,11 @@
         "receipts/2026-10-04-revenue-operator.md",
         "../../docs/implementation/QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md",
         "https://github.com/bmparent/brent-parent-intelligence-studio/pull/95",
-        "receipts/2026-10-06-revenue-operator.md"
+        "receipts/2026-10-06-revenue-operator.md",
+        "receipts/2026-10-07-revenue-operator.md"
       ],
-      "blocker": "October 6 readback: the intended LIVE Eidos Works merchant is verified and its inactive $19/month catalog entry exists, but the separate paid workspace still has no hosted Worker/D1, accepted sender/Turnstile bindings or connected Stripe sandbox. The repository Cloudflare credential can read Workers/Pages but the isolated D1 endpoint returned HTTP 401, and the local CLI is unauthenticated.",
-      "nextAction": "Update the repository Cloudflare credential with least-privilege Workers Scripts Edit, D1 Edit and intended-zone Workers Routes Edit access. Then provision only the isolated preview Worker/D1, keep checkout disabled, connect a separate Stripe sandbox and run hosted login, two-owner, webhook, recovery and device acceptance."
+      "blocker": "October 7 superseding readback: the only accessible LIVE Stripe context is a technically enabled legacy storefront whose public profile does not identify Eidos Works; its Product and Price catalogs are empty. The intended Eidos Works merchant, product and price are not verified. The separate paid workspace also has no accepted hosted Worker/D1 or connected Stripe sandbox.",
+      "nextAction": "Select or connect the intended Eidos Works Stripe account without altering the mismatched legacy account; verify its public merchant profile and catalog in one context. Then obtain least-privilege Cloudflare Workers/D1/route access, provision only the isolated preview with checkout disabled, connect a separate sandbox and run the hosted acceptance gates."
     },
     {
       "id": "REV-003",
@@ -69,19 +70,37 @@
     {
       "id": "REV-005",
       "owner": "studio_manager",
-      "stage": "release_candidate",
+      "stage": "complete",
       "task": "Measure structured Quote Desk willingness to pay",
       "doneCondition": "The owned Quote Desk feedback path asks weekly quote volume and direct $19/month intent, includes both signals in the provider-confirmed inquiry, keeps ordinary contact visits unchanged, passes exact-head checks and is verified in production without submitting a message.",
       "evidence": [
         "../../src/components/ContactForm.tsx",
         "../../scripts/verify-quote-desk-browser.mjs",
-        "receipts/2026-10-06-revenue-operator.md"
+        "receipts/2026-10-06-revenue-operator.md",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/96",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/37463823466",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/97",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/37499581060"
       ],
-      "blocker": "Exact-head CI, merge, deployment and production readback are required.",
-      "nextAction": "Open the focused PR, require the existing browser and site-quality checks, merge only when green, then verify both structured fields on the live Quote Desk handoff without submitting the form."
+      "blocker": null,
+      "nextAction": "Retain PRs #96 and #97 and their production runs as the final receipt; measure real qualified responses without submitting synthetic feedback."
+    },
+    {
+      "id": "REV-006",
+      "owner": "studio_manager",
+      "stage": "release_candidate",
+      "task": "Fail closed on Quote Desk merchant and product attribution",
+      "doneCondition": "Checkout requires an exact Eidos Works public merchant profile in LIVE mode and an expanded active Eidos Quote Desk Product in both environments; exact-head checks pass and the released source/rollback are recorded.",
+      "evidence": [
+        "../../apps/quote-desk/worker.mjs",
+        "../../apps/quote-desk/tests/lifecycle.test.mjs",
+        "receipts/2026-10-07-revenue-operator.md"
+      ],
+      "blocker": "Exact-head CI, merge and release readback are required. This source guard does not resolve merchant selection, sandbox access or hosted acceptance.",
+      "nextAction": "Open the focused PR, require all exact-head checks, merge only when green and retain the production release run and rollback SHA."
     }
   ],
-  "latestReceipt": "receipts/2026-10-06-revenue-operator.md",
+  "latestReceipt": "receipts/2026-10-07-revenue-operator.md",
   "notes": [
     "One active commercial offer and one supporting blocker task maximum.",
     "Interactive bootstrap is not an independent scheduled or specialist run.",

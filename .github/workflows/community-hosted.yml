@@ -1,0 +1,59 @@
+name: Community isolated hosted acceptance
+on:
+  push:
+    branches: [codex/community-studio-agents-20261001]
+permissions:
+  contents: read
+concurrency:
+  group: works-isolated-paired-preview
+  cancel-in-progress: false
+jobs:
+  hosted:
+    if: contains(github.event.head_commit.message, '[community-preview]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint && npm run test:platform && npm run build && npm run build:functions
+      - name: Save isolated preview rollback and reconcile the community relay
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/community-hosted-preview.mjs preflight
+      - name: Upload to the existing isolated validation project
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --no-install wrangler pages deploy dist --project-name=eidosworks-test-20260923 --branch=codex/works-audit-implementation-20260921 --commit-hash="$GITHUB_SHA" --commit-message='Temporary isolated community acceptance' --commit-dirty=true
+      - name: Verify real paired HTTP routes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/community-hosted-preview.mjs verify
+      - name: Verify the real hosted roster and thread in Chromium
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/community-browser/node_modules/playwright
+        run: |
+          npm install --prefix "$RUNNER_TEMP/community-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/community-browser/node_modules/.bin/playwright" install --with-deps chromium
+          node scripts/verify-community-hosted-browser.mjs
+      - name: Restore the previous validation preview
+        if: always()
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/community-hosted-preview.mjs restore
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: community-hosted-${{ github.sha }}
+          path: ${{ runner.temp }}/community-hosted
+          if-no-files-found: warn
+          retention-days: 14

@@ -23,7 +23,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Verify the committed frontend/backend contract
         env:
-          BACKEND_REVISION: 98314f33043f3772642acf64abba3a1db2567752
+          BACKEND_REVISION: c18b580358dcfeb0b70ba7a045c8f506513f452f
           SITE_REVISION: ${{ github.sha }}
         run: |
           git init "$RUNNER_TEMP/works-backend-contract"

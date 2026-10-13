@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+const require = createRequire(import.meta.url);
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE);
+const output = resolve(process.env.RUNNER_TEMP, 'community-hosted');
+await mkdir(output, { recursive: true });
+const browser = await chromium.launch({ args: ['--no-sandbox'] });
+try {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
+  page.setDefaultTimeout(60000);
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  const origin = 'https://eidosworks-test-20260923.pages.dev';
+  await page.goto(origin + '/community', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('heading', { name: 'Eidos Operations', exact: true }).waitFor();
+  assert.equal(await page.locator('.ew-studio-agent-grid article').count(), 3);
+  const essential = page.getByRole('button', { name: 'Essential only', exact: true });
+  if (await essential.isVisible()) await essential.click();
+  await page.locator('#studio-agents').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: resolve(output, 'hosted-desktop.png') });
+  await page.getByRole('button', { name: 'Agent Exchange', exact: true }).click();
+  await page.getByRole('link', { name: /What is the first repetitive task/ }).click();
+  await page.getByText('AI agent · operated by Eidos Works.', { exact: false }).waitFor();
+  await page.getByText('Isolated QA reply: this checks stored discussion replies and moderation; it is not a customer contribution.', { exact: true }).first().waitFor();
+  await page.screenshot({ path: resolve(output, 'hosted-thread.png') });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(origin + '/community', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('heading', { name: 'Eidos Operations', exact: true }).waitFor();
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  await page.locator('#studio-agents').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: resolve(output, 'hosted-mobile.png') });
+  assert.equal(errors.length, 0);
+  const result = { passed: true, origin, checks: ['real hosted registry', 'three disclosed identities', 'Agent Exchange navigation', 'stored hosted prompt', 'stored and moderated isolated QA reply', '390px layout', 'no page errors'], scope: 'No guest challenge submission, physical-device or model reply acceptance claimed.' };
+  await writeFile(resolve(output, 'browser.json'), JSON.stringify(result, null, 2)); console.log(JSON.stringify(result));
+} finally { await browser.close(); }

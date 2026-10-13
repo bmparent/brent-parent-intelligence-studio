@@ -283,93 +283,64 @@ await test('Request boundaries reject oversized bodies and cross-origin writes',
   assert.equal(sql.prepare('SELECT count(*) n FROM eidos_threads').get()?.n, 0);
   sql.close();
 });
-await test('Questions are private until reviewed, then receive at most one requested Eidos reply', async () => {
+await test('Questions and replies publish immediately, and requested Eidos suggestions remain capped', async () => {
   const { env, sql } = setup();
-  const created = await value(
-    await question(context(env, '/api/community/threads', questionInput)),
-  );
+  const created = await value(await question(context(env, '/api/community/threads', questionInput)));
   const id = String(created.id);
-  assert.equal(created.state, 'pending');
-  assert.equal(
-    (await value(await questions(context(env, '/api/community/threads'))))
-      .threads instanceof Array,
-    true,
-  );
-  assert.equal(
-    (
-      (await value(await questions(context(env, '/api/community/threads'))))
-        .threads as unknown[]
-    ).length,
-    0,
-  );
-  assert.equal(
-    (
-      await threadPage(
-        context(env, '/community/thread/' + id, undefined, {}, { id }),
-      )
-    ).status,
-    404,
-  );
-  assert.equal(
-    (
-      await moderate(
-        context(env, '/api/community/moderate', {
-          action: 'publish',
-          kind: 'thread',
-          id,
-        }),
-      )
-    ).status,
-    401,
-  );
-  const headers = { authorization: 'Bearer ' + env.EIDOS_ADMIN_TOKEN };
-  assert.equal(
-    (
-      await moderate(
-        context(
-          env,
-          '/api/community/moderate',
-          { action: 'publish', kind: 'thread', id },
-          headers,
-        ),
-      )
-    ).status,
-    200,
-  );
-  await moderate(
-    context(
-      env,
-      '/api/community/moderate',
-      { action: 'publish', kind: 'thread', id },
-      headers,
-    ),
-  );
-  assert.equal(
-    sql
-      .prepare("SELECT count(*) n FROM eidos_replies WHERE author_type='eidos'")
-      .get()?.n,
-    1,
-  );
-  const html = await (
-    await threadPage(
-      context(env, '/community/thread/' + id, undefined, {}, { id }),
-    )
-  ).text();
-  assert.match(html, /How do I build a better storefront/);
-  assert.match(html, /published-source suggestion/);
-  assert.equal(
-    (await value(await feed(context(env, '/community/feed')))).items instanceof
-      Array,
-    true,
-  );
-  const response = await reply(
-    context(env, '/api/community/replies', {
-      threadId: id,
-      body: 'A useful follow-up question.',
-      author: 'Another guest',
-    }),
-  );
+  assert.equal(created.state, 'published');
+  assert.equal(created.url, '/community/thread/' + id);
+  assert.equal(((await value(await questions(context(env, '/api/community/threads')))).threads as unknown[]).length, 1);
+  assert.equal((await threadPage(context(env, '/community/thread/' + id, undefined, {}, { id }))).status, 200);
+  assert.equal((await moderate(context(env, '/api/community/moderate', { action: 'unpublish', kind: 'thread', id }))).status, 401);
+  for (let i = 0; i < 2; i++)
+    await moderate(context(env, '/api/community/moderate', { action: 'publish', kind: 'thread', id }, { authorization: 'Bearer ' + env.EIDOS_ADMIN_TOKEN }));
+  assert.equal(sql.prepare("SELECT count(*) n FROM eidos_replies WHERE author_type='eidos'").get()?.n, 1);
+  const response = await reply(context(env, '/api/community/replies', { threadId: id, body: 'Thanks!', author: 'Another guest' }));
   assert.equal(response.status, 201);
+  const saved = await response.json();
+  assert.equal(saved.state, 'published');
+  const current = await (await questions(context(env, '/api/community/threads?id=' + id))).json();
+  assert.equal(current.thread.reply_count, 2);
+  assert.ok(current.replies.some((r: {id: string}) => r.id === saved.id));
+  const html = await (await threadPage(context(env, '/community/thread/' + id, undefined, {}, { id }))).text();
+  assert.match(html, /Thanks!/);
+  assert.match(html, /published-source suggestion/);
+  assert.match(html, /data-reply-to=/);
+  assert.ok((await (await feed(context(env, '/community/feed'))).json()).items.some((item: {url: string}) => item.url.endsWith(id)));
+  sql.close();
+});
+await test('Agents can reply across communities; hourly quotas and removal still work', async () => {
+  const { env, sql } = setup();
+  const adminHeaders = { authorization: 'Bearer ' + env.EIDOS_ADMIN_TOKEN };
+  const agent = await (await moderate(context(env, '/api/community/moderate', {action: 'register-agent', name: 'Useful Agent', profileUrl: 'https://example.com/operator'}, adminHeaders))).json();
+  const agentHeaders = { authorization: 'Bearer ' + agent.key };
+  const created = await (await question(context(env, '/api/community/threads', {...questionInput, body: 'A concrete layout question for people and agents.'}))).json();
+  const agentThread = await (await agentPost(context(env, '/api/community/agents', {...questionInput, category: 'design'}, agentHeaders))).json();
+  assert.equal(agentThread.state, 'published');
+  assert.equal(sql.prepare('SELECT category FROM eidos_threads WHERE id=?').get(agentThread.id)?.category, 'design');
+  let agentReply;
+  for (let i = 0; i < 60; i++) {
+    const response = await agentPost(context(env, '/api/community/agents', {threadId: created.id, body: 'Yes.'}, agentHeaders));
+    assert.equal(response.status, 201);
+    agentReply = await response.json();
+  }
+  assert.equal((await agentPost(context(env, '/api/community/agents', {threadId: created.id, body: 'More.'}, agentHeaders))).status, 429);
+  assert.equal(sql.prepare("SELECT count(*) n FROM eidos_replies WHERE author_type='eidos'").get()?.n, 0);
+  await moderate(context(env, '/api/community/moderate', {action: 'unpublish', kind: 'reply', id: agentReply.id}, adminHeaders));
+  let current = await (await questions(context(env, '/api/community/threads?id=' + created.id))).json();
+  assert.equal(current.thread.reply_count, 59);
+  assert.ok(!current.replies.some((r: {id: string}) => r.id === agentReply.id));
+  await moderate(context(env, '/api/community/moderate', {action: 'unpublish', kind: 'thread', id: created.id}, adminHeaders));
+  assert.equal((await questions(context(env, '/api/community/threads?id=' + created.id))).status, 404);
+  assert.equal((await reply(context(env, '/api/community/replies', {threadId: created.id, author: 'Guest', body: 'Hello'}))).status, 404);
+  const longThread = agentThread.id;
+  const add = sql.prepare("INSERT INTO eidos_replies(id,thread_id,body,author,author_type,status,created_at) VALUES(?,?,?,'Reader','guest','published',?)");
+  for (let i = 0; i < 105; i++) add.run(crypto.randomUUID(), longThread, 'Reply ' + i, new Date(1700000000000 + i * 1000).toISOString());
+  current = await (await questions(context(env, '/api/community/threads?id=' + longThread))).json();
+  assert.equal(current.thread.reply_count, 105);
+  assert.equal(current.replies.length, 100);
+  assert.equal(current.replies[0].body, 'Reply 5');
+  assert.equal(current.replies.at(-1).body, 'Reply 104');
   sql.close();
 });
 await test('Untrusted thread HTML is escaped and unpublished content disappears', async () => {

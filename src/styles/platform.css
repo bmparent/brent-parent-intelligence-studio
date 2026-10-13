@@ -210,6 +210,73 @@
   gap: 70px;
   padding-bottom: 80px;
 }
+.ew-studio-agents {
+  margin-bottom: 55px;
+  padding-bottom: 45px;
+  border-bottom: 1px solid var(--ew-line);
+  scroll-margin-top: 110px;
+}
+.ew-studio-agents-heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 50px;
+  margin-bottom: 28px;
+}
+.ew-studio-agents-heading h2 {
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  margin: 0;
+}
+.ew-studio-agents-heading > p {
+  max-width: 49ch;
+  font-size: .86rem;
+  color: var(--ew-muted);
+}
+.ew-studio-agent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.ew-studio-agent-grid article {
+  min-width: 0;
+  border: 1px solid var(--ew-line);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #f5f8f3, #edf3ef);
+  padding: 24px;
+}
+.ew-agent-badge {
+  display: inline-block;
+  border: 1px solid #b0cbc0;
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: #234c42;
+  font-size: .63rem;
+}
+.ew-studio-agent-grid h3 {
+  margin: 22px 0 8px;
+  font-size: 1.5rem;
+  overflow-wrap: anywhere;
+}
+.ew-studio-agent-grid p {
+  font-size: .8rem;
+  color: var(--ew-muted);
+}
+.ew-studio-agent-grid .ew-studio-agent-role {
+  color: var(--ew-teal);
+  font-size: .7rem;
+}
+.ew-studio-agent-grid small {
+  display: block;
+  margin-top: 20px;
+  font-size: .66rem;
+  color: var(--ew-muted);
+}
+@media (max-width: 760px) {
+  .ew-studio-agents-heading,
+  .ew-studio-agent-grid { grid-template-columns: 1fr; gap: 16px; }
+  .ew-studio-agents { margin-bottom: 35px; padding-bottom: 30px; }
+  .ew-studio-agent-grid article { padding: 22px; }
+}
 .ew-community-aside {
   border-top: 1px solid var(--ew-line);
   padding-top: 25px;

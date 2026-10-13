@@ -1,5 +1,9 @@
 # Implementation baseline — 2026-09-21
 
+## Current recovery update — 2026-10-13
+
+Brent requested starting today's account/template priorities. The held site #98 and backend #67 are being recovered against current main without rewriting historical receipts. See [ACCEPTANCE_2026-10-13.md](ACCEPTANCE_2026-10-13.md) for exact merge parents, observed canonical account UI, source parity and remaining controlled-identity/provider gates. The final PR receipt identifies the committed pair and any refreshed isolated preview. Production remains NO-GO.
+
 ## Current recovery update — 2026-10-06
 
 Current public main is `a6faf20fbedffda38f01f3052a3df9a8d541c4b4` after authorized #97 merge; its own production workflow determines delivered status. Interactive recovery owner: Eidos. Use successor `codex/works-paired-recovery-20261006` for the held account/Playground/owner candidate, preserving original #73 at `6a6ff2a5e2c8a2a25649813b9d512a5b08619a5e`. Backend #67 remains `97d806d4d0a7a71575090e10d5e81aca1036b4e4`. Current checks, exact-pair CI/preview requirements and remaining gates are in [ACCEPTANCE_2026-10-06.md](ACCEPTANCE_2026-10-06.md). The dated baseline below is retained as history, not current production evidence.

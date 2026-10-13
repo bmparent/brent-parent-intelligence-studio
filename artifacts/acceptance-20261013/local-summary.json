@@ -1,0 +1,14 @@
+{
+  "taskDate": "2026-10-13",
+  "siteParents": ["9120d53d8f27104a9d1903d64bd19af7a54f93c2", "fb74c4cf00defef23ce3ee96af4e51c350c3e807"],
+  "backendRevision": "c18b580358dcfeb0b70ba7a045c8f506513f452f",
+  "backendTree": "93ec70533ee6496d282f18398b0855e811aa8d1d",
+  "siteChecks": {"platform": 37, "audit": 36, "playground": 26, "ownerConsole": 8, "previewIsolation": 4},
+  "backendChecks": {"javascript": 16, "typescript": 66, "focusedCommunityRerun": 1},
+  "pairedContractFiles": 77,
+  "lintTypecheckBuildFunctionsRoutes": "pass",
+  "providerCallsInTests": "stubs or in-memory fixtures only",
+  "realAccountsAndInboxAcceptance": "open",
+  "signedStripeTestLifecycle": "open",
+  "productionDecision": "NO-GO"
+}

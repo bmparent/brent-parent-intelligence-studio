@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {DatabaseSync} from 'node:sqlite';
 import Stripe from 'stripe';
-import {createWorker,hash,liveMerchantReady,processEvent,subscriptionAccess} from '../worker.mjs';
+import {createWorker,hash,liveMerchantReady,processEvent,productAttributionReady,subscriptionAccess} from '../worker.mjs';
 import {defaults} from '../public/estimator.mjs';
 const schema=await readFile(new URL('../migrations/0001_quote_desk.sql',import.meta.url),'utf8');
 // Real SQLite executes the exact migration and ownership queries. Provider calls are fixtures.
@@ -15,10 +15,10 @@ function database(){
 const ts=()=>Math.floor(Date.now()/1000);
 function sub(id='sub_a',customer='cus_a',extra={}){return {id,customer,livemode:false,status:'active',pause_collection:null,latest_invoice:{id:'in_a',status:'paid',amount_paid:1900},items:{data:[{quantity:1,current_period_end:ts()+86400,price:{id:'price_a',currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}}}]},...extra};}
 function fixture(){
-  const env={QUOTE_DB:database(),QUOTE_SITE_ORIGIN:'http://localhost:8787',QUOTE_ENVIRONMENT:'test',QUOTE_CHECKOUT_ENABLED:'true',STRIPE_PRICE_ID:'price_a',STRIPE_ACCOUNT_ID:'acct_a',STRIPE_WEBHOOK_SECRET:'fixture-signing-secret',STRIPE_PORTAL_CONFIGURATION_ID:'bpc_a',QUOTE_RATE_SECRET:'a'.repeat(32),RESEND_API_KEY:'fixture-mail',QUOTE_MAIL_FROM:'Quote Desk <desk@example.invalid>'};
+  const env={QUOTE_DB:database(),QUOTE_SITE_ORIGIN:'http://localhost:8787',QUOTE_ENVIRONMENT:'test',QUOTE_CHECKOUT_ENABLED:'true',STRIPE_PRICE_ID:'price_a',STRIPE_PRODUCT_NAME:'Eidos Quote Desk',STRIPE_MERCHANT_PROFILE_NAME:'Eidos Works',STRIPE_ACCOUNT_ID:'acct_a',STRIPE_WEBHOOK_SECRET:'fixture-signing-secret',STRIPE_PORTAL_CONFIGURATION_ID:'bpc_a',QUOTE_RATE_SECRET:'a'.repeat(32),RESEND_API_KEY:'fixture-mail',QUOTE_MAIL_FROM:'Quote Desk <desk@example.invalid>'};
   const subscriptions=new Map([['sub_a',sub()],['sub_b',sub('sub_b','cus_b')]]);const calls=[];
   const signing=new Stripe('fixture-not-a-credential');
-  const stripe={webhooks:signing.webhooks,prices:{async retrieve(){return {active:true,livemode:false,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}};}},accounts:{async retrieve(){return {id:'acct_a',charges_enabled:true,payouts_enabled:true};}},
+  const stripe={webhooks:signing.webhooks,prices:{async retrieve(){return {active:true,livemode:false,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1},product:{id:'prod_quote',active:true,name:'Eidos Quote Desk'}};}},accounts:{async retrieve(){return {id:'acct_a',charges_enabled:true,payouts_enabled:true,business_profile:{name:'Eidos Works'}};}},
     subscriptions:{async retrieve(id){calls.push(['retrieve',id]);if(!subscriptions.has(id))throw Error('not found');return subscriptions.get(id);},async list({customer}){return {data:[...subscriptions.values()].filter(s=>s.customer===customer),has_more:false};},async cancel(id){calls.push(['cancel',id]);const current=subscriptions.get(id);current.status='canceled';return current;}},
     customers:{async create(){calls.push(['customer']);return {id:'cus_new'};}},checkout:{sessions:{async create(input,options){calls.push(['checkout',input,options]);return {id:'cs_a',url:'https://checkout.stripe.com/c/pay/cs_a'};}}},
     billingPortal:{configurations:{async retrieve(){return {active:true,features:{subscription_cancel:{enabled:true,mode:'at_period_end'},payment_method_update:{enabled:true}}};}},sessions:{async create(input){calls.push(['portal',input]);return {url:'https://billing.stripe.com/p/session/test_a'};}}},
@@ -68,6 +68,20 @@ test('checkout requires self-service payment method recovery before creating a c
   assert.match((await response.json()).error,/payment recovery/);
   assert.equal(f.calls.filter(call=>['customer','checkout'].includes(call[0])).length,0);
   f.env.QUOTE_DB.sqlite.close();
+});
+test('checkout requires an expanded active product with the configured exact name',async()=>{
+  const valid={product:{id:'prod_quote',active:true,name:'Eidos Quote Desk'}};
+  assert.equal(productAttributionReady(valid,'Eidos Quote Desk'),true);
+  for(const invalid of [
+    {product:'prod_quote'},
+    {product:{id:'prod_quote',active:false,name:'Eidos Quote Desk'}},
+    {product:{id:'prod_quote',active:true,deleted:true,name:'Eidos Quote Desk'}},
+    {product:{id:'prod_quote',active:true,name:'Retired product'}},
+  ])assert.equal(productAttributionReady(invalid,'Eidos Quote Desk'),false);
+  const f=fixture(),token=await user(f,'a','a@example.invalid',null),calls=[];
+  f.stripe.prices.retrieve=async(...args)=>{calls.push(args);return {active:true,livemode:false,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1},product:{id:'prod_quote',active:true,name:'Retired product'}};};
+  const response=await f.worker.fetch(request('checkout',token,'POST',{acceptTerms:true,attemptId:crypto.randomUUID()}),f.env);
+  assert.equal(response.status,503);assert.match((await response.json()).error,/product/);assert.deepEqual(calls,[['price_a',{expand:['product']}]]);assert.equal(f.calls.filter(call=>['customer','checkout'].includes(call[0])).length,0);f.env.QUOTE_DB.sqlite.close();
 });
 test('unpaid async checkout never grants access, then paid lifecycle grants it',async()=>{
   const f=fixture(),token=await user(f,'a','a@example.invalid','cus_a');f.subscriptions.set('sub_a',sub('sub_a','cus_a',{status:'incomplete',latest_invoice:{status:'open',amount_paid:0}}));
@@ -123,12 +137,12 @@ test('account deletion expires open checkout sessions before removing ownership'
   assert.equal((await f.worker.fetch(request('account',token,'DELETE',{confirmEmail:'a@example.invalid'}),f.env)).status,200);assert.equal(f.calls.find(c=>c[0]==='expire')[1],'cs_a');assert.equal(await f.env.QUOTE_DB.prepare('SELECT id FROM quote_accounts WHERE id=?').bind('a').first(),null);f.env.QUOTE_DB.sqlite.close();
 });
 test('live account without charges or payouts fails before any checkout',async()=>{
-  const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.accounts.retrieve=async()=>({id:'acct_a',charges_enabled:false,payouts_enabled:false});f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}});
+  const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.accounts.retrieve=async()=>({id:'acct_a',charges_enabled:false,payouts_enabled:false,business_profile:{name:'Eidos Works'}});f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1},product:{id:'prod_quote',active:true,name:'Eidos Quote Desk'}});
   const requestLive=new Request('https://desk.example.invalid/api/checkout',{method:'POST',headers:{origin:'https://desk.example.invalid','content-type':'application/json',cookie:'__Host-quote_session='+token},body:JSON.stringify({attemptId:crypto.randomUUID(),acceptTerms:true})});f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
   assert.equal((await f.worker.fetch(requestLive,f.env)).status,503);assert.equal(f.calls.filter(c=>c[0]==='checkout').length,0);f.env.QUOTE_DB.sqlite.close();
 });
 test('live checkout requires submitted identity, clear requirements and a usable payout bank',async()=>{
-  const ready={id:'acct_a',details_submitted:true,charges_enabled:true,payouts_enabled:true,requirements:{disabled_reason:null,currently_due:[],past_due:[],pending_verification:[]},external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'verified'}]}};
+  const ready={id:'acct_a',details_submitted:true,charges_enabled:true,payouts_enabled:true,business_profile:{name:'Eidos Works'},requirements:{disabled_reason:null,currently_due:[],past_due:[],pending_verification:[]},external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'verified'}]}};
   assert.equal(liveMerchantReady(ready),true);
   for(const changed of [
     {details_submitted:false},
@@ -140,10 +154,17 @@ test('live checkout requires submitted identity, clear requirements and a usable
     {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'tokenized_account_number_deactivated'}]}},
     {external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'unexpected_status'}]}},
   ])assert.equal(liveMerchantReady({...ready,...changed}),false);
-  const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1}});
+  const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1},product:{id:'prod_quote',active:true,name:'Eidos Quote Desk'}});
   const attempts=[];f.stripe.accounts.retrieve=async(...args)=>{attempts.push(args);return {...ready,details_submitted:false};};
   const requestLive=new Request('https://desk.example.invalid/api/checkout',{method:'POST',headers:{origin:'https://desk.example.invalid','content-type':'application/json',cookie:'__Host-quote_session='+token},body:JSON.stringify({attemptId:crypto.randomUUID(),acceptTerms:true})});f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
   assert.equal((await f.worker.fetch(requestLive,f.env)).status,503);assert.deepEqual(attempts,[[null,{expand:['external_accounts']}]]);assert.equal(f.calls.filter(c=>c[0]==='checkout').length,0);f.env.QUOTE_DB.sqlite.close();
+});
+test('live checkout rejects a technically enabled but misattributed merchant',async()=>{
+  const f=fixture();f.env.QUOTE_ENVIRONMENT='live';const token=await user(f,'a','a@example.invalid','cus_new');
+  f.stripe.prices.retrieve=async()=>({active:true,livemode:true,currency:'usd',unit_amount:1900,recurring:{interval:'month',interval_count:1},product:{id:'prod_quote',active:true,name:'Eidos Quote Desk'}});
+  f.stripe.accounts.retrieve=async()=>({id:'acct_a',details_submitted:true,charges_enabled:true,payouts_enabled:true,business_profile:{name:'Retired legacy storefront'},requirements:{disabled_reason:null,currently_due:[],past_due:[],pending_verification:[]},external_accounts:{data:[{id:'ba_a',object:'bank_account',status:'verified'}]}});
+  const requestLive=new Request('https://desk.example.invalid/api/checkout',{method:'POST',headers:{origin:'https://desk.example.invalid','content-type':'application/json',cookie:'__Host-quote_session='+token},body:JSON.stringify({attemptId:crypto.randomUUID(),acceptTerms:true})});f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
+  const response=await f.worker.fetch(requestLive,f.env);assert.equal(response.status,503);assert.match((await response.json()).error,/attributed to Eidos Works/);assert.equal(f.calls.filter(c=>c[0]==='checkout').length,0);f.env.QUOTE_DB.sqlite.close();
 });
 test('magic link is hashed, one-use, expires, and creates an HttpOnly account session',async()=>{
   const f=fixture();const res=await f.worker.fetch(request('login',null,'POST',{email:'First@Example.invalid'}),f.env);assert.equal(res.status,200);

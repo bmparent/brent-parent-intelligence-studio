@@ -482,7 +482,7 @@ await test('Account changes enforce ownership, same-origin writes, session revoc
   sql.close();
 });
 
-await test('Mentions link people and agents only after review, without spoofing or cross-account inbox access', async () => {
+await test('Mentions link people and agents immediately, without spoofing or cross-account inbox access', async () => {
   const { sql, env } = fixture();
   const alice = await signup(env, 'alice'),
     bob = await signup(env, 'bob'),
@@ -514,13 +514,6 @@ await test('Mentions link people and agents only after review, without spoofing 
         await account(ctx(env, '/api/members/account', undefined, h))
       ).json()
     ).inbox;
-  assert.equal((await inbox(bob.headers)).length, 0);
-  assert.equal((await inbox(bot.headers)).length, 0);
-  sql
-    .prepare(
-      "UPDATE eidos_threads SET status='published',published_at=? WHERE id=?",
-    )
-    .run(new Date().toISOString(), id);
   assert.equal((await inbox(bob.headers)).length, 1);
   assert.equal((await inbox(bot.headers)).length, 1);
   assert.equal((await inbox(alice.headers)).length, 0);
@@ -555,11 +548,7 @@ await test('Mentions link people and agents only after review, without spoofing 
     ),
   );
   assert.equal(response.status, 201);
-  const replyId = (await response.json()).id;
-  assert.equal((await inbox(alice.headers)).length, 0);
-  sql
-    .prepare("UPDATE eidos_replies SET status='published' WHERE id=?")
-    .run(replyId);
+  assert.equal((await response.json()).state, 'published');
   assert.equal((await inbox(alice.headers)).length, 1);
   const agentKey = await (
     await change(
@@ -578,7 +567,7 @@ await test('Mentions link people and agents only after review, without spoofing 
     ),
   );
   assert.equal(contribution.status, 201);
-  assert.equal((await inbox(bob.headers)).length, 1);
+  assert.equal((await inbox(bob.headers)).length, 2);
   assert.equal(
     (
       await question(
@@ -593,17 +582,35 @@ await test('Mentions link people and agents only after review, without spoofing 
         ctx(
           env,
           '/api/community/threads',
-          { ...input, category: 'build' },
+          { title: 'A human community question', body: 'A clear question for this group.', category: 'build' },
           bot.headers,
         ),
       )
     ).status,
-    403,
+    201,
   );
   sql.prepare("UPDATE eidos_threads SET status='rejected' WHERE id=?").run(id);
   assert.equal((await inbox(bob.headers)).length, 0);
   assert.equal((await inbox(alice.headers)).length, 0);
   sql.close();
+});
+
+await test('Verified sessions post without another CAPTCHA; guests and revoked sessions still require verification', async () => {
+  const {sql,env} = fixture();
+  const person = await signup(env, 'verified_person');
+  Object.assign(env, {EIDOS_LOCAL_TEST:'false',EIDOS_ACCOUNTS_ENABLED:'true',RESEND_API_KEY:'test-only-no-mail',EIDOS_MAIL_FROM:'QA <qa@example.test>',TURNSTILE_SITE_KEY:'test-site',TURNSTILE_SECRET_KEY:'test-secret'});
+  const original = globalThis.fetch;
+  globalThis.fetch = async () => { throw Error('Verified contributions must not call CAPTCHA or mail providers'); };
+  try {
+    const response = await question(ctx(env, '/api/community/threads', {title:'A verified session question',body:'How could we make this layout easier to read?'}, person.headers));
+    assert.equal(response.status,201,await response.clone().text());
+    const {id} = await response.json();
+    assert.equal((await reply(ctx(env,'/api/community/replies',{threadId:id,body:'Yes!'},person.headers))).status,201);
+    assert.equal((await reply(ctx(env,'/api/community/replies',{threadId:id,body:'Yes!',author:'Guest'}))).status,400);
+    sql.prepare('DELETE FROM eidos_member_sessions').run();
+    assert.equal((await reply(ctx(env,'/api/community/replies',{threadId:id,body:'Yes!',author:'Guest'},person.headers))).status,400);
+    assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_replies WHERE thread_id=?').get(id)?.n,1);
+  } finally { globalThis.fetch=original;sql.close(); }
 });
 
 function paper(slug: string, date: string) {

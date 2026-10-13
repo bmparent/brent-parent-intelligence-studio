@@ -1,5 +1,9 @@
 # Candidate acceptance and release gates
 
+## Current paired-candidate recovery — 2026-10-13
+
+The held #98/#67 pair is recovered against current main while preserving the accepted Community releases and the stricter owner boundary. Exact merge parents, local verification and remaining real-account, inbox and signed TEST gates are recorded in [ACCEPTANCE_2026-10-13.md](ACCEPTANCE_2026-10-13.md). This is an isolated draft candidate and does not accept production release.
+
 ## Current paired-candidate recovery — 2026-10-06
 
 The successor branch `codex/works-paired-recovery-20261006` preserves #73 and merges public main through the #97 contact correction, retaining the unchanged #67 backend. [The October 6 recovery record](ACCEPTANCE_2026-10-06.md) names the recovery owner, parents, conflict resolutions, local checks, guarded preview path and still-open hosted gates. Use the successor PR's final exact SHA and receipts, not historical uploads below. The paired candidate remains draft / production NO-GO; branded-mailbox work is deferred.
@@ -79,6 +83,10 @@ The paired candidate now incorporates current main's editorial voice and studio/
 
 ## Public-site release acceptance — 2026-09-30
 
+## October 7 immediate community replies
+
+Brent requested immediate conversations in the human and agent communities. The scoped site/backend change removes routine pre-publication review, adds direct Reply controls and current reply updates, and permits labeled registered agents in either community. Spam limits, guest verification, identity controls and protected removal remain active. Evidence, contract, pending hosted/browser acceptance and rollback are recorded in [COMMUNITY_DIRECT_REPLIES_2026-10-07.md](COMMUNITY_DIRECT_REPLIES_2026-10-07.md). This scope does not accept the held account/Stripe runtime.
+
 ## October 5 Quote Desk customer-experience follow-up
 
 Brent authorized the next paid-launch work and a customer-perspective walkthrough after Stripe onboarding. The free estimator fixes draft naming, field correction and printed job details; the isolated paid candidate adds sign-in/checkout/billing-outage recovery without opening checkout. The intended merchant and inactive $19/month catalog setup are verified; hosted D1 access returns HTTP 401, the Worker is absent and real email/sandbox acceptance remains blocked. Exact evidence, candidate gates and rollback are recorded in [QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md](QUOTE_DESK_CUSTOMER_EXPERIENCE_2026-10-05.md). This work does not accept the held paired account runtime or assert revenue.
@@ -120,6 +128,10 @@ The source and browser checks for this candidate do not close the held #73/#67 p
 
 An illustrated services invitation moves above Selected work, which now features Jingle Bell, Jingle BAM!, Wellway, Holidays in Hollywood and Nighttime Spectaculars. The candidate began at main `435be02` and incorporated current main `8aec889` after #83 merged, preserving the gallery refresh and service build stories. Scope, public asset provenance, desktop/responsive navigation evidence and the local Wellway HTTP limitation are recorded in [HOMEPAGE_SERVICES_2026-10-01.md](HOMEPAGE_SERVICES_2026-10-01.md). Its PR tracks exact-head CI and production promotion separately. The existing runtime acceptance gates remain open.
 
+## October 1 studio community candidate
+
+Three visibly labeled studio agent identities and a 24-prompt queue extend existing community maintenance with at most three discussion starters per week. The scheduler uses zero model API tokens, durable topic IDs, revocation checks, and no automatic agent replies. It is disabled by default. This isolated paired change starts from current public/site and backend main without importing the held integration stack. See [COMMUNITY_STUDIO_AGENTS_2026-10-01.md](COMMUNITY_STUDIO_AGENTS_2026-10-01.md) for local evidence, exact activation settings, pending hosted readback, and rollback. Source preparation and scheduled queue review do not establish production publication.
+
 ## October 2 studio branding
 
 The branding update starts from public main `cf7f791db84aa886b3e1064dfc28345579f18225` and aligns favicon, previews, Organization logo, gallery assets, Playground, Quote Desk and article-card branding with the current header's lowercase e. Source scope, local checks, desktop/phone-width browser evidence, release readback requirements and rollback are recorded in [BRANDING_2026-10-02.md](BRANDING_2026-10-02.md). This public presentation change does not accept the held paired runtime. A third-party advertising draft may retain its selected image and requires regeneration or manual upload.
@@ -145,3 +157,7 @@ The existing desktop/390px Quote Desk browser gate now covers empty-survey switc
 Local lint (zero errors; existing Wellway warning), 27 platform, 22 Playground, 14 growth, 1 analytics and 6 glass tests, Snapshot smoke checks, TypeScript/client/SSR build, prerender, editorial, source/built article validation URL checks and Pages Functions compilation pass. Article source fetching is skipped because no article content changes. Local Chromium cannot open its required process socket in this execution environment; rendered verification is performed by the existing exact-head GitHub browser workflow and recorded on the draft PR. Final exact-head CI results are recorded there before claiming readiness.
 
 No provider configuration, backend, credentials, billing, deployment workflow or held runtime #73/#67 changes are included. This draft does not authorize merge or deployment. Source rollback is the public-main baseline above; no data migration is involved.
+
+## October 6 studio agent release recovery
+
+Brent authorized resolving the pending community agent issues and shipping this scoped pair. Site #84 is reconciled with current public main, backend #68 pins its acceptance to the existing isolated database without production fallback, and native maintenance now records roster/publication readback. Hosted backend persistence, deduplication and moderation checks pass; the real paired HTTP routes pass after canonical edge propagation. Hosted browser and exact final-source gates must pass before production activation. The evidence ledger, preview pairing, frozen launch anchor, cadence, scope limitations and rollback are in [COMMUNITY_STUDIO_RELEASE_2026-10-06.md](COMMUNITY_STUDIO_RELEASE_2026-10-06.md). Final provider, browser and production receipts are maintained on site #84/backend #68 so a status-only source commit does not trigger another deployment. This release does not accept or merge the held Works #98/#67 runtime.
