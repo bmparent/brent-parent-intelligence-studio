@@ -1,5 +1,20 @@
 # Paid templates — candidate acceptance
 
+## October 13 complete collection review and LIVE commerce preparation
+
+Brent authorized a production release, but the current code explicitly forbids
+LIVE template payments and Preview still lacks a scoped Resend key. The paired
+continuation prepares guarded LIVE merchant/session/event handling, mode-correct
+buyer wording, delivery/recovery and revocation after checkout closure. The eight
+existing buyer ZIPs remain unchanged. Cinematic Starter is preserved; the separate
+Spoke & Bench private draft was found and its ZIP/16 source hashes verified, with
+its rendered and commerce gates still open. Evidence, exact starting refs,
+installation limits, final-notice/package work, production prerequisites and
+rollback are in [RELEASE_REVIEW_2026-10-13.md](RELEASE_REVIEW_2026-10-13.md).
+Production remains NO-GO because those functional gates are incomplete, despite
+the user's release authorization. No production configuration, migration, LIVE
+transaction, main merge or publication occurred.
+
 ## October 12 hosted checks and compatibility-filter correction
 
 Starting site `1f1781c612407408a470f8c9936ad6b67ddab1d3` and backend `f9f8cd30839d36127786b7b7826e6c44de92d2c7` still match draft PR102/PR71. All five site workflows and the backend workflow passed on those exact sources. Vercel reports the pinned candidate deployment `dpl_7jzs9wCj686f3u4vxisiA5CZV4eJ` READY; the production alias still resolves to separate deployment `dpl_BDUhZ7W9Akz58SDaVXJ2bXVF4rNQ`, main source `4c746ffccf9249c7ddabd58f839ecb5fcece4fd0`.
