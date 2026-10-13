@@ -1,0 +1,14 @@
+✔ Pages article directory redirects are allowed without accepting other locations (3.5151ms)
+✔ publishing runner runs every gate through a CLI path with spaces (2864.7501ms)
+✔ publishing runner stops and records a failed gate (1393.745ms)
+✔ dependency preflight rejects ancestor dependencies without a local install before generation (594.033ms)
+✔ dependency preflight rejects a partial local install before generation (711.5512ms)
+✔ publishing runner records a child launch error and stops (410.7577ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6227.3077
