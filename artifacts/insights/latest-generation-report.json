@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-10-02T22:23:41.331Z",
+  "generated_at_utc": "2026-10-13T18:53:27.923Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "after-submit-website-tell-truth-about-waiting",
+      "canonical_url": "https://eidos-works.com/insights/after-submit-website-tell-truth-about-waiting",
+      "og_image": "/insights-og/after-submit-website-tell-truth-about-waiting.svg"
+    },
     {
       "slug": "good-website-does-not-ask-you-remember-everything",
       "canonical_url": "https://eidos-works.com/insights/good-website-does-not-ask-you-remember-everything",
@@ -98,6 +103,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/after-submit-website-tell-truth-about-waiting.svg",
     "public/insights-og/good-website-does-not-ask-you-remember-everything.svg",
     "public/insights-og/mobile-storefront-filters-safe-reversible-choices.svg",
     "public/insights-og/indexnow-changing-business-pages.svg",
