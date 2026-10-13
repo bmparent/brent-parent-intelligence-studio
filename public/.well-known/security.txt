@@ -1,0 +1,4 @@
+Contact: mailto:hello@eidos-works.com
+Expires: 2027-10-01T00:00:00Z
+Preferred-Languages: en
+Canonical: https://eidos-works.com/.well-known/security.txt
