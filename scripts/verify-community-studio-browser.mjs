@@ -25,12 +25,30 @@ try {
   page = await context.newPage();
   const errors = [];
   const failedResponses = [];
+  let categoryRequests = 0;
+  page.on('request', request => {
+    const url = new URL(request.url());
+    if (url.pathname === '/api/community/threads' && url.searchParams.has('category')) categoryRequests++;
+  });
   page.on('response', response => {
     if (response.status() >= 400) failedResponses.push({ url: response.url(), status: response.status() });
   });
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', msg => { if (msg.type() === 'error') errors.push({ text: msg.text(), location: msg.location() }); });
   const base = 'http://127.0.0.1:4193';
+  async function verifySelectedCategory(label, threadCount) {
+    const button = page.getByRole('button', { name: label, exact: true });
+    assert.equal(await button.getAttribute('aria-pressed'), 'true');
+    const requestsBefore = categoryRequests;
+    for (let repeat = 0; repeat < 2; repeat++) {
+      if (repeat === 0) await button.click();
+      else await button.press('Enter');
+      await page.getByText('Loading conversations…', { exact: true }).waitFor({ state: 'hidden', timeout: 2000 });
+      assert.equal(await page.locator('.ew-thread-list article').count(), threadCount, label + ' must retain its conversations');
+      assert.equal(await page.locator('.ew-community-layout [role="alert"]').count(), 0);
+    }
+    assert.equal(categoryRequests, requestsBefore, 'Reselecting ' + label + ' must not fetch again');
+  }
   let ready=false;
   for(let attempt=0;attempt<100;attempt++) {
     try {const response=await fetch(base+'/api/community/agents');if(response.ok){ready=true;break;}} catch { /* wait for fixture server */ }
@@ -55,6 +73,50 @@ try {
   if (await essentialOnly.isVisible()) await essentialOnly.click();
   assert.equal(await page.locator('.ew-studio-agent-grid article').count(), 3);
   assert.equal(await page.getByText('AI agent · Eidos Works', { exact: true }).count(), 3);
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: width === 390 ? 844 : 1000 });
+    await page.goto(base + '/community', { waitUntil: 'networkidle' });
+    await verifySelectedCategory('All conversations', 1);
+    for (const [label, category, count] of [
+      ['Build questions', 'build', 0], ['Design & ideas', 'design', 0],
+      ['Agent Exchange', 'agents', 1], ['All conversations', '', 1],
+    ]) {
+      const [response] = await Promise.all([
+        page.waitForResponse(response => {
+          const url = new URL(response.url());
+          return url.pathname === '/api/community/threads' && url.searchParams.get('category') === category && response.status() === 200;
+        }),
+        page.getByRole('button', { name: label, exact: true }).click(),
+      ]);
+      await response.finished();
+      await page.getByText('Loading conversations…', { exact: true }).waitFor({ state: 'hidden' });
+      await verifySelectedCategory(label, count);
+    }
+    await page.goto(base + '/community/agents/', { waitUntil: 'networkidle' });
+    await verifySelectedCategory('Agent Exchange', 1);
+    await page.getByRole('button', { name: 'Agent Exchange', exact: true }).scrollIntoViewIfNeeded();
+    await page.screenshot({ path: join(evidence, 'category-reselect-' + width + '.png') });
+  }
+  // Simulate one failed list read only in this isolated fixture, then exercise recovery.
+  const failurePattern = '**/api/community/threads?category=agents';
+  await page.route(failurePattern, route => route.fulfill({
+    status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'Isolated read failure' }),
+  }));
+  await page.goto(base + '/community/agents/', { waitUntil: 'networkidle' });
+  await page.getByText('Conversations could not load. Please try again.', { exact: true }).waitFor();
+  const failedRequests = categoryRequests;
+  await page.getByRole('button', { name: 'Agent Exchange', exact: true }).click();
+  assert.equal(await page.getByRole('button', { name: 'Try again', exact: true }).isVisible(), true, 'An active-category click must preserve error recovery');
+  assert.equal(categoryRequests, failedRequests);
+  await page.unroute(failurePattern);
+  await page.getByRole('button', { name: 'Try again', exact: true }).click();
+  await page.getByRole('heading', { name: 'What is the first repetitive task you would hand to an agent?', exact: true }).waitFor();
+  assert.equal(categoryRequests, failedRequests + 1, 'Try again must issue a fresh list request');
+  // The expected fixture 503 has been asserted; retain only unexpected browser errors below.
+  const expectedError = errors.findIndex(error => typeof error === 'object' && error.location?.url.endsWith('/api/community/threads?category=agents'));
+  if (expectedError >= 0) errors.splice(expectedError, 1);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(base + '/community', { waitUntil: 'networkidle' });
   await page.locator('#studio-agents').scrollIntoViewIfNeeded();
   await page.screenshot({ path: join(evidence,'desktop.png') });
   await page.getByRole('button', { name: 'Agent Exchange', exact: true }).click();
@@ -125,7 +187,7 @@ try {
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth));
   await page.screenshot({path:join(evidence,'mobile-live-conversation.png')});
   assert.equal(errors.length,0,JSON.stringify({errors,failedResponses}));
-  const result = { passed: true, browserPath: 'Isolated CI/local Playwright', desktop: '1440x1000', mobile: '390x844', checks: ['real registered roster', 'visible AI labels', 'category filter', 'thread navigation', 'immediate visitor reply', 'no pending review', 'one-click reply focus', 'short replies', 'immediate human discussion and list refresh', 'agent reply in human community', 'live update without reload', 'safe HTML text', 'phone layout without overflow', 'no browser errors'], errors };
+  const result = { passed: true, browserPath: 'Isolated CI/local Playwright', desktop: '1440x1000', mobile: '390x844', checks: ['real registered roster', 'visible AI labels', 'category filter', 'reselect every active category with mouse and keyboard at both widths', 'retain agent conversations without redundant requests', 'failed list retry recovery', 'thread navigation', 'immediate visitor reply', 'no pending review', 'one-click reply focus', 'short replies', 'immediate human discussion and list refresh', 'agent reply in human community', 'live update without reload', 'safe HTML text', 'phone layout without overflow', 'no browser errors'], errors };
   fs.writeFileSync(join(evidence,'browser.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result));
 } catch(error) {
