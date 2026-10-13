@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-10-13T16:46:32.647Z",
+  "siteRevision": "3c115b6dd040a42cd6650e1b3cb4b670888cf01f",
+  "backendRevision": "c18b580358dcfeb0b70ba7a045c8f506513f452f",
+  "backendOrigin": "https://eidos-sentinel-l2sbf8qf1-1brentbm-1876s-projects.vercel.app",
+  "previewOrigin": "https://eidosworks-test-20260923.pages.dev",
+  "previewProject": "eidosworks-test-20260923",
+  "previewBranch": "codex/works-audit-implementation-20260921",
+  "projectId": "09e9378c-e6a6-471e-9e57-9e279c7e78bf",
+  "previousPreviewDeploymentId": "d306ad39-e2ba-4cac-9458-042b439d75e8",
+  "previousRelayOrigin": null,
+  "relayBindingType": "secret_text",
+  "priorRelayMasked": true,
+  "previewConfigFingerprint": "8a48b9a19ddf13d1f500195dddf53c580a957616f146de97df1e9a4c8c600b41",
+  "productionConfigFingerprint": "7145b95aa68a3e8396e11e7d749fa4e08e92c86f63319eda4cd3b4ee3a554d64",
+  "productionDeploymentId": "8f2836ad-8e5e-4584-8571-05a9db2ef35d",
+  "productionRevision": "fb74c4cf00defef23ce3ee96af4e51c350c3e807",
+  "bindingPresence": {
+    "inquiryMailer": true,
+    "growthDatabase": true
+  },
+  "acceptance": "exact frontend upload and paired HTTP boundaries verified; real consent, two-owner reopen, inbox and signed TEST lifecycle remain open",
+  "verifiedAt": "2026-10-13T16:46:47.826Z",
+  "deploymentId": "18705973-ecb6-4c0b-be64-e2056557bfe2",
+  "deploymentUrl": "https://18705973.eidosworks-test-20260923.pages.dev",
+  "deliveredAccountAssets": [
+    "/assets/index-QlsbjdvA.js",
+    "/assets/rolldown-runtime-Bh1tDfsg.js",
+    "/assets/react-vendor-DQBcQY4o.js",
+    "/assets/index-CUVs6Lyu.css"
+  ],
+  "deliveredAssetHashes": [
+    {
+      "path": "/assets/index-QlsbjdvA.js",
+      "sha256": "1f1c2ce84c9a6b0db715c5b33237a3718b5e36b17e220db4537d09bbf72c98ae"
+    },
+    {
+      "path": "/assets/rolldown-runtime-Bh1tDfsg.js",
+      "sha256": "1b13387cb23dc39bf70e31677c21f6db5cad3377b96f286b6ee444496e5bfea7"
+    },
+    {
+      "path": "/assets/react-vendor-DQBcQY4o.js",
+      "sha256": "44b3722a85e0fc160dfd3327595aecb2fadbcb06aa9695d7db653faba3b104ed"
+    },
+    {
+      "path": "/assets/index-CUVs6Lyu.css",
+      "sha256": "dfd389af3468c6ad54dcf73b7bfcd28d240d0e069cc99b6f66fdeb7fcbe46a5e"
+    }
+  ],
+  "accountAttempts": 1,
+  "configuredFeatures": {
+    "accounts": true,
+    "passwords": true,
+    "google": true,
+    "shop": true,
+    "localTest": false
+  },
+  "checks": [
+    {
+      "name": "anonymous account access",
+      "status": 200,
+      "meaning": "HTTP boundary observation only"
+    },
+    {
+      "name": "unsigned owner readiness",
+      "status": 401,
+      "meaning": "HTTP boundary observation only"
+    },
+    {
+      "name": "forged owner assertion",
+      "status": 401,
+      "meaning": "HTTP boundary observation only"
+    },
+    {
+      "name": "wrong-origin logout",
+      "status": 403,
+      "meaning": "HTTP boundary observation only"
+    },
+    {
+      "name": "unsigned kit event",
+      "status": 400,
+      "meaning": "HTTP boundary observation only"
+    }
+  ],
+  "productionConfigUnchanged": true
+}

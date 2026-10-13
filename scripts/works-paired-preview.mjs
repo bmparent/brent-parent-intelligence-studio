@@ -161,6 +161,19 @@ async function main(mode) {
   assert.equal(config.accountsReady, true, 'The paired accounts are not configured.');
   assert.equal(config.passwordsReady, true, 'The paired password service is not configured.');
   assert.equal(config.googleReady, true, 'The paired Google service is not configured.');
+  const accountOriginChecks = [];
+  const immutableOrigin = new URL(deployment.url).origin;
+  assert.match(immutableOrigin, /^https:\/\/[a-z0-9-]+\.eidosworks-test-20260923\.pages\.dev$/, 'Unexpected immutable preview origin.');
+  for (const path of ['/account/', '/account/verify?intent=signup', '/account/reset', '/playground/']) {
+    const response = await fetch(immutableOrigin + path, { redirect: 'manual', signal: AbortSignal.timeout(30000) });
+    const location = response.headers.get('location');
+    assert.equal(response.status, 307, 'An isolated account alias must redirect before collecting credentials.');
+    assert.equal(location, previewOrigin + path, 'The alias must use the configured exact account origin.');
+    assert.equal(response.headers.get('cache-control'), 'no-store');
+    assert.equal(response.headers.get('set-cookie'), null, 'The alias must not mint or transfer identity cookies.');
+    await response.body?.cancel();
+    accountOriginChecks.push({ path, status: response.status, location });
+  }
   const checks = [];
   for (const [name, route, options, allowed] of [
     ['anonymous account access', '/api/members/account', {}, [200]],
@@ -176,7 +189,8 @@ async function main(mode) {
     checks.push({ name, status: response.status, meaning: name === 'unsigned kit event' && response.status === 503 ? 'not configured; not signed-payment acceptance' : 'HTTP boundary observation only' });
   }
   await writeFile(receiptPath, JSON.stringify({ ...receipt, verifiedAt: new Date().toISOString(),
-    deploymentId: deployment.id, deploymentUrl: deployment.url, deliveredAccountAssets: entryAssets, deliveredAssetHashes, accountAttempts,
+    deploymentId: deployment.id, deploymentUrl: deployment.url, accountAcceptanceUrl: previewOrigin + '/account/', accountOriginChecks,
+    deliveredAccountAssets: entryAssets, deliveredAssetHashes, accountAttempts,
     configuredFeatures: { accounts: config.accountsReady, passwords: config.passwordsReady, google: config.googleReady, shop: config.shopReady, localTest: config.localTest },
     checks, productionConfigUnchanged: true,
     acceptance: 'exact frontend upload and paired HTTP boundaries verified; real consent, two-owner reopen, inbox and signed TEST lifecycle remain open',

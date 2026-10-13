@@ -20,6 +20,17 @@ const routes = new Set([
 export async function onRequest({ request, env, next }: RelayContext) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, '');
+  // Identity acceptance uses the single configured validation origin. Pages
+  // deployment/branch aliases are not account or OAuth origins; move the page
+  // before it can issue requests or collect credentials on an untrusted alias.
+  if (['GET', 'HEAD'].includes(request.method) &&
+    /^https:\/\/[a-z0-9-]+\.eidosworks-test-20260923\.pages\.dev$/.test(url.origin) &&
+    (path === '/account' || path.startsWith('/account/') || path === '/playground')) {
+    const canonical = new URL(url.pathname + url.search, 'https://eidosworks-test-20260923.pages.dev');
+    return new Response(null, { status: 307, headers: {
+      location: canonical.href, 'cache-control': 'no-store', 'referrer-policy': 'no-referrer',
+    } });
+  }
   if (!routes.has(path) && !/^\/community\/thread\/[a-zA-Z0-9-]+$/.test(path)) return next();
   if (!env.EIDOS_PLATFORM_URL) return next();
   try {

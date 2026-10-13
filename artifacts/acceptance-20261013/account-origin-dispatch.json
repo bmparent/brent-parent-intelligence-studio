@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-13T17:19:14.325Z",
+  "backendRevision": "c18b580358dcfeb0b70ba7a045c8f506513f452f",
+  "mode": "local exact dispatcher; provider-confirmed nonsecret origin values, dummy relay authentication and empty fixture environment; no external call or hosted-account evidence",
+  "checks": [
+    {
+      "siteOrigin": "https://d306ad39.eidosworks-test-20260923.pages.dev",
+      "status": 403,
+      "body": {
+        "error": "Unrecognized studio origin."
+      }
+    },
+    {
+      "siteOrigin": "https://18705973.eidosworks-test-20260923.pages.dev",
+      "status": 403,
+      "body": {
+        "error": "Unrecognized studio origin."
+      }
+    },
+    {
+      "siteOrigin": "https://eidosworks-test-20260923.pages.dev",
+      "status": 200,
+      "body": {
+        "member": null,
+        "ready": false
+      }
+    }
+  ]
+}

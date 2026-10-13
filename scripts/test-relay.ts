@@ -2,6 +2,44 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../functions/_middleware';
 const env = { EIDOS_PLATFORM_URL:'https://eidos-sentinel-lab.vercel.app', EIDOS_PLATFORM_TOKEN:'relay-test-at-least-32-characters-long' };
+await test('isolated account, recovery and Playground pages reach the configured origin before collecting credentials', async () => {
+  const next = async () => { throw Error('Alias page must redirect before rendering'); };
+  for (const alias of ['d306ad39', '18705973', 'codex-works-acceptance']) {
+    for (const path of ['/account/', '/account/verify?intent=signup', '/account/reset', '/account/unsubscribe', '/playground/']) {
+      for (const method of ['GET', 'HEAD']) {
+        const response = await onRequest({env,next,request:new Request(`https://${alias}.eidosworks-test-20260923.pages.dev${path}`,{method})});
+        assert.equal(response.status,307);
+        assert.equal(response.headers.get('location'),'https://eidosworks-test-20260923.pages.dev'+path);
+        assert.equal(response.headers.get('cache-control'),'no-store');
+        assert.equal(response.headers.get('referrer-policy'),'no-referrer');
+        assert.equal(response.headers.get('set-cookie'),null);
+      }
+    }
+  }
+});
+await test('canonical, production and unrelated preview pages are never redirected to the validation account', async () => {
+  const next = async () => new Response('local-page');
+  for (const origin of ['https://eidosworks-test-20260923.pages.dev','https://eidos-works.com','https://preview.eidosworks.pages.dev','https://d306ad39.eidosworks-test-20260923.pages.dev.attacker.example','https://extra.d306ad39.eidosworks-test-20260923.pages.dev']) {
+    const response=await onRequest({env,next,request:new Request(origin+'/account/')});
+    assert.equal(response.status,200);assert.equal(response.headers.get('location'),null);
+  }
+  for (const path of ['/work','/assets/index.js','/accounting','/playground/other']) {
+    assert.equal((await onRequest({env,next,request:new Request('https://d306ad39.eidosworks-test-20260923.pages.dev'+path)})).status,200);
+  }
+  assert.equal((await onRequest({env,next,request:new Request('https://d306ad39.eidosworks-test-20260923.pages.dev/account/',{method:'POST',body:'controlled-fixture'})})).status,200);
+});
+await test('alias API requests retain their actual origin and the backend denial rather than rewriting authority', async () => {
+  const original=globalThis.fetch;
+  globalThis.fetch=async (_url,init)=>{
+    assert.equal(new Headers(init?.headers).get('x-eidos-site-origin'),'https://d306ad39.eidosworks-test-20260923.pages.dev');
+    return Response.json({error:'Unrecognized studio origin.'},{status:403});
+  };
+  try {
+    const response=await onRequest({env,next:async()=>{throw Error('No local fallback');},request:new Request('https://d306ad39.eidosworks-test-20260923.pages.dev/api/members/account')});
+    assert.equal(response.status,403);assert.equal(response.headers.get('location'),null);
+    assert.deepEqual(await response.json(),{error:'Unrecognized studio origin.'});
+  } finally {globalThis.fetch=original;}
+});
 await test('OAuth relay keeps separate secure cookies and allows only the exact same-origin account redirect', async () => {
   const original = globalThis.fetch;
   const token = 'b'.repeat(64), session = `__Host-eidos_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000; Secure`;
