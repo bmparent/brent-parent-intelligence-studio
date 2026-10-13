@@ -153,7 +153,7 @@ breakpoint (641px), where the prior 3rem minimum was still too large.
 
 ## Poster-layer exploration
 
-Version 1.0.4 adds three overlapping original poster buttons on Home and Program.
+Version 1.0.5 adds three overlapping original poster buttons on Home and Program.
 Tab to a poster and press Enter or Space, or tap it, to reveal its event format
 and access notes. Pressed state and a live status identify the selected layer.
 The separate full event links remain available in every state; without JavaScript

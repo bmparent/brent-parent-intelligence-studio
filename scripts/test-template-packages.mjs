@@ -66,6 +66,17 @@ for (const product of catalog.products) {
       }
     }
     const install = await fs.readFile(path.join(source, 'INSTALL.md'), 'utf8');
+    const support = await fs.readFile(path.join(source, 'SUPPORT.md'), 'utf8');
+    const license = await fs.readFile(path.join(source, 'LICENSE.txt'), 'utf8');
+    check(`${edition.id}: final buyer notices preserve support windows and edition rights`, () => {
+      assert.doesNotMatch(support, /Draft support|This is a release candidate/);
+      assert.match(support, /30 days after purchase/);
+      assert.match(support, /90 days after/);
+      assert.match(support, /purchased major version/);
+      assert.doesNotMatch(license, /Draft product terms/);
+      if (edition.platform === 'developer') assert.match(license, /one finished website/);
+      else assert.match(license, /GPL|General Public License/);
+    });
     check(`${edition.id}: buyer guide covers rollback, removal, common mistakes and integration limits`, () => {
       for (const section of [/^## .*rollback/im, /^## .*removal/im, /^## Troubleshooting and common mistakes/m, /^## Email.*integrations/m]) assert.match(install, section);
       assert.match(install, /back.?up/i);

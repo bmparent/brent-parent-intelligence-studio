@@ -1,12 +1,13 @@
 # Support and updates
 
-This is a release candidate. Commercial availability and any supported platform
-acceptance are stated on the product page, separately from these source files.
+These support terms apply to valid purchases of the included edition. Commercial
+availability and accepted installation routes are stated on the product page.
 
 For a valid purchase, template-file defects and clarification of the included
 installation guide may be reported through https://eidos-works.com/contact/.
-Draft support windows are 30 days after purchase for installation guidance and
-90 days after purchase for reproducible defects in the supplied template files.
+Installation guidance is included for 30 days after purchase. For 90 days after
+purchase, reproducible defects in supplied files are eligible for corrections
+within the purchased major version. Future major versions are separate.
 Include your order reference, edition/version, browser or platform version,
 reproduction steps, and a screenshot without personal data or credentials.
 

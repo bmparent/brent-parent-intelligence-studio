@@ -100,10 +100,10 @@ claiming sales or profit. Do not create recurring automation from this proposal.
 - Native WordPress code and original included art are GPL-2.0-or-later, with full
   license text. Paid packaging/support terms cannot retract GPL use, modification,
   or redistribution rights. Do not apply the developer one-site limit to GPL.
-- Draft support is 30 days after purchase for included installation guidance
-  and 90 days for reproducible defects in supplied files. Clarify the purchased
-  major-version correction promise in final approved checkout terms and keep
-  shop/file notices aligned. No unlimited support, lifetime updates, guaranteed
+- Final buyer notices dated October 13 retain 30 days after purchase for included
+  installation guidance and 90 days for reproducible defects in supplied files
+  within the purchased major version. New immutable versions carry these notices;
+  all earlier archives remain retained. No unlimited support, lifetime updates, guaranteed
   response time, custom redesign, migration, hosting, platform account support,
   third-party setup, or future major version is included.
 - Preserve the existing approved [Eidos Works terms](https://eidos-works.com/terms/)

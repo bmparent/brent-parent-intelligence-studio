@@ -6,6 +6,6 @@ add_action( 'after_setup_theme', function () {
     add_editor_style( 'style.css' );
 } );
 add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_style( 'eidos-nightjar', get_stylesheet_uri(), array(), '1.0.2' );
+    wp_enqueue_style( 'eidos-nightjar', get_stylesheet_uri(), array(), '1.0.3' );
 } );
 add_filter( 'body_class', function ( $classes ) { $classes[] = 'nightjar'; return $classes; } );

@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   preview:
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/codex/paid-templates-20261010' || github.event.pull_request.head.ref == 'codex/paid-templates-20261010' && github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'workflow_dispatch' && contains(fromJSON('["refs/heads/codex/paid-templates-20261010","refs/heads/codex/template-release-readiness-20261013"]'), github.ref) || contains(fromJSON('["codex/paid-templates-20261010","codex/template-release-readiness-20261013"]'), github.event.pull_request.head.ref) && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

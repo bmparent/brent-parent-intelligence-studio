@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-11T03:13:10.837Z",
+  "generatedAt": "2026-10-13T19:43:32.591Z",
   "checks": [
     {
       "name": "catalog: four distinct families, unique edition IDs, unavailable until accepted",
@@ -136,6 +136,10 @@
     },
     {
       "name": "switchboard-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: final buyer notices preserve support windows and edition rights",
       "status": "passed"
     },
     {
@@ -703,6 +707,10 @@
       "status": "passed"
     },
     {
+      "name": "switchboard-wordpress-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
       "name": "switchboard-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
@@ -904,6 +912,10 @@
     },
     {
       "name": "tideglass-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: final buyer notices preserve support windows and edition rights",
       "status": "passed"
     },
     {
@@ -1463,6 +1475,10 @@
       "status": "passed"
     },
     {
+      "name": "tideglass-wordpress-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
       "name": "tideglass-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
@@ -1672,6 +1688,10 @@
     },
     {
       "name": "matter-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: final buyer notices preserve support windows and edition rights",
       "status": "passed"
     },
     {
@@ -2247,6 +2267,10 @@
       "status": "passed"
     },
     {
+      "name": "matter-wordpress-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
       "name": "matter-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
@@ -2448,6 +2472,10 @@
     },
     {
       "name": "nightjar-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: final buyer notices preserve support windows and edition rights",
       "status": "passed"
     },
     {
@@ -3131,6 +3159,10 @@
       "status": "passed"
     },
     {
+      "name": "nightjar-wordpress-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
       "name": "nightjar-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
       "status": "passed"
     },
@@ -3220,6 +3252,6 @@
     "Static structure and archive checks do not establish WordPress activation/editing, real device behavior, live checkout, or platform-builder acceptance. See separate clean-install/browser receipts."
   ],
   "status": "passed",
-  "passed": 803,
+  "passed": 811,
   "failed": 0
 }
