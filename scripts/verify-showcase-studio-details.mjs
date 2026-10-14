@@ -67,8 +67,10 @@ try {
     assert.equal(await independent.locator('script').count(), 0);
     const fontLoaded = await independent.evaluate(() => Array.from(document.fonts).map(f => ({ family: f.family, status: f.status }))); assert.ok(fontLoaded.some(f => f.status === 'loaded'));
     await independent.goto('about:blank'); await independent.setContent(`<style>html,body{margin:0;background:transparent}</style><img src="data:image/png;base64,${bytes.toString('base64')}" width="${artwork.width}" height="${artwork.height}">`); await independent.locator('img').evaluate(image => image.decode()); await independent.locator('img').screenshot({ path: path.join(out, 'png-independent.png'), omitBackground: true }); await independent.close();
-    const code = "from PIL import Image,ImageChops,ImageStat;import sys,json; a=Image.open(sys.argv[1]).convert('RGBA');b=Image.open(sys.argv[2]).convert('RGBA');d=ImageChops.difference(a,b);s=ImageStat.Stat(d);print(json.dumps({'size':a.size,'mean_absolute_rgba':s.mean,'changed_rgb_bbox':d.convert('RGB').getbbox()}))";
-    const comparison = JSON.parse(execFileSync('python', ['-c', code, path.join(out, 'svg-independent.png'), path.join(out, 'png-independent.png')], { encoding: 'utf8' }));
+    const comparison = await page.evaluate(async urls => {
+      const pixels = async url => { const image=new Image();image.src=url;await image.decode();const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;const context=canvas.getContext('2d');context.drawImage(image,0,0);return {width:image.width,height:image.height,data:context.getImageData(0,0,image.width,image.height).data}; };
+      const a=await pixels(urls[0]),b=await pixels(urls[1]);if(a.width!==b.width||a.height!==b.height)throw Error('Image dimensions differ.');const totals=[0,0,0,0];for(let i=0;i<a.data.length;i++)totals[i%4]+=Math.abs(a.data[i]-b.data[i]);return {size:[a.width,a.height],mean_absolute_rgba:totals.map(n=>n/(a.width*a.height)),comparison:'Browser Canvas RGBA pixels; no Python image dependency'};
+    }, await Promise.all(['svg-independent.png','png-independent.png'].map(async name=>'data:image/png;base64,'+(await readFile(path.join(out,name))).toString('base64'))));
     await writeFile(path.join(out, 'pixel-comparison.json'), JSON.stringify(comparison, null, 2));
     assert.ok(comparison.mean_absolute_rgba.slice(0, 3).every(value => value < 3), 'SVG and direct Canvas PNG differ materially; inspect paired images'); return { ...comparison, svgFonts: fontLoaded };
   });

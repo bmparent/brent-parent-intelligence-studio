@@ -1,6 +1,6 @@
 import {applyLocalCommand,applyStudioCommand,type StudioEditRequest,assertCurrent,type Envelope,type EditRequest} from './localCommands';
 import { useEffect, useRef, useState } from 'react';
-import { aiContext, proposalDiff, validateProposal, operationFields, type Proposal } from './aiOperations';
+import { aiContext, proposalDiff, validateProposal, operationFields } from './aiOperations';
 import type { Project } from './model';
 
 type Props=Envelope&{isCurrent:()=>boolean;project:Project;edit:(p:Project)=>void;undo:()=>void;redo:()=>void;canUndo:boolean;canRedo:boolean;save:()=>Promise<boolean>;exportProject:()=>void;notify:(v:string)=>void};
