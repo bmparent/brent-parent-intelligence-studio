@@ -1,0 +1,17 @@
+{
+  "kind": "Chromium desktop browser; local candidate; no provider/cloud/payment acceptance",
+  "base": "http://127.0.0.1:5184/playground/",
+  "checks": [
+    "clean visit writes no unexplained starter",
+    "legacy schema 1 saved envelope opens and gets stable identity"
+  ],
+  "failures": [
+    {
+      "name": "legacy schema 1 file import preserves validator and history",
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Project imported. Undo restores your previous design.', { exact: true }) to be visible\u001b[22m\n"
+    }
+  ],
+  "consoleErrors": [],
+  "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Project imported. Undo restores your previous design.', { exact: true }) to be visible\u001b[22m\n",
+  "timestamp": "2026-10-14T17:52:38.977Z"
+}

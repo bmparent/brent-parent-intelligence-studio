@@ -1,0 +1,17 @@
+{
+  "kind": "Chromium desktop browser; local candidate; no provider/cloud/payment acceptance",
+  "base": "http://127.0.0.1:5184/playground/",
+  "checks": [
+    "clean visit writes no unexplained starter",
+    "legacy schema 1 saved envelope opens and gets stable identity"
+  ],
+  "failures": [
+    {
+      "name": "legacy schema 1 file import preserves validator and history",
+      "error": "locator.setInputFiles: Error: strict mode violation: locator('.pg-project-tools input[type=file]') resolved to 2 elements:\n    1) <input type=\"file\" accept=\".json,application/json\"/> aka getByRole('button', { name: 'Import project' })\n    2) <input type=\"file\" aria-label=\"Upload hero image\" accept=\"image/png,image/jpeg,image/webp\"/> aka getByRole('button', { name: 'Upload hero image' })\n\nCall log:\n\u001b[2m  - waiting for locator('.pg-project-tools input[type=file]')\u001b[22m\n"
+    }
+  ],
+  "consoleErrors": [],
+  "error": "locator.setInputFiles: Error: strict mode violation: locator('.pg-project-tools input[type=file]') resolved to 2 elements:\n    1) <input type=\"file\" accept=\".json,application/json\"/> aka getByRole('button', { name: 'Import project' })\n    2) <input type=\"file\" aria-label=\"Upload hero image\" accept=\"image/png,image/jpeg,image/webp\"/> aka getByRole('button', { name: 'Upload hero image' })\n\nCall log:\n\u001b[2m  - waiting for locator('.pg-project-tools input[type=file]')\u001b[22m\n",
+  "timestamp": "2026-10-14T17:50:59.588Z"
+}

@@ -18,7 +18,7 @@ export function Inspector({
   notify: (message: string) => void;
   guard: () => () => boolean;
 }) {
-  const [tab, setTab] = useState<"content" | "appearance">("appearance");
+  const [tab, setTab] = useState<"content" | "appearance">("content");
   const s = p.sections.find((s) => s.id === selected) || p.sections[0];
   const kind=sectionKind(s);
   const section = (key: string, value: string) =>
@@ -33,8 +33,6 @@ export function Inspector({
     );
   const glass = (key: string, value: string | number | boolean) =>
     edit({ ...p, glass: { ...p.glass, [key]: value } }, "glass" + key);
-  const token = (key: string, value: string | number) =>
-    edit({ ...p, tokens: { ...p.tokens, [key]: value } }, "token" + key);
   return (
     <aside className="pg-inspector" aria-label="Design controls">
       <div className="pg-panel-heading">
@@ -75,7 +73,7 @@ export function Inspector({
           aria-selected={tab === "appearance"}
           onClick={() => setTab("appearance")}
         >
-          Appearance
+          {kind === 'header' ? 'Effect & motion' : 'Layout'}
         </button>
       </div>
       <div
@@ -84,7 +82,7 @@ export function Inspector({
         id="pg-inspector-panel"
         aria-labelledby={`pg-${tab}-tab`}
       >
-        {kind === 'hero' && <CompositionControls project={p} sectionId={s.id} edit={edit} notify={notify} />}
+        {kind === 'hero' && tab === 'appearance' && <CompositionControls project={p} sectionId={s.id} edit={edit} notify={notify} />}
         {tab === "content" ? (
           <>
             <Field
@@ -291,76 +289,14 @@ export function Inspector({
                     </select>
                   </div>
                 )}
-                <p className="pg-subtle">
-                  These settings shape the whole page.
-                </p>
-                <Color
-                  label="Background"
-                  value={p.tokens.background}
-                  onChange={(v) => token("background", v)}
-                />
-                <Color
-                  label="Text"
-                  value={p.tokens.foreground}
-                  onChange={(v) => token("foreground", v)}
-                />
-                <Color
-                  label="Accent"
-                  value={p.tokens.accent}
-                  onChange={(v) => token("accent", v)}
-                />
-                <div className="pg-field">
-                  <label htmlFor="typeface">Typography</label>
-                  <select
-                    id="typeface"
-                    value={p.tokens.font}
-                    onChange={(e) => token("font", e.target.value)}
-                  >
-                    <option value="editorial">Editorial · Serif</option>
-                    <option value="modern">Modern · Sans</option>
-                  </select>
-                </div>
-                <Range
-                  label="Type scale"
-                  value={p.tokens.typeScale}
-                  min={0.75}
-                  max={1.3}
-                  step={0.01}
-                  unit="×"
-                  onChange={(v) => token("typeScale", v)}
-                />
-                <Range
-                  label="Section spacing"
-                  value={p.tokens.spacing}
-                  min={32}
-                  max={128}
-                  unit="px"
-                  onChange={(v) => token("spacing", v)}
-                />
-                <Range
-                  label="Corners"
-                  value={p.tokens.radius}
-                  min={0}
-                  max={48}
-                  unit="px"
-                  onChange={(v) => token("radius", v)}
-                />
-                <Range
-                  label="Maximum page width"
-                  value={p.tokens.width}
-                  min={960}
-                  max={1600}
-                  step={20}
-                  unit="px"
-                  onChange={(v) => token("width", v)}
-                />
+                <p className="pg-help">Spacing, alignment and mobile overrides for this section are below. Use Brand in the toolbar for shared colors and typography.</p>
               </>
             )}
-            <Toggle
+            {kind === 'header' && <Toggle
               label="Reduce motion"
               checked={p.glass.reducedMotion}
               onChange={(v) => glass("reducedMotion", v)}
-            />
+            />}
           </>
         )}
       </div>

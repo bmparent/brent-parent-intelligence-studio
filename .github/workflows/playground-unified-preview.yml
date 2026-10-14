@@ -1,0 +1,62 @@
+name: Playground unified isolated preview
+on:
+  pull_request:
+    branches: [codex/showcase-20261013]
+    paths: ['src/**', 'public/**', 'functions/**', 'migrations/**', 'scripts/**', 'package*.json', 'config/playground-preview.json', '.github/workflows/playground-unified-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    if: (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/codex/playground-unified-20261014') || (github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'codex/playground-unified-20261014')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:playground
+      - run: node --test scripts/test-playground-preview-pin.mjs
+      - run: npm run test:showcase
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run build:functions
+      - name: Install isolated browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/playground-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/playground-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Verify built editor, persistence and gestures
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/playground-browser/node_modules/playwright
+          PG_BASE_URL: http://127.0.0.1:5178
+          PG_PERSISTENCE_URL: http://127.0.0.1:5178/playground/
+          PG_EVIDENCE_DIR: artifacts/playground-unified/browser-ci
+          PG_PERSISTENCE_EVIDENCE: artifacts/playground-unified/persistence-ci
+          PG_GESTURE_EVIDENCE: artifacts/playground-unified/gestures-ci
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 5178 > "$RUNNER_TEMP/playground-preview.log" 2>&1 &
+          node scripts/verify-playground-unified-browser.mjs
+          node --import tsx scripts/verify-playground-persistence.mjs
+          node --import tsx scripts/verify-playground-unified-gestures.mjs
+      - name: Deploy only the isolated manual Playground
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          EIDOS_PLAYGROUND_PLATFORM_TOKEN: ${{ secrets.EIDOS_PLAYGROUND_PLATFORM_TOKEN }}
+          EIDOS_TEMPLATES_PREVIEW_BYPASS: ${{ secrets.EIDOS_TEMPLATES_PREVIEW_BYPASS }}
+        run: node scripts/deploy-playground-preview.mjs
+      - name: Verify hosted desktop and mobile journey
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/playground-browser/node_modules/playwright
+          PG_BASE_URL: https://eidosworks-playground-20261014.pages.dev
+          PG_EVIDENCE_DIR: artifacts/playground-unified/browser-hosted
+        run: node scripts/verify-playground-unified-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playground-unified-preview-receipts
+          path: artifacts/playground-unified/

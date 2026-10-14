@@ -2,6 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../functions/_middleware';
 const env = { EIDOS_PLATFORM_URL:'https://eidos-sentinel-lab.vercel.app', EIDOS_PLATFORM_TOKEN:'relay-test-at-least-32-characters-long' };
+await test('Playground billing is relayed with the signed-in session and no browser relay authority', async () => {
+  const original=globalThis.fetch,token='a'.repeat(64);
+  globalThis.fetch=async(url,init)=>{
+    assert.equal(String(url),'https://eidos-sentinel-lab.vercel.app/api/works/v1/api/playground/ai');
+    const headers=new Headers(init?.headers);assert.equal(headers.get('cookie'),'__Host-eidos_session='+token);
+    assert.equal(headers.get('x-eidos-platform-token'),env.EIDOS_PLATFORM_TOKEN);assert.equal(headers.get('x-eidos-site-origin'),'https://eidos-works.com');
+    assert.equal(init?.body,'{"action":"limit","limitMicros":1000000}');return Response.json({enabled:false});
+  };
+  try{
+    const response=await onRequest({env,next:async()=>{throw Error('Billing must not use local fallback.');},request:new Request('https://eidos-works.com/api/playground/ai',{method:'POST',headers:{cookie:'__Host-eidos_session='+token,'x-eidos-platform-token':'forged','content-type':'application/json'},body:'{"action":"limit","limitMicros":1000000}'})});
+    assert.equal(response.status,200);assert.deepEqual(await response.json(),{enabled:false});
+  }finally{globalThis.fetch=original;}
+});
 await test('Member relay forwards only the scoped session and accepts only the secure member cookie', async () => {
   const original = globalThis.fetch;
   const token = 'a'.repeat(64), cookie = `__Host-eidos_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000; Secure`;

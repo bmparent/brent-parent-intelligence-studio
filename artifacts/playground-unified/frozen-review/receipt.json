@@ -1,0 +1,18 @@
+{
+  "kind": "Local Chromium frozen review; no server order, payment, mail, or entitlement acceptance",
+  "base": "http://127.0.0.1:5184/playground/",
+  "checks": [
+    "missing bundled artwork does not block an uploaded-photo starter",
+    "Finish freezes exact editable source and local archive, with true desktop and mobile review sizes",
+    "later draft edits and reload preserve the exact frozen revision and download",
+    "explicit new review advances to the newer draft while retaining the previous frozen record",
+    "truncated embedded image cannot freeze or replace a prior valid package",
+    "frozen preparation does not call a payment, mail, AI, storage, or provider API"
+  ],
+  "failures": [],
+  "errors": [],
+  "apiRequests": [],
+  "initialSnapshotHash": "aa6f7bae4d44416514a888c17a267f81e85fdf04556fdd0b68cb45a8bc92817f",
+  "initialArchiveSha256": "11cdc84b2ea5f7ea5d681898cecc210667069cc65b2d8fd5a79462ceec5972e5",
+  "timestamp": "2026-10-14T18:16:44.829Z"
+}

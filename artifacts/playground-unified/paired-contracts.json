@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-10-14T18:14:55.020Z",
+  "frontendCommit": "3772075bb757bb372193cb5240e0ffa1820e00fb",
+  "backendCommit": "a6503364c4cfe36e74e41612e1efb570897bc0a6",
+  "workingFiles": true,
+  "checks": [
+    {
+      "path": "functions/_shared/platform/core.ts",
+      "sha256Utf8Lf": "ec25117dc746e83c598f2b4242b7409ea0985499e0d14c984ba2fb36d2e7d8fd"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAi.ts",
+      "sha256Utf8Lf": "fd2adadc434c8f6438f67968bb853c0b9dddc9a4a9c678d638a4faa58bb6aee2"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAiSchema.ts",
+      "sha256Utf8Lf": "ae4205b6ad281ab5ff32a4befba4ada1e8c83b3612053a2b2fb037cd74b97d06"
+    },
+    {
+      "path": "functions/_shared/platform/templateShop.ts",
+      "sha256Utf8Lf": "11f651ee0eb556c65a4ad69b2ac48b9389ef5efcde751d742153d324d7a6152c"
+    },
+    {
+      "path": "functions/api/playground/ai.ts",
+      "sha256Utf8Lf": "f732b515a21847957876af5d9c583834477c4ca4aa0f1025e3947099231a8210"
+    },
+    {
+      "path": "functions/api/shop/webhook.ts",
+      "sha256Utf8Lf": "d8d9ff844929b6186b67cd0657bf738d7bb48c4e633a83eb5da27c27f475fc16"
+    },
+    {
+      "path": "functions/api/community/maintenance.ts",
+      "sha256Utf8Lf": "ee369feea0191989b936dcc9276e4a6e9c460c6352d9a158ad13a3b04f30fbc1"
+    },
+    {
+      "path": "migrations/0005_playground_ai.sql",
+      "sha256Utf8Lf": "531525eb781671d6ffb887de783c773d3023383bd1110ad97e53d0e7ae2fd8b8"
+    }
+  ],
+  "legacyCloudRenderer": "not copied or upgraded",
+  "snapshotRendererAdapter": "separate graph; use export-playground-delivery.mjs for its manifest/parity"
+}

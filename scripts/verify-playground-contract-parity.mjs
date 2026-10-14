@@ -1,0 +1,12 @@
+import {readFile,mkdir,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import path from 'node:path';
+const app=process.argv[2];if(!app)throw Error('Supply the paired Sentinel Lab app directory.');
+if(JSON.parse(await readFile(path.join(app,'package.json'),'utf8')).name!=='eidos-sentinel-lab')throw Error('Invalid paired app.');
+const files=['functions/_shared/platform/core.ts','functions/_shared/platform/playgroundAi.ts','functions/_shared/platform/playgroundAiSchema.ts','functions/_shared/platform/templateShop.ts','functions/api/playground/ai.ts','functions/api/shop/webhook.ts','functions/api/community/maintenance.ts','migrations/0005_playground_ai.sql'];
+if(process.argv.includes('--delivery'))files.push('functions/_shared/platform/projectDelivery.ts','functions/_shared/platform/projectDeliverySchema.ts','functions/api/playground/delivery.ts','migrations/0006_project_delivery.sql');
+const sha=bytes=>createHash('sha256').update(bytes.toString('utf8').replaceAll('\r\n','\n')).digest('hex'),checks=[];
+for(const file of files){const local=sha(await readFile(file)),paired=sha(await readFile(path.join(app,'lib/works/vendor',file)));if(local!==paired)throw Error('Paired contract mismatch: '+file);checks.push({path:file,sha256Utf8Lf:local});}
+const receipt={timestamp:new Date().toISOString(),frontendCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),backendCommit:execFileSync('git',['-C',app,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),workingFiles:true,checks,legacyCloudRenderer:'not copied or upgraded',snapshotRendererAdapter:'separate graph; use export-playground-delivery.mjs for its manifest/parity'};
+await mkdir('artifacts/playground-unified',{recursive:true});await writeFile('artifacts/playground-unified/paired-contracts.json',JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify({status:'passed',files:checks.length,frontendCommit:receipt.frontendCommit,backendCommit:receipt.backendCommit}));

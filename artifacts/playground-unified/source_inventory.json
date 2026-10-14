@@ -1,0 +1,596 @@
+{
+  "baseCommit": "3772075bb757bb372193cb5240e0ffa1820e00fb",
+  "workingTreeChanges": [
+    "M  .github/workflows/playground-editor-release.yml",
+    "A  .github/workflows/playground-unified-preview.yml",
+    "A  docs/implementation/PLAYGROUND_UNIFIED_PLAN_2026-10-14.md",
+    "A  docs/playground-project-delivery.md",
+    "A  docs/playground/unified-acceptance-2026-10-14.md",
+    "A  docs/playground/unified-local-package-2026-10-14.md",
+    "A  docs/playground/unified-purchase-gap-2026-10-14.md",
+    "A  docs/playground/unified-start-persistence-2026-10-14.md",
+    "M  eslint.config.js",
+    "M  functions/_middleware.ts",
+    "M  functions/_shared/platform/core.ts",
+    "A  functions/_shared/platform/playgroundAi.ts",
+    "A  functions/_shared/platform/playgroundAiSchema.ts",
+    "A  functions/_shared/platform/projectDelivery.ts",
+    "A  functions/_shared/platform/projectDeliveryRenderer.ts",
+    "A  functions/_shared/platform/projectDeliverySchema.ts",
+    "M  functions/_shared/platform/templateShop.ts",
+    "M  functions/api/community/maintenance.ts",
+    "A  functions/api/playground/ai.ts",
+    "A  functions/api/playground/delivery.ts",
+    "M  functions/api/shop/webhook.ts",
+    "A  migrations/0005_playground_ai.sql",
+    "A  migrations/0006_project_delivery.sql",
+    "M  package.json",
+    "A  scripts/archive-playground-evidence.mjs",
+    "A  scripts/deploy-playground-preview.mjs",
+    "A  scripts/export-playground-delivery.mjs",
+    "A  scripts/playground-preview-pin.mjs",
+    "A  scripts/test-playground-preview-pin.mjs",
+    "A  scripts/test-playground-purchase-snapshot.ts",
+    "A  scripts/test-playground-start.ts",
+    "A  scripts/test-playground-unified.ts",
+    "A  scripts/test-project-delivery.ts",
+    "M  scripts/test-relay.ts",
+    "A  scripts/verify-playground-contract-parity.mjs",
+    "A  scripts/verify-playground-frozen-review.mjs",
+    "A  scripts/verify-playground-list-move.mjs",
+    "A  scripts/verify-playground-persistence.mjs",
+    "A  scripts/verify-playground-unified-browser.mjs",
+    "A  scripts/verify-playground-unified-gestures.mjs",
+    "M  src/playground/BlockControls.tsx",
+    "A  src/playground/FinishReview.tsx",
+    "M  src/playground/Inspector.tsx",
+    "M  src/playground/Playground.tsx",
+    "A  src/playground/StartScreen.tsx",
+    "M  src/playground/StructureControls.tsx",
+    "M  src/playground/StructureControlsOriginal.tsx",
+    "A  src/playground/UnifiedPanels.tsx",
+    "M  src/playground/authoringRenderer.ts",
+    "M  src/playground/authoringRuntime.ts",
+    "A  src/playground/editorAssets.ts",
+    "A  src/playground/finish-review.css",
+    "M  src/playground/listMove.ts",
+    "A  src/playground/purchaseReviewStorage.ts",
+    "A  src/playground/purchaseSnapshot.ts",
+    "A  src/playground/start-screen.css",
+    "A  src/playground/starters.ts",
+    "M  src/playground/storage.ts",
+    "A  src/playground/unifiedEditor.css",
+    "M  src/playground/useProject.ts",
+    "M  src/playground/workspace.ts",
+    "?? artifacts/playground-unified/"
+  ],
+  "timestampUtc": "2026-10-14T18:21:35.597Z",
+  "files": [
+    {
+      "path": "src/playground/AIAssist.tsx",
+      "bytes": 580,
+      "sha256": "2804e7359863fa12c9aa30f2464e4fb562e1379c2ec97b25afd30f67fbe5ef50"
+    },
+    {
+      "path": "src/playground/AgentCommands.tsx",
+      "bytes": 6206,
+      "sha256": "a7d77312131de9a16aff86bc2e49e94122bc2cd70f8a10f2fda58cd877cd8cd3"
+    },
+    {
+      "path": "src/playground/ArtworkStudio.tsx",
+      "bytes": 14799,
+      "sha256": "041bc0abdc5834f0cc783a16d7cb825dbe0783e6381e18d1f8dc14f45460ccf9"
+    },
+    {
+      "path": "src/playground/BlockControls.tsx",
+      "bytes": 12314,
+      "sha256": "d1cb1031ec3b114efd9c3f41235da894f85cae629de69e4642edc081dc660a53"
+    },
+    {
+      "path": "src/playground/CloudProjects.tsx",
+      "bytes": 1019,
+      "sha256": "82d00b9282a3a57e705fb02bd752e9dd13b2f928f83e72a9199b73b8b108f28d"
+    },
+    {
+      "path": "src/playground/CloudProjectsLegacy.tsx",
+      "bytes": 5356,
+      "sha256": "cea1d439bcf3379c6800d734d87d79a858073ea2efa316b22f3460f6aa60a66d"
+    },
+    {
+      "path": "src/playground/CompositionControls.tsx",
+      "bytes": 7193,
+      "sha256": "4b4d04f0e1e7661cc48b88718c568ac9cca5231d07a49544eb8c697d9138d06f"
+    },
+    {
+      "path": "src/playground/Controls.tsx",
+      "bytes": 5814,
+      "sha256": "aefee205105e8cf2599b12dd6751ba680c0c4a7e3683165b9c04d9da9061e262"
+    },
+    {
+      "path": "src/playground/EffectStudio.tsx",
+      "bytes": 3028,
+      "sha256": "bb4a23114de7d4c4d541d8483f40e8387271712268d724184d479173e32dbce4"
+    },
+    {
+      "path": "src/playground/FinishReview.tsx",
+      "bytes": 9225,
+      "sha256": "e632aca4220fee725db87a8b7df1bf0ee941512a815c20f69e876ad476d1bb58"
+    },
+    {
+      "path": "src/playground/Inspector.tsx",
+      "bytes": 11589,
+      "sha256": "8836212bfae04a9e785173fff29f26ebe3ea5ebc6c4fd013314b89de4e396fb5"
+    },
+    {
+      "path": "src/playground/LayoutStudio.tsx",
+      "bytes": 5022,
+      "sha256": "989caf654083abcdee86fc4ecb6248d9ec463bddfc6f014983496364700d38a8"
+    },
+    {
+      "path": "src/playground/MediaBrand.tsx",
+      "bytes": 8529,
+      "sha256": "b015b53baa4c10c81f8276e0b9c469991c924f7b3965eba70e4e97d67d7fa8d5"
+    },
+    {
+      "path": "src/playground/MotionStudio.tsx",
+      "bytes": 13226,
+      "sha256": "6c4a4c2e0ce45567ed5c5bf3f5c671405bf3e228f61ecb4cea6eab57995a9aad"
+    },
+    {
+      "path": "src/playground/Playground.tsx",
+      "bytes": 18932,
+      "sha256": "d247c694121d6d9b47ea88757be25fec220b07be7413b2c03384af2033116ae5"
+    },
+    {
+      "path": "src/playground/Preview.tsx",
+      "bytes": 9545,
+      "sha256": "6a4737701af3ada29103ca4567430d5dcbe3fe7c38df8c0cd59e03780e7af67e"
+    },
+    {
+      "path": "src/playground/Purchases.tsx",
+      "bytes": 3314,
+      "sha256": "da735fc3590af3d3f8883930992715a2dae2a2e252ab0389d1354856a251a8f8"
+    },
+    {
+      "path": "src/playground/StartScreen.tsx",
+      "bytes": 11354,
+      "sha256": "d62ef9e2ba3ada06278fafa39b5c5cd859249dae48f150e10b89da9135c0ee87"
+    },
+    {
+      "path": "src/playground/StructureControls.tsx",
+      "bytes": 3680,
+      "sha256": "b4c4465746fdf18330ddfa645359c9c4fef492dd75fe233c44c25661d8f27332"
+    },
+    {
+      "path": "src/playground/StructureControlsOriginal.tsx",
+      "bytes": 6574,
+      "sha256": "73544b2f5155480479145282677ec5f8bdc339a27b7adcf9a04b4d22c98f2249"
+    },
+    {
+      "path": "src/playground/StudioWorkspace.tsx",
+      "bytes": 10089,
+      "sha256": "4dec6a3f08d1893e6d4f393e96ffb67e86d13b7878b05b819fd490a86deac2af"
+    },
+    {
+      "path": "src/playground/UnifiedPanels.tsx",
+      "bytes": 11408,
+      "sha256": "65be902a5767ca0d0303e8fded3cf4398ea1e9ece02d73fdda7e00b678f9484d"
+    },
+    {
+      "path": "src/playground/aiOperations.ts",
+      "bytes": 5008,
+      "sha256": "cbee620e7b437c5d35358d4eccd631b8fe5dd06a6788741d7fae45ba3b741d69"
+    },
+    {
+      "path": "src/playground/approved-glass-preset.json",
+      "bytes": 1161,
+      "sha256": "1d556317d4b8964f4943abf62d4720701c782584cdd9511eb39ef3b50ad3c428"
+    },
+    {
+      "path": "src/playground/artworkRenderer.ts",
+      "bytes": 13715,
+      "sha256": "5654bbf8c4597fc8d682798f0962ee6535d40fa5af7e5c1bd2fa6126bf1b0e40"
+    },
+    {
+      "path": "src/playground/artworkSchema.ts",
+      "bytes": 8200,
+      "sha256": "77b1a4af5baa6f6a87d7375d17c68e752be38de02e4864fbe1903dfb377da4e1"
+    },
+    {
+      "path": "src/playground/authoring.ts",
+      "bytes": 5746,
+      "sha256": "565bef774ab096f1298fcbae965d04e5cdaef328f0fefc2ce5be4557344a2879"
+    },
+    {
+      "path": "src/playground/authoringEditor.css",
+      "bytes": 1441,
+      "sha256": "40972f3abc892be661677402aafe50c66f724e8ffbe159381aaeaf7c69e7b87d"
+    },
+    {
+      "path": "src/playground/authoringRenderer.ts",
+      "bytes": 5500,
+      "sha256": "ed6825cc06af2e9f87d3dfba66de69170cfdf843e775dba93493d148797db36d"
+    },
+    {
+      "path": "src/playground/authoringRuntime.ts",
+      "bytes": 26899,
+      "sha256": "dc1e20094ad33d874e806b8dcc0277a0282471056fc67cc1568c64d372d42553"
+    },
+    {
+      "path": "src/playground/authoringSchema.ts",
+      "bytes": 6655,
+      "sha256": "cf5823efad65b33adf283104e18741dbccfed3da4b3bbfea7bbc34d3be68f1e7"
+    },
+    {
+      "path": "src/playground/composition.ts",
+      "bytes": 3144,
+      "sha256": "dc45607de9936feb6afd015d22b04d76582342f196aa5d555a8dd6618389ca00"
+    },
+    {
+      "path": "src/playground/compositionEditor.css",
+      "bytes": 1452,
+      "sha256": "e786c9f69c590361f6fbde4d85e39432dacb0bbac985387bf9e44fe7d57e4b00"
+    },
+    {
+      "path": "src/playground/compositionRenderer.ts",
+      "bytes": 4814,
+      "sha256": "1795d5b167c13702f28a458f958cc2d7507c53e45aebb38a1bc375dbf8fe13c6"
+    },
+    {
+      "path": "src/playground/compositionRuntime.ts",
+      "bytes": 16041,
+      "sha256": "f802525d53a152dfa6ac5fa644e93b94c0cda08d4e44abbd8140e2d5e1b6f290"
+    },
+    {
+      "path": "src/playground/compositionSchema.ts",
+      "bytes": 4369,
+      "sha256": "7e4daf5880dfb2328065720af9c9d645acdef2e16dc300b3186f21b37107dbde"
+    },
+    {
+      "path": "src/playground/editor.css",
+      "bytes": 18419,
+      "sha256": "8fd9f7b72cc77a51307fd1bef6c45f4df92477c2f8f40509aa0754b2c2b517e4"
+    },
+    {
+      "path": "src/playground/editorAssets.ts",
+      "bytes": 1956,
+      "sha256": "38a57f28d8e3dbf0a20cb70eebbc1cb27d5468f820cb7e824e3071e806dce420"
+    },
+    {
+      "path": "src/playground/effectPresets.ts",
+      "bytes": 597,
+      "sha256": "55189a7673a90a367b862e5c2620f71e7f7133420dcc9da1cd573f400da6dcd1"
+    },
+    {
+      "path": "src/playground/export.ts",
+      "bytes": 14614,
+      "sha256": "162c2c741281fabbd7ab4b100ec5975c1dc8a5064228bceb4649499eb8f1df61"
+    },
+    {
+      "path": "src/playground/finish-review.css",
+      "bytes": 4652,
+      "sha256": "da9fd83fe9104510711d7dcce43384e848b9cd795562f0dbe306b96a5bc07db4"
+    },
+    {
+      "path": "src/playground/glassBundle.ts",
+      "bytes": 19330,
+      "sha256": "5f8dc2871b3c6a2b5fa0cc3b503f656f6be055ac177a3c468d39a259138f1e40"
+    },
+    {
+      "path": "src/playground/glassEntry.ts",
+      "bytes": 774,
+      "sha256": "ba24c2c6004f992a4da4ebd87fa9bae4abf52c373add614652d8ec2201023580"
+    },
+    {
+      "path": "src/playground/limits.ts",
+      "bytes": 1211,
+      "sha256": "f85bdc97a8177169acfca4a795f650943a801cd2644bf709b3c4db3a2069baa9"
+    },
+    {
+      "path": "src/playground/listMove.ts",
+      "bytes": 5553,
+      "sha256": "a2cacfec07c80ed8331e8e129ce8020fb6b841f81149dc80e6925b00f22855c9"
+    },
+    {
+      "path": "src/playground/localCommands.ts",
+      "bytes": 2976,
+      "sha256": "38b2a8559ea914c3cad2a78b7e860e47193b053c1407d46491b303c9342c41fb"
+    },
+    {
+      "path": "src/playground/media.ts",
+      "bytes": 2341,
+      "sha256": "8b47a27e8f0b74c5c2a028ec438599b36805790919429168e7d2f4804386935e"
+    },
+    {
+      "path": "src/playground/model.ts",
+      "bytes": 19494,
+      "sha256": "c83842b0077aecb173d9a04db1bbc36dc8f84c58f98da7b4e9096e70ef58aeca"
+    },
+    {
+      "path": "src/playground/motionRenderer.ts",
+      "bytes": 6509,
+      "sha256": "6559d493838e3a1f5d8ecc0e38e80021c8afa2bb213dab23edf5721e0b75b365"
+    },
+    {
+      "path": "src/playground/motionSchema.ts",
+      "bytes": 5922,
+      "sha256": "f43fa54d1f0934392b894862c8b9616894a3196755a0db96919e16ff09fa771f"
+    },
+    {
+      "path": "src/playground/pageStyles.ts",
+      "bytes": 6303,
+      "sha256": "d1388f66aae4598a15b8037911ee100092e973d2cdcd4e88fd6e8f7b01061cd2"
+    },
+    {
+      "path": "src/playground/publishing.ts",
+      "bytes": 758,
+      "sha256": "eb6b3675cfd6af8212bd32daae8f681e025e90b83dbee45683a5cb40d3c8d52a"
+    },
+    {
+      "path": "src/playground/purchaseReviewStorage.ts",
+      "bytes": 2261,
+      "sha256": "f01797daaede3cbbed770e2dd4af8d8d90347127cd66e0e39e98d1f8c71f9555"
+    },
+    {
+      "path": "src/playground/purchaseSnapshot.ts",
+      "bytes": 17960,
+      "sha256": "4e9a56458706f583ebee510ded8de3a75bbbcb7ee197e34e2a8a2e06033ecc05"
+    },
+    {
+      "path": "src/playground/releaseBoundary.ts",
+      "bytes": 1963,
+      "sha256": "b15a3ba67bc04b4646f0eda90dc2b02f13855b3a1c8544655823dac912a348f0"
+    },
+    {
+      "path": "src/playground/renderer.ts",
+      "bytes": 10438,
+      "sha256": "d01804a23205899d8f3a3468dfc449f4553c73bf9a2a4ca0bd5650be73481151"
+    },
+    {
+      "path": "src/playground/runtime.ts",
+      "bytes": 15502,
+      "sha256": "bbceb2fcff79d32dc4b6ac1e395b6690bd2f73fe223c38fffa53c3587bd9c28b"
+    },
+    {
+      "path": "src/playground/start-screen.css",
+      "bytes": 8966,
+      "sha256": "ebd6c04904257eb2edec43b04ac88b48dfb792d34a7721fc565ce4278e095dde"
+    },
+    {
+      "path": "src/playground/starters.ts",
+      "bytes": 8721,
+      "sha256": "f46b48e4e795e00e9105295d077409ed580be6feba7eee2b9fd7da3b7e1b06ec"
+    },
+    {
+      "path": "src/playground/storage.ts",
+      "bytes": 5653,
+      "sha256": "cf042e79cd5c1fe42b77dae34884e73674a6d92f11b41c1231563bd523be1788"
+    },
+    {
+      "path": "src/playground/studioEditors.css",
+      "bytes": 5627,
+      "sha256": "be88aec6a347ffca86b1d58477ee2b72af48f98379c323136881df19a61635f8"
+    },
+    {
+      "path": "src/playground/studioFont.json",
+      "bytes": 112092,
+      "sha256": "a56502ea7b66de983e5f1915abedd639ba06633a0936ce700a7b3b2460a5b1cd"
+    },
+    {
+      "path": "src/playground/studioFont.ts",
+      "bytes": 643,
+      "sha256": "0b50e64fe8bc6daf01718b3150b882e42198dd1d39e435a52a7376436f370e02"
+    },
+    {
+      "path": "src/playground/studioProject.ts",
+      "bytes": 828,
+      "sha256": "f10cad7a8882ec7ba37ab0e28dc6a7305222d92278d727cbd2e81c1f5111258f"
+    },
+    {
+      "path": "src/playground/studioSchema.ts",
+      "bytes": 1062,
+      "sha256": "c7161261c82238585731fdf11f0f5beac81e7705c4498d775ad542fd742f97f5"
+    },
+    {
+      "path": "src/playground/studioWorkspace.css",
+      "bytes": 6903,
+      "sha256": "a596a2a3545503880e473105feeebd92811560d606e65b777c59322e0a2fb581"
+    },
+    {
+      "path": "src/playground/unifiedEditor.css",
+      "bytes": 18161,
+      "sha256": "b8832132e43426c012ca1900ed7232dd1a9fc4a433936fdafc9053ab03b818b3"
+    },
+    {
+      "path": "src/playground/useProject.ts",
+      "bytes": 8126,
+      "sha256": "9fa644f9a4d211dd09de5ce91bb793fe279aae85ab87aa8af94bb51c6d8c730a"
+    },
+    {
+      "path": "src/playground/workspace.ts",
+      "bytes": 3342,
+      "sha256": "093e31918cc0aed1ef28901ca27eebdd7b7325414f27c834817dde02ca38ad37"
+    },
+    {
+      "path": "functions/_shared/platform/community.ts",
+      "bytes": 4250,
+      "sha256": "2e628aa1790c95bad5c70127b08eb1c5a1963bc3e2464cc9e1f032af596dd2c5"
+    },
+    {
+      "path": "functions/_shared/platform/core.ts",
+      "bytes": 10765,
+      "sha256": "d341266bd24be5fe8dbd47091d8c0bad6450b7f61924d46b70f6095661a4520e"
+    },
+    {
+      "path": "functions/_shared/platform/kitArchive.ts",
+      "bytes": 8133,
+      "sha256": "e9e45c0cb0a71f1a0da63e148f249963303db6443eefe466d7117232bc28b266"
+    },
+    {
+      "path": "functions/_shared/platform/knowledge.ts",
+      "bytes": 4479,
+      "sha256": "bca4e3d79f889d48bcd5012149949146a62a13601eeaec78d74bb5661b0a381c"
+    },
+    {
+      "path": "functions/_shared/platform/memberAuth.ts",
+      "bytes": 3960,
+      "sha256": "4e3c63564044b0140cdf16086e284ccbd371483fbba1d9239219f6efa977c244"
+    },
+    {
+      "path": "functions/_shared/platform/memberMail.ts",
+      "bytes": 1542,
+      "sha256": "edfa3fed8512d0e92d1122006ec7ca5b9d464c40d9a1ebb50c877d36c7a95840"
+    },
+    {
+      "path": "functions/_shared/platform/mentions.ts",
+      "bytes": 1822,
+      "sha256": "b1b2296b492ffd7a20111b984279423f3b346a2f7549a00b1e3510eeb908f664"
+    },
+    {
+      "path": "functions/_shared/platform/newsletter.ts",
+      "bytes": 9006,
+      "sha256": "fe7db163e329a9126032e2878e4e001b1791597ab014d6ffc7db9038adbc62d9"
+    },
+    {
+      "path": "functions/_shared/platform/playground.ts",
+      "bytes": 5889,
+      "sha256": "d57e685ce5ecca73b59ed98c21a28b8ef88471d0f9b716c9aec8db44a112e71b"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAi.ts",
+      "bytes": 30804,
+      "sha256": "fd2adadc434c8f6438f67968bb853c0b9dddc9a4a9c678d638a4faa58bb6aee2"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAiSchema.ts",
+      "bytes": 5832,
+      "sha256": "0f7559f69d4550399eba394e2c8fadbd7e5484aecfdc064c7cb5893db7a5e23c"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundOrders.ts",
+      "bytes": 4628,
+      "sha256": "414647d3d342f4f9d731a4dd80f38cc3856bc1731f3095651493902d69a7f39d"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundSchema.ts",
+      "bytes": 1515,
+      "sha256": "5ac48c62fc8983544198e76a29decfb0053e21e04c1b55b111f2a83c68af4b5e"
+    },
+    {
+      "path": "functions/_shared/platform/projectDelivery.ts",
+      "bytes": 9736,
+      "sha256": "47f355d67e8d2d9cbb48a29ede2358dcc7eefd25848ba0cdd9bb5713b216208a"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliveryRenderer.ts",
+      "bytes": 386,
+      "sha256": "ed27e6c37f2968e2d4a6825cee6eac328dd3d9d8eeff2ed2c44be55ef37aba66"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliverySchema.ts",
+      "bytes": 1342,
+      "sha256": "9ff3edfd777b43410d7499e6a2abb66625187b6b15f6bc889324c2b917913c4b"
+    },
+    {
+      "path": "functions/_shared/platform/shop.ts",
+      "bytes": 1160,
+      "sha256": "83a9e1c10e38ebe4345486f765daa4966a389a59f597cf32ee6f07ad2266bc79"
+    },
+    {
+      "path": "functions/_shared/platform/studioAgents.ts",
+      "bytes": 15517,
+      "sha256": "0a0cdef9e5b7a2a7498bfb8822abd7c92a329cbe59a433cfdce9f0224bef4af6"
+    },
+    {
+      "path": "functions/_shared/platform/studioBoundary.ts",
+      "bytes": 755,
+      "sha256": "dc49c233b3a9b9b2b0c8daa864cbb048d82dc1a3de9b45c13e3204c13faf00f4"
+    },
+    {
+      "path": "functions/_shared/platform/templateCatalog.ts",
+      "bytes": 1893,
+      "sha256": "1d48e0935af7948a2e37864c51905e8dd3d3d6f4a6e787225edc140e98509d59"
+    },
+    {
+      "path": "functions/_shared/platform/templateShop.ts",
+      "bytes": 28543,
+      "sha256": "325c97b13acb692bdbc1f5e8359cc6e53556aa94686e9e097a49002a7026c620"
+    },
+    {
+      "path": "functions/api/playground/ai.ts",
+      "bytes": 2318,
+      "sha256": "f732b515a21847957876af5d9c583834477c4ca4aa0f1025e3947099231a8210"
+    },
+    {
+      "path": "functions/api/playground/checkout.ts",
+      "bytes": 549,
+      "sha256": "84698a9d6458bd32aa1e6e8593f86043a7a32715f499998e60f88b944da98259"
+    },
+    {
+      "path": "functions/api/playground/delivery.ts",
+      "bytes": 1095,
+      "sha256": "a7f745e2c8d48c141fae3eb94f5f9ba9d6c3a182d40be32ed9c64fc91f40b897"
+    },
+    {
+      "path": "functions/api/playground/projects.ts",
+      "bytes": 1591,
+      "sha256": "e6bd500be3b33feae5492e0904d69faf055e4c351fcacc9acc373d4c3f8acc36"
+    },
+    {
+      "path": "functions/api/playground/purchases.ts",
+      "bytes": 1753,
+      "sha256": "3dda4a6a0eab1d3187261e05652fbc697f5bdab5f3ddc34f57b10bcf88d39f05"
+    },
+    {
+      "path": "functions/api/playground/webhook.ts",
+      "bytes": 3654,
+      "sha256": "cf285d6cc590789c6a1c0cbf82ae5b6bc69e27478750c7efa142785226e7ab8a"
+    },
+    {
+      "path": "migrations/0001_eidos_platform.sql",
+      "bytes": 2438,
+      "sha256": "291326de7f52818ec88026f66fb5bbb558f5f8ed44a2fbcd4a824d22fac2d7c9"
+    },
+    {
+      "path": "migrations/0002_members.sql",
+      "bytes": 2540,
+      "sha256": "bf1bbfeb59646c8234addd3220c46850afcc92918203ee69704f0a20381edae5"
+    },
+    {
+      "path": "migrations/0003_playground.sql",
+      "bytes": 1440,
+      "sha256": "de72422190fe3dba1e255905d7f30b9699d0b120d6a873a4555177cdb095d999"
+    },
+    {
+      "path": "migrations/0004_paid_templates.sql",
+      "bytes": 1770,
+      "sha256": "787985c873868805712b6a72f459a5554349688d515d10ccc910edd134f9f5a7"
+    },
+    {
+      "path": "migrations/0005_playground_ai.sql",
+      "bytes": 5751,
+      "sha256": "531525eb781671d6ffb887de783c773d3023383bd1110ad97e53d0e7ae2fd8b8"
+    },
+    {
+      "path": "migrations/0006_project_delivery.sql",
+      "bytes": 1307,
+      "sha256": "711faa1efc31c66ae37056c1eec51aca3f8ffeba975a4d9873b0282fc8c9ba43"
+    },
+    {
+      "path": "migrations/growth/0001_growth.sql",
+      "bytes": 979,
+      "sha256": "9a137ba1106dfd815f46c82b8288d2923767ffa13d4b9d3eaa5c06509de0b1d7"
+    },
+    {
+      "path": "package.json",
+      "bytes": 4580,
+      "sha256": "0a90ed48e815b93a8250bd4d18fcb5e2d6154ec892092f548dc247344fb1e7cf"
+    },
+    {
+      "path": "eslint.config.js",
+      "bytes": 859,
+      "sha256": "e60afd1d7cf7362d16e9bf6811bc0564a9ea87d78ecc33e838b4456bd43a28a7"
+    }
+  ],
+  "inventorySha256": "6e7ab8a8257bdece6fdaf4c1d01192f3b23983f93163f7c7e8c954e84b930c21"
+}
