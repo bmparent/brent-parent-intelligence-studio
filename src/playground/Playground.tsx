@@ -1,3 +1,6 @@
+import { StudioWorkspace, StudioPicker } from './StudioWorkspace';
+import { selectStudio } from './studioProject';
+import { studioModes, type StudioMode } from './studioSchema';
 import { BlockTree, BlockControls } from './BlockControls';
 import {AIAssist} from "./AIAssist";
 import {imageWarnings} from "./publishing";
@@ -24,6 +27,7 @@ import { Icon } from "./Controls";
 import { download, exportFiles, headerFiles, zipFiles } from "./export";
 import "./editor.css";
 export default function Playground() {
+  const workspaceState = useProject();
   const {
     project,
     target, documentId, guard, replace, acknowledge,
@@ -37,7 +41,14 @@ export default function Playground() {
     snapshots,
     saveSnapshot,
     storageError,
-  } = useProject();
+  } = workspaceState;
+  const requestedStudio = useRef(false);
+  useEffect(() => {
+    if (!ready || requestedStudio.current) return;
+    requestedStudio.current = true;
+    const mode = new URLSearchParams(window.location.search).get('studio');
+    if (studioModes.includes(mode as StudioMode)) replace(selectStudio(project, mode as StudioMode));
+  }, [ready, project, replace]);
   const [selected, setSelected] = useState<string>("header"),
     [mobile, setMobile] = useState(() => typeof window!=='undefined' && window.innerWidth<=640),
     [editing, setEditing] = useState(true),
@@ -111,14 +122,16 @@ export default function Playground() {
       setExporting(false);
     }
   }
+  if (ready && project.studios && project.studios.active !== 'page') return <StudioWorkspace workspace={workspaceState}/>;
   return (
-    <div className={`pg-app ${!editing ? "pg-trying" : ""}`} data-panel={panel}>
+    <div onPointerDownCapture={e=>{if((e.target as HTMLElement).matches('input[type=range]'))workspaceState.beginGesture();}} onPointerUpCapture={workspaceState.endGesture} onPointerCancelCapture={workspaceState.endGesture} onKeyDownCapture={e=>{if((e.target as HTMLElement).matches('input[type=range]')&&!e.repeat&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(e.key))workspaceState.beginGesture();}} onKeyUpCapture={workspaceState.endGesture} onBlurCapture={workspaceState.endGesture} className={`pg-app ${!editing ? "pg-trying" : ""}`} data-panel={panel}>
       <header className="pg-toolbar">
         <a href="/" className="pg-brand">
           <img className="pg-brand-mark" src="/brand/eidos-mark.svg" alt="" width="30" height="30" />
           <strong>Eidos</strong>
           <span>/ Playground</span>
         </a>
+        <StudioPicker value="page" disabled={!ready} choose={mode=>change(selectStudio(project,mode))}/>
         <input
           className="pg-project-name"
           aria-label="Project name"
@@ -419,7 +432,7 @@ export default function Playground() {
             )}
           </div>
         </main>
-        {mediaOpen ? <MediaBrand project={project} edit={change} guard={guard} notify={setNotice} close={()=>setMediaOpen(false)} /> : project.schemaVersion===4 && project.sections.find(s=>s.id===selected)?.authoring ? <BlockControls project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} mobile={mobile} /> : <Inspector
+        {mediaOpen ? <MediaBrand project={project} edit={change} guard={guard} notify={setNotice} close={()=>setMediaOpen(false)} /> : project.schemaVersion>=4 && project.sections.find(s=>s.id===selected)?.authoring ? <BlockControls project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} mobile={mobile} /> : <Inspector
           project={project}
           selected={project.sections.some(s=>s.id===selected)?selected:project.sections[0].id}
           edit={change}

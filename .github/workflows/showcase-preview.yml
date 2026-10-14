@@ -1,0 +1,51 @@
+name: Showcase isolated preview
+on:
+  pull_request:
+    branches: [codex/template-release-readiness-20261013]
+    paths: ['src/**', 'public/**', 'functions/**', 'scripts/**', 'package*.json', '.github/workflows/showcase-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preview:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'codex/showcase-20261013')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:showcase
+      - run: npm run build
+      - run: npm run build:functions
+      - name: Install isolated browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/showcase-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/showcase-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Complete studio tasks and independently opened outputs
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/showcase-browser/node_modules/playwright
+          SHOWCASE_BASE: http://127.0.0.1:5178
+          SHOWCASE_EVIDENCE: artifacts/showcase/browser-ci
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 5178 > "$RUNNER_TEMP/showcase-preview.log" 2>&1 &
+          node scripts/verify-showcase-browser.mjs
+          node scripts/verify-showcase-exports.mjs
+      - name: Deploy only isolated showcase Pages project
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          EIDOS_TEMPLATES_PLATFORM_URL: ${{ secrets.EIDOS_TEMPLATES_PLATFORM_URL }}
+          EIDOS_TEMPLATES_PLATFORM_TOKEN: ${{ secrets.EIDOS_TEMPLATES_PLATFORM_TOKEN }}
+          EIDOS_TEMPLATES_PREVIEW_BYPASS: ${{ secrets.EIDOS_TEMPLATES_PREVIEW_BYPASS }}
+          EIDOS_TEMPLATES_BACKEND_SHA: ${{ secrets.EIDOS_TEMPLATES_BACKEND_SHA }}
+        run: node scripts/deploy-showcase-preview.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: showcase-preview-receipts
+          path: artifacts/showcase/

@@ -1,3 +1,4 @@
+import { assertCloudStudioBoundary } from '../../_shared/platform/studioBoundary';
 import { body, db, guarded, json, origin } from '../../_shared/platform/core';
 import { requireMember } from '../../_shared/platform/memberAuth';
 import { ensurePlayground, ownedProject, projectRevision, saveProject } from '../../_shared/platform/playground';
@@ -14,8 +15,9 @@ export const onRequestGet = guarded(async ({request,env}) => {
   return json({id:result.project.id,revision:result.revision.id,head:result.project.head,document:result.document});
 });
 export const onRequestPost = guarded(async ({request,env}) => {
-  origin(request); const member = await requireMember(request,env,false);
+  origin(request); const input = await body(request,2_020_000);
+  assertCloudStudioBoundary(input.document);
+  const member = await requireMember(request,env,false);
   await ensurePlayground(env);
-  const input = await body(request,2_020_000);
   return json(await saveProject(env,member.id,input));
 });

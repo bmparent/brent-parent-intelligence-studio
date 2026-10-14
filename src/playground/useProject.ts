@@ -6,6 +6,7 @@ import { workspace, workspaceReducer, type SaveTarget } from "./workspace";
 export function useProject() {
   const [state, dispatch] = useReducer(workspaceReducer, undefined, () => workspace(createProject(), crypto.randomUUID()));
   const generation = useRef(0);
+  const gesture = useRef<string | undefined>(undefined);
   const [editVersion,bumpEditVersion]=useReducer((v:number)=>v+1,0);
   // Autosave/status renders must not change this callback identity: Preview uses
   // it as a synchronization dependency. Recreating it rebuilt the iframe during
@@ -77,8 +78,25 @@ export function useProject() {
     return () => window.removeEventListener("beforeunload", beforeUnload);
   }, [dirty]);
   return {
+    beginGesture: () => { gesture.current = 'gesture:' + crypto.randomUUID(); },
+    endGesture: () => { gesture.current = undefined; },
     project: state.current.project,
     ready,
+    revision: editVersion,
+    saveNow: async () => {
+      const captured = generation.current;
+      try {
+        await saveWorkspace({project, snapshots});
+        if (captured !== generation.current) return false;
+        setStorageError('');
+        setSavedState({project, snapshots, generation: editVersion});
+        return true;
+      } catch {
+        if (captured !== generation.current) return false;
+        setStorageError('Could not save on this device. Download project JSON before closing.');
+        return false;
+      }
+    },
     snapshots,
     status:
       storageError ||
@@ -98,7 +116,7 @@ export function useProject() {
     acknowledge: (documentId: string, target: SaveTarget) => dispatch({type:'saved',documentId,target}),
     edit: (project: Project | ((current: Project) => Project), group?: string) => {
       generation.current++; bumpEditVersion();
-      dispatch({ type: "edit", project, group, time: Date.now() });
+      dispatch({ type: "edit", project, group: gesture.current || group, time: Date.now() });
     },
     undo: () => { generation.current++; bumpEditVersion(); dispatch({ type: "undo" }); },
     redo: () => { generation.current++; bumpEditVersion(); dispatch({ type: "redo" }); },

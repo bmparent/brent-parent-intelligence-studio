@@ -26,7 +26,7 @@ export function BlockTree({ project, selected, onSelect, edit, notify, guard }: 
             } catch(error) { notify((error as Error).message); }
         });
     }
-    if (project.schemaVersion !== 4)
+    if (project.schemaVersion < 4)
         return <section className="pg-project-tools"><h3>Responsive blocks</h3><p>Add independent images, text and buttons in responsive containers. This explicit upgrade changes the hero to normal document flow; Undo restores the original design and format.</p><button onClick={() => { try {
             edit(enableBlocks(project));
             notify('Responsive blocks enabled. Select an element in Preview or Layers. Undo restores the original format.');

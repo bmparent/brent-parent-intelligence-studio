@@ -1,3 +1,4 @@
+import {flattenNodes} from './authoringSchema';
 import {type Project,type Section,sectionKind,validateProject,safeHref} from './model';
 export const operationFields=['section.title','section.description','section.cta','section.href','section.layout','section.spacing','section.align','tokens.background','tokens.foreground','tokens.accent','tokens.font','tokens.spacing','tokens.typeScale'] as const;
 export type Operation={field:typeof operationFields[number];value:string};
@@ -23,10 +24,11 @@ export function applyProposal(p:Project,selected:string,scope:'section'|'page',v
    Object.assign(next.tokens,{[key]:['spacing','typeScale'].includes(key)?Number(value):value});
   }else{
    const key=field.slice(8);if(key==='title'&&['header','footer'].includes(sectionKind(s))&&locks.includes('name'))throw Error('The brand name is locked.');
+   if(s.authoring&&key==='layout')throw Error('Use responsive block controls for this layout.');
    if(s.composition&&['layout','spacing','align'].includes(key))throw Error('Use the spatial layout controls for this hero; legacy AI layout fields cannot change it.');
    if(key==='href'&&value&&safeHref(value)==='#'&&value!=='#')throw Error('AI proposed an unsafe link.');
    if(key==='spacing'||key==='align'){if(p.schemaVersion===1||['header','footer'].includes(sectionKind(s)))throw Error('Section layout is unavailable here.');s.style={spacing:p.tokens.spacing,align:'left',background:'',...s.style,[key]:key==='spacing'?Number(value):value} as Section['style'];}
-   else Object.assign(s,{[key]:value});
+   else {Object.assign(s,{[key]:value});if(s.authoring){const kind=key==='title'?'heading':key==='description'?'text':['cta','href'].includes(key)?'button':null;const node=flattenNodes(s.authoring.root).find(n=>n.type===kind);if(kind&&!node)throw Error('This section has no matching responsive block. Use block controls.');if(node)Object.assign(node,{[key==='href'?'href':'text']:value});}}
   }
  }
  return validateProject(next);

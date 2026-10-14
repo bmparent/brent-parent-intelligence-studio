@@ -16,6 +16,8 @@ export type PageMetadata = {
 const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   ...Object.fromEntries(templateGuides.map((g) => [g.path.replace(/\/$/, ''), { title: `${g.name} ${g.platform} Installation | Eidos Works`, description: `Installation, editing, publishing, and rollback instructions for the ${g.name} ${g.platform} edition.`, type: 'website' as const, noIndex: true }])),
   '/shop': { title: 'Website Templates | Eidos Works', description: 'Four original five-page website designs with developer source and WordPress editions. Explore working demos, contents, and installation requirements.', type: 'website', noIndex: true },
+  '/shop/configure': { title: 'Configure an Original Website Sample | Eidos Works', description: 'Choose an Eidos family direction, pages, and compatible modules. Preview, save, reopen, and export a working original static sample.', type: 'website', noIndex: true },
+  '/work/signal-house': { title: 'Signal House: An Interactive SVG Case Study | Eidos Works', description: 'Inspect an original Eidos Works concept through imagery, light, interface, and assembly. A React, TypeScript, SVG, and CSS case study with reduced-motion presentation.', type: 'website' },
   '/shop/choose': { title: 'Choose Your Template Edition | Eidos Works', description: 'Find the right developer, WordPress, Squarespace, or GoDaddy edition for your website.', type: 'website', noIndex: true },
   '/shop/template-terms': { title: 'Draft Template Terms | Eidos Works', description: 'Proposed edition-specific license, support, updates, and platform requirements for the template collection candidate.', type: 'website', noIndex: true },
   '/shop/start': { title: 'Your Template & Recovery | Eidos Works', description: 'Private purchase verification, versioned download, and email recovery.', type: 'website', noIndex: true, noReferrer: true },
@@ -329,7 +331,7 @@ export function pageMetadata(path = '/'): PageMetadata {
 export function prerenderPagePaths() {
   return [
     ...templateGuides.map((g) => g.path.replace(/\/$/, '')),
-    '/shop', '/shop/choose', '/shop/template-terms', '/shop/start', ...templateProducts.map((p) => '/shop/' + p.slug),
+    '/shop', '/shop/configure', '/shop/choose', '/shop/template-terms', '/shop/start', ...templateProducts.map((p) => '/shop/' + p.slug),
     '/playground',
     '/work/nighttime-spectaculars',
     '/work/holidays-in-hollywood',
@@ -354,6 +356,7 @@ export function prerenderPagePaths() {
     '/friction-review',
     '/central-florida',
     '/work',
+    '/work/signal-house',
     '/work/pernr-access-gate',
     '/work/production-dashboard',
     '/work/storefront-experience',
