@@ -40,7 +40,7 @@ authorized by this verification.
 | Current/retained archive integrity | Frozen hashes and local Next function trace: 32/32 | Pass locally |
 | Signed payment/replay/recovery/refund authorization behavior | Controlled local provider fixtures, including two-member isolation; no genuine event manufactured | Pass locally only |
 | Correct protected source bundle | Vercel READY preview above; exact commit and bundle inventory | Pass for deployment identity |
-| Hosted catalog and relay | Candidate workflow must accept the tracked preview-backend.json before changing Pages | Pending hosted workflow |
+| Hosted catalog and relay | Workflow 38591500899 passed the exact TEST catalog/source/version/price/availability preflight and HTTP400 unsigned-event check, then deployed the paired Pages candidate | Pass on frozen site source 11e292f / backend 16a1926 |
 | Resend Preview binding | Existing candidate Preview branch has no RESEND_API_KEY; key on another preview is not assumed valid or moved | Blocked |
 | Genuine TEST paid-event acknowledgement | Connector exposes only LIVE; no new real provider payment or event replay claimed | Pending provider access and mail |
 | Receipt/recovery inbox arrival | No actual mail sent by this continuation | Blocked by mail configuration |
@@ -70,3 +70,34 @@ Rollback: return only the isolated candidate relay to its previous pinned backen
 or disable new candidate checkout. Preserve orders, signing secrets, all private
 archives and compatible fulfillment/recovery handlers. This continuation changes
 no canonical domain, production database, existing order or sold archive.
+
+## Hosted closeout
+
+Frozen tested site source: 11e292f96f7a1c6eb5ff18712bd59a5ca0c96a74
+(tree 47dc6eb5d61d4818ea6d620d372dcaed5beda3be). Its locally tested tree is
+identical to the connector-created tree. Backend source remains
+16a1926d5bbd33cd52bb0c93ee15dd949b1bc698.
+
+- Paid template TEST candidate workflow 38591500899 completed successfully. Its
+  required catalog/source/version/price/installation and unsigned-event checks
+  passed before routing changed. The canonical deployment was read before and
+  after configuration and remained unchanged. Upload completed at
+  https://0d1c0c94.eidosworks-templates-test-20261010.pages.dev.
+- The connected branch sender is Eidos Works <papers@eidos-works.com>; the
+  database binding prefix was read back as EIDOS_TEMPLATES_TEST. No secret value
+  was requested. The complete backend returned HTTP200 for its protected health
+  route through the authenticated connector.
+- Site quality 38591500934, Template commerce readiness 38591500909, Wellway
+  acceptance 38591500950 and backend Sentinel Lab quality 38590498703 passed.
+- Cloud browser observed Switchboard package version 1.0.3, available only for
+  TEST checkout, at
+  https://eidosworks-templates-test-20261010.pages.dev/shop/switchboard/.
+  Direct raw-JSON navigation was blocked by this browser client; the hosted
+  authenticated CI preflight and normal product UI independently succeeded.
+- No new Stripe transaction, event resend, refund, receipt email or recovery
+  email was submitted. The genuine endpoint-specific paid-event HTTP2xx and
+  received-email lifecycle remain blocked, not passed.
+
+This documentation closeout does not change the frozen deployed code or certify
+any future documentation-triggered build. Main/production and all LIVE sales
+remain unchanged. Both continuation PRs remain draft.
