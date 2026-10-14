@@ -20,7 +20,7 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run test:playground
-      - run: node --test scripts/test-playground-preview-pin.mjs
+      - run: node --test scripts/test-playground-preview-pin.mjs scripts/test-playground-preview-assets.mjs
       - run: npm run test:showcase
       - run: npm run lint
       - run: npm run build

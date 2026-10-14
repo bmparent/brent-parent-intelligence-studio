@@ -1,6 +1,7 @@
 import {mkdir,writeFile,appendFile,readFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {validatePlaygroundPreviewPin,verifyManualPreviewConfig,playgroundPreviewProject as name,playgroundPreviewBranch as branch} from './playground-preview-pin.mjs';
+import {verifyPublishedAssets} from './playground-preview-assets.mjs';
 
 const env=process.env;
 for(const key of ['CLOUDFLARE_ACCOUNT_ID','CLOUDFLARE_API_TOKEN','EIDOS_PLAYGROUND_PLATFORM_TOKEN','EIDOS_TEMPLATES_PREVIEW_BYPASS'])if(!env[key])throw Error('Missing isolated preview binding: '+key);
@@ -42,6 +43,7 @@ await writeFile('dist/robots.txt','User-agent: *\nDisallow: /\n');await appendFi
 execFileSync(process.platform==='win32'?'npx.cmd':'npx',['wrangler','pages','deploy','dist','--project-name',name,'--branch',branch,'--commit-hash',sha],{stdio:'inherit',env});
 project=await api('/'+name);const liveAfter=await api('/eidosworks');
 if(liveBefore.latest_deployment?.id!==liveAfter.latest_deployment?.id)throw Error('Canonical deployment changed concurrently; reconcile separately.');
+const publishedAssets=await verifyPublishedAssets(pin.siteOrigin,'dist');
 await mkdir('artifacts/playground-unified',{recursive:true});
-const receipt={timestamp:new Date().toISOString(),project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:pin.siteOrigin,backendUrl:pin.backendUrl,backendSha:pin.backendSha,backendDeployment:pin.backendDeployment,bundleHash:pin.bundleHash,sourceRevision:pin.sourceRevision,database:pin.database,mode:pin.mode,publicConfig,boundaryChecks,canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
+const receipt={timestamp:new Date().toISOString(),project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:pin.siteOrigin,backendUrl:pin.backendUrl,backendSha:pin.backendSha,backendDeployment:pin.backendDeployment,bundleHash:pin.bundleHash,sourceRevision:pin.sourceRevision,database:pin.database,mode:pin.mode,publicConfig,boundaryChecks,publishedAssets,canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
 await writeFile('artifacts/playground-unified/hosted-preview.json',JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt,null,2));
