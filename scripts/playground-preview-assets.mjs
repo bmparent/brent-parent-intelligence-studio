@@ -16,7 +16,9 @@ export async function verifyPublishedAssets(origin,dist,{attempts=12,delayMs=200
         const assets=[...new Set(html.match(/\/assets\/[A-Za-z0-9_.-]+\.(?:js|css)/g)||[])];
         if(!assets.some(asset=>asset.endsWith('.js')))throw Error('Published editor has no application bundle.');
         for(const asset of assets) {
-          const expected=await readFile(path.join(dist,asset.slice(1)));
+          let expected;
+          try { expected=await readFile(path.join(dist,asset.slice(1))); }
+          catch(error) { if(error.code!=='ENOENT')throw error; failures.push({path:asset,error:'candidate_bundle_not_published'});continue; }
           const response=await fetcher(new URL(asset,origin),{signal:AbortSignal.timeout(10000)});
           if(!response.ok){failures.push({path:asset,status:response.status});continue;}
           const actual=Buffer.from(await response.arrayBuffer());

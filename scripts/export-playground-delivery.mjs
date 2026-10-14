@@ -1,4 +1,4 @@
-import {readFile,writeFile,mkdir,stat} from 'node:fs/promises';
+import {readFile,writeFile,mkdir,stat,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
 import ts from 'typescript';
@@ -45,11 +45,27 @@ const inventory=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
 const adapterPath='lib/works/vendor/functions/_shared/platform/projectDeliveryRenderer.ts';
 const adapter="// Deliberately separate from the legacy schema-1 cloud renderer.\nexport * from '../../../../project-delivery/src/playground/purchaseSnapshot';\n";
 const manifest={schemaVersion:1,entry,encoding:'utf8-lf',scope:'Exact source graph after LF normalization for gated project delivery; legacy cloud renderer is untouched.',inventorySha256:digest(JSON.stringify(inventory)),files:inventory,adapter:{path:adapterPath,sha256:digest(adapter)}};
+async function installedFiles(folder=target,prefix=''){
+  const entries=await readdir(folder,{withFileTypes:true}).catch(error=>{if(error.code==='ENOENT')return [];throw error;});
+  const found=[];
+  for(const entry of entries){
+    const relative=prefix+entry.name;
+    if(entry.isSymbolicLink())throw Error('Snapshot export contains an unsupported symlink: '+relative);
+    if(entry.isDirectory())found.push(...await installedFiles(path.join(folder,entry.name),relative+'/'));
+    else if(entry.isFile())found.push(relative);
+    else throw Error('Snapshot export contains an unsupported filesystem entry: '+relative);
+  }
+  return found.sort();
+}
+const expectedFiles=[...inventory.map(file=>file.path),'source-manifest.json'].sort();
+const unexpected=(await installedFiles()).filter(file=>!expectedFiles.includes(file));
+if(unexpected.length)throw Error('Snapshot export has obsolete or unmanifested files. Verify and remove only known previous export files before retrying: '+unexpected.join(', '));
 if(write){
   for(const file of inventory){const to=path.join(target,file.path);await mkdir(path.dirname(to),{recursive:true});await writeFile(to,await sourceBytes(path.join(root,file.path)));}
   await mkdir(path.dirname(path.join(app,adapterPath)),{recursive:true});await writeFile(path.join(app,adapterPath),adapter);
   await writeFile(path.join(target,'source-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 }
+if(JSON.stringify(await installedFiles())!==JSON.stringify(expectedFiles))throw Error('Snapshot export file inventory is incomplete.');
 for(const file of inventory){const bytes=await readFile(path.join(target,file.path));if(digest(bytes)!==file.sha256)throw Error('Paired snapshot source differs: '+file.path);}
 if(digest(await readFile(path.join(app,adapterPath)))!==manifest.adapter.sha256)throw Error('Paired renderer adapter differs.');
 const installed=JSON.parse(await readFile(path.join(target,'source-manifest.json'),'utf8'));

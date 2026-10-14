@@ -36,11 +36,32 @@ export async function loadFrozenReview(documentId: string): Promise<FrozenPackag
         if (!head.result) { resolve(null); return; }
         const request = store.get('snapshot:' + head.result);
         request.onerror = () => reject(request.error);
-        request.onsuccess = () => resolve(request.result || null);
+        request.onsuccess = () => {
+          const value = request.result as FrozenPackage | undefined;
+          if (!value || value.snapshot.documentId === documentId) { resolve(value || null); return; }
+          const alias = store.get('alias:' + documentId);
+          alias.onerror = () => reject(alias.error);
+          alias.onsuccess = () => alias.result?.snapshotHash === value.snapshot.snapshotHash && alias.result?.sourceDocumentId === value.snapshot.documentId ? resolve(value) : reject(Error('Saved review belongs to another project.'));
+        };
       };
     });
     if (!value) return null;
-    if (value.snapshot.documentId !== documentId) throw Error('Saved review belongs to another project.');
     return await verifyFrozenPackage(value);
+  } finally { db.close(); }
+}
+/** A recovered editable copy gets a new local identity; the paid receipt keeps
+ * its immutable server identity. Existing draft/review head keys are untouched. */
+export async function saveRecoveredReview(value: FrozenPackage, localDocumentId: string): Promise<void> {
+  await verifyFrozenPackage(value);
+  if (!/^[a-zA-Z0-9-]{1,100}$/.test(localDocumentId) || localDocumentId === value.snapshot.documentId) throw Error('Recovered editing copies need a separate local identity.');
+  const db = await database();
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const transaction = db.transaction('packages', 'readwrite'), store = transaction.objectStore('packages');
+      store.put(value, 'snapshot:' + value.snapshot.snapshotHash);
+      store.put(value.snapshot.snapshotHash, 'document:' + localDocumentId);
+      store.put({ sourceDocumentId: value.snapshot.documentId, snapshotHash: value.snapshot.snapshotHash }, 'alias:' + localDocumentId);
+      transaction.oncomplete = () => resolve(); transaction.onerror = () => reject(transaction.error); transaction.onabort = () => reject(transaction.error);
+    });
   } finally { db.close(); }
 }

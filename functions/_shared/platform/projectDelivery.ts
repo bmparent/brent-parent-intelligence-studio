@@ -16,7 +16,7 @@ export function requireProjectDelivery(env: ProjectDeliveryEnv) {
   let site: URL;
   try { site = new URL(env.PUBLIC_SITE_URL || ''); } catch { throw new HttpError(503, 'Project delivery is not configured.'); }
   const local = ['localhost', '127.0.0.1', '[::1]'].includes(site.hostname) && env.EIDOS_LOCAL_TEST === 'true';
-  if (env.EIDOS_PLAYGROUND_DELIVERY_MODE !== 'test' || /(^|\.)eidos-works\.com$/i.test(site.hostname) || (!local && site.protocol !== 'https:'))
+  if (env.EIDOS_PLAYGROUND_DELIVERY_MODE !== 'test' || /(^|\.)eidos-works\.com$/i.test(site.hostname) || site.hostname.toLowerCase() === 'eidosworks.pages.dev' || (!local && site.protocol !== 'https:'))
     throw new HttpError(503, 'Project delivery is not enabled. Local review and downloads remain available.');
 }
 export async function ensureProjectDelivery(env: ProjectDeliveryEnv) {
@@ -35,7 +35,7 @@ function snapshotIdentifier(value: unknown): string {
   return value;
 }
 function publicDelivery(row: DeliveryRow) {
-  return { id: row.id, requestId: row.request_id, mode: row.mode, documentId: row.document_id, revision: row.revision,
+  return { id: row.id, ownerId: row.owner_id, requestId: row.request_id, mode: row.mode, documentId: row.document_id, revision: row.revision,
     name: row.name, snapshotHash: row.snapshot_hash, projectHash: row.project_hash, archiveSha256: row.archive_sha256,
     archiveBytes: row.archive_bytes, createdAt: row.created_at, state: 'frozen' as const,
     entitlement: 'not-verified' as const, checkout: 'disabled' as const, limits: DELIVERY_LIMITS };

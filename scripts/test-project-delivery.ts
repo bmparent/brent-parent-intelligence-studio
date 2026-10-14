@@ -76,7 +76,10 @@ test('delivery is TEST opt-in; legacy cloud remains 409 and older formats stay o
   try {
     f.env.EIDOS_PLAYGROUND_DELIVERY_MODE = undefined; assert.equal((await f.freeze()).status, 503);
     f.env.EIDOS_PLAYGROUND_DELIVERY_MODE = 'live'; assert.equal((await f.freeze()).status, 503);
-    f.env.EIDOS_PLAYGROUND_DELIVERY_MODE = 'test'; f.env.PUBLIC_SITE_URL = 'https://eidos-works.com'; assert.equal((await f.freeze()).status, 503);
+    f.env.EIDOS_PLAYGROUND_DELIVERY_MODE = 'test';
+    for (const site of ['https://eidos-works.com', 'https://www.eidos-works.com', 'https://eidosworks.pages.dev', 'https://EIDOSWORKS.PAGES.DEV']) {
+      f.env.PUBLIC_SITE_URL = site; assert.equal((await f.freeze()).status, 503);
+    }
     f.env.PUBLIC_SITE_URL = 'http://localhost:8788';
     const old = await createProjectSnapshot(createProject(), 'legacy-document', 0);
     assert.equal((await f.freeze({ requestId, snapshot: old })).status, 400);

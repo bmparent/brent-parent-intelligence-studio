@@ -13,6 +13,9 @@ test('asset gate retains a transient 522, then verifies the actual built bytes',
     const fetcher=async url=>url.pathname==='/playground/'?new Response('<script src="/assets/app.js"></script>'):++requests===1?new Response('',{status:522}):new Response('candidate');
     const result=await verifyPublishedAssets('https://isolated.pages.dev',dir,{fetcher,delayMs:0,attempts:2});
     assert.equal(result.attempts[0].failures[0].status,522);assert.equal(result.attempts.length,2);assert.equal(result.assets[0].bytes,9);
+    let pageReads=0;
+    const propagating=await verifyPublishedAssets('https://isolated.pages.dev',dir,{delayMs:0,attempts:2,fetcher:async url=>url.pathname==='/playground/'?new Response(`<script src="/assets/${++pageReads===1?'previous':'app'}.js"></script>`):new Response('candidate')});
+    assert.equal(propagating.attempts[0].failures[0].error,'candidate_bundle_not_published');assert.equal(propagating.attempts.length,2);
     await assert.rejects(verifyPublishedAssets('https://isolated.pages.dev',dir,{fetcher:async url=>url.pathname==='/playground/'?new Response('<script src="/assets/app.js"></script>'):new Response('different'),attempts:1}),/differs from the built candidate/);
   } finally {await rm(dir,{recursive:true,force:true});}
 });

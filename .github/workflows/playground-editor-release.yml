@@ -79,7 +79,7 @@ jobs:
           npm run verify:growth-seo
       - name: Full site gates on the exact candidate before any production upload
         run: |
-          git diff --exit-code -- src/playground/glassBundle.ts functions/_shared/platform/playgroundSchema.ts
+          git diff --exit-code -- src/playground/glassBundle.ts src/playground/runtimeBundle.ts functions/_shared/platform/playgroundSchema.ts
           npm run lint
           npm run test:platform
           npm run test:playground

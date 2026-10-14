@@ -29,7 +29,7 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/playground-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/playground-browser/node_modules/.bin/playwright" install --with-deps chromium
-      - name: Verify built editor, persistence and gestures
+      - name: Verify built editor, persistence, gestures and purchase fixtures
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/playground-browser/node_modules/playwright
           PG_BASE_URL: http://127.0.0.1:5178
@@ -37,11 +37,13 @@ jobs:
           PG_EVIDENCE_DIR: artifacts/playground-unified/browser-ci
           PG_PERSISTENCE_EVIDENCE: artifacts/playground-unified/persistence-ci
           PG_GESTURE_EVIDENCE: artifacts/playground-unified/gestures-ci
+          PG_PURCHASE_EVIDENCE: artifacts/playground-unified/purchase-ci
         run: |
           npm run preview -- --host 127.0.0.1 --port 5178 > "$RUNNER_TEMP/playground-preview.log" 2>&1 &
           node scripts/verify-playground-unified-browser.mjs
           node --import tsx scripts/verify-playground-persistence.mjs
           node --import tsx scripts/verify-playground-unified-gestures.mjs
+          node --import tsx scripts/verify-playground-purchase-browser.mjs
       - name: Deploy only the isolated manual Playground
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

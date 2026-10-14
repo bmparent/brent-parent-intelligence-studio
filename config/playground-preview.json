@@ -3,10 +3,10 @@
   "branch": "codex/playground-unified-20261014",
   "siteOrigin": "https://eidosworks-playground-20261014.pages.dev",
   "mode": "manual-only",
-  "backendUrl": "https://eidos-sentinel-gddofh939-1brentbm-1876s-projects.vercel.app",
-  "backendSha": "0e0aabc48f0ca7894b917495b661ef44cd337dce",
-  "backendDeployment": "dpl_GKzpxmZ16TXCry6Pwr6jX5LgB48w",
-  "bundleHash": "77b27dd43cb78e66b83fff84bfba70c532aaf7d3a367d891e19e4b754023a870",
-  "sourceRevision": "0e0aabc48f0ca7894b917495b661ef44cd337dce-bundle-77b27dd43cb78e66",
+  "backendUrl": "https://eidos-sentinel-lz611r2ml-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+  "backendDeployment": "dpl_3ybMcNrPqdT9dMWpbVvxDANqSaZr",
+  "bundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c",
+  "sourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6-bundle-1e471a710c1d4d13",
   "database": "none"
 }

@@ -136,6 +136,23 @@ export async function validateProjectSnapshot(input: unknown): Promise<ProjectSn
   if (canonicalJson(checked) !== canonicalJson(raw)) throw Error('Frozen project content or identity hash does not match.');
   return checked;
 }
+/** Stored receipts retain old parent identities. New checkout still uses the
+ * stricter current-registry validator above; this reader grants no rights. */
+export async function validateStoredProjectSnapshot(input: unknown): Promise<ProjectSnapshot> {
+  const raw = record(input, ['schemaVersion', 'kind', 'documentId', 'revision', 'pageId', 'project', 'projectHash', 'snapshotHash', 'output', 'parent']);
+  if (raw.schemaVersion !== 1 || raw.kind !== 'eidos-local-project-snapshot' || raw.pageId !== 'page-main' || raw.output !== PACKAGE_FORMAT || !hashPattern.test(String(raw.projectHash)) || !hashPattern.test(String(raw.snapshotHash))) throw Error('This stored source needs another Playground version.');
+  identity(raw.documentId, raw.revision);
+  const project = pageProject(raw.project);
+  if (canonicalJson(project) !== canonicalJson(raw.project)) throw Error('This source cannot be reopened without changing its saved content.');
+  if (raw.parent !== null) {
+    const parent = record(raw.parent, ['family', 'editionId', 'version', 'sha256', 'bytes', 'catalogVersion', 'status', 'productId', 'platform', 'license']);
+    const license = record(parent.license, ['id', 'path', 'grant']);
+    if (typeof parent.family !== 'string' || !/^[a-z][a-z0-9-]{0,50}$/.test(parent.family) || parent.productId !== parent.family || parent.platform !== 'developer' || typeof parent.editionId !== 'string' || !/^[a-z0-9-]{1,100}$/.test(parent.editionId) || typeof parent.version !== 'string' || parent.version.length > 40 || !hashPattern.test(String(parent.sha256)) || !Number.isSafeInteger(parent.bytes) || Number(parent.bytes) <= 0 || typeof parent.catalogVersion !== 'string' || parent.catalogVersion.length > 100 || typeof parent.status !== 'string' || parent.status.length > 300 || typeof license.id !== 'string' || !/^[a-z0-9.-]{1,100}$/.test(license.id) || license.path !== `products/templates/${parent.family}/developer/LICENSE.txt` || license.grant !== 'not-verified') throw Error('Stored parent provenance is malformed.');
+  }
+  const { snapshotHash, ...payload } = raw;
+  if (await hashJson(project) !== raw.projectHash || await hashJson(payload) !== snapshotHash) throw Error('Stored snapshot identity or content hash does not match.');
+  return structuredClone(raw) as ProjectSnapshot;
+}
 export async function digestFiles(files: ExportFile[]): Promise<FileDigest[]> {
   const seen = new Set<string>(); let total = 0;
   if (files.length < 1 || files.length > 200) throw Error('Invalid package file count.');
@@ -163,7 +180,7 @@ export async function buildFrozenPackage(input: ProjectSnapshot): Promise<Frozen
 export async function verifyFrozenPackage(input: FrozenPackage): Promise<FrozenPackage> {
   record(input, ['schemaVersion', 'snapshot', 'manifest', 'files', 'archive', 'receipt']);
   if (input.schemaVersion !== 1 || !Array.isArray(input.files) || !(input.archive instanceof Uint8Array) || input.archive.length > maxBytes) throw Error('Unsupported frozen package.');
-  const snapshot = await validateProjectSnapshot(input.snapshot), manifestFile = input.files.find(file => file.name === 'PACKAGE_MANIFEST.json');
+  const snapshot = await validateStoredProjectSnapshot(input.snapshot), manifestFile = input.files.find(file => file.name === 'PACKAGE_MANIFEST.json');
   if (!manifestFile) throw Error('Frozen package manifest is missing.');
   const digests = await digestFiles(input.files.filter(file => file.name !== 'PACKAGE_MANIFEST.json'));
   const expected: PackageManifest = { schemaVersion: 1, kind: 'eidos-local-page-package', snapshotHash: snapshot.snapshotHash, projectHash: snapshot.projectHash, documentId: snapshot.documentId, revision: snapshot.revision, pageId: 'page-main', rendererVersion: snapshot.project.rendererVersion, output: PACKAGE_FORMAT, platform: 'developer', parent: snapshot.parent, entitlement: 'not-verified', checkout: 'disabled', files: digests };
@@ -176,6 +193,23 @@ export async function verifyFrozenPackage(input: FrozenPackage): Promise<FrozenP
   return input;
 }
 export function isCurrentReview(snapshot: ProjectSnapshot, documentId: string, revision: number): boolean { return snapshot.documentId === documentId && snapshot.revision === revision; }
+
+/** Parse only our deterministic ZIP STORE format; verification re-encodes it
+ * byte-for-byte, checking the complete central directory and all CRC fields. */
+export async function frozenPackageFromArchive(archive: Uint8Array): Promise<FrozenPackage> {
+  if (archive.length < 22 || archive.length > maxBytes) throw Error('Stored archive size is unsupported.');
+  const files: ExportFile[] = [], view = new DataView(archive.buffer, archive.byteOffset, archive.byteLength); let offset = 0;
+  while (offset + 30 <= archive.length && view.getUint32(offset, true) === 0x04034b50) {
+    const size = view.getUint32(offset + 18, true), raw = view.getUint32(offset + 22, true), nameLength = view.getUint16(offset + 26, true), extra = view.getUint16(offset + 28, true), start = offset + 30 + nameLength + extra;
+    if (files.length >= 200 || view.getUint16(offset + 6, true) !== 0x800 || view.getUint16(offset + 8, true) !== 0 || raw !== size || !nameLength || extra || start + size > archive.length) throw Error('Stored archive format is unsupported. Keep the verified ZIP for manual use.');
+    files.push({ name: decode(archive.slice(offset + 30, offset + 30 + nameLength)), data: archive.slice(start, start + size) }); offset = start + size;
+  }
+  await digestFiles(files);
+  const snapshotFile = files.find(file => file.name === 'SNAPSHOT.json'), manifestFile = files.find(file => file.name === 'PACKAGE_MANIFEST.json');
+  if (!snapshotFile || !manifestFile) throw Error('The stored archive has no supported editable snapshot.');
+  const snapshot = await validateStoredProjectSnapshot(JSON.parse(decode(snapshotFile.data))), manifest = JSON.parse(decode(manifestFile.data)) as PackageManifest;
+  return verifyFrozenPackage({ schemaVersion: 1, snapshot, manifest, files, archive, receipt: { kind: 'eidos-local-package-receipt', snapshotHash: snapshot.snapshotHash, archiveSha256: await hashBytes(archive), bytes: archive.length, purchase: 'not-performed' } });
+}
 
 /** Preview the packaged HTML/CSS/script bytes with local assets and no network. */
 export function frozenPreviewDocument(frozen: FrozenPackage): string {

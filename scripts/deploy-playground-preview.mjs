@@ -44,6 +44,10 @@ execFileSync(process.platform==='win32'?'npx.cmd':'npx',['wrangler','pages','dep
 project=await api('/'+name);const liveAfter=await api('/eidosworks');
 if(liveBefore.latest_deployment?.id!==liveAfter.latest_deployment?.id)throw Error('Canonical deployment changed concurrently; reconcile separately.');
 const publishedAssets=await verifyPublishedAssets(pin.siteOrigin,'dist');
+const relayResponse=await fetch(pin.siteOrigin+'/api/public-config',{redirect:'error'});
+if(!relayResponse.ok)throw Error(`Published Pages relay failed (${relayResponse.status}).`);
+const relayedConfig=await relayResponse.json();verifyManualPreviewConfig(relayedConfig);
+if(relayedConfig.runtimeSourceRevision!==pin.backendSha || relayedConfig.runtimeBundleHash!==pin.bundleHash)throw Error('Published Pages relay does not reach the pinned backend.');
 await mkdir('artifacts/playground-unified',{recursive:true});
-const receipt={timestamp:new Date().toISOString(),project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:pin.siteOrigin,backendUrl:pin.backendUrl,backendSha:pin.backendSha,backendDeployment:pin.backendDeployment,bundleHash:pin.bundleHash,sourceRevision:pin.sourceRevision,database:pin.database,mode:pin.mode,publicConfig,boundaryChecks,publishedAssets,canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
+const receipt={timestamp:new Date().toISOString(),project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:pin.siteOrigin,backendUrl:pin.backendUrl,backendSha:pin.backendSha,backendDeployment:pin.backendDeployment,bundleHash:pin.bundleHash,sourceRevision:pin.sourceRevision,database:pin.database,mode:pin.mode,publicConfig,relayedConfig,boundaryChecks,publishedAssets,canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
 await writeFile('artifacts/playground-unified/hosted-preview.json',JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt,null,2));

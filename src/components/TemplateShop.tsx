@@ -113,7 +113,7 @@ export function TemplateTerms() {
 type Purchase = { status: string; paymentState?: 'pending' | 'paid' | 'expired' | 'failed'; mailStatus?: 'pending' | 'failed' | 'sent'; orderId: string; productId?: string; editionId?: string; version?: string; downloadName?: string; guidePath?: string; downloadToken?: string; downloadExpires?: string };
 export function TemplateStart() {
   const [receipt, setReceipt] = useState(''), [purchase, setPurchase] = useState<Purchase | null>(null), [email, setEmail] = useState(''), [challenge, setChallenge] = useState(''), [message, setMessage] = useState(''), [error, setError] = useState(''), [busy, setBusy] = useState(false), [reset, setReset] = useState(0);
-  const redemption = useRef<Promise<{ receipt: string }> | null>(null);
+  const redemption = useRef<Promise<{ receipt: string; continuePath?: string }> | null>(null);
   useEffect(() => {
     let active = true;
     const fragment = new URLSearchParams(window.location.hash.slice(1));
@@ -123,11 +123,20 @@ export function TemplateStart() {
     let saved = '';
     try { saved = sessionStorage.getItem('eidos.template.receipt') || ''; } catch { /* optional storage */ }
     if (/^[a-f0-9]{64}$/.test(fresh)) saved = fresh;
-    if (/^[a-f0-9]{64}$/.test(token) && !redemption.current) redemption.current = post<{ receipt: string }>('/api/shop/redeem', { token });
-    const pending = redemption.current ??= Promise.resolve({ receipt: saved });
-    pending.then((data) => {
+    if (/^[a-f0-9]{64}$/.test(token) && !redemption.current) redemption.current = post<{ receipt: string; continuePath?: string }>('/api/shop/redeem', { token });
+    const pending: Promise<{ receipt: string; continuePath?: string }> = redemption.current ??= Promise.resolve({ receipt: saved });
+    pending.then(async (data) => {
       if (!active) return;
-      if (/^[a-f0-9]{64}$/.test(data.receipt)) { setReceipt(data.receipt); try { sessionStorage.setItem('eidos.template.receipt', data.receipt); } catch { /* optional */ } }
+      if (/^[a-f0-9]{64}$/.test(data.receipt)) {
+        try { sessionStorage.setItem('eidos.template.receipt', data.receipt); } catch { /* optional */ }
+        if (data.continuePath) {
+          const { safePurchaseContinuePath } = await import('../playground/purchaseClient');
+          if (!active) return;
+          const path = safePurchaseContinuePath(data.continuePath, data.receipt);
+          if (path) { window.location.assign(path); return; }
+        }
+        setReceipt(data.receipt);
+      }
     }).catch((e) => { if (active) setError(e instanceof Error ? e.message : 'That recovery link could not be used. Request a new one below.'); });
     return () => { active = false; };
   }, []);

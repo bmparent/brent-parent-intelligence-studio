@@ -70,15 +70,17 @@ export function useProject() {
       return false;
     }
   }
-  async function activate(next: Project, saved?: Saved) {
+  async function activate(next: Project, saved?: Saved, newIdentity?: string) {
     if (!ready || switching.current) return false;
+    const captured = generation.current;
     const valid = validateProject(next);
     switching.current = true;
     try {
       // Preserve the previous document before switching. Failed saving keeps it open.
       if (hasSavedProject && !await saveNow()) return false;
+      if (captured !== generation.current) return false;
       generation.current++; persistenceGeneration.current++; gesture.current = undefined;
-      const identity = saved?.documentId || crypto.randomUUID();
+      const identity = saved?.documentId || newIdentity || crypto.randomUUID();
       dispatch({type:'load',project:valid,documentId:identity,editor:saved?.editor});
       setSnapshots(saved?.snapshots || []); bumpEditVersion(saved?.revision ?? 0);
       setSavedState(null); setHasSavedProject(true); setStarted(true);
@@ -91,6 +93,7 @@ export function useProject() {
     endGesture: () => { gesture.current = undefined; },
     project, ready, started, hasSavedProject, savedProjects, editor,
     startProject: (next: Project) => activate(next),
+    startRecoveredProject: async (next: Project) => { const id = crypto.randomUUID(); return await activate(next, undefined, id) ? id : null; },
     continueProject: () => { if (hasSavedProject) { generation.current++; setStarted(true); } },
     returnToStart: () => { generation.current++; gesture.current = undefined; setStarted(false); },
     openSavedProject: async (id: string) => {

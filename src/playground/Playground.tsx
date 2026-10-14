@@ -17,6 +17,10 @@ import { CloudProjects } from './CloudProjects';
 import { Icon } from './Controls';
 import { download, headerFiles, zipFiles } from './export';
 import { FinishReview } from './FinishReview';
+import { capturePurchaseReturn, purchaseReturn } from './purchaseClient';
+import { PurchaseRecovery } from './PurchaseRecovery';
+import { saveRecoveredReview } from './purchaseReviewStorage';
+import type { FrozenPackage } from './purchaseSnapshot';
 import { StartScreen } from './StartScreen';
 import { AddPanel, AssetsPanel, BrandPanel } from './UnifiedPanels';
 import './editor.css';
@@ -37,8 +41,10 @@ export default function Playground() {
   const [brandOpen, setBrandOpen] = useState(false), [checklist, setChecklist] = useState(true);
   const [notice, setNotice] = useState(''), [comparison, setComparison] = useState<Project | null>(null), [finishOpen, setFinishOpen] = useState(false);
   const [snapshotName, setSnapshotName] = useState('');
+  const [returnReceipt, setReturnReceipt] = useState(''), [reviewLoad, setReviewLoad] = useState(0);
   const sectionDrag = useRef<() => void>(() => {});
   const requestedStudio = useRef(false);
+  const returnedPurchase = useRef(false);
   const selected = project.sections.some(s => s.id === w.editor.sectionId) ? w.editor.sectionId : project.sections.find(s => sectionKind(s) === 'hero')?.id || project.sections[0].id;
   const section = project.sections.find(s => s.id === selected)!;
   const selectedNode = section.authoring && flattenNodes(section.authoring.root).some(n => n.id === w.editor.nodeId) ? w.editor.nodeId! : section.authoring?.root.id || '';
@@ -47,6 +53,18 @@ export default function Playground() {
 
   useEffect(() => { sectionDrag.current(); return () => sectionDrag.current(); }, [project, documentId, comparison]);
   useEffect(() => { if (!notice) return; const timer = setTimeout(() => setNotice(''), 6500); return () => clearTimeout(timer); }, [notice]);
+  useEffect(() => {
+    if (!ready || returnedPurchase.current) return;
+    returnedPurchase.current = true;
+    try {
+      const result = capturePurchaseReturn(window.location.href);
+      if (result.returned) {
+        window.history.replaceState(null, '', result.href);
+      }
+      const receipt = purchaseReturn()?.receipt || '';
+      queueMicrotask(() => { setReturnReceipt(receipt); if (w.started && result.returned) setFinishOpen(true); });
+    } catch { queueMicrotask(() => setNotice('The purchase return could not be saved in this browser. Keep the private receipt link and your local backup.')); }
+  }, [ready, w.started]);
   useEffect(() => {
     // A deep link selects a specialized view only after a person opens a project.
     if (!ready || !w.started || requestedStudio.current) return;
@@ -63,9 +81,18 @@ export default function Playground() {
   function backup() { try { download(JSON.stringify(validateProject(project), null, 2), 'project.json', 'application/json'); } catch (error) { setNotice((error as Error).message); } }
   async function importProject(file?: File) { if (!file) return; const valid = guard(); try { if (file.size > 30_000_000) throw Error('Project is too large. Maximum import size is 30 MB.'); const next = validateProject(JSON.parse(await file.text())); if (!valid()) { setNotice('Import ignored because the workspace changed. Choose the file again.'); return; } replace(next); setNotice('Project imported. Undo restores your previous design.'); } catch (error) { setNotice((error as Error).message); } }
   const common = { project, selected, selectedNode, edit: change, select: selectNode, guard, notify: setNotice };
+  async function restorePurchase(frozen: FrozenPackage) {
+    const localId = await w.startRecoveredProject(frozen.snapshot.project);
+    if (!localId) throw Error('The workspace changed or could not be saved. Keep your verified ZIP and try opening the copy again.');
+    const valid = guard();
+    try { await saveRecoveredReview(frozen, localId); }
+    catch (reason) { setNotice(`The editable copy is open, but its frozen review could not be saved: ${(reason as Error).message}`); return; }
+    if (!valid()) return;
+    setReviewLoad(value => value + 1); setFinishOpen(true);
+  }
 
   if (!ready) return <div className="pg-app pg-start-loading"><img src="/brand/eidos-mark.svg" alt="Eidos" width="44" height="44" /><p>Opening your workspace…</p></div>;
-  if (!w.started) return <StartScreen savedProject={w.hasSavedProject ? project : undefined} savedProjects={w.savedProjects} currentDocumentId={documentId} onOpenSaved={w.openSavedProject} onContinue={w.continueProject} onStart={w.startProject} storageError={storageError} />;
+  if (!w.started) return <>{returnReceipt && <PurchaseRecovery receipt={returnReceipt} guard={guard} restore={restorePurchase} />}<StartScreen savedProject={w.hasSavedProject ? project : undefined} savedProjects={w.savedProjects} currentDocumentId={documentId} onOpenSaved={w.openSavedProject} onContinue={w.continueProject} onStart={w.startProject} storageError={storageError} /></>;
   if (project.studios && project.studios.active !== 'page') return <StudioWorkspace workspace={w} />;
   return <div className={`pg-app pg-unified ${!editing ? 'pg-trying' : ''}`} data-panel={panel}
     onPointerDownCapture={event => { if ((event.target as HTMLElement).matches('input[type=range]')) w.beginGesture(); }}
@@ -107,6 +134,6 @@ export default function Playground() {
     </div>
     <footer className="pg-statusbar"><span><Icon name={mobile ? 'mobile' : 'desktop'} />{mobile ? 'Mobile layout' : 'Desktop layout'}</span><span>{comparison ? 'Saved variation' : editing ? 'Select an element · double-click text to edit' : 'Visitor preview'}</span><button disabled={!!comparison} onClick={() => void openExport()}>{warnings.length ? `${warnings.length} checks before finishing` : 'Review & download'} ↗</button></footer>
     {notice && <div className="pg-toast" role="status">{notice}<button aria-label="Dismiss message" onClick={() => setNotice('')}>×</button></div>}
-    <FinishReview key={documentId} project={project} documentId={documentId} revision={w.revision} open={finishOpen} onClose={() => setFinishOpen(false)} />
+    <FinishReview key={`${documentId}:${reviewLoad}`} project={project} documentId={documentId} revision={w.revision} open={finishOpen} onClose={() => setFinishOpen(false)} />
   </div>;
 }
