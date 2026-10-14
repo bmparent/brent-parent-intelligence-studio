@@ -2,7 +2,7 @@ import { templateProduct, templateProducts } from '../data/templateCatalog';
 import packageContents from '../data/templatePackageContents.json';
 import type { ExportFile } from '../playground/export';
 
-export const configurationVersion = 1;
+export const configurationVersion = 2;
 export const configurationStorageKey = 'eidos-template-configuration-v1';
 export const pageOptions = [
   { id: 'home', label: 'Home', file: 'index.html' },
@@ -19,7 +19,7 @@ export const moduleOptions = [
 type PageId = typeof pageOptions[number]['id'];
 type ModuleId = typeof moduleOptions[number]['id'];
 export type TemplateConfiguration = {
-  schemaVersion: 1;
+  schemaVersion: 2;
   kind: 'eidos-original-configuration-sample';
   family: string;
   editionId: string;
@@ -31,7 +31,44 @@ export type TemplateConfiguration = {
   headline: string;
   description: string;
   contactEmail: string;
+  artwork: { dataUrl: string; alt: string } | null;
 };
+export const maxArtworkBytes = 2_000_000;
+let artworkCache: { dataUrl: string; bytes: Uint8Array } | null = null;
+/** PNG only: fixed signature, bounded geometry, complete chunks and CRCs.
+ * Browser uploads additionally decode before they can enter the document. */
+export function artworkBytes(dataUrl: string): Uint8Array {
+  if (artworkCache?.dataUrl === dataUrl) return artworkCache.bytes.slice();
+  if (typeof dataUrl !== 'string' || dataUrl.length > 2_700_000 || !/^data:image\/png;base64,[A-Za-z0-9+/]+={0,2}$/.test(dataUrl)) throw Error('Upload a PNG smaller than 2 MB. SVG and remote image URLs are not supported.');
+  let bytes: Uint8Array;
+  try { bytes = Uint8Array.from(atob(dataUrl.slice('data:image/png;base64,'.length)), char => char.charCodeAt(0)); }
+  catch { throw Error('The PNG image could not be read.'); }
+  if (bytes.length > maxArtworkBytes || bytes.length < 57 || [137,80,78,71,13,10,26,10].some((value, index) => bytes[index] !== value)) throw Error('This is not a supported PNG image.');
+  const view = new DataView(bytes.buffer);
+  let cursor = 8, imageData = false, ended = false;
+  while (cursor + 12 <= bytes.length) {
+    const size = view.getUint32(cursor), end = cursor + size + 12;
+    if (size > maxArtworkBytes || end > bytes.length) throw Error('The PNG image is truncated.');
+    const type = String.fromCharCode(...bytes.slice(cursor + 4, cursor + 8));
+    if (cursor === 8) {
+      if (type !== 'IHDR' || size !== 13) throw Error('The PNG image header is invalid.');
+      const width = view.getUint32(cursor + 8), height = view.getUint32(cursor + 12);
+      if (!width || !height || width > 4096 || height > 4096 || width * height > 16_000_000) throw Error('Use a PNG up to 4096 pixels per side and 16 million pixels.');
+    }
+    let crc = -1;
+    for (let index = cursor + 4; index < end - 4; index++) {
+      crc ^= bytes[index];
+      for (let bit = 0; bit < 8; bit++) crc = (crc >>> 1) ^ (crc & 1 ? 0xedb88320 : 0);
+    }
+    if (((crc ^ -1) >>> 0) !== view.getUint32(end - 4)) throw Error('The PNG image failed its integrity check.');
+    if (type === 'IDAT' && size) imageData = true;
+    if (type === 'IEND') { ended = size === 0 && end === bytes.length; break; }
+    cursor = end;
+  }
+  if (!imageData || !ended) throw Error('The PNG image is incomplete.');
+  artworkCache = { dataUrl, bytes };
+  return bytes.slice();
+}
 export const familyDirections: Record<string, { background: string; ink: string; accent: string; title: string; text: string; layout: string }> = {
   switchboard: { background: '#f6f6ee', ink: '#14302b', accent: '#6b7e17', title: 'Make the next step clear.', text: 'A considered place to explain what you do, show your work, and invite a useful conversation.', layout: 'Strong service grids · clear wayfinding · original diagram studies' },
   tideglass: { background: '#eff3ed', ink: '#182f38', accent: '#7a5730', title: 'A little room to slow down.', text: 'An original landscape study and a calm sequence of spaces, details, and ways to get in touch.', layout: 'Cinematic landscape · generous serif type · quiet scene layers' },
@@ -43,13 +80,13 @@ export function createConfiguration(family = 'matter'): TemplateConfiguration {
   const product = templateProduct(family) || templateProducts[0];
   const edition = product.editions.find(item => item.platform === 'developer')!;
   const direction = familyDirections[product.slug];
-  return { schemaVersion: 1, kind: 'eidos-original-configuration-sample', family: product.slug, editionId: edition.id, editionVersion: edition.version || '1.0.0', tier: 'essential', pages: ['home', 'contact'], modules: [], name: `${product.name} studio study`, headline: direction.title, description: direction.text, contactEmail: '' };
+  return { schemaVersion: 2, kind: 'eidos-original-configuration-sample', family: product.slug, editionId: edition.id, editionVersion: edition.version || '1.0.0', tier: 'essential', pages: ['home', 'contact'], modules: [], name: `${product.name} studio study`, headline: direction.title, description: direction.text, contactEmail: '', artwork: null };
 }
 
 export function validateConfiguration(input: unknown): TemplateConfiguration {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw Error('Choose an Eidos configuration JSON file.');
   const data = input as Record<string, unknown>;
-  if (data.schemaVersion !== configurationVersion || data.kind !== 'eidos-original-configuration-sample') throw Error('This configuration format is unsupported. Your open configuration is unchanged.');
+  if ((data.schemaVersion !== 1 && data.schemaVersion !== configurationVersion) || data.kind !== 'eidos-original-configuration-sample') throw Error('This configuration format is unsupported. Your open configuration is unchanged.');
   const product = templateProduct(String(data.family));
   const edition = product?.editions.find(item => item.platform === 'developer' && item.id === data.editionId && (item.version || '1.0.0') === data.editionVersion);
   if (!product || !familyDirections[product.slug] || !edition) throw Error('The associated family or edition version is unavailable in this candidate. Keep your original file.');
@@ -63,7 +100,17 @@ export function validateConfiguration(input: unknown): TemplateConfiguration {
     if (typeof data[key] !== 'string' || (data[key] as string).length > max || [...(data[key] as string)].some(character => character.charCodeAt(0) < 9)) throw Error(`Enter valid ${key} text (maximum ${max} characters).`);
   }
   if (data.contactEmail && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(String(data.contactEmail))) throw Error('Use a plain email address, without a mailto prefix or extra parameters.');
-  return { schemaVersion: 1, kind: 'eidos-original-configuration-sample', family: product.slug, editionId: edition.id, editionVersion: edition.version || '1.0.0', tier: data.tier, pages: pageOptions.filter(page => pages.includes(page.id)).map(page => page.id), modules: moduleOptions.filter(module => modules.includes(module.id)).map(module => module.id), name: String(data.name), headline: String(data.headline), description: String(data.description), contactEmail: String(data.contactEmail) };
+  let artwork: TemplateConfiguration['artwork'] = null;
+  // v1 did not carry artwork. Reopening migrates that format explicitly to v2.
+  if (data.schemaVersion === 1 && data.artwork) throw Error('Artwork requires configuration schema version 2.');
+  if (data.schemaVersion === 2 && data.artwork != null) {
+    if (typeof data.artwork !== 'object' || Array.isArray(data.artwork)) throw Error('The artwork attachment is invalid.');
+    const attachment = data.artwork as Record<string, unknown>;
+    if (typeof attachment.dataUrl !== 'string' || typeof attachment.alt !== 'string' || attachment.alt.length > 160 || !attachment.alt.trim()) throw Error('The artwork needs a valid PNG and a description up to 160 characters.');
+    artworkBytes(attachment.dataUrl);
+    artwork = { dataUrl: attachment.dataUrl, alt: attachment.alt };
+  }
+  return { schemaVersion: 2, kind: 'eidos-original-configuration-sample', family: product.slug, editionId: edition.id, editionVersion: edition.version || '1.0.0', tier: data.tier, pages: pageOptions.filter(page => pages.includes(page.id)).map(page => page.id), modules: moduleOptions.filter(module => modules.includes(module.id)).map(module => module.id), name: String(data.name), headline: String(data.headline), description: String(data.description), contactEmail: String(data.contactEmail), artwork };
 }
 
 export function reconcileConfiguration(input: TemplateConfiguration): TemplateConfiguration {
@@ -105,15 +152,16 @@ export function samplePage(input: TemplateConfiguration, page: PageId, inline = 
   const config = validateConfiguration(input);
   if (!config.pages.includes(page)) throw Error('This page is not in the selected package.');
   const selected = pageOptions.filter(item => config.pages.includes(item.id));
-  const art = (i = 0) => inline ? `data:image/svg+xml;charset=utf-8,${encodeURIComponent(sampleArtwork(config.family, i))}` : `assets/study-${i}.svg`;
+  const art = (i = 0) => config.artwork && i === 0 ? inline ? config.artwork.dataUrl : 'assets/artwork.png' : inline ? `data:image/svg+xml;charset=utf-8,${encodeURIComponent(sampleArtwork(config.family, i))}` : `assets/study-${i}.svg`;
+  const artAlt = (i = 0) => config.artwork && i === 0 ? config.artwork.alt : `Original ${config.family} study ${i + 1}`;
   const gallery = config.modules.includes('gallery');
   const content = page === 'gallery'
-    ? `<p class="eyebrow">Original studies</p><h1>A closer look.</h1><p>Original abstract work for this configuration sample.</p>${gallery ? '<div class="filters" aria-label="Filter the gallery"><button data-filter="all" aria-pressed="true">All studies</button><button data-filter="objects" aria-pressed="false">Objects</button><button data-filter="spaces" aria-pressed="false">Spaces</button></div>' : ''}<div class="grid">${[0,1,2].map(i => `<section class="card" data-category="${i === 1 ? 'spaces' : 'objects'}"><img src="${art(i)}" alt="${esc(config.family)} study ${i + 1}"><h2>Study ${i + 1}</h2><p>${i === 1 ? 'Space and atmosphere.' : 'Shape, material, and proportion.'}</p>${gallery ? `<button data-inspect="${art(i)}" data-label="${esc(config.family)} study ${i + 1}">Inspect study ${i + 1}</button>` : ''}</section>`).join('')}</div>${gallery ? '<dialog aria-label="Full-size study"><button type="button">Close inspection</button><img alt="" src=""></dialog>' : ''}`
+    ? `<p class="eyebrow">Original studies</p><h1>A closer look.</h1><p>${config.artwork ? 'Your uploaded artwork alongside original abstract studies.' : 'Original abstract work for this configuration sample.'}</p>${gallery ? '<div class="filters" aria-label="Filter the gallery"><button data-filter="all" aria-pressed="true">All studies</button><button data-filter="objects" aria-pressed="false">Objects</button><button data-filter="spaces" aria-pressed="false">Spaces</button></div>' : ''}<div class="grid">${[0,1,2].map(i => `<section class="card" data-category="${i === 1 ? 'spaces' : 'objects'}"><img src="${art(i)}" alt="${esc(artAlt(i))}"><h2>Study ${i + 1}</h2><p>${i === 1 ? 'Space and atmosphere.' : 'Shape, material, and proportion.'}</p>${gallery ? `<button data-inspect="${art(i)}" data-label="${esc(artAlt(i))}">Inspect study ${i + 1}</button>` : ''}</section>`).join('')}</div>${gallery ? '<dialog aria-label="Full-size study"><button type="button">Close inspection</button><img alt="" src=""></dialog>' : ''}`
     : page === 'article'
-      ? `<article><p class="eyebrow">Studio journal · Original demonstration copy</p><h1>The care between the details.</h1><p class="reading-lead">A quiet decision can hold a whole composition together.</p><img src="${art()}" alt="Original abstract material study"><h2>Begin with what people need.</h2><p>${esc(config.description)}</p><p>The useful starting point is a clear hierarchy: one subject, room to inspect it, and a next action that says what will happen. Replace this demonstration copy with your own story.</p><blockquote>Give each detail enough room to be understood.</blockquote><h2>Make the work yours.</h2><p>Edit the exported HTML and CSS directly. This sample uses local vector artwork and system fonts, so it opens without an account or build service.</p><div class="article-related">${selected.filter(item=>item.id!=='article').map(item=>`<a class="button" href="${item.file}">${item.label}</a>`).join('')}</div></article>`
+      ? `<article><p class="eyebrow">Studio journal · Original demonstration copy</p><h1>The care between the details.</h1><p class="reading-lead">A quiet decision can hold a whole composition together.</p><img src="${art()}" alt="${esc(artAlt())}"><h2>Begin with what people need.</h2><p>${esc(config.description)}</p><p>The useful starting point is a clear hierarchy: one subject, room to inspect it, and a next action that says what will happen. Replace this demonstration copy with your own story.</p><blockquote>Give each detail enough room to be understood.</blockquote><h2>Make the work yours.</h2><p>Edit the exported HTML and CSS directly. This sample uses local vector artwork and system fonts, so it opens without an account or build service.</p><div class="article-related">${selected.filter(item=>item.id!=='article').map(item=>`<a class="button" href="${item.file}">${item.label}</a>`).join('')}</div></article>`
       : page === 'contact'
-        ? `<div class="hero"><div><p class="eyebrow">Start a conversation</p><h1>What are you imagining?</h1><p class="lead">${esc(config.description)}</p>${config.contactEmail ? `<a class="button" href="mailto:${esc(config.contactEmail)}">Email ${esc(config.contactEmail)}</a><p>This opens your email app. Delivery depends on your mail provider. This static sample has no form server or delivered-inquiry receipt.</p>` : '<p><strong>Email is not configured.</strong> Add your real address in the configurator before export, or edit this page. No inquiry form or delivery service is included.</p>'}</div><img src="${art()}" alt="Original abstract study"></div>`
-        : `<div class="hero"><div><p class="eyebrow">${esc(templateProduct(config.family)!.name)} · Original configuration sample</p><h1>${esc(config.headline)}</h1><p class="lead">${esc(config.description)}</p>${selected.filter(item=>item.id!=='home').slice(0,2).map(item=>`<a class="button" href="${item.file}">${item.label === 'Contact' ? 'Start a conversation' : `Explore ${item.label.toLowerCase()}`}</a>`).join('')}</div><img src="${art()}" alt="Original ${esc(config.family)} abstract study"></div>${page === 'home' ? `<div class="grid">${selected.filter(item=>item.id!=='home').map(item=>`<section class="card"><p class="eyebrow">${item.label}</p><h2>${item.id === 'contact' ? 'A useful next step.' : item.id === 'gallery' ? 'Look a little closer.' : item.id === 'article' ? 'Behind the work.' : 'An idea, made clear.'}</h2><p>Open the ${item.label.toLowerCase()} included in this sample.</p><a href="${item.file}">Explore ${item.label.toLowerCase()} →</a></section>`).join('')}</div>` : '<section><h2>One idea. A clear invitation.</h2><p>This landing page is a focused introduction. Replace the demonstration text and review the destinations before publishing.</p></section>'}`;
+        ? `<div class="hero"><div><p class="eyebrow">Start a conversation</p><h1>What are you imagining?</h1><p class="lead">${esc(config.description)}</p>${config.contactEmail ? `<a class="button" href="mailto:${esc(config.contactEmail)}">Email ${esc(config.contactEmail)}</a><p>This opens your email app. Delivery depends on your mail provider. This static sample has no form server or delivered-inquiry receipt.</p>` : '<p><strong>Email is not configured.</strong> Add your real address in the configurator before export, or edit this page. No inquiry form or delivery service is included.</p>'}</div><img src="${art()}" alt="${esc(artAlt())}"></div>`
+        : `<div class="hero"><div><p class="eyebrow">${esc(templateProduct(config.family)!.name)} · Original configuration sample</p><h1>${esc(config.headline)}</h1><p class="lead">${esc(config.description)}</p>${selected.filter(item=>item.id!=='home').slice(0,2).map(item=>`<a class="button" href="${item.file}">${item.label === 'Contact' ? 'Start a conversation' : `Explore ${item.label.toLowerCase()}`}</a>`).join('')}</div><img src="${art()}" alt="${esc(artAlt())}"></div>${page === 'home' ? `<div class="grid">${selected.filter(item=>item.id!=='home').map(item=>`<section class="card"><p class="eyebrow">${item.label}</p><h2>${item.id === 'contact' ? 'A useful next step.' : item.id === 'gallery' ? 'Look a little closer.' : item.id === 'article' ? 'Behind the work.' : 'An idea, made clear.'}</h2><p>Open the ${item.label.toLowerCase()} included in this sample.</p><a href="${item.file}">Explore ${item.label.toLowerCase()} →</a></section>`).join('')}</div>` : '<section><h2>One idea. A clear invitation.</h2><p>This landing page is a focused introduction. Replace the demonstration text and review the destinations before publishing.</p></section>'}`;
   const style = sampleStyles(config) + (config.modules.includes('motion') ? motionStyles : '') + (config.modules.includes('editorial') ? editorialStyles : '');
   // A sandboxed preview asks its owning component to open another selected page.
   // The exported package uses ordinary links and has no parent/window dependency.
@@ -126,14 +174,15 @@ export function configurationFiles(input: TemplateConfiguration): ExportFile[] {
   const config = validateConfiguration(input);
   const encode = (text: string) => new TextEncoder().encode(text);
   const associated = associatedPackage(config);
-  const files = [
+  const files: ExportFile[] = [
     ...pageOptions.filter(page => config.pages.includes(page.id)).map(page => ({ name: page.file, data: encode(samplePage(config, page.id, false)) })),
     { name: 'styles.css', data: encode(sampleStyles(config)) },
-    ...[0,1,2].map(i => ({ name: `assets/study-${i}.svg`, data: encode(sampleArtwork(config.family, i)) })),
+    ...[0,1,2].filter(i => !config.artwork || i !== 0).map(i => ({ name: `assets/study-${i}.svg`, data: encode(sampleArtwork(config.family, i)) })),
     { name: 'configuration.json', data: encode(JSON.stringify(config, null, 2)) },
-    { name: 'README.md', data: encode(`# ${config.name}\n\nThis is an original Eidos Works configuration sample, freely reusable for your own website. It is separate from the licensed ${config.family} paid-template archive. It does not grant an entitlement, rebuild a purchased version, or change a paid package.\n\n## Setup checklist\n1. Unzip and open index.html directly in a browser. No build, key, CDN, or external font is required.\n2. Follow every navigation link. The selected pages are ${config.pages.join(', ')}. The selected modules are ${config.modules.join(', ') || 'none'}.\n3. Replace sample copy and original abstract SVG studies. Edit the generated HTML/CSS with a text editor, or import configuration.json at /shop/configure and re-export. Re-exporting replaces hand edits.\n4. ${config.contactEmail ? `Contact opens the visitor's email application for ${config.contactEmail}. Verify actual inbox delivery separately.` : 'Contact email is not configured. Add a real email before publication.'} No form server, booking, payments, or email delivery service is included.\n5. Review keyboard navigation, gallery Escape/focus return when included, reduced motion, narrow screens, links, and real devices.\n6. Upload all files together to static hosting. This is not a WordPress theme, Squarespace import, or GoDaddy builder package.\n\n## Paid family association\nCatalog edition: ${config.editionId}@${config.editionVersion}. Its immutable ${associated.files.length}-file archive is a separate product. The sample's page/tier/module selection does not personalize that archive or change its price. Paid release remains gated by existing provider, ownership, mail and installation acceptance. Follow ${associated.guidePath} for the actual edition.\n\n## Rights\nThe generated sample layout and included vector studies are original Eidos Works work, licensed under MIT; see LICENSE.txt. System Arial/Helvetica and Georgia are selected by the operating system; no fonts are redistributed. User-supplied text remains yours.\n`) },
-    { name: 'LICENSE.txt', data: encode('MIT License\n\nCopyright (c) 2026 Eidos Works\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this original configuration sample and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\nThis license applies to this generated original sample only. It does not change the license, entitlement, support terms, or archive of any separate paid template.\n') },
+    { name: 'README.md', data: encode(`# ${config.name}\n\nThis is an original Eidos Works configuration sample, freely reusable for your own website. It is separate from the licensed ${config.family} paid-template archive. It does not grant an entitlement, rebuild a purchased version, or change a paid package.\n\n## Setup checklist\n1. Unzip and open index.html directly in a browser. No build, key, CDN, or external font is required.\n2. Follow every navigation link. The selected pages are ${config.pages.join(', ')}. The selected modules are ${config.modules.join(', ') || 'none'}.\n3. Replace sample copy and original abstract SVG studies. Edit the generated HTML/CSS with a text editor, or import configuration.json at /shop/configure and re-export. Re-exporting replaces hand edits.\n4. ${config.contactEmail ? `Contact opens the visitor's email application for ${config.contactEmail}. Verify actual inbox delivery separately.` : 'Contact email is not configured. Add a real email before publication.'} No form server, booking, payments, or email delivery service is included.\n5. Review keyboard navigation, gallery Escape/focus return when included, reduced motion, narrow screens, links, and real devices.\n6. Upload all files together to static hosting. This is not a WordPress theme, Squarespace import, or GoDaddy builder package.\n\n## Paid family association\nCatalog edition: ${config.editionId}@${config.editionVersion}. Its immutable ${associated.files.length}-file archive is a separate product. The sample's page/tier/module selection does not personalize that archive or change its price. Paid release remains gated by existing provider, ownership, mail and installation acceptance. Follow ${associated.guidePath} for the actual edition.\n\n## Rights\nThe generated sample layout and included vector studies are original Eidos Works work, licensed under MIT; see LICENSE.txt. System Arial/Helvetica and Georgia are selected by the operating system; no fonts are redistributed. User-supplied text and uploaded PNG artwork retain their own rights and are excluded from the sample MIT grant. Only upload images you own or are authorized to use.\n`) },
+    { name: 'LICENSE.txt', data: encode('MIT License\n\nCopyright (c) 2026 Eidos Works\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this original configuration sample and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\nThis license applies to the generated sample code and original SVG studies only. User-supplied text and uploaded PNG artwork retain their own rights and are excluded from this grant. It does not change the license, entitlement, support terms, or archive of any separate paid template.\n') },
   ];
+  if (config.artwork) files.push({ name: 'assets/artwork.png', data: artworkBytes(config.artwork.dataUrl) });
   if (config.modules.includes('gallery')) files.push({ name: 'modules/gallery.js', data: encode(galleryScript) });
   if (config.modules.includes('motion')) files.push({ name: 'modules/motion.css', data: encode(motionStyles) }, { name: 'modules/motion.js', data: encode(motionScript) });
   if (config.modules.includes('editorial')) files.push({ name: 'modules/editorial.css', data: encode(editorialStyles) });

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { configurationFiles, createConfiguration, moduleOptions, pageOptions, reconcileConfiguration, samplePage, validateConfiguration, associatedPackage } from '../src/templates/configurator';
+import { artworkBytes, configurationFiles, createConfiguration, moduleOptions, pageOptions, reconcileConfiguration, samplePage, validateConfiguration, associatedPackage } from '../src/templates/configurator';
 import { templateProducts } from '../src/data/templateCatalog';
 
 const decode = (bytes: Uint8Array) => new TextDecoder().decode(bytes);
@@ -83,4 +83,24 @@ test('sample content is escaped and contact delivery is represented honestly', (
   const contact = samplePage({ ...config, contactEmail: 'studio@example.com' }, 'contact');
   assert.ok(contact.includes('href="mailto:studio@example.com"'));
   assert.ok(contact.includes('no form server or delivered-inquiry receipt'));
+});
+
+test('schema1 migrates explicitly, PNG artwork survives source roundtrip and packages exact owned bytes', () => {
+  const current = createConfiguration();
+  const legacy = { ...current, schemaVersion: 1, artwork: undefined };
+  const migrated = validateConfiguration(legacy);
+  assert.equal(migrated.schemaVersion, 2);
+  assert.equal(migrated.artwork, null);
+  const png = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=';
+  const config = validateConfiguration({ ...current, artwork: { dataUrl: png, alt: 'Original uploaded Artwork Studio tile' } });
+  const files = configurationFiles(config);
+  assert.deepEqual(files.find(file => file.name === 'assets/artwork.png')!.data, artworkBytes(png));
+  assert.ok(!files.some(file => file.name === 'assets/study-0.svg'));
+  assert.ok(samplePage(config, 'home').includes(png));
+  assert.ok(samplePage(config, 'home', false).includes('src="assets/artwork.png"'));
+  assert.ok(samplePage(config, 'home', false).includes('Original uploaded Artwork Studio tile'));
+  assert.deepEqual(validateConfiguration(JSON.parse(decode(files.find(file => file.name === 'configuration.json')!.data))), config);
+  const corrupt = png.slice(0, -8) + 'AAAAAAAA';
+  for (const url of ['https://example.com/tile.png', 'data:image/svg+xml,<svg/>', corrupt]) assert.throws(() => validateConfiguration({ ...current, artwork: { dataUrl: url, alt: 'bad image' } }));
+  assert.throws(() => validateConfiguration({ ...legacy, artwork: config.artwork }));
 });

@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
 import {createProject,validateProject,RENDERER,LEGACY_RENDERER} from '../src/playground/model';
 import {selectStudio} from '../src/playground/studioProject';
 import {workspace,workspaceReducer} from '../src/playground/workspace';
-import {applyLocalCommand} from '../src/playground/AgentCommands';
+import {applyLocalCommand,applyStudioCommand} from '../src/playground/localCommands';
 import {supportsProductionCloud} from '../src/playground/releaseBoundary';
 import {exportFiles,headerFiles} from '../src/playground/export';
 import {enableBlocks,applyBlockOperation} from '../src/playground/authoring';
-import {applyEffectPreset} from '../src/playground/EffectStudio';
+import {applyEffectPreset} from '../src/playground/effectPresets';
 import {enableComposition,applyCompositionOperation} from '../src/playground/composition';
 import {assertCloudStudioBoundary} from '../functions/_shared/platform/studioBoundary';
 import {applyProposal} from '../src/playground/aiOperations';
@@ -71,4 +71,14 @@ test('bounded text operations update the visible responsive block and retain leg
  assert.equal(next.sections[1].title,'Visible block title');
  assert.equal(next.sections[1].authoring?.root.children?.find(n=>n.type==='heading')?.text,'Visible block title');
  assert.throws(()=>applyProposal(p,'hero','section',{ops:[{field:'section.layout',value:'center'}]}),/responsive/);
+});
+
+test('local studio operations validate actual glass/artwork/keyframes with common revision guard',()=>{
+ let p=selectStudio(selectStudio(createProject(),'artwork'),'motion');const envelope={documentId:'studio',revision:1};
+ p=applyStudioCommand(p,envelope,{...envelope,operation:{type:'effect',patch:{frost:7}}});assert.equal(p.glass.frost,7);
+ const id=p.studios!.artwork!.objects[0].id;p=applyStudioCommand(p,envelope,{...envelope,operation:{type:'artwork-object',id,patch:{x:33,color:'#334455'}}});assert.equal(p.studios!.artwork!.objects[0].x,33);
+ const motionId=p.studios!.motion!.objects[0].id;p=applyStudioCommand(p,envelope,{...envelope,operation:{type:'motion-keyframe',id:motionId,time:1,patch:{opacity:.3}}});assert.equal(p.studios!.motion!.objects[0].keyframes.find(k=>k.time===1)?.opacity,.3);
+ assert.throws(()=>applyStudioCommand(p,envelope,{...envelope,operation:{type:'artwork-object',id,patch:{id:'changed'}}}),/Unsupported/);
+ assert.throws(()=>applyStudioCommand(p,envelope,{...envelope,operation:{type:'effect',patch:{frost:999}}}));
+ assert.throws(()=>applyStudioCommand(p,envelope,{...envelope,revision:0,operation:{type:'effect',patch:{frost:2}}}),/Stale/);
 });

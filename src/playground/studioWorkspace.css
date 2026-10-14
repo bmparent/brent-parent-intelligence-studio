@@ -5,3 +5,5 @@
 
 .studio-page-preview>div,.studio-layout-views>div[data-preview-width]{height:75dvh!important;min-height:600px}.studio-app h1,.studio-app h2,.studio-app h3{font-family:Arial,Helvetica,sans-serif}
 @media(max-width:760px){.studio-page-preview>div,.studio-layout-views>div[data-preview-width]{height:60dvh!important;min-height:420px}}
+
+.studio-app button[aria-pressed=true]{color:#26351d}

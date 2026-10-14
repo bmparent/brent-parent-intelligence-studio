@@ -35,6 +35,8 @@ jobs:
           npm run preview -- --host 127.0.0.1 --port 5178 > "$RUNNER_TEMP/showcase-preview.log" 2>&1 &
           node scripts/verify-showcase-browser.mjs
           node scripts/verify-showcase-exports.mjs
+          SHOWCASE_EVIDENCE=artifacts/showcase/studio-details-ci node scripts/verify-showcase-studio-details.mjs
+          node scripts/verify-showcase-template-case-browser.mjs
       - name: Deploy only isolated showcase Pages project
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

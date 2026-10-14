@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { editionName, money, pageNames, templateProduct, templateProducts } from '../data/templateCatalog';
 import { download, zipFiles } from '../playground/export';
-import { associatedPackage, configurationFiles, configurationStorageKey, createConfiguration, familyDirections, moduleOptions, pageOptions, reconcileConfiguration, samplePage, validateConfiguration, type TemplateConfiguration } from '../templates/configurator';
+import { artworkBytes, maxArtworkBytes, associatedPackage, configurationFiles, configurationStorageKey, createConfiguration, familyDirections, moduleOptions, pageOptions, reconcileConfiguration, samplePage, validateConfiguration, type TemplateConfiguration } from '../templates/configurator';
 import '../styles/template-configurator.css';
 
 type History = { current: TemplateConfiguration; past: TemplateConfiguration[]; future: TemplateConfiguration[]; group: string };
@@ -31,6 +31,7 @@ export function TemplateConfigurator() {
   const current = useRef(config);
   const revision = useRef(0);
   const input = useRef<HTMLInputElement>(null);
+  const artworkInput = useRef<HTMLInputElement>(null);
   const preview = useRef<HTMLIFrameElement>(null);
   const product = templateProduct(config.family)!;
   const edition = product.editions.find(item => item.id === config.editionId)!;
@@ -88,12 +89,34 @@ export function TemplateConfigurator() {
     if (!file) return;
     const start = revision.current;
     try {
-      if (file.size > 150_000) throw Error('Configuration JSON must be smaller than 150 KB.');
+      if (file.size > 3_000_000) throw Error('Configuration JSON, including its embedded PNG, must be smaller than 3 MB.');
       const next = validateConfiguration(JSON.parse(await file.text()));
+      if (next.artwork) {
+        const decoded = await createImageBitmap(new Blob([new Uint8Array(artworkBytes(next.artwork.dataUrl)).buffer], { type: 'image/png' }));
+        decoded.close();
+      }
       if (start !== revision.current) throw Error('Your configuration changed while the file was opening. Import again to apply it to the current work.');
       edit(next, 'import'); group.current += 1; setMessage('Imported configuration. Undo restores your previous work.');
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Could not import this JSON. Your open configuration is unchanged.'); }
     if (input.current) input.current.value = '';
+  }
+  async function importArtwork(file: File | undefined) {
+    if (!file) return;
+    const start = revision.current;
+    try {
+      if (file.type !== 'image/png' || file.size > maxArtworkBytes) throw Error('Choose a PNG exported from Artwork Studio or another authorized source, smaller than 2 MB.');
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = () => reject(Error('Could not read this PNG.')); reader.readAsDataURL(file);
+      });
+      artworkBytes(dataUrl);
+      const decoded = await createImageBitmap(file);
+      decoded.close();
+      if (start !== revision.current) throw Error('The configuration changed while the artwork was opening. Upload again to attach it to the current work.');
+      group.current += 1;
+      edit({ ...current.current, artwork: { dataUrl, alt: `Uploaded artwork: ${file.name.slice(0, 130)}` } }, 'artwork');
+      setMessage('Your PNG is attached to this configuration. Preview, saved JSON, and ZIP use these exact image bytes. Paid archives remain separate.');
+    } catch (reason) { setError(reason instanceof Error ? reason.message : 'The image could not open. Your existing artwork is unchanged.'); }
+    if (artworkInput.current) artworkInput.current.value = '';
   }
   function exportPackage() {
     try {
@@ -122,6 +145,7 @@ export function TemplateConfigurator() {
           return <label className="tc-module" key={module.id}><span className="tc-check"><input type="checkbox" aria-label={module.label} disabled={disabled} checked={config.modules.includes(module.id)} onChange={event => { group.current += 1; edit({ ...config, modules: event.target.checked ? [...config.modules, module.id] : config.modules.filter(id => id !== module.id) }); }} />{module.label}</span><small>{disabled ? `Requires Expressive${module.requires ? ` + ${pageOptions.find(item => item.id === module.requires)!.label}` : ''}. ` : ''}{module.description}</small></label>;
         })}</fieldset>
         <details open><summary>Your content</summary>{(['name', 'headline', 'description'] as const).map(field => <label key={field}>{field === 'name' ? 'Site name' : field === 'headline' ? 'Main headline' : 'Introduction'}<input value={config[field]} maxLength={field === 'name' ? 80 : field === 'headline' ? 120 : 500} onBlur={() => { group.current += 1; }} onChange={event => edit({ ...config, [field]: event.target.value }, field)} /></label>)}<label>Contact email (optional; applies when you leave the field)<input key={config.contactEmail} defaultValue={config.contactEmail} maxLength={254} onBlur={event => { group.current += 1; edit({ ...current.current, contactEmail: event.target.value }, 'contactEmail'); }} /></label><p className="tc-help">Contact opens the visitor’s email app when an address is configured. A static page does not establish delivered inquiries.</p></details>
+        <details open><summary>Your artwork</summary><p className="tc-help">Export PNG from <a href="/playground?studio=artwork">Artwork Studio</a>, then attach it here. Choose artwork you own or may use. It stays local to this configuration and keeps its own rights.</p><input ref={artworkInput} type="file" accept="image/png,.png" aria-label="Upload artwork PNG" onChange={event => void importArtwork(event.target.files?.[0])}/><p className="tc-help">PNG only · smaller than 2 MB · up to 4096 pixels per side. Your image replaces the main study in every selected page.</p>{config.artwork && <><label>Artwork description<input key={config.artwork.alt} defaultValue={config.artwork.alt} maxLength={160} onBlur={event => { group.current += 1; edit({ ...current.current, artwork: { ...current.current.artwork!, alt: event.target.value } }, 'artwork-description'); }}/></label><button type="button" onClick={() => { group.current += 1; edit({ ...config, artwork: null }, 'remove-artwork'); }}>Remove uploaded artwork · Undo available</button></>}</details>
         <button className="tc-reset" type="button" onClick={() => { group.current += 1; edit(createConfiguration(config.family), 'reset'); }}>Reset this family · Undo available</button>
       </aside>
       <div className="tc-canvas"><div className="tc-preview-bar"><label>Preview page<select aria-label="Preview page" value={selectedPage} onChange={event => setPage(event.target.value as typeof page)}>{pageOptions.filter(item => config.pages.includes(item.id)).map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label><button type="button" aria-pressed={phone} onClick={() => setPhone(value => !value)}>{phone ? 'Phone width · show desktop' : 'Desktop · show phone width'}</button></div><div className={`tc-frame-wrap${phone ? ' tc-frame-wrap--phone' : ''}`}><iframe ref={preview} title={`${product.name} ${selectedPage} original sample preview`} srcDoc={samplePage(config, selectedPage)} sandbox="allow-scripts allow-modals" /></div><p className="tc-help">Original sample preview · follow the navigation or use the page selector. The downloaded package uses ordinary local page links.</p>
