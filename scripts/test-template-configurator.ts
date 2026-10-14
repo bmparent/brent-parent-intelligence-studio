@@ -85,14 +85,18 @@ test('sample content is escaped and contact delivery is represented honestly', (
   assert.ok(contact.includes('no form server or delivered-inquiry receipt'));
 });
 
-test('schema1 migrates explicitly, PNG artwork survives source roundtrip and packages exact owned bytes', () => {
+test('schema1 and schema2 migrate explicitly, PNG artwork survives source roundtrip and packages exact owned bytes', () => {
   const current = createConfiguration();
   const legacy = { ...current, schemaVersion: 1, artwork: undefined };
   const migrated = validateConfiguration(legacy);
-  assert.equal(migrated.schemaVersion, 2);
+  assert.equal(migrated.schemaVersion, 3);
   assert.equal(migrated.artwork, null);
   const png = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=';
   const config = validateConfiguration({ ...current, artwork: { dataUrl: png, alt: 'Original uploaded Artwork Studio tile' } });
+  const schema2 = validateConfiguration({ ...config, schemaVersion: 2, buyer: undefined });
+  assert.equal(schema2.schemaVersion, 3);
+  assert.deepEqual(schema2.artwork, config.artwork);
+  assert.deepEqual(schema2.buyer, current.buyer);
   const files = configurationFiles(config);
   assert.deepEqual(files.find(file => file.name === 'assets/artwork.png')!.data, artworkBytes(png));
   assert.ok(!files.some(file => file.name === 'assets/study-0.svg'));

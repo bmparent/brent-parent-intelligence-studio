@@ -3,6 +3,7 @@ import { editionName, money, pageNames, templateProduct, templateProducts } from
 import { download, zipFiles } from '../playground/export';
 import { artworkBytes, maxArtworkBytes, associatedPackage, configurationFiles, configurationStorageKey, createConfiguration, familyDirections, moduleOptions, pageOptions, reconcileConfiguration, samplePage, validateConfiguration, type TemplateConfiguration } from '../templates/configurator';
 import '../styles/template-configurator.css';
+import { BuyerTemplateDerivative } from './BuyerTemplateDerivative';
 
 type History = { current: TemplateConfiguration; past: TemplateConfiguration[]; future: TemplateConfiguration[]; group: string };
 type Action = { type: 'edit'; next: TemplateConfiguration; group: string } | { type: 'undo' } | { type: 'redo' };
@@ -27,6 +28,8 @@ export function TemplateConfigurator() {
   const [message, setMessage] = useState('Configuration stays in this browser. Download JSON for a portable backup.');
   const [saveState, setSaveState] = useState('Not saved');
   const [error, setError] = useState('');
+  const [buyerEpoch, setBuyerEpoch] = useState(0);
+  const [transactionVersion, setTransactionVersion] = useState(0);
   const group = useRef(0);
   const current = useRef(config);
   const revision = useRef(0);
@@ -44,12 +47,14 @@ export function TemplateConfigurator() {
       const checked = reconcileConfiguration(next);
       current.current = checked;
       revision.current += 1;
+      setTransactionVersion(revision.current);
       dispatch({ type: 'edit', next: checked, group: `${field}-${group.current}` });
       setSaveState('Unsaved changes'); setError('');
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'The configuration could not change.'); }
   }
   function historyAction(type: 'undo' | 'redo') {
     revision.current += 1; group.current += 1;
+    setTransactionVersion(revision.current);
     const next = type === 'undo' ? history.past.at(-1) : history.future[0];
     if (next) current.current = next;
     dispatch({ type }); setSaveState('Unsaved changes');
@@ -82,6 +87,7 @@ export function TemplateConfigurator() {
       const source = localStorage.getItem(configurationStorageKey);
       if (!source) throw Error('No saved configuration is in this browser yet. Save locally or import your JSON backup.');
       edit(validateConfiguration(JSON.parse(source)), 'restore'); group.current += 1;
+      setBuyerEpoch(value => value + 1);
       setSaveState('Saved in this browser'); setMessage('The saved local configuration is open. Undo restores the configuration you had before reopening.');
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'The saved configuration is invalid. Your open work is unchanged.'); }
   }
@@ -97,6 +103,7 @@ export function TemplateConfigurator() {
       }
       if (start !== revision.current) throw Error('Your configuration changed while the file was opening. Import again to apply it to the current work.');
       edit(next, 'import'); group.current += 1; setMessage('Imported configuration. Undo restores your previous work.');
+      setBuyerEpoch(value => value + 1);
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Could not import this JSON. Your open configuration is unchanged.'); }
     if (input.current) input.current.value = '';
   }
@@ -130,7 +137,7 @@ export function TemplateConfigurator() {
   }
 
   return <div className="tc-page">
-    <section className="ew-shell tc-intro"><a href="/shop">← Template collection</a><p className="ew-eyebrow">A useful starting point</p><h1>Choose a direction.<br /><em>Leave with something real.</em></h1><p>Explore four original family directions, choose the pages and supported features, and download a working static sample. Preview and export use the same configuration.</p><p className="tc-boundary">Local sample candidate · Paid family archives, proposed prices, licenses, and release gates stay separate. This tool does not personalize or grant access to a purchased template.</p></section>
+    <section className="ew-shell tc-intro"><a href="/shop">← Template collection</a><p className="ew-eyebrow">A useful starting point</p><h1>Choose a direction.<br /><em>Leave with something real.</em></h1><p>Explore four original family directions, choose the pages and supported features, and download a working static sample. Preview and export use the same configuration.</p><p className="tc-boundary">Local sample candidate · Paid family archives, proposed prices, licenses, and release gates stay separate. The free sample grants no paid access. To personalize a supported archive you already have, use the buyer-local tool below.</p></section>
     <section className="ew-shell tc-workspace" aria-label="Template configuration workspace">
       <div className="tc-toolbar"><div className="tc-actions"><button type="button" disabled={!history.past.length} onClick={() => historyAction('undo')}>Undo</button><button type="button" disabled={!history.future.length} onClick={() => historyAction('redo')}>Redo</button><button type="button" onClick={save}>Save locally</button><button type="button" onClick={reopen}>Reopen saved</button><button type="button" onClick={() => input.current?.click()}>Import JSON</button><button type="button" onClick={() => download(JSON.stringify(config, null, 2), `${config.family}-configuration.json`, 'application/json')}>Download JSON</button></div><span role="status">{saveState}</span><input ref={input} type="file" accept="application/json,.json" hidden onChange={event => void importFile(event.target.files?.[0])} /></div>
       <aside className="tc-controls" aria-label="Configuration options">
@@ -146,13 +153,14 @@ export function TemplateConfigurator() {
         })}</fieldset>
         <details open><summary>Your content</summary>{(['name', 'headline', 'description'] as const).map(field => <label key={field}>{field === 'name' ? 'Site name' : field === 'headline' ? 'Main headline' : 'Introduction'}<input value={config[field]} maxLength={field === 'name' ? 80 : field === 'headline' ? 120 : 500} onBlur={() => { group.current += 1; }} onChange={event => edit({ ...config, [field]: event.target.value }, field)} /></label>)}<label>Contact email (optional; applies when you leave the field)<input key={config.contactEmail} defaultValue={config.contactEmail} maxLength={254} onBlur={event => { group.current += 1; edit({ ...current.current, contactEmail: event.target.value }, 'contactEmail'); }} /></label><p className="tc-help">Contact opens the visitor’s email app when an address is configured. A static page does not establish delivered inquiries.</p></details>
         <details open><summary>Your artwork</summary><p className="tc-help">Export PNG from <a href="/playground?studio=artwork">Artwork Studio</a>, then attach it here. Choose artwork you own or may use. It stays local to this configuration and keeps its own rights.</p><input ref={artworkInput} type="file" accept="image/png,.png" aria-label="Upload artwork PNG" onChange={event => void importArtwork(event.target.files?.[0])}/><p className="tc-help">PNG only · smaller than 2 MB · up to 4096 pixels per side. Your image replaces the main study in every selected page.</p>{config.artwork && <><label>Artwork description<input key={config.artwork.alt} defaultValue={config.artwork.alt} maxLength={160} onBlur={event => { group.current += 1; edit({ ...current.current, artwork: { ...current.current.artwork!, alt: event.target.value } }, 'artwork-description'); }}/></label><button type="button" onClick={() => { group.current += 1; edit({ ...config, artwork: null }, 'remove-artwork'); }}>Remove uploaded artwork · Undo available</button></>}</details>
-        <button className="tc-reset" type="button" onClick={() => { group.current += 1; edit(createConfiguration(config.family), 'reset'); }}>Reset this family · Undo available</button>
+        <button className="tc-reset" type="button" onClick={() => { group.current += 1; edit(createConfiguration(config.family), 'reset'); setBuyerEpoch(value => value + 1); }}>Reset this family · Undo available</button>
       </aside>
       <div className="tc-canvas"><div className="tc-preview-bar"><label>Preview page<select aria-label="Preview page" value={selectedPage} onChange={event => setPage(event.target.value as typeof page)}>{pageOptions.filter(item => config.pages.includes(item.id)).map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label><button type="button" aria-pressed={phone} onClick={() => setPhone(value => !value)}>{phone ? 'Phone width · show desktop' : 'Desktop · show phone width'}</button></div><div className={`tc-frame-wrap${phone ? ' tc-frame-wrap--phone' : ''}`}><iframe ref={preview} title={`${product.name} ${selectedPage} original sample preview`} srcDoc={samplePage(config, selectedPage)} sandbox="allow-scripts allow-modals" /></div><p className="tc-help">Original sample preview · follow the navigation or use the page selector. The downloaded package uses ordinary local page links.</p>
         <div className="tc-export"><div><h2>Your exact sample package</h2><p>{config.pages.length} pages · {config.modules.length ? config.modules.map(id => moduleOptions.find(item => item.id === id)!.label).join(' · ') : 'No optional modules'} · {files.length} files</p></div><button className="ew-button ew-button--primary" type="button" onClick={exportPackage}>Download working sample ZIP ↓</button><details><summary>Included files ({files.length})</summary><ul>{files.map(file => <li key={file.name}><code>{file.name}</code> <small>{file.data.length.toLocaleString()} bytes</small></li>)}</ul></details></div>
         <p className="tc-feedback" role="status">{message}</p>{error && <p className="ew-error" role="alert">{error}</p>}
       </div>
     </section>
-    <section className="ew-shell tc-bottom"><div><p className="ew-eyebrow">The separate paid family</p><h2>{product.name} developer source</h2><p>{product.summary}</p><p><strong>{money(edition.draftPriceCents)} proposed price</strong> · {edition.id} · version {edition.version} · purchasing unavailable unless the existing TEST/LIVE readiness contract authorizes it.</p><p>The immutable archive includes {pageNames(product).join(' · ')}. Your sample options do not alter its {associated.files.length} files, original version, rights, or recovery path.</p><details><summary>Actual paid archive contents ({associated.files.length})</summary><ul>{associated.files.map(file => <li key={file}><code>{file}</code></li>)}</ul></details><p><a href={`/shop/${product.slug}`}>Review actual demo, editions, and release status →</a></p><p><a href={associated.guidePath}>Read this exact edition’s setup and rollback guide →</a></p></div><div><p className="ew-eyebrow">Use your output</p><h2>From sample to your own site.</h2><ol><li>Choose pages, edit content, and use Undo to compare.</li><li>Save locally; reopen the saved configuration. Keep JSON for another browser.</li><li>Download and unzip. Open index.html directly; follow every selected page link.</li><li>Try included gallery filters, inspection, Escape, and the motion toggle. Review reduced motion and narrow screens.</li><li>Replace demonstration copy, verify contact delivery separately, and upload all files to static hosting.</li></ol><p>System fonts and original local SVG artwork are included. No build service, account, API key, or paid template entitlement is needed for this separate sample.</p><a href="/playground?studio=artwork">Create your own artwork in Playground →</a></div></section>
+    <BuyerTemplateDerivative key={`${config.family}-${config.editionVersion}-${buyerEpoch}`} config={config} revision={transactionVersion} edit={edit} endGesture={() => { group.current += 1; }} guard={() => { const start = revision.current; return () => start === revision.current; }}/>
+    <section className="ew-shell tc-bottom"><div><p className="ew-eyebrow">The separate paid family</p><h2>{product.name} developer source</h2><p>{product.summary}</p><p><strong>{money(edition.draftPriceCents)} proposed price</strong> · {edition.id} · version {edition.version} · purchasing unavailable unless the existing TEST/LIVE readiness contract authorizes it.</p><p>The immutable archive includes {pageNames(product).join(' · ')}. Your sample options do not alter its {associated.files.length} files, original version, rights, or recovery path. A buyer-local derivative above has its own new identity and hashes.</p><details><summary>Actual paid archive contents ({associated.files.length})</summary><ul>{associated.files.map(file => <li key={file}><code>{file}</code></li>)}</ul></details><p><a href={`/shop/${product.slug}`}>Review actual demo, editions, and release status →</a></p><p><a href={associated.guidePath}>Read this exact edition’s setup and rollback guide →</a></p></div><div><p className="ew-eyebrow">Use your output</p><h2>From sample to your own site.</h2><ol><li>Choose pages, edit content, and use Undo to compare.</li><li>Save locally; reopen the saved configuration. Keep JSON for another browser.</li><li>Download and unzip. Open index.html directly; follow every selected page link.</li><li>Try included gallery filters, inspection, Escape, and the motion toggle. Review reduced motion and narrow screens.</li><li>Replace demonstration copy, verify contact delivery separately, and upload all files to static hosting.</li></ol><p>System fonts and original local SVG artwork are included. No build service, account, API key, or paid template entitlement is needed for this separate sample.</p><a href="/playground?studio=artwork">Create your own artwork in Playground →</a></div></section>
   </div>;
 }

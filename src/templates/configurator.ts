@@ -1,8 +1,9 @@
 import { templateProduct, templateProducts } from '../data/templateCatalog';
 import packageContents from '../data/templatePackageContents.json';
 import type { ExportFile } from '../playground/export';
+import { defaultBuyerSelection, validateBuyerSelection, type BuyerSelection } from './buyerContract';
 
-export const configurationVersion = 2;
+export const configurationVersion = 3;
 export const configurationStorageKey = 'eidos-template-configuration-v1';
 export const pageOptions = [
   { id: 'home', label: 'Home', file: 'index.html' },
@@ -19,7 +20,7 @@ export const moduleOptions = [
 type PageId = typeof pageOptions[number]['id'];
 type ModuleId = typeof moduleOptions[number]['id'];
 export type TemplateConfiguration = {
-  schemaVersion: 2;
+  schemaVersion: 3;
   kind: 'eidos-original-configuration-sample';
   family: string;
   editionId: string;
@@ -32,6 +33,7 @@ export type TemplateConfiguration = {
   description: string;
   contactEmail: string;
   artwork: { dataUrl: string; alt: string } | null;
+  buyer: BuyerSelection;
 };
 export const maxArtworkBytes = 2_000_000;
 let artworkCache: { dataUrl: string; bytes: Uint8Array } | null = null;
@@ -80,13 +82,13 @@ export function createConfiguration(family = 'matter'): TemplateConfiguration {
   const product = templateProduct(family) || templateProducts[0];
   const edition = product.editions.find(item => item.platform === 'developer')!;
   const direction = familyDirections[product.slug];
-  return { schemaVersion: 2, kind: 'eidos-original-configuration-sample', family: product.slug, editionId: edition.id, editionVersion: edition.version || '1.0.0', tier: 'essential', pages: ['home', 'contact'], modules: [], name: `${product.name} studio study`, headline: direction.title, description: direction.text, contactEmail: '', artwork: null };
+  return { schemaVersion: 3, kind: 'eidos-original-configuration-sample', family: product.slug, editionId: edition.id, editionVersion: edition.version || '1.0.0', tier: 'essential', pages: ['home', 'contact'], modules: [], name: `${product.name} studio study`, headline: direction.title, description: direction.text, contactEmail: '', artwork: null, buyer: defaultBuyerSelection(product.slug, product.palette) };
 }
 
 export function validateConfiguration(input: unknown): TemplateConfiguration {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw Error('Choose an Eidos configuration JSON file.');
   const data = input as Record<string, unknown>;
-  if ((data.schemaVersion !== 1 && data.schemaVersion !== configurationVersion) || data.kind !== 'eidos-original-configuration-sample') throw Error('This configuration format is unsupported. Your open configuration is unchanged.');
+  if ((data.schemaVersion !== 1 && data.schemaVersion !== 2 && data.schemaVersion !== configurationVersion) || data.kind !== 'eidos-original-configuration-sample') throw Error('This configuration format is unsupported. Your open configuration is unchanged.');
   const product = templateProduct(String(data.family));
   const edition = product?.editions.find(item => item.platform === 'developer' && item.id === data.editionId && (item.version || '1.0.0') === data.editionVersion);
   if (!product || !familyDirections[product.slug] || !edition) throw Error('The associated family or edition version is unavailable in this candidate. Keep your original file.');
@@ -101,16 +103,17 @@ export function validateConfiguration(input: unknown): TemplateConfiguration {
   }
   if (data.contactEmail && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(String(data.contactEmail))) throw Error('Use a plain email address, without a mailto prefix or extra parameters.');
   let artwork: TemplateConfiguration['artwork'] = null;
-  // v1 did not carry artwork. Reopening migrates that format explicitly to v2.
+  // v1 did not carry artwork; v1/v2 migrate to v3 with default buyer options.
   if (data.schemaVersion === 1 && data.artwork) throw Error('Artwork requires configuration schema version 2.');
-  if (data.schemaVersion === 2 && data.artwork != null) {
+  if ((data.schemaVersion === 2 || data.schemaVersion === 3) && data.artwork != null) {
     if (typeof data.artwork !== 'object' || Array.isArray(data.artwork)) throw Error('The artwork attachment is invalid.');
     const attachment = data.artwork as Record<string, unknown>;
     if (typeof attachment.dataUrl !== 'string' || typeof attachment.alt !== 'string' || attachment.alt.length > 160 || !attachment.alt.trim()) throw Error('The artwork needs a valid PNG and a description up to 160 characters.');
     artworkBytes(attachment.dataUrl);
     artwork = { dataUrl: attachment.dataUrl, alt: attachment.alt };
   }
-  return { schemaVersion: 2, kind: 'eidos-original-configuration-sample', family: product.slug, editionId: edition.id, editionVersion: edition.version || '1.0.0', tier: data.tier, pages: pageOptions.filter(page => pages.includes(page.id)).map(page => page.id), modules: moduleOptions.filter(module => modules.includes(module.id)).map(module => module.id), name: String(data.name), headline: String(data.headline), description: String(data.description), contactEmail: String(data.contactEmail), artwork };
+  const buyer = data.schemaVersion === 3 ? validateBuyerSelection(data.buyer, product.slug) : defaultBuyerSelection(product.slug, product.palette);
+  return { schemaVersion: 3, kind: 'eidos-original-configuration-sample', family: product.slug, editionId: edition.id, editionVersion: edition.version || '1.0.0', tier: data.tier, pages: pageOptions.filter(page => pages.includes(page.id)).map(page => page.id), modules: moduleOptions.filter(module => modules.includes(module.id)).map(module => module.id), name: String(data.name), headline: String(data.headline), description: String(data.description), contactEmail: String(data.contactEmail), artwork, buyer };
 }
 
 export function reconcileConfiguration(input: TemplateConfiguration): TemplateConfiguration {

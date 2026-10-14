@@ -6,6 +6,7 @@ export type TemplateEdition = {
   packagePath?: string; sourcePath?: string; pilotPath?: string; demoPath?: string; installationGuide: string;
 };
 export type TemplateProduct = {
+  palette: string[];
   slug: string; name: string; audience: string; summary: string; signature: string;
   market: string; visualStyle: string; tagline: string;
   designDirection: { artCaption: string; structure: string; typography: string; visualLanguage: string; navigation: string; interaction: string };

@@ -140,7 +140,7 @@ try {
     assert.deepEqual(config.pages, ['home', 'landing', 'contact', 'article', 'gallery']);
     assert.deepEqual(config.modules, ['gallery', 'motion', 'editorial']);
     assert.equal(config.headline, 'A study you can keep.');
-    assert.equal(config.schemaVersion, 2);
+    assert.equal(config.schemaVersion, 3);
     assert.equal(config.artwork.dataUrl, `data:image/png;base64,${(await readFile(resolve(output, 'artwork-from-playground.png'))).toString('base64')}`);
     assert.deepEqual(await readFile(resolve(directory, 'assets/artwork.png')), await readFile(resolve(output, 'artwork-from-playground.png')));
     const manifest = JSON.parse(await readFile(resolve(directory, 'PACKAGE_MANIFEST.json'), 'utf8'));
