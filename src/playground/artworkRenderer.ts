@@ -35,12 +35,18 @@ export function artworkObjectsMarkup(a: ArtworkDocument, wrap = a.mode === 'tile
     return offsets.x.flatMap(dx => offsets.y.map(dy => `<g data-artwork-id="${o.id}" transform="translate(${n(a.width * o.x / 100 + dx * a.width)} ${n(a.height * o.y / 100 + dy * a.height)}) rotate(${o.rotation}) scale(${n(scale)})" fill="${color}" color="${color}" opacity="${o.opacity}"><use href="#shape-${o.id}"/></g>`)).join('');
   }).join('');
 }
-export function artworkSvg(input: ArtworkDocument, view: 'tile' | 'repeat' = 'tile'): string {
-  const a = validateArtwork(input), repeat = view === 'repeat', width = a.width * (repeat ? 3 : 1), height = a.height * (repeat ? 3 : 1);
+export function artworkSeamlessSize(input: ArtworkDocument) {
+  const a = validateArtwork(input);
+  if (a.mode !== 'tile') throw Error('Poster compositions are not seamless tiles. Choose Seamless tile first.');
+  return { width: a.width * (a.repeat === 'half-drop' ? 2 : 1), height: a.height };
+}
+export function artworkSvg(input: ArtworkDocument, view: 'tile' | 'repeat' | 'seamless' = 'tile'): string {
+  const a = validateArtwork(input), patternView = view !== 'tile';
+  const { width, height } = view === 'seamless' ? artworkSeamlessSize(a) : { width: a.width * (view === 'repeat' ? 3 : 1), height: a.height * (view === 'repeat' ? 3 : 1) };
   const tile = `${a.transparent ? '' : `<rect width="${a.width}" height="${a.height}" fill="${a.palette.paper}"/>`}${artworkObjectsMarkup(a)}`;
   const pattern = a.repeat === 'half-drop' ? `<pattern id="artwork-repeat" width="${a.width * 2}" height="${a.height}" patternUnits="userSpaceOnUse"><g clip-path="url(#artwork-clip)">${tile}</g><g transform="translate(${a.width} ${a.height / 2})"><g clip-path="url(#artwork-clip)">${tile}</g></g><g transform="translate(${a.width} ${-a.height / 2})"><g clip-path="url(#artwork-clip)">${tile}</g></g></pattern>` : `<pattern id="artwork-repeat" width="${a.width}" height="${a.height}" patternUnits="userSpaceOnUse"><g clip-path="url(#artwork-clip)">${tile}</g></pattern>`;
   const shapes = a.objects.map(o => `<g id="shape-${o.id}">${artworkObjectMarkup(o, artworkColor(a, o), a.width, a.height)}</g>`).join('');
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="Original Eidos artwork"><style>${studioFontCss}</style><defs>${shapes}<clipPath id="artwork-clip"><rect width="${a.width}" height="${a.height}"/></clipPath>${repeat ? pattern : ''}</defs>${repeat ? `<rect width="${width}" height="${height}" fill="url(#artwork-repeat)"/>` : `<g clip-path="url(#artwork-clip)">${tile}</g>`}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="Original Eidos artwork"><style>${studioFontCss}</style><defs>${shapes}<clipPath id="artwork-clip"><rect width="${a.width}" height="${a.height}"/></clipPath>${patternView ? pattern : ''}</defs>${patternView ? `<rect width="${width}" height="${height}" fill="url(#artwork-repeat)"/>` : `<g clip-path="url(#artwork-clip)">${tile}</g>`}</svg>`;
 }
 const canvasFonts = new Map<string, Promise<string>>();
 function canvasFont(o: ArtworkObject): Promise<string> {
@@ -56,7 +62,8 @@ function canvasFont(o: ArtworkObject): Promise<string> {
   }
   return pending;
 }
-export async function artworkPng(input: ArtworkDocument): Promise<Uint8Array> {
+export async function artworkPng(input: ArtworkDocument, view: 'tile' | 'seamless' = 'tile'): Promise<Uint8Array> {
+  const seamlessSize = view === 'seamless' ? artworkSeamlessSize(input) : undefined;
   const a = validateArtwork(input), resources = await Promise.all(a.objects.map(async o => {
     if (o.kind === 'text') return { id: o.id, family: await canvasFont(o) };
     if (o.kind === 'image' && o.image) { const image = new Image(); image.src = o.image; await image.decode(); return { id: o.id, image }; }
@@ -100,10 +107,20 @@ export async function artworkPng(input: ArtworkDocument): Promise<Uint8Array> {
       if (o.opacity < 1) { outputContext.save(); outputContext.globalAlpha = o.opacity; outputContext.drawImage(groupCanvas!, 0, 0); outputContext.restore(); }
     }
   }
-  const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(Error('PNG encoding failed.')), 'image/png'));
+  let encodedCanvas = canvas;
+  if (seamlessSize && a.repeat === 'half-drop') {
+    encodedCanvas = document.createElement('canvas'); encodedCanvas.width = seamlessSize.width; encodedCanvas.height = seamlessSize.height;
+    const repeated = encodedCanvas.getContext('2d'); if (!repeated) throw Error('Seamless PNG export is unavailable. Use seamless SVG.');
+    repeated.drawImage(canvas, 0, 0);
+    repeated.drawImage(canvas, a.width, a.height / 2);
+    repeated.drawImage(canvas, a.width, -a.height / 2);
+  }
+  const blob = await new Promise<Blob>((resolve, reject) => encodedCanvas.toBlob(value => value ? resolve(value) : reject(Error('PNG encoding failed.')), 'image/png'));
   return new Uint8Array(await blob.arrayBuffer());
 }
 export function artworkFiles(input: ArtworkDocument): ExportFile[] {
   const a = validateArtwork(input), svg = artworkSvg(a), encode = (value: string) => new TextEncoder().encode(value);
-  return Object.entries({ 'artwork.svg': svg, 'repeat.svg': artworkSvg(a, 'repeat'), 'artwork.json': JSON.stringify(a, null, 2), 'OFL.txt': studioFontLicense, 'index.html': `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Original Eidos artwork</title><style>body{margin:0;background:#dcded9;display:grid;place-items:center;min-height:100vh}svg{width:min(100%,900px);height:auto}</style>${svg}</html>`, 'README.md': `# Original Eidos artwork\n\nOpen index.html or artwork.svg independently. No remote fonts, API, or build step. SVG includes its licensed DM Sans variable font (weight 100–1000, optical size 9–40). OFL.txt accompanies it. This edition supports Latin text and punctuation.\n\nImport artwork.json through Artwork Studio to edit this source; the outer project.json (when present) restores the complete Playground project. Artwork dimensions: ${a.width} × ${a.height}. Transparent: ${a.transparent}.\n\n${a.mode === 'tile' ? 'artwork.svg wraps objects at the tile edges and can repeat seamlessly on a rectangular grid. repeat.svg is a 3 × 3 proof of the selected repeat arrangement; half-drop uses an offset alternate column. Use repeat.svg or an explicit half-drop CSS arrangement when selecting half-drop.' : 'This is a poster composition; it is not advertised as a seamless tile.'}\n\nUse the SVG as a background or image in software supporting embedded SVG fonts. Some design tools strip embedded fonts: use the PNG from Studio for that workflow. Uploaded images remain embedded and require your rights. Browser layout and external design software vary; inspect at the intended size before print.\n` }).map(([name, data]) => ({ name, data: encode(data) }));
+  const seamless = a.mode === 'tile' ? artworkSvg(a, 'seamless') : undefined;
+  const extraFiles = seamless ? [{ name: 'seamless.svg', data: encode(seamless) }] : [];
+  return [...Object.entries({ 'artwork.svg': svg, 'repeat.svg': artworkSvg(a, 'repeat'), 'artwork.json': JSON.stringify(a, null, 2), 'OFL.txt': studioFontLicense, 'index.html': `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Original Eidos artwork</title><style>body{margin:0;background:#dcded9;display:grid;place-items:center;min-height:100vh}svg{width:min(100%,900px);height:auto}</style>${seamless || svg}</html>`, 'README.md': `# Original Eidos artwork\n\nOpen index.html or artwork.svg independently. No remote fonts, API, or build step. SVG includes its licensed DM Sans variable font (weight 100–1000, optical size 9–40). OFL.txt accompanies it. This edition supports Latin text and punctuation.\n\nImport artwork.json through Artwork Studio to edit this source; the outer project.json (when present) restores the complete Playground project. Artwork dimensions: ${a.width} × ${a.height}. Transparent: ${a.transparent}.\n\n${a.mode === 'tile' ? `Use seamless.svg as a rectangular repeating background for the selected arrangement. Its unit is ${artworkSeamlessSize(a).width} × ${a.height}px: half-drop needs two columns to preserve offset parity at every horizontal seam. Artwork Studio also exports this unit as Seamless PNG. artwork.svg is the original single-cell design. repeat.svg is only a 3 × 3 inspection proof, not the half-drop repeat unit.` : 'This is a poster composition; it is not advertised as a seamless tile.'}\n\nUse the SVG as a background or image in software supporting embedded SVG fonts. Some design tools strip embedded fonts: use the PNG from Studio for that workflow. Uploaded images remain embedded and require your rights. Browser layout and external design software vary; inspect at the intended size before print.\n` }).map(([name, data]) => ({ name, data: encode(data) })), ...extraFiles];
 }

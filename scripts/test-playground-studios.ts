@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { createArtwork, artworkColor, artworkPoster, duplicateArtwork, newArtworkObject, validateArtwork } from '../src/playground/artworkSchema';
-import { artworkFiles, artworkSvg, artworkTextLayout } from '../src/playground/artworkRenderer';
+import { artworkFiles, artworkSeamlessSize, artworkSvg, artworkTextLayout } from '../src/playground/artworkRenderer';
 import { createMotion, duplicateMotion, motionPose, putMotionFrame, resizeMotionDuration, validateMotion } from '../src/playground/motionSchema';
 import { motionFiles, motionHtml, motionSvg } from '../src/playground/motionRenderer';
 import { studioFontBytes } from '../src/playground/studioFont';
@@ -52,6 +52,20 @@ test('wrapped artwork embeds uploaded bytes once and reuses stable shape referen
   const svg = artworkSvg(a, 'repeat');
   assert.equal(svg.split(image).length - 1, 1);
   assert.ok(svg.split(`<use href="#shape-${a.objects[0].id}"`).length > 5);
+});
+
+test('selected half-drop export has a rectangular two-column period, with a distinct inspection proof', () => {
+  const a = { ...createArtwork(), repeat: 'half-drop' as const, width: 193, height: 195, transparent: true };
+  assert.deepEqual(artworkSeamlessSize(a), { width: 386, height: 195 });
+  const files = artworkFiles(a), decode = (name: string) => new TextDecoder().decode(files.find(f => f.name === name)!.data);
+  assert.match(decode('seamless.svg'), /viewBox="0 0 386 195"/);
+  assert.match(decode('seamless.svg'), /translate\(193 97\.5\)/);
+  assert.match(decode('repeat.svg'), /viewBox="0 0 579 585"/);
+  assert.match(decode('index.html'), /viewBox="0 0 386 195"/);
+  assert.match(decode('README.md'), /not the half-drop repeat unit/);
+  assert.deepEqual(artworkSeamlessSize({ ...a, repeat: 'grid' }), { width: 193, height: 195 });
+  assert.throws(() => artworkSvg(artworkPoster('botanical'), 'seamless'), /not seamless/);
+  assert.equal(artworkFiles(artworkPoster('botanical')).some(f => f.name === 'seamless.svg'), false);
 });
 
 test('licensed font bytes and real variable axes are captured and embedded identically', () => {
