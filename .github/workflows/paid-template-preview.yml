@@ -1,7 +1,7 @@
 name: Paid template TEST candidate
 on:
   pull_request:
-    branches: [main, codex/paid-templates-20261010]
+    branches: [main, codex/paid-templates-20261010, codex/template-release-readiness-20261013]
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 permissions:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   preview:
-    if: github.event_name == 'workflow_dispatch' && contains(fromJSON('["refs/heads/codex/paid-templates-20261010","refs/heads/codex/template-release-readiness-20261013"]'), github.ref) || contains(fromJSON('["codex/paid-templates-20261010","codex/template-release-readiness-20261013"]'), github.event.pull_request.head.ref) && github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'workflow_dispatch' && contains(fromJSON('["refs/heads/codex/paid-templates-20261010","refs/heads/codex/template-release-readiness-20261013","refs/heads/codex/stripe-completion-20261014"]'), github.ref) || contains(fromJSON('["codex/paid-templates-20261010","codex/template-release-readiness-20261013","codex/stripe-completion-20261014"]'), github.event.pull_request.head.ref) && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,6 +25,7 @@ jobs:
       - run: npm run lint
       - run: npm run test:templates
       - run: npm run test:platform
+      - run: node --test scripts/test-template-preview-pin.mjs
       - run: npm run build
       - run: npm run verify:prerender && npm run verify:editorial && npm run verify:templates
       - run: npm run validate:insights -- --skip-source-fetch && npm run validate:insights:dist && npm run verify:urls
@@ -45,10 +46,8 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          EIDOS_TEMPLATES_PLATFORM_URL: https://eidos-sentinel-bjigw5kvl-1brentbm-1876s-projects.vercel.app
           EIDOS_TEMPLATES_PLATFORM_TOKEN: ${{ secrets.EIDOS_TEMPLATES_PLATFORM_TOKEN }}
           EIDOS_TEMPLATES_PREVIEW_BYPASS: ${{ secrets.EIDOS_TEMPLATES_PREVIEW_BYPASS }}
-          EIDOS_TEMPLATES_BACKEND_SHA: 952e68ff75da6857e25f249bebd96ea65116e294
       - name: Upload candidate without custom domains
         run: |
           printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt

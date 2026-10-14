@@ -159,3 +159,27 @@ The initial mounted Drive copy failed ENOSPC; failure and capacity-skip receipts
 The actual Switchboard TEST payment, genuine signed paid delivery, private archive hash and refund/access revocation are observed. The refund exposed a secondary fulfillment-field race across retained validation hooks; access was already denied. The narrow fix lets a signed known-template TEST refund/dispute reconcile its side table even when an older handler recorded the event first. Regression coverage checks duplicate replay, stored payment-intent ownership, LIVE rejection, unrelated-payment isolation, still-unexpired download denial and no late-payment revival. Stripe's official CLI acknowledged one genuine TEST resend of the recorded refund event. Before the resend, the side field was already revoked; its initial correction's cause is unknown. Afterwards it remained refunded/revoked, the original version/hash snapshot remained intact and download returned 403. The CLI acknowledgement does not establish an endpoint-specific HTTP delivery response or prove that this resend caused the initial correction. No event was forged/re-signed and no manual database correction was presented as provider proof.
 
 One actual ordinary card decline produced the genuine `payment_intent.payment_failed` event with `card_declined` / `generic_decline`; the session remained unpaid, the ledger pending, and no download was granted. That retryable state differs from terminal asynchronous failure. The unpaid TEST session was then expired. An earlier abandoned TEST session independently expired unpaid and generated its genuine expiry event. Duplicate/reordered events, terminal delayed outcomes, authenticated two-buyer isolation and expired-link recovery retain controlled fixture coverage. Any current hosted guest-order proof is separately recorded and does not establish authenticated-member identity or delivered recovery mail. Provider-confirmed receipt/recovery mail to the authorized inbox remains blocked by the missing valid scoped preview mail binding. Environment-variable metadata shows the existing sensitive provider key is production-only; it was not read/copied to the candidate. WordPress.com plans, production hosting and physical devices remain unproven. Install the two pilots in authorized builder editors with observed plans, published phone pages and verified actions. Missing builder access and scoped mail configuration prevent full acceptance. The production decision remains NO-GO.
+
+
+## October 14 Stripe completion continuation
+
+Source and preview repair is complete on site code
+`11e292f96f7a1c6eb5ff18712bd59a5ca0c96a74` / backend
+`16a1926d5bbd33cd52bb0c93ee15dd949b1bc698` (draft site PR109 / backend PR76).
+All 32 immutable archives were recovered by their frozen hashes, and the backend
+build/trace includes all 8 current and 24 retained packages. A commerce build now
+fails when archives are missing, changed, duplicated or symbolic links.
+
+Workflow38591500899 passed exact hosted TEST source/version/price/allowlist and
+unsigned-webhook rejection before updating only the isolated template preview.
+The canonical deployment remained unchanged. Normal hosted product UI shows
+Switchboard1.0.3 with TEST-only checkout. Package assertions811, frontend
+manifest/storefront6+6, platform35, backend19MJS+57TS, and new pin checks2 passed;
+relevant source/build/browser workflows passed on the recorded frozen sources.
+
+Production remains **NO-GO**. Resend Preview binding and actual receipt/recovery
+inbox delivery remain blocked. The connector still exposes LIVE only; actual
+final-pair signed paid-event HTTP2xx, provider replay and TEST refund/access
+removal remain open. Local fixtures do not replace them. Accounts and CMS/builder
+sales remain outside the initial guest/developer acceptance scope. Exact user
+actions, runtime IDs, evidence and rollback: [October14 closeout](STRIPE_COMPLETION_2026-10-14.md).
