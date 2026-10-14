@@ -80,7 +80,7 @@ Brent authorized resolving the pending community agent issues and shipping this 
 
 The existing template candidate now has a complete immutable private-archive
 bundle and a pinned, hosted-verified TEST relay. The paired code sources are
-site11e292f / backend16a1926; draft sitePR109/backendPR76 preserve the held
+site 11e292f / backend 16a1926; draft site PR109 / backend PR76 preserve the held
 production gates. No production deployment or LIVE sale is accepted. Actual
 receipt/recovery delivery, genuine signed TEST acknowledgement and final provider
 refund/replay still require the missing candidate mail binding and Stripe TEST
