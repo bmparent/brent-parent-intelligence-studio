@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "decision": "GO_ISOLATED_REVIEW_ONLY",
+  "productionDecision": "NO-GO",
+  "siteRuntimeCommit": "24b7a985b186f81901df78d8e41a531ec5b8579c",
+  "siteImmutable": "https://54d4e19d.eidosworks-showcase-20261013.pages.dev",
+  "siteAlias": "https://eidosworks-showcase-20261013.pages.dev",
+  "backendRuntimeCommit": "3ebbc4d0e4cfd9b72947b097366e8b1b6fe8b573",
+  "backendReceiptHead": "37f4633f236bacae14c5b799becc2d2cea5528f4",
+  "observatoryCommit": "579869d99dbade749f377d3d38d43e94030ef3f9",
+  "coreBehaviorChanged": false,
+  "milestones": [
+    {
+      "id": "M0",
+      "scope": "reconciliation",
+      "implemented": true,
+      "locallyTested": true,
+      "previewVerified": true,
+      "providerVerified": "NA; no provider claim",
+      "liveVerified": false,
+      "acceptance": "passed for observed local-only scope"
+    },
+    {
+      "id": "M1",
+      "scope": "foundation/effect/artwork local-only",
+      "implemented": true,
+      "locallyTested": true,
+      "previewVerified": true,
+      "providerVerified": "disabled-state/boundary only",
+      "liveVerified": false,
+      "acceptance": "passed for observed local-only scope"
+    },
+    {
+      "id": "M2",
+      "scope": "original configurator sample/case study",
+      "implemented": true,
+      "locallyTested": true,
+      "previewVerified": true,
+      "providerVerified": "NA; no provider claim",
+      "liveVerified": false,
+      "acceptance": "partial overall; observed local/fixture scope passed, named provider/paid/live scope held"
+    },
+    {
+      "id": "M3",
+      "scope": "bounded local editing/layout/motion",
+      "implemented": true,
+      "locallyTested": true,
+      "previewVerified": true,
+      "providerVerified": "disabled-state/boundary only",
+      "liveVerified": false,
+      "acceptance": "partial overall; observed local/fixture scope passed, named provider/paid/live scope held"
+    },
+    {
+      "id": "M4",
+      "scope": "source-aware labeled Observatory fixture",
+      "implemented": true,
+      "locallyTested": true,
+      "previewVerified": true,
+      "providerVerified": "fixture/access only",
+      "liveVerified": false,
+      "acceptance": "partial overall; observed local/fixture scope passed, named provider/paid/live scope held"
+    },
+    {
+      "id": "M5",
+      "scope": "guides/exports/evidence/draft PRs",
+      "implemented": true,
+      "locallyTested": true,
+      "previewVerified": true,
+      "providerVerified": "NA; no provider claim",
+      "liveVerified": false,
+      "acceptance": "passed for observed local-only scope"
+    }
+  ],
+  "unknownMetrics": {
+    "realSensorTraffic": {
+      "value": null,
+      "reason": "No sensor DB/relay on isolated fixture candidate"
+    },
+    "modelQuality": {
+      "value": null,
+      "reason": "No model key/execution configured"
+    },
+    "schema5AccountOwnership": {
+      "value": null,
+      "reason": "Format and account flags held"
+    },
+    "paidDelivery": {
+      "value": null,
+      "reason": "No paid/receipt/provider change accepted"
+    },
+    "physicalDevicePerformance": {
+      "value": null,
+      "reason": "Browser width/emulation only"
+    }
+  },
+  "fullHandoffReleaseAccepted": false,
+  "exactRuntimeCI": {
+    "allSixWorkflowsPassed": true,
+    "runs": [38492966288, 38492966281, 38492966263, 38492966273, 38492966249, 38492966270],
+    "productionDeploymentSteps": "skipped; non-main isolated candidate",
+    "receipt": "final-ci-status.json"
+  },
+  "finalHostedReadback": {
+    "timestampUtc": "2026-10-14T01:01:45.798Z",
+    "checksPassed": 8,
+    "receipt": "hosted/paired-acceptance.json"
+  },
+  "archiveReceipt": "drive_manifest.json"
+}

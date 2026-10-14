@@ -65,7 +65,7 @@ export function Preview({
       if (data.type === "playground-ready") setLoaded(true);
       if (data.type === "playground-select" && project.sections.some(s => s.id === data.id)) onSelect(data.id);
       if (data.type === "playground-link" && typeof data.href === "string") onLink(data.href);
-      if (data.type === 'playground-block' && editing && edit && guard && project.schemaVersion === 4) {
+      if (data.type === 'playground-block' && editing && edit && guard && project.schemaVersion >= 4) {
         const receipt=sent.current;
         if(!receipt || receipt.consumed || data.stamp!==receipt.stamp || !receipt.valid())return;
         if(data.action==='select'||data.action==='inspect'){
@@ -85,7 +85,7 @@ export function Preview({
         }catch(error){notify?.((error as Error).message);}
         return;
       }
-      if (data.type !== 'playground-composition' || !editing || !edit || !guard || project.schemaVersion !== 3) return;
+      if (data.type !== 'playground-composition' || !editing || !edit || !guard || ![3,5].includes(project.schemaVersion)) return;
       const receipt = sent.current;
       if (!receipt || receipt.consumed || data.stamp !== receipt.stamp || !receipt.valid()) return;
       if (data.action === 'error') { notify?.('Drop one PNG, JPEG or WebP image, up to 8 MB.'); return; }

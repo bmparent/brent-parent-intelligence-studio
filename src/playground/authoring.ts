@@ -31,9 +31,9 @@ export type BlockOperation = {
     type: 'add-section';
 };
 export function enableBlocks(p: Project): Project {
-    if (p.schemaVersion === 4)
+    if (p.schemaVersion >= 4 && p.sections.some(s => s.authoring))
         return p;
-    return validateProject({ ...p, schemaVersion: 4, sections: p.sections.map(s => {
+    return validateProject({ ...p, schemaVersion: p.schemaVersion === 5 ? 5 : 4, sections: p.sections.map(s => {
             if (sectionKind(s) !== 'hero')
                 return { ...s, type: sectionKind(s) };
             const root = newNode('stack');
@@ -47,7 +47,7 @@ export function enableBlocks(p: Project): Project {
         }) });
 }
 export function applyBlockOperation(p: Project, op: BlockOperation): Project {
-    if (p.schemaVersion !== 4)
+    if (p.schemaVersion < 4)
         throw Error('Enable responsive blocks first.');
     const next = structuredClone(p);
     if (op.type === 'section-step' || op.type === 'card-step') {

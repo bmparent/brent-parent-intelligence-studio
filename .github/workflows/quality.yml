@@ -15,6 +15,8 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Insights dependency preflight, runner receipts, and URL regressions
+        run: node --test scripts/test-insight-run.mjs
       - name: Verify checked-in Playground glass matches its source
         run: |
           npm run playground:glass
@@ -22,6 +24,7 @@ jobs:
       - run: npm run lint
       - run: npm run test:templates
       - run: npm run test:platform
+      - run: npm run test:showcase
       - run: npm run test:playground
       - run: npm run test:growth
       - run: npm run test:analytics

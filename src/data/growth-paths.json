@@ -11,6 +11,7 @@
   "/friction-review",
   "/insights",
   "/insights/accessible-quote-form-errors-recovery",
+  "/insights/after-submit-website-tell-truth-about-waiting",
   "/insights/agentic-seo-small-business-websites",
   "/insights/ai-agent-permissions-before-pilot",
   "/insights/ai-prototype-production-pilot-evidence",
@@ -38,7 +39,12 @@
   "/services/digital-experiences",
   "/services/intelligent-systems",
   "/services/storefront-access-systems",
+  "/shop",
+  "/shop/choose",
   "/shop/cinematic-starter",
+  "/shop/configure",
+  "/shop/start",
+  "/shop/template-terms",
   "/snapshot",
   "/terms",
   "/work",
@@ -49,5 +55,6 @@
   "/work/nighttime-spectaculars",
   "/work/pernr-access-gate",
   "/work/production-dashboard",
+  "/work/signal-house",
   "/work/storefront-experience"
 ]

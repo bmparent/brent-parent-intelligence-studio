@@ -1,3 +1,4 @@
+import { assertCloudStudioBoundary } from './studioBoundary';
 import { clean, db, hash, HttpError, type PlatformEnv } from './core';
 import { validateProject, type Project } from '../../../src/playground/model';
 import { supportsProductionCloud, CLOUD_FORMAT_NOTICE } from '../../../src/playground/releaseBoundary';
@@ -37,6 +38,7 @@ export async function projectRevision(env: PlatformEnv, owner: string, projectId
   return { project, revision, document: validateProject(document) };
 }
 export async function saveProject(env: PlatformEnv, owner: string, input: Record<string, unknown>) {
+  assertCloudStudioBoundary(input.document);
   let document: Project;
   try { document = validateProject(input.document); } catch (error) { throw new HttpError(400, (error as Error).message); }
   // Fail closed before any database access: the local editor must not implicitly

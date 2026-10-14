@@ -54,9 +54,14 @@ export async function loadWorkspace(): Promise<Saved | null> {
     db.close();
   }
 }
-export async function saveWorkspace(value: Saved): Promise<void> {
+export async function saveWorkspace(value: Saved, stillCurrent: () => boolean = () => true): Promise<void> {
   const db = await database();
   try {
+    // Database acquisition can finish after another project/revision was saved.
+    // Do not let an obsolete request replace the single current-workspace key.
+    // There is no await between this check and put: transactions created after
+    // it retain IndexedDB's ordering for this object store.
+    if (!stillCurrent()) return;
     await new Promise<void>((resolve, reject) => {
       const tx = db.transaction("workspace", "readwrite");
       tx.objectStore("workspace").put(value, "current");

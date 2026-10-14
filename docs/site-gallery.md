@@ -20,7 +20,7 @@ The requested sign-in methods are Google and email/password with email password 
 
 ## Production release
 
-This repository serves `eidos-works.com` through the existing direct-upload Cloudflare Pages project `eidosworks`. Merging a pull request does not deploy it. From an environment already authenticated to the correct Cloudflare account, check out the merged main branch, run the project release checks, then deploy the complete app and its existing Pages Functions:
+This repository serves `eidos-works.com` through the existing direct-upload Cloudflare Pages project `eidosworks`. The `Playground editor release` workflow runs on every main push, checks the complete candidate, then uploads to that project and verifies the provider receipt. After merging, wait for that exact commit's workflow and read back production before declaring release. Do not race it with a manual upload. If CI deployment is unavailable, the existing authenticated manual fallback is to check out verified latest main, pass the project release checks, and deploy the complete app and its existing Pages Functions:
 
 ```bash
 npm ci

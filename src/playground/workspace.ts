@@ -24,5 +24,5 @@ export function workspaceReducer(s: Workspace, a: Action): Workspace {
   const current: Frame = a.type === 'replace'
     ? {project:a.project,documentId:a.documentId,target:a.target || null}
     : {...s.current,project:typeof a.project === 'function' ? a.project(s.current.project) : a.project};
-  return {current,past:a.type === 'edit' && a.group && a.group === s.group && a.time-s.time < 900 ? s.past : [...s.past,s.current].slice(-30),future:[],group:a.type === 'edit' ? a.group || '' : '',time:a.type === 'edit' ? a.time : 0};
+  return {current,past:a.type === 'edit' && a.group && a.group === s.group && (a.group.startsWith('gesture:') || a.time-s.time < 900) ? s.past : [...s.past,s.current].slice(-30),future:[],group:a.type === 'edit' ? a.group || '' : '',time:a.type === 'edit' ? a.time : 0};
 }

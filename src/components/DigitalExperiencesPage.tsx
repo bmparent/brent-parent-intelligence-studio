@@ -27,6 +27,20 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: 'Signal House',
+    kind: 'Interactive case study · Original Eidos concept',
+    image: '/images/case-studies/signal-house.svg',
+    alt: 'Original vector scene of an imagined glass-fronted house over still water.',
+    href: '/work/signal-house',
+    action: 'Inspect the scene and its layers',
+    headline: 'Make the thinking part of the experience.',
+    description: 'One imagined place stays in view as visitors inspect imagery, light, interface, and assembly. Direct controls let people reveal the layers without losing the whole idea.',
+    build: ['React and TypeScript keep the chapter, light, and layer controls synchronized with one SVG scene.', 'Native range inputs and checkboxes offer keyboard and touch alternatives. Motion is optional and respects reduced motion.', 'Every chapter is prerendered with semantic headings. The full scene remains available without WebGL or animation.'],
+    application: 'A focused interactive example can help a visitor understand what is being built and choose a useful next step.',
+    disclosure: 'Original Eidos Works concept, including the vector artwork. No client engagement, private source material, or measured business outcome is claimed.',
+    color: 'teal'
+  },
+  {
     title: 'Holidays in Hollywood',
     kind: 'Theatrical storefront · Public reconstruction',
     image: holidaysImage,
