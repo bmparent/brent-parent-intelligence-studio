@@ -8,8 +8,8 @@ This implements the owner's request to extend Playground and its useful outputs.
 - Shared backend dependency: draft PR72 `952e68ff75da6857e25f249bebd96ea65116e294`, itself on draft PR71. Shared changes will have their own isolated checkout.
 - Observatory: separate application `apps/sentinel-observatory/live` in `bmparent/eidos`, stacked on PR73 `00d49ff2e8ef74931503fb7a27046857228d0b04`. Do not fold research/training or assistant code into the Works bundle.
 - Existing paid-template and template-delivery checkouts contain uncommitted work. They are left intact.
-- Source is schema4 with legacy formats1–3; `releaseBoundary.ts` restricts cloud to the accepted schema1 subset. Old README/product-release schema descriptions are historical.
-- The actual current-state file will be recorded if present; the handoff's unverified path is not treated as existing.
+- Starting source was schema4 with legacy formats1–3; `releaseBoundary.ts` restricts cloud to the accepted schema1 subset. Old README/product-release schema descriptions are historical.
+- The handoff's `docs/implementation/current-state.md` is absent. This plan, the dated acceptance ledger and newer source/release records supply the reconciled state.
 
 ## Dependency-aware milestones
 
@@ -17,7 +17,7 @@ This implements the owner's request to extend Playground and its useful outputs.
 | --- | --- | --- |
 | M0 | Reconcile source, contracts, deployment and instructions | Record exact ancestry, modes and preserved boundaries |
 | M1 | Shared document/history/save; Effect and Artwork studios | Edit, continuous gesture undo, restore, save/reopen, import validation, independent exports/fallback |
-| M2 | Configurator and interactive original case study | Matching configuration/preview/package, real included features, keyboard/reduced motion |
+| M2 | Original sample configurator, private verified-archive family derivation, interactive original case study | Matching actual files/preview/package, unchanged frozen base/rights, new derivative identity, real included features, keyboard/reduced motion |
 | M3 | Bounded operations, synchronized Layout, Motion | Stale guards, common history, matching views, independent animation |
 | M4 | Observatory coordinated evidence views | Selected window/event across views; explicit source states; dedupe; model outage preserves facts |
 | M5 | Guides, acceptance evidence, paired previews and draft PRs | Exact source/build receipts, usable exports/screenshots, per-scope readiness |
@@ -34,4 +34,6 @@ No LIVE payments, canonical promotion, changes to approved prices, release gate 
 
 ## Current status
 
-Implementation in progress. Acceptance receipts will be written to `artifacts/showcase/` and a dated acceptance record. Production promotion is not authorized by this candidate.
+All browser-only studios, original samples, private archive-derivation source and coordinated Observatory fixture views are implemented. Final exact-source browser/CI/hosted acceptance is recorded separately in SHOWCASE_ACCEPTANCE_2026-10-13.md and artifacts/showcase. A prior24b7a98 isolated preview passed all six workflows; later audit fixes add pre-transaction save guards, independent header navigation, true half-drop repeat units and the actual family derivative mechanism. They require their own subsequent frozen-source deployment receipt. Production, account-format5, hosted AI, paid-provider/native installation and actual sensor/model promotion remain held.
+
+Private archive derivation verifies frozen candidate ZIP SHA/size and every embedded manifest file before adapting real family source. It preserves original archives/notices/native handlers, creates a distinct ID and actual output inventory, and keeps paid bytes out of public evidence. Options share configuration3 history/save/reopen, with explicit v1/v2 migration; the ZIP must be reattached after document/family/reopen switches. Source-operation generations supplement document guards so Clear/replacement invalidates pending work. Preview/query/fragment behavior is checked against independent output. Hash/possession verification grants no entitlement or new rights.

@@ -8,7 +8,7 @@ The owner requested implementation of the attached Eidos Works handoff in the Wo
 
 The initial working directory was a non-Git source copy. Existing paid-template and template-delivery worktrees had uncommitted work and were left untouched. New site branch `codex/showcase-20261013` starts at PR105 `3053d9556bcca9013e66702b799f9a4bf487f861`; merge `74248d6dde4512a241029caf9fd129e8e2c85471` incorporates public main `4da07a38f445c1db4763f668d56ddbda32927a4a`. Draft site PR107 is stacked on PR105. Its dependency PR102 remains unaccepted.
 
-The actual source has project schema4, renderer identities and a production-cloud schema1 subset; older README/product-release descriptions are historical. No `docs/implementation/current-state.md` exists in the reconciled checkout. `SHOWCASE_PLAN_2026-10-13.md`, this ledger, current source and dated implementation/release records supply the current state.
+The reconciled starting source had project schema4, renderer identities and a production-cloud schema1 subset; older README/product-release descriptions are historical. No `docs/implementation/current-state.md` exists in the reconciled checkout. `SHOWCASE_PLAN_2026-10-13.md`, this ledger, current source and dated implementation/release records supply the current state.
 
 Works backend branch `codex/showcase-studio-boundary-20261013` starts at PR72 `952e68ff75da6857e25f249bebd96ea65116e294`. Draft PR74 runtime source `3ebbc4d0e4cfd9b72947b097366e8b1b6fe8b573`; receipt/tooling head `37f4633f236bacae14c5b799becc2d2cea5528f4`. The shared studio boundary matches byte-for-byte, SHA256 `5af285245ece42499a9f05cb5bbbf9a2ef7452ed526523a409ddb06271843e0e`. An older vendored renderer was not silently replaced with the local editor's schema/fonts.
 
@@ -20,7 +20,7 @@ Observatory remains in its actual separate app `apps/sentinel-observatory/live`.
 | --- | --- | --- | --- | --- |
 | M0 reconciliation | Yes | Exact ancestry, dirty-work preservation, source/production baseline | Production baseline `/playground/` observed with original page editor, no studio selector | No promotion |
 | M1 foundation + Effect + Artwork | Yes | Shared schema/history/autosave; real gesture Undo; restore/import; independent page/header/vector/raster outputs; malformed/stale input and failed-write recovery | Paired site tasks and actual HTTP409 refusal verified; studio account format intentionally blocked | NO-GO for cloud/release |
-| M2 sample configurator + case study | Partial overall; original sample complete | Four distinct directions, exact files/modules, PNG attachment/reimport; chapters/light/layers; independent static package; no-JS prerender proof | Paid/native/builder/provider acceptance is not established by this sample | Paid release NO-GO |
+| M2 configurator + private derivative + case study | Local implementation complete; provider acceptance partial | Four original directions; exact files/modules/PNG; verified-base actual family derivation with new hashes and unchanged parent/notices; chapters/light/layers/no-JS | Original samples and private local derivatives do not establish paid entitlement/native/builder/provider acceptance | Paid release NO-GO |
 | M3 bounded editing + Layout + Motion | Partial overall; local deterministic scope complete | Shared validation/history; stale/same-turn denial; Structure/Canvas/Responsive; real animation ZIP with independent playback | Hosted AI/model spending not enabled; WebMCP browser registration remains separate | Provider path held |
 | M4 Observatory evidence views | Partial overall; evidence views complete | 122 Node cases; 17 local browser checks; canonical parity 954 frames / 41,022 comparisons | Seven actual hosted fixture checks; owner-private candidate; real sensor/model unavailable | Fixture review only |
 | M5 guides + complete delivery | Yes | Output/use guides, original sample checklist, receipts/screenshots/exports and draft PRs | Paired preview/readback passed; archive receipt records mounted-copy status | Review candidate only |
@@ -98,11 +98,11 @@ This ledger, plan, schema/history/export tests, local/CI browser receipts, indep
 
 ### Remaining uncertainty
 
-Schema5 hosted ownership/two-account/reopen/asset acceptance is unavailable while that format and account flags remain disabled. Hosted AI/model identifiers/spend/provider execution have not been enabled. Licensed purchased-archive personalization is absent; immutable paid products retain their existing gates, rights and bytes. Native hosted builder installation/mail/receipt/fulfillment and LIVE acceptance are not established by these samples. Actual candidate sensor/model/collector execution and physical-device performance remain unproven. Python proof has one existing Windows symlink-privilege block (WinError1314);27 other cases passed. No GPU/browser family/accessibility certification is implied by Chromium fixture checks.
+Schema5 hosted ownership/two-account/reopen/asset acceptance is unavailable while that format and account flags remain disabled. Hosted AI/model identifiers/spend/provider execution have not been enabled. The first preview lacked purchased-source personalization; the follow-up below adds a private local derivative of user-supplied verified candidate source. Hosted derivative fulfillment/ownership remains absent; immutable paid products retain their gates, rights and bytes. Native hosted builder installation/mail/receipt/fulfillment and LIVE acceptance are not established by these outputs. Actual candidate sensor/model/collector execution and physical-device performance remain unproven. Python proof has one existing Windows symlink-privilege block (WinError1314);27 other cases passed. Native browser-chrome zoom is not verified in headless testing; CDP magnification and effective reflow are recorded separately. No GPU/browser family/accessibility certification is implied by Chromium fixture checks.
 
 ## Backlog and rollback
 
-Next bounded gates: repair/accept the exact hosted site; then only authorized paired cloud ownership/revision/reopen work; configured hosted AI/budget acceptance; purchased-edition configuration through explicit immutable derivative identity; authorized native/builder installation and delivered-mail evidence; actual sensor and model bindings with source provenance; optional WebMCP registration after browser support/contracts are verified. Broader unrelated showcase applications are outside this delivery.
+Next bounded gates: paired cloud ownership/revision/reopen work; configured hosted AI/budget acceptance; purchased-edition configuration through explicit immutable derivative identity; authorized native/builder installation and delivered-mail evidence; actual sensor and model bindings with source provenance; optional WebMCP registration after browser support/contracts are verified. The exact hosted local-only candidate has passed the readback recorded below. Broader unrelated showcase applications are outside this delivery.
 
 Source rollback is the explicit site PR105/main ancestry above, backend PR72, and Observatory PR73. Preview rollback removes or reverts only the new isolated preview identities/branch settings; no production deployment, purchased archive, account database or core model migration is involved. Existing working trees and draft PRs remain intact.
 
@@ -127,7 +127,7 @@ Source rollback is the explicit site PR105/main ancestry above, backend PR72, an
 17. Receipts: linked paths and exact identities above.
 18. Remaining uncertainty: stated explicitly; hosted local-only review accepted; release/provider gates remain NO-GO.
 
-## Accepted site runtime and final readback
+## Historical accepted site runtime and readback — a4d4219
 
 Accepted application source/build: `a4d4219569d6a4c2112bb55b0bebb39ae29be138`. Immutable Pages URL: https://0ca368fb.eidosworks-showcase-20261013.pages.dev. Paired alias for complete tasks and API origin: https://eidosworks-showcase-20261013.pages.dev. Backend remains protected runtime `3ebbc4d` at the pinned URL above. Direct immutable URLs are static build receipts; the exact approved backend browser origin is the alias.
 
@@ -140,3 +140,39 @@ Eight final hosted readback checks passed in hosted/paired-acceptance.json: corr
 One measured hosted navigation (Windows Chromium headless, GPU disabled,1440x1000, reduced motion) reached visible Effect Studio in1379ms; DOMContentLoaded360.4ms, responseEnd166.2ms. This is one environment-dependent observation, not a general performance claim.
 
 Candidate decision: **GO for isolated local-only studio/original-sample/private-fixture review; NO-GO for canonical promotion, schema5 account saving, hosted AI, paid release, native/builder compatibility or real sensor/model claims.** No approved commercial price or purchased archive was changed. Final delivery-only commits may add guides/test tooling/receipts; runtime identity above remains the exact tested application until a newer deployment receipt explicitly supersedes it.
+
+## Historical accepted runtime receipt — 2026-10-14 UTC / October 13 Eastern
+
+This section supersedes the previous accepted runtime identity while preserving its successful history. Final deployed source: `24b7a985b186f81901df78d8e41a531ec5b8579c`. Immutable preview: https://54d4e19d.eidosworks-showcase-20261013.pages.dev. Use https://eidosworks-showcase-20261013.pages.dev for the permitted paired API origin. Backend runtime, isolated validation database, disabled provider modes and unchanged canonical deployment ID remain exactly as recorded above.
+
+All six workflows passed on this exact source: [Showcase isolated preview38492966288](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38492966288), [Site quality38492966281](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38492966281), [Playground editor release38492966263](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38492966263), [Community38492966273](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38492966273), [Template commerce38492966249](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38492966249), and [Wellway38492966270](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38492966270). The editor job passed its three-engine/two-width browser checks and full site gates; its main-only production upload/readback steps were correctly skipped. These passing jobs do not establish delivery of live mail or live payments.
+
+The new Showcase job repeated complete studio tasks, independent Effect/Artwork/Motion packages,15 detailed studio checks and the configurator/case suite including compiled no-JS content. Final actual-hosted readback passed eight checks at `2026-10-14T01:01:45.798Z`; alias/immutable compiled CSS/JS hashes match. Evidence: `artifacts/showcase/ci-24b7a98/`, `final-ci-status.json`, `hosted-preview.json`, `hosted/paired-acceptance.json`, `browser-hosted/`, and `hosted/effect-studio-desktop.png`.
+
+The final single navigation reached visible Effect Studio in1441ms; DOMContentLoaded476.6ms, responseEnd253.2ms, Windows Chromium headless1440x1000, GPU disabled, reduced motion. This supersedes the previous measurement as the final observation; both are individual environment-dependent samples, not benchmarks.
+
+The application decision remains **GO_ISOLATED_REVIEW_ONLY** and **production NO-GO**. Docs/artifact-only receipt commits after24b7a98 do not replace its deployed runtime identity. Full handoff release remains partial for the exact missing account/AI/paid/native/real-sensor scopes in the matrix. No core model behavior changed. Site evidence is mirrored append-only when available; `drive_manifest.json` is authoritative for copied counts/path/checksums. Mounted readback cannot establish remote synchronization.
+
+## Follow-up audit implementation and proof
+
+The final scope review found that original samples alone did not fulfill the buildable purchased-source configuration requirement. That was unfinished engineering, rather than wholly a provider dependency. Private local archive derivation is now implemented in `e5524b356e2bd065066c18053039d371d0022709`. It verifies public frozen candidate SHA256/byte counts, safe ZIP records and each embedded manifest entry before adapting real family HTML/CSS/configuration. Supported versions: Switchboard1.0.3, Tideglass1.0.2, Matter1.0.2 and Nightjar1.0.5, developer editions only. Original ZIP/notices/native handlers remain unchanged; a separately identified local derivative has actual output hashes, parent/configuration provenance and explicit no-entitlement status. No server fulfillment or historical retrieval was changed. Source/query/fragment preview adaptation is distinct from exported original handlers. Component operation generations/alive guards supplement configuration revisions so Clear and source replacement invalidate pending work.
+
+The same review caught a delayed IndexedDB opening that could let an obsolete project write after a newer project had saved. Commit `27c1f59f8af231733aca625627993addd4f06794` checks freshness after acquisition, immediately before the write transaction, and guards completion. Three actual delayed manual/autosave/variation tests prove newer data survives reload. The commit also completes independent header destinations and keyboard focus; four browser checks cover downloaded header navigation, phone Menu/Escape and no-JS fallback, plus honestly scoped magnification/reflow.
+
+Commit `41cfde211757a66c963d51fbdfb534a628ab0731` adds a true two-column half-drop SVG/PNG repeat unit. The three-column inspection proof cannot serve as that rectangular repeat unit. Downloaded SVG repetition across four columns had zero channel MAE against the selected pattern; PNG maximum channel MAE0.785 on0–255, alpha0.042. An incorrect single-cell-grid negative control differed by up to32.118. Five browser legacy import cases cover formats1–4 and both renderer identities, exact downloaded source before migration, explicit schema5 upgrade, identity/content preservation and save/reopen.
+
+Focused `npm run test:showcase` passed37 cases. Independent actual-base review passed64 page variants,3728 local references,256 in-memory previews and448 disabled-module checks, with no missing references or changed notice/native-handler bytes. Source hashes, environment, exact root command and safe metadata receipts are under `artifacts/showcase/buyer-review/`; paid input/output ZIPs are excluded. Browser proof and subsequent exact frozen-source CI/deployment must be read from their own new receipts rather than inherited from24b7a98. Native zoom, entitlement, hosted provider and actual sensor acceptance remain distinct.
+
+Additional logic:
+
+```text
+write_allowed_after_database_open = captured_generation == current_generation
+source_result_allowed = component_alive AND captured_source_generation == current_source_generation
+                        AND captured_configuration_revision == current_configuration_revision
+base_integrity = SHA256(uploaded_zip) == pinned_sha256 AND uploaded_bytes == pinned_bytes
+                 AND every_manifest_file_hash_matches
+derivative_id = SHA256(generator_version || base_sha256 || configuration_sha256)[0:20]
+half_drop_rectangular_period = (2 * cell_width, cell_height)
+```
+
+This improves the previous state by testing disk contents and independent family outputs, rather than relying on save notices or attractive free samples. The philosophical principle remains revisitable truth: preserve originals, identify derivatives honestly, and make claims at the scope actually observed. It strengthens reproducibility and inspectable explanation without changing Brain/Sentinel model behavior or proving new learning/compression/detection outcomes.

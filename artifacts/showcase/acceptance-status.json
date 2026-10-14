@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "decision": "GO_ISOLATED_REVIEW_ONLY",
   "productionDecision": "NO-GO",
-  "siteRuntimeCommit": "a4d4219569d6a4c2112bb55b0bebb39ae29be138",
-  "siteImmutable": "https://0ca368fb.eidosworks-showcase-20261013.pages.dev",
+  "siteRuntimeCommit": "24b7a985b186f81901df78d8e41a531ec5b8579c",
+  "siteImmutable": "https://54d4e19d.eidosworks-showcase-20261013.pages.dev",
   "siteAlias": "https://eidosworks-showcase-20261013.pages.dev",
   "backendRuntimeCommit": "3ebbc4d0e4cfd9b72947b097366e8b1b6fe8b573",
   "backendReceiptHead": "37f4633f236bacae14c5b799becc2d2cea5528f4",
@@ -93,5 +93,17 @@
       "reason": "Browser width/emulation only"
     }
   },
-  "fullHandoffReleaseAccepted": false
+  "fullHandoffReleaseAccepted": false,
+  "exactRuntimeCI": {
+    "allSixWorkflowsPassed": true,
+    "runs": [38492966288, 38492966281, 38492966263, 38492966273, 38492966249, 38492966270],
+    "productionDeploymentSteps": "skipped; non-main isolated candidate",
+    "receipt": "final-ci-status.json"
+  },
+  "finalHostedReadback": {
+    "timestampUtc": "2026-10-14T01:01:45.798Z",
+    "checksPassed": 8,
+    "receipt": "hosted/paired-acceptance.json"
+  },
+  "archiveReceipt": "drive_manifest.json"
 }

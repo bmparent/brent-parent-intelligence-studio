@@ -36,7 +36,12 @@ jobs:
           node scripts/verify-showcase-browser.mjs
           node scripts/verify-showcase-exports.mjs
           SHOWCASE_EVIDENCE=artifacts/showcase/studio-details-ci node scripts/verify-showcase-studio-details.mjs
+          SHOWCASE_EVIDENCE=artifacts/showcase/persistence-races-ci node scripts/verify-showcase-persistence-races.mjs
+          SHOWCASE_EVIDENCE=artifacts/showcase/seamless-ci node scripts/verify-showcase-seamless.mjs
+          SHOWCASE_EVIDENCE=artifacts/showcase/legacy-imports-ci node scripts/verify-showcase-legacy-imports.mjs
+          SHOWCASE_EVIDENCE=artifacts/showcase/header-ci node scripts/verify-showcase-header.mjs
           node scripts/verify-showcase-template-case-browser.mjs
+          SHOWCASE_EVIDENCE=artifacts/showcase/buyer-derivative-ci node scripts/verify-buyer-derivative-browser.mjs
       - name: Deploy only isolated showcase Pages project
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

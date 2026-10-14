@@ -1,0 +1,22 @@
+✔ trusted public pins contain hashes only and match the current frozen developer release (4.9544ms)
+✔ four public synthetic family fixtures exercise deterministic adapters, preserving input and original notices (229.4402ms)
+✔ page/module pruning, contact-disabled fallback, schema migrations and exact new inventory (20.4341ms)
+✔ wrong hash, metadata, edition, missing source, malformed and unsupported archive paths refuse (45.2737ms)
+✔ bounded ZIP parser refuses duplicate paths, traversal, and symbolic links directly (0.5119ms)
+✔ trusted synthetic archive pin cannot conceal wrong edition prefix or an embedded file hash mismatch (12.7118ms)
+✔ private preview retains bounded native search and anchor context without changing exported family handlers (17.6957ms)
+✔ each family uses its real current immutable developer identity without mutating the catalog (8.8777ms)
+✔ every supported page subset and compatible module selection exports exactly its advertised files (192.1476ms)
+✔ preview and standalone package share composition, styles, and supported feature logic (4.0936ms)
+✔ unsupported platforms, stale versions, invalid modules, and malformed documents fail closed (3.2807ms)
+✔ incompatible options are removed by explicit UI reconciliation and do not silently enter imports (1.2839ms)
+✔ sample content is escaped and contact delivery is represented honestly (0.9604ms)
+✔ schema1 and schema2 migrate explicitly, PNG artwork survives source roundtrip and packages exact owned bytes (4.2023ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1098.2291
