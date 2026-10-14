@@ -37,6 +37,8 @@ jobs:
           PG_BASE_URL: http://127.0.0.1:4173
           PG_ENGINES: chromium,firefox,webkit
           PG_PERSISTENCE_URL: http://127.0.0.1:4173/playground/
+          PG_PERSISTENCE_EVIDENCE: ${{ runner.temp }}/pg-evidence/persistence
+          PG_GESTURE_EVIDENCE: ${{ runner.temp }}/pg-evidence/gestures
         run: |
           npm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &
           SERVER_PID=$!

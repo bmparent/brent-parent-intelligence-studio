@@ -20,7 +20,7 @@ const page = await context.newPage();
 page.setDefaultTimeout(15000);
 const receipt = {
   timestamp: new Date().toISOString(), base, source: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
-  environment: 'Chromium headless, GPU disabled, Windows host; browser viewport is not a physical device',
+  environment: `Chromium headless, GPU disabled, ${process.platform}/${process.arch}, Node ${process.version}; browser viewport is not a physical device`,
   setup: 'Valid reproducible project JSON imported through the visible Project controls. All tested mutations use actual pointer or keyboard controls. IndexedDB reads are evidence only.',
   checks: [], errors: [], console: [], metrics: [], limitations: [
     'Physical-device and touch-device acceptance untested.',
@@ -47,7 +47,10 @@ async function selectPhoto() {
   const photo = frame.locator('#' + photoId);
   await photo.scrollIntoViewIfNeeded();
   await photo.click({ position: { x: 20, y: 20 } });
-  await frame.getByRole('button', { name: 'Drag selected block', exact: true }).waitFor();
+  await frame.getByRole('toolbar', { name: 'Movable photograph', exact: true }).getByRole('button', { name: 'Drag selected block', exact: true }).waitFor();
+  // The iframe creates its toolbar before postMessage updates React's selection.
+  // Wait for the same stable ID in Layers; an iframe handle alone is not an acknowledgement.
+  await page.locator(`[data-sort-id="${photoId}"] > .pg-layer-line > .pg-layer-selected[aria-pressed="true"]`).waitFor();
   return photo;
 }
 async function beginMove() {

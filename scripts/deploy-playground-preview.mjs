@@ -2,6 +2,7 @@ import {mkdir,writeFile,appendFile,readFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {validatePlaygroundPreviewPin,verifyManualPreviewConfig,playgroundPreviewProject as name,playgroundPreviewBranch as branch} from './playground-preview-pin.mjs';
 import {verifyPublishedAssets} from './playground-preview-assets.mjs';
+import {verifyPublishedRelay} from './playground-preview-relay.mjs';
 
 const env=process.env;
 for(const key of ['CLOUDFLARE_ACCOUNT_ID','CLOUDFLARE_API_TOKEN','EIDOS_PLAYGROUND_PLATFORM_TOKEN','EIDOS_TEMPLATES_PREVIEW_BYPASS'])if(!env[key])throw Error('Missing isolated preview binding: '+key);
@@ -44,10 +45,14 @@ execFileSync(process.platform==='win32'?'npx.cmd':'npx',['wrangler','pages','dep
 project=await api('/'+name);const liveAfter=await api('/eidosworks');
 if(liveBefore.latest_deployment?.id!==liveAfter.latest_deployment?.id)throw Error('Canonical deployment changed concurrently; reconcile separately.');
 const publishedAssets=await verifyPublishedAssets(pin.siteOrigin,'dist');
-const relayResponse=await fetch(pin.siteOrigin+'/api/public-config',{redirect:'error'});
-if(!relayResponse.ok)throw Error(`Published Pages relay failed (${relayResponse.status}).`);
-const relayedConfig=await relayResponse.json();verifyManualPreviewConfig(relayedConfig);
-if(relayedConfig.runtimeSourceRevision!==pin.backendSha || relayedConfig.runtimeBundleHash!==pin.bundleHash)throw Error('Published Pages relay does not reach the pinned backend.');
+let relayReadiness;
+try {relayReadiness=await verifyPublishedRelay(pin.siteOrigin,pin);} catch(error) {
+  await mkdir('artifacts/playground-unified',{recursive:true});
+  const failure={timestamp:new Date().toISOString(),phase:'published-relay-readiness',project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:pin.siteOrigin,backendSha:pin.backendSha,bundleHash:pin.bundleHash,publishedAssets,relayReadiness:error.readiness??{state:'failed',reason:'readiness_configuration_error'},canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
+  await writeFile('artifacts/playground-unified/hosted-preview-failed.json',JSON.stringify(failure,null,2)+'\n');
+  throw error;
+}
+const relayedConfig=relayReadiness.config;
 await mkdir('artifacts/playground-unified',{recursive:true});
-const receipt={timestamp:new Date().toISOString(),project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:pin.siteOrigin,backendUrl:pin.backendUrl,backendSha:pin.backendSha,backendDeployment:pin.backendDeployment,bundleHash:pin.bundleHash,sourceRevision:pin.sourceRevision,database:pin.database,mode:pin.mode,publicConfig,relayedConfig,boundaryChecks,publishedAssets,canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
+const receipt={timestamp:new Date().toISOString(),project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:pin.siteOrigin,backendUrl:pin.backendUrl,backendSha:pin.backendSha,backendDeployment:pin.backendDeployment,bundleHash:pin.bundleHash,sourceRevision:pin.sourceRevision,database:pin.database,mode:pin.mode,publicConfig,relayedConfig,relayReadiness,boundaryChecks,publishedAssets,canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
 await writeFile('artifacts/playground-unified/hosted-preview.json',JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt,null,2));
