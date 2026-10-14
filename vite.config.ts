@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { platformPreview } from './scripts/platform-preview';
+import { prerenderPreview } from './scripts/prerender-preview';
 
 export default defineConfig({
-  plugins: [react(), platformPreview()],
+  plugins: [react(), platformPreview(), prerenderPreview()],
   server: {
     host: '0.0.0.0',
     allowedHosts: ['terminal.local'],

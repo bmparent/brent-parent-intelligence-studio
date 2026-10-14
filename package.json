@@ -44,7 +44,7 @@
     "growth:links": "node scripts/growth-links.mjs",
     "growth:report": "node scripts/growth-report.mjs",
     "verify:growth-seo": "node scripts/verify-growth-seo.mjs",
-    "test:showcase": "node --import tsx --test scripts/test-showcase-foundation.ts scripts/test-playground-studios.ts scripts/test-template-configurator.ts"
+    "test:showcase": "node --import tsx --test scripts/test-showcase-foundation.ts scripts/test-playground-studios.ts scripts/test-template-configurator.ts scripts/test-prerender-preview.ts"
   },
   "dependencies": {
     "@babylonjs/core": "^9.10.1",
