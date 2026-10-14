@@ -1,3 +1,4 @@
+import {flattenNodes} from './authoringSchema';
 import { useState } from 'react';
 import { labels, sectionKind, validateProject, type Project } from './model';
 import { upgradeProject } from './model';
@@ -27,7 +28,7 @@ export function LayoutStudio({project,edit,documentId,guard,notify}:Props) {
       <details><summary>Use your layout</summary><p>Structure, canvas and phone views share these section identities. Arrow buttons offer keyboard reordering. Select responsive blocks to group, duplicate and edit their flow. Export the page to use it independently.</p></details>
     </aside>
     <section className={'studio-layout-views '+(view==='responsive'?'is-responsive':'')} aria-label="Synchronized layout previews">
-      <Preview project={project} documentId={documentId} selected={section.id} selectedNode={node} editing={true} mobile={false} edit={edit} guard={guard} notify={notify} onSelect={setSelected} onNodeSelect={select} onInspectNode={select} onLink={notify}/>
+      {view==='structure'?<div className="studio-structure-board" role="tree" aria-label="Page structure">{project.sections.map(s=><button role="treeitem" key={s.id} aria-selected={s.id===section.id} onClick={()=>{setSelected(s.id);setNode('');}}><strong>{labels[sectionKind(s)]}</strong><span>{s.title||'Empty section'}</span><small>{s.visible?'Visible':'Hidden'} · {s.style?.spacing??project.tokens.spacing}px desktop / {s.style?.mobileSpacing??s.style?.spacing??project.tokens.spacing}px phone</small>{s.authoring&&<span className="studio-structure-nodes">{flattenNodes(s.authoring.root).map(n=><small key={n.id}>{n.name||n.type}</small>)}</span>}</button>)}</div>:<Preview project={project} documentId={documentId} selected={section.id} selectedNode={node} editing={true} mobile={false} edit={edit} guard={guard} notify={notify} onSelect={setSelected} onNodeSelect={select} onInspectNode={select} onLink={notify}/>}
       {view==='responsive'&&<Preview project={project} documentId={documentId} selected={section.id} editing={false} mobile={true} guard={guard} notify={notify} onSelect={setSelected} onLink={notify}/>}
       {section.authoring&&<BlockControls project={project} selected={node} onSelect={select} edit={edit} notify={notify} guard={guard} mobile={false}/>}
     </section>

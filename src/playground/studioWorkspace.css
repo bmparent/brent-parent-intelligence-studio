@@ -7,3 +7,5 @@
 @media(max-width:760px){.studio-page-preview>div,.studio-layout-views>div[data-preview-width]{height:60dvh!important;min-height:420px}}
 
 .studio-app button[aria-pressed=true]{color:#26351d}
+
+.studio-structure-board{display:flex;flex-direction:column;gap:12px;padding:14px}.studio-structure-board>button{display:flex;flex-direction:column;text-align:left;gap:8px;padding:20px;border-left:4px solid #8eaa6a}.studio-structure-board>button[aria-selected=true]{background:#e7f2cf;border-left-color:#42651e}.studio-structure-board small{color:#5d6954}.studio-structure-nodes{display:flex;flex-wrap:wrap;gap:6px}.studio-structure-nodes small{padding:4px 8px;background:#f3f5ee;border-radius:4px}
