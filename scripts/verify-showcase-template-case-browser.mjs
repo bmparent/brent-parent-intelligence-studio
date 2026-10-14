@@ -182,15 +182,15 @@ try {
   await check('JSON roundtrip, invalid import preserves open work, stale import cannot overwrite edit', async () => {
     const file = await readFile(resolve(output, 'downloaded-matter-expressive/configuration.json'));
     await page.getByLabel('Family', { exact: true }).selectOption('nightjar');
-    await page.locator('input[type=file][accept="application/json,.json"]').setInputFiles({ name: 'configuration.json', mimeType: 'application/json', buffer: file });
+    await page.locator('.tc-toolbar input[type=file][accept="application/json,.json"]').setInputFiles({ name: 'configuration.json', mimeType: 'application/json', buffer: file });
     await page.getByText('Imported configuration. Undo restores your previous work.', { exact: true }).waitFor();
     assert.equal(await page.getByLabel('Main headline', { exact: true }).inputValue(), 'A study you can keep.');
     await page.getByRole('button', { name: 'Remove uploaded artwork', exact: false }).waitFor();
-    await page.locator('input[type=file][accept="application/json,.json"]').setInputFiles({ name: 'invalid.json', mimeType: 'application/json', buffer: Buffer.from('{broken') });
+    await page.locator('.tc-toolbar input[type=file][accept="application/json,.json"]').setInputFiles({ name: 'invalid.json', mimeType: 'application/json', buffer: Buffer.from('{broken') });
     await page.getByRole('alert').waitFor();
     assert.equal(await page.getByLabel('Main headline', { exact: true }).inputValue(), 'A study you can keep.');
     await page.evaluate(() => { const original = File.prototype.text; File.prototype.text = async function() { const data = await original.call(this); await new Promise(resolve => setTimeout(resolve, 450)); return data; }; });
-    await page.locator('input[type=file][accept="application/json,.json"]').setInputFiles({ name: 'slow.json', mimeType: 'application/json', buffer: file });
+    await page.locator('.tc-toolbar input[type=file][accept="application/json,.json"]').setInputFiles({ name: 'slow.json', mimeType: 'application/json', buffer: file });
     await page.getByLabel('Main headline', { exact: true }).fill('A newer manual edit.');
     await page.getByRole('alert').filter({ hasText: 'changed while the file was opening' }).waitFor();
     assert.equal(await page.getByLabel('Main headline', { exact: true }).inputValue(), 'A newer manual edit.');
