@@ -1,12 +1,14 @@
-import {mkdir,writeFile,appendFile} from 'node:fs/promises';
+import {mkdir,writeFile,appendFile,readFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 const name='eidosworks-showcase-20261013', branch='codex/showcase-20261013';
 const env=process.env;
 for(const key of ['CLOUDFLARE_ACCOUNT_ID','CLOUDFLARE_API_TOKEN','EIDOS_TEMPLATES_PLATFORM_URL','EIDOS_TEMPLATES_PLATFORM_TOKEN','EIDOS_TEMPLATES_PREVIEW_BYPASS','EIDOS_TEMPLATES_BACKEND_SHA'])if(!env[key])throw Error('Missing scoped preview binding: '+key);
-const backend=new URL(env.EIDOS_TEMPLATES_PLATFORM_URL);
+const pin=JSON.parse(await readFile('config/showcase-preview.json','utf8'));
+if(pin.project!==name||pin.siteOrigin!=='https://'+name+'.pages.dev')throw Error('Showcase pairing identity changed.');
+const backend=new URL(pin.backendUrl);
 if(backend.protocol!=='https:'||!backend.hostname.endsWith('.vercel.app')||backend.pathname!=='/'||backend.search||backend.hash)throw Error('Expected pinned isolated backend origin.');
 const sha=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
-if(!/^[a-f0-9]{40}$/.test(env.EIDOS_TEMPLATES_BACKEND_SHA))throw Error('Missing exact backend SHA.');
+if(!/^[a-f0-9]{40}$/.test(pin.backendSha))throw Error('Missing exact backend SHA.');
 const base=`https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(env.CLOUDFLARE_ACCOUNT_ID)}/pages/projects`;
 async function api(path,method='GET',body,optional=false){
  const response=await fetch(base+path,{method,headers:{authorization:'Bearer '+env.CLOUDFLARE_API_TOKEN,'content-type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});
@@ -26,5 +28,5 @@ project=await api('/'+name);
 const liveAfter=await api('/eidosworks');
 if(liveBefore.latest_deployment?.id!==liveAfter.latest_deployment?.id)throw Error('Canonical deployment changed concurrently; reconcile separately.');
 await mkdir('artifacts/showcase',{recursive:true});
-const receipt={timestamp:new Date().toISOString(),project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:'https://'+name+'.pages.dev',backendUrl:backend.origin,backendSha:env.EIDOS_TEMPLATES_BACKEND_SHA,database:'Existing isolated validation database through the pinned backend; no production fallback provisioned here.',modes:{cloud:'schema1 only; studios local-only',ai:'existing disabled gate',commerce:'existing TEST/LIVE server gates unchanged'},canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
+const receipt={timestamp:new Date().toISOString(),project:name,branch,siteSha:sha,previewUrl:project.latest_deployment?.url,alias:'https://'+name+'.pages.dev',backendUrl:backend.origin,backendSha:pin.backendSha,backendDeployment:pin.backendDeployment,database:pin.database,modes:pin.providerModes,canonicalBefore:liveBefore.latest_deployment?.id,canonicalAfter:liveAfter.latest_deployment?.id};
 await writeFile('artifacts/showcase/hosted-preview.json',JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt,null,2));

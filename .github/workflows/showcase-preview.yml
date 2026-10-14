@@ -2,7 +2,7 @@ name: Showcase isolated preview
 on:
   pull_request:
     branches: [codex/template-release-readiness-20261013]
-    paths: ['src/**', 'public/**', 'functions/**', 'scripts/**', 'package*.json', '.github/workflows/showcase-preview.yml']
+    paths: ['src/**', 'public/**', 'functions/**', 'scripts/**', 'package*.json', 'config/showcase-preview.json', '.github/workflows/showcase-preview.yml']
   workflow_dispatch:
 permissions:
   contents: read
