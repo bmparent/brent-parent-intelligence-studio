@@ -248,7 +248,7 @@ try {
     assert.equal(await page.getByRole('link', { name: 'Try Effect Studio', exact: false }).getAttribute('href'), '/playground?studio=effect');
     await page.getByRole('link', { name: 'Try Effect Studio', exact: false }).click();
     await page.getByRole('heading', { name: 'Effect Studio', level: 1, exact: true }).waitFor();
-    assert.ok(page.url().includes('/playground?studio=effect'));
+    assert.equal(new URL(page.url()).pathname.replace(/\/$/, ''), '/playground'); assert.equal(new URL(page.url()).searchParams.get('studio'), 'effect');
   });
   await check('case study reduced motion, touch-size controls and phone width', async () => {
     await page.goto(`${base}/work/signal-house`);

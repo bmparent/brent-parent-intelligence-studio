@@ -39,7 +39,12 @@
   "/services/digital-experiences",
   "/services/intelligent-systems",
   "/services/storefront-access-systems",
+  "/shop",
+  "/shop/choose",
   "/shop/cinematic-starter",
+  "/shop/configure",
+  "/shop/start",
+  "/shop/template-terms",
   "/snapshot",
   "/terms",
   "/work",
@@ -50,5 +55,6 @@
   "/work/nighttime-spectaculars",
   "/work/pernr-access-gate",
   "/work/production-dashboard",
+  "/work/signal-house",
   "/work/storefront-experience"
 ]

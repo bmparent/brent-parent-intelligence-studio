@@ -54,6 +54,16 @@ The Artwork Studio PNG button generated `artwork-from-playground.png` (41,203 by
 
 No-JavaScript prerender acceptance was not run in that development-server receipt because the current built route was not present yet. It remains a distinct root build/preview check. Browser touch emulation is not physical-device acceptance. Initial selector and SVG-inspection test-probe failures were corrected; timestamped receipts retain the later run history.
 
+### Production-preview hydration regression and correction
+
+CI candidate `19b4e78` passed the individual template/case tasks and the no-JavaScript prerender check, but the final console gate failed with React 418. Its receipt is retained under `artifacts/showcase/ci-19b4e78/template-case-browser/receipt.json`.
+
+The mismatch came from Vite preview routing: `/shop/configure?family=matter`, `/work/signal-house`, and `/playground?studio=effect` received the homepage's prerendered HTML. Their trailing-slash forms received the correct route. React then had to replace the wrong server tree. Development testing did not expose this because Vite's normal development HTML creates a client root rather than hydrating the production directory page. A focused SSR/development-client harness also established that the components' initial state matched.
+
+`scripts/prerender-preview.ts` now resolves only existing built directory indexes for slashless GET/HEAD requests before Vite's SPA fallback. It preserves the visitor's URL and exact query, skips APIs/assets/unsupported paths, and changes no public canonical links or React error handling. The middleware is preview-only; Cloudflare Functions and provider/release boundaries are untouched.
+
+`node --import tsx --test scripts/test-prerender-preview.ts` passes route, query, HEAD, absent-file, method, and traversal guards. Focused ESLint passes. Production client/SSR bundle observations in `artifacts/showcase/hydration-routing-probe.json` show the correct server heading and zero hydration errors for all six slash/slashless cases after the fix. Complete CI acceptance must still rerun on the resulting commit.
+
 ## Acceptance boundaries
 
 Implemented: local configuration/preview/export, typed compatibility, exact local file inventory, separate paid-version inventory, local history/save/reopen/import, original interactive public case study, setup guides and discovery.

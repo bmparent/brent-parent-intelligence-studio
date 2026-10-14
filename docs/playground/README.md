@@ -1,3 +1,5 @@
+Current studio candidate: [Showcase studios](showcase-studios.md) documents schema5 local projects, independent outputs and held cloud/provider boundaries. The older release descriptions below remain historical.
+
 Current product update: see [product-release.md](product-release.md) for the original glass integration, account projects, test checkout configuration, and header exports. The notes below describe the original preview release.
 
 # Eidos Playground

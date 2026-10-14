@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-10-14T00:42:37.239Z",
+  "project": "eidosworks-showcase-20261013",
+  "branch": "codex/showcase-20261013",
+  "siteSha": "a4d4219569d6a4c2112bb55b0bebb39ae29be138",
+  "previewUrl": "https://0ca368fb.eidosworks-showcase-20261013.pages.dev",
+  "alias": "https://eidosworks-showcase-20261013.pages.dev",
+  "backendUrl": "https://eidos-sentinel-rkhg0orv8-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "3ebbc4d0e4cfd9b72947b097366e8b1b6fe8b573",
+  "backendDeployment": "dpl_HJnTcwVPPwj77qebkGZiCoXM9z5L",
+  "database": "existing isolated EIDOS_TEMPLATES_TEST validation database",
+  "modes": {
+    "accounts": "disabled",
+    "ai": "disabled",
+    "commerce": "disabled",
+    "openaiMailPaymentKeys": "not provisioned on this branch",
+    "studioCloud": "local-only; HTTP409 before legacy validation"
+  },
+  "canonicalBefore": "5ddd3dd8-9cb2-489b-8ea7-bd7320a0f74c",
+  "canonicalAfter": "5ddd3dd8-9cb2-489b-8ea7-bd7320a0f74c"
+}
