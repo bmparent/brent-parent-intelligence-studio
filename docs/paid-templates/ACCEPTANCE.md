@@ -170,11 +170,11 @@ All 32 immutable archives were recovered by their frozen hashes, and the backend
 build/trace includes all 8 current and 24 retained packages. A commerce build now
 fails when archives are missing, changed, duplicated or symbolic links.
 
-Workflow38591500899 passed exact hosted TEST source/version/price/allowlist and
+Workflow 38591500899 passed exact hosted TEST source/version/price/allowlist and
 unsigned-webhook rejection before updating only the isolated template preview.
 The canonical deployment remained unchanged. Normal hosted product UI shows
-Switchboard1.0.3 with TEST-only checkout. Package assertions811, frontend
-manifest/storefront6+6, platform35, backend19MJS+57TS, and new pin checks2 passed;
+Switchboard 1.0.3 with TEST-only checkout. Package assertions 811, frontend
+manifest/storefront 6 + 6, platform 35, backend 19 MJS + 57 TS, and new pin checks 2 passed;
 relevant source/build/browser workflows passed on the recorded frozen sources.
 
 Production remains **NO-GO**. Resend Preview binding and actual receipt/recovery
@@ -182,4 +182,4 @@ inbox delivery remain blocked. The connector still exposes LIVE only; actual
 final-pair signed paid-event HTTP2xx, provider replay and TEST refund/access
 removal remain open. Local fixtures do not replace them. Accounts and CMS/builder
 sales remain outside the initial guest/developer acceptance scope. Exact user
-actions, runtime IDs, evidence and rollback: [October14 closeout](STRIPE_COMPLETION_2026-10-14.md).
+actions, runtime IDs, evidence and rollback: [October 14 closeout](STRIPE_COMPLETION_2026-10-14.md).
