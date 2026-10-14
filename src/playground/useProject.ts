@@ -48,13 +48,15 @@ export function useProject() {
     if (!ready || storageError) return;
     let cancelled = false;
     const writeGeneration=editVersion;
+    const sameRevision = guard();
+    const stillCurrent = () => !cancelled && sameRevision();
     const timer = setTimeout(() => {
-      saveWorkspace({ project, snapshots })
+      saveWorkspace({ project, snapshots }, stillCurrent)
         .then(() => {
-          if (!cancelled) setSavedState({ project, snapshots, generation:writeGeneration });
+          if (stillCurrent()) setSavedState({ project, snapshots, generation:writeGeneration });
         })
         .catch(() => {
-          if (!cancelled)
+          if (stillCurrent())
             setStorageError(
               "Could not save on this device. Download project JSON before closing.",
             );
@@ -64,7 +66,7 @@ export function useProject() {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [project, snapshots, ready, storageError, editVersion]);
+  }, [project, snapshots, ready, storageError, editVersion, guard]);
   const dirty =
     ready &&
     (savedState?.project !== project || savedState?.snapshots !== snapshots || savedState?.generation !== editVersion);
@@ -86,7 +88,7 @@ export function useProject() {
     saveNow: async () => {
       const captured = generation.current;
       try {
-        await saveWorkspace({project, snapshots});
+        await saveWorkspace({project, snapshots}, () => captured === generation.current);
         if (captured !== generation.current) return false;
         setStorageError('');
         setSavedState({project, snapshots, generation: editVersion});
@@ -122,7 +124,10 @@ export function useProject() {
     redo: () => { generation.current++; bumpEditVersion(); dispatch({ type: "redo" }); },
     canUndo: !!state.past.length,
     canRedo: !!state.future.length,
-    saveSnapshot: (name: string) =>
+    saveSnapshot: (name: string) => {
+      // Variations also belong to the persisted workspace. Invalidate a
+      // pending manual save that captured an older variation list.
+      generation.current++; bumpEditVersion();
       setSnapshots((v) =>
         [
           {
@@ -133,6 +138,7 @@ export function useProject() {
           },
           ...v,
         ].slice(0, 5),
-      ),
+      );
+    },
   };
 }
