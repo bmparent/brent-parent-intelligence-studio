@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "matter-wordpress-v1",
   "product": "matter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -21,7 +21,7 @@
     {
       "path": "INSTALL.md",
       "bytes": 7363,
-      "sha256": "f8ffa154ef9dd7cfd27c04597724cc7e9beda88cedce0df737d49b253270c3f3"
+      "sha256": "89221442a7dcc74a136b20b6068487dfd5c26492afc6bdc2474029d9c1d240eb"
     },
     {
       "path": "LICENSE.txt",
@@ -31,12 +31,12 @@
     {
       "path": "README.md",
       "bytes": 277,
-      "sha256": "73ce244f318f7a03c0c8d6b3fdf1d62522bd1163628f1c60536270fa2bbba15b"
+      "sha256": "8a1f5a6b7478cda20b979e94e7f841c21b75996c382016b49355386f95fbadb0"
     },
     {
       "path": "SUPPORT.md",
-      "bytes": 1361,
-      "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
     },
     {
       "path": "assets/timber.svg",
@@ -56,7 +56,7 @@
     {
       "path": "functions.php",
       "bytes": 490,
-      "sha256": "fe553cfef9fcdfe634a5411f48abe106f8d0f9d74158678e51f21c5413fced75"
+      "sha256": "be27ef51eca365f71f101c488f2b3921c9c33407f140d06397f2a7e149431a52"
     },
     {
       "path": "parts/footer.html",
@@ -96,7 +96,7 @@
     {
       "path": "style.css",
       "bytes": 11615,
-      "sha256": "c5347ae4bc974a822457b72b561c50f83326e08e0d84291c066c4184f80ac5cf"
+      "sha256": "26e0f5e6bc27b3f597980dda16e805ca3ea82a690e057fd46057fae7b782cbb1"
     },
     {
       "path": "templates/404.html",

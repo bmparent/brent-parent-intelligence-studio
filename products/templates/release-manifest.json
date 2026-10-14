@@ -5,8 +5,8 @@
   "saleEnabled": false,
   "catalog": {
     "path": "products/templates/catalog.json",
-    "bytes": 12532,
-    "sha256": "52f697019886ea73b46ba560764eba8c671fdc1013b27f143d0b7b5693300053"
+    "bytes": 12569,
+    "sha256": "8303e6dab7cdd7db07fd4786182aa202ed84e87323606514ea5a44e8cb91dfd2"
   },
   "generation": {
     "command": "node scripts/build-template-release-manifest.mjs",
@@ -49,11 +49,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.2",
+          "version": "1.0.3",
           "package": {
-            "path": "artifacts/templates/packages/switchboard-developer-v1.0.2.zip",
-            "sha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
-            "bytes": 28547
+            "path": "artifacts/templates/packages/switchboard-developer-v1.0.3.zip",
+            "sha256": "e956fc2aad4f76ed0ff2c9aff71cdd6cfc202b0701da71c9bf9604e5264b00d5",
+            "bytes": 28560
           },
           "compatibility": {
             "acceptance": "local-source-install-passed",
@@ -73,11 +73,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.2",
+          "version": "1.0.3",
           "package": {
-            "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.2.zip",
-            "sha256": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93",
-            "bytes": 30418
+            "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.3.zip",
+            "sha256": "32843f35f7529f52d7573cf7163e6011f32dbc4fa583db2876586ceb23d4c300",
+            "bytes": 30434
           },
           "compatibility": {
             "acceptance": "incomplete",
@@ -90,40 +90,14 @@
               "php": "8.1.34"
             },
             "browserPlaygroundChecks": null,
-            "browserPlaygroundStatus": "historical-only",
-            "browserPlaygroundScope": "Historical prior-version native browser UI remains in the preserved WordPress browser receipts; current PHP API checks are separate.",
-            "nativeApiStatus": "passed",
-            "nativeApiChecks": {
-              "archive_hash": "passed",
-              "final_exact_zip_fresh_install": "passed",
-              "final_exact_zip_activation": "passed",
-              "installed_header_native_api_read": "passed",
-              "four_independent_database_document_root_baseline": "passed",
-              "native_heading_edit_publish": "passed",
-              "native_image_upload_publish": "passed",
-              "five_published_page_templates_and_navigation": "passed",
-              "ordinary_primary_action_http_to_contact": "passed",
-              "contact_mailto_href_only": "passed",
-              "core_site_editor_export_contains_saved_edits": "passed",
-              "graceful_database_and_php_restart": "passed",
-              "native_text_image_navigation_contact_persist_after_restart": "passed",
-              "minimum_wordpress_6_6_php_8_1_34": "passed",
-              "final_frontend_stylesheet_cache_version": "passed"
-            },
-            "nativeApiMethod": "Native PHP WordPress APIs, including Theme_Upgrader, block parsing/serialization, post/media/navigation/template APIs and core Site Editor export. HTTP publication checks before and after graceful owned PHP/MariaDB restart.",
-            "nativeApiScope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
-            "nativeDatabase": {
-              "engine": "MariaDB",
-              "version": "10.11.19",
-              "native": true,
-              "independent_databases": 4,
-              "server_processes": 1
-            },
-            "installedThemeMetadata": {
-              "version": "1.0.2",
-              "update_uri": "https://eidos-works.com/shop/templates/switchboard/",
-              "method": "Native wp_get_theme() after Theme_Upgrader installation; no editor UI claimed"
-            },
+            "browserPlaygroundStatus": "not_run",
+            "browserPlaygroundScope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
+            "nativeApiStatus": "not_run",
+            "nativeApiChecks": null,
+            "nativeApiMethod": null,
+            "nativeApiScope": null,
+            "nativeDatabase": null,
+            "installedThemeMetadata": null,
             "baselineNativeContentProof": null,
             "baselineNativeContentReuse": null,
             "cliStatus": "blocked",
@@ -132,7 +106,7 @@
               "docs/paid-templates/platform-install-evidence.json",
               "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
             ],
-            "limits": "Exact current ZIPs passed native PHP API installation/edit/publication/export on four independent WordPress6.6/PHP8.1.34/MariaDB10.11.19 sites and survived graceful process restart. Fresh visual admin installation/editor workflows on all four current sites, managed production hosting, WordPress.com upload plans, physical devices, export reimport and connected action delivery remain unverified. Historical browser UI proof is separately scoped; no general compatibility claim."
+            "limits": "Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Current conventional hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified until matching native receipts. Contact href only; no message sent. No general compatibility claim."
           }
         },
         {
@@ -208,11 +182,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.1",
+          "version": "1.0.2",
           "package": {
-            "path": "artifacts/templates/packages/tideglass-developer-v1.0.1.zip",
-            "sha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
-            "bytes": 28338
+            "path": "artifacts/templates/packages/tideglass-developer-v1.0.2.zip",
+            "sha256": "fbc3cda145707d08b3bb51751bb0265144b23c82e0b0170d899af9ea6b8918b0",
+            "bytes": 28351
           },
           "compatibility": {
             "acceptance": "local-source-install-passed",
@@ -232,11 +206,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.2",
+          "version": "1.0.3",
           "package": {
-            "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.2.zip",
-            "sha256": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d",
-            "bytes": 31040
+            "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.3.zip",
+            "sha256": "9220458a87ee9c31ce3b4af37eb57737cb460a3cb2db803ae5d7adadc6d16ccb",
+            "bytes": 31061
           },
           "compatibility": {
             "acceptance": "incomplete",
@@ -249,40 +223,14 @@
               "php": "8.1.34"
             },
             "browserPlaygroundChecks": null,
-            "browserPlaygroundStatus": "historical-only",
-            "browserPlaygroundScope": "Historical prior-version native browser UI remains in the preserved WordPress browser receipts; current PHP API checks are separate.",
-            "nativeApiStatus": "passed",
-            "nativeApiChecks": {
-              "archive_hash": "passed",
-              "final_exact_zip_fresh_install": "passed",
-              "final_exact_zip_activation": "passed",
-              "installed_header_native_api_read": "passed",
-              "four_independent_database_document_root_baseline": "passed",
-              "native_heading_edit_publish": "passed",
-              "native_image_upload_publish": "passed",
-              "five_published_page_templates_and_navigation": "passed",
-              "ordinary_primary_action_http_to_contact": "passed",
-              "contact_mailto_href_only": "passed",
-              "core_site_editor_export_contains_saved_edits": "passed",
-              "graceful_database_and_php_restart": "passed",
-              "native_text_image_navigation_contact_persist_after_restart": "passed",
-              "minimum_wordpress_6_6_php_8_1_34": "passed",
-              "final_frontend_stylesheet_cache_version": "passed"
-            },
-            "nativeApiMethod": "Native PHP WordPress APIs, including Theme_Upgrader, block parsing/serialization, post/media/navigation/template APIs and core Site Editor export. HTTP publication checks before and after graceful owned PHP/MariaDB restart.",
-            "nativeApiScope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
-            "nativeDatabase": {
-              "engine": "MariaDB",
-              "version": "10.11.19",
-              "native": true,
-              "independent_databases": 4,
-              "server_processes": 1
-            },
-            "installedThemeMetadata": {
-              "version": "1.0.2",
-              "update_uri": "https://eidos-works.com/shop/templates/tideglass/",
-              "method": "Native wp_get_theme() after Theme_Upgrader installation; no editor UI claimed"
-            },
+            "browserPlaygroundStatus": "not_run",
+            "browserPlaygroundScope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
+            "nativeApiStatus": "not_run",
+            "nativeApiChecks": null,
+            "nativeApiMethod": null,
+            "nativeApiScope": null,
+            "nativeDatabase": null,
+            "installedThemeMetadata": null,
             "baselineNativeContentProof": null,
             "baselineNativeContentReuse": null,
             "cliStatus": "blocked",
@@ -291,7 +239,7 @@
               "docs/paid-templates/platform-install-evidence.json",
               "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
             ],
-            "limits": "Exact current ZIPs passed native PHP API installation/edit/publication/export on four independent WordPress6.6/PHP8.1.34/MariaDB10.11.19 sites and survived graceful process restart. Fresh visual admin installation/editor workflows on all four current sites, managed production hosting, WordPress.com upload plans, physical devices, export reimport and connected action delivery remain unverified. Historical browser UI proof is separately scoped; no general compatibility claim."
+            "limits": "Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Current conventional hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified until matching native receipts. Contact href only; no message sent. No general compatibility claim."
           }
         },
         {
@@ -367,11 +315,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.1",
+          "version": "1.0.2",
           "package": {
-            "path": "artifacts/templates/packages/matter-developer-v1.0.1.zip",
-            "sha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
-            "bytes": 29031
+            "path": "artifacts/templates/packages/matter-developer-v1.0.2.zip",
+            "sha256": "8bd61d302b173b6143dcb2cbf1d111f8b5b283c6e19880f8792e20879297678d",
+            "bytes": 29047
           },
           "compatibility": {
             "acceptance": "local-source-install-passed",
@@ -391,11 +339,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.2",
+          "version": "1.0.3",
           "package": {
-            "path": "artifacts/templates/packages/matter-wordpress-v1.0.2.zip",
-            "sha256": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b",
-            "bytes": 31762
+            "path": "artifacts/templates/packages/matter-wordpress-v1.0.3.zip",
+            "sha256": "9874a5fbe19e6990d167931d251be0b36c6c27e8301efbee77b634eeb8400c6b",
+            "bytes": 31784
           },
           "compatibility": {
             "acceptance": "incomplete",
@@ -408,40 +356,14 @@
               "php": "8.1.34"
             },
             "browserPlaygroundChecks": null,
-            "browserPlaygroundStatus": "historical-only",
-            "browserPlaygroundScope": "Historical prior-version native browser UI remains in the preserved WordPress browser receipts; current PHP API checks are separate.",
-            "nativeApiStatus": "passed",
-            "nativeApiChecks": {
-              "archive_hash": "passed",
-              "final_exact_zip_fresh_install": "passed",
-              "final_exact_zip_activation": "passed",
-              "installed_header_native_api_read": "passed",
-              "four_independent_database_document_root_baseline": "passed",
-              "native_heading_edit_publish": "passed",
-              "native_image_upload_publish": "passed",
-              "five_published_page_templates_and_navigation": "passed",
-              "ordinary_primary_action_http_to_contact": "passed",
-              "contact_mailto_href_only": "passed",
-              "core_site_editor_export_contains_saved_edits": "passed",
-              "graceful_database_and_php_restart": "passed",
-              "native_text_image_navigation_contact_persist_after_restart": "passed",
-              "minimum_wordpress_6_6_php_8_1_34": "passed",
-              "final_frontend_stylesheet_cache_version": "passed"
-            },
-            "nativeApiMethod": "Native PHP WordPress APIs, including Theme_Upgrader, block parsing/serialization, post/media/navigation/template APIs and core Site Editor export. HTTP publication checks before and after graceful owned PHP/MariaDB restart.",
-            "nativeApiScope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
-            "nativeDatabase": {
-              "engine": "MariaDB",
-              "version": "10.11.19",
-              "native": true,
-              "independent_databases": 4,
-              "server_processes": 1
-            },
-            "installedThemeMetadata": {
-              "version": "1.0.2",
-              "update_uri": "https://eidos-works.com/shop/templates/matter/",
-              "method": "Native wp_get_theme() after Theme_Upgrader installation; no editor UI claimed"
-            },
+            "browserPlaygroundStatus": "not_run",
+            "browserPlaygroundScope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
+            "nativeApiStatus": "not_run",
+            "nativeApiChecks": null,
+            "nativeApiMethod": null,
+            "nativeApiScope": null,
+            "nativeDatabase": null,
+            "installedThemeMetadata": null,
             "baselineNativeContentProof": null,
             "baselineNativeContentReuse": null,
             "cliStatus": "blocked",
@@ -450,7 +372,7 @@
               "docs/paid-templates/platform-install-evidence.json",
               "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
             ],
-            "limits": "Exact current ZIPs passed native PHP API installation/edit/publication/export on four independent WordPress6.6/PHP8.1.34/MariaDB10.11.19 sites and survived graceful process restart. Fresh visual admin installation/editor workflows on all four current sites, managed production hosting, WordPress.com upload plans, physical devices, export reimport and connected action delivery remain unverified. Historical browser UI proof is separately scoped; no general compatibility claim."
+            "limits": "Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Current conventional hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified until matching native receipts. Contact href only; no message sent. No general compatibility claim."
           }
         },
         {
@@ -526,11 +448,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.4",
+          "version": "1.0.5",
           "package": {
-            "path": "artifacts/templates/packages/nightjar-developer-v1.0.4.zip",
-            "sha256": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1",
-            "bytes": 31190
+            "path": "artifacts/templates/packages/nightjar-developer-v1.0.5.zip",
+            "sha256": "9ea6419f5b0398e517e0195205464c44fcd7521071f7ee420c8472a4dc85f870",
+            "bytes": 31207
           },
           "compatibility": {
             "acceptance": "local-source-install-passed",
@@ -550,11 +472,11 @@
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",
-          "version": "1.0.2",
+          "version": "1.0.3",
           "package": {
-            "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.2.zip",
-            "sha256": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96",
-            "bytes": 30759
+            "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.3.zip",
+            "sha256": "55ac5a87a1ee363390d7053e6579be9568703397199e9b16b95f38f4a2085534",
+            "bytes": 30781
           },
           "compatibility": {
             "acceptance": "incomplete",
@@ -567,40 +489,14 @@
               "php": "8.1.34"
             },
             "browserPlaygroundChecks": null,
-            "browserPlaygroundStatus": "historical-only",
-            "browserPlaygroundScope": "Historical prior-version native browser UI remains in the preserved WordPress browser receipts; current PHP API checks are separate.",
-            "nativeApiStatus": "passed",
-            "nativeApiChecks": {
-              "archive_hash": "passed",
-              "final_exact_zip_fresh_install": "passed",
-              "final_exact_zip_activation": "passed",
-              "installed_header_native_api_read": "passed",
-              "four_independent_database_document_root_baseline": "passed",
-              "native_heading_edit_publish": "passed",
-              "native_image_upload_publish": "passed",
-              "five_published_page_templates_and_navigation": "passed",
-              "ordinary_primary_action_http_to_contact": "passed",
-              "contact_mailto_href_only": "passed",
-              "core_site_editor_export_contains_saved_edits": "passed",
-              "graceful_database_and_php_restart": "passed",
-              "native_text_image_navigation_contact_persist_after_restart": "passed",
-              "minimum_wordpress_6_6_php_8_1_34": "passed",
-              "final_frontend_stylesheet_cache_version": "passed"
-            },
-            "nativeApiMethod": "Native PHP WordPress APIs, including Theme_Upgrader, block parsing/serialization, post/media/navigation/template APIs and core Site Editor export. HTTP publication checks before and after graceful owned PHP/MariaDB restart.",
-            "nativeApiScope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
-            "nativeDatabase": {
-              "engine": "MariaDB",
-              "version": "10.11.19",
-              "native": true,
-              "independent_databases": 4,
-              "server_processes": 1
-            },
-            "installedThemeMetadata": {
-              "version": "1.0.2",
-              "update_uri": "https://eidos-works.com/shop/templates/nightjar/",
-              "method": "Native wp_get_theme() after Theme_Upgrader installation; no editor UI claimed"
-            },
+            "browserPlaygroundStatus": "not_run",
+            "browserPlaygroundScope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
+            "nativeApiStatus": "not_run",
+            "nativeApiChecks": null,
+            "nativeApiMethod": null,
+            "nativeApiScope": null,
+            "nativeDatabase": null,
+            "installedThemeMetadata": null,
             "baselineNativeContentProof": null,
             "baselineNativeContentReuse": null,
             "cliStatus": "blocked",
@@ -609,7 +505,7 @@
               "docs/paid-templates/platform-install-evidence.json",
               "artifacts/templates/wordpress-install-external/browser-ui-receipt.json"
             ],
-            "limits": "Exact current ZIPs passed native PHP API installation/edit/publication/export on four independent WordPress6.6/PHP8.1.34/MariaDB10.11.19 sites and survived graceful process restart. Fresh visual admin installation/editor workflows on all four current sites, managed production hosting, WordPress.com upload plans, physical devices, export reimport and connected action delivery remain unverified. Historical browser UI proof is separately scoped; no general compatibility claim."
+            "limits": "Final-byte install/activation/header checks and unchanged baseline native-content editing proof have separate archive hashes and scope. Current conventional hosting, minimum versions, four separate clean sites, restart persistence and WordPress.com plans remain unverified until matching native receipts. Contact href only; no message sent. No general compatibility claim."
           }
         },
         {
@@ -658,14 +554,14 @@
       "editionId": "switchboard-developer-v1",
       "product": "switchboard",
       "platform": "developer",
-      "version": "1.0.2",
-      "path": "artifacts/templates/packages/switchboard-developer-v1.0.2.zip",
-      "sha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
-      "bytes": 28547,
+      "version": "1.0.3",
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.3.zip",
+      "sha256": "e956fc2aad4f76ed0ff2c9aff71cdd6cfc202b0701da71c9bf9604e5264b00d5",
+      "bytes": 28560,
       "sourceManifest": {
         "path": "products/templates/switchboard/developer/PACKAGE_MANIFEST.json",
         "bytes": 2687,
-        "sha256": "c5ccb0048583e616f8202088436c3ec1e360c8bd3347febb5ef15a8ef556b266"
+        "sha256": "6b4186fe5653ad6f600fe163bcf4a7f7b2bf58959124700783aa5000a5298910"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -674,7 +570,7 @@
         "rights": "One finished commercial website; see included license for transfer and resale boundaries."
       },
       "support": {
-        "status": "draft",
+        "status": "finalized",
         "installationGuidanceDays": 30,
         "suppliedFileDefectDays": 90,
         "responseTimeSla": null
@@ -693,12 +589,12 @@
         {
           "path": "products/templates/switchboard/developer/LICENSE.txt",
           "bytes": 1553,
-          "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+          "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
         },
         {
           "path": "products/templates/switchboard/developer/SUPPORT.md",
-          "bytes": 1361,
-          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+          "bytes": 1432,
+          "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
         },
         {
           "path": "products/templates/switchboard/developer/assets/service-plan.svg",
@@ -708,9 +604,9 @@
       ],
       "changelog": [
         {
-          "version": "1.0.2",
+          "version": "1.0.3",
           "status": "candidate",
-          "description": "Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope. Other supplied content and interaction behavior are unchanged; WordPress header/cache metadata follows the new immutable archive version."
+          "description": "Final buyer license/support notices: one finished website for developer source, GPL-2.0-or-later rights for WordPress, 30 days of installation guidance and 90 days of supplied-file defect corrections within the purchased major version. Earlier purchased archives remain immutable. No layout, interaction or integration behavior changed; WordPress header/cache metadata follows the new archive version."
         },
         {
           "version": "1.0.1",
@@ -728,14 +624,14 @@
       "editionId": "switchboard-wordpress-v1",
       "product": "switchboard",
       "platform": "wordpress",
-      "version": "1.0.2",
-      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.2.zip",
-      "sha256": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93",
-      "bytes": 30418,
+      "version": "1.0.3",
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.3.zip",
+      "sha256": "32843f35f7529f52d7573cf7163e6011f32dbc4fa583db2876586ceb23d4c300",
+      "bytes": 30434,
       "sourceManifest": {
         "path": "products/templates/switchboard/wordpress/PACKAGE_MANIFEST.json",
         "bytes": 4556,
-        "sha256": "a205e18f38e8f351b043f29d4761aa928ba5ccb7d13910ad8473597423914a69"
+        "sha256": "18a2ffe18811bcffb7f5eb3e68ae9d9476fdd1206ed5b9b41626c1c42a62c1a4"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -744,7 +640,7 @@
         "rights": "GPL rights are unrestricted by the developer one-site commercial terms."
       },
       "support": {
-        "status": "draft",
+        "status": "finalized",
         "installationGuidanceDays": 30,
         "suppliedFileDefectDays": 90,
         "responseTimeSla": null
@@ -763,7 +659,7 @@
         {
           "path": "products/templates/switchboard/wordpress/INSTALL.md",
           "bytes": 7394,
-          "sha256": "af6321b2e660aebae8c699e20c5642a6dd4f7286fad1b5fad0ec61ab0183006d"
+          "sha256": "25046e29faf2992aaf66ce74d98058692099e568bbeeaf14422689517e0bc422"
         },
         {
           "path": "products/templates/switchboard/wordpress/LICENSE.txt",
@@ -772,8 +668,8 @@
         },
         {
           "path": "products/templates/switchboard/wordpress/SUPPORT.md",
-          "bytes": 1361,
-          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+          "bytes": 1432,
+          "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
         },
         {
           "path": "products/templates/switchboard/wordpress/assets/service-plan.svg",
@@ -783,9 +679,9 @@
       ],
       "changelog": [
         {
-          "version": "1.0.2",
+          "version": "1.0.3",
           "status": "candidate",
-          "description": "Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope. Other supplied content and interaction behavior are unchanged; WordPress header/cache metadata follows the new immutable archive version."
+          "description": "Final buyer license/support notices: one finished website for developer source, GPL-2.0-or-later rights for WordPress, 30 days of installation guidance and 90 days of supplied-file defect corrections within the purchased major version. Earlier purchased archives remain immutable. No layout, interaction or integration behavior changed; WordPress header/cache metadata follows the new archive version."
         },
         {
           "version": "1.0.1",
@@ -803,14 +699,14 @@
       "editionId": "tideglass-developer-v1",
       "product": "tideglass",
       "platform": "developer",
-      "version": "1.0.1",
-      "path": "artifacts/templates/packages/tideglass-developer-v1.0.1.zip",
-      "sha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
-      "bytes": 28338,
+      "version": "1.0.2",
+      "path": "artifacts/templates/packages/tideglass-developer-v1.0.2.zip",
+      "sha256": "fbc3cda145707d08b3bb51751bb0265144b23c82e0b0170d899af9ea6b8918b0",
+      "bytes": 28351,
       "sourceManifest": {
         "path": "products/templates/tideglass/developer/PACKAGE_MANIFEST.json",
         "bytes": 2668,
-        "sha256": "f5b60fe95ccdcdfa266c519ab7b98b96f8e940aec352aec0802456f29810f979"
+        "sha256": "01c9b9291f5e72d14372aad0094cc0cbd1f7b9fc88af1f440aa9c58ff92e15d0"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -819,7 +715,7 @@
         "rights": "One finished commercial website; see included license for transfer and resale boundaries."
       },
       "support": {
-        "status": "draft",
+        "status": "finalized",
         "installationGuidanceDays": 30,
         "suppliedFileDefectDays": 90,
         "responseTimeSla": null
@@ -838,12 +734,12 @@
         {
           "path": "products/templates/tideglass/developer/LICENSE.txt",
           "bytes": 1553,
-          "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+          "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
         },
         {
           "path": "products/templates/tideglass/developer/SUPPORT.md",
-          "bytes": 1361,
-          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+          "bytes": 1432,
+          "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
         },
         {
           "path": "products/templates/tideglass/developer/assets/coast.svg",
@@ -853,9 +749,9 @@
       ],
       "changelog": [
         {
-          "version": "1.0.1",
+          "version": "1.0.2",
           "status": "candidate",
-          "description": "Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope. Other supplied content and interaction behavior are unchanged; WordPress header/cache metadata follows the new immutable archive version."
+          "description": "Final buyer license/support notices: one finished website for developer source, GPL-2.0-or-later rights for WordPress, 30 days of installation guidance and 90 days of supplied-file defect corrections within the purchased major version. Earlier purchased archives remain immutable. No layout, interaction or integration behavior changed; WordPress header/cache metadata follows the new archive version."
         },
         {
           "version": "1.0.0",
@@ -868,14 +764,14 @@
       "editionId": "tideglass-wordpress-v1",
       "product": "tideglass",
       "platform": "wordpress",
-      "version": "1.0.2",
-      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.2.zip",
-      "sha256": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d",
-      "bytes": 31040,
+      "version": "1.0.3",
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.3.zip",
+      "sha256": "9220458a87ee9c31ce3b4af37eb57737cb460a3cb2db803ae5d7adadc6d16ccb",
+      "bytes": 31061,
       "sourceManifest": {
         "path": "products/templates/tideglass/wordpress/PACKAGE_MANIFEST.json",
         "bytes": 4529,
-        "sha256": "92d9c83547172694a0d416a00d8bc03a3bca8b62650899aaa180e1208bad0928"
+        "sha256": "9900d0d38d1fe72848a9fe6be8325eb97f46c6ccd61ef30f146592df898b8821"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -884,7 +780,7 @@
         "rights": "GPL rights are unrestricted by the developer one-site commercial terms."
       },
       "support": {
-        "status": "draft",
+        "status": "finalized",
         "installationGuidanceDays": 30,
         "suppliedFileDefectDays": 90,
         "responseTimeSla": null
@@ -903,7 +799,7 @@
         {
           "path": "products/templates/tideglass/wordpress/INSTALL.md",
           "bytes": 7376,
-          "sha256": "b3a5d997953fda836c01545d8c75000e61cd407745bed9237c32b27c2ecffa0b"
+          "sha256": "1c8c306479de1fcf73206e3d5ccfa135ee67f2bf72d958e2aa130eb0626c0cde"
         },
         {
           "path": "products/templates/tideglass/wordpress/LICENSE.txt",
@@ -912,8 +808,8 @@
         },
         {
           "path": "products/templates/tideglass/wordpress/SUPPORT.md",
-          "bytes": 1361,
-          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+          "bytes": 1432,
+          "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
         },
         {
           "path": "products/templates/tideglass/wordpress/assets/coast.svg",
@@ -923,9 +819,9 @@
       ],
       "changelog": [
         {
-          "version": "1.0.2",
+          "version": "1.0.3",
           "status": "candidate",
-          "description": "Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope. Other supplied content and interaction behavior are unchanged; WordPress header/cache metadata follows the new immutable archive version."
+          "description": "Final buyer license/support notices: one finished website for developer source, GPL-2.0-or-later rights for WordPress, 30 days of installation guidance and 90 days of supplied-file defect corrections within the purchased major version. Earlier purchased archives remain immutable. No layout, interaction or integration behavior changed; WordPress header/cache metadata follows the new archive version."
         },
         {
           "version": "1.0.1",
@@ -943,14 +839,14 @@
       "editionId": "matter-developer-v1",
       "product": "matter",
       "platform": "developer",
-      "version": "1.0.1",
-      "path": "artifacts/templates/packages/matter-developer-v1.0.1.zip",
-      "sha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
-      "bytes": 29031,
+      "version": "1.0.2",
+      "path": "artifacts/templates/packages/matter-developer-v1.0.2.zip",
+      "sha256": "8bd61d302b173b6143dcb2cbf1d111f8b5b283c6e19880f8792e20879297678d",
+      "bytes": 29047,
       "sourceManifest": {
         "path": "products/templates/matter/developer/PACKAGE_MANIFEST.json",
         "bytes": 2816,
-        "sha256": "084e92f181588318e38a076f98de118836091044b16bb43a1489fb38242eb840"
+        "sha256": "c1746041385ab342983abe5db93dc7f954cda12dba51d65cd763c9feb83e065a"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -959,7 +855,7 @@
         "rights": "One finished commercial website; see included license for transfer and resale boundaries."
       },
       "support": {
-        "status": "draft",
+        "status": "finalized",
         "installationGuidanceDays": 30,
         "suppliedFileDefectDays": 90,
         "responseTimeSla": null
@@ -978,12 +874,12 @@
         {
           "path": "products/templates/matter/developer/LICENSE.txt",
           "bytes": 1553,
-          "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+          "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
         },
         {
           "path": "products/templates/matter/developer/SUPPORT.md",
-          "bytes": 1361,
-          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+          "bytes": 1432,
+          "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
         },
         {
           "path": "products/templates/matter/developer/assets/timber.svg",
@@ -998,9 +894,9 @@
       ],
       "changelog": [
         {
-          "version": "1.0.1",
+          "version": "1.0.2",
           "status": "candidate",
-          "description": "Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope. Other supplied content and interaction behavior are unchanged; WordPress header/cache metadata follows the new immutable archive version."
+          "description": "Final buyer license/support notices: one finished website for developer source, GPL-2.0-or-later rights for WordPress, 30 days of installation guidance and 90 days of supplied-file defect corrections within the purchased major version. Earlier purchased archives remain immutable. No layout, interaction or integration behavior changed; WordPress header/cache metadata follows the new archive version."
         },
         {
           "version": "1.0.0",
@@ -1013,14 +909,14 @@
       "editionId": "matter-wordpress-v1",
       "product": "matter",
       "platform": "wordpress",
-      "version": "1.0.2",
-      "path": "artifacts/templates/packages/matter-wordpress-v1.0.2.zip",
-      "sha256": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b",
-      "bytes": 31762,
+      "version": "1.0.3",
+      "path": "artifacts/templates/packages/matter-wordpress-v1.0.3.zip",
+      "sha256": "9874a5fbe19e6990d167931d251be0b36c6c27e8301efbee77b634eeb8400c6b",
+      "bytes": 31784,
       "sourceManifest": {
         "path": "products/templates/matter/wordpress/PACKAGE_MANIFEST.json",
         "bytes": 4679,
-        "sha256": "69f35ff720189819e29d3717c06e3f4f1fb4740805bb3bf8e89a59b18bcfecc7"
+        "sha256": "38773df898065563f0b7a120b7a13c2a05ed5e70c571ee7bcadaf68a03eff961"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -1029,7 +925,7 @@
         "rights": "GPL rights are unrestricted by the developer one-site commercial terms."
       },
       "support": {
-        "status": "draft",
+        "status": "finalized",
         "installationGuidanceDays": 30,
         "suppliedFileDefectDays": 90,
         "responseTimeSla": null
@@ -1048,7 +944,7 @@
         {
           "path": "products/templates/matter/wordpress/INSTALL.md",
           "bytes": 7363,
-          "sha256": "f8ffa154ef9dd7cfd27c04597724cc7e9beda88cedce0df737d49b253270c3f3"
+          "sha256": "89221442a7dcc74a136b20b6068487dfd5c26492afc6bdc2474029d9c1d240eb"
         },
         {
           "path": "products/templates/matter/wordpress/LICENSE.txt",
@@ -1057,8 +953,8 @@
         },
         {
           "path": "products/templates/matter/wordpress/SUPPORT.md",
-          "bytes": 1361,
-          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+          "bytes": 1432,
+          "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
         },
         {
           "path": "products/templates/matter/wordpress/assets/timber.svg",
@@ -1073,9 +969,9 @@
       ],
       "changelog": [
         {
-          "version": "1.0.2",
+          "version": "1.0.3",
           "status": "candidate",
-          "description": "Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope. Other supplied content and interaction behavior are unchanged; WordPress header/cache metadata follows the new immutable archive version."
+          "description": "Final buyer license/support notices: one finished website for developer source, GPL-2.0-or-later rights for WordPress, 30 days of installation guidance and 90 days of supplied-file defect corrections within the purchased major version. Earlier purchased archives remain immutable. No layout, interaction or integration behavior changed; WordPress header/cache metadata follows the new archive version."
         },
         {
           "version": "1.0.1",
@@ -1093,14 +989,14 @@
       "editionId": "nightjar-developer-v1",
       "product": "nightjar",
       "platform": "developer",
-      "version": "1.0.4",
-      "path": "artifacts/templates/packages/nightjar-developer-v1.0.4.zip",
-      "sha256": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1",
-      "bytes": 31190,
+      "version": "1.0.5",
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.5.zip",
+      "sha256": "9ea6419f5b0398e517e0195205464c44fcd7521071f7ee420c8472a4dc85f870",
+      "bytes": 31207,
       "sourceManifest": {
         "path": "products/templates/nightjar/developer/PACKAGE_MANIFEST.json",
         "bytes": 2665,
-        "sha256": "d068919ad450c53d1ba78800c46d39aa835b16516b62de061708b5131a6cd89e"
+        "sha256": "da8735ce9f716b142841167602f1837158d38372069532acd1614241abd2f29d"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -1109,7 +1005,7 @@
         "rights": "One finished commercial website; see included license for transfer and resale boundaries."
       },
       "support": {
-        "status": "draft",
+        "status": "finalized",
         "installationGuidanceDays": 30,
         "suppliedFileDefectDays": 90,
         "responseTimeSla": null
@@ -1123,17 +1019,17 @@
         {
           "path": "products/templates/nightjar/developer/INSTALL.md",
           "bytes": 10342,
-          "sha256": "bcfdc93dfb08b2635924d968dbebba1eb297c3439bd53c52e4d10530d1b3d778"
+          "sha256": "c850f7f45230471726cd99ecd1997e59d58905d8d307bb918cadd86ccf8e8e67"
         },
         {
           "path": "products/templates/nightjar/developer/LICENSE.txt",
           "bytes": 1553,
-          "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+          "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
         },
         {
           "path": "products/templates/nightjar/developer/SUPPORT.md",
-          "bytes": 1361,
-          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+          "bytes": 1432,
+          "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
         },
         {
           "path": "products/templates/nightjar/developer/assets/poster.svg",
@@ -1143,9 +1039,9 @@
       ],
       "changelog": [
         {
-          "version": "1.0.4",
+          "version": "1.0.5",
           "status": "candidate",
-          "description": "Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope. Original overlapping poster layers reveal each event format and access notes with keyboard/touch controls, pressed/live state, always-reachable ordinary event links, all-information no-JavaScript fallback and reduced motion. Category filter and day/night modes remain available."
+          "description": "Final buyer license/support notices: one finished website for developer source, GPL-2.0-or-later rights for WordPress, 30 days of installation guidance and 90 days of supplied-file defect corrections within the purchased major version. Earlier purchased archives remain immutable. No layout, interaction or integration behavior changed; WordPress header/cache metadata follows the new archive version."
         },
         {
           "version": "1.0.3",
@@ -1173,14 +1069,14 @@
       "editionId": "nightjar-wordpress-v1",
       "product": "nightjar",
       "platform": "wordpress",
-      "version": "1.0.2",
-      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.2.zip",
-      "sha256": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96",
-      "bytes": 30759,
+      "version": "1.0.3",
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.3.zip",
+      "sha256": "55ac5a87a1ee363390d7053e6579be9568703397199e9b16b95f38f4a2085534",
+      "bytes": 30781,
       "sourceManifest": {
         "path": "products/templates/nightjar/wordpress/PACKAGE_MANIFEST.json",
         "bytes": 4520,
-        "sha256": "e7da3474c7fe15d39fb7e12d00d74a231272811304ee57ad07223252aa47466e"
+        "sha256": "1b431a1195b6db2de5aac87fa7bf4f509297bbd5f63d426a12c738c18c3da085"
       },
       "distribution": "private-fulfillment-only",
       "releaseStatus": "unavailable",
@@ -1189,7 +1085,7 @@
         "rights": "GPL rights are unrestricted by the developer one-site commercial terms."
       },
       "support": {
-        "status": "draft",
+        "status": "finalized",
         "installationGuidanceDays": 30,
         "suppliedFileDefectDays": 90,
         "responseTimeSla": null
@@ -1208,7 +1104,7 @@
         {
           "path": "products/templates/nightjar/wordpress/INSTALL.md",
           "bytes": 7367,
-          "sha256": "7b6f7915a65b177cf3c64ab334041ccdf649111407665e95154197b09225326b"
+          "sha256": "176ac4534ec699ceee5437fa9aa875c1836e19c294222f826b106b6f6151cc0d"
         },
         {
           "path": "products/templates/nightjar/wordpress/LICENSE.txt",
@@ -1217,8 +1113,8 @@
         },
         {
           "path": "products/templates/nightjar/wordpress/SUPPORT.md",
-          "bytes": 1361,
-          "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+          "bytes": 1432,
+          "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
         },
         {
           "path": "products/templates/nightjar/wordpress/assets/poster.svg",
@@ -1228,9 +1124,9 @@
       ],
       "changelog": [
         {
-          "version": "1.0.2",
+          "version": "1.0.3",
           "status": "candidate",
-          "description": "Buyer guide now explicitly covers rollback/removal, troubleshooting/common mistakes, email integration limits and exact configuration-versus-HTML editing scope. Other supplied content and interaction behavior are unchanged; WordPress header/cache metadata follows the new immutable archive version."
+          "description": "Final buyer license/support notices: one finished website for developer source, GPL-2.0-or-later rights for WordPress, 30 days of installation guidance and 90 days of supplied-file defect corrections within the purchased major version. Earlier purchased archives remain immutable. No layout, interaction or integration behavior changed; WordPress header/cache metadata follows the new archive version."
         },
         {
           "version": "1.0.1",
@@ -1248,15 +1144,15 @@
   "compatibilityEvidence": [
     {
       "path": "artifacts/templates/package-tests.json",
-      "bytes": 87887,
-      "sha256": "317a1e1b791da0878b3bc91019673e3c32d5d12ce32b7c0e28a2d970b32c477e",
+      "bytes": 89027,
+      "sha256": "1b9bbd662ec2dfbcf1e02e9a9d4f53e51b4f51250b790cfee1c6da6543182540",
       "status": "passed",
       "scope": "Read the referenced receipt for exact scope and limitations."
     },
     {
       "path": "artifacts/templates/source-install-receipt.json",
       "bytes": 4593,
-      "sha256": "63a97f3e4ce90c91445b9f22392b473680bb66111e07f17c45bf511b5b784a96",
+      "sha256": "1355955fb0453c20da84153b02f785d054915eb6bbd94b3a5b7316957a2314d6",
       "status": "passed",
       "scope": "buyer developer source installation; local published HTTP test, no remote deployment or email send"
     },
@@ -1339,22 +1235,22 @@
     },
     {
       "path": "artifacts/templates/nightjar-typography-fit.json",
-      "bytes": 16848,
-      "sha256": "e01d569df1b4a347dc04f70739d4bbaf0cb557e15c31272926b3d26afd93cfce",
+      "bytes": 17523,
+      "sha256": "1cb7f1d24c4e928be15380b21656488c2472af8c2a41e58d7f1e72db22e520f6",
       "status": "passed",
       "scope": "Bounded existing-runtime DOM-only Nightjar heading measurement; original source/ZIP bytes not changed by measurement."
     },
     {
       "path": "artifacts/templates/nightjar-intermediate-width-fit.json",
-      "bytes": 16210,
-      "sha256": "a2671b41e14a6792dba5a27c9c7b3767bf42cd7743b7a0b534170d5512f2ab30",
+      "bytes": 16872,
+      "sha256": "c81b007fbd2ecb10be1ffc37380bce9fa858f67d0f40d6068e898cdf9b0c11d0",
       "status": "passed",
       "scope": "Read-only DOM measurement of frozen1.0.2 source at immediate and intermediate desktop breakpoints. Alternate2.7rem minimum is injected only; no frozen source or ZIP changed."
     },
     {
       "path": "artifacts/templates/nightjar-final-typography-fit.json",
-      "bytes": 54511,
-      "sha256": "229c4a4e391e2d72ac1ee0a90e1e71440d748c7eed30a183c7be8b48abc2f0ba",
+      "bytes": 56767,
+      "sha256": "b1267131898092a51b2712098b97cfc12c869e2aac68064c2ac693b33f92f1c4",
       "status": "passed",
       "scope": "Actual final1.0.3 source heading at bounded phone, immediate-breakpoint, tablet and desktop widths; source/ZIP bytes not changed by measurement."
     }

@@ -3,8 +3,8 @@
   "checks": [
     {
       "editionId": "switchboard-developer-v1",
-      "version": "1.0.2",
-      "archiveSha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
+      "version": "1.0.3",
+      "archiveSha256": "e956fc2aad4f76ed0ff2c9aff71cdd6cfc202b0701da71c9bf9604e5264b00d5",
       "install": "passed",
       "editedBusiness": "passed",
       "editedImage": "passed",
@@ -36,8 +36,8 @@
     },
     {
       "editionId": "tideglass-developer-v1",
-      "version": "1.0.1",
-      "archiveSha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
+      "version": "1.0.2",
+      "archiveSha256": "fbc3cda145707d08b3bb51751bb0265144b23c82e0b0170d899af9ea6b8918b0",
       "install": "passed",
       "editedBusiness": "passed",
       "editedImage": "passed",
@@ -69,8 +69,8 @@
     },
     {
       "editionId": "matter-developer-v1",
-      "version": "1.0.1",
-      "archiveSha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
+      "version": "1.0.2",
+      "archiveSha256": "8bd61d302b173b6143dcb2cbf1d111f8b5b283c6e19880f8792e20879297678d",
       "install": "passed",
       "editedBusiness": "passed",
       "editedImage": "passed",
@@ -102,8 +102,8 @@
     },
     {
       "editionId": "nightjar-developer-v1",
-      "version": "1.0.4",
-      "archiveSha256": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1",
+      "version": "1.0.5",
+      "archiveSha256": "9ea6419f5b0398e517e0195205464c44fcd7521071f7ee420c8472a4dc85f870",
       "install": "passed",
       "editedBusiness": "passed",
       "editedImage": "passed",

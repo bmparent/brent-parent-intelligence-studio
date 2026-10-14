@@ -11,14 +11,14 @@ const manifest = await createReleaseManifest(root);
 const catalog = await read('products/templates/catalog.json');
 const saved = await read('products/templates/release-manifest.json');
 const frozen = {
-  "switchboard-developer-v1": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
-  "switchboard-wordpress-v1": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93",
-  "tideglass-developer-v1": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
-  "tideglass-wordpress-v1": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d",
-  "matter-developer-v1": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
-  "matter-wordpress-v1": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b",
-  "nightjar-developer-v1": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1",
-  "nightjar-wordpress-v1": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96"
+  "switchboard-developer-v1": "e956fc2aad4f76ed0ff2c9aff71cdd6cfc202b0701da71c9bf9604e5264b00d5",
+  "switchboard-wordpress-v1": "32843f35f7529f52d7573cf7163e6011f32dbc4fa583db2876586ceb23d4c300",
+  "tideglass-developer-v1": "fbc3cda145707d08b3bb51751bb0265144b23c82e0b0170d899af9ea6b8918b0",
+  "tideglass-wordpress-v1": "9220458a87ee9c31ce3b4af37eb57737cb460a3cb2db803ae5d7adadc6d16ccb",
+  "matter-developer-v1": "8bd61d302b173b6143dcb2cbf1d111f8b5b283c6e19880f8792e20879297678d",
+  "matter-wordpress-v1": "9874a5fbe19e6990d167931d251be0b36c6c27e8301efbee77b634eeb8400c6b",
+  "nightjar-developer-v1": "9ea6419f5b0398e517e0195205464c44fcd7521071f7ee420c8472a4dc85f870",
+  "nightjar-wordpress-v1": "55ac5a87a1ee363390d7053e6579be9568703397199e9b16b95f38f4a2085534"
 };
 
 test('release manifest joins exactly eight unchanged private buyer archives', () => {

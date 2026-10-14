@@ -1,7 +1,7 @@
 [
   {
     "editionId": "switchboard-developer-v1",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "guidePath": "/templates/guides/switchboard/developer/",
     "files": [
       "ASSETS.md",
@@ -28,7 +28,7 @@
   },
   {
     "editionId": "switchboard-wordpress-v1",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "guidePath": "/templates/guides/switchboard/wordpress/",
     "files": [
       "ASSETS.md",
@@ -64,17 +64,17 @@
       "assets/service-plan.svg"
     ],
     "wordpressEvidence": {
-      "exactCurrentZipActivation": true,
-      "nativeApiGate": true,
+      "exactCurrentZipActivation": false,
+      "nativeApiGate": false,
       "wordpress": "6.6",
       "php": "8.1.34",
       "database": "MariaDB 10.11.19",
-      "scope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart."
+      "scope": "Historical browser-sandbox evidence; not current-version acceptance"
     }
   },
   {
     "editionId": "tideglass-developer-v1",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "guidePath": "/templates/guides/tideglass/developer/",
     "files": [
       "ASSETS.md",
@@ -101,7 +101,7 @@
   },
   {
     "editionId": "tideglass-wordpress-v1",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "guidePath": "/templates/guides/tideglass/wordpress/",
     "files": [
       "ASSETS.md",
@@ -137,17 +137,17 @@
       "assets/coast.svg"
     ],
     "wordpressEvidence": {
-      "exactCurrentZipActivation": true,
-      "nativeApiGate": true,
+      "exactCurrentZipActivation": false,
+      "nativeApiGate": false,
       "wordpress": "6.6",
       "php": "8.1.34",
       "database": "MariaDB 10.11.19",
-      "scope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart."
+      "scope": "Historical browser-sandbox evidence; not current-version acceptance"
     }
   },
   {
     "editionId": "matter-developer-v1",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "guidePath": "/templates/guides/matter/developer/",
     "files": [
       "ASSETS.md",
@@ -176,7 +176,7 @@
   },
   {
     "editionId": "matter-wordpress-v1",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "guidePath": "/templates/guides/matter/wordpress/",
     "files": [
       "ASSETS.md",
@@ -214,17 +214,17 @@
       "assets/vessel.svg"
     ],
     "wordpressEvidence": {
-      "exactCurrentZipActivation": true,
-      "nativeApiGate": true,
+      "exactCurrentZipActivation": false,
+      "nativeApiGate": false,
       "wordpress": "6.6",
       "php": "8.1.34",
       "database": "MariaDB 10.11.19",
-      "scope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart."
+      "scope": "Historical browser-sandbox evidence; not current-version acceptance"
     }
   },
   {
     "editionId": "nightjar-developer-v1",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "guidePath": "/templates/guides/nightjar/developer/",
     "files": [
       "ASSETS.md",
@@ -251,7 +251,7 @@
   },
   {
     "editionId": "nightjar-wordpress-v1",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "guidePath": "/templates/guides/nightjar/wordpress/",
     "files": [
       "ASSETS.md",
@@ -287,12 +287,12 @@
       "assets/poster.svg"
     ],
     "wordpressEvidence": {
-      "exactCurrentZipActivation": true,
-      "nativeApiGate": true,
+      "exactCurrentZipActivation": false,
+      "nativeApiGate": false,
       "wordpress": "6.6",
       "php": "8.1.34",
       "database": "MariaDB 10.11.19",
-      "scope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart."
+      "scope": "Historical browser-sandbox evidence; not current-version acceptance"
     }
   }
 ]

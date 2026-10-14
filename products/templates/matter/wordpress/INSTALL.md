@@ -21,7 +21,7 @@ GoDaddy Websites + Marketing is a separate product and cannot import this ZIP.
 1. Back up the existing site and test in staging. Do not replace an active theme
    on a customer site without reviewing its existing templates, menus, and content.
 2. In Appearance → Themes → Add New → Upload Theme, select the separately
-   supplied `matter-wordpress-v1.0.2.zip`. Install and activate `Matter by Eidos Works`.
+   supplied `matter-wordpress-v1.0.3.zip`. Install and activate `Matter by Eidos Works`.
 3. In Settings → General, set your site title and tagline. In Appearance → Editor,
    open Styles to edit the palette, typography, and spacing. Header site title and
    Navigation are ordinary core blocks. No account or key is needed.

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "nightjar-wordpress-v1",
   "product": "nightjar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -21,7 +21,7 @@
     {
       "path": "INSTALL.md",
       "bytes": 7367,
-      "sha256": "7b6f7915a65b177cf3c64ab334041ccdf649111407665e95154197b09225326b"
+      "sha256": "176ac4534ec699ceee5437fa9aa875c1836e19c294222f826b106b6f6151cc0d"
     },
     {
       "path": "LICENSE.txt",
@@ -31,12 +31,12 @@
     {
       "path": "README.md",
       "bytes": 279,
-      "sha256": "0f189624326f7874f45ee462e50aa015a3c611b5c26946d64446141e7a4a12f8"
+      "sha256": "8fcfd9d578f87f45f0fb345048c4f9ee63b6934300e55a815263eb956e29de1b"
     },
     {
       "path": "SUPPORT.md",
-      "bytes": 1361,
-      "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
     },
     {
       "path": "assets/poster.svg",
@@ -51,7 +51,7 @@
     {
       "path": "functions.php",
       "bytes": 494,
-      "sha256": "86fd183b60a29faa7a4bbd446bd86200ab56cea0aa770209f2bb6af844126d3f"
+      "sha256": "594c4ab72ee44943a2b79cdda252e6f833ec7f39c42d4aa391095f69c6d54dd3"
     },
     {
       "path": "parts/footer.html",
@@ -91,7 +91,7 @@
     {
       "path": "style.css",
       "bytes": 12097,
-      "sha256": "cb5f79284afa03117ba650626ac86afef8062d0afa7b6aeaec6fcb3ac7000ff7"
+      "sha256": "3b4e85a92d3551da52e5b99136648b999adf265bd8f0f68e2e96e5c2ce556e71"
     },
     {
       "path": "templates/404.html",

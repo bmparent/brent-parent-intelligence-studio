@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "nightjar-developer-v1",
   "product": "nightjar",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -16,12 +16,12 @@
     {
       "path": "INSTALL.md",
       "bytes": 10342,
-      "sha256": "bcfdc93dfb08b2635924d968dbebba1eb297c3439bd53c52e4d10530d1b3d778"
+      "sha256": "c850f7f45230471726cd99ecd1997e59d58905d8d307bb918cadd86ccf8e8e67"
     },
     {
       "path": "LICENSE.txt",
       "bytes": 1553,
-      "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+      "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
     },
     {
       "path": "README.md",
@@ -30,8 +30,8 @@
     },
     {
       "path": "SUPPORT.md",
-      "bytes": 1361,
-      "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
     },
     {
       "path": "about.html",

@@ -246,43 +246,44 @@ def shop_catalog_contract(page, width):
             checkout_requests.append(request.method)
     page.on('request', observe)
     try:
-        for slug in ['switchboard', 'nightjar']:
-            product = next(item for item in catalog['products'] if item['slug'] == slug)
-            edition = next(item for item in product['editions'] if item['platform'] == 'developer')
-            expected = {'id': edition['id'], 'available': True,
-                        'priceCents': edition['draftPriceCents'],
-                        'version': edition.get('version', '1.0.0')}
-            for case in ['matching', 'stale-version', 'wrong-price', 'unavailable']:
-                offered = dict(expected)
-                if case == 'stale-version':
-                    offered['version'] = '0.0.0-stale'
-                elif case == 'wrong-price':
-                    offered['priceCents'] += 100
-                elif case == 'unavailable':
-                    offered['available'] = False
-                payload = {'mode': 'test', 'ready': True, 'editions': [offered]}
-                def fulfill(route):
-                    route.fulfill(status=200, content_type='application/json', body=json.dumps(payload))
-                page.route('**/api/shop/catalog', fulfill)
-                try:
-                    with page.expect_response(lambda response: response.url.endswith('/api/shop/catalog')) as received:
-                        open_page(page, '/shop/' + slug)
-                    require(received.value.status == 200, 'Mock catalog was not read')
-                    received.value.finished()
-                    page.evaluate('() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
-                    label = re.compile(r'^Try TEST checkout') if case == 'matching' else 'Purchasing unavailable'
-                    button = page.get_by_role('button', name=label, exact=True)
-                    button.wait_for(state='visible', timeout=15000)
-                    require(button.is_disabled(), 'Readiness must not bypass ordinary terms/challenge')
-                    if case != 'matching':
-                        require(page.get_by_role('button', name=re.compile(r'^Try TEST checkout')).count() == 0,
-                                'Mismatched or unavailable catalog enabled checkout')
-                    report['checks'].append({'scope': 'mocked TEST catalog contract', 'product': slug,
-                                             'viewport': width, 'case': case, 'version': expected['version'],
-                                             'result': 'passed', 'checkoutSubmitted': False,
-                                             'challengeInteracted': False})
-                finally:
-                    page.unroute('**/api/shop/catalog', fulfill)
+        for mode in ['test', 'live']:
+            for slug in ['switchboard', 'nightjar']:
+                product = next(item for item in catalog['products'] if item['slug'] == slug)
+                edition = next(item for item in product['editions'] if item['platform'] == 'developer')
+                expected = {'id': edition['id'], 'available': True,
+                            'priceCents': edition['draftPriceCents'],
+                            'version': edition.get('version', '1.0.0')}
+                for case in ['matching', 'stale-version', 'wrong-price', 'unavailable']:
+                    offered = dict(expected)
+                    if case == 'stale-version':
+                        offered['version'] = '0.0.0-stale'
+                    elif case == 'wrong-price':
+                        offered['priceCents'] += 100
+                    elif case == 'unavailable':
+                        offered['available'] = False
+                    payload = {'mode': mode, 'ready': True, 'editions': [offered]}
+                    def fulfill(route):
+                        route.fulfill(status=200, content_type='application/json', body=json.dumps(payload))
+                    page.route('**/api/shop/catalog', fulfill)
+                    try:
+                        with page.expect_response(lambda response: response.url.endswith('/api/shop/catalog')) as received:
+                            open_page(page, '/shop/' + slug)
+                        require(received.value.status == 200, 'Mock catalog was not read')
+                        received.value.finished()
+                        page.evaluate('() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
+                        label = re.compile(r'^Buy' if mode == 'live' else r'^Try TEST checkout') if case == 'matching' else 'Purchasing unavailable'
+                        button = page.get_by_role('button', name=label, exact=True)
+                        button.wait_for(state='visible', timeout=15000)
+                        require(button.is_disabled(), 'Readiness must not bypass ordinary terms/challenge')
+                        if case != 'matching':
+                            require(page.get_by_role('button', name=re.compile(r'^Buy' if mode == 'live' else r'^Try TEST checkout')).count() == 0,
+                                    'Mismatched or unavailable catalog enabled checkout')
+                        report['checks'].append({'scope': 'mocked ' + mode.upper() + ' catalog contract', 'product': slug,
+                                                 'viewport': width, 'case': case, 'version': expected['version'],
+                                                 'result': 'passed', 'checkoutSubmitted': False,
+                                                 'challengeInteracted': False})
+                    finally:
+                        page.unroute('**/api/shop/catalog', fulfill)
         require(not checkout_requests, 'Catalog-only checks must not submit checkout')
     finally:
         page.remove_listener('request', observe)

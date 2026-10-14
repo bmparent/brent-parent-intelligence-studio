@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "editionId": "switchboard-wordpress-v1",
   "product": "switchboard",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "catalogVersion": "2026-10-10.1",
   "availability": "unavailable",
   "status": "candidate",
@@ -21,7 +21,7 @@
     {
       "path": "INSTALL.md",
       "bytes": 7394,
-      "sha256": "af6321b2e660aebae8c699e20c5642a6dd4f7286fad1b5fad0ec61ab0183006d"
+      "sha256": "25046e29faf2992aaf66ce74d98058692099e568bbeeaf14422689517e0bc422"
     },
     {
       "path": "LICENSE.txt",
@@ -31,12 +31,12 @@
     {
       "path": "README.md",
       "bytes": 282,
-      "sha256": "12cc9a003ab638d2ced8a356abf3ae95dab43a4a0cf1ff1b9d2d7342de4c1f86"
+      "sha256": "254aee329b3f3572ad38b6f18414ec86e7781e8d4c7916883942b273693b6e3d"
     },
     {
       "path": "SUPPORT.md",
-      "bytes": 1361,
-      "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
     },
     {
       "path": "assets/service-plan.svg",
@@ -51,7 +51,7 @@
     {
       "path": "functions.php",
       "bytes": 500,
-      "sha256": "04ba48a8a931ae2d35091ed0142c289850f4cbc3e65369afb3332f5580f357d9"
+      "sha256": "091a15b3691fb25aa6ed6d9c2f3471d8b303952900869726030f320644f064bc"
     },
     {
       "path": "parts/footer.html",
@@ -91,7 +91,7 @@
     {
       "path": "style.css",
       "bytes": 10575,
-      "sha256": "eba2f53b112d47fdfe48b16d04167d2e428bc5f8ec9325230c8a11cc8b19f1c3"
+      "sha256": "67eb6252d27dd18bb0de46ebbaa791f927acd30aef912a9102775975268dcd0c"
     },
     {
       "path": "templates/404.html",
