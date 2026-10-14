@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 4,
+  "rendererVersion": "eidos-original-glass-2.0.0",
+  "template": "landing",
+  "name": "Direct manipulation acceptance",
+  "tokens": {
+    "background": "#292e18",
+    "foreground": "#f4f4e7",
+    "accent": "#d5f87b",
+    "spacing": 40,
+    "radius": 20,
+    "typeScale": 1,
+    "width": 1280,
+    "font": "editorial"
+  },
+  "glass": {
+    "presetId": "eidos-edge-light-v5",
+    "enabled": true,
+    "frost": 1.2,
+    "edge": 0.72,
+    "prism": 0.32,
+    "touch": 4.3,
+    "radius": 29,
+    "response": 28,
+    "solid": "#0f2530",
+    "start": 4,
+    "end": 72,
+    "reducedMotion": false
+  },
+  "sections": [
+    {
+      "id": "header",
+      "type": "header",
+      "visible": true,
+      "title": "FORMA",
+      "description": "Work|About",
+      "cta": "Let’s talk ↗",
+      "href": "#contact",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "hero",
+      "type": "hero",
+      "authoring": {
+        "version": 1,
+        "root": {
+          "id": "node-b7ddf62b-4bac-468f-bfb6-29b956c67ff5",
+          "type": "columns",
+          "name": "Two columns",
+          "text": "",
+          "href": "",
+          "image": "",
+          "alt": "",
+          "width": 100,
+          "height": 320,
+          "gap": 48,
+          "align": "left",
+          "split": 50,
+          "lockAspect": true,
+          "children": [
+            {
+              "id": "node-e0ea2429-2c78-4b93-8cd5-298e53f7759a",
+              "type": "stack",
+              "name": "Source stack",
+              "text": "",
+              "href": "",
+              "image": "",
+              "alt": "",
+              "width": 100,
+              "height": 320,
+              "gap": 24,
+              "align": "left",
+              "split": 50,
+              "lockAspect": true,
+              "children": [
+                {
+                  "id": "node-3196e5d3-2b3b-4bc9-a9ae-8c0a7d93eb06",
+                  "type": "text",
+                  "name": "Source label",
+                  "text": "A photograph to arrange.",
+                  "href": "",
+                  "image": "",
+                  "alt": "",
+                  "width": 100,
+                  "height": 320,
+                  "gap": 24,
+                  "align": "left",
+                  "split": 50,
+                  "lockAspect": true
+                }
+              ]
+            },
+            {
+              "id": "node-6495fec2-8c19-4b29-874a-b8e907963a55",
+              "type": "stack",
+              "name": "Empty destination",
+              "text": "",
+              "href": "",
+              "image": "",
+              "alt": "",
+              "width": 100,
+              "height": 320,
+              "gap": 24,
+              "align": "left",
+              "split": 50,
+              "lockAspect": true,
+              "children": [
+                {
+                  "id": "node-451a8b7b-e4d5-45aa-8951-a7aad4fb825a",
+                  "type": "image",
+                  "name": "Movable photograph",
+                  "text": "",
+                  "href": "",
+                  "image": "data:image/png;base64,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",
+                  "alt": "Two geometric shapes",
+                  "width": 75,
+                  "height": 206.25418456024076,
+                  "gap": 24,
+                  "align": "left",
+                  "split": 50,
+                  "lockAspect": true,
+                  "media": {
+                    "fit": "cover",
+                    "zoom": 1,
+                    "x": 59.28202900107948,
+                    "y": 38.85925723515704,
+                    "tint": "#000000",
+                    "opacity": 0,
+                    "decorative": false,
+                    "sourceId": "",
+                    "sourceName": ""
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "visible": true,
+      "title": "Good things\ntake shape.",
+      "description": "Independent design for brands\nwith a point of view.",
+      "cta": "Explore our work ↗",
+      "href": "#work",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "services",
+      "type": "services",
+      "visible": true,
+      "title": "What we bring.",
+      "description": "Brand identity\nDigital experiences\nCreative direction",
+      "cta": "",
+      "href": "",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "work",
+      "type": "work",
+      "visible": true,
+      "title": "A different perspective.",
+      "description": "An exploration of form, color, and possibility.\nReplace these studies with your own work.",
+      "cta": "",
+      "href": "",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "visible": true,
+      "title": "Have something\nin mind?",
+      "description": "We’d love to hear what you’re thinking.",
+      "cta": "Start a conversation ↗",
+      "href": "mailto:hello@example.com",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "footer",
+      "type": "footer",
+      "visible": true,
+      "title": "FORMA",
+      "description": "Independent by design.",
+      "cta": "",
+      "href": "",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    }
+  ]
+}

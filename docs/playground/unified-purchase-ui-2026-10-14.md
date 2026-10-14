@@ -1,5 +1,7 @@
 # Unified Playground purchase UI and owned recovery — 2026-10-14
 
+Final integration: clean-checkout CI `38623788219` passed on `a669fdd`, including eight Chromium purchase fixture scenarios / 29 checks and the actual hosted manual journey. Broader three-engine/site CI `38623788224` passed. The final mobile-CSS browser package also matched the compiled Next package at 128,380 bytes, SHA256 `9def4cc49c1f79a061af9470c46fb96d6aa3550ba490304770ea1550364f29ed`. Earlier matrix/compiler receipts below retain their original scope. See [the final acceptance ledger](unified-acceptance-2026-10-14.md) for exact deployed identities and remaining hosted account/payment/inbox/provider gates.
+
 ## Implemented boundary
 
 The Finish dialog retains the frozen local package and offers a deliberate account-availability check. It performs no availability, snapshot submission, checkout, status, recovery, or download request simply because a person opens the editor or Finish. The existing manual preview stays usable with the delivery feature disabled.

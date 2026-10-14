@@ -1,0 +1,17 @@
+(node:16020) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+3:03:34 PM [vite] (client) page reload artifacts/playground-unified/purchase-browser/firefox/1440-fresh-recovery/independent/index.html
+✔ all eight buyer guides separate section headings, instructions, steps, and inline filenames (224.0737ms)
+✔ each collection entry points to its actual demo and independent five-page product detail (249.0463ms)
+✔ candidate price and guide records match the server-owned edition contract (1.7152ms)
+✔ all eight selected-edition guides and exact file/art contents are public before checkout (256.3643ms)
+✔ platform help, terms, and recovery disclose product boundaries (30.3072ms)
+✔ new candidate preserves Cinematic Starter product files and price (8.9472ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48145.1308

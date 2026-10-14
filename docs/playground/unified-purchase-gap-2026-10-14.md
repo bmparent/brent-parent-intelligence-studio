@@ -1,5 +1,7 @@
 # Unified Playground purchase and delivery gap map — October 14, 2026
 
+Historical pre-implementation audit. The source gaps below describe the inspected SHAs, not the final candidate. Implemented snapshot, order, checkout and recovery contracts and their remaining hosted gates are recorded in [the final acceptance ledger](unified-acceptance-2026-10-14.md).
+
 This is a read-only source audit and implementation proposal for handoff milestone 5. No checkout, mail, provider request, credential change, schema deployment, or code activation was performed. The manual preview must continue with accounts, payments, mail, and AI disabled.
 
 ## Scope and inspected state

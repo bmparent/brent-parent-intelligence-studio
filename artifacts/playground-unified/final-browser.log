@@ -1,0 +1,20 @@
+1440: PASS clean start does not save or silently open a default project
+1440: PASS goal and starter create real page; inline headline editing
+1440: PASS uploaded image moves into columns and resizes through click/keyboard controls
+1440: PASS global brand updates shared project
+1440: PASS section reorder and exact shared Undo/Redo
+1440: PASS reload explicitly continues exact content, IDs, assets and selection
+1440: PASS invalid import preserves current work
+1440: PASS Finish freezes and downloads actual standalone page ZIP
+1440: PASS extracted output opens independently with exact editable project and all images
+1440: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+390: PASS clean start does not save or silently open a default project
+390: PASS goal and starter create real page; inline headline editing
+390: PASS uploaded image moves into columns and resizes through click/keyboard controls
+390: PASS global brand updates shared project
+390: PASS section reorder and exact shared Undo/Redo
+390: PASS reload explicitly continues exact content, IDs, assets and selection
+390: PASS invalid import preserves current work
+390: PASS Finish freezes and downloads actual standalone page ZIP
+390: PASS extracted output opens independently with exact editable project and all images
+390: PASS page identity, no blank/overlay/runtime error/horizontal overflow

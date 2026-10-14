@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-10-14T18:14:55.020Z",
-  "frontendCommit": "3772075bb757bb372193cb5240e0ffa1820e00fb",
-  "backendCommit": "a6503364c4cfe36e74e41612e1efb570897bc0a6",
+  "timestamp": "2026-10-14T19:16:26.531Z",
+  "frontendCommit": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "backendCommit": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
   "workingFiles": true,
   "checks": [
     {
@@ -18,7 +18,7 @@
     },
     {
       "path": "functions/_shared/platform/templateShop.ts",
-      "sha256Utf8Lf": "11f651ee0eb556c65a4ad69b2ac48b9389ef5efcde751d742153d324d7a6152c"
+      "sha256Utf8Lf": "b8dbcbf4c17014aec56575901a0799580d5c058e0eaadf6f00e785ea4edb3141"
     },
     {
       "path": "functions/api/playground/ai.ts",
@@ -35,6 +35,38 @@
     {
       "path": "migrations/0005_playground_ai.sql",
       "sha256Utf8Lf": "531525eb781671d6ffb887de783c773d3023383bd1110ad97e53d0e7ae2fd8b8"
+    },
+    {
+      "path": "functions/_shared/platform/projectDelivery.ts",
+      "sha256Utf8Lf": "b17d270cd7b5f40a711cb3ac67553cd5d927b2def25ab045ba7befab467f8614"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliverySchema.ts",
+      "sha256Utf8Lf": "9ff3edfd777b43410d7499e6a2abb66625187b6b15f6bc889324c2b917913c4b"
+    },
+    {
+      "path": "functions/api/playground/delivery.ts",
+      "sha256Utf8Lf": "0a8f465d54abfa9221b9be25d9b9eb2b55850a408b47e9ec2adc1110c1cc0fb2"
+    },
+    {
+      "path": "migrations/0006_project_delivery.sql",
+      "sha256Utf8Lf": "711faa1efc31c66ae37056c1eec51aca3f8ffeba975a4d9873b0282fc8c9ba43"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliveryOrders.ts",
+      "sha256Utf8Lf": "90d8218230a1b5e56a6cd4d1a30822a39e1587bc5fc141069d5d836488eb615a"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliveryOrdersSchema.ts",
+      "sha256Utf8Lf": "99f909e2ef9d0e3e7327557239d2ee7a97815e689ebb4f274d53d8af77156209"
+    },
+    {
+      "path": "migrations/0007_project_delivery_orders.sql",
+      "sha256Utf8Lf": "34fb25d8792c96cb0d26206bd4ca40ecc1bcace4865f47fc5d8a5b7278b7d41f"
+    },
+    {
+      "path": "functions/api/shop/download.ts",
+      "sha256Utf8Lf": "a5923916f39e9907e5df8a8b07a468cd90a51938a25044a934859c15c3485618"
     }
   ],
   "legacyCloudRenderer": "not copied or upgraded",

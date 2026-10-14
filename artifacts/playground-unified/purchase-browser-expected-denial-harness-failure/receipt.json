@@ -1,0 +1,1230 @@
+{
+  "timestampUtc": "2026-10-14T19:06:00.167Z",
+  "source": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "sourceFiles": [
+    {
+      "path": "src/playground/PurchaseRecovery.tsx",
+      "sha256": "afd51326553613a934976b60bacd66cd110c0977a42baa44e73247ffc03e08f6"
+    },
+    {
+      "path": "src/playground/purchaseRecoveryClient.ts",
+      "sha256": "63402bd878c93bd57b608d2380473eddc32759b071a780750b3aae4b29398802"
+    },
+    {
+      "path": "src/playground/purchaseClient.ts",
+      "sha256": "b73b750a2524c610dd257284c7188df7f868a64c17668115b57b86190bdc5ed7"
+    },
+    {
+      "path": "src/playground/purchaseSnapshot.ts",
+      "sha256": "13bcf3dcb03441368cadf77d62bb34bf249163e92005418c22bcd5c52e922f5d"
+    },
+    {
+      "path": "src/playground/purchaseReviewStorage.ts",
+      "sha256": "4a344267a2441d7fded571551480cf7a12016c49fc3cb03eb843a6ba97e22b89"
+    },
+    {
+      "path": "src/playground/FinishPurchase.tsx",
+      "sha256": "11bf874bead78f2ad4f173c4acdbae9ed12b1e7b0b640bce2b1ba68bfbe46612"
+    },
+    {
+      "path": "src/playground/FinishReview.tsx",
+      "sha256": "79b4ebcd21c5c494a5e3851f153e9af6522f64997dcd3d168f9870b6d066187b"
+    },
+    {
+      "path": "src/playground/Playground.tsx",
+      "sha256": "c3a08070dd393b535741c9ea96f2d3b589399f037cd3c634430f3e847e25c4f3"
+    },
+    {
+      "path": "src/playground/useProject.ts",
+      "sha256": "4c89d2a5f408a913c2831d9e569166688e21a98f6ae8ed999eeee6e986195bf3"
+    },
+    {
+      "path": "scripts/verify-playground-purchase-browser.mjs",
+      "sha256": "219c7757ada2bcbc484e4b7563cbbdd3b460d77b9983d59fbbd070855d0fcc78"
+    }
+  ],
+  "base": "http://127.0.0.1:5185",
+  "browserAvailability": "Browser plugin not available; Playwright fixture harness explicitly requested",
+  "flow": "Private return -> explicit authenticated fixture retrieval -> exact stored ZIP -> separate editable copy",
+  "fixtureOnly": true,
+  "actualPayment": false,
+  "actualEmail": false,
+  "hostedAcceptance": false,
+  "physicalDevice": false,
+  "fixtureArchive": {
+    "sha256": "ed2a8c359b9e9ec34f98ce6a70a4a46cc40736069c82606a3796ac1fe3698767",
+    "bytes": 66201
+  },
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "preserve-draft",
+      "checks": [
+        "recovered copy preserves the existing draft under its original identity",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-recovery",
+      "checks": [
+        "late recovery response after starting another project cannot open or replace the active draft",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "recovery-reauthorization",
+      "checks": [
+        "account switch after retrieval blocks opening a new editable copy",
+        "revocation after retrieval blocks opening a new editable copy"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at scenario (file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:95:118)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:147:3"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "cancelled-checkout",
+      "checks": [
+        "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [
+        "Interception-only TEST checkout document"
+      ],
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "089c2137-ac99-4340-a314-57625cfd6d25",
+        "revision": 0,
+        "snapshotHash": "8d5dabb0b1543ea57881a2e925ea0548557802ddef06ccf47cb66789a076cb58",
+        "projectHash": "1fc801b9f0a69db96110745c3bbc98f3f4fe77d1d042aacf10feeb0360cdbab4",
+        "archiveSha256": "50056c23c5c1e45d272b6c12fe136c07bd3e79005950076f3d636ec85c0a71f8",
+        "archiveBytes": 128360,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [
+        "manual create/review/approval makes no purchase API request",
+        "revoking review approval during deferred preflight prevents checkout dispatch",
+        "late checkout response after closing review and editing does not navigate or replace the newer draft",
+        "account switch clears the previous owner accepted and paid display",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "browserFreeze": {
+        "kind": "eidos-local-package-receipt",
+        "snapshotHash": "919b7fc9cafdef4c372c0d31b819ef722a40f53045737180e5413a08a2b136ce",
+        "archiveSha256": "709e2adea4f26f9c7f147018de82a6c5067a76ddd3d2c6abf91b1dfb5355ee62",
+        "bytes": 128347,
+        "purchase": "not-performed"
+      },
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "200161d4-0ee9-4374-8815-4191afd4a4df",
+        "revision": 0,
+        "snapshotHash": "919b7fc9cafdef4c372c0d31b819ef722a40f53045737180e5413a08a2b136ce",
+        "projectHash": "707a5c796b982926f73562c36f109a9a1ae7a07b3d167070746ed780bc1c13cb",
+        "archiveSha256": "709e2adea4f26f9c7f147018de82a6c5067a76ddd3d2c6abf91b1dfb5355ee62",
+        "archiveBytes": 128347,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5185/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5185/playground/\" line: 0}]"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "name": "preserve-draft",
+      "checks": [
+        "recovered copy preserves the existing draft under its original identity",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"http://127.0.0.1:5185/playground/?checkout=returned#receipt=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "name": "deferred-recovery",
+      "checks": [
+        "late recovery response after starting another project cannot open or replace the active draft",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "name": "recovery-reauthorization",
+      "checks": [
+        "account switch after retrieval blocks opening a new editable copy",
+        "revocation after retrieval blocks opening a new editable copy",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "name": "cancelled-checkout",
+      "checks": [
+        "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.\" {file: \"https://checkout.stripe.com/c/pay/fixture-must-not-navigate-after-cancel\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [
+        "Interception-only TEST checkout document"
+      ],
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "d384aa7a-e962-4ea7-a25c-dd2176b8880f",
+        "revision": 0,
+        "snapshotHash": "f9c3a1ce9fed894babf7fdfea8d35b96630a775b7faac53189f47afa6e1f75f8",
+        "projectHash": "3c468627becab0d997cc4a17aa4a23df7dc02aa89792470b03cae3d0e64bfe7f",
+        "archiveSha256": "d578ab1d2773239dd98dd26a06ffdcb5e2df204491320936d824bb28b2ccea6e",
+        "archiveBytes": 126734,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [
+        "manual create/review/approval makes no purchase API request",
+        "revoking review approval during deferred preflight prevents checkout dispatch",
+        "late checkout response after closing review and editing does not navigate or replace the newer draft",
+        "account switch clears the previous owner accepted and paid display",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "browserFreeze": {
+        "kind": "eidos-local-package-receipt",
+        "snapshotHash": "15e217aecccb0fc5340e3969a91e6abc17a2b5fe37f678d18085945f1ee31eca",
+        "archiveSha256": "19cd3eee51ee0ff53dce4ccc291ba15a71951c03aee628167c2b97ca7b67c0ce",
+        "bytes": 126721,
+        "purchase": "not-performed"
+      },
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "f78cbc1e-3c95-4ee0-951b-5ab14ac72274",
+        "revision": 0,
+        "snapshotHash": "15e217aecccb0fc5340e3969a91e6abc17a2b5fe37f678d18085945f1ee31eca",
+        "projectHash": "a425a1d22a0bdb64e8fb2adea42ede45296b19c77d55ef29df111d06ec21b16c",
+        "archiveSha256": "19cd3eee51ee0ff53dce4ccc291ba15a71951c03aee628167c2b97ca7b67c0ce",
+        "archiveBytes": 126721,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "name": "preserve-draft",
+      "checks": [
+        "recovered copy preserves the existing draft under its original identity",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "name": "deferred-recovery",
+      "checks": [
+        "late recovery response after starting another project cannot open or replace the active draft",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "name": "recovery-reauthorization",
+      "checks": [
+        "account switch after retrieval blocks opening a new editable copy",
+        "revocation after retrieval blocks opening a new editable copy"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at scenario (file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:95:118)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:147:3"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "name": "cancelled-checkout",
+      "checks": [
+        "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [
+        "Interception-only TEST checkout document"
+      ],
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "2c7503f8-987a-4e1a-ab5a-ed4367fae5de",
+        "revision": 0,
+        "snapshotHash": "067511a4edb3a8130f0f13af1972599d4e7a4a187aa5e65ebe97ae5605228e80",
+        "projectHash": "71e2cefcc5c84e0c424013f3fcfc2c942396a665a9720ac617c370098189d7ab",
+        "archiveSha256": "0e89365927fcf09e2d07aeec6ea9b4b0e0ef80858d62a7f5ec00a7eb98dfad49",
+        "archiveBytes": 128416,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [
+        "manual create/review/approval makes no purchase API request",
+        "revoking review approval during deferred preflight prevents checkout dispatch",
+        "late checkout response after closing review and editing does not navigate or replace the newer draft",
+        "account switch clears the previous owner accepted and paid display",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "browserFreeze": {
+        "kind": "eidos-local-package-receipt",
+        "snapshotHash": "a68796fd819527f5809360c72e990b252907714c37678ca46794d9f4d99a8bf8",
+        "archiveSha256": "044bddc7e760328c0af09e8d38c416aee210bcad61e0adb3a2ca1e50408bf19b",
+        "bytes": 128403,
+        "purchase": "not-performed"
+      },
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "b644f90e-cd24-4209-a982-f21cd20c761b",
+        "revision": 0,
+        "snapshotHash": "a68796fd819527f5809360c72e990b252907714c37678ca46794d9f4d99a8bf8",
+        "projectHash": "a6330ba12b9304feed4fd5b4a6c5f173bfc0b6d56bbf8e3795ec7e75ed5187b3",
+        "archiveSha256": "044bddc7e760328c0af09e8d38c416aee210bcad61e0adb3a2ca1e50408bf19b",
+        "archiveBytes": 128403,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5185/playground/"
+    }
+  ]
+}

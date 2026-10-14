@@ -1,5 +1,7 @@
 # Local frozen page package — 2026-10-14
 
+This records the initial local-package slice and its historical receipts. Final integrated source, hosted checks and remaining purchase/provider gates are in [the acceptance ledger](unified-acceptance-2026-10-14.md).
+
 This is a frontend/local foundation for handoff milestone 5. It does not complete purchase/delivery. The inspected commerce gaps and protected-original requirements remain in [unified-purchase-gap-2026-10-14.md](unified-purchase-gap-2026-10-14.md).
 
 ## Implemented behavior

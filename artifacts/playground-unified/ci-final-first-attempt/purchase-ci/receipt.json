@@ -1,0 +1,552 @@
+{
+  "timestampUtc": "2026-10-14T19:21:33.682Z",
+  "source": "b2a53914bd065873ff3682935c9d3750cbe4264d",
+  "sourceFiles": [
+    {
+      "path": "src/playground/PurchaseRecovery.tsx",
+      "sha256": "dc08c0d8ed56e88a1537df5c6615c5daa23c5eb3fd41d75a3b177efd7ede16c3"
+    },
+    {
+      "path": "src/playground/purchaseRecoveryClient.ts",
+      "sha256": "63402bd878c93bd57b608d2380473eddc32759b071a780750b3aae4b29398802"
+    },
+    {
+      "path": "src/playground/purchaseClient.ts",
+      "sha256": "b73b750a2524c610dd257284c7188df7f868a64c17668115b57b86190bdc5ed7"
+    },
+    {
+      "path": "src/playground/purchaseSnapshot.ts",
+      "sha256": "13bcf3dcb03441368cadf77d62bb34bf249163e92005418c22bcd5c52e922f5d"
+    },
+    {
+      "path": "src/playground/purchaseReviewStorage.ts",
+      "sha256": "4a344267a2441d7fded571551480cf7a12016c49fc3cb03eb843a6ba97e22b89"
+    },
+    {
+      "path": "src/playground/FinishPurchase.tsx",
+      "sha256": "8b186e47126a2cb7adc766e87a67ff16d19e9349b6041b785da4eeefeaf5c92e"
+    },
+    {
+      "path": "src/playground/FinishReview.tsx",
+      "sha256": "79b4ebcd21c5c494a5e3851f153e9af6522f64997dcd3d168f9870b6d066187b"
+    },
+    {
+      "path": "src/playground/Playground.tsx",
+      "sha256": "c3a08070dd393b535741c9ea96f2d3b589399f037cd3c634430f3e847e25c4f3"
+    },
+    {
+      "path": "src/playground/useProject.ts",
+      "sha256": "a45ccc725641dfcf89a021f0d98ac4571f24f7ebeb2e39b0919715813d10efa4"
+    },
+    {
+      "path": "src/playground/renderer.ts",
+      "sha256": "e84990d78ab4720ac062852954893a071352e90dc582e78b98eac358b8ba61d1"
+    },
+    {
+      "path": "src/playground/runtimeBundle.ts",
+      "sha256": "c1020e8e744bd324bf4fed1c9ef07040222418034334f1692b9c8c4c5ac0cb30"
+    },
+    {
+      "path": "src/playground/pageStyles.ts",
+      "sha256": "519090e2366641830894a5cd70106abc302b437be3e15e7228bc176e6a4a820f"
+    },
+    {
+      "path": "src/components/Turnstile.tsx",
+      "sha256": "7bffac8f2e007cf65dbda631be51d1f58ea79fca7a1757a5152bf47ce9972ae5"
+    },
+    {
+      "path": "scripts/verify-playground-purchase-browser.mjs",
+      "sha256": "561d593a802a6ef5d3b540f303222fc446b10f84c36bfb016c92609b4d41f04e"
+    }
+  ],
+  "base": "http://127.0.0.1:5178",
+  "browserAvailability": "External Playwright fixture harness; Chromium, Firefox and WebKit locally available",
+  "flow": "Private return -> explicit authenticated fixture retrieval -> exact stored ZIP -> separate editable copy",
+  "fixtureOnly": true,
+  "actualPayment": false,
+  "actualEmail": false,
+  "hostedAcceptance": false,
+  "physicalDevice": false,
+  "fixtureArchive": {
+    "sha256": "c2ab05e5d9746ab060cd162b04ce269457619c86b9280b27acaebfeb57c9e72a",
+    "bytes": 66234
+  },
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [],
+      "checkoutFixtures": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [],
+      "checkoutFixtures": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "preserve-draft",
+      "checks": [
+        "recovered copy preserves the existing draft under its original identity",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [],
+      "checkoutFixtures": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-recovery",
+      "checks": [
+        "late recovery response after starting another project cannot open or replace the active draft",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [],
+      "checkoutFixtures": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "recovery-reauthorization",
+      "checks": [
+        "account switch after retrieval blocks opening a new editable copy",
+        "revocation after retrieval blocks opening a new editable copy",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+          "url": "http://127.0.0.1:5178/api/shop/status"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [
+        {
+          "status": 403,
+          "url": "http://127.0.0.1:5178/api/shop/status"
+        }
+      ],
+      "checkoutFixtures": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "cancelled-checkout",
+      "checks": [
+        "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [],
+      "checkoutFixtures": [
+        {
+          "attempt": "c2d70c3d3263e32e27659709d1098f19b9dea0f35bf039a1d98fc4b97cc353bc",
+          "challenge": "local-test",
+          "deliveryId": "fixture-delivery"
+        }
+      ],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [
+        "Interception-only TEST checkout document"
+      ],
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "8ea560ca-3b51-4b22-a292-fe717919f8c5",
+        "revision": 0,
+        "snapshotHash": "9cc3fb533822607bba7ee3335d1473774ad8388f6f3dae03dad04e8696cbfda7",
+        "projectHash": "914663ef21382fa2dd0ca68a329aabb78ddbbb6d6ac24c093d6a9a8693c95234",
+        "archiveSha256": "75f3d973480359e9ce54a37159f87b6ad064e69b797c84d8b43303054ca2706e",
+        "archiveBytes": 128119,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [
+        "manual create/review/approval makes no purchase API request",
+        "revoking review approval during deferred preflight prevents checkout dispatch",
+        "late checkout response after closing review and editing does not navigate or replace the newer draft",
+        "account switch clears the previous owner accepted and paid display",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [],
+      "checkoutFixtures": [
+        {
+          "attempt": "7ef592e28dfa15a608967471a6827a26c50c3525e055e8990d52d4f5243e2420",
+          "challenge": "local-test",
+          "deliveryId": "fixture-delivery"
+        }
+      ],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "browserFreeze": {
+        "kind": "eidos-local-package-receipt",
+        "snapshotHash": "d7e7aa5b8091e6fec4959fe03665facded9e37ff13e68f882e8eddc56cf790a4",
+        "archiveSha256": "41322b4c5455d17683b6df452dcc68d69b937006d91fde4cb235560db7f31106",
+        "bytes": 128106,
+        "purchase": "not-performed"
+      },
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "aa12b65a-5b00-44c2-a7b2-090526426002",
+        "revision": 0,
+        "snapshotHash": "d7e7aa5b8091e6fec4959fe03665facded9e37ff13e68f882e8eddc56cf790a4",
+        "projectHash": "17465849f9d4668a67b4cdb8751feb19b031da035cbc7e39f401fe3148a5d90d",
+        "archiveSha256": "41322b4c5455d17683b6df452dcc68d69b937006d91fde4cb235560db7f31106",
+        "archiveBytes": 128106,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "challenge-retry",
+      "checks": [
+        "failed dispatched checkout removes the consumed challenge and waits for a fresh verification token",
+        "retry keeps the immutable purchase attempt and dispatches only with the fresh token",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)",
+          "url": "http://127.0.0.1:5178/api/shop/checkout"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [
+        {
+          "status": 502,
+          "url": "http://127.0.0.1:5178/api/shop/checkout"
+        }
+      ],
+      "checkoutFixtures": [
+        {
+          "attempt": "57e50ef8675752ee569d3d48b2f0460dd957011196fa08813a2056048be02d7d",
+          "challenge": "fixture-token-1",
+          "deliveryId": "fixture-delivery"
+        },
+        {
+          "attempt": "57e50ef8675752ee569d3d48b2f0460dd957011196fa08813a2056048be02d7d",
+          "challenge": "fixture-token-2",
+          "deliveryId": "fixture-delivery"
+        }
+      ],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [
+        "Interception-only TEST checkout document"
+      ],
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "03d35f09-b0a9-4e52-963c-13f21e9c73fc",
+        "revision": 0,
+        "snapshotHash": "5d7240b17ddd2690271aacc6c688c7f16d92307fc0f5116d53addd73faea359f",
+        "projectHash": "c1d539e0e4e9681de5eda15dabfcc0f259a35ecc8653a6f9c75e183a0de98c61",
+        "archiveSha256": "c2292f3e313eea2f6a6ed769cce3d8e88635f15744b2d583ff2d565db2d2fc8b",
+        "archiveBytes": 128236,
+        "mode": "test"
+      },
+      "title": "",
+      "url": "https://checkout.stripe.com/c/pay/fixture-must-not-navigate-after-cancel"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "engine": "webkit",
+  "width": 1440,
+  "name": "cancelled-checkout",
+  "checks": [
+    "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+    "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing.",
+      "url": ""
+    },
+    {
+      "type": "warning",
+      "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing.",
+      "url": ""
+    }
+  ],
+  "calls": [
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    }
+  ],
+  "unexpected": [],
+  "expectedHttpDenials": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com",
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [
+    "Interception-only TEST checkout document"
+  ],
+  "serverFreeze": {
+    "id": "fixture-delivery",
+    "ownerId": "fixture-owner",
+    "documentId": "d5ff7970-31ca-489d-8c79-44cf917ba4bf",
+    "revision": 0,
+    "snapshotHash": "75b3f4f46077e4c1203b7e558f8192cf2e5dbf002348d796bfc555b0868af97b",
+    "projectHash": "5b412fba57148564a43f1ac0758d8ad758a67223ea6d7c510b5462e205f5499e",
+    "archiveSha256": "450c3d57fe976cb595ade9b190af431e7f9d63cafcdbaf79db61d925305ec589",
+    "archiveBytes": 128416,
+    "mode": "test"
+  },
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}

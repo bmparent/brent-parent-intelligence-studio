@@ -1,0 +1,85 @@
+{
+  "engine": "firefox",
+  "width": 1440,
+  "name": "cancelled-checkout",
+  "checks": [
+    "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+    "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]",
+      "url": "about:srcdoc"
+    },
+    {
+      "type": "warning",
+      "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]",
+      "url": "about:srcdoc"
+    },
+    {
+      "type": "warning",
+      "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"https://checkout.stripe.com/c/pay/fixture-must-not-navigate-after-cancel\" line: 0}]",
+      "url": "https://checkout.stripe.com/c/pay/fixture-must-not-navigate-after-cancel"
+    },
+    {
+      "type": "warning",
+      "text": "[JavaScript Warning: \"This page is in Quirks Mode. Page layout may be impacted. For Standards Mode use “<!DOCTYPE html>”.\" {file: \"https://checkout.stripe.com/c/pay/fixture-must-not-navigate-after-cancel\" line: 0}]",
+      "url": "https://checkout.stripe.com/c/pay/fixture-must-not-navigate-after-cancel"
+    },
+    {
+      "type": "warning",
+      "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]",
+      "url": "about:srcdoc"
+    }
+  ],
+  "calls": [
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    }
+  ],
+  "unexpected": [],
+  "expectedHttpDenials": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com",
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [
+    "Interception-only TEST checkout document"
+  ],
+  "serverFreeze": {
+    "id": "fixture-delivery",
+    "ownerId": "fixture-owner",
+    "documentId": "e49e1d10-fe94-41ca-9e63-566d8415dd28",
+    "revision": 0,
+    "snapshotHash": "c307f64224573ddb5f64d32c505e2195f02c12f00f953ce27654d2fc044ad59b",
+    "projectHash": "87af721440b3c8e8c3018feb715d4c37dd62791973c62acc3906d16e38f3a9f6",
+    "archiveSha256": "c41d9015805a941e1233004cf209e516c1aeebc62f4fce2ab40e6f9ee43bda87",
+    "archiveBytes": 126734,
+    "mode": "test"
+  },
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}
