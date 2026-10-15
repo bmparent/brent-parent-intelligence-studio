@@ -1,0 +1,474 @@
+{
+  "diagnosticSource": "384b349bccb35724f460d53838f9e644eefa3359",
+  "productionSource": "b8bfbbc4e6f9dd73c7c899f0b32e829207314b75",
+  "checkedAt": "2026-10-15T15:22:03.845Z",
+  "policy": "Bounded metadata collection only. No authentication, identity spoofing, challenge solving, retries, security changes, or deployment.",
+  "limitation": "Neither this verifier nor Chromium is a verified search-engine crawler; genuine crawler accessibility requires provider events or Search Console evidence.",
+  "results": [
+    {
+      "client": "EidosIndexingVerifier/1.0",
+      "startedAt": "2026-10-15T15:21:39.878Z",
+      "requestedUrl": "https://eidos-works.com/sitemap.xml",
+      "responses": [
+        {
+          "url": "https://eidos-works.com/sitemap.xml",
+          "queryPresent": false,
+          "status": 403,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:40 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=UTF-8",
+            "content-length": null,
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4afd098fd319df8-YVR",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 5406,
+          "sha256": "f46977fe5fbebea8e5a7258c5d0b027825fd774ecafde67db6607f123f55a55f",
+          "title": "Just a moment...",
+          "challengeHeader": true,
+          "challengeMarkup": true,
+          "robots": [
+            "noindex,nofollow"
+          ],
+          "canonicals": [],
+          "sitemapUrlCount": null
+        }
+      ],
+      "finishedAt": "2026-10-15T15:21:40.022Z"
+    },
+    {
+      "client": "EidosIndexingVerifier/1.0",
+      "startedAt": "2026-10-15T15:21:42.024Z",
+      "requestedUrl": "https://eidos-works.com/work/nighttime-spectaculars",
+      "responses": [
+        {
+          "url": "https://eidos-works.com/work/nighttime-spectaculars",
+          "queryPresent": false,
+          "status": 403,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:42 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=UTF-8",
+            "content-length": null,
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4afd0a5fe7aefcd-YVR",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 5475,
+          "sha256": "c8bfc3b5087b4a8b6a2de096e0ccd53076b76f0b1d872b02e8a6693c8f3efe03",
+          "title": "Just a moment...",
+          "challengeHeader": true,
+          "challengeMarkup": true,
+          "robots": [
+            "noindex,nofollow"
+          ],
+          "canonicals": [],
+          "sitemapUrlCount": null
+        }
+      ],
+      "finishedAt": "2026-10-15T15:21:42.108Z"
+    },
+    {
+      "client": "EidosIndexingVerifier/1.0",
+      "startedAt": "2026-10-15T15:21:44.109Z",
+      "requestedUrl": "https://eidos-works.com/lab/eidos-brain",
+      "responses": [
+        {
+          "url": "https://eidos-works.com/lab/eidos-brain",
+          "queryPresent": false,
+          "status": 403,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:44 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=UTF-8",
+            "content-length": null,
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4afd0b2ed4c7631-YVR",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 5418,
+          "sha256": "7dfce30c6babbaec863b545ec10cab0edf33f4a040033a08bb899f0aeb7851a3",
+          "title": "Just a moment...",
+          "challengeHeader": true,
+          "challengeMarkup": true,
+          "robots": [
+            "noindex,nofollow"
+          ],
+          "canonicals": [],
+          "sitemapUrlCount": null
+        }
+      ],
+      "finishedAt": "2026-10-15T15:21:44.173Z"
+    },
+    {
+      "client": "EidosIndexingVerifier/1.0",
+      "startedAt": "2026-10-15T15:21:46.175Z",
+      "requestedUrl": "https://eidos-works.com/quote-desk/",
+      "responses": [
+        {
+          "url": "https://eidos-works.com/quote-desk/",
+          "queryPresent": false,
+          "status": 403,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:46 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=UTF-8",
+            "content-length": null,
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4afd0bfc8d283f9-YVR",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 5406,
+          "sha256": "90c1d64df6bbe47e41fac8d145035486432ec7cd98d3f2511aab57d14b61bc6a",
+          "title": "Just a moment...",
+          "challengeHeader": true,
+          "challengeMarkup": true,
+          "robots": [
+            "noindex,nofollow"
+          ],
+          "canonicals": [],
+          "sitemapUrlCount": null
+        }
+      ],
+      "finishedAt": "2026-10-15T15:21:46.234Z"
+    },
+    {
+      "client": "EidosIndexingVerifier/1.0",
+      "startedAt": "2026-10-15T15:21:48.234Z",
+      "requestedUrl": "https://eidosworks.pages.dev/sitemap.xml",
+      "responses": [
+        {
+          "url": "https://eidosworks.pages.dev/sitemap.xml",
+          "queryPresent": false,
+          "status": 200,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:48 GMT",
+            "server": "cloudflare",
+            "content-type": "application/xml",
+            "content-length": null,
+            "cf-mitigated": null,
+            "cf-ray": "a4afd0ccd8d89982-SEA",
+            "cf-cache-status": null,
+            "cache-control": "public, max-age=0, must-revalidate",
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 7290,
+          "sha256": "7b40fc335ad6d1bb411fd6cd3d150da93bc322235b55d58eb6f1fa1062e35f57",
+          "title": null,
+          "challengeHeader": false,
+          "challengeMarkup": false,
+          "robots": [],
+          "canonicals": [],
+          "sitemapUrlCount": 55
+        }
+      ],
+      "finishedAt": "2026-10-15T15:21:48.473Z"
+    },
+    {
+      "client": "EidosIndexingVerifier/1.0",
+      "startedAt": "2026-10-15T15:21:50.473Z",
+      "requestedUrl": "https://eidosworks.pages.dev/work/nighttime-spectaculars",
+      "responses": [
+        {
+          "url": "https://eidosworks.pages.dev/work/nighttime-spectaculars",
+          "queryPresent": false,
+          "status": 308,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:50 GMT",
+            "server": "cloudflare",
+            "content-type": null,
+            "content-length": "0",
+            "cf-mitigated": null,
+            "cf-ray": "a4afd0da7e569982-SEA",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "title": null,
+          "challengeHeader": false,
+          "challengeMarkup": false,
+          "robots": [],
+          "canonicals": [],
+          "sitemapUrlCount": null,
+          "redirect": {
+            "url": "https://eidosworks.pages.dev/work/nighttime-spectaculars/",
+            "queryPresent": false
+          }
+        },
+        {
+          "url": "https://eidosworks.pages.dev/work/nighttime-spectaculars/",
+          "queryPresent": false,
+          "status": 200,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:50 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": null,
+            "cf-mitigated": null,
+            "cf-ray": "a4afd0dafd64ff4c-SEA",
+            "cf-cache-status": null,
+            "cache-control": "public, max-age=0, must-revalidate",
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 23196,
+          "sha256": "be6299a766c13992abd14f3f75b1c83a73c4b0c37354d5ceca8801148fa648dd",
+          "title": "Nighttime Spectaculars: React &amp; Canvas | Eidos Works",
+          "challengeHeader": false,
+          "challengeMarkup": false,
+          "robots": [
+            "index, follow"
+          ],
+          "canonicals": [
+            "https://eidos-works.com/work/nighttime-spectaculars"
+          ],
+          "sitemapUrlCount": null
+        }
+      ],
+      "finishedAt": "2026-10-15T15:21:50.677Z"
+    },
+    {
+      "client": "EidosIndexingVerifier/1.0",
+      "startedAt": "2026-10-15T15:21:52.677Z",
+      "requestedUrl": "https://eidosworks.pages.dev/lab/eidos-brain",
+      "responses": [
+        {
+          "url": "https://eidosworks.pages.dev/lab/eidos-brain",
+          "queryPresent": false,
+          "status": 308,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:52 GMT",
+            "server": "cloudflare",
+            "content-type": null,
+            "content-length": "0",
+            "cf-mitigated": null,
+            "cf-ray": "a4afd0e84da19982-SEA",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "title": null,
+          "challengeHeader": false,
+          "challengeMarkup": false,
+          "robots": [],
+          "canonicals": [],
+          "sitemapUrlCount": null,
+          "redirect": {
+            "url": "https://eidosworks.pages.dev/lab/eidos-brain/",
+            "queryPresent": false
+          }
+        },
+        {
+          "url": "https://eidosworks.pages.dev/lab/eidos-brain/",
+          "queryPresent": false,
+          "status": 200,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:52 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": null,
+            "cf-mitigated": null,
+            "cf-ray": "a4afd0e87822ff4c-SEA",
+            "cf-cache-status": null,
+            "cache-control": "public, max-age=0, must-revalidate",
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 12784,
+          "sha256": "ad60e72c0b899fdc9366f6e630294fc5f0f24a2b51243e1323e7a6b2c641c29c",
+          "title": "Eidos Brain Research Lab | Eidos Works",
+          "challengeHeader": false,
+          "challengeMarkup": false,
+          "robots": [
+            "index, follow"
+          ],
+          "canonicals": [
+            "https://eidos-works.com/lab/eidos-brain"
+          ],
+          "sitemapUrlCount": null
+        }
+      ],
+      "finishedAt": "2026-10-15T15:21:52.837Z"
+    },
+    {
+      "client": "fresh default Chromium; JavaScript disabled",
+      "startedAt": "2026-10-15T15:21:55.199Z",
+      "requestedUrl": "https://eidos-works.com/sitemap.xml",
+      "responses": [
+        {
+          "url": "https://eidos-works.com/sitemap.xml",
+          "queryPresent": false,
+          "status": 403,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:55 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=UTF-8",
+            "content-length": null,
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4afd0f90fd7efcd-YVR",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 6004,
+          "sha256": "bf17aaf609b8b95c91ded6d6a93f8605b5247c8ee51f8ab1f4cc127f34cbbf17",
+          "title": "Just a moment...",
+          "challengeHeader": true,
+          "challengeMarkup": true,
+          "robots": [
+            "noindex,nofollow"
+          ],
+          "canonicals": [],
+          "sitemapUrlCount": null
+        }
+      ],
+      "redirect": {
+        "url": "https://eidos-works.com/sitemap.xml",
+        "queryPresent": false,
+        "status": 307
+      },
+      "finishedAt": "2026-10-15T15:21:55.418Z"
+    },
+    {
+      "client": "fresh default Chromium; JavaScript disabled",
+      "startedAt": "2026-10-15T15:21:57.443Z",
+      "requestedUrl": "https://eidos-works.com/work/nighttime-spectaculars",
+      "responses": [
+        {
+          "url": "https://eidos-works.com/work/nighttime-spectaculars",
+          "queryPresent": false,
+          "status": 403,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:57 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=UTF-8",
+            "content-length": null,
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4afd1065e7c2724-YVR",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 6073,
+          "sha256": "d16532fd37b4d2599b236fe6d17aeb5511dc20b107fcd7f8148db0e7065b4e03",
+          "title": "Just a moment...",
+          "challengeHeader": true,
+          "challengeMarkup": true,
+          "robots": [
+            "noindex,nofollow"
+          ],
+          "canonicals": [],
+          "sitemapUrlCount": null
+        }
+      ],
+      "redirect": {
+        "url": "https://eidos-works.com/work/nighttime-spectaculars",
+        "queryPresent": false,
+        "status": 307
+      },
+      "finishedAt": "2026-10-15T15:21:57.537Z"
+    },
+    {
+      "client": "fresh default Chromium; JavaScript disabled",
+      "startedAt": "2026-10-15T15:21:59.560Z",
+      "requestedUrl": "https://eidos-works.com/lab/eidos-brain",
+      "responses": [
+        {
+          "url": "https://eidos-works.com/lab/eidos-brain",
+          "queryPresent": false,
+          "status": 403,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:21:59 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=UTF-8",
+            "content-length": null,
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4afd113aeba6e05-SEA",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 6016,
+          "sha256": "300c91c2b673bf356b81853935d3a4c37f8bbe0d428b1e7f38d754961df49b54",
+          "title": "Just a moment...",
+          "challengeHeader": true,
+          "challengeMarkup": true,
+          "robots": [
+            "noindex,nofollow"
+          ],
+          "canonicals": [],
+          "sitemapUrlCount": null
+        }
+      ],
+      "redirect": {
+        "url": "https://eidos-works.com/lab/eidos-brain",
+        "queryPresent": false,
+        "status": 307
+      },
+      "finishedAt": "2026-10-15T15:21:59.673Z"
+    },
+    {
+      "client": "fresh default Chromium; JavaScript disabled",
+      "startedAt": "2026-10-15T15:22:01.697Z",
+      "requestedUrl": "https://eidos-works.com/quote-desk/",
+      "responses": [
+        {
+          "url": "https://eidos-works.com/quote-desk/",
+          "queryPresent": false,
+          "status": 403,
+          "headers": {
+            "date": "Thu, 15 Oct 2026 15:22:01 GMT",
+            "server": "cloudflare",
+            "content-type": "text/html; charset=UTF-8",
+            "content-length": null,
+            "cf-mitigated": "challenge",
+            "cf-ray": "a4afd1211cb2efcd-YVR",
+            "cf-cache-status": null,
+            "cache-control": null,
+            "age": null,
+            "x-robots-tag": null
+          },
+          "bytes": 6004,
+          "sha256": "7ff01bf7512dcfeb09dc1b7e4785a6a6d80c29da3b5842d496f2429116ceec75",
+          "title": "Just a moment...",
+          "challengeHeader": true,
+          "challengeMarkup": true,
+          "robots": [
+            "noindex,nofollow"
+          ],
+          "canonicals": [],
+          "sitemapUrlCount": null
+        }
+      ],
+      "redirect": {
+        "url": "https://eidos-works.com/quote-desk/",
+        "queryPresent": false,
+        "status": 307
+      },
+      "finishedAt": "2026-10-15T15:22:01.823Z"
+    }
+  ]
+}

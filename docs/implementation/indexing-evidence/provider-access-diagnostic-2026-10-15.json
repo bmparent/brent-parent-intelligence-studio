@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-15T15:27:35.796Z",
+  "sourceCommit": "5981f4275bff6abb5e9ca44c29db9fb351cc33eb",
+  "policy": "Read existing Pages identity and security events for eight known diagnostic Ray IDs only. No provider mutation, credential change or public URL probe.",
+  "credentialPresent": true,
+  "pages": {
+    "status": 200,
+    "accepted": true,
+    "errorCodes": [],
+    "errorCategories": [],
+    "project": "eidosworks",
+    "productionBranch": "main",
+    "canonicalDomainAttached": true,
+    "deploymentId": "77302234-d955-4835-a633-455a7f02bf3d",
+    "deploymentUrl": "https://77302234.eidosworks.pages.dev",
+    "deployedCommit": "b8bfbbc4e6f9dd73c7c899f0b32e829207314b75",
+    "deploymentStatus": "success",
+    "expectedCommitUnchanged": true
+  },
+  "zoneLookup": {
+    "status": 200,
+    "accepted": true,
+    "errorCodes": [],
+    "errorCategories": [],
+    "exactDomainMatch": true,
+    "zoneTagPresent": true
+  },
+  "securityEvents": {
+    "status": 200,
+    "accepted": false,
+    "errorCodes": [
+      "authz"
+    ],
+    "errorCategories": [
+      "authorization"
+    ]
+  }
+}
