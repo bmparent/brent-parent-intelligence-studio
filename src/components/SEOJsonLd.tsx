@@ -58,7 +58,7 @@ export function SEOJsonLd({ path }: { path: string }) {
     '/services/intelligent-systems': { name: 'AI Assistant & React Application Development', description: 'Focused AI assistants, published-source retrieval, React interfaces, and human-controlled workflows.' },
     '/services/digital-experiences': {
       name: 'React Development & InkSoft Storefront Design',
-      description: 'Custom React and TypeScript websites, InkSoft storefront customization, responsive UI/UX, HTML Canvas animation, and technical SEO foundations.'
+      description: 'Custom React and TypeScript websites, InkSoft storefront customization, responsive UI/UX, HTML Canvas animation, technical SEO, and digital advertising on ChatGPT, Facebook, Instagram, Google, YouTube, LinkedIn, TikTok, and other major platforms.'
     },
     '/services/storefront-access-systems': {
       name: 'Storefront and Access Systems',

@@ -63,7 +63,7 @@ export function HomeServices() {
       </div>
       <div className="hs-invitation">
         <div className="ew-shell hs-invitation__inner">
-          <div><h3>Let's make the next thing work better.</h3><p>Design, development, hosting, migrations and ongoing care.</p></div>
+          <div><h3>Let's make the next thing work better.</h3><p>Design, development, digital advertising, hosting, migrations and ongoing care.</p></div>
           <a className="ew-button hs-start" href="/contact">Start a project <ServiceArrow /></a>
         </div>
       </div>
