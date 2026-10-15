@@ -3,7 +3,7 @@
 Brent requested finishing the About thumbnail, Holidays model proportions and
 garment logo placement, then verifying mobile. The candidate starts at public
 main `8de77210251b9a8d5d3e49e9fa1cf16c2c4624e3` on
-`codex/digital-presentation-20261015`. Production acceptance remains open.
+`codex/digital-presentation-20261015`. Production acceptance remains open. Current main `b8bfbbc4e6f9dd73c7c899f0b32e829207314b75` was incorporated before browser CI, preserving its indexing repair.
 
 ## Result and review decision
 
