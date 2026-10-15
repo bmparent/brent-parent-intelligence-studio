@@ -1563,7 +1563,7 @@
 .sd-preview--thumbnail .sd-preview-left, .sd-preview--thumbnail .sd-preview-right { bottom: 0; width: 32%; height: 78%; }
 .sd-preview--thumbnail .sd-preview-left { left: 1%; }
 .sd-preview--thumbnail .sd-preview-right { right: 1%; }
-.sd-preview--thumbnail.sd-holiday .sd-preview-title { inset: 12% 31% 25%; padding: 10px; border-width: 1px; }
+.sd-preview--thumbnail.sd-holiday .sd-preview-title { inset: 12% 31% auto; height: 42%; padding: 10px; border-width: 1px; }
 .sd-preview--thumbnail .sd-preview-title > img { height: 90%; width: 100%; aspect-ratio: auto; border: 0; border-radius: 0; object-fit: contain; animation: none; }
 .sd-preview--thumbnail .sd-preview-title > small, .sd-preview--thumbnail .sd-preview-title > span { display: none; }
 /* These scoped rules prevent the service hero's generic image styles from sizing each layer. */

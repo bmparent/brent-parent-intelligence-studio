@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const { chromium } = createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE || 'playwright');
@@ -91,7 +91,22 @@ for (const width of [1440, 768, 390, 320]) {
   const context = await browser.newContext({ viewport: { width, height: 900 }, hasTouch: width <= 390, reducedMotion: width === 390 ? 'reduce' : 'no-preference' });
   const page = await context.newPage();
   const errors = [];
-  page.on('pageerror', error => errors.push(error.message));
+  const consoleMessages = [];
+  page.on('pageerror', error => errors.push({ url: page.url(), message: error.message }));
+  page.on('console', message => { if (['error', 'warning'].includes(message.type())) consoleMessages.push({ url: page.url(), type: message.type(), text: message.text() }); });
+  // Vite preview falls back to homepage HTML for extensionless directory URLs.
+  // Match Pages' clean-path resolution while exercising the actual native links;
+  // keep this adapter off for hosted verification, where real responses apply.
+  if (['127.0.0.1', 'localhost'].includes(new URL(base).hostname)) await context.route('**/*', async route => {
+    const request = route.request();
+    const url = new URL(request.url());
+    if (request.isNavigationRequest() && url.origin === new URL(base).origin && ['/services/digital-experiences', '/work/holidays-in-hollywood'].includes(url.pathname)) {
+      url.pathname += '/';
+      return route.fulfill({ response: await route.fetch({ url: url.href }) });
+    }
+    return route.continue();
+  });
+  let passed = false;
   const overflow = async () => assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `no horizontal overflow at ${width}`);
   const capture = async (name, locator) => {
     await locator.scrollIntoViewIfNeeded();
@@ -103,12 +118,22 @@ for (const width of [1440, 768, 390, 320]) {
         try { await img.decode(); return img.naturalWidth > 0; } catch { return false; }
       }, source), true, `artwork loads: ${source}`);
     }
+    const box = await locator.boundingBox();
+    // Tall two-row grids are captured card by card so sticky navigation does not
+    // cover the first row in the evidence. The normal UI remains unchanged.
+    const cards = locator.locator(':scope > button');
+    if (box.height > 650 && await cards.count()) {
+      for (let index = 0; index < await cards.count(); index++) await capture(`${name}-${index + 1}`, cards.nth(index));
+      return;
+    }
+    await locator.evaluate(el => window.scrollTo(0, window.scrollY + el.getBoundingClientRect().top - (el.matches('.dx-stage') ? 120 : 215)));
     await locator.screenshot({ path: path.join(evidence, `${name}-${width}.png`) });
   };
   try {
     await page.goto(base + '/about/', { waitUntil: 'domcontentloaded' });
     assert.match(await page.title(), /About/i);
     await page.getByRole('heading', { name: 'A studio led by operational experience.' }).waitFor();
+    await page.getByRole('button', { name: 'Essential only', exact: true }).click();
     const thumbnail = page.locator('.ew-service-preview');
     await capture('about-thumbnail', thumbnail);
     assert.equal(await thumbnail.locator('svg.sd-art').count(), 2, 'two composed model pairs in About thumbnail');
@@ -158,10 +183,19 @@ for (const width of [1440, 768, 390, 320]) {
     await demo.getByRole('button', { name: 'Clear filters', exact: true }).click();
     assert.equal(await demo.locator('.sd-card').count(), 4);
     await capture('holidays-collection', demo.locator('.sd-grid'));
+    for (let index = 0; index < 4; index++) {
+      await demo.locator('.sd-card').nth(index).click();
+      await capture(`holidays-item-${index + 1}`, demo.locator('.sd-product-image'));
+      await demo.getByRole('button', { name: 'All products', exact: true }).click();
+    }
     await overflow();
     assert.deepEqual(errors, [], 'no application runtime errors');
+    passed = true;
     console.log(`PASS ${width}: About/service previews, unclipped hero, portrait proportions, motion, category/product/detail/bag, empty filter recovery, loaded artwork, no overflow or runtime errors`);
-  } finally { await context.close(); }
+  } finally {
+    await writeFile(path.join(evidence, `holidays-results-${width}.json`), JSON.stringify({ width, base, passed, errors, consoleMessages, testedAt: new Date().toISOString(), cleanPathAdapter: ['127.0.0.1', 'localhost'].includes(new URL(base).hostname) }, null, 2));
+    await context.close();
+  }
 }
 
 await browser.close();

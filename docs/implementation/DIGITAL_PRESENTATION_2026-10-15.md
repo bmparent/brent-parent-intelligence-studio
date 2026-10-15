@@ -74,6 +74,19 @@ the runtime browser binary was absent. Browser plugin is not available. Rendered
 results must therefore be read from the exact-head CI artifact before claiming
 mobile verification. Final CI results and screenshot review belong on the PR.
 
+The first CI browser pass completed the desktop visual/interaction flow but
+reported two hydration errors: Vite preview returned homepage SSR HTML for the
+extensionless service and case links. Local HTTP readback reproduced this exact
+mismatch while slash-suffixed routes returned the correct headings. The local
+browser harness now resolves just those clean-path document requests to their
+matching prerendered directories, as the production Pages host does. Hosted
+verification uses real responses with no adapter. The existing combined browser
+step runs the affected Digital Experiences flow first for earlier feedback;
+production deployment conditions and commands are unchanged. The initial
+screenshots also informed a tighter thumbnail marquee. Analytics is declined
+through its real UI before evidence capture, and tall grids are captured card by
+card to avoid sticky navigation obscuring the evidence.
+
 Production promotion and canonical readback have not occurred. Physical devices,
 screen readers, Safari/iOS and live InkSoft editor/commerce acceptance remain
 untested. Nothing here closes the separately held account/payment runtime.
