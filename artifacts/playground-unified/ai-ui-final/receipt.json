@@ -1,0 +1,1124 @@
+{
+  "timestamp": "2026-10-14T23:42:52.792Z",
+  "source": "41f0d1e388220f62ca20d0c5930251276444c40c",
+  "sourceFiles": {
+    "src/playground/AIAssist.tsx": "a4bb8b53f4567c2764288712d65b6d7c105fb602717d13f8654b8e21f063c3d5",
+    "src/playground/aiClient.ts": "f72c01eef4a5562f218ef1bef62e5a8d2de7c86bacb91abf9aa4550d2d47f101",
+    "src/playground/aiOperations.ts": "f172a57aa92d5a63e98fc0acf4cd90d0e1f0fa656fe2ed6b6af616555c806268",
+    "src/playground/aiAssist.css": "1c8cc547c8547e173ccf972b238c6c0ed580a8999eef9505dab59da433563487",
+    "src/playground/Playground.tsx": "5e701dde309c3b954de3b4b9e67e09c7b2899a602077d08b519a2941268613c4",
+    "scripts/verify-playground-ai-ui.mjs": "3ff63bc2ca51a048fcecbee7a759491a307a809fc2652185ce8443a9bac729b5"
+  },
+  "fixture": true,
+  "providerCalls": 0,
+  "providerCost": 0,
+  "environment": "Actual React UI with controlled same-origin API fixtures; no provider transport, no real funds or payment; external Playwright fallback because Browser plugin unavailable.",
+  "limitations": [
+    "Fixtures establish UI behavior only, not hosted provider/authentication/cap enforcement.",
+    "Viewport emulation is not physical-device or unfamiliar-user acceptance."
+  ],
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "collapsed Eidos performs no AI account/quote/provider request",
+        "unavailable account/provider preview remains honestly gated with manual project intact",
+        "server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible",
+        "quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation",
+        "proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project",
+        "usable generation charges actual usage even when discarded and leaves manual project unchanged",
+        "Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit",
+        "a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions",
+        "delayed result cannot overwrite newer manual work; actual generated usage remains visible",
+        "selection and Brand changes retain the receipt but block stale confirmation",
+        "unknown/pending status keeps the action ID and reservation; status checks never retry generation",
+        "reload/Continue restores pending action status without resubmission or applying it to another revision",
+        "technical waiver is explicit while provider uncertainty remains an Eidos obligation",
+        "Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action",
+        "account changes clear the previous owner receipt and proposal without replacing local manual work",
+        "explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases",
+        "a malformed monetary receipt cannot create a confirmation control or provider execution",
+        "manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow"
+      ],
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "limit"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        }
+      ],
+      "generated": 5,
+      "selection": {
+        "sectionId": "hero",
+        "nodeId": "node-688c1ccb-77a3-421d-9ec0-5e1d606a3514"
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": [
+        "collapsed Eidos performs no AI account/quote/provider request",
+        "unavailable account/provider preview remains honestly gated with manual project intact",
+        "server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible",
+        "quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation",
+        "proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project",
+        "usable generation charges actual usage even when discarded and leaves manual project unchanged",
+        "Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit",
+        "a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions",
+        "delayed result cannot overwrite newer manual work; actual generated usage remains visible",
+        "selection and Brand changes retain the receipt but block stale confirmation",
+        "unknown/pending status keeps the action ID and reservation; status checks never retry generation",
+        "reload/Continue restores pending action status without resubmission or applying it to another revision",
+        "technical waiver is explicit while provider uncertainty remains an Eidos obligation",
+        "Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action",
+        "account changes clear the previous owner receipt and proposal without replacing local manual work",
+        "explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases",
+        "a malformed monetary receipt cannot create a confirmation control or provider execution",
+        "manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow"
+      ],
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "limit"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        }
+      ],
+      "generated": 5,
+      "selection": {
+        "sectionId": "hero",
+        "nodeId": "node-6e00105b-f047-4ab4-8349-1548b9c9ce95"
+      }
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "checks": [
+        "collapsed Eidos performs no AI account/quote/provider request",
+        "unavailable account/provider preview remains honestly gated with manual project intact",
+        "server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible",
+        "quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation",
+        "proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project",
+        "usable generation charges actual usage even when discarded and leaves manual project unchanged",
+        "Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit",
+        "a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions",
+        "delayed result cannot overwrite newer manual work; actual generated usage remains visible",
+        "selection and Brand changes retain the receipt but block stale confirmation",
+        "unknown/pending status keeps the action ID and reservation; status checks never retry generation",
+        "reload/Continue restores pending action status without resubmission or applying it to another revision",
+        "technical waiver is explicit while provider uncertainty remains an Eidos obligation",
+        "Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action",
+        "account changes clear the previous owner receipt and proposal without replacing local manual work",
+        "explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases",
+        "a malformed monetary receipt cannot create a confirmation control or provider execution",
+        "manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow"
+      ],
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "limit"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        }
+      ],
+      "generated": 5,
+      "selection": {
+        "sectionId": "hero",
+        "nodeId": "node-bc379495-e0b9-49d4-96e0-6fe7cbee7a7f"
+      }
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "checks": [
+        "collapsed Eidos performs no AI account/quote/provider request",
+        "unavailable account/provider preview remains honestly gated with manual project intact",
+        "server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible",
+        "quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation",
+        "proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project",
+        "usable generation charges actual usage even when discarded and leaves manual project unchanged",
+        "Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit",
+        "a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions",
+        "delayed result cannot overwrite newer manual work; actual generated usage remains visible",
+        "selection and Brand changes retain the receipt but block stale confirmation",
+        "unknown/pending status keeps the action ID and reservation; status checks never retry generation",
+        "reload/Continue restores pending action status without resubmission or applying it to another revision",
+        "technical waiver is explicit while provider uncertainty remains an Eidos obligation",
+        "Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action",
+        "account changes clear the previous owner receipt and proposal without replacing local manual work",
+        "explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases",
+        "a malformed monetary receipt cannot create a confirmation control or provider execution",
+        "manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow"
+      ],
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "limit"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        }
+      ],
+      "generated": 5,
+      "selection": {
+        "sectionId": "hero",
+        "nodeId": "node-bdf0f36a-a40e-4263-a799-cd4073694df4"
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "checks": [
+        "collapsed Eidos performs no AI account/quote/provider request",
+        "unavailable account/provider preview remains honestly gated with manual project intact",
+        "server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible",
+        "quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation",
+        "proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project",
+        "usable generation charges actual usage even when discarded and leaves manual project unchanged",
+        "Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit",
+        "a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions",
+        "delayed result cannot overwrite newer manual work; actual generated usage remains visible",
+        "selection and Brand changes retain the receipt but block stale confirmation",
+        "unknown/pending status keeps the action ID and reservation; status checks never retry generation",
+        "reload/Continue restores pending action status without resubmission or applying it to another revision",
+        "technical waiver is explicit while provider uncertainty remains an Eidos obligation",
+        "Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action",
+        "account changes clear the previous owner receipt and proposal without replacing local manual work",
+        "explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases",
+        "a malformed monetary receipt cannot create a confirmation control or provider execution",
+        "manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow"
+      ],
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "limit"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        }
+      ],
+      "generated": 5,
+      "selection": {
+        "sectionId": "hero",
+        "nodeId": "node-37d0cca6-eda9-4c52-a125-745bfe014bd6"
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "checks": [
+        "collapsed Eidos performs no AI account/quote/provider request",
+        "unavailable account/provider preview remains honestly gated with manual project intact",
+        "server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible",
+        "quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation",
+        "proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project",
+        "usable generation charges actual usage even when discarded and leaves manual project unchanged",
+        "Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit",
+        "a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions",
+        "delayed result cannot overwrite newer manual work; actual generated usage remains visible",
+        "selection and Brand changes retain the receipt but block stale confirmation",
+        "unknown/pending status keeps the action ID and reservation; status checks never retry generation",
+        "reload/Continue restores pending action status without resubmission or applying it to another revision",
+        "technical waiver is explicit while provider uncertainty remains an Eidos obligation",
+        "Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action",
+        "account changes clear the previous owner receipt and proposal without replacing local manual work",
+        "explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases",
+        "a malformed monetary receipt cannot create a confirmation control or provider execution",
+        "manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow"
+      ],
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "limit"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        }
+      ],
+      "generated": 5,
+      "selection": {
+        "sectionId": "hero",
+        "nodeId": "node-5fdd220d-8067-431c-9796-06b441136865"
+      }
+    }
+  ],
+  "completedAt": "2026-10-14T23:46:57.033Z",
+  "sourceFilesAtEnd": {
+    "src/playground/AIAssist.tsx": "a4bb8b53f4567c2764288712d65b6d7c105fb602717d13f8654b8e21f063c3d5",
+    "src/playground/aiClient.ts": "f72c01eef4a5562f218ef1bef62e5a8d2de7c86bacb91abf9aa4550d2d47f101",
+    "src/playground/aiOperations.ts": "f172a57aa92d5a63e98fc0acf4cd90d0e1f0fa656fe2ed6b6af616555c806268",
+    "src/playground/aiAssist.css": "1c8cc547c8547e173ccf972b238c6c0ed580a8999eef9505dab59da433563487",
+    "src/playground/Playground.tsx": "5e701dde309c3b954de3b4b9e67e09c7b2899a602077d08b519a2941268613c4",
+    "scripts/verify-playground-ai-ui.mjs": "3ff63bc2ca51a048fcecbee7a759491a307a809fc2652185ce8443a9bac729b5"
+  },
+  "changedSourceFilesDuringRun": []
+}

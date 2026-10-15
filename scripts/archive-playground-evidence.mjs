@@ -17,8 +17,8 @@ const sourceFiles=[];
 for(const directory of ['src/playground','functions/_shared/platform','functions/api/playground','functions/api/shop','migrations'])for(const relative of await files(directory)){
   const file=directory+'/'+relative,data=await readFile(file);sourceFiles.push({path:file,bytes:data.length,sha256:sha(data)});
 }
-const taskScripts=(await readdir('scripts')).filter(file=>/playground|project-delivery/.test(file)).map(file=>'scripts/'+file);
-for(const file of ['package.json','eslint.config.js','.gitattributes','src/components/TemplateShop.tsx','config/playground-preview.json','.github/workflows/playground-unified-preview.yml','.github/workflows/playground-editor-release.yml',...taskScripts]){const data=await readFile(file);sourceFiles.push({path:file,bytes:data.length,sha256:sha(data)});}
+const taskScripts=(await readdir('scripts',{withFileTypes:true})).filter(file=>file.isFile()&&/playground|project-delivery|template-recovery/.test(file.name)).map(file=>'scripts/'+file.name);
+for(const file of ['package.json','eslint.config.js','.gitattributes','src/components/TemplateShop.tsx','src/components/templateRecovery.ts','src/lib/platform.ts','functions/api/public-config.ts','scripts/fixtures/playground-ai-cases.json','config/playground-preview.json','.github/workflows/playground-unified-preview.yml','.github/workflows/playground-editor-release.yml',...taskScripts]){const data=await readFile(file);sourceFiles.push({path:file,bytes:data.length,sha256:sha(data)});}
 const source={baseCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),workingTreeChanges:execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim().split(/\r?\n/).filter(Boolean),timestampUtc:timestamp,files:sourceFiles};
 source.inventorySha256=sha(JSON.stringify(sourceFiles));
 await writeFile(path.join(local,'source_inventory.json'),JSON.stringify(source,null,2)+'\n');

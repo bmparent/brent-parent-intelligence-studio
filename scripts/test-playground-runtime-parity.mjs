@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { build } from 'esbuild';
 import { canonicalRuntimeModule, runtimeBundlePath } from './build-playground-runtime.mjs';
 
-const entry = "export {buildFrozenPackage,createProjectSnapshot} from './src/playground/purchaseSnapshot'; export {createStarter} from './src/playground/starters'; export {runtimeScript} from './src/playground/renderer';";
+const entry = "export {buildFrozenPackage,createProjectSnapshot} from './src/playground/purchaseSnapshot'; export {createStarter} from './src/playground/starters'; export {runtimeScript} from './src/playground/renderer'; export {setBlockMotion} from './src/playground/authoring'; export {flattenNodes} from './src/playground/authoringSchema';";
 async function compiled(options) {
   const result = await build({ stdin: { contents: entry, resolveDir: process.cwd() }, bundle: true, write: false, format: 'esm', legalComments: 'none', ...options });
   return import('data:text/javascript;base64,' + Buffer.from(result.outputFiles[0].text).toString('base64'));
@@ -27,7 +27,9 @@ test('browser development, minified browser, tsx-like and server builds produce 
     { platform: 'node', target: 'es2022', minify: true, keepNames: false },
   ];
   const modules = await Promise.all(variants.map(compiled));
-  const project = modules[0].createStarter({ starter: 'switchboard', goal: 'business', action: 'contact', name: 'Canonical runtime parity' });
+  const original = modules[0].createStarter({ starter: 'switchboard', goal: 'business', action: 'contact', name: 'Canonical runtime parity' });
+  const heading = original.sections.flatMap(section => section.authoring ? modules[0].flattenNodes(section.authoring.root) : []).find(node => node.type === 'heading');
+  const project = modules[0].setBlockMotion(original, heading.id, { preset: 'rise', duration: 700, delay: 100 });
   const snapshot = await modules[0].createProjectSnapshot(project, 'same-document', 7);
   const frozen = await Promise.all(modules.map(module => module.buildFrozenPackage(snapshot)));
   for (const candidate of frozen.slice(1)) {

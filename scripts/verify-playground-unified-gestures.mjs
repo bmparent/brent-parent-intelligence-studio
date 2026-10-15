@@ -97,6 +97,10 @@ try {
   await page.getByRole('button', { name: 'Dismiss getting started checklist' }).click();
   await tool('Layers'); await selectPhoto();
   assert.match(await page.locator('.pg-layer-selected').innerText(), /Movable photograph/);
+  await page.getByRole('navigation', { name: 'Selection path' }).getByRole('button', { name: 'Source stack', exact: true }).click();
+  await page.locator(`[data-sort-id="${sourceId}"] > .pg-layer-line > .pg-layer-selected[aria-pressed="true"]`).waitFor();
+  assert.equal(await page.getByLabel('Layer name', { exact: true }).inputValue(), 'Source stack');
+  await selectPhoto();check('breadcrumb selects the actual parent; inspector and Layers agree before returning to photo');
   const baseline = await save();
   assert.equal((await saved()).editor.nodeId, photoId);
   await page.screenshot({ path: path.resolve(out, '01-selected-layers-agree.png') });
@@ -126,6 +130,13 @@ try {
     await page.mouse.up(); assert.equal(await frame.locator('.pg-node-ghost').count(), 0); assert.deepEqual(await save(), baseline);
     check(cancellation + ' during actual drag leaves document intact');
   }
+  await beginMove(); await targetDestination();
+  // Moving real focus out of the iframe produces its window blur; do not inject
+  // a synthetic blur event or wait an arbitrary delay for cancellation.
+  await page.getByLabel('Project name', { exact: true }).focus();
+  await frame.locator('.pg-node-ghost').waitFor({ state: 'detached' });
+  await page.mouse.up(); assert.deepEqual(await save(), baseline);
+  check('real iframe focus loss during an active canvas drag cancels without mutation');
   await beginMove(); await targetDestination(); await page.mouse.up();
   const moved = await save(); assert.equal(parentOf(moved, photoId).id, destinationId); assert.equal(node(moved, sourceId).children.some(child => child.id === photoId), false);
   assert.equal(node(moved, destinationId).children.at(-1).id, photoId);
@@ -180,6 +191,36 @@ try {
   await undoRedo(inherited, layerMoved, 'Layers final-position move into empty container');
   check('canvas and Layers produce the same nested destination semantics');
   await selectPhoto(); await page.screenshot({ path: path.resolve(out, '05-final-editor.png') });
+  const labelId = source.children[0].id;
+  await page.locator(`[data-sort-id="${labelId}"] > .pg-layer-line > button`).first().click();
+  const textDraft = page.locator('.pg-block-controls .pg-block-field').filter({hasText:/^Text/}).locator('textarea');
+  await textDraft.fill('Longer content should grow in normal document flow. '.repeat(24) + 'A'.repeat(100));await textDraft.blur();
+  await page.getByRole('button', { name: 'Mobile', exact: true }).first().click();
+  const longText = frame.locator('#' + labelId);await longText.scrollIntoViewIfNeeded();
+  const textBounds = await longText.evaluate(element => ({height:element.getBoundingClientRect().height,width:element.getBoundingClientRect().width,viewport:innerWidth,overflow:document.documentElement.scrollWidth>innerWidth+1}));
+  assert.ok(textBounds.height > 300 && textBounds.width <= textBounds.viewport);assert.equal(textBounds.overflow,false);
+  await page.screenshot({path:path.resolve(out,'06-mobile-text-growth.png')});
+  await page.getByRole('button', { name: 'Undo', exact: true }).click();assert.deepEqual(await save(),layerMoved);
+  await page.getByRole('button', { name: 'Desktop', exact: true }).click();await selectPhoto();
+  check('long text and an unbroken word grow vertically on mobile without overflow; one Undo restores the original content');
+  const originalIdentity = (await saved()).documentId;
+  await beginMove();
+  const back = page.getByRole('button', { name: 'Back to projects', exact: true });
+  await back.focus(); await page.keyboard.press('Enter');
+  await page.getByRole('heading', { name: 'What are you making?' }).waitFor();
+  await page.getByRole('button', { name: /Tideglass/ }).focus(); await page.keyboard.press('Enter');
+  await page.getByRole('button', { name: /Create project/ }).focus(); await page.keyboard.press('Enter');
+  await page.locator('.pg-unified').waitFor();
+  await page.mouse.up();
+  const switched = await save(); assert.equal(node(switched, photoId), undefined);
+  assert.notEqual((await saved()).documentId, originalIdentity);
+  assert.equal(await frame.locator('.pg-node-ghost').count(), 0);
+  await page.getByRole('button', { name: 'Back to projects', exact: true }).click();
+  await page.getByText('Other projects saved on this device', { exact: true }).click();
+  await page.locator('.pg-start-saved li').filter({ hasText: 'Direct manipulation acceptance' }).getByRole('button', { name: 'Open project', exact: true }).click();
+  await page.locator('.pg-unified').waitFor();
+  assert.deepEqual(await save(), layerMoved);assert.equal((await saved()).documentId, originalIdentity);
+  check('switching projects while the pointer is held preserves both the new project and exact archived source');
   assert.equal(receipt.errors.length, 0); assert.equal(await page.locator('vite-error-overlay').count(), 0);
   receipt.ids = { photoId, sourceId, destinationId, columnsId };
   await writeFile(path.join(out, 'final-project.json'), JSON.stringify(layerMoved, null, 2) + '\n');

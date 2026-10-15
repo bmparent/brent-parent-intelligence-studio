@@ -4,6 +4,8 @@ import schema from './playgroundAiSchema';
 /** Accounting only. No provider transport is enabled by this module. Never accept a rate card from a browser. */
 export type AiMode = 'test' | 'live';
 export const USD = 1_000_000;
+export const REAL_PROVIDER_TEST_BUDGET = 5 * USD;
+export const AI_COUNT_LIMITS = { perOwnerHour: 20, globalHour: 60, lifetime: 200 } as const;
 export const CUSTOMER_HOLD_WINDOW_MS = 24 * 60 * 60 * 1000;
 const MAX_MONEY = 1_000_000_000_000;
 const initialized = new WeakMap<Database, Promise<unknown>>();
@@ -37,6 +39,8 @@ export function monthlyPeriod(at = new Date()) {
 export interface AiRateCard {
   version: string; model: 'gpt-6.1-sol' | 'gpt-6-astra'; evidence: 'controlled-fixture' | 'owner-approved';
   inputMicrosPerMillion: number; outputMicrosPerMillion: number;
+  /** Optional for historical fixtures. Real provider cards must price every input category. */
+  cachedInputMicrosPerMillion?: number; cacheWriteMicrosPerMillion?: number;
   retailNumerator: number; retailDenominator: number;
   maxInputTokens: number; maxOutputTokens: number; maxCalls: 1; maxRetries: 0;
   maxAgentTurns: 1; maxSubagents: 0; paidTools: 0; maxToolReturnBytes: 0;
@@ -52,14 +56,17 @@ export function validateRateCard(input: unknown): AiRateCard {
       !['low', 'medium', 'high'].includes(String(input.reasoning)) || !Number.isFinite(Date.parse(String(input.validUntil))))
     throw new HttpError(503, 'AI routing is not bounded by an accepted rate card.');
   for (const key of ['inputMicrosPerMillion', 'outputMicrosPerMillion', 'retailNumerator', 'retailDenominator']) money(input[key], true);
+  for (const key of ['cachedInputMicrosPerMillion', 'cacheWriteMicrosPerMillion']) if (input[key] !== undefined) money(input[key], true);
+  if ((input.cachedInputMicrosPerMillion === undefined) !== (input.cacheWriteMicrosPerMillion === undefined)) throw new HttpError(503, 'All input categories require accepted pricing.');
   boundedInteger(input.maxInputTokens, 2048, 128000);
   boundedInteger(input.maxOutputTokens, 128, 16000);
   boundedInteger(input.maxRuntimeMs, 1000, 120000);
   return structuredClone(input) as unknown as AiRateCard;
 }
 export function providerMaximum(card: AiRateCard) {
-  // Each token category rounds UP independently. Full uncached input only, reasoning is included in the output bound.
-  return money(ceilingRatio(card.maxInputTokens, card.inputMicrosPerMillion, 1_000_000) +
+  // Every input token reserves the most expensive input category, including cache writes.
+  // Reasoning is already included in the provider's total output-token bound.
+  return money(ceilingRatio(card.maxInputTokens, Math.max(card.inputMicrosPerMillion, card.cachedInputMicrosPerMillion || 0, card.cacheWriteMicrosPerMillion || 0), 1_000_000) +
     ceilingRatio(card.maxOutputTokens, card.outputMicrosPerMillion, 1_000_000), true);
 }
 export function retailCharge(providerCost: number, card: AiRateCard) {
@@ -81,6 +88,8 @@ async function policy(env: PlatformEnv, mode: AiMode, at: Date, mustEnable = tru
 export async function configureAiPolicy(env: PlatformEnv, mode: AiMode, card: AiRateCard, providerBudget: number, enabled = false) {
   await ensureAiLedger(env);
   validateRateCard(card); money(providerBudget);
+  if (card.evidence === 'owner-approved' && providerBudget > REAL_PROVIDER_TEST_BUDGET)
+    throw new HttpError(503, 'The real provider test budget cannot exceed $5.');
   if (mode === 'live' && enabled) throw new HttpError(503, 'LIVE AI funding has not been approved.');
   await db(env).batch([
     db(env).prepare('INSERT INTO eidos_pg_ai_policies(mode,enabled,provider_budget,rate_json,updated_at) VALUES(?,?,?,?,?) ON CONFLICT(mode) DO UPDATE SET enabled=excluded.enabled,provider_budget=excluded.provider_budget,rate_json=excluded.rate_json,updated_at=excluded.updated_at')
@@ -106,6 +115,9 @@ export async function setAiLimit(env: PlatformEnv, owner: string, mode: AiMode, 
 interface Balance { owner_id: string; mode: AiMode; requested_limit: number; frozen: number; available_included: number; available_purchased: number }
 const customerCommitted = `CASE WHEN customer_status='held' THEN maximum WHEN customer_status='settled' THEN charged_included+charged_purchased ELSE 0 END`;
 const providerCommitted = `CASE WHEN provider_status='held' THEN provider_maximum WHEN provider_status IN ('settled','pessimistic') THEN provider_cost ELSE 0 END`;
+// This ceiling is checked inside each atomic write, including after a concurrent
+// operator update. Synthetic accounting fixtures retain their existing budgets.
+const realBudgetBound = `(json_extract(p.rate_json,'$.evidence')!='owner-approved' OR p.provider_budget<=${REAL_PROVIDER_TEST_BUDGET})`;
 /** Operator snapshot. A lower budget blocks new dispatch immediately; existing submitted costs remain obligations. */
 export async function aiPolicyStatus(env: PlatformEnv, mode: AiMode) {
   const snapshot = await db(env).prepare(`SELECT p.provider_budget configuredBudget,p.enabled,p.paused_reason pausedReason,
@@ -119,6 +131,11 @@ export async function aiPolicyStatus(env: PlatformEnv, mode: AiMode) {
   const committed = money(snapshot.reserved + snapshot.submitted + snapshot.settled + snapshot.unresolved);
   return { ...snapshot, enabled: Boolean(snapshot.enabled), committed, remaining: Math.max(0, snapshot.configuredBudget - committed),
     overBudget: committed > snapshot.configuredBudget, dispatchBlocked: !snapshot.enabled || Boolean(snapshot.pausedReason) || committed > snapshot.configuredBudget };
+}
+/** Server-only pricing lookup; browsers cannot provide model or rate parameters. */
+export async function activeAiRateCard(env: PlatformEnv, mode: AiMode, at = new Date()) {
+  await ensureAiLedger(env);
+  return (await policy(env, mode, at)).card;
 }
 export async function aiBalance(env: PlatformEnv, owner: string, mode: AiMode, at = new Date()) {
   await ensureAiLedger(env);
@@ -145,6 +162,7 @@ function validateBrief(input: unknown): AiBrief {
     throw new HttpError(400, 'Provide a bounded project scope and revision; billing owner, model and totals are server-owned.');
   return structuredClone(input) as unknown as AiBrief;
 }
+export { validateBrief as validateAiBrief };
 export interface AiAction {
   id: string; owner_id: string; mode: AiMode; idempotency_key: string; fingerprint: string;
   document_id: string; revision: string; scope: string; payload_json: string; period: string; resets_at: string;
@@ -161,8 +179,9 @@ export async function ownedAiAction(env: PlatformEnv, owner: string, mode: AiMod
 }
 export function publicAiAction(action: AiAction) {
   const rate = validateRateCard(JSON.parse(action.rate_json));
+  const brief = validateBrief(JSON.parse(action.payload_json));
   return { id: action.id, state: action.state, documentId: action.document_id, revision: action.revision,
-    scope: action.scope, estimate: action.estimate, maximum: action.maximum, currency: 'USD', unitsPerUsd: USD,
+    scope: action.scope, targetId: brief.targetId, estimate: action.estimate, maximum: action.maximum, currency: 'USD', unitsPerUsd: USD,
     model: rate.model, rateCardVersion: rate.version, reasoning: rate.reasoning, processing: rate.processing,
     expiresAt: action.expires_at, resetsAt: action.resets_at, chargedIncluded: action.charged_included,
     chargedPurchased: action.charged_purchased, customerStatus: action.customer_status,
@@ -208,7 +227,7 @@ export async function reserveAiAction(env: PlatformEnv, owner: string, mode: AiM
       AND b.requested_limit >= maximum+(SELECT COALESCE(SUM(${customerCommitted}),0) FROM eidos_pg_ai_actions WHERE owner_id=? AND mode=? AND period=?))
     AND NOT EXISTS(SELECT 1 FROM eidos_pg_ai_grants g JOIN eidos_orders o ON o.id=g.order_id WHERE g.owner_id=eidos_pg_ai_actions.owner_id AND g.mode=eidos_pg_ai_actions.mode AND (o.status!='paid' OR g.reversed=1 OR EXISTS(SELECT 1 FROM eidos_revoked_payments r WHERE r.payment_intent=g.payment_intent)))
     AND EXISTS(SELECT 1 FROM eidos_pg_ai_policies p WHERE p.mode=? AND p.enabled=1 AND p.paused_reason IS NULL AND p.rate_json=?
-      AND p.provider_budget >= provider_maximum+(SELECT COALESCE(SUM(${providerCommitted}),0) FROM eidos_pg_ai_actions WHERE mode=?)) RETURNING id`)
+      AND ${realBudgetBound} AND p.provider_budget >= provider_maximum+(SELECT COALESCE(SUM(${providerCommitted}),0) FROM eidos_pg_ai_actions WHERE mode=?)) RETURNING id`)
     .bind(owner, mode, owner, mode, id, owner, mode, at.toISOString(), period, owner, mode, owner, mode, period, mode, action.rate_json, mode).first();
   if (!result) {
     const current = await ownedAiAction(env, owner, mode, id);
@@ -227,41 +246,147 @@ export async function claimAiDispatch(env: PlatformEnv, owner: string, mode: AiM
     AND EXISTS(SELECT 1 FROM eidos_pg_ai_accounts a WHERE a.owner_id=? AND a.mode=? AND a.frozen=0)
     AND NOT EXISTS(SELECT 1 FROM eidos_pg_ai_grants g JOIN eidos_orders o ON o.id=g.order_id WHERE g.owner_id=eidos_pg_ai_actions.owner_id AND g.mode=eidos_pg_ai_actions.mode AND (o.status!='paid' OR g.reversed=1 OR EXISTS(SELECT 1 FROM eidos_revoked_payments r WHERE r.payment_intent=g.payment_intent)))
     AND EXISTS(SELECT 1 FROM eidos_pg_ai_policies p WHERE p.mode=? AND p.enabled=1 AND p.paused_reason IS NULL AND p.rate_json=eidos_pg_ai_actions.rate_json
-      AND p.provider_budget >= (SELECT COALESCE(SUM(${providerCommitted}),0) FROM eidos_pg_ai_actions WHERE mode=?)) RETURNING id`)
+      AND ${realBudgetBound} AND p.provider_budget >= (SELECT COALESCE(SUM(${providerCommitted}),0) FROM eidos_pg_ai_actions WHERE mode=?)) RETURNING id`)
     .bind(token, at.toISOString(), new Date(at.getTime() + CUSTOMER_HOLD_WINDOW_MS).toISOString(), id, owner, mode, at.toISOString(), monthlyPeriod(at).period, owner, mode, mode, mode).first();
   return claimed ? token : null;
 }
-export interface AiUsage { inputTokens: number; outputTokens: number; calls: number; paidTools: number }
+/** Zero-priced input counting is bounded and idempotent even though no money is reserved yet. */
+export interface AiCountClaim { action_id: string; client_request_id: string; request_hash: string; state: 'submitted'|'counted'|'failed' }
+export async function claimAiInputCount(env: PlatformEnv, owner: string, mode: AiMode, id: string, requestJson: string, at = new Date()) {
+  const action = await ownedAiAction(env, owner, mode, id);
+  if (typeof requestJson !== 'string' || new TextEncoder().encode(requestJson).length > 100000) throw new HttpError(413, 'The provider input is too large.');
+  const requestHash = await hash(requestJson), clientId = crypto.randomUUID(), hourStart = new Date(at.getTime()-60*60*1000).toISOString();
+  const claimed = await db(env).prepare(`INSERT INTO eidos_pg_ai_count_claims(action_id,owner_id,mode,request_hash,request_json,client_request_id,state,created_at)
+    SELECT a.id,a.owner_id,a.mode,?,?,?,'submitted',? FROM eidos_pg_ai_actions a
+    WHERE a.id=? AND a.owner_id=? AND a.mode=? AND a.state='quoted' AND a.dispatch_token IS NULL AND a.expires_at>? AND a.period=?
+      AND EXISTS(SELECT 1 FROM eidos_pg_ai_balances b WHERE b.owner_id=a.owner_id AND b.mode=a.mode AND b.frozen=0 AND b.available_included>=0 AND b.available_purchased>=0
+        AND b.available_included+b.available_purchased>=a.maximum AND b.requested_limit>=a.maximum+
+          (SELECT COALESCE(SUM(${customerCommitted}),0) FROM eidos_pg_ai_actions WHERE owner_id=a.owner_id AND mode=a.mode AND period=a.period))
+      AND NOT EXISTS(SELECT 1 FROM eidos_pg_ai_grants g JOIN eidos_orders o ON o.id=g.order_id WHERE g.owner_id=a.owner_id AND g.mode=a.mode
+        AND (o.status!='paid' OR g.reversed=1 OR EXISTS(SELECT 1 FROM eidos_revoked_payments r WHERE r.payment_intent=g.payment_intent)))
+      AND EXISTS(SELECT 1 FROM eidos_pg_ai_policies p WHERE p.mode=a.mode AND p.enabled=1 AND p.paused_reason IS NULL AND p.rate_json=a.rate_json
+        AND ${realBudgetBound} AND p.provider_budget>=a.provider_maximum+(SELECT COALESCE(SUM(${providerCommitted}),0) FROM eidos_pg_ai_actions WHERE mode=a.mode))
+      AND (SELECT COUNT(*) FROM eidos_pg_ai_count_claims WHERE mode=a.mode)<${AI_COUNT_LIMITS.lifetime}
+      AND (SELECT COUNT(*) FROM eidos_pg_ai_count_claims WHERE mode=a.mode AND created_at>?)<${AI_COUNT_LIMITS.globalHour}
+      AND (SELECT COUNT(*) FROM eidos_pg_ai_count_claims WHERE mode=a.mode AND owner_id=a.owner_id AND created_at>?)<${AI_COUNT_LIMITS.perOwnerHour}
+      AND NOT EXISTS(SELECT 1 FROM eidos_pg_ai_count_claims WHERE action_id=a.id)
+    ON CONFLICT(action_id) DO NOTHING RETURNING action_id`)
+    .bind(requestHash, requestJson, clientId, at.toISOString(), id, owner, mode, at.toISOString(), monthlyPeriod(at).period, hourStart, hourStart).first();
+  if (claimed) return { action_id: id, client_request_id: clientId, request_hash: requestHash, state: 'submitted' } satisfies AiCountClaim;
+  const existing = await db(env).prepare('SELECT * FROM eidos_pg_ai_count_claims WHERE action_id=? AND owner_id=? AND mode=?').bind(id, owner, mode).first<AiCountClaim>();
+  if (existing && existing.request_hash !== requestHash) throw new HttpError(409, 'This counting reference belongs to a different frozen request.');
+  if (existing) throw new HttpError(409, existing.state === 'submitted' ? 'This full-input quote is still being prepared. Do not submit another count.' : 'This counting attempt is already recorded. Use a fresh action reference.');
+  // Neither funds nor quota can be bypassed by opening another project/device.
+  if (action.state !== 'quoted') throw new HttpError(409, 'This action cannot request another input count.');
+  throw new HttpError(409, 'AI allowance, monthly limit, owner budget or counting quota blocks this quote. Manual editing remains available.');
+}
+export async function finishAiInputCount(env: PlatformEnv, owner: string, mode: AiMode, id: string, clientId: string,
+  evidence: { success: boolean; providerRequestId?: string; inputTokens?: number; reason?: string }, at = new Date()) {
+  if (evidence.providerRequestId !== undefined && !/^[!-~]{1,200}$/.test(evidence.providerRequestId)) throw new HttpError(409, 'Invalid counting identity.');
+  if (evidence.inputTokens !== undefined) boundedInteger(evidence.inputTokens,0,10_000_000);
+  await db(env).prepare(`UPDATE eidos_pg_ai_count_claims SET state=?,provider_request_id=?,input_tokens=?,failure_reason=?,completed_at=?
+    WHERE action_id=? AND owner_id=? AND mode=? AND client_request_id=? AND state='submitted'`)
+    .bind(evidence.success?'counted':'failed', evidence.providerRequestId || null, evidence.inputTokens ?? null, evidence.reason?.slice(0,100) || null,
+      at.toISOString(),id,owner,mode,clientId).run();
+}
+export interface AiUsage {
+  inputTokens: number; outputTokens: number; calls: number; paidTools: number;
+  cachedInputTokens?: number; cacheWriteTokens?: number; reasoningTokens?: number;
+}
 export function meterAiUsage(usage: AiUsage, card: AiRateCard) {
   boundedInteger(usage.inputTokens, 0, 10_000_000); boundedInteger(usage.outputTokens, 0, 10_000_000);
   boundedInteger(usage.calls, 1, 100); boundedInteger(usage.paidTools, 0, 100);
-  return money(ceilingRatio(usage.inputTokens, card.inputMicrosPerMillion, 1_000_000) + ceilingRatio(usage.outputTokens, card.outputMicrosPerMillion, 1_000_000));
+  const cached = boundedInteger(usage.cachedInputTokens ?? 0, 0, usage.inputTokens), written = boundedInteger(usage.cacheWriteTokens ?? 0, 0, usage.inputTokens);
+  boundedInteger(usage.reasoningTokens ?? 0, 0, usage.outputTokens);
+  if (cached + written > usage.inputTokens || ((cached || written) && (card.cachedInputMicrosPerMillion === undefined || card.cacheWriteMicrosPerMillion === undefined)))
+    throw new HttpError(503, 'Provider input categories cannot be metered with this rate card.');
+  return money(ceilingRatio(usage.inputTokens - cached - written, card.inputMicrosPerMillion, 1_000_000) +
+    ceilingRatio(cached, card.cachedInputMicrosPerMillion || 0, 1_000_000) + ceilingRatio(written, card.cacheWriteMicrosPerMillion || 0, 1_000_000) +
+    ceilingRatio(usage.outputTokens, card.outputMicrosPerMillion, 1_000_000));
+}
+/** Persist identity on receipt even when the body or usage is incomplete. Never release either ledger hold. */
+export async function recordAiProviderReceipt(env: PlatformEnv, owner: string, mode: AiMode, id: string, dispatchToken: string,
+  receipt: { providerId?: string; providerRequestId?: string }) {
+  const action = await ownedAiAction(env, owner, mode, id);
+  const valid = (value: unknown) => typeof value === 'string' && /^[!-~]{1,200}$/.test(value);
+  if (action.dispatch_token !== dispatchToken || (!receipt.providerId && !receipt.providerRequestId) ||
+      (receipt.providerId !== undefined && !valid(receipt.providerId)) || (receipt.providerRequestId !== undefined && !valid(receipt.providerRequestId)))
+    throw new HttpError(409, 'Provider receipt does not match this dispatched action.');
+  const providerId = receipt.providerId ?? null, requestId = receipt.providerRequestId ?? null;
+  const claimed = await db(env).prepare(`UPDATE eidos_pg_ai_actions SET provider_id=COALESCE(provider_id,?),provider_request_id=COALESCE(provider_request_id,?)
+    WHERE id=? AND owner_id=? AND mode=? AND dispatch_token=? AND provider_status IN ('held','pessimistic')
+      AND (? IS NULL OR provider_id IS NULL OR provider_id=?) AND (? IS NULL OR provider_request_id IS NULL OR provider_request_id=?) RETURNING id`)
+    .bind(providerId, requestId, id, owner, mode, dispatchToken, providerId, providerId, requestId, requestId).first();
+  if (!claimed) throw new HttpError(409, 'Provider receipt does not match this dispatched action.');
+  return ownedAiAction(env, owner, mode, id);
 }
 export async function settleAiAction(env: PlatformEnv, owner: string, mode: AiMode, id: string, evidence: {
   dispatchToken: string; providerId: string; providerRequestId: string; usage: AiUsage; usable: boolean; result?: unknown;
 }, at = new Date()) {
   await reconcileAiDeadlines(env, at);
   const action = await ownedAiAction(env, owner, mode, id);
-  if (action.dispatch_token !== evidence.dispatchToken || !evidence.providerId || evidence.providerId.length > 200 || !evidence.providerRequestId || evidence.providerRequestId.length > 200)
+  if (action.dispatch_token !== evidence.dispatchToken || typeof evidence.providerId !== 'string' || !evidence.providerId || evidence.providerId.length > 200 || typeof evidence.providerRequestId !== 'string' || !evidence.providerRequestId || evidence.providerRequestId.length > 200 ||
+      (action.provider_id !== null && action.provider_id !== evidence.providerId) || (action.provider_request_id !== null && action.provider_request_id !== evidence.providerRequestId))
     throw new HttpError(409, 'Provider evidence does not match this dispatched action.');
   if (action.provider_status === 'settled') return action;
+  // Bind the first provider identity atomically before accepting usage. A later
+  // reconciliation may resolve its cost, but cannot substitute another request.
+  // This separate claim never releases either hold, including after a crash.
+  const identity = await db(env).prepare(`UPDATE eidos_pg_ai_actions SET provider_id=COALESCE(provider_id,?),provider_request_id=COALESCE(provider_request_id,?)
+    WHERE id=? AND owner_id=? AND mode=? AND dispatch_token=? AND provider_status IN ('held','pessimistic')
+      AND (provider_id IS NULL OR provider_id=?) AND (provider_request_id IS NULL OR provider_request_id=?) RETURNING id`)
+    .bind(evidence.providerId, evidence.providerRequestId, id, owner, mode, evidence.dispatchToken, evidence.providerId, evidence.providerRequestId).first();
+  if (!identity) {
+    const current = await ownedAiAction(env, owner, mode, id);
+    if (current.dispatch_token === evidence.dispatchToken && current.provider_id === evidence.providerId &&
+        current.provider_request_id === evidence.providerRequestId && current.provider_status === 'settled') return current;
+    throw new HttpError(409, 'Provider evidence does not match this dispatched action.');
+  }
   const card = validateRateCard(JSON.parse(action.rate_json));
-  const unboundedExpansion = evidence.usage.calls > card.maxCalls || evidence.usage.paidTools > card.paidTools;
-  const providerCost = Math.max(meterAiUsage(evidence.usage, card), unboundedExpansion ? action.provider_maximum : 0);
-  const exceeded = providerCost > action.provider_maximum || evidence.usage.inputTokens > card.maxInputTokens || evidence.usage.outputTokens > card.maxOutputTokens || evidence.usage.calls > card.maxCalls || evidence.usage.paidTools > card.paidTools;
-  const usable = evidence.usable && !unboundedExpansion;
-  const charge = usable && action.customer_status === 'held' ? Math.min(action.maximum, retailCharge(providerCost, card)) : 0;
+  let unboundedExpansion: boolean, providerCost: number, exceeded: boolean;
+  try {
+    unboundedExpansion = evidence.usage.calls > card.maxCalls || evidence.usage.paidTools > card.paidTools;
+    providerCost = Math.max(meterAiUsage(evidence.usage, card), unboundedExpansion ? action.provider_maximum : 0);
+    exceeded = providerCost > action.provider_maximum || evidence.usage.inputTokens > card.maxInputTokens || evidence.usage.outputTokens > card.maxOutputTokens || unboundedExpansion;
+  } catch {
+    // Invalid or unsupported usage is unknown liability, never zero expense.
+    // Retain the existing hold/pessimistic amount and customer waiver, and stop
+    // new dispatch before rejecting the evidence. Only matching, metered later
+    // evidence may resolve this liability; the policy remains paused for review.
+    await db(env).batch([
+      db(env).prepare('UPDATE eidos_pg_ai_policies SET enabled=0,paused_reason=?,updated_at=? WHERE mode=?')
+        .bind('Unmeterable provider usage; reconciliation required.', at.toISOString(), mode),
+      db(env).prepare(`UPDATE eidos_pg_ai_actions SET state=CASE WHEN customer_status='waived' THEN 'technical_waiver' ELSE 'reconciliation_pending' END,failure_reason='unmeterable_provider_usage'
+        WHERE id=? AND owner_id=? AND mode=? AND dispatch_token=? AND provider_id=? AND provider_request_id=? AND provider_status IN ('held','pessimistic')`)
+        .bind(id, owner, mode, evidence.dispatchToken, evidence.providerId, evidence.providerRequestId),
+      journal(env, owner, mode, id, 'unmeterable_provider_usage', { liability: 'retained', policyPaused: true }),
+    ]);
+    throw new HttpError(503, 'Provider usage could not be bounded. Eidos AI is paused; this action requires reconciliation.');
+  }
+  // A trusted adapter validates proposal operations. The ledger independently
+  // enforces serializable, bounded storage before allowing any customer debit.
+  let usable = evidence.usable && !unboundedExpansion, invalidResult = false;
+  let resultJson: string | null = null;
+  if (usable) {
+    try {
+      const serialized = JSON.stringify(evidence.result ?? null);
+      if (typeof serialized !== 'string' || serialized.length > 100000) invalidResult = true;
+      else resultJson = serialized;
+    } catch { invalidResult = true; }
+    if (invalidResult) usable = false;
+  }
+  // Price only up to the approved provider bound. Actual provider expense stays
+  // uncapped, while even an extreme retail ratio cannot overflow before the cap.
+  const charge = usable && action.customer_status === 'held' ? Math.min(action.maximum, retailCharge(Math.min(providerCost, action.provider_maximum), card)) : 0;
   const included = Math.min(action.held_included, charge), purchased = charge - included;
-  const resultJson = usable ? JSON.stringify(evidence.result ?? null) : null;
-  if ((resultJson?.length || 0) > 100000) throw new HttpError(413, 'The proposal exceeds the bounded result size.');
   await db(env).batch([
     db(env).prepare(`UPDATE eidos_pg_ai_actions SET state=CASE WHEN customer_status='waived' OR ?=0 THEN 'technical_waiver' ELSE 'settled' END,
       customer_status=CASE WHEN customer_status='waived' OR ?=0 THEN 'waived' ELSE 'settled' END,
       provider_status=?,charged_included=CASE WHEN customer_status='held' THEN ? ELSE 0 END,charged_purchased=CASE WHEN customer_status='held' THEN ? ELSE 0 END,provider_cost=?,provider_id=?,provider_request_id=?,usage_json=?,result_json=?,settled_at=?,failure_reason=?
       WHERE id=? AND owner_id=? AND mode=? AND dispatch_token=? AND provider_status IN ('held','pessimistic')`)
-      .bind(usable ? 1 : 0, usable ? 1 : 0, unboundedExpansion ? 'pessimistic' : 'settled', included, purchased, providerCost, evidence.providerId, evidence.providerRequestId, JSON.stringify(evidence.usage), resultJson, at.toISOString(), unboundedExpansion ? 'unbounded_expansion_requires_provider_reconciliation' : exceeded ? 'provider_bound_exceeded' : usable ? null : 'unusable_proposal', id, owner, mode, evidence.dispatchToken),
+      .bind(usable ? 1 : 0, usable ? 1 : 0, unboundedExpansion ? 'pessimistic' : 'settled', included, purchased, providerCost, evidence.providerId, evidence.providerRequestId, JSON.stringify(evidence.usage), resultJson, at.toISOString(), unboundedExpansion ? 'unbounded_expansion_requires_provider_reconciliation' : invalidResult ? 'invalid_proposal_result' : exceeded ? 'provider_bound_exceeded' : usable ? null : 'unusable_proposal', id, owner, mode, evidence.dispatchToken),
     ...(exceeded ? [db(env).prepare('UPDATE eidos_pg_ai_policies SET enabled=0,paused_reason=?,updated_at=? WHERE mode=?').bind('Provider bound exceeded; Eidos absorbs excess. Review required.', at.toISOString(), mode)] : []),
-    journal(env, owner, mode, id, 'settlement_evidence', { providerCost, charge, usable: evidence.usable, exceeded }),
+    journal(env, owner, mode, id, 'settlement_evidence', { providerCost, charge, usable, invalidResult, exceeded }),
   ]);
   return ownedAiAction(env, owner, mode, id);
 }

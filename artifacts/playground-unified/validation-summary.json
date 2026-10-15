@@ -1,37 +1,94 @@
 {
-  "timestampUtc": "2026-10-14T19:29:05.445Z",
-  "scope": "Historical local source and compiled-runtime evidence; controlled commerce fixtures only. The final candidate revision is a reference, not the source identity of every older log. Per-receipt hashes, served-build manifests and final CI qualify exact tested source.",
-  "groups": {
-    "playground": {
-      "commandLog": "final-playground.log",
-      "tests": 73,
-      "passed": 73,
-      "failed": 0
+  "timestampUtc": "2026-10-15T00:11:05.929Z",
+  "commandResults": [
+    {
+      "command": "npm run test:playground",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/01.log"
     },
-    "showcase": {
-      "commandLog": "final-showcase.log",
-      "tests": 37,
-      "passed": 37,
-      "failed": 0
+    {
+      "command": "npm run test:showcase",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/02.log"
     },
-    "platform": {
-      "commandLog": "final-platform.log",
-      "tests": 36,
-      "passed": 36,
-      "failed": 0
+    {
+      "command": "npm run test:platform",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/03.log"
     },
-    "templateShop": {
-      "commandLog": "final-template-shop.log",
-      "tests": 6,
-      "passed": 6,
-      "failed": 0
+    {
+      "command": "npm run test:templates",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/04.log"
     },
-    "previewGates": {
-      "commandLog": "preview-readiness/tests.log",
-      "tests": 8,
-      "passed": 8,
-      "failed": 0
+    {
+      "command": "node --test scripts/test-playground-preview-pin.mjs scripts/test-playground-preview-assets.mjs",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/05.log"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/06.log"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/07.log"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/08.log"
+    },
+    {
+      "command": "npm run build:functions",
+      "exitCode": 0,
+      "log": "artifacts/playground-unified/continuation-final-validation/09.log"
     }
-  },
-  "finalCandidateRevision": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0"
+  ],
+  "receipts": [
+    {
+      "path": "continuation-built/motion/receipt.json",
+      "records": 6,
+      "checks": 66,
+      "failures": 0,
+      "sourceChanged": [],
+      "fixture": false,
+      "evidenceType": "built manual browser behavior with disabled configuration fixtures"
+    },
+    {
+      "path": "continuation-built/guides/receipt.json",
+      "records": 1,
+      "checks": 6,
+      "failures": 0,
+      "sourceChanged": [],
+      "fixture": false,
+      "evidenceType": "built manual browser behavior with disabled configuration fixtures"
+    },
+    {
+      "path": "continuation-built/ai-ui/receipt.json",
+      "records": 2,
+      "checks": 40,
+      "failures": 0,
+      "sourceChanged": [],
+      "fixture": true,
+      "evidenceType": "controlled same-origin API fixtures"
+    },
+    {
+      "path": "continuation-built/purchase/receipt.json",
+      "records": 8,
+      "checks": 29,
+      "failures": 0,
+      "sourceChanged": [],
+      "fixture": true,
+      "evidenceType": "controlled same-origin API fixtures"
+    }
+  ],
+  "providerRequests": 0,
+  "providerExpenseMicros": 0,
+  "providerQuality": "not_run",
+  "hostedCommerce": "not_accepted",
+  "physicalDevices": "not_tested",
+  "productionActivation": false
 }

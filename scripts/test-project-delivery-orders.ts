@@ -184,8 +184,8 @@ test('historical and guest original orders never gain attachments and retain ori
     const guest = await ok(await status(f.context('/api/shop/status', { receipt: attempt }, ''))); assert.equal(guest.approvedPage, undefined);
     const original = await download(f.context('/api/shop/download', { receipt: attempt, downloadToken: guest.downloadToken }, '')); assert.equal(original.status, 200); assert.deepEqual(new Uint8Array(await original.arrayBuffer()), originalBytes);
     assert.equal((await download(f.context('/api/shop/download', { receipt: attempt, downloadToken: guest.downloadToken, artifact: 'approved-page' }, ''))).status, 404);
-    assert.equal(f.sql.prepare("SELECT COUNT(*) n FROM sqlite_master WHERE name='eidos_pg_delivery_orders'").get()!.n, 1); // A rejected authenticated attachment prepared the additive table only.
-    assert.equal(f.sql.prepare('SELECT COUNT(*) n FROM eidos_pg_delivery_orders').get()!.n, 0);
+    // Reject the conflicting owner/attempt before preparing any attachment.
+    assert.equal(f.sql.prepare("SELECT COUNT(*) n FROM sqlite_master WHERE name='eidos_pg_delivery_orders'").get()!.n, 0);
   } finally { f.close(); }
 });
 

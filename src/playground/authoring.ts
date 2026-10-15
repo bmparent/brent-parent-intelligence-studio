@@ -1,5 +1,5 @@
 import { validateProject, sectionKind, newBlock, type Project } from './model';
-import { newNode, flattenNodes, isContainer, type BlockNode, type NodeType } from './authoringSchema';
+import { newNode, flattenNodes, isContainer, type BlockNode, type BlockMotion, type NodeType } from './authoringSchema';
 export type BlockOperation = {
     type: 'section-step';
     id: string;
@@ -45,6 +45,12 @@ export function enableBlocks(p: Project): Project {
             // Legacy fields remain intact for provenance. Only explicit upgrade chooses responsive flow.
             return { ...s, type: sectionKind(s), authoring: { version: 1, root } };
         }) });
+}
+/** Explicitly applying motion is one edit, including the schema-5 upgrade for a legacy block project. */
+export function setBlockMotion(p: Project, id: string, motion?: BlockMotion): Project {
+    if (!motion && p.schemaVersion < 5) return p;
+    const source = motion && p.schemaVersion === 4 ? validateProject({ ...p, schemaVersion: 5 }) : p;
+    return applyBlockOperation(source, { type: 'patch', id, patch: { motion } });
 }
 export function applyBlockOperation(p: Project, op: BlockOperation): Project {
     if (p.schemaVersion < 4)

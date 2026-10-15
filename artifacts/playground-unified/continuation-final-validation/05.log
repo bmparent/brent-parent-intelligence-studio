@@ -1,0 +1,17 @@
+✔ asset gate retains a transient 522, then verifies the actual built bytes (188.3294ms)
+✔ isolated manual preview refuses production, unpinned bundles, credential URLs and persistent bindings (14.6863ms)
+✔ manual preview refuses missing or enabled account, community, AI, checkout and local bypass flags (1.7408ms)
+✔ published relay waits for disabled stale identity and transient failures, then requires both exact pins (164.8954ms)
+✔ published relay rejects every enabled or missing safety flag immediately even with an old source (25.5687ms)
+✔ published relay retains bounded stale-source failure evidence without response secrets (5.4912ms)
+✔ published relay retries transport and transient HTTP but rejects authorization, malformed JSON and missing identity (36.6617ms)
+✔ published relay cannot change the stable alias or remove its finite retry bound (3.1222ms)
+✔ only the exact audited previous manual pair can propagate without the new dedicated AI flag (16.114ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 879.1972

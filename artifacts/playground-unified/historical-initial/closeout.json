@@ -1,0 +1,96 @@
+{
+  "timestampUtc": "2026-10-14T19:35:42.085Z",
+  "status": "partial_owner_inputs_required",
+  "frontendSource": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0",
+  "backendSource": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+  "backendEvidenceHead": "c37870bd2c7453fca4dbc8d65275902e4473be95",
+  "preview": "https://eidosworks-playground-20261014.pages.dev/playground/",
+  "immutablePreview": "https://4c772471.eidosworks-playground-20261014.pages.dev",
+  "backendDeployment": "dpl_3ybMcNrPqdT9dMWpbVvxDANqSaZr",
+  "bundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c",
+  "database": "none",
+  "features": {
+    "runtimeSourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+    "runtimeBundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c",
+    "accountsReady": false,
+    "communityReady": false,
+    "aiReady": false,
+    "shopReady": false,
+    "localTest": false
+  },
+  "canonicalProduction": "5926dfb4-1df2-4dbf-8864-1f3f38e034f1",
+  "productionUnchanged": true,
+  "ci": [
+    {
+      "conclusion": "success",
+      "databaseId": 38623788232,
+      "headSha": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0",
+      "name": "Site quality",
+      "status": "completed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38623788232"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 38623788226,
+      "headSha": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0",
+      "name": "Community studio acceptance",
+      "status": "completed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38623788226"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 38623788219,
+      "headSha": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0",
+      "name": "Playground unified isolated preview",
+      "status": "completed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38623788219"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 38623788179,
+      "headSha": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0",
+      "name": "Wellway acceptance",
+      "status": "completed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38623788179"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 38623788291,
+      "headSha": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0",
+      "name": "Template commerce readiness",
+      "status": "completed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38623788291"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 38623788224,
+      "headSha": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0",
+      "name": "Playground editor release",
+      "status": "completed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38623788224"
+    }
+  ],
+  "counts": {
+    "purchaseScenarios": 8,
+    "purchaseChecks": 29,
+    "hostedChecks": 20,
+    "gestureChecks": 14,
+    "persistenceChecks": 13,
+    "threeEngineChecks": 60
+  },
+  "providerRequestsMade": false,
+  "actualTestPayment": false,
+  "actualInboxEvidence": false,
+  "physicalDeviceAcceptance": false,
+  "ownerInputs": [
+    "OpenAI key reuse or dedicated key decision and total USD evaluation budget",
+    "Ignored authorized TEST configuration path or secure binding"
+  ],
+  "remainingAcceptance": [
+    "Provider implementation, actual metering and model comparison",
+    "Hosted two-account persistence and entitlement isolation",
+    "Genuine TEST payment, signed acknowledgement, exact downloads, inbox and refund/recovery acceptance",
+    "Physical-device and unfamiliar-user validation"
+  ],
+  "archive": "See artifact_manifest.json and drive_manifest.json"
+}

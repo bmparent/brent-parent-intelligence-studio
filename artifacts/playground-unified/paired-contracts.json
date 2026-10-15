@@ -1,28 +1,36 @@
 {
-  "timestamp": "2026-10-14T19:16:26.531Z",
-  "frontendCommit": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
-  "backendCommit": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+  "timestamp": "2026-10-15T18:51:30.770Z",
+  "frontendCommit": "41f0d1e388220f62ca20d0c5930251276444c40c",
+  "backendCommit": "bbbfb9e77d373a29eb03e4f7836edce04bc8253b",
   "workingFiles": true,
   "checks": [
     {
       "path": "functions/_shared/platform/core.ts",
-      "sha256Utf8Lf": "ec25117dc746e83c598f2b4242b7409ea0985499e0d14c984ba2fb36d2e7d8fd"
+      "sha256Utf8Lf": "bb89a319cf100c4bfd20101c3b4ebeb8c17ec2c82a28c7cbe6afec76acddf7a4"
     },
     {
       "path": "functions/_shared/platform/playgroundAi.ts",
-      "sha256Utf8Lf": "fd2adadc434c8f6438f67968bb853c0b9dddc9a4a9c678d638a4faa58bb6aee2"
+      "sha256Utf8Lf": "1d3bf7ce735e9e7575232d58b7bc89f6551ea199e1c49463dc5a490670eec2d9"
     },
     {
       "path": "functions/_shared/platform/playgroundAiSchema.ts",
-      "sha256Utf8Lf": "ae4205b6ad281ab5ff32a4befba4ada1e8c83b3612053a2b2fb037cd74b97d06"
+      "sha256Utf8Lf": "45c82ac02c7a06945462a70a1bf556e9f5689ab75b6138d930f41f13993da2ff"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAiProvider.ts",
+      "sha256Utf8Lf": "d927ae39c9161928aae4a3c145d3933f809fd56c959cff862559c9564e3e9fdb"
     },
     {
       "path": "functions/_shared/platform/templateShop.ts",
-      "sha256Utf8Lf": "b8dbcbf4c17014aec56575901a0799580d5c058e0eaadf6f00e785ea4edb3141"
+      "sha256Utf8Lf": "47d49d09d5ed6f2e7c4d5cd18a2a2aecb1c8f8abb4c7bb8b504cc750c4d8f437"
     },
     {
       "path": "functions/api/playground/ai.ts",
-      "sha256Utf8Lf": "f732b515a21847957876af5d9c583834477c4ca4aa0f1025e3947099231a8210"
+      "sha256Utf8Lf": "e6669a0e557cafd8cf5ecc6b0d8949edab96b490366d8b8da6f83cf8109599a1"
+    },
+    {
+      "path": "functions/api/public-config.ts",
+      "sha256Utf8Lf": "d6be3c0e37f5c4269175aa26ff99bfd222355ef0213eb865cf807a7cf5266e33"
     },
     {
       "path": "functions/api/shop/webhook.ts",
@@ -34,7 +42,7 @@
     },
     {
       "path": "migrations/0005_playground_ai.sql",
-      "sha256Utf8Lf": "531525eb781671d6ffb887de783c773d3023383bd1110ad97e53d0e7ae2fd8b8"
+      "sha256Utf8Lf": "bad71d8000a831b3c46a316aec238d8134e8f00432f347f3fe9f6af9d1064936"
     },
     {
       "path": "functions/_shared/platform/projectDelivery.ts",

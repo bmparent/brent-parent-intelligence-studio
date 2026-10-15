@@ -38,12 +38,23 @@ jobs:
           PG_PERSISTENCE_EVIDENCE: artifacts/playground-unified/persistence-ci
           PG_GESTURE_EVIDENCE: artifacts/playground-unified/gestures-ci
           PG_PURCHASE_EVIDENCE: artifacts/playground-unified/purchase-ci
+          PG_GUIDE_EVIDENCE: artifacts/playground-unified/guides-ci
+          PG_MOTION_EVIDENCE: artifacts/playground-unified/motion-ci
+          PG_ARTWORK_EVIDENCE: artifacts/playground-unified/artwork-ci
+          PG_AI_EVIDENCE: artifacts/playground-unified/ai-ui-ci
+          RECOVERY_PHASE: after
+          RECOVERY_EVIDENCE: artifacts/playground-unified/recovery-ci
         run: |
           npm run preview -- --host 127.0.0.1 --port 5178 > "$RUNNER_TEMP/playground-preview.log" 2>&1 &
           node scripts/verify-playground-unified-browser.mjs
           node --import tsx scripts/verify-playground-persistence.mjs
           node --import tsx scripts/verify-playground-unified-gestures.mjs
+          node --import tsx scripts/verify-playground-guides.mjs
+          node --import tsx scripts/verify-playground-element-motion.mjs
+          node --import tsx scripts/verify-playground-integrated-artwork.mjs
           node --import tsx scripts/verify-playground-purchase-browser.mjs
+          node --import tsx scripts/verify-template-recovery.mjs
+          node --import tsx scripts/verify-playground-ai-ui.mjs
       - name: Deploy only the isolated manual Playground
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

@@ -1,0 +1,83 @@
+{
+  "timestampUtc": "2026-10-15T00:15:18.638Z",
+  "inputArchive": {
+    "bytes": 128594,
+    "sha256": "044459b53a6dbc32163061bfe49e201ad695ef7f08c3ac3d322ec3f635333bf8"
+  },
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 7378,
+      "sha256": "444fdc75da382a35b15f9e8178d4f5e9eb9938ab5e7081a9a81c6a10eff1fcd5"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 15714,
+      "sha256": "23ec756950b7ef88ceef8b52d47402bc17b1bfc201f6b273791234960f3904a9"
+    },
+    {
+      "path": "tokens.css",
+      "bytes": 231,
+      "sha256": "32427cb149bd8fc06d1569b20240ec21fdfc8db98c4148d2bbcbf9eb216eb4df"
+    },
+    {
+      "path": "script.js",
+      "bytes": 20813,
+      "sha256": "b9198e45b85fcb7e2302d648b81eb0b6e3922bde14797b3a241695c03527334e"
+    },
+    {
+      "path": "project.json",
+      "bytes": 28295,
+      "sha256": "995569068c714be6112078a88ac6ca356662cf67c0359c56d1a40cb4e98bbf23"
+    },
+    {
+      "path": "approved-glass-preset.json",
+      "bytes": 1349,
+      "sha256": "8ee150f9aa0a86df116c28d02579972dd330a6f464ef886eda25bafc072225f4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1592,
+      "sha256": "fe1cc6a0fbee0bc444e7405a572f6ee1d7c29adad7f86745be36b6fdc8bf57ee"
+    },
+    {
+      "path": "AI-HANDOFF.md",
+      "bytes": 1044,
+      "sha256": "20782bbeff2e369f89224beebe89c0aa8f619e7e2b1311b2b351de8e50658b1b"
+    },
+    {
+      "path": "assets/node-9b46c6ab-c9b4-4f9e-a3bc-4557e4c64411.webp",
+      "bytes": 16540,
+      "sha256": "60bc716c9b5c2c6a9e74eb3345b632143a3b318fa9e34926d9c6d969d48ddc47"
+    },
+    {
+      "path": "SNAPSHOT.json",
+      "bytes": 29673,
+      "sha256": "b02ad82947868827e7514d797e979530954463a4a30d63d47f75c0c0a43c4424"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 1905,
+      "sha256": "078f7a0630a8ff3569d444521a0930200fca90413c53bd00d3175c076200efdc"
+    },
+    {
+      "path": "PACKAGE_MANIFEST.json",
+      "bytes": 2728,
+      "sha256": "57585f16c97ea07578a4c2c4c79b697cd0d9e76a7ff101c5b539f34e9681e1cb"
+    }
+  ],
+  "checks": [
+    "Compiled ZIP executes its own runtime and renders the exact project brand.",
+    "Every exported image decodes from the independent package.",
+    "Export has no editor chrome, runtime error or unapproved external request.",
+    "Independent narrow viewport renders without horizontal overflow."
+  ],
+  "errors": [],
+  "external": [],
+  "providerCalls": 0,
+  "environment": "Actual compiled ZIP opened independently in Chromium with GPU disabled; optional Google Fonts CSS replaced with empty CSS to verify the existing font fallback.",
+  "limitations": [
+    "This is local browser execution, not hosted ownership/payment/inbox or physical-device acceptance."
+  ],
+  "images": 1
+}

@@ -2,9 +2,11 @@
 
 The manual editor is available at https://eidosworks-playground-20261014.pages.dev/playground/. Frontend draft PR111 and backend draft PR78 retain the isolated implementation and evidence. No merge, production sale, LIVE transaction, provider generation or real receipt email has been performed for this task.
 
-## OpenAI decision
+## OpenAI binding resolved; real-call acceptance pending
 
-An `OPENAI_API_KEY` is present in the process; its value was not printed or used. The pending decision is whether to reuse that key or create a dedicated key, plus a maximum total USD budget for the bounded provider evaluation. Do not infer authorization from the key's presence. Provider transport, actual metering, scoped model proposals and the 20–30-case Astra/Sol evaluation remain pending that decision and access verification. Accounting fixtures do not establish model quality or actual billing.
+Brent approved the dedicated Playground key in `eidos-works` and **$5 total** across all provider tests, models, failures and retries. `EIDOS_PLAYGROUND_OPENAI_API_KEY` is metadata-verified as a Secret in Vercel project `eidos-sentinel-lab`, Preview branch `codex/playground-unified-20261014`. No key value was read, created, copied locally or printed. No new key setup is required. The unrelated process key and Production variables remain unused and untouched.
+
+The scoped provider transport, typed-operation validation, cap ledger and proposal UI are implemented and fixture-tested. A 20-case model comparison corpus is prepared. Real generation has not run: the exact-count endpoint billing lacks an explicit documented zero fee or maximum, and the candidate still needs the authorized authenticated TEST database/account/funding configuration. Keep the pricing gate unset until supported; a dashboard spending alert does not replace the atomic $5 lifetime limit. Actual model access, usage, visual quality and metering remain unaccepted.
 
 ## Existing isolated TEST environment
 

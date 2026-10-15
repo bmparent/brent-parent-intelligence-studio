@@ -2,6 +2,8 @@
 
 Status: candidate in progress. This record separates source fixtures, local browser evidence, hosted runtime evidence, provider usage and paid fulfillment. No production activation or LIVE charge has occurred.
 
+Continuation audit: the initial candidate below did not yet expose selected-element motion or measured layout guides, and its recovery/accounting acceptance missed concrete edge cases. These are being repaired and independently verified in [the continuation record](unified-continuation-2026-10-14.md). Counts and source identities below remain historical until that record names the replacement candidate. An evidence-only PR push can retrigger the preview workflow; it is not a guarantee that deployment was skipped.
+
 ## Editor and direct manipulation
 
 **Local and manual hosted editor acceptance passed.** A clean browser starts with an explicit choice; it does not save a hidden default project. Switchboard, Tideglass and Matter create distinct populated pages with optional brand and images. The editor keeps Pages, Add, Layers, Assets and Project alongside one canvas and a contextual inspector. Brand, save, history, device review, Preview and Finish operate on that project. The current page model is explicitly single-page.
@@ -31,7 +33,7 @@ The first [isolated manual preview](https://eidosworks-playground-20261014.pages
 
 The first hosted CI attempt retained Cloudflare 522 failures while loading desktop assets; its mobile journey passed. A fresh hosted desktop/narrow run passed all 20 checks and the subsequent CI passed after adding bounded published-asset readiness verification. Failures remain in `ci-first-preview/`; successful deployment and hosted receipts are in `ci-preview-passed/` and `browser-hosted-local/`. The broader three-engine editor/site workflow passed for both initial source and the readiness follow-up. Canonical production Pages deployment `5926dfb4-1df2-4dbf-8864-1f3f38e034f1` was unchanged before and after isolated uploads.
 
-## Final candidate and hosted pair
+## Initial candidate and hosted pair (historical)
 
 [Final isolated-preview CI 38623788219](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38623788219) passed on frontend `a669fddccc6f6be77f6e24e36ccd3f103c518fc0`. It builds a clean checkout, runs the source and browser gates, uploads only the isolated project, and completes the actual hosted desktop/narrow journey. The paired backend is `bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6`, deployment `dpl_3ybMcNrPqdT9dMWpbVvxDANqSaZr`, full bundle `1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c`. The direct authenticated preflight and public Pages relay both verify that identity. Database remains `none`; accounts, customer AI, commerce and mail remain disabled. Receipts are in `artifacts/playground-unified/ci-final-preview/`.
 
@@ -41,7 +43,7 @@ The concurrent broader release run passed all 60 three-engine editor checks and 
 
 [Final broader release CI 38623788224](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38623788224) passed, including all three-engine editor journeys, persistence, corrected gesture checks and the full configured site gates. It used review merge `a2b16caa5716574131e13deaae6840d46872284a`; `release-merge-identity.json` verifies its entire tree equals final candidate `a669fdd`. The other four configured workflows also passed; `final-source-ci-runs.json` records all six outcomes. Final CI retains eight purchase scenarios / 29 checks, 20 hosted journey checks, 13 persistence checks and 14 gesture checks. Production deployment `5926dfb4-1df2-4dbf-8864-1f3f38e034f1` remained unchanged before/after the final isolated upload. No production step ran on this draft PR.
 
-## Validation commands
+## Initial-candidate validation commands (historical)
 
 Run from the frontend repository root:
 
@@ -66,7 +68,7 @@ Run from the frontend repository root:
 
 **Accounting fixture evidence exists; public generation remains disabled.** Backend work adds integer-microdollar accounting, customer monthly commitments, separate lifetime provider commitments, atomic reservation, one dispatch claim, bounded deadlines, technical waivers and signed-order grant hooks. Independent review found and verified repairs for TEST merchant identity and budget reduction before dispatch. The backend's 15 focused accounting tests and final 100 full-suite tests pass; one Windows symlink-privilege test is explicitly skipped. Controlled tests do not establish actual provider billing or hosted maintenance cadence. Sixteen mirrored contract files and the final seventeen-file delivery renderer graph passed parity. Its narrow security dependency patch also passes build/typecheck and reports zero npm audit vulnerabilities. Exact deployed source and bundle are recorded in `config/playground-preview.json` and hosted receipts, rather than inferred from the evidence-only branch head.
 
-The existing process has an OpenAI key, but reuse/separate-project selection and a total USD provider-test budget have not been approved. No key was printed and no provider request was made. The real hosted proposal, actual usage receipts and 20–30-case Astra/Sol comparison are pending. No model-quality conclusion is inferred from fixtures.
+At this initial historical freeze the dedicated key and budget had not been approved. That dependency is now resolved: Brent approved $5 aggregate testing and saved the dedicated Vercel Preview Secret. Scoped provider/UI implementation and additional accounting tests are recorded in the continuation. No provider request has been made; exact-count billing, authenticated TEST setup, actual usage and model-quality acceptance remain pending.
 
 ## Purchase and delivery
 
@@ -84,7 +86,7 @@ Genuine TEST payment, endpoint-specific signed acknowledgement, exact owned down
 
 ## Remaining handoffs and limits
 
-- Select reuse or a dedicated OpenAI key and authorize a bounded total USD provider-test budget before provider-dependent implementation/testing.
+- Resolved in continuation: dedicated key selected, $5 aggregate budget approved, correct Vercel Preview Secret metadata verified. No additional key-creation step is needed.
 - The existing sensitive TEST database/relay credentials cannot be read through the current provider API. Preserve the original candidate. A manual-only preview uses a new branch-scoped relay and no database; authenticated two-account acceptance needs the configured TEST environment.
 - Server snapshot/order packaging and fixture ownership tests are implemented. Complete their real hosted two-account acceptance before enabling purchase for the unified project.
 - Actual TEST payment/refund and inbox evidence must be retained independently. No prepared transaction or redirect counts as fulfillment.

@@ -1,6 +1,10 @@
 # Unified Playground implementation — 2026-10-14
 
-Status: active. This is an isolated candidate; no production sales or LIVE charge is authorized.
+Status: active isolated candidate. No production activation or LIVE charge is authorized. Manual continuation features, bounded Eidos UI/provider source and recovery/accounting repairs are implemented with controlled receipts; final combined frontend validation, committed pair and hosted preview refresh are pending.
+
+The dedicated Playground key choice/server Preview binding is resolved and Brent authorized $5 total provider-test expense. Actual provider execution remains gated by input-count billing and configured persistent TEST account/ledger access. Real model quality, payment/inbox/refund, physical devices and unfamiliar-user acceptance remain open.
+
+See [the current continuation report](../playground/unified-continuation-2026-10-14.md) for exact counts, source-stage limits, changed files and receipts. It records 108 AI UI fixture checks plus separate final readiness/Finish follow-ups, 128 backend passes with one Windows skip, and the remaining deployment/Drive placeholders. **The progress table, source pins and CI counts below are the historical initial candidate; they do not describe the final continuation source.** Evidence-only PR pushes may rerun previews and must be inspected.
 
 ## Verified progress
 

@@ -3,10 +3,14 @@
   "branch": "codex/playground-unified-20261014",
   "siteOrigin": "https://eidosworks-playground-20261014.pages.dev",
   "mode": "manual-only",
-  "backendUrl": "https://eidos-sentinel-lz611r2ml-1brentbm-1876s-projects.vercel.app",
-  "backendSha": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
-  "backendDeployment": "dpl_3ybMcNrPqdT9dMWpbVvxDANqSaZr",
-  "bundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c",
-  "sourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6-bundle-1e471a710c1d4d13",
-  "database": "none"
+  "backendUrl": "https://eidos-sentinel-k15xxdpx5-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "bbbfb9e77d373a29eb03e4f7836edce04bc8253b",
+  "backendDeployment": "dpl_9AWWZ8Xo3bN3kjLLdvmQBXqNXJF9",
+  "bundleHash": "acdb2a1b505a1183e3645f3f6fbfd5127c6b7f4f6ca120195f709ff9751b313d",
+  "sourceRevision": "bbbfb9e77d373a29eb03e4f7836edce04bc8253b-bundle-acdb2a1b505a1183",
+  "database": "none",
+  "previousManualBackend": {
+    "backendSha": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+    "bundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c"
+  }
 }

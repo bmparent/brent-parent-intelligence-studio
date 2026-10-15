@@ -12,7 +12,7 @@ concurrency:
 jobs:
   local-editor:
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,6 +39,10 @@ jobs:
           PG_PERSISTENCE_URL: http://127.0.0.1:4173/playground/
           PG_PERSISTENCE_EVIDENCE: ${{ runner.temp }}/pg-evidence/persistence
           PG_GESTURE_EVIDENCE: ${{ runner.temp }}/pg-evidence/gestures
+          PG_GUIDE_EVIDENCE: ${{ runner.temp }}/pg-evidence/guides
+          PG_MOTION_EVIDENCE: ${{ runner.temp }}/pg-evidence/motion
+          PG_ARTWORK_EVIDENCE: ${{ runner.temp }}/pg-evidence/artwork
+          PG_AI_EVIDENCE: ${{ runner.temp }}/pg-evidence/ai-ui
         run: |
           npm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &
           SERVER_PID=$!
@@ -47,6 +51,10 @@ jobs:
           node scripts/verify-playground-unified-browser.mjs
           node --import tsx scripts/verify-playground-persistence.mjs
           node --import tsx scripts/verify-playground-unified-gestures.mjs
+          node --import tsx scripts/verify-playground-guides.mjs
+          node --import tsx scripts/verify-playground-element-motion.mjs
+          node --import tsx scripts/verify-playground-integrated-artwork.mjs
+          node --import tsx scripts/verify-playground-ai-ui.mjs
           node scripts/verify-hero-browser.mjs
           node scripts/verify-digital-experiences-browser.mjs
           node scripts/verify-business-systems-browser.mjs

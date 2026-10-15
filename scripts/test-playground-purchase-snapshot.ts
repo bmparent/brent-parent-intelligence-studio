@@ -43,6 +43,11 @@ test('frozen package contains byte-exact common exporter output, complete digest
   assert.deepEqual(frozen.manifest.files, await digestFiles(frozen.files.filter(file => file.name !== 'PACKAGE_MANIFEST.json')));
   assert.ok(!frozen.files.some(file => /LICENSE|paid|original.*zip/i.test(file.name)), 'no purchased original or invented license grant');
   assert.match(text(frozen.files.find(file => file.name === 'PROVENANCE.md')!.data), /original archive is not included or modified/);
+  const provenance = text(frozen.files.find(file => file.name === 'PROVENANCE.md')!.data);
+  assert.match(provenance, /same reviewed artifact before and after any purchase/);
+  assert.match(provenance, /Payment and entitlement are established separately by a verified order receipt, not by this ZIP/);
+  assert.match(provenance, /licensed archive and notices are delivered separately and remain unmodified/);
+  assert.ok(!provenance.includes('until server ownership'));
   assert.deepEqual(validateProject(JSON.parse(text(frozen.files.find(file => file.name === 'project.json')!.data))), snapshot.project);
   assert.deepEqual(await verifyFrozenPackage(structuredClone(frozen)), frozen);
   assert.deepEqual((await buildFrozenPackage(snapshot)).archive, frozen.archive, 'package bytes are deterministic');

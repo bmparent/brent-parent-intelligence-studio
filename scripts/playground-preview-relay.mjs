@@ -1,6 +1,6 @@
 import {validatePlaygroundPreviewPin,verifyManualPreviewConfig} from './playground-preview-pin.mjs';
 
-const flags=['accountsReady','communityReady','aiReady','shopReady','localTest'];
+const flags=['accountsReady','communityReady','aiReady','playgroundAiReady','shopReady','localTest'];
 const sourcePattern=/^[a-f0-9]{40}$/,bundlePattern=/^[a-f0-9]{64}$/;
 const transientStatus=status=>status===404||status===408||status===429||(status>=500&&status<=599);
 /** The stable Pages alias can briefly route to the previous deployment after upload. */
@@ -37,8 +37,13 @@ export async function verifyPublishedRelay(origin,pin,{attempts=12,delayMs=2000,
       const observedFlags=Object.fromEntries(flags.map(flag=>[flag,typeof data?.[flag]==='boolean'?data[flag]:null]));
       const entry={attempt,status:response.status,observed,flags:observedFlags,outcome:'pending'};
       history.push(entry);
-      // Never wait out an enabled or incomplete safety configuration, even on a stale source.
-      try {verifyManualPreviewConfig(data);} catch {entry.outcome='unsafe_config';fail('unsafe_config');}
+      // The explicitly audited previous manual runtime predates this one flag.
+      // Permit only that exact old pair to propagate; enabled flags, unknown
+      // legacy sources and the new pinned source still fail closed immediately.
+      const previous=pin.previousManualBackend;
+      const knownLegacy=previous&&observed.runtimeSourceRevision===previous.backendSha&&observed.runtimeBundleHash===previous.bundleHash&&data.playgroundAiReady===undefined;
+      if(knownLegacy)entry.legacyPlaygroundFlag='missing on audited previous manual runtime';
+      try {verifyManualPreviewConfig(knownLegacy?{...data,playgroundAiReady:false}:data);} catch {entry.outcome='unsafe_config';fail('unsafe_config');}
       if(!observed.runtimeSourceRevision||!observed.runtimeBundleHash){entry.outcome='invalid_identity';fail('invalid_identity');}
       if(observed.runtimeSourceRevision===expected.runtimeSourceRevision&&observed.runtimeBundleHash===expected.runtimeBundleHash) {
         entry.outcome='verified';
