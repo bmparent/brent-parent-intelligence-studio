@@ -39,5 +39,10 @@
 /kit-preview/*
   X-Robots-Tag: noindex, follow
 
-/quote-desk/*
+# Candidate policies describe the unreleased paid workspace. The free estimator
+# and quoting guide are public; do not apply a blanket Quote Desk noindex rule.
+/quote-desk/terms*
+  X-Robots-Tag: noindex, follow
+
+/quote-desk/privacy*
   X-Robots-Tag: noindex, follow

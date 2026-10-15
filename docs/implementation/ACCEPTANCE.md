@@ -1,5 +1,9 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 15 public indexing repair
+
+PR112 removed the free Quote Desk estimator’s HTML exclusion but left its Cloudflare response header exclusion. The scoped follow-up removes that header, makes the linked free quoting guide eligible, and includes the already public Wellway demo in the sitemap. Private pages, unreleased workspace policies and preview exclusions remain intact. The inventory, response-header regression gate, exact release evidence and rollback are tracked in [PUBLIC_INDEXING_2026-10-15.md](PUBLIC_INDEXING_2026-10-15.md). Search eligibility does not establish actual search-engine indexing.
+
 ## October 13 security reporting contact
 
 Brent requested configuring security.txt on Cloudflare. The scoped public-main

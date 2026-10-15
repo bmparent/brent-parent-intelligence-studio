@@ -25,10 +25,12 @@ jobs:
       - run: npm run test:platform
       - run: npm run test:playground
       - run: npm run test:growth
+      - run: npm run test:indexing
       - run: npm run test:analytics
       - run: npm run test:glass
       - run: npm run test:snapshot
       - run: npm run build
+      - run: npm run verify:indexing
       - run: npm run verify:prerender
       - run: npm run verify:editorial
       - run: npm run validate:insights -- --skip-source-fetch
