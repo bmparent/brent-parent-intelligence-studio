@@ -113,8 +113,8 @@ for (const evidence of [
   'ns-hero-dhs-desktop-v1.webp',
   'hih-hero-boulevard-blue-hour-desktop-v1.webp',
   'hih-vector-title-v3.png',
-  'hih-hero-cast-left-decorated-v2.png',
-  'hih-hero-cast-right-decorated-v2.png',
+  'hih-hero-cast-left-clean-v3.webp',
+  'hih-hero-cast-right-clean-v3.webp',
   'dhs-nighttime-full-back-logo-v1.png',
   'ns-model-j333-black-v1.webp',
   'ns-model-l333-black-v1.webp',
@@ -161,7 +161,9 @@ for (const route of [
 
 const about = await readFile(routeFile('/about'), 'utf8');
 for (const image of [
-  'hih-full-storefront-reference-v2.webp',
+  'sd-preview--thumbnail',
+  'hih-hero-cast-left-clean-v3.webp',
+  'hih-official-mark-cast-crew-runtime-v3.webp',
   'production-dashboard.png',
   'sentinel-lab.webp',
 ]) {

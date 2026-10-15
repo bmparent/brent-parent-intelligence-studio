@@ -61,7 +61,7 @@ export const serviceFamilies = [
     ],
     image: 'https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1500/v1786042295/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-full-storefront-reference-v2.webp',
     imageAlt: 'Holidays in Hollywood storefront design reference with a theatrical holiday entrance and apparel categories.',
-    imageCaption: 'Holidays in Hollywood · saved storefront design reference'
+    imageCaption: 'Holidays in Hollywood · interactive public reconstruction'
   },
   {
     slug: 'business-systems',

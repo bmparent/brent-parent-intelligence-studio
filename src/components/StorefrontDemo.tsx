@@ -10,6 +10,7 @@ import {
   type DemoTheme,
   type StorefrontTheme,
 } from "../data/storefrontDemo";
+import { StorefrontArt } from "./StorefrontArt";
 import { StorefrontFireworks } from "./StorefrontFireworks";
 import "../styles/storefront-demo.css";
 
@@ -119,11 +120,11 @@ function GlobeSnow() {
   );
 }
 
-export function StorefrontPreview({ slug }: { slug: StorefrontTheme }) {
+export function StorefrontPreview({ slug, thumbnail = false }: { slug: StorefrontTheme; thumbnail?: boolean }) {
   const theme = storefrontThemes[slug];
   return (
     <div
-      className={`sd-preview sd-${theme.style}`}
+      className={`sd-preview sd-${theme.style}${thumbnail ? " sd-preview--thumbnail" : ""}`}
       aria-label={`${theme.title} composed storefront preview`}
     >
       <img
@@ -133,7 +134,7 @@ export function StorefrontPreview({ slug }: { slug: StorefrontTheme }) {
         loading="lazy"
       />
       {theme.left && (
-        <img
+        <StorefrontArt
           className="sd-preview-left"
           src={theme.left}
           alt=""
@@ -141,7 +142,7 @@ export function StorefrontPreview({ slug }: { slug: StorefrontTheme }) {
         />
       )}
       {theme.right && (
-        <img
+        <StorefrontArt
           className="sd-preview-right"
           src={theme.right}
           alt=""
@@ -324,18 +325,18 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
       {view === "Home" && (
         <>
           <div className="sd-hero">
-            <img className="sd-backdrop" src={theme.background} alt="" />
+            <picture>{theme.mobileBackground && <source media="(max-width: 700px)" srcSet={theme.mobileBackground} />}<img className="sd-backdrop" src={theme.background} alt="" /></picture>
             <ThemeAtmosphere style={theme.style} />
             {theme.style === "night" && <StorefrontFireworks paused={paused} />}
             {theme.left && (
-              <img
+              <StorefrontArt
                 className="sd-cast sd-cast-left"
                 src={theme.left}
                 alt="Collection apparel, left model"
               />
             )}
             {theme.right && (
-              <img
+              <StorefrontArt
                 className="sd-cast sd-cast-right"
                 src={theme.right}
                 alt={
@@ -371,7 +372,7 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
               {categories.slice(1).map((cat) => (
                 <button key={cat} onClick={() => collection(cat)}>
                   <span className="sd-category-art">
-                    <img
+                    <StorefrontArt
                       src={
                         theme.categoryImages?.[cat] ||
                         theme.products.find((p) => p.category === cat)!.image
@@ -442,7 +443,7 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
                 onClick={() => openProduct(p.index)}
               >
                 <div className="sd-item-art">
-                  <img
+                  <StorefrontArt
                     src={p.image}
                     alt={`${p.name} collection mockup`}
                     loading="lazy"
@@ -486,7 +487,7 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
                 <span className="sd-stage-name" aria-hidden="true">
                   {theme.title}
                 </span>
-                <img
+                <StorefrontArt
                   src={currentImage}
                   alt={`${product.name}${product.back ? `, ${side}` : ""} mockup`}
                 />
@@ -599,7 +600,7 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
                     onClick={() => openProduct(item.index)}
                     aria-label={`Inspect ${theme.products[item.index].name}`}
                   >
-                    <img src={theme.products[item.index].image} alt="" />
+                    <StorefrontArt src={theme.products[item.index].image} alt="" />
                   </button>
                   <div>
                     <h3>{theme.products[item.index].name}</h3>
@@ -653,7 +654,7 @@ export default function StorefrontDemo({ slug }: { slug: StorefrontTheme }) {
               </button>
             </div>
             <div className="sd-zoom-scroll">
-              <img
+              <StorefrontArt
                 src={currentImage}
                 alt={`${product.name} enlarged ${side} artwork`}
               />

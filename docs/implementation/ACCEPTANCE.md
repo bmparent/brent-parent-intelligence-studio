@@ -1,5 +1,16 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 15 Digital Experiences presentation candidate
+
+Brent requested correcting the About thumbnail, Holidays proportions and garment
+logo placement, then checking mobile. The isolated public-source correction and
+its artwork provenance, proposed left-chest review decision, complete browser
+flow, verification limits and rollback are recorded in
+[DIGITAL_PRESENTATION_2026-10-15.md](DIGITAL_PRESENTATION_2026-10-15.md).
+The PR retains exact-head CI and screenshot evidence. Source preparation does
+not establish production publication, Brent's visual acceptance or acceptance of
+the held account/payment runtime.
+
 ## October 13 security reporting contact
 
 Brent requested configuring security.txt on Cloudflare. The scoped public-main

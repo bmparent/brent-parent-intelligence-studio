@@ -7,7 +7,7 @@ const { chromium } = createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODUL
 const base = process.env.PG_BASE_URL || 'http://127.0.0.1:4173';
 const evidence = process.env.PG_EVIDENCE_DIR || '/tmp/eidos-digital-experiences';
 await mkdir(evidence, { recursive: true });
-const browser = await chromium.launch();
+const browser = await chromium.launch(process.env.PLAYWRIGHT_EXECUTABLE ? { executablePath: process.env.PLAYWRIGHT_EXECUTABLE } : {});
 
 for (const width of [1440, 390]) {
   const context = await browser.newContext({ viewport: { width, height: 900 }, hasTouch: width === 390, reducedMotion: 'reduce' });
@@ -83,6 +83,85 @@ for (const width of [1440, 390]) {
   } finally {
     await context.close();
   }
+}
+
+// About -> service -> collection -> item -> detail -> bag is the customer flow
+// affected by the thumbnail, model scale and garment-placement corrections.
+for (const width of [1440, 768, 390, 320]) {
+  const context = await browser.newContext({ viewport: { width, height: 900 }, hasTouch: width <= 390, reducedMotion: width === 390 ? 'reduce' : 'no-preference' });
+  const page = await context.newPage();
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  const overflow = async () => assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `no horizontal overflow at ${width}`);
+  const capture = async (name, locator) => {
+    await locator.scrollIntoViewIfNeeded();
+    // SVG image layers have no decode() API. Check each distinct source through
+    // the browser's image decoder before capturing the actual composition.
+    for (const source of await locator.locator('svg image').evaluateAll(nodes => [...new Set(nodes.map(node => node.getAttribute('href')))])) {
+      assert.equal(await page.evaluate(async source => {
+        const img = new Image(); img.src = source;
+        try { await img.decode(); return img.naturalWidth > 0; } catch { return false; }
+      }, source), true, `artwork loads: ${source}`);
+    }
+    await locator.screenshot({ path: path.join(evidence, `${name}-${width}.png`) });
+  };
+  try {
+    await page.goto(base + '/about/', { waitUntil: 'domcontentloaded' });
+    assert.match(await page.title(), /About/i);
+    await page.getByRole('heading', { name: 'A studio led by operational experience.' }).waitFor();
+    const thumbnail = page.locator('.ew-service-preview');
+    await capture('about-thumbnail', thumbnail);
+    assert.equal(await thumbnail.locator('svg.sd-art').count(), 2, 'two composed model pairs in About thumbnail');
+    assert.equal(await thumbnail.locator('[src*="full-storefront-reference"]').count(), 0, 'flattened screenshot replaced');
+    await overflow();
+    await page.getByRole('link', { name: /Explore Digital Experiences/ }).click();
+    await page.getByRole('heading', { name: /Custom websites.*Unmistakable experiences/ }).waitFor();
+    await capture('service-thumbnail', page.locator('.dx-stage'));
+    await page.locator('.dx-stage > a').click();
+    await page.locator('.sd-demo.sd-holiday').waitFor();
+    assert.match(new URL(page.url()).pathname, /holidays-in-hollywood/);
+    const demo = page.locator('.sd-demo');
+    const hero = demo.locator('.sd-hero');
+    const copy = await hero.locator('.sd-hero-copy').boundingBox();
+    for (const cast of await hero.locator('.sd-cast').all()) {
+      const box = await cast.boundingBox();
+      const overlap = Math.max(0, Math.min(box.x + box.width, copy.x + copy.width) - Math.max(box.x, copy.x)) * Math.max(0, Math.min(box.y + box.height, copy.y + copy.height) - Math.max(box.y, copy.y));
+      assert.equal(overlap, 0, 'model and central title do not overlap');
+    }
+    await capture('holidays-hero', hero);
+    await capture('holidays-categories', demo.locator('.sd-categories'));
+    for (const art of await demo.locator('.sd-category-art').all()) {
+      const box = await art.boundingBox();
+      assert.ok(Math.abs(box.width / box.height - 2 / 3) < .01, 'category model uses its native portrait ratio');
+    }
+    if (width === 390) assert.equal(await demo.locator('.sd-marquee-glint').first().evaluate(el => getComputedStyle(el).animationName), 'none', 'system reduced motion honored');
+    else {
+      await demo.getByRole('button', { name: 'Pause motion', exact: true }).click();
+      assert.equal(await demo.getByRole('button', { name: 'Resume motion', exact: true }).count(), 1);
+    }
+    await demo.getByRole('button', { name: 'Jackets', exact: true }).click();
+    assert.match(await demo.locator('.sd-results').innerText(), /1/);
+    await demo.locator('.sd-card').click();
+    await capture('holidays-product', demo.locator('.sd-product-image'));
+    await demo.getByRole('button', { name: 'Inspect detail ＋' }).click();
+    assert.equal(await demo.getByRole('dialog').isVisible(), true);
+    assert.equal(await demo.locator('.sd-zoom-scroll [data-garment-mark]').count(), 1, 'corrected artwork retained in enlarged view');
+    await page.keyboard.press('Escape');
+    await demo.getByRole('button', { name: 'M', exact: true }).click();
+    await demo.getByRole('button', { name: /Add to demo bag/ }).click();
+    await demo.getByRole('button', { name: /View demo bag/ }).click();
+    assert.equal(await demo.locator('.sd-bag-art [data-garment-mark]').count(), 1, 'corrected artwork retained in bag');
+    await demo.getByRole('button', { name: /Remove The jacket look/ }).click();
+    await demo.getByRole('button', { name: 'All products', exact: true }).click();
+    await demo.getByRole('searchbox', { name: 'Find an item' }).fill('no matching design');
+    assert.equal(await demo.getByRole('heading', { name: 'No matching items' }).count(), 1);
+    await demo.getByRole('button', { name: 'Clear filters', exact: true }).click();
+    assert.equal(await demo.locator('.sd-card').count(), 4);
+    await capture('holidays-collection', demo.locator('.sd-grid'));
+    await overflow();
+    assert.deepEqual(errors, [], 'no application runtime errors');
+    console.log(`PASS ${width}: About/service previews, unclipped hero, portrait proportions, motion, category/product/detail/bag, empty filter recovery, loaded artwork, no overflow or runtime errors`);
+  } finally { await context.close(); }
 }
 
 await browser.close();

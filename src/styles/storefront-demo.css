@@ -526,13 +526,13 @@
   border: 1px solid color-mix(in srgb, var(--sd-line) 72%, transparent);
   border-radius: max(0px, calc(var(--sd-card-radius) - 7px));
 }
-.sd-demo .sd-category-art img {
+.sd-demo .sd-category-art :is(img, .sd-art) {
   width: 100%;
   height: 100%;
   object-fit: contain;
   transition: transform 0.4s;
 }
-.sd-demo .sd-categories button:hover img {
+.sd-demo .sd-categories button:hover :is(img, .sd-art) {
   transform: scale(1.04);
 }
 .sd-demo .sd-category-label {
@@ -603,13 +603,13 @@
     var(--sd-surface)
   );
 }
-.sd-demo .sd-item-art img {
+.sd-demo .sd-item-art :is(img, .sd-art) {
   width: 100%;
   height: 100%;
   object-fit: contain;
   transition: transform 0.5s;
 }
-.sd-demo .sd-card:hover img {
+.sd-demo .sd-card:hover :is(img, .sd-art) {
   transform: scale(1.055);
 }
 .sd-demo .sd-card > span,
@@ -691,7 +691,7 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
-.sd-demo .sd-product-image > img {
+.sd-demo .sd-product-image > :is(img, .sd-art) {
   position: relative;
   width: 100%;
   height: 100%;
@@ -829,7 +829,7 @@
   height: 115px;
   background: radial-gradient(ellipse, var(--sd-stage), var(--sd-surface));
 }
-.sd-demo .sd-bag-art img {
+.sd-demo .sd-bag-art :is(img, .sd-art) {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -885,7 +885,7 @@
   overflow: auto;
   background: radial-gradient(ellipse, var(--sd-stage), var(--sd-surface));
 }
-.sd-demo .sd-zoom-scroll img {
+.sd-demo .sd-zoom-scroll :is(img, .sd-art) {
   width: 100%;
   min-height: 100%;
   object-fit: contain;
@@ -964,7 +964,7 @@
 .sd-demo.sd-holiday .sd-category-art {
   background: #eee3ce;
 }
-.sd-demo.sd-holiday .sd-category-art img {
+.sd-demo.sd-holiday .sd-category-art :is(img, .sd-art) {
   object-fit: contain;
   padding: 8px;
 }
@@ -1023,7 +1023,7 @@
   justify-content: center;
   gap: 24px;
 }
-.sd-demo.sd-jingle .sd-categories button:hover img {
+.sd-demo.sd-jingle .sd-categories button:hover :is(img, .sd-art) {
   transform: translateY(-6px) rotate(-2deg);
 }
 .sd-demo.sd-jingle .sd-item-art {
@@ -1468,7 +1468,7 @@
   .sd-demo .sd-bag-art {
     height: 88px;
   }
-  .sd-demo .sd-zoom-scroll img {
+  .sd-demo .sd-zoom-scroll :is(img, .sd-art) {
     width: 160%;
     max-width: none;
   }
@@ -1546,4 +1546,34 @@
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Holiday models use a single source-coordinate composition in every placement. */
+.sd-art { display: block; }
+.sd-demo.sd-holiday .sd-cast { bottom: 0; height: 79%; width: 30%; }
+.sd-demo.sd-holiday .sd-cast-left { left: 1%; }
+.sd-demo.sd-holiday .sd-cast-right { right: 1%; }
+.sd-demo.sd-holiday .sd-hero-copy { width: 37%; padding-inline: 18px; }
+.sd-demo.sd-holiday .sd-category-art { height: auto; aspect-ratio: 2 / 3; }
+.sd-demo.sd-holiday .sd-category-art .sd-art { padding: 0; }
+.ew-service-preview { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 10px; }
+.dx-stage--gold > a, .dx-project--gold .dx-project__visual > a { position: relative; aspect-ratio: 4 / 3; }
+/* Thumbnail text stays native and readable; no baked-in product labels. */
+.sd-preview--thumbnail { container-type: inline-size; }
+.sd-preview--thumbnail .sd-preview-left, .sd-preview--thumbnail .sd-preview-right { bottom: 0; width: 32%; height: 78%; }
+.sd-preview--thumbnail .sd-preview-left { left: 1%; }
+.sd-preview--thumbnail .sd-preview-right { right: 1%; }
+.sd-preview--thumbnail.sd-holiday .sd-preview-title { inset: 12% 31% 25%; padding: 10px; border-width: 1px; }
+.sd-preview--thumbnail .sd-preview-title > img { height: 90%; width: 100%; aspect-ratio: auto; border: 0; border-radius: 0; object-fit: contain; animation: none; }
+.sd-preview--thumbnail .sd-preview-title > small, .sd-preview--thumbnail .sd-preview-title > span { display: none; }
+/* These scoped rules prevent the service hero's generic image styles from sizing each layer. */
+.dx-stage .sd-preview-bg { height: 100%; animation: none; }
+.dx-stage .sd-preview-title > img { height: 90%; animation: none; }
+@media (max-width: 700px) {
+  .sd-demo.sd-holiday .sd-hero { min-height: 650px; padding-top: 32px; }
+  .sd-demo.sd-holiday .sd-hero-copy { width: 88%; padding: 18px; }
+  .sd-demo.sd-holiday .sd-cast { width: 48%; height: 41%; bottom: 0; }
+  .sd-demo.sd-holiday .sd-cast-left { left: 1%; }
+  .sd-demo.sd-holiday .sd-cast-right { right: 1%; }
+  .sd-demo.sd-holiday .sd-category-label { font-size: clamp(16px, 4.7vw, 20px); padding: 13px 10px; }
 }
