@@ -152,7 +152,7 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/services/digital-experiences': {
     title: 'React Development & InkSoft Storefront Design | Eidos Works',
     description:
-      'Custom React and TypeScript websites, InkSoft storefront customization, responsive UI/UX, and Canvas animation. Explore the work and the build details.',
+      'Custom websites, InkSoft storefronts, and advertising on ChatGPT, Facebook, Google, and other major platforms. Campaign setup, creative, and reporting.',
     type: 'website',
   },
   '/services/business-systems': {
