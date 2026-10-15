@@ -26,6 +26,19 @@ jobs:
       - name: Local editing, export and server/client cloud boundary tests
         run: node --import tsx --test scripts/test-playground-composition.ts scripts/test-playground-composition-integration.ts scripts/test-playground-media.ts scripts/test-playground-structure.ts scripts/test-playground-workspace.ts scripts/test-playground-editor-release.ts scripts/test-playground-editor-review.ts
       - run: npm run build
+      - name: Public indexing policy and final Pages response headers
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npm run test:indexing
+          npm run verify:indexing
+          # The pinned local workerd supports this date. This affects only local
+          # static/Functions verification, never production configuration.
+          npx --no-install wrangler pages dev dist --ip 127.0.0.1 --port 8791 --compatibility-date 2026-06-10 --local >"$RUNNER_TEMP/indexing-pages.log" 2>&1 &
+          INDEXING_PID=$!
+          trap 'kill "$INDEXING_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8791/quote-desk/ >/dev/null && break || sleep 1; done
+          node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8791 --output="$RUNNER_TEMP/indexing-local.json"
       - name: Install isolated browser test tools (no repository dependency changes)
         run: |
           npm install --prefix "$RUNNER_TEMP/pg-browser" --no-save --no-package-lock playwright@1.58.2
@@ -108,6 +121,11 @@ jobs:
           node scripts/playground-pages-release.mjs preflight
           npx --no-install wrangler pages deploy dist --project-name=eidosworks --branch=main --commit-hash="$GITHUB_SHA" --commit-message='Verified Playground local editor release' --commit-dirty=true
           node scripts/playground-pages-release.mjs verify
+      - name: Verify live public indexing and retained exclusions on both production hosts
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          node scripts/verify-indexing.mjs --base-url=https://eidosworks.pages.dev --output="$RUNNER_TEMP/indexing-pages-production.json"
+          node scripts/verify-indexing.mjs --base-url=https://eidos-works.com --output="$RUNNER_TEMP/indexing-canonical-production.json"
       # Cloudflare may challenge hosted runner IPs on the custom domain.
       # Exact canonical deployment SHA/domain attachment is verified through provider metadata.
       - name: Read back the production editor on the stable Pages QA origin
@@ -145,6 +163,8 @@ jobs:
             ${{ runner.temp }}/pg-production-evidence
             ${{ runner.temp }}/pg-preview.log
             ${{ runner.temp }}/pg-pages-receipt.json
+            ${{ runner.temp }}/indexing-*.json
+            ${{ runner.temp }}/indexing-pages.log
             ${{ runner.temp }}/growth-local
             ${{ runner.temp }}/growth-production
             ${{ runner.temp }}/growth-local.log
