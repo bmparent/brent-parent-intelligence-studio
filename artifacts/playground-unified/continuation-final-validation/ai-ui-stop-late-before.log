@@ -1,0 +1,20 @@
+PASS chromium/1440 collapsed Eidos performs no AI account/quote/provider request
+PASS chromium/1440 unavailable account/provider preview remains honestly gated with manual project intact
+PASS chromium/1440 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+PASS chromium/1440 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+PASS chromium/1440 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+PASS chromium/1440 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+PASS chromium/1440 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+PASS chromium/1440 usable generation charges actual usage even when discarded and leaves manual project unchanged
+PASS chromium/1440 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+PASS chromium/1440 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+PASS chromium/1440 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+PASS chromium/1440 selection and Brand changes retain the receipt but block stale confirmation
+PASS chromium/1440 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+PASS chromium/1440 reload/Continue restores pending action status without resubmission or applying it to another revision
+PASS chromium/1440 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+  - waiting for getByRole('region', { name: 'Eidos assistance' }).getByRole('status').filter({ hasText: /Stopped waiting/ }) to be visible
+
+    at C:\Users\bmpar\codex-worktrees\playground-unified-site-20261014\scripts\verify-playground-ai-ui.mjs:81:338

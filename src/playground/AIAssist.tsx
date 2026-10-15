@@ -58,9 +58,15 @@ export function AIAssist(props: Props) {
   async function run(label: string, work: (signal: AbortSignal) => Promise<void>) {
     if (lock.current) return;
     lock.current = true; cancelledWait.current = false; const abort = new AbortController(); controller.current = abort; setBusy(label);
-    try { await work(abort.signal); }
+    let releaseAbort = () => {};
+    const stopped = new Promise<never>((_, reject) => {
+      const onAbort = () => reject(new DOMException('Stopped waiting.', 'AbortError'));
+      abort.signal.addEventListener('abort', onAbort, { once: true });
+      releaseAbort = () => abort.signal.removeEventListener('abort', onAbort);
+    });
+    try { await Promise.race([work(abort.signal), stopped]); }
     catch (error) { if (mounted.current) setMessage(cancelledWait.current ? 'Stopped waiting. Provider work may still complete and incur usage. Check the existing action status.' : error instanceof Error ? error.message : 'Eidos is unavailable. Your design is unchanged.'); }
-    finally { lock.current = false; if (controller.current === abort) controller.current = null; if (mounted.current) setBusy(''); }
+    finally { releaseAbort(); lock.current = false; if (controller.current === abort) controller.current = null; if (mounted.current) setBusy(''); }
   }
   async function refresh(signal: AbortSignal) {
     const requestSequence = ++sequence.current;
@@ -112,7 +118,7 @@ export function AIAssist(props: Props) {
     if (!action || needsStatus || action.state !== 'quoted' || !stillCurrent() || Date.parse(action.expiresAt) <= clock) throw Error('This quote is stale, expired or awaiting status. Check the existing action before requesting more generation.');
     setNeedsStatus(true);
     const value = await aiRequest({ action: 'generate', id: action.id, approvedMaximumMicros: action.maximum }, undefined, signal);
-    if (!mounted.current) return;
+    if (!mounted.current || signal.aborted) return;
     const received = value.action;
     if (!received || !sameAiAction(action, received)) { capture(null); current.current.preview(null); throw Error('Eidos returned a different action receipt. Check the original action status.'); }
     accept(value); setNeedsStatus(false);
@@ -167,7 +173,7 @@ export function AIAssist(props: Props) {
         {action.state === 'quoted' && <><p>Quote expires {localTime(action.expiresAt)}. A usable generated proposal is charged at actual usage up to this maximum, even if you Discard it. Apply has no second charge.</p>{stale && <p role="alert">Your design, selection or request changed. This quote cannot be confirmed.</p>}<button className="pg-ai-primary" disabled={!!busy || stale || needsStatus || Date.parse(action.expiresAt) <= clock} onClick={() => void run('generation', generate)}>Confirm generation · max {usd(action.maximum)}</button></>}
         {['quoted', 'reserved'].includes(action.state) && <button disabled={!!busy} onClick={() => void run('cancellation', cancel)}>{needsStatus ? 'Request cancellation' : 'Cancel before dispatch'}</button>}{(pending(action) || needsStatus) && <p>Pending usage retains its reservation. Stopping this browser request does not prove provider cancellation or a refund. Check status before another request.</p>}<button disabled={!!busy} onClick={() => void run('status', check)}>Check existing action status</button>
         {action.result && !discarded && <div className="pg-ai-proposal" aria-label="Eidos before and after proposal"><h3>Proposed changes</h3>{diff.length ? <ul>{diff.map((item, index) => <li key={index}><strong>{operationLabel(item.field)}</strong><span>Before: {item.before}</span><span>After: {item.after}</span></li>)}</ul> : <p>This restored receipt has no matching local review context. Request a fresh proposal to change this design.</p>}{stale && !applied && <p role="alert">This proposal is stale. Your current manual edits are preserved.</p>}<button disabled={!!busy || stale || applied || !diff.length} onClick={() => { try { if (!stillCurrent()) throw Error('This proposal is stale. Your manual work is preserved.'); props.preview(props.previewActive ? null : applyProposal(project, review!.selected, review!.scope, action.result, review!.selectedNode)); } catch (error) { setMessage((error as Error).message); } }}>{props.previewActive ? 'Show current page' : 'Preview proposed page'}</button><button className="pg-ai-primary" disabled={!!busy || stale || applied || !diff.length} onClick={() => void run('apply', apply)}>{applied ? 'Proposal applied' : 'Apply proposal · no extra charge'}</button><button disabled={!!busy || applied} onClick={() => { props.preview(null); setDiscarded(true); setMessage('Proposal discarded. Its generated usage remains charged. Your design is unchanged.'); }}>Discard proposal</button></div>}
-      </div>}{busy === 'generation' && <button onClick={() => { cancelledWait.current = true; controller.current?.abort(); }}>Stop waiting</button>}
+      </div>}{busy === 'generation' && <button onClick={() => { cancelledWait.current = true; setNeedsStatus(true); setMessage('Stopped waiting. Provider work may still complete and incur usage. Check the existing action status.'); controller.current?.abort(); }}>Stop waiting</button>}
     </div>}
   </section>;
 }
