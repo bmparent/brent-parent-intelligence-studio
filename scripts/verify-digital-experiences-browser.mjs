@@ -147,13 +147,13 @@ for (const width of [1440, 768, 390, 320]) {
     assert.match(new URL(page.url()).pathname, /holidays-in-hollywood/);
     const demo = page.locator('.sd-demo');
     const hero = demo.locator('.sd-hero');
+    await capture('holidays-hero', hero);
     const copy = await hero.locator('.sd-hero-copy').boundingBox();
     for (const cast of await hero.locator('.sd-cast').all()) {
       const box = await cast.boundingBox();
       const overlap = Math.max(0, Math.min(box.x + box.width, copy.x + copy.width) - Math.max(box.x, copy.x)) * Math.max(0, Math.min(box.y + box.height, copy.y + copy.height) - Math.max(box.y, copy.y));
       assert.equal(overlap, 0, 'model and central title do not overlap');
     }
-    await capture('holidays-hero', hero);
     await capture('holidays-categories', demo.locator('.sd-categories'));
     for (const art of await demo.locator('.sd-category-art').all()) {
       const box = await art.boundingBox();

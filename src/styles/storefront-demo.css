@@ -211,6 +211,10 @@
   place-items: center;
   background: #07182c;
 }
+.sd-demo .sd-hero > picture {
+  position: absolute;
+  inset: 0;
+}
 .sd-demo .sd-backdrop {
   position: absolute;
   width: 100%;

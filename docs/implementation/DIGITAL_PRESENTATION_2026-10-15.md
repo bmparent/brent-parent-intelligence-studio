@@ -87,6 +87,14 @@ screenshots also informed a tighter thumbnail marquee. Analytics is declined
 through its real UI before evidence capture, and tall grids are captured card by
 card to avoid sticky navigation obscuring the evidence.
 
+The second CI run passed the complete 1440px and 768px flow without runtime
+errors, then the 390px geometry check caught a real overlap: the responsive
+background picture wrapper participated as an empty grid row. It is now
+absolutely positioned with the background so the copy remains above the phone
+model pairs. Hero screenshots are captured before the geometry assertion to
+preserve evidence if a future regression fails. Final exact-head verification
+and visual review are recorded on the PR.
+
 Production promotion and canonical readback have not occurred. Physical devices,
 screen readers, Safari/iOS and live InkSoft editor/commerce acceptance remain
 untested. Nothing here closes the separately held account/payment runtime.
