@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-14T12:48:37Z",
+  "updatedAt": "2026-10-15T12:05:09Z",
   "operator": "studio_manager",
   "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
   "activeOffer": "quote-desk",
@@ -101,9 +101,24 @@
       ],
       "blocker": null,
       "nextAction": "Retain PR #99 and its October 7 production run as final guard release evidence; do not re-release it."
+    },
+    {
+      "id": "REV-007",
+      "owner": "studio_manager",
+      "stage": "release_in_progress",
+      "task": "Make the free Quote Desk estimator eligible for search indexing",
+      "doneCondition": "Canonical free page is indexable, generated sitemap includes it, exact-head checks pass, and production release/readback verifies indexing and working free flow.",
+      "evidence": [
+        "../../public/quote-desk/index.html",
+        "../../scripts/generate-insights-assets.mjs",
+        "../../scripts/verify-growth-seo.mjs",
+        "receipts/2026-10-15-revenue-operator.md"
+      ],
+      "blocker": null,
+      "nextAction": "Inspect exact PR checks and diff, merge verified head, then verify production deployment/readback and record final release in the PR."
     }
   ],
-  "latestReceipt": "receipts/2026-10-14-revenue-operator.md",
+  "latestReceipt": "receipts/2026-10-15-revenue-operator.md",
   "notes": [
     "One active commercial offer and one supporting blocker task maximum.",
     "Interactive bootstrap is not an independent scheduled or specialist run.",
