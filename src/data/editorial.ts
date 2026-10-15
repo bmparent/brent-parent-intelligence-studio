@@ -55,6 +55,7 @@ export const serviceFamilies = [
     includes: [
       'Responsive website and UI/UX design',
       'Interactive and campaign experiences',
+      'Paid advertising on ChatGPT, Facebook, Instagram, Google, YouTube, LinkedIn, TikTok, and other major platforms',
       'InkSoft storefront customization and ecommerce UX',
       'React and TypeScript frontend development',
       'Accessibility, performance, and technical SEO'

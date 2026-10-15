@@ -1,15 +1,10 @@
 # Public-site release acceptance — 2026-09-30
 
-## October 15 Digital Experiences presentation candidate
+## October 15 advertising service copy
 
-Brent requested correcting the About thumbnail, Holidays proportions and garment
-logo placement, then checking mobile. The isolated public-source correction and
-its artwork provenance, proposed left-chest review decision, complete browser
-flow, verification limits and rollback are recorded in
-[DIGITAL_PRESENTATION_2026-10-15.md](DIGITAL_PRESENTATION_2026-10-15.md).
-The PR retains exact-head CI and screenshot evidence. Source preparation does
-not establish production publication, Brent's visual acceptance or acceptance of
-the held account/payment runtime.
+Brent requested a simple update to the services offered. The isolated copy change starts at public main `b8bfbbc4e6f9dd73c7c899f0b32e829207314b75` on `codex/services-advertising-20261015`. The About/services overview and Digital Experiences capability list now include paid advertising on ChatGPT, Facebook, Instagram, Google, YouTube, LinkedIn, TikTok and other major platforms. The existing homepage invitation, Digital Experiences metadata and Service JSON-LD also reflect advertising. The description covers campaign setup/management, creative, landing pages, conversion tracking and reporting without performance guarantees or partnership claims. ChatGPT advertising availability was verified against https://ads.openai.com/ on October 15, 2026.
+
+Local lockfile install, lint (zero errors; existing Wellway Fast Refresh warning), TypeScript/client/SSR build, prerender, 34-route editorial verification, URL checks and Pages Functions compilation pass. This environment lacks a local Chromium binary; existing exact-head CI supplies desktop/390px browser checks. CI and the production deployment/readback receipts are recorded on the scoped PR before live publication is claimed. The change has no backend, account, payment, provider, workflow, CSS or private-data changes. PR114's separate presentation work and the held paired runtime remain separate. Reverting this scoped change through the existing release workflow restores the baseline copy; no data migration is involved.
 
 ## October 15 public indexing repair
 
@@ -102,3 +97,15 @@ No provider configuration, backend, credentials, billing, deployment workflow or
 ## October 6 studio agent release recovery
 
 Brent authorized resolving the pending community agent issues and shipping this scoped pair. Site #84 is reconciled with current public main, backend #68 pins its acceptance to the existing isolated database without production fallback, and native maintenance now records roster/publication readback. Hosted backend persistence, deduplication and moderation checks pass; the real paired HTTP routes pass after canonical edge propagation. Hosted browser and exact final-source gates must pass before production activation. The evidence ledger, preview pairing, frozen launch anchor, cadence, scope limitations and rollback are in [COMMUNITY_STUDIO_RELEASE_2026-10-06.md](COMMUNITY_STUDIO_RELEASE_2026-10-06.md). Final provider, browser and production receipts are maintained on site #84/backend #68 so a status-only source commit does not trigger another deployment. This release does not accept or merge the held Works #98/#67 runtime.
+
+## October 15 Digital Experiences presentation candidate
+
+Brent requested correcting the About thumbnail, Holidays proportions and garment
+logo placement, then checking mobile. The isolated public-source correction and
+its artwork provenance, proposed left-chest review decision, complete browser
+flow, verification limits and rollback are recorded in
+[DIGITAL_PRESENTATION_2026-10-15.md](DIGITAL_PRESENTATION_2026-10-15.md).
+The PR retains exact-head CI and screenshot evidence. Source preparation does
+not establish production publication, Brent's visual acceptance or acceptance of
+the held account/payment runtime.
+
