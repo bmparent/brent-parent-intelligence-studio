@@ -6,13 +6,14 @@ import {
   type Turn,
 } from "./ai-contract";
 import type { Evidence } from "./types";
-async function connectionStatus(): Promise<"ready" | "unavailable"> {
+async function connectionStatus(): Promise<"ready" | "unavailable" | "exhausted"> {
   if (location.protocol === "file:") return "unavailable";
   try {
     const response = await fetch("/api/wellway/status", {
       signal: AbortSignal.timeout(5000),
     });
     const result = response.ok ? await response.json() : null;
+    if(result?.model && result?.allowance?.available===false)return 'exhausted';
     return result?.aiConfigured === true ? "ready" : "unavailable";
   } catch {
     return "unavailable";
@@ -21,7 +22,7 @@ async function connectionStatus(): Promise<"ready" | "unavailable"> {
 
 export function useAI() {
   const [availability, setAvailability] = useState<
-    "checking" | "ready" | "unavailable"
+    "checking" | "ready" | "unavailable" | "exhausted"
   >("checking");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -80,6 +81,7 @@ export function useAI() {
       const result = await r.json().catch(() => {
         throw new Error("The AI service was interrupted. Your draft is safe. Please retry or use guided answers.");
       });
+      if(r.status===429 && mounted.current)setAvailability('exhausted');
       if (!r.ok)
         throw new Error(
           result.error ||

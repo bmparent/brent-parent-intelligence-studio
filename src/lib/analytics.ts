@@ -15,7 +15,9 @@ export type EidosEvent =
   | 'purchase'
   | 'product_preview'
   | 'lab_open'
-  | 'select_project';
+  | 'select_project'
+  | 'playground_pack_download'
+  | 'playground_contact_click';
 export type EventDetails = {
   mode?: 'sources' | 'ai';
   category?: 'build' | 'design' | 'agents';

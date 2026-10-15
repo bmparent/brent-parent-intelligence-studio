@@ -1,9 +1,9 @@
 import { admin, HttpError, json } from '../../_shared/platform/core';
 import type { GrowthEnv } from '../../_shared/growth';
 
-export async function onRequestGet({ request, env }: { request: Request; env: GrowthEnv & { EIDOS_GROWTH_OWNER_TOKEN?: string } }) {
+export async function onRequestGet({ request, env }: { request: Request; env: GrowthEnv & { EIDOS_GROWTH_OWNER_TOKEN?: string; EIDOS_ADMIN_AUTOMATION_ALLOWED?: string; EIDOS_ACCESS_TEAM_DOMAIN?: string; EIDOS_ACCESS_AUD?: string; EIDOS_OWNER_EMAIL?: string } }) {
   try {
-    await admin(request, { EIDOS_ADMIN_TOKEN: env.EIDOS_GROWTH_OWNER_TOKEN });
+    await admin(request, { ...env, EIDOS_ADMIN_TOKEN: env.EIDOS_GROWTH_OWNER_TOKEN, EIDOS_OWNER_AUDIT_DB: env.EIDOS_GROWTH_DB });
     const url = new URL(request.url), days = Number(url.searchParams.get('days') || 7), view = url.searchParams.get('view') || 'public';
     if (![1,7,30].includes(days) || !['public','qa','combined'].includes(view) || [...url.searchParams.keys()].some(k=>!['days','view'].includes(k))) throw new HttpError(400, 'Invalid report range or view.');
     if (!env.EIDOS_GROWTH_DB) throw new HttpError(503, 'Growth database unavailable.');

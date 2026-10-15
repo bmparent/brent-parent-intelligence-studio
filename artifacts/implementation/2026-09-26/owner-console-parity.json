@@ -1,0 +1,466 @@
+{
+  "timestamp": "2026-09-26T19:48:10.167Z",
+  "contract": "works-v1/catalogue-2026-09-21.1",
+  "scope": "All vendored platform/API/editor contract files; working-tree hashes, not deployed acceptance",
+  "frontendBase": "3688ad81e4fc500887931860dec22db780b1a51f",
+  "backendBase": "1bbcab6bf1e2483d8a769bf12534039c397a994d",
+  "files": [
+    {
+      "path": "functions/api/assistant.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "d12f1c1ab852f800b78e79baed5e5d9d14afcd14716f022bb66502dfea03d02e",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/agents.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "356d2834323d81f33492dcbb043b55ea1ed3c23daafdc540117139405a40ff8d",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/maintenance.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "15c5aa2dfc0320dffba7a3176a99732604913876b52bfe27f926699baf6b5854",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/moderate.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "7c0569a3907292c33fb1167496eb968662e0722943b0c16662589004132177cb",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/replies.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "ff27f9a57ce203f1d16e2f059673307dc06c6e71eff12b44c9ee54688ee06e4c",
+      "matches": true
+    },
+    {
+      "path": "functions/api/community/threads.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "73ade46cb3ba62a22d0006c739835be8ffe28b886a5b029f0b624869038d08a8",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/account.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "86d8d5c8ca72b1ffa2e106a3b19a2f666c9f091540c1002358c17ab9b43e2893",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/auth.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "478457e8fb30bd02d25ff12e7829f7c4efdc4acd709ba930145cb8f0aa5d4f18",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/credentials.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "691fbfba649273ac87dbf1906e01ed743a8f64ad57be1b01aeb234271698926e",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/directory.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "0865e901e9b303abffba315deb7219118c84b1e149364823b96f379ac8938336",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/google.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "1b78ce8b34668bfdc7fdaa344df87d1d3dd61c5065b17200483243f4de91a682",
+      "matches": true
+    },
+    {
+      "path": "functions/api/members/unsubscribe.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "c853829562e7dce388e2a9748e3b833b8d76b9db48fc6d0bcaf7dd52ab22161f",
+      "matches": true
+    },
+    {
+      "path": "functions/api/operations/readiness.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "27e2747ea3e8a81984cfc298f534a1cb14adbe12882b41519a8021da88c7d37d",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/ai.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "8eafb53fad5bae692184a037e78c8733f5ac08159ccb338a0f7a08c5ba22b23e",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/checkout.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "2de5e28a21d6995105e2a4206e70dc2b9778ef65f2d8e8ea3d2c6e229859cc64",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/projects.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "232acf4597bbbb7e155b3bc70bc6308eaac636d0e30c4b7558333ed985008c17",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/purchases.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "b28ad9d8192475e5be44a56b579fb8bfd69afc22575d5e6e541b77b3aa530346",
+      "matches": true
+    },
+    {
+      "path": "functions/api/playground/webhook.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "fab1a906902dd838ba8a71dc5e75a5a8ab1530dc4a21754fb314b9888a403a2d",
+      "matches": true
+    },
+    {
+      "path": "functions/api/public-config.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "975416a9a32ee3ba056601f0d55bf3a41a10b425fc5aa7551b60c714095703c4",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/checkout.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "debb06e0b347b7cef39ceed74449893c8b19bb9ac9af9db4a7eaa2f97d82892b",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/download.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "7c6b6aff96591c4f40bd5f29c0cb579b8679702e4efe68994810e9c00630a9be",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/purchases.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "751db9619d2f033e5aa7d00c0422814b1c63345131ac45199ad46d8afb929831",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/status.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "30095e29dffc9463eb0de068c2f70e05ea9cd97fb498cb6f1698a0a6e1073326",
+      "matches": true
+    },
+    {
+      "path": "functions/api/shop/webhook.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "ca0aba88efafd542b64be191fb5bc1599311de5cc2d9d6f92bf949059ee85eba",
+      "matches": true
+    },
+    {
+      "path": "functions/community/feed.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "e5961f05a78265076bf7e926e231f754cce16a25097cd8dc925b7915fea94a6a",
+      "matches": true
+    },
+    {
+      "path": "functions/community/sitemap.xml.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "266e68a7427f6d13ee421b95a35924f3626f5d1ea6676c13c6eafe3d6ba286ce",
+      "matches": true
+    },
+    {
+      "path": "functions/community/thread/[id].ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "1d588e718e92cea6223a227828e74a687bc8ff75c9f1e11ba1b91dbcecab79dc",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/community.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "8615931918aa7f650c8f1966ed6ba97c1667216a511ea1d0477371b2c3478c60",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/core.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "086421a945804b296c8e6d5d359deefe70d96a05e1bbd9b3342c5bd95382dec3",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/kitArchive.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "5767fae0e805815f0f6b43ca7946c12c719e463e9d8f8d361df03f89e1d9ba8c",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/kitDelivery.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "429d07c64d3234b8383887a91d261ccfb7e186a7fbc7c8b3e1f8981e4c87ce17",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/knowledge.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "2013c39d40f93df0088e8572694016bcb7261fa00992286f5e59a9aac461bd53",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/legacyKitArchive.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "e8da3034d9fff3d4b2f2d334ec3262d6f39fd0b28fcc2ceb1fd46330777d2695",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberAuth.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "9f8f67e1ee5249c4523a0959850117b2ea73ac2e55f369d364526660e8758fcd",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberCredentials.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "8e307697e460c6841920d39cb002ae0d3ce6e3965e65e82fe1ff7e14a6d6d0a0",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberGoogle.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "fcee6c39813e8ea905984faeee98d6954e8317ab80a487b9b5d4793a1c4be691",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/memberMail.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "837abdf90b29a1fbfa8a1c7b7b603f952e629de7ae6ad1270061cc2bce048d11",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/mentions.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "69d5d4e1a56d104021465e71947d0f2fe2cf0c56ab017f5e43e4e2a06b5625c9",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/newsletter.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "ffdeb32d158d29ab135c93f10444d2bc72e038a781dacb8d3999dc274c53e915",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playground.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "a5c38cf81649507525bef0ab246e0cf9265ecb5e89fb757a184cc3b723b62920",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAI.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "7e432bc8f4a543aaa0de33c0bda68df0452d5ceee1712dfa65dbead94423d441",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playgroundOrders.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "b0cae4551bed5b9716bbd811451de37a46496d1a1c48f88b9a530cbb3522d46c",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/playgroundSchema.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "334a042d70b6bce5c93029a63b0f4b7acb30440893cf8c1322cadf1740b946e7",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/projectCatalogue.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "58dc01289db304d469e14ad20c0c0729fdee3e6cfd105fb186e27b228798403f",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/platform/shop.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "1adc74bce32616803956559a3712c0e0c392688048b35f960bdedf37105ddf45",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/http.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "14eb14bf825f3133ab675f850ddd2175ff963056331a33614462b40388cba05f",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/stripe.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "059cbcb758de33a767f33e9dbcd391085d41651c9d26f9ffbac9b7ad0383f7b8",
+      "matches": true
+    },
+    {
+      "path": "functions/_shared/snapshot/types.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "85d35f4daffaa82f1b17757c1015e6efe8559ab122e89cd45789b06a03cfe066",
+      "matches": true
+    },
+    {
+      "path": "migrations/0001_eidos_platform.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "3a0ddf7d09a70375b1f111ca532300ae4f5b311dce520cc2b3aa171e6bafd9df",
+      "matches": true
+    },
+    {
+      "path": "migrations/0002_members.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "2df4ca3ba7440208d571fcb7a9b4c7cf599acf732016cb252a8f2df6b7313b68",
+      "matches": true
+    },
+    {
+      "path": "migrations/0003_playground.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "0a174868697de5697d71e2b39b293580725e9546cefbf3e45b6589c05545eac3",
+      "matches": true
+    },
+    {
+      "path": "migrations/0004_playground_asset_quota.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "6b90ac432d08048b7e69eef05fb1bc44e02ed4c3f6e520237d581e7a5e46f8fd",
+      "matches": true
+    },
+    {
+      "path": "migrations/0005_playground_ai.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "19e752fe37aba011b25ef9cf8c05067de01cb7756e7738ae5685c06d583ed4d4",
+      "matches": true
+    },
+    {
+      "path": "migrations/0006_member_credentials.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "d967ae1cbe2e364452b3618aa8b6ed7b8464e1ccde60d632d3c528539109a081",
+      "matches": true
+    },
+    {
+      "path": "migrations/0007_operations.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "9ac380d35cbc653d944122c5ed2e49a581123622eba0c8e82dcca1ceee541010",
+      "matches": true
+    },
+    {
+      "path": "migrations/growth/0001_growth.sql",
+      "normalization": "UTF-8 LF",
+      "sha256": "390ae56d08ea8c77ae831aafdae15523877e664239a31febc2a3a44d35c2c787",
+      "matches": true
+    },
+    {
+      "path": "src/playground/aiOperations.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "0014b6ecbd319f1e112402803f1174ee15daee4c662e6e77f0e605b2a3044f57",
+      "matches": true
+    },
+    {
+      "path": "src/playground/approved-glass-preset.json",
+      "normalization": "UTF-8 LF",
+      "sha256": "aa1a9e6df894b1b7bb7f84e4dd52b866cf1efac59d422bae2c260361ea0739d2",
+      "matches": true
+    },
+    {
+      "path": "src/playground/authoring.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "6417864421840f5223c3b35291096ac8fbee682a7e5ab19fd837d101fdb99da1",
+      "matches": true
+    },
+    {
+      "path": "src/playground/authoringRenderer.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "dce4250130f6c8132f866259439946670a411b0d93f03865295d819862018c7a",
+      "matches": true
+    },
+    {
+      "path": "src/playground/authoringRuntime.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "7c98e9b849be7459e0beb95ae33e81c34f2bbf7781d00d4def7ae816e4dea946",
+      "matches": true
+    },
+    {
+      "path": "src/playground/authoringSchema.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "f91812facca0aef0e2e3aaf1bd403d2427b8e901d81abb5eb667c3955541f8a5",
+      "matches": true
+    },
+    {
+      "path": "src/playground/composition.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "1b703af73a77beda5a32a5cbba9af3bbf0023b1da89cec649156067ea0bec32a",
+      "matches": true
+    },
+    {
+      "path": "src/playground/compositionRenderer.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "4bc9e5ca286d9f429e16066d12beb5f8a7510953ec54fa8f608011286958792a",
+      "matches": true
+    },
+    {
+      "path": "src/playground/compositionRuntime.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "9167f05f6926b6b0e5ac4d45b856d46b9638239b8e50133cc80411939401395e",
+      "matches": true
+    },
+    {
+      "path": "src/playground/compositionSchema.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "a247863688e0260f29d9fdc9fe9c26f848b05dcff5489e601051f851b90851b9",
+      "matches": true
+    },
+    {
+      "path": "src/playground/export.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "0fd9ab6cf23c44adfedcff7d59dcf8d4527301e0d1d2fb85076c27572c9b1e0e",
+      "matches": true
+    },
+    {
+      "path": "src/playground/glassBundle.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "4caf223195da36068137ce1d676b7bda00c74e455055555d88c66e234eff8d5e",
+      "matches": true
+    },
+    {
+      "path": "src/playground/limits.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "187bbf00dd91d75424f888964413025bb58130dc12e6a6c19b59188dd2a6267c",
+      "matches": true
+    },
+    {
+      "path": "src/playground/media.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "9f680330107ac6bd152ecbc333fe36447836bf65caf7213d7dda09bdf8ee975b",
+      "matches": true
+    },
+    {
+      "path": "src/playground/model.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "233ae63a831912c493a33d7b21180c4f449f74fa2e346d2b769551787acb4473",
+      "matches": true
+    },
+    {
+      "path": "src/playground/pageStyles.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "e13f0039b06fb1be4d9af06c5d1b880893c13f057cfd4ae8cd7cacf434a4d441",
+      "matches": true
+    },
+    {
+      "path": "src/playground/releaseBoundary.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "b9c95932bf2a1cc474322cc5081ed19388fae6fa9f5906fe8806717cd0dc5330",
+      "matches": true
+    },
+    {
+      "path": "src/playground/renderer.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "13bf3beec39d3b6a4ed92caeab1d8db4a197d39c302a98836001b1b37c33a5c4",
+      "matches": true
+    },
+    {
+      "path": "src/playground/runtime.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "0b86c9ef46b61873f7a3ee8a9b05160a6d066d85a74bf72ab187c27b34bdd8aa",
+      "matches": true
+    },
+    {
+      "path": "src/playground/workspace.ts",
+      "normalization": "UTF-8 LF",
+      "sha256": "f3ace55ed2d67b8076f9771fa0ea5fd7fa54ba7f2531b37318ed4cbc87b8db81",
+      "matches": true
+    }
+  ],
+  "passed": true
+}

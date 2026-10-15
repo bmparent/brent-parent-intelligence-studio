@@ -5,6 +5,8 @@ dist-ssr
 .env.local
 *.local
 *.tsbuildinfo
+ops/growth-team/private/
+ops/growth-team/runs/
 .DS_Store
 coverage
 .wrangler

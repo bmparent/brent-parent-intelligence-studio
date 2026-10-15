@@ -1,0 +1,21 @@
+{
+  "project": "eidosworks-test-20260923",
+  "origin": "https://eidosworks-test-20260923.pages.dev",
+  "productionBranchWithinIsolatedProject": "codex/works-audit-implementation-20260921",
+  "siteCodeRevision": "bba430f6390606b5d4daa9b9e2f042cffedbb157",
+  "backendPreviewRevision": "4099a63d495aa1aae225794da7e464f68b19cfb6",
+  "backendRelayConfigured": false,
+  "customerBindingsConfigured": false,
+  "observedPublicConfig": {
+    "gaMeasurementId": "",
+    "turnstileSiteKey": "",
+    "communityReady": false,
+    "accountsReady": false,
+    "passwordsReady": false,
+    "googleReady": false,
+    "aiReady": false,
+    "shopReady": false,
+    "localTest": false
+  },
+  "configurationFingerprintSha256": "2577b90c32c9e5f54b297a55b127d6ec784f21f81729e5cd5b41c3247b70eb69"
+}

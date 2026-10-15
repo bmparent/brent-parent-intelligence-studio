@@ -19,6 +19,8 @@ export function EidosAssistant() {
     toggle = useRef<HTMLButtonElement>(null),
     field = useRef<HTMLTextAreaElement>(null);
   const controller = useRef(0);
+  const history = useRef<string[]>([]);
+  const answerHistory = useRef<string[]>([]);
   useEffect(() => {
     if (open) {
       dialog.current?.showModal();
@@ -33,6 +35,7 @@ export function EidosAssistant() {
     setBusy(true);
     setError('');
     const request = ++controller.current;
+    const context = enhanced ? answerHistory.current : history.current;
     setLastQuestion(value);
     track(enhanced ? 'assistant_ai_request' : 'assistant_question', {
       mode: enhanced ? 'ai' : 'sources',
@@ -41,9 +44,16 @@ export function EidosAssistant() {
       const result = await post<Answer>('/api/assistant', {
         question: value,
         enhanced,
+        history: context,
         requestId: enhanced ? requestId() : undefined,
       });
-      if (controller.current === request) setAnswer(result);
+      if (controller.current === request) {
+        setAnswer(result);
+        if (!enhanced) {
+          answerHistory.current = context;
+          history.current = [...context, value.slice(0, 450)].slice(-2);
+        }
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Please try again.');
     } finally {
@@ -142,7 +152,7 @@ export function EidosAssistant() {
                 <nav aria-label="Answer sources">
                   {answer.sources
                     .filter((source) =>
-                      /^\/(work|about|contact|services|shop|lab|community)(\/|$)/.test(
+                      /^\/(work|about|contact|services|shop|lab|community|demos|playground|snapshot)(\/|$)/.test(
                         source.href,
                       ),
                     )
@@ -196,11 +206,16 @@ export function EidosAssistant() {
             </div>
           </form>
           <p className="ew-form-note">
-            This conversation stays in this tab. An optional AI follow-up sends
-            your question to our AI provider; avoid private information. I
+            Context stays in this tab until reset. Requests send your question and
+            up to two earlier questions to the studio service; optional AI elaboration
+            also sends that context to our AI provider. Avoid private information. I
             cannot quote a project or operate the Lab.{' '}
             <a href="/privacy">Details</a>
           </p>
+          <button type="button" className="ew-text-button" disabled={busy} onClick={() => {
+            history.current = []; answerHistory.current = [];
+            setAnswer(null); setQuestion(''); setLastQuestion(''); setError(''); field.current?.focus();
+          }}>Reset conversation</button>
           <a className="ew-text-link" href="/community">
             Want a public conversation? →
           </a>

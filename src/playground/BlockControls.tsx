@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { startListMove } from './listMove';
+import { ElementDropSlot } from './ElementPalette';
 import { type Project } from './model';
 import { flattenNodes, isContainer, nodeTypes, type BlockNode, type NodeType } from './authoringSchema';
 import { applyBlockOperation, enableBlocks, type BlockOperation } from './authoring';
@@ -15,7 +16,7 @@ type Props = {
     guard: () => () => boolean;
     mobile: boolean;
 };
-export function BlockTree({ project, selected, onSelect, edit, notify, guard }: Omit<Props, 'mobile'>) {
+export function BlockTree({ project, selected, onSelect, edit, notify, guard, dragging = false }: Omit<Props, 'mobile'> & { dragging?: boolean }) {
     const drag = useRef<() => void>(() => {});
     useEffect(() => () => drag.current(), [project]);
     function move(event: React.PointerEvent<HTMLButtonElement>) {
@@ -34,8 +35,8 @@ export function BlockTree({ project, selected, onSelect, edit, notify, guard }: 
         catch (e) {
             notify((e as Error).message);
         } }}>Enable responsive blocks</button></section>;
-    function node(n: BlockNode, section: string, child = false): React.ReactNode { return <li key={n.id} data-sort-id={n.id}><div className="pg-layer-line"><button className={selected === n.id ? 'pg-layer-selected' : ''} aria-pressed={selected === n.id} onClick={() => onSelect(n.id, section)}>{n.image ? <img src={n.image} alt=""/> : <span aria-hidden="true">{isContainer(n) ? '▤' : n.type === 'image' ? '▧' : 'T'}</span>}<span>{n.name || n.type}</span></button>{child && <button className="pg-layer-drag" aria-label={'Drag layer '+n.name} onPointerDown={move}>⠿</button>}</div>{n.children && <ul>{n.children.map(child => node(child, section, true))}</ul>}</li>; }
-    return <section className="pg-block-tree pg-project-tools" aria-label="Layers"><h3>Layers</h3>{project.sections.filter(s => s.authoring).map(s => <div key={s.id}><strong>{s.title || s.type}</strong><ul>{node(s.authoring!.root, s.id)}</ul></div>)}<button onClick={() => { try {
+    function node(n: BlockNode, section: string, child = false): React.ReactNode { return <li key={n.id} data-sort-id={n.id}><div className="pg-layer-line"><button className={selected === n.id ? 'pg-layer-selected' : ''} aria-pressed={selected === n.id} onClick={() => onSelect(n.id, section)}>{n.image ? <img src={n.image} alt=""/> : <span aria-hidden="true">{isContainer(n) ? '▤' : n.type === 'image' ? '▧' : 'T'}</span>}<span>{n.name || n.type}</span></button>{child && <button className="pg-layer-drag" aria-label={'Drag layer '+n.name} onPointerDown={move}>⠿</button>}</div>{n.children && <ul>{n.children.map(item => <Fragment key={item.id}><ElementDropSlot parent={n.id} before={item.id} dragging={dragging}/>{node(item, section, true)}</Fragment>)}<ElementDropSlot parent={n.id} before={null} dragging={dragging}/></ul>}</li>; }
+    return <section className="pg-block-tree pg-project-tools" aria-label="Page structure"><h3>Page structure</h3><p>Select an element to edit it. Drag a new element into a line below to place it.</p>{project.sections.filter(s => s.authoring).map(s => <div key={s.id}><strong>{s.title || s.type}</strong><ul>{node(s.authoring!.root, s.id)}</ul></div>)}<button onClick={() => { try {
         edit(applyBlockOperation(project, { type: 'add-section' }));
     }
     catch (e) {

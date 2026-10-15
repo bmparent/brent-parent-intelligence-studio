@@ -1,0 +1,42 @@
+✔ only successful session-changing operations announce account invalidation (15.0079ms)
+✔ rank approved project: Can you help a small print shop organize job photos and track production? (21.9878ms)
+✔ rank approved project: Do you have a Promo File Organizer? (3.7069ms)
+✔ rank approved project: Can I see the Wellway app? (1.0214ms)
+✔ rank approved project: Show me Welway (0.9696ms)
+✔ rank approved project: Do you have an embroidery calculator? (1.9708ms)
+✔ rank approved project: How does the PERNR employee gate work? (11.4413ms)
+✔ rank approved project: Is Snapshot taking purchases? (1.7277ms)
+✔ rank approved project: Does Playground offer AI? (0.9475ms)
+✔ follow-up keeps the topic and explicitly preserves sorting uncertainty (2.4054ms)
+✔ explicit project switch beats pronouns and previous topic (6.868ms)
+✔ history is bounded and model messages are not accepted as facts (6.6687ms)
+✔ no affiliation or timeline commitment is supplied (1.4982ms)
+✔ source-only endpoint uses follow-up context without a provider (281.7572ms)
+(node:23932) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ ambiguous checkout retries preserve order, parameters and frozen delivery; verified recovery revokes on refund (925.8916ms)
+✔ attempt parameters and authenticated owner cannot be changed; expired attempt never creates another order (448.9285ms)
+(node:44408) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ strict operations, page scope, unsafe URLs and brand locks preserve input (38.7188ms)
+✔ disabled and missing-config paths make zero provider calls; owner replay and pending requests are isolated (958.59ms)
+✔ ambiguous provider failure retains money and concurrency; quota denial never calls provider (112.6091ms)
+✔ refusal, truncation and invalid operations are charged but never applied; stale cloud and raw images are rejected (165.5446ms)
+✔ global monetary reservation is atomic across different accounts (137.7309ms)
+✔ image draft is explicit, uses separate pricing and produces owned embedded bytes without implicit save (194.569ms)
+(node:30272) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ v4 cloud defaults off; explicit controlled gate preserves node assets, owner isolation and concurrent heads (930.5793ms)
+(node:39680) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ paid state and queue persist together; status is read-only; concurrent workers make one bounded attempt (1342.0777ms)
+✔ image failure is partial; allowance blocks another job; revoked records cannot be resurrected (91.6484ms)
+✔ interrupted claim is review-only and never repeats a provider attempt (49.4592ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6944.1252

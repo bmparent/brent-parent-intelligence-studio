@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { History } from "../components/Profiles";
-import { useStore } from "../lib/store";
+import { useStore } from "../lib/storeContext";
 import { summary, formatValue, dateLabel } from "../lib/data";
 import type { Metric } from "../lib/types";
 import { PageTitle, Button, Note } from "../components/UI";

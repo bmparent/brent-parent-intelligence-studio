@@ -1,0 +1,14 @@
+(node:11412) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ paid state and queue persist together; status is read-only; concurrent workers make one bounded attempt (645.2797ms)
+✔ image failure is partial; allowance blocks another job; revoked records cannot be resurrected (35.5246ms)
+✔ interrupted claim is review-only and never repeats a provider attempt (23.022ms)
+✔ signed webhook rejects tampering, refunds before payment, and mismatched amounts without queuing (75.846ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2294.9447
