@@ -32,7 +32,7 @@ export const holidayCompositions: Record<string, Composition> = {
   ] },
   [holidayAssets.headwear]: { width: 1024, height: 1536, marks: [
     { source: chest, x: 526, y: 361, width: 68, height: 64, angle: 5 },
-    { source: cap, x: 454, y: 94, width: 65, height: 53, angle: -9 },
+    { source: cap, x: 466, y: 62, width: 55, height: 45, angle: -9 },
   ] },
   [holidayAssets.pants]: { width: 1024, height: 1536, marks: [
     { source: chest, x: 555, y: 706, width: 58, height: 54, angle: 3 },

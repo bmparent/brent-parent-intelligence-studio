@@ -93,7 +93,8 @@ background picture wrapper participated as an empty grid row. It is now
 absolutely positioned with the background so the copy remains above the phone
 model pairs. Hero screenshots are captured before the geometry assertion to
 preserve evidence if a future regression fails. Final exact-head verification
-and visual review are recorded on the PR.
+and visual review are recorded on the PR. Inspection of the enlarged headwear
+view also moved the beanie mark fully onto the knit cuff, above the forehead.
 
 Production promotion and canonical readback have not occurred. Physical devices,
 screen readers, Safari/iOS and live InkSoft editor/commerce acceptance remain
