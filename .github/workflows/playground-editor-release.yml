@@ -121,11 +121,6 @@ jobs:
           node scripts/playground-pages-release.mjs preflight
           npx --no-install wrangler pages deploy dist --project-name=eidosworks --branch=main --commit-hash="$GITHUB_SHA" --commit-message='Verified Playground local editor release' --commit-dirty=true
           node scripts/playground-pages-release.mjs verify
-      - name: Verify live public indexing and retained exclusions on both production hosts
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          node scripts/verify-indexing.mjs --base-url=https://eidosworks.pages.dev --output="$RUNNER_TEMP/indexing-pages-production.json"
-          node scripts/verify-indexing.mjs --base-url=https://eidos-works.com --output="$RUNNER_TEMP/indexing-canonical-production.json"
       # Cloudflare may challenge hosted runner IPs on the custom domain.
       # Exact canonical deployment SHA/domain attachment is verified through provider metadata.
       - name: Read back the production editor on the stable Pages QA origin
@@ -138,6 +133,22 @@ jobs:
         run: |
           node scripts/verify-playground-editor-browser.mjs
           node scripts/verify-quote-desk-browser.mjs
+      - name: Verify stable production indexing and retained exclusions
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: node scripts/verify-indexing.mjs --base-url=https://eidosworks.pages.dev --output="$RUNNER_TEMP/indexing-pages-production.json"
+      - name: Verify canonical domain through the propagation window
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          # Keep every attempt's evidence. A persistent challenge or policy
+          # failure remains an unverified canonical host, never a passing audit.
+          for attempt in 1 2 3 4; do
+            if node scripts/verify-indexing.mjs --base-url=https://eidos-works.com --output="$RUNNER_TEMP/indexing-canonical-production-$attempt.json"; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 4 ]; then sleep 30; fi
+          done
+          echo '::error::Canonical-domain indexing verification did not pass after four attempts. Inspect response evidence for an indexing failure, stale delivery or an access challenge; do not claim live canonical eligibility.'
+          exit 1
       - name: M2 live Friction Review desktop and mobile acceptance
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[m2-friction-qa]')
         env:
