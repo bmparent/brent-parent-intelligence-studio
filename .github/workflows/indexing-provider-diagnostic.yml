@@ -1,0 +1,33 @@
+name: Read-only indexing provider diagnostic
+on:
+  push:
+    branches: [codex/indexing-access-diagnostics-20261015]
+    paths:
+      - 'scripts/diagnose-indexing-provider.mjs'
+      - '.github/workflows/indexing-provider-diagnostic.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Read existing production identity and bounded diagnostic security events
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          INDEXING_PROVIDER_RECEIPT: ${{ runner.temp }}/indexing-provider-diagnostic.json
+        run: node scripts/diagnose-indexing-provider.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: indexing-provider-diagnostic-${{ github.sha }}
+          path: ${{ runner.temp }}/indexing-provider-diagnostic.json
+          retention-days: 30
