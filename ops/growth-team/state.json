@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-15T12:05:09Z",
+  "updatedAt": "2026-10-16T12:27:23Z",
   "operator": "studio_manager",
   "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
   "activeOffer": "quote-desk",
@@ -105,20 +105,37 @@
     {
       "id": "REV-007",
       "owner": "studio_manager",
-      "stage": "release_in_progress",
+      "stage": "complete",
       "task": "Make the free Quote Desk estimator eligible for search indexing",
       "doneCondition": "Canonical free page is indexable, generated sitemap includes it, exact-head checks pass, and production release/readback verifies indexing and working free flow.",
       "evidence": [
         "../../public/quote-desk/index.html",
         "../../scripts/generate-insights-assets.mjs",
         "../../scripts/verify-growth-seo.mjs",
-        "receipts/2026-10-15-revenue-operator.md"
+        "receipts/2026-10-15-revenue-operator.md",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/112",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/113",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38896850195"
       ],
       "blocker": null,
-      "nextAction": "Inspect exact PR checks and diff, merge verified head, then verify production deployment/readback and record final release in the PR."
+      "nextAction": "Retain PRs #112 and #113 and the later passing production indexing audit in run 38896850195; search eligibility is not observed search traffic."
+    },
+    {
+      "id": "REV-008",
+      "owner": "studio_manager",
+      "stage": "release_in_progress",
+      "task": "Capture Quote Desk workflow and price feedback from the public quoting guide",
+      "doneCondition": "Guide makes no purchase promise, links to the existing attributed Quote Desk feedback form, desktop/phone browser checks pass, and production handoff is read back with deployment and rollback reference.",
+      "evidence": [
+        "../../public/quote-desk/quote-guide.html",
+        "../../scripts/verify-quote-desk-browser.mjs",
+        "receipts/2026-10-16-revenue-operator.md"
+      ],
+      "blocker": null,
+      "nextAction": "Inspect exact-head checks, merge the verified PR, then read back production guide-to-feedback navigation and record the provider deployment/rollback reference in the PR."
     }
   ],
-  "latestReceipt": "receipts/2026-10-15-revenue-operator.md",
+  "latestReceipt": "receipts/2026-10-16-revenue-operator.md",
   "notes": [
     "One active commercial offer and one supporting blocker task maximum.",
     "Interactive bootstrap is not an independent scheduled or specialist run.",
