@@ -1,5 +1,11 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 16 retained Insights publication
+
+PR110 resumes the existing "Reduced Motion Without a Reduced Experience" practical guide. Its incorrect October 7 publication and modified timestamps are corrected to the October 16 release cut; the original Wednesday midday slot and October 14 recovery remain in the [publication receipt](../../artifacts/insights/runs/2026-10-16-pr110-date-correction/publication.json). Article text, URL, byline, research metadata and other articles remain unchanged. This release incorporates current public main `895aa81f58d76e3595745d01890235012482064d` and preserves the separate dirty local checkouts.
+
+The new midday run receipt records all nine local publication gates. Exact-head CI, the main Cloudflare deployment receipt and explicit live article/JSON-LD/RSS/JSON-feed/sitemap date comparisons are required before publication is claimed. The final deployment evidence is retained separately to avoid triggering a second production upload for a status-only commit. The existing Friday 18:00 America/New_York job remains in place. No backend, provider configuration or held runtime acceptance changes are included; rollback uses the preceding public-main source and its existing Pages deployment.
+
 ## October 15 advertising service copy
 
 Brent requested a simple update to the services offered. The isolated copy change starts at public main `b8bfbbc4e6f9dd73c7c899f0b32e829207314b75` on `codex/services-advertising-20261015`. The About/services overview and Digital Experiences capability list now include paid advertising on ChatGPT, Facebook, Instagram, Google, YouTube, LinkedIn, TikTok and other major platforms. The existing homepage invitation, Digital Experiences metadata and Service JSON-LD also reflect advertising. The description covers campaign setup/management, creative, landing pages, conversion tracking and reporting without performance guarantees or partnership claims. ChatGPT advertising availability was verified against https://ads.openai.com/ on October 15, 2026.

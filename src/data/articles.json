@@ -2039,5 +2039,137 @@
       "href": "/contact"
     },
     "ogImage": "/insights-og/after-submit-website-tell-truth-about-waiting.svg"
+  },
+  {
+    "title": "Reduced Motion Without a Reduced Experience",
+    "slug": "reduced-motion-without-reduced-experience",
+    "description": "A practical guide to respecting reduced-motion preferences while keeping state changes, controls, and important information clear.",
+    "dek": "When motion becomes too much, the answer is not to make a website mute. It is to make meaning survive without movement.",
+    "category": "Website Strategy",
+    "publishedAt": "2026-10-16T11:39:00Z",
+    "updatedAt": "2026-10-16T11:39:00Z",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 6,
+    "tags": [
+      "Reduced motion",
+      "Accessibility",
+      "Interaction design",
+      "Frontend development"
+    ],
+    "canonicalPath": "/insights/reduced-motion-without-reduced-experience",
+    "excerpt": "Use reduced-motion preferences to remove unnecessary movement while preserving the cues, controls, and recovery paths a person needs to understand a website.",
+    "pillar": "UI/UX design, accessibility, responsive behavior, and design systems",
+    "slot": "midday",
+    "format": "practical-guide",
+    "searchIntent": "How can a website respect reduced-motion preferences without making interactions unclear or losing essential feedback?",
+    "featured": false,
+    "draft": false,
+    "thesis": "A reduced-motion mode succeeds when it replaces nonessential movement with durable visual, textual, and structural cues instead of merely shortening every animation.",
+    "sources": [
+      {
+        "title": "Media Queries Level 5: prefers-reduced-motion",
+        "url": "https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion",
+        "publisher": "W3C CSS Working Group",
+        "publishedDate": "2026-02-19",
+        "accessedDate": "2026-10-07",
+        "type": "standard"
+      },
+      {
+        "title": "Understanding Success Criterion 2.3.3: Animation from Interactions",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-10-07",
+        "type": "standard"
+      },
+      {
+        "title": "Carousel (Slide Show or Image Rotator) Pattern",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/carousel/",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-10-07",
+        "type": "official-docs"
+      }
+    ],
+    "takeaways": [
+      "Make the still version of each interaction understandable before adding motion.",
+      "Use prefers-reduced-motion to remove or simplify nonessential animation, not to suppress focus, selection, validation, or loading feedback.",
+      "Give automatic motion an obvious pause or stop path, then test that path with real content and keyboard navigation.",
+      "Treat reduced motion as a user preference to honor, not evidence that one implementation fits every person."
+    ],
+    "relatedSlugs": [
+      "mobile-hierarchy-over-desktop-polish",
+      "accessible-quote-form-errors-recovery",
+      "good-website-does-not-ask-you-remember-everything"
+    ],
+    "body": [
+      {
+        "heading": "Begin with the moment after the movement stops",
+        "paragraphs": [
+          "A customer opens a menu, adds a product, or submits a form. In a polished interface, the change may glide, fade, spring, or slide into place. But the useful question is quieter: if that movement never happened, would the person still know what changed and what to do next?",
+          "That is the practical work of reduced motion. It is not a request to drain a site of character. It is a request to avoid making movement carry information that has no other home. A product added to a bag still needs a count, a confirmation, and a route to review it. A newly opened panel still needs a heading, focus, and a clear way back.",
+          "This guide offers an implementation and review method, not a claim that one preference setting solves motion sensitivity or establishes full accessibility conformance. The right result depends on the content, platform, and interaction being built."
+        ]
+      },
+      {
+        "heading": "Separate feedback from decoration",
+        "paragraphs": [
+          "List the moving parts of one real customer path: page-load effects, hover transitions, expanding details, modal entrances, carousels, loading indicators, success messages, and background scenes. For each one, name the job it performs. If the answer is only atmosphere or emphasis, it is a strong candidate to remove or greatly simplify when a person prefers reduced motion.",
+          "If animation communicates a state change, provide another signal before changing its timing. A disclosure can expose its content immediately while its button updates aria-expanded and its visible label. A cart can update a visible item count and show a plain confirmation near the action. A form can move focus or announce a result without relying on a field shaking. Motion may remain an enhancement, but it should not be the only receipt.",
+          "The W3C Media Queries Level 5 draft defines prefers-reduced-motion as a user-preference media feature. That mechanism tells the page which presentation branch to use; it does not decide which animations are necessary. The design team still has to distinguish a useful state cue from a flourish."
+        ]
+      },
+      {
+        "heading": "Build the quiet path first",
+        "paragraphs": [
+          "Start with a stable default for the interaction itself: the final layout, readable labels, visible focus, and an answer for what happens if an asset is slow or JavaScript does not enhance the moment. Then layer motion on top for people who have not expressed a reduced-motion preference. This order makes the fallback less likely to become a forgotten version of the page.",
+          "In CSS, target the preference directly rather than using a global rule that turns every duration into a nearly invisible fraction of a second. For example, a decorative hero can stop its loop; a panel can appear without translating across the screen; and a carousel can stop auto-rotation. Keep the final state intact. A blanket override can accidentally make a progress indicator, focus transition, or status change too fleeting to perceive.",
+          "For JavaScript-driven motion, use matchMedia('(prefers-reduced-motion: reduce)') when choosing whether to start a timeline, particle field, or autoplay behavior. Also listen for preference changes when the experience remains open. If a library has its own reduced-motion setting, verify its behavior rather than assuming the CSS query reaches its canvas or inline styles."
+        ]
+      },
+      {
+        "heading": "Do not make automatic movement the price of seeing content",
+        "paragraphs": [
+          "A rotating promotion is the familiar failure case. The WAI-ARIA carousel pattern says an automatically rotating carousel needs a control to stop rotation, and its examples preserve a clear control and keyboard behavior. The point is broader than carousels: when content changes on its own, a person needs time and agency to inspect it.",
+          "For a storefront, do not put the only description of a sale, deadline, size constraint, or shipping condition in a moving slide. Surface the decisive information in nearby text or a durable destination. If a slider remains, make the current item identifiable, provide explicit previous and next controls, and let the reader stop automatic movement. Do not restart it merely because a pointer leaves the control.",
+          "Interaction-triggered motion has a different constraint. WCAG 2.2 Success Criterion 2.3.3 concerns motion animation triggered by interaction unless the animation is essential to the functionality or information. The standard is not a visual-style ban. It is a reminder to provide a way to disable nonessential movement when it begins because the person acted."
+        ]
+      },
+      {
+        "heading": "Test a customer path, not a preference checkbox",
+        "paragraphs": [
+          "Use a staging or local build and turn on the operating-system or browser reduced-motion preference. Then walk one complete task with a keyboard as well as a pointer: locate an item, reveal its options, add it, review the bag, and recover from one intentional error. Record what changed, what remained visible, and where the quiet path became less understandable.",
+          "Check both branches. With normal motion, ensure effects do not delay input, obscure focus, or compete with text. With reduced motion, ensure a modal does not appear without focus, an accordion does not reveal content without a state change, a toast does not vanish before it can be read, and a disabled autoplay feature still leaves the content reachable. Screen-reader behavior, browser support, and platform-owned widgets need their own review; this checklist does not substitute for that work.",
+          "The tradeoff is intentionality. Building two presentation paths adds test cases and can expose component-library shortcuts. But it also makes the ordinary path more honest: a customer can understand the site because the state is clear, not because they caught the right animation at the right moment."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Choose the most consequential animated path on your site and review it before adding another effect. The goal is a durable interaction that remains legible when motion is reduced, paused, slow, unavailable, or simply unwelcome."
+        ],
+        "bullets": [
+          "Inventory: Which moving elements are decorative, and which are currently carrying state or instruction?",
+          "Alternative cue: For each stateful animation, can a person see a label, count, focus change, structural change, or status message without watching it move?",
+          "Preference: Does prefers-reduced-motion stop or simplify nonessential CSS and JavaScript-driven motion without hiding the final state?",
+          "Autoplay: Can a person pause or stop automatically changing content, and is the same information available outside the moving region?",
+          "Input: With keyboard navigation, do focus, selection, error recovery, and confirmation remain understandable in both modes?",
+          "Evidence: Record the device, browser, preference state, task, expected behavior, and actual result. Treat an unchecked platform widget as an open limitation."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works treats motion as a layer of communication with a proof obligation: what does it help a person notice, and what remains when it is absent? In a design or storefront review, that becomes a compact acceptance list for the live customer path—state cues, focus behavior, autoplay controls, and a reduced-motion check against the actual platform.",
+          "The aim is not a sterile interface. It is an interface that does not make a visitor negotiate with the presentation in order to understand the decision in front of them. A calmer path can be both more accessible and more trustworthy, while still leaving room for craft where craft does not ask too much of the person using it."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Review a high-stakes customer path",
+      "href": "/friction-review"
+    },
+    "ogImage": "/insights-og/reduced-motion-without-reduced-experience.svg"
   }
 ]
