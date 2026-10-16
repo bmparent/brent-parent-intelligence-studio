@@ -4,9 +4,9 @@
   "siteOrigin": "https://eidosworks-playground-test-20261015.pages.dev",
   "mode": "test",
   "database": "approved-test-validation",
-  "backendUrl": "https://eidos-sentinel-ld6d108gu-1brentbm-1876s-projects.vercel.app",
-  "backendSha": "43e8f606e32dfde70d1ab65251da1bfffd3b19f9",
-  "backendDeployment": "dpl_DoQQch9gjArYWT6KW5mhb8CBvG49",
-  "bundleHash": "0fec95cbb28462222197b1baf0ac1b06e6165591fac90b3753d8313ac740d14f",
-  "sourceRevision": "43e8f606e32dfde70d1ab65251da1bfffd3b19f9-bundle-0fec95cbb2846222"
+  "backendUrl": "https://eidos-sentinel-j7rd7t6uj-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "9b3ece16dd7a1485bd23ebc4b3e54559a3a98f8d",
+  "backendDeployment": "dpl_FU2gKefieMZ4BeCwQnQJYAPJojZW",
+  "bundleHash": "792c377e46bdacfebdd49656a99e50d3f1d30be64cd9754aaaf5fb9b594955cf",
+  "sourceRevision": "9b3ece16dd7a1485bd23ebc4b3e54559a3a98f8d-bundle-792c377e46bdacfe"
 }
