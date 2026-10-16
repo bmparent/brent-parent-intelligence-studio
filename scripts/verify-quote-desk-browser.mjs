@@ -155,7 +155,8 @@ try {
         }
         await page.getByRole('heading', { name: /Quote the job.*Know the time/ }).waitFor();
         assert.match(await page.title(), /Eidos Quote Desk/);
-        assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, follow');
+        assert.equal(await page.locator('meta[name="robots"]').count(), 0, 'free estimator is eligible for indexing');
+        assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://eidos-works.com/quote-desk/');
         await page.waitForFunction(() => document.getElementById('quote-price').textContent.startsWith('$'));
         assert.equal(await page.locator('.print-details').isVisible(), false, 'print-only assumptions stay out of the screen estimate');
         const initial = await page.locator('#quote-price').innerText();

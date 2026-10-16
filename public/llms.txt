@@ -35,8 +35,8 @@ Eidos Works builds distinctive digital experiences, business systems, and focuse
 - Proof-stage Eidos Brain research with human review
 
 ## Insights
-- [After Submit, a Website Should Tell the Truth About Waiting](https://eidos-works.com/insights/after-submit-website-tell-truth-about-waiting): An essay about the small moment after a customer asks for help, and why a trustworthy website makes the next step clear without pretending the wait does not exist.
 - [Reduced Motion Without a Reduced Experience](https://eidos-works.com/insights/reduced-motion-without-reduced-experience): A practical guide to respecting reduced-motion preferences while keeping state changes, controls, and important information clear.
+- [After Submit, a Website Should Tell the Truth About Waiting](https://eidos-works.com/insights/after-submit-website-tell-truth-about-waiting): An essay about the small moment after a customer asks for help, and why a trustworthy website makes the next step clear without pretending the wait does not exist.
 - [A Good Website Does Not Ask You to Remember Everything](https://eidos-works.com/insights/good-website-does-not-ask-you-remember-everything): An essay about the quiet burden of making people carry a business's unfinished decisions, and what it means to design a website with care.
 - [Mobile Storefront Filters: A Practical Guide to Safe, Reversible Choices](https://eidos-works.com/insights/mobile-storefront-filters-safe-reversible-choices): A practical guide to designing mobile product filters that are easy to operate, easy to undo, and clear about when results change.
 - [When Should a Small Business Use IndexNow?](https://eidos-works.com/insights/indexnow-changing-business-pages): Decide when IndexNow is worth enabling for changing prices, availability, and service details, and what a successful submission actually proves.

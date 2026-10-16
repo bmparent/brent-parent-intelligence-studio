@@ -38,7 +38,9 @@
     "test:growth": "node --import tsx --test scripts/test-growth.ts",
     "growth:links": "node scripts/growth-links.mjs",
     "growth:report": "node scripts/growth-report.mjs",
-    "verify:growth-seo": "node scripts/verify-growth-seo.mjs"
+    "verify:growth-seo": "node scripts/verify-growth-seo.mjs",
+    "test:indexing": "node --test scripts/test-indexing.mjs",
+    "verify:indexing": "node scripts/verify-indexing.mjs"
   },
   "dependencies": {
     "@babylonjs/core": "^9.10.1",

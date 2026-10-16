@@ -1,5 +1,21 @@
 # Public-site release acceptance — 2026-09-30
 
+## October 16 retained Insights publication
+
+PR110 resumes the existing "Reduced Motion Without a Reduced Experience" practical guide. Its incorrect October 7 publication and modified timestamps are corrected to the October 16 release cut; the original Wednesday midday slot and October 14 recovery remain in the [publication receipt](../../artifacts/insights/runs/2026-10-16-pr110-date-correction/publication.json). Article text, URL, byline, research metadata and other articles remain unchanged. This release incorporates current public main `895aa81f58d76e3595745d01890235012482064d` and preserves the separate dirty local checkouts.
+
+The new midday run receipt records all nine local publication gates. Exact-head CI, the main Cloudflare deployment receipt and explicit live article/JSON-LD/RSS/JSON-feed/sitemap date comparisons are required before publication is claimed. The final deployment evidence is retained separately to avoid triggering a second production upload for a status-only commit. The existing Friday 18:00 America/New_York job remains in place. No backend, provider configuration or held runtime acceptance changes are included; rollback uses the preceding public-main source and its existing Pages deployment.
+
+## October 15 advertising service copy
+
+Brent requested a simple update to the services offered. The isolated copy change starts at public main `b8bfbbc4e6f9dd73c7c899f0b32e829207314b75` on `codex/services-advertising-20261015`. The About/services overview and Digital Experiences capability list now include paid advertising on ChatGPT, Facebook, Instagram, Google, YouTube, LinkedIn, TikTok and other major platforms. The existing homepage invitation, Digital Experiences metadata and Service JSON-LD also reflect advertising. The description covers campaign setup/management, creative, landing pages, conversion tracking and reporting without performance guarantees or partnership claims. ChatGPT advertising availability was verified against https://ads.openai.com/ on October 15, 2026.
+
+Local lockfile install, lint (zero errors; existing Wellway Fast Refresh warning), TypeScript/client/SSR build, prerender, 34-route editorial verification, URL checks and Pages Functions compilation pass. This environment lacks a local Chromium binary; existing exact-head CI supplies desktop/390px browser checks. CI and the production deployment/readback receipts are recorded on the scoped PR before live publication is claimed. The change has no backend, account, payment, provider, workflow, CSS or private-data changes. PR114's separate presentation work and the held paired runtime remain separate. Reverting this scoped change through the existing release workflow restores the baseline copy; no data migration is involved.
+
+## October 15 public indexing repair
+
+PR112 removed the free Quote Desk estimator’s HTML exclusion but left its Cloudflare response header exclusion. The scoped follow-up removes that header, makes the linked free quoting guide eligible, and includes the already public Wellway demo in the sitemap. Private pages, unreleased workspace policies and preview exclusions remain intact. The inventory, response-header regression gate, exact release evidence and rollback are tracked in [PUBLIC_INDEXING_2026-10-15.md](PUBLIC_INDEXING_2026-10-15.md). Search eligibility does not establish actual search-engine indexing.
+
 ## October 13 security reporting contact
 
 Brent requested configuring security.txt on Cloudflare. The scoped public-main
