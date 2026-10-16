@@ -46,10 +46,10 @@ export async function onRequest({ request, env, next }: RelayContext) {
     headers.set('x-eidos-site-origin', url.origin);
     headers.set('x-eidos-client-ip', request.headers.get('CF-Connecting-IP') || 'unknown');
     const payload = ['GET', 'HEAD'].includes(request.method) ? undefined :
-      await readText(request, path === '/api/playground/projects' ? 2_020_000 : path === '/api/playground/delivery' ? 1_520_000 : ['/api/shop/webhook','/api/playground/webhook'].includes(path) ? 64000 : 12000);
+      await readText(request, path === '/api/playground/projects' ? 2_020_000 : path === '/api/playground/delivery' ? 1_520_000 : path === '/api/playground/ai' ? 110000 : ['/api/shop/webhook','/api/playground/webhook'].includes(path) ? 64000 : 12000);
     const response = await fetch(target, {
       method: request.method, headers, body: payload,
-      redirect: 'manual', signal: AbortSignal.timeout(24000),
+      redirect: 'manual', signal: AbortSignal.timeout(path === '/api/playground/ai' ? 105000 : 24000),
     });
     // Workers supports manual/follow only. Reject redirects before returning any
     // Location header or forwarding credentials to a second host.
