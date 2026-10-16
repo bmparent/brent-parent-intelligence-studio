@@ -1,3 +1,5 @@
+import { holidayAssets } from './holidayArtwork';
+
 export type DemoProduct = {
   name: string;
   category: string;
@@ -15,6 +17,7 @@ export type DemoTheme = {
   intro: string;
   story: string;
   background: string;
+  mobileBackground?: string;
   logo?: string;
   left?: string;
   right?: string;
@@ -98,16 +101,17 @@ export const storefrontThemes: Record<StorefrontTheme, DemoTheme> = {
       "Blue-hour lights, warm gold, and a little showtime spirit. Find your next layer in a collection made for the season.",
     background:
       "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_1600/v1786469690/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-hero-boulevard-blue-hour-desktop-v1.webp",
+    mobileBackground: "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786469695/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-hero-boulevard-blue-hour-mobile-v1.webp",
     logo: "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786472472/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-vector-title-v3.png",
-    left: "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786992233/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-hero-cast-left-decorated-v2.png",
+    left: holidayAssets.left,
     right:
-      "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786992123/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-hero-cast-right-decorated-v2.png",
+      holidayAssets.right,
     products: [
       {
         name: "The jacket look",
         category: "Jackets",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786040242/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-model-jackets-v1.png",
+          holidayAssets.jackets,
         description:
           "A saved jackets styling mockup from the Holidays in Hollywood collection. This preview demonstrates the look and selection flow.",
         sizes: ["S", "M", "L", "XL", "2XL"],
@@ -116,7 +120,7 @@ export const storefrontThemes: Record<StorefrontTheme, DemoTheme> = {
         name: "The hoodie look",
         category: "Hoodies",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786040245/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-model-hoodies-v1.png",
+          holidayAssets.hoodies,
         description:
           "A saved hoodies styling mockup from the Holidays in Hollywood collection. This preview demonstrates the look and selection flow.",
         sizes: ["S", "M", "L", "XL", "2XL"],
@@ -125,7 +129,7 @@ export const storefrontThemes: Record<StorefrontTheme, DemoTheme> = {
         name: "The headwear look",
         category: "Headwear",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786040235/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-model-headwear-v1.png",
+          holidayAssets.headwear,
         description:
           "A saved headwear styling mockup from the Holidays in Hollywood collection. This preview demonstrates the look and selection flow.",
         sizes: ["One size"],
@@ -134,7 +138,7 @@ export const storefrontThemes: Record<StorefrontTheme, DemoTheme> = {
         name: "The pants look",
         category: "Pants",
         image:
-          "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786040283/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-model-pants-v1.png",
+          holidayAssets.pants,
         description:
           "A saved pants styling mockup from the Holidays in Hollywood collection. This preview demonstrates the look and selection flow.",
         sizes: ["S", "M", "L", "XL", "2XL"],
@@ -142,13 +146,13 @@ export const storefrontThemes: Record<StorefrontTheme, DemoTheme> = {
     ],
     categoryImages: {
       Jackets:
-        "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786991507/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-widget-jackets-decorated-v2.png",
+        holidayAssets.jackets,
       Hoodies:
-        "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786991487/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-widget-hoodies-decorated-v2.png",
+        holidayAssets.hoodies,
       Headwear:
-        "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786722005/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-widget-headwear-decorated-v2.png",
+        holidayAssets.headwear,
       Pants:
-        "https://res.cloudinary.com/dhcmpzn9e/image/upload/f_auto,q_auto,w_900/v1786721983/hollywood-studios-shows/holidays-in-hollywood/storefront-assets/hih-widget-pants-decorated-v2.png",
+        holidayAssets.pants,
     },
   },
   "disney-villains": {
