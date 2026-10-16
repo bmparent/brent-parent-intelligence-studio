@@ -1,11 +1,25 @@
 name: Playground connected TEST preview
 on:
+  pull_request:
+    branches: [codex/showcase-20261013]
+    paths: ['scripts/deploy-playground-test-preview.mjs', 'scripts/test-playground-test-preview.mjs', 'config/playground-test-preview.json', '.github/workflows/playground-test-preview.yml']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
+  validate:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'codex/playground-unified-20261014'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test scripts/test-playground-test-preview.mjs
   test-preview:
-    if: github.ref == 'refs/heads/codex/playground-unified-20261014'
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/codex/playground-unified-20261014'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
