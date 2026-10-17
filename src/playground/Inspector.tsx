@@ -160,7 +160,7 @@ export function Inspector({
                   />
                 </label>
                 <small className="pg-subtle">
-                  PNG, JPEG, WebP · up to 8 MB
+                  PNG, JPEG, WebP · up to 32 MB
                 </small>
                 {s.image && (
                   <>

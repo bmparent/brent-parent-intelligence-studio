@@ -24,7 +24,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run playground:glass
       - name: Local editing, export and server/client cloud boundary tests
-        run: node --import tsx --test scripts/test-playground-composition.ts scripts/test-playground-composition-integration.ts scripts/test-playground-media.ts scripts/test-playground-structure.ts scripts/test-playground-workspace.ts scripts/test-playground-editor-release.ts scripts/test-playground-editor-review.ts
+        run: node --import tsx --test scripts/test-playground-composition.ts scripts/test-playground-composition-integration.ts scripts/test-playground-media.ts scripts/test-playground-image-import.ts scripts/test-playground-structure.ts scripts/test-playground-workspace.ts scripts/test-playground-editor-release.ts scripts/test-playground-editor-review.ts
       - run: npm run build
       - name: Install isolated browser test tools (no repository dependency changes)
         run: |
