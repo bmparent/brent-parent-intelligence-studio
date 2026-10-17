@@ -1,0 +1,662 @@
+{
+  "scope": "Read-only DOM measurement of frozen1.0.2 source at immediate and intermediate desktop breakpoints. Alternate2.7rem minimum is injected only; no frozen source or ZIP changed.",
+  "proposedDesktopClamp": "clamp(2.7rem,7vw,7rem)",
+  "phoneOverride": "Existing <=640px rule retained; test injection applies only from641px.",
+  "checks": [
+    {
+      "engine": "chromium",
+      "viewport": 641,
+      "baseline": {
+        "font": "\"Arial Black\", \"Segoe UI\", sans-serif",
+        "fontSize": "48px",
+        "heading": {
+          "x": 32.046875,
+          "y": 258.0625,
+          "width": 277.03125,
+          "height": 188.125
+        },
+        "words": [
+          {
+            "word": "A",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 247.0625,
+                "width": 34.21875,
+                "height": 68
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "gathering",
+            "lineFragments": 2,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 294.09375,
+                "width": 254.375,
+                "height": 68
+              },
+              {
+                "x": 32.046875,
+                "y": 341.125,
+                "width": 36.875,
+                "height": 68
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "of",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 81.796875,
+                "y": 341.125,
+                "width": 65.765625,
+                "height": 68
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 160.4375,
+                "y": 341.125,
+                "width": 144.828125,
+                "height": 68
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "noise.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 388.15625,
+                "width": 165.25,
+                "height": 68
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": false
+      },
+      "proposed": {
+        "font": "\"Arial Black\", \"Segoe UI\", sans-serif",
+        "fontSize": "44.87px",
+        "heading": {
+          "x": 32.046875,
+          "y": 258.0625,
+          "width": 277.03125,
+          "height": 175.875
+        },
+        "words": [
+          {
+            "word": "A",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 248.0625,
+                "width": 32,
+                "height": 63
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "gathering",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 292.03125,
+                "width": 272.25,
+                "height": 63
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "of",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 336,
+                "width": 61.484375,
+                "height": 63
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 105.5625,
+                "y": 336,
+                "width": 135.375,
+                "height": 63
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "noise.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 32.046875,
+                "y": 379.96875,
+                "width": 154.46875,
+                "height": 63
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 768,
+      "baseline": {
+        "font": "\"Arial Black\", \"Segoe UI\", sans-serif",
+        "fontSize": "53.76px",
+        "heading": {
+          "x": 38.390625,
+          "y": 258.0625,
+          "width": 336.921875,
+          "height": 210.75
+        },
+        "words": [
+          {
+            "word": "A",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 246.0625,
+                "width": 38.328125,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "gathering",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 298.75,
+                "width": 326.1875,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "of",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 351.4375,
+                "width": 73.65625,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 126.46875,
+                "y": 351.4375,
+                "width": 162.203125,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "noise.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 404.125,
+                "width": 185.078125,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "\"Arial Black\", \"Segoe UI\", sans-serif",
+        "fontSize": "53.76px",
+        "heading": {
+          "x": 38.390625,
+          "y": 258.0625,
+          "width": 336.921875,
+          "height": 210.75
+        },
+        "words": [
+          {
+            "word": "A",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 246.0625,
+                "width": 38.328125,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "gathering",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 298.75,
+                "width": 326.1875,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "of",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 351.4375,
+                "width": 73.65625,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 126.46875,
+                "y": 351.4375,
+                "width": 162.203125,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "noise.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 38.390625,
+                "y": 404.125,
+                "width": 185.078125,
+                "height": 76
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 900,
+      "baseline": {
+        "font": "\"Arial Black\", \"Segoe UI\", sans-serif",
+        "fontSize": "63px",
+        "heading": {
+          "x": 45,
+          "y": 211.5625,
+          "width": 399.140625,
+          "height": 246.9375
+        },
+        "words": [
+          {
+            "word": "A",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 197.5625,
+                "width": 44.921875,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "gathering",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 259.296875,
+                "width": 382.25,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "of",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 321.03125,
+                "width": 86.3125,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 148.21875,
+                "y": 321.03125,
+                "width": 190.078125,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "noise.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 382.765625,
+                "width": 216.890625,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "\"Arial Black\", \"Segoe UI\", sans-serif",
+        "fontSize": "63px",
+        "heading": {
+          "x": 45,
+          "y": 211.5625,
+          "width": 399.140625,
+          "height": 246.9375
+        },
+        "words": [
+          {
+            "word": "A",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 197.5625,
+                "width": 44.921875,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "gathering",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 259.296875,
+                "width": 382.25,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "of",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 321.03125,
+                "width": 86.3125,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 148.21875,
+                "y": 321.03125,
+                "width": 190.078125,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "noise.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 45,
+                "y": 382.765625,
+                "width": 216.890625,
+                "height": 89
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "engine": "chromium",
+      "viewport": 1024,
+      "baseline": {
+        "font": "\"Arial Black\", \"Segoe UI\", sans-serif",
+        "fontSize": "71.68px",
+        "heading": {
+          "x": 40.953125,
+          "y": 211.5625,
+          "width": 466.65625,
+          "height": 281
+        },
+        "words": [
+          {
+            "word": "A",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 195.5625,
+                "width": 51.109375,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "gathering",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 265.8125,
+                "width": 434.921875,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "of",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 336.0625,
+                "width": 98.203125,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 158.390625,
+                "y": 336.0625,
+                "width": 216.265625,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "noise.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 406.3125,
+                "width": 246.765625,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      },
+      "proposed": {
+        "font": "\"Arial Black\", \"Segoe UI\", sans-serif",
+        "fontSize": "71.68px",
+        "heading": {
+          "x": 40.953125,
+          "y": 211.5625,
+          "width": 466.65625,
+          "height": 281
+        },
+        "words": [
+          {
+            "word": "A",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 195.5625,
+                "width": 51.109375,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "gathering",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 265.8125,
+                "width": 434.921875,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "of",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 336.0625,
+                "width": 98.203125,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "good",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 158.390625,
+                "y": 336.0625,
+                "width": 216.265625,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          },
+          {
+            "word": "noise.",
+            "lineFragments": 1,
+            "rects": [
+              {
+                "x": 40.953125,
+                "y": 406.3125,
+                "width": 246.765625,
+                "height": 101
+              }
+            ],
+            "insideHeading": true
+          }
+        ],
+        "passed": true
+      }
+    }
+  ],
+  "failures": [],
+  "timestamp_utc": "2026-10-11T01:56:05.464559+00:00",
+  "result": "passed",
+  "baselinePackage": {
+    "version": "1.0.2",
+    "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.2.zip",
+    "sha256": "1026635e095129dfff9bc2c0a21baa1cf313a64041e9b66bd1fecf065d89487f",
+    "bytes": 27165
+  }
+}

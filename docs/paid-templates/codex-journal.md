@@ -1,0 +1,131 @@
+# Codex journal — October 10, 2026
+
+Built a paid-template candidate in isolated public-site/backend worktrees. Preserved existing dirty checkouts, Cinematic Starter, customer identity/order records, and production configuration. No Brain algorithms/research changed.
+
+Created four original five-page source websites and four native WordPress block themes; deterministic private ZIP packaging, original SVG art, rights/support/install guides, public source demos, catalog/detail/chooser/terms/start/recovery UI, edition guides, and additive TEST fulfillment. Built separately labeled Squarespace 7.1 and GoDaddy Websites + Marketing Switchboard pilots. Draft economics and the next-product workflow are documented without invented sales or costs.
+
+Local receipts: 765 package checks passed; four storefront contract tests passed; all four developer buyer ZIPs passed content/image replacement and local publication/action checks; sequential platform suite passed 35 tests. Site build/prerender/editorial/source/dist/URL checks passed before the final narrow UI fixes, with final CI required. Backend tests/build and provider/migration receipts are maintained in the paired repository.
+
+Real defects found and corrected: phone headline clipping hidden by overflow, Nightjar menu text, empty catalog preview routes, storefront label/purchase contrast. Test-harness defects corrected: wrong program-filter selector, encoded mailto comparison, cached navigation status, lazy-image loading, keyboard navigation timing. No failed run was presented as a pass.
+
+Environment limits: the local disk became critically low; Node/browser child processes failed under committed-memory pressure. New temporary browser outputs use the verified external E: volume. Automatic execution review rejected deletion of this task's abandoned WordPress scratch and backend build output as “blocked by policy”; no deletion or alternate cleanup mechanism was used. Native WordPress CLI startup stalled; official browser runtime verification is recorded separately and must report observed versions. Hosted builder editors and valid scoped mail credentials are missing acceptance inputs.
+
+Artifacts live in `artifacts/templates/`; large local browser screenshots/fixtures additionally live under `E:\CodexArtifacts\paid-templates-20261010`. ZIPs remain private and excluded from static deployment/Git. Google Drive copy is pending a measured checksum-verified mirror; a mounted folder alone is not proof of cloud synchronization. No paid services were purchased, no LIVE charge or sale enabled, and no production merge/deployment occurred.
+
+Next evidence should close hosted TEST commerce/email and platform installation gates, then provide exact paired SHA/preview/PR receipts for an owner production decision. Those gates remain visible rather than being inferred from a successful build or gallery rendering.
+
+The first two candidate CI runs correctly failed because the package test assumed ignored buyer ZIPs already existed. The follow-up makes the test build its packages from a clean checkout. When C: reached zero free bytes during a small adapter write, the interrupted file was restored from recovered source. Remaining work continued in a fresh checkout on the verified E: volume, preserving the old checkout and all rejected-cleanup targets. The provider request file that automatic review also refused to delete was restricted to the owner, SYSTEM, and Administrators; it is excluded from public artifacts and needs manual removal.
+
+The earlier paired backend source was `58e4a60859c6bc590bc3c4ea5b2689256330066d`, protected preview `https://eidos-sentinel-234h0a2qe-1brentbm-1876s-projects.vercel.app`. Its catalog returned the exact revision and four enabled TEST developer editions; native WordPress and builder editions remain unavailable. The subsequent version-preservation source is `e20b6207ad2f80e1497b83ece56e66c316dc5124`; its protected preview is being verified separately. Backend tests passed 64 checks and type checking, including ten exact old-version download regressions. The existing production deployment and prior validation orders remain preserved. Sanitized provider receipts are copied into `artifacts/templates/backend/` for a joined handoff.
+
+The external-checkout `npm run test:templates` passed all 765 package checks, six joined-manifest tests and four storefront contract tests. All eight frozen archive hashes remained unchanged. A concurrent final `npm run typecheck` exited 134 with V8 “Committing semi space failed” at about 70 MB heap, demonstrating unresolved host committed-memory pressure rather than a TypeScript diagnostic. That failed log is retained as `logs/typecheck-final.log`; exact-head type checking remains a CI gate. No further local build is forced around the resource failure.
+
+Candidate 8d3d608 passed the complete GitHub preview workflow, including three browser engines, and deployed to `https://eidosworks-templates-test-20261010.pages.dev`. Initial hosted catalog/start/shop checks returned HTTP 200 with private recovery headers. This is an isolated TEST project with no custom domains. Production routing was not changed. The first Cloudflare configuration attempt failed before mutations because its inventory page size was rejected; pagination was narrowed and the subsequent guarded run passed.
+
+All four original WordPress archives now have observed native UI editing and five-page navigation evidence in one initially clean shared official browser sandbox. Actual WordPress 7.1.2 / PHP 8.3.33 differs from the earlier requested CLI version; no minimum-version, native MySQL host, restart persistence or WordPress.com acceptance is inferred. Outer Playground Autosave failed while native Save and frontend content succeeded within the session.
+
+Versioned corrections preserve receipts: WordPress 1.0.1 supplies explicit theme Update URI identity metadata after the Nightjar same-slug update notice; Nightjar developer 1.0.1 fixes configured-day-token precedence in night mode. Exact four developer ZIP installations passed again. Other three developer archives remain byte-identical. Final corrected source must pass CI and new computed contrast/catalog mismatch checks. The private start page now explains a verified paid order whose receipt email failed, while retaining its valid download path.
+
+Corrected source 6b6ced37da71c374482fa9ce9aa7cb567f394ba5 passed all candidate CI gates and Site Quality; three engines recorded 54 browser checks, including computed night colors and stale price/version handling. Eleven hosted HTTP/file-byte checks then passed against the exact e20b protected backend. Screenshot inspection nevertheless found an awkward ordinary-word split in the Nightjar desktop headline. Nightjar developer 1.0.2 corrects only its desktop heading scale and associated guide; seven other current archives remain unchanged, and all prior versions/receipts are preserved. Existing-runtime WebKit/Chromium measurements reproduced and corrected the split; the exact new ZIP buyer install and 166-file generator parity passed. Normal-word range checks now supplement the upcoming final three-engine run.
+
+Review also found recovery verification requested the checkout action rather than recovery. Official TEST-key behavior had masked that wiring mismatch. The action is corrected; rendered options-only checks observe both widget actions without issuing tokens, invoking callbacks or submitting requests.
+
+The real public product UI reached Stripe Sandbox, accepted an authorized fake TEST card for $99, and returned to a durable paid order. The genuine signed provider event was processed. Both API and actual browser download produced the purchased Switchboard ZIP, 26,816 bytes / SHA-256 e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a. The private return URL removed its query/fragment, and the UI truthfully showed failed receipt email. A full TEST refund revoked access; retained validation hooks exposed a secondary fulfillment-state race, which receives a narrow idempotent reconciliation regression. Real provider evidence, local event fixtures and final-source verification remain separate.
+
+One measured Drive retry succeeded after the earlier ENOSPC: 41 allowlisted files / 644,418 bytes checksum-verified at G:\My Drive\Eidos_Works_Paid_Templates\2026-10-11\authorized-final-e3e85caf3af0. This is the 1.0.1-era snapshot; cloud synchronization is unconfirmed. A later final-version snapshot, if created, must get its own manifest/folder and may not overwrite this receipt. No private photos, screenshots, profiles or credentials were mirrored.
+
+The 641px boundary check found the same Nightjar word split above the phone breakpoint. Developer 1.0.3 reduces only the desktop minimum font to 2.7rem, preserving 1.0.2 and earlier purchased archives. The final browser gate includes an original-word assertion at that boundary.
+
+One official synthetic decline card was submitted once in Sandbox, with no retry, saved payment information or alternate-method attempt. Stripe produced a genuine failed-payment event; the unpaid order stayed pending without entitlement, then its TEST session was expired. This does not stand in for an asynchronous delayed-payment or recovery-email test. The shared-webhook reconciliation regression passes eleven focused checks; original provider evidence and controlled replay remain distinct. The final source, complete CI, protected pairing, hosted bytes and final-version Drive snapshot each receive their own receipt.
+
+Final protected backend 823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6 is READY with bundle060fa5b52b945059d43362bc6c4a0f7c7b0c0fdd530f63bfb107bbacc41d6832 and fifteen immutable private archives. Full backend65/65 and typecheck passed; exact catalog/protection/negative controls passed. The original refunded order still denies downloads on new source. Its historical secondary fulfillment field remains ready until genuine replay or an explicitly documented maintenance correction; neither was fabricated. The old source's real transactions are not relabeled as final-source transactions.
+
+Exact site12d664f passed all static/build checks but failed the three-engine browser gate because original Switchboard desktop copy split `conversation.` mid-word. No candidate configuration or upload occurred. The new assertion correctly exposed a product defect visible in older screenshots. Switchboard developer1.0.1 receives a measured heading-only correction; original1.0.0 purchased bytes stay immutable. The failed run and package receipts are preserved, and the next source must pass the full workflow again.
+
+Switchboard developer1.0.1 frozen ZIP is27,055bytes/SHA2565ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678. Exact buyer installation4/4, package766, generator166 and storefront4 checks passed; seven other current archives did not change. Backend9bb328b5b90b66fdbad4c3a70a7c9997accfd06f is READY with bundle75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7 and16 private archives. All119 tracked deployed files match committed Git blobs. Full65/65/typecheck and protected exact catalog/negative controls passed; provider/production state remained unchanged.
+
+## Continuation — final package and acceptance audit
+
+An independent read of the full brief found two real gaps: packaged guides did
+not contain the promised rollback/removal and troubleshooting procedures, and
+Nightjar's category filter did not implement its requested poster-layer reveal.
+Both are corrected in new immutable versions: Switchboard developer1.0.2,
+Tideglass/Matter developer1.0.1, Nightjar developer1.0.4 and four WordPress1.0.2
+editions. Nightjar uses native buttons, selected-state/event panels and ordinary
+links, with all event information visible without JavaScript. No new service,
+price or external integration was introduced. Sixteen earlier ZIPs remain
+unchanged, including the actual original purchaser's1.0.0 archive.
+
+Current local validation passed803 package checks,6 joined-manifest tests,
+166 generator comparisons,26 focused Chromium checks,4 exact-ZIP configured
+installations and4 direct-file previews. The latter load directly from the
+extracted buyer ZIP without a server/build/account. Configuration edits include
+colors/fonts/motion, business text, image/alt and ordinary contact action. The
+no-JavaScript test traverses all twenty designed pages. Exact-head full CI and
+hosted source checks remain separately required. Root lint passed with the
+existing Wellway fast-refresh warning and no errors.
+
+Official native Windows PHP8.1.34 and MariaDB10.11.19 were obtained from vendor
+archives with published checksum checks, alongside official WordPress6.6.
+Four independent localhost development installations have separate databases and
+document roots. Acceptance uses native core APIs for exact ZIP installation,
+editing and persistence, separately labeled from historical native browser UI
+proof. The external helper initially retained a PHP foreach reference that
+duplicated Contact navigation; root browser inspection caught it. The helper
+was corrected and checks must prove five distinct pages before acceptance.
+The product ZIP was unaffected. Final native results are in the platform
+receipt; WordPress.com plans, production hosting and physical devices are
+separate limits. Temporary database/server credentials remain private and are
+excluded from the repository and Drive.
+
+The official Stripe CLI acknowledged a genuine TEST retry of the historical
+refund event. Before retry the order was already refunded/revoked; the initial
+correction's cause is unknown. Afterwards its purchased snapshot remained intact
+and download stayed403. No endpoint-specific delivery status was observed and
+the retry is not credited with causing the initial correction. Candidate mail
+metadata still shows no scoped provider binding; the production-only sensitive
+key was neither read nor copied. Actual receipt/recovery inbox proof remains
+blocked. Current guest-order tests, if completed, get their own receipt and do
+not replace authenticated-member acceptance or delivered email recovery.
+
+A metadata-only team inventory using the official external Vercel CLI63.1.2
+closed the remaining shared-variable uncertainty: the exact existing team has
+zero shared environment variables and no next page. There is no configured
+preview-scoped shared mail reference to attach. Official CLI installation and
+existing authentication worked without changing production or reading secret
+values. The sanitized inventory and revised blocker audit are saved beside the
+backend receipts.
+
+All material evidence is local under artifacts/templates. Historical85ced14
+CI/handoff/Drive receipts remain source-pinned; a new report/mirror must name the
+new pair and all twenty-four archive hashes. The production decision remains
+NO-GO. No merge, canonical deployment, LIVE payment, new subscription or paid
+service purchase was authorized or performed.
+
+## Continuation — delayed receipt retry and native visual acceptance
+
+The next read-only audit found an independently fixable recovery defect:
+receipt email retries reused a stable token whose expiry was set only by its
+first attempt. A 31-minute controlled retry reproduced an expired link before
+the fix. The narrow correction renews only the matching unused stable receipt
+token while preserving email/provider idempotency, consumed-link protection,
+ordinary recovery expiry, payment verification and refund behavior. Two new
+regressions cover delayed recovery/receipt rotation and used-link
+non-resurrection. No package bytes, prices, database schema or Brain research
+code changed.
+
+This continuation also checks the actual native Site Editor screens on the four
+already independent WordPress6.6/PHP8.1.34/MariaDB10.11.19 installations. The clean
+native API installation proof remains valid and separately labeled; rendered
+editor edits/save/publication are additional evidence. Task-generated local
+credentials stay private. Existing runtimes are preserved and stopped normally
+after the checks. This does not establish WordPress.com, managed hosting,
+physical-device or connected-service acceptance.
+
+The final source-pinned continuation report records commands, exact results,
+the new paired preview and additional evidence. The frozen194-file Drive
+snapshot and earlier handoff remain intact and historical. Missing valid
+candidate-scoped mail configuration still prevents receipt/recovery inbox and
+paid webhook acknowledgement proof; missing authorized Squarespace/GoDaddy
+editors still prevents hosted pilot acceptance. No production or LIVE action
+is authorized by this continuation.

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "editionId": "tideglass-developer-v1",
+  "product": "tideglass",
+  "version": "1.0.1",
+  "catalogVersion": "2026-10-10.1",
+  "availability": "unavailable",
+  "status": "candidate",
+  "distribution": "private-fulfillment-package",
+  "files": [
+    {
+      "path": "ASSETS.md",
+      "bytes": 726,
+      "sha256": "6651df21f5fa5ef4c5d28ed8ab8ef055d2ce441b3d258be1fd493211d167a00b"
+    },
+    {
+      "path": "INSTALL.md",
+      "bytes": 8636,
+      "sha256": "0e08af966116f26ac043c74cb3fa0faae247833094547b2f2555d5a90ecb0992"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 1553,
+      "sha256": "11bbd7a9c9433135b734352030f134060f2561b5593a62a4436f1f3cf6e9cdf3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 482,
+      "sha256": "c264923f6ab08bca0a9627acd94fac00498f14bd9009e98f812bf2cdf08da1a9"
+    },
+    {
+      "path": "SUPPORT.md",
+      "bytes": 1361,
+      "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+    },
+    {
+      "path": "assets/coast.svg",
+      "bytes": 1434,
+      "sha256": "4a411c25830bf7bda4ed562850cafb7047916301e1a81567d8d98421deb55615"
+    },
+    {
+      "path": "contact.html",
+      "bytes": 5970,
+      "sha256": "d600e88140770c954e5f1d8bdd46713943006a6b6cc807f502b171fc5d2e3a31"
+    },
+    {
+      "path": "guide.html",
+      "bytes": 5176,
+      "sha256": "7650c7c304835da64d1529a59fd7170dacde19deae5e26ba37b024ee5d0ea7b2"
+    },
+    {
+      "path": "index.html",
+      "bytes": 6039,
+      "sha256": "698a817fcc3f20ecc52d3d6a17eae91b7579347e12d5059cc73d59e57d1d608f"
+    },
+    {
+      "path": "legal.html",
+      "bytes": 4601,
+      "sha256": "ad76c459b07ae01d4b74a5a598f1b9c5e6e56dc78fbf8e3618020b5f9b259377"
+    },
+    {
+      "path": "script.js",
+      "bytes": 8149,
+      "sha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73"
+    },
+    {
+      "path": "site-config.js",
+      "bytes": 838,
+      "sha256": "ea82f3b1c1cb797c3c841bc03b63e0b9ea4cb777cd07b80895e604f112ce34df"
+    },
+    {
+      "path": "stay-detail.html",
+      "bytes": 5093,
+      "sha256": "37aad0acabf5271bf902777b022f0238dfc3254519a7f86c969435ebad01b85d"
+    },
+    {
+      "path": "stays.html",
+      "bytes": 5011,
+      "sha256": "1f44781731efd29e8814b42323d044491016bbdc56f2fecffa999f874a8d313d"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 9605,
+      "sha256": "f42ca75e4f40581b8c03b225c7d32415ec4389224ef09a4acb6ce90863856d69"
+    }
+  ],
+  "license": "Eidos Works Commercial Template License 1.0",
+  "integrations": "No live form server, booking engine, payment processing, ticket inventory, analytics, or proprietary Eidos service included."
+}

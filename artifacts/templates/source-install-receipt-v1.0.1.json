@@ -1,0 +1,51 @@
+{
+  "scope": "buyer developer source installation; local published HTTP test, no remote deployment or email send",
+  "checks": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "version": "1.0.0",
+      "archiveSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "install": "passed",
+      "editedBusiness": "passed",
+      "editedImage": "passed",
+      "publishedTestPage": "local HTTP passed",
+      "mainAction": "email draft prepared to configured recipient; not sent",
+      "archiveUnchanged": true
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "version": "1.0.0",
+      "archiveSha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+      "install": "passed",
+      "editedBusiness": "passed",
+      "editedImage": "passed",
+      "publishedTestPage": "local HTTP passed",
+      "mainAction": "email draft prepared to configured recipient; not sent",
+      "archiveUnchanged": true
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "version": "1.0.0",
+      "archiveSha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+      "install": "passed",
+      "editedBusiness": "passed",
+      "editedImage": "passed",
+      "publishedTestPage": "local HTTP passed",
+      "mainAction": "email draft prepared to configured recipient; not sent",
+      "archiveUnchanged": true
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.1",
+      "archiveSha256": "f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39",
+      "install": "passed",
+      "editedBusiness": "passed",
+      "editedImage": "passed",
+      "publishedTestPage": "local HTTP passed",
+      "mainAction": "email draft prepared to configured recipient; not sent",
+      "archiveUnchanged": true
+    }
+  ],
+  "failures": [],
+  "result": "passed"
+}

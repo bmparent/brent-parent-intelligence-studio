@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/"><channel><title>Matter Studio</title><link>https://example.com</link><description>Original fictional demo pages; no users, customer data, media downloads, or third-party service.</description><pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate><language>en</language><wp:wxr_version>1.2</wp:wxr_version><wp:base_site_url>https://example.com</wp:base_site_url><wp:base_blog_url>https://example.com</wp:base_blog_url><item><title>Home</title><link>https://example.com/</link><dc:creator><![CDATA[template-owner]]></dc:creator><content:encoded><![CDATA[<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">Home</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph {} -->
+<p>Edit this page with your own content. To start from the supplied layout, insert the Matter — Home pattern.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded><wp:post_id>1</wp:post_id><wp:post_date>2026-10-10 00:00:00</wp:post_date><wp:post_date_gmt>2026-10-10 00:00:00</wp:post_date_gmt><wp:post_name>home</wp:post_name><wp:status>publish</wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>1</wp:menu_order><wp:post_type>page</wp:post_type><wp:is_sticky>0</wp:is_sticky><wp:postmeta><wp:meta_key>_wp_page_template</wp:meta_key><wp:meta_value><![CDATA[default]]></wp:meta_value></wp:postmeta></item><item><title>Collection</title><link>https://example.com/collection/</link><dc:creator><![CDATA[template-owner]]></dc:creator><content:encoded><![CDATA[<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">Collection</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph {} -->
+<p>Edit this page with your own content. To start from the supplied layout, insert the Matter — Collection pattern.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded><wp:post_id>2</wp:post_id><wp:post_date>2026-10-10 00:00:00</wp:post_date><wp:post_date_gmt>2026-10-10 00:00:00</wp:post_date_gmt><wp:post_name>collection</wp:post_name><wp:status>publish</wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>2</wp:menu_order><wp:post_type>page</wp:post_type><wp:is_sticky>0</wp:is_sticky><wp:postmeta><wp:meta_key>_wp_page_template</wp:meta_key><wp:meta_value><![CDATA[collection]]></wp:meta_value></wp:postmeta></item><item><title>Object detail</title><link>https://example.com/object/</link><dc:creator><![CDATA[template-owner]]></dc:creator><content:encoded><![CDATA[<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">Object detail</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph {} -->
+<p>Edit this page with your own content. To start from the supplied layout, insert the Matter — Object detail pattern.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded><wp:post_id>3</wp:post_id><wp:post_date>2026-10-10 00:00:00</wp:post_date><wp:post_date_gmt>2026-10-10 00:00:00</wp:post_date_gmt><wp:post_name>object</wp:post_name><wp:status>publish</wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>3</wp:menu_order><wp:post_type>page</wp:post_type><wp:is_sticky>0</wp:is_sticky><wp:postmeta><wp:meta_key>_wp_page_template</wp:meta_key><wp:meta_value><![CDATA[object]]></wp:meta_value></wp:postmeta></item><item><title>Our process</title><link>https://example.com/process/</link><dc:creator><![CDATA[template-owner]]></dc:creator><content:encoded><![CDATA[<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">Our process</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph {} -->
+<p>Edit this page with your own content. To start from the supplied layout, insert the Matter — Our process pattern.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded><wp:post_id>4</wp:post_id><wp:post_date>2026-10-10 00:00:00</wp:post_date><wp:post_date_gmt>2026-10-10 00:00:00</wp:post_date_gmt><wp:post_name>process</wp:post_name><wp:status>publish</wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>4</wp:menu_order><wp:post_type>page</wp:post_type><wp:is_sticky>0</wp:is_sticky><wp:postmeta><wp:meta_key>_wp_page_template</wp:meta_key><wp:meta_value><![CDATA[process]]></wp:meta_value></wp:postmeta></item><item><title>Contact</title><link>https://example.com/contact/</link><dc:creator><![CDATA[template-owner]]></dc:creator><content:encoded><![CDATA[<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">Contact</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph {} -->
+<p>Edit this page with your own content. To start from the supplied layout, insert the Matter — Contact pattern.</p>
+<!-- /wp:paragraph -->
+]]></content:encoded><wp:post_id>5</wp:post_id><wp:post_date>2026-10-10 00:00:00</wp:post_date><wp:post_date_gmt>2026-10-10 00:00:00</wp:post_date_gmt><wp:post_name>contact</wp:post_name><wp:status>publish</wp:status><wp:post_parent>0</wp:post_parent><wp:menu_order>5</wp:menu_order><wp:post_type>page</wp:post_type><wp:is_sticky>0</wp:is_sticky><wp:postmeta><wp:meta_key>_wp_page_template</wp:meta_key><wp:meta_value><![CDATA[contact]]></wp:meta_value></wp:postmeta></item></channel></rss>

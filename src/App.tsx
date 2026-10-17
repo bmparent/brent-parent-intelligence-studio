@@ -40,6 +40,9 @@ import { PrivacyControls } from './components/PrivacyControls';
 import { CommunityPage, AgentGuide } from './components/CommunityPages';
 import { ModerationPage } from './components/ModerationPage';
 import { StarterPage, PurchaseSuccess } from './components/ShopPages';
+import { TemplateCollection, TemplateDetail, TemplateChooser, TemplateStart, TemplateTerms } from './components/TemplateShop';
+import { templateProduct } from './data/templateCatalog';
+import { TemplateInstallGuide } from './components/TemplateInstallGuide';
 import { PolicyPage } from './components/PolicyPages';
 import { normalizePath } from './data/pages';
 import { storefrontThemes } from './data/storefrontDemo';
@@ -85,6 +88,7 @@ function NotFoundPage() {
 }
 
 function routeFor(path: string) {
+  if (/^\/templates\/guides\/[a-z-]+\/(developer|wordpress)$/.test(path)) return <TemplateInstallGuide path={path} />;
   if (path === '/account') return <AccountPage />;
   if (path === '/account/verify') return <VerifyAccountPage />;
   if (path === '/account/unsubscribe') return <UnsubscribePage />;
@@ -102,6 +106,11 @@ function routeFor(path: string) {
   if (path === '/terms') return <PolicyPage kind="terms" />;
   if (path === '/shop/cinematic-starter') return <StarterPage />;
   if (path === '/shop/success') return <PurchaseSuccess />;
+  if (path === '/shop') return <TemplateCollection />;
+  if (path === '/shop/choose') return <TemplateChooser />;
+  if (path === '/shop/template-terms') return <TemplateTerms />;
+  if (path === '/shop/start') return <TemplateStart />;
+  if (path.startsWith('/shop/') && templateProduct(path.slice('/shop/'.length))) return <TemplateDetail slug={path.slice('/shop/'.length)} />;
   if (path === '/snapshot') return <SnapshotLandingPage />;
   if (path === '/snapshot/start') return <SnapshotStartPage />;
   if (path === '/snapshot/success') return <SnapshotSuccessPage />;

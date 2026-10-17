@@ -1,0 +1,5 @@
+
+> brent-parent-intelligence-studio@1.1.0 verify:templates
+> node scripts/verify-template-shop.mjs
+
+Built shop contract passed: 4 product routes, unavailable defaults, private recovery, and no public paid archives.

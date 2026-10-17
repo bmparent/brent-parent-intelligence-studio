@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "editionId": "matter-wordpress-v1",
+  "product": "matter",
+  "version": "1.0.2",
+  "catalogVersion": "2026-10-10.1",
+  "availability": "unavailable",
+  "status": "candidate",
+  "distribution": "private-fulfillment-package",
+  "files": [
+    {
+      "path": "ASSETS.md",
+      "bytes": 404,
+      "sha256": "17b1dead82965d398f751c13c325d9bf5c392ce360a5ce69cf2f544df04f5be2"
+    },
+    {
+      "path": "COPYING",
+      "bytes": 17984,
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+    },
+    {
+      "path": "INSTALL.md",
+      "bytes": 7363,
+      "sha256": "f8ffa154ef9dd7cfd27c04597724cc7e9beda88cedce0df737d49b253270c3f3"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 732,
+      "sha256": "554a8362bae4352e249dd3d1211f09a10b34ae530ea5efe3eaf84d52ba6b086f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 277,
+      "sha256": "73ce244f318f7a03c0c8d6b3fdf1d62522bd1163628f1c60536270fa2bbba15b"
+    },
+    {
+      "path": "SUPPORT.md",
+      "bytes": 1361,
+      "sha256": "40a4a8b371735b37b64bebb9789d09d6783a287391b1c257d73aa10ffb1eb28f"
+    },
+    {
+      "path": "assets/timber.svg",
+      "bytes": 946,
+      "sha256": "770a9127c4bd1278fb3358cc1ab3f500592fcd6ee4459b9074d5adb9ef41ed2b"
+    },
+    {
+      "path": "assets/vessel.svg",
+      "bytes": 1551,
+      "sha256": "689a6147923d70614f1975dcf1c4aaf8fc2d6acf68ee9fc4630366978c3b3db9"
+    },
+    {
+      "path": "demo-content.xml",
+      "bytes": 5174,
+      "sha256": "22ae6aa15a4ee1a727ff08fa1bc19ef536d291064de49c4107a0aabe26508391"
+    },
+    {
+      "path": "functions.php",
+      "bytes": 490,
+      "sha256": "fe553cfef9fcdfe634a5411f48abe106f8d0f9d74158678e51f21c5413fced75"
+    },
+    {
+      "path": "parts/footer.html",
+      "bytes": 514,
+      "sha256": "957495a9587f1ebdb8b11079321b76877f03209f45b03cba3a167d5f3e364cd1"
+    },
+    {
+      "path": "parts/header.html",
+      "bytes": 1115,
+      "sha256": "c57947e6b598d804b4ef89108b308593007d8df6de9e879590081e4cc0771343"
+    },
+    {
+      "path": "patterns/collection.php",
+      "bytes": 4347,
+      "sha256": "6a656b00b8127315333212d33bb47040713899c3397ff6bac2def28064018123"
+    },
+    {
+      "path": "patterns/contact.php",
+      "bytes": 3465,
+      "sha256": "282e6bdbc9c2fe3bff6950825302d238270e28be5e5c387a48281be7705f990a"
+    },
+    {
+      "path": "patterns/index.php",
+      "bytes": 4951,
+      "sha256": "35c178d0c0cee74cbc3320abd214d90c7c93216e8f7e632ed295d3bbf3b684d6"
+    },
+    {
+      "path": "patterns/object.php",
+      "bytes": 3603,
+      "sha256": "b92e5e2bcdcbcb526654f758287f6ce19b43b7979aa428fcbf677bf701b18a71"
+    },
+    {
+      "path": "patterns/process.php",
+      "bytes": 2934,
+      "sha256": "bb535839be3a49d7d10a99eb407150a82bb1b7fee0a8db31b4275325aeafa23e"
+    },
+    {
+      "path": "style.css",
+      "bytes": 11615,
+      "sha256": "c5347ae4bc974a822457b72b561c50f83326e08e0d84291c066c4184f80ac5cf"
+    },
+    {
+      "path": "templates/404.html",
+      "bytes": 723,
+      "sha256": "1090b316e6065f0083bf681f127c510d1a68743b4a96080d578787576ea18ba5"
+    },
+    {
+      "path": "templates/collection.html",
+      "bytes": 320,
+      "sha256": "362d733153c3b39f603216eb9d22561ff6d48ae25797ce31642e593ea7909efa"
+    },
+    {
+      "path": "templates/contact.html",
+      "bytes": 317,
+      "sha256": "c4611145d1b5bf5d95cd4e38c535d09b29e797e04b8b6aac0e2ea4f8687cb219"
+    },
+    {
+      "path": "templates/front-page.html",
+      "bytes": 315,
+      "sha256": "1ca21d8ab790ed60514fdd8424c8b573f3318a95922c041bf29910a9848e2a5a"
+    },
+    {
+      "path": "templates/index.html",
+      "bytes": 745,
+      "sha256": "02672617d42e6ba0eafb5f2276cc7b8ce7ccac20c57244cba53f0f878466e006"
+    },
+    {
+      "path": "templates/object.html",
+      "bytes": 316,
+      "sha256": "65000ba350c788a2671fd1217ce30d85dc4616a4022591eb09a6ac302129f45c"
+    },
+    {
+      "path": "templates/page.html",
+      "bytes": 370,
+      "sha256": "d38edea9ce477e7ae887bcfa17cd6481128ea776d1ad9b64a01f1c76cd9d595d"
+    },
+    {
+      "path": "templates/process.html",
+      "bytes": 317,
+      "sha256": "ba762aa1fe35134aad7dd6f2f92cb8a9fad5e9b870826a72cbd75efc0d1d2152"
+    },
+    {
+      "path": "templates/single.html",
+      "bytes": 370,
+      "sha256": "d38edea9ce477e7ae887bcfa17cd6481128ea776d1ad9b64a01f1c76cd9d595d"
+    },
+    {
+      "path": "theme.json",
+      "bytes": 2619,
+      "sha256": "2546fd638778e7d60c3b4799da10e1fa7e9668a83a06324c8c630d70b3e40646"
+    }
+  ],
+  "license": "GPL-2.0-or-later",
+  "integrations": "No live form server, booking engine, payment processing, ticket inventory, analytics, or proprietary Eidos service included."
+}

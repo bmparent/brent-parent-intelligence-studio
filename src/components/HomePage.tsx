@@ -122,6 +122,7 @@ export function HomePage() {
         </div>
       </section>
       <SiteGallery compact />
+      <section className="ew-open-studio ew-shell"><div className="ew-section-heading"><div><h2>A website you can make your own.</h2><p>Four original designs for services, stays, makers, and culture. Try the working demos and choose the right edition.</p></div><a className="ew-text-link" href="/shop">Explore website templates →</a></div></section>
       <section className="ew-open-studio ew-shell">
         <div className="ew-section-heading">
           <div>

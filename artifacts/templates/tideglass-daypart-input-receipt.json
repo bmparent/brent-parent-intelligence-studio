@@ -1,0 +1,117 @@
+{
+  "timestampUtc": "2026-10-11T03:18:27.025155+00:00",
+  "status": "passed",
+  "scope": "Focused Chromium: actual shared harness functions, all three Tideglass scene transitions with Enter/Space or emulated tap; actual ordinary stay/contact navigation. No provider interaction or product edits.",
+  "script": "scripts/verify-template-browser.py",
+  "scriptSha256": "499bf337192055f895714438bf5be21654ab669822761abf2bf8b793106f567e",
+  "checks": [
+    {
+      "viewport": 1440,
+      "input": "keyboard",
+      "result": "passed",
+      "details": {
+        "input": "keyboard",
+        "states": [
+          {
+            "daypart": "day",
+            "previous": "morning",
+            "pressed": true,
+            "caption": "Day: explore the coast, find a table outside, or leave the afternoon unplanned.",
+            "computedSceneFilter": "none"
+          },
+          {
+            "daypart": "evening",
+            "previous": "day",
+            "pressed": true,
+            "caption": "Evening: return to warm light and make time for dinner together.",
+            "computedSceneFilter": "sepia(0.35) saturate(1.15) brightness(0.78)"
+          },
+          {
+            "daypart": "morning",
+            "previous": "evening",
+            "pressed": true,
+            "caption": "Morning: quiet light, a slow breakfast, and a walk before the day fills.",
+            "computedSceneFilter": "saturate(0.8) brightness(1.06)"
+          }
+        ],
+        "singlePressedState": "passed",
+        "sceneAndLiveCaption": "passed",
+        "ordinaryStayAndContactNavigation": "passed"
+      },
+      "runtimeErrors": []
+    },
+    {
+      "viewport": 390,
+      "input": "keyboard",
+      "result": "passed",
+      "details": {
+        "input": "keyboard",
+        "states": [
+          {
+            "daypart": "day",
+            "previous": "morning",
+            "pressed": true,
+            "caption": "Day: explore the coast, find a table outside, or leave the afternoon unplanned.",
+            "computedSceneFilter": "none"
+          },
+          {
+            "daypart": "evening",
+            "previous": "day",
+            "pressed": true,
+            "caption": "Evening: return to warm light and make time for dinner together.",
+            "computedSceneFilter": "sepia(0.35) saturate(1.15) brightness(0.78)"
+          },
+          {
+            "daypart": "morning",
+            "previous": "evening",
+            "pressed": true,
+            "caption": "Morning: quiet light, a slow breakfast, and a walk before the day fills.",
+            "computedSceneFilter": "saturate(0.8) brightness(1.06)"
+          }
+        ],
+        "singlePressedState": "passed",
+        "sceneAndLiveCaption": "passed",
+        "ordinaryStayAndContactNavigation": "passed"
+      },
+      "runtimeErrors": []
+    },
+    {
+      "viewport": 390,
+      "input": "touch",
+      "result": "passed",
+      "details": {
+        "input": "touch",
+        "states": [
+          {
+            "daypart": "day",
+            "previous": "morning",
+            "pressed": true,
+            "caption": "Day: explore the coast, find a table outside, or leave the afternoon unplanned.",
+            "computedSceneFilter": "none"
+          },
+          {
+            "daypart": "evening",
+            "previous": "day",
+            "pressed": true,
+            "caption": "Evening: return to warm light and make time for dinner together.",
+            "computedSceneFilter": "sepia(0.35) saturate(1.15) brightness(0.78)"
+          },
+          {
+            "daypart": "morning",
+            "previous": "evening",
+            "pressed": true,
+            "caption": "Morning: quiet light, a slow breakfast, and a walk before the day fills.",
+            "computedSceneFilter": "saturate(0.8) brightness(1.06)"
+          }
+        ],
+        "singlePressedState": "passed",
+        "sceneAndLiveCaption": "passed",
+        "ordinaryStayAndContactNavigation": "passed"
+      },
+      "runtimeErrors": []
+    }
+  ],
+  "limitations": [
+    "Local Chromium and emulated touch only; not physical-device or final three-engine acceptance."
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "timestampUtc": "2026-10-11T03:03:18.315589+00:00",
+  "scope": "New pre-purchase detail presentation; no frozen archive or price changes",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "All eight selected-edition public guides and manifest-derived exact files/art; four details show guide before terms/checkout",
+      "command": "node --import tsx --test --test-name-pattern=\"all eight selected-edition\" scripts/test-template-shop.ts",
+      "result": "passed",
+      "tests": 1
+    },
+    {
+      "name": "Scoped React, SSR and generation helper lint",
+      "command": "npx eslint src/components/TemplateShop.tsx scripts/test-template-shop.ts scripts/build-template-guides.mjs",
+      "result": "passed"
+    }
+  ],
+  "limits": [
+    "Current complete site CI/hosted rendering remains a separate gate.",
+    "WordPress runtime labels derive only from exact archive/version-matching normalized evidence; no previous-version activation is attributed to the new package."
+  ],
+  "files": [
+    "src/components/TemplateShop.tsx",
+    "src/styles/template-shop.css",
+    "scripts/build-template-guides.mjs",
+    "src/data/templatePackageContents.json",
+    "scripts/test-template-shop.ts"
+  ]
+}

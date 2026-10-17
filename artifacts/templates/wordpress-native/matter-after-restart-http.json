@@ -1,0 +1,109 @@
+{
+  "product": "matter",
+  "phase": "after-restart",
+  "pages": [
+    {
+      "page": "home",
+      "url": "http://127.0.0.1:8973/",
+      "http_status": 200,
+      "h1": "Matter business copy saved on native WordPress",
+      "bytes": 47899,
+      "sha256": "25697e42a5e5457f5592c33a058434069dad2b6df2d4f07e208cd616a356643a",
+      "native_details_count": 2
+    },
+    {
+      "page": "collection",
+      "url": "http://127.0.0.1:8973/collection/",
+      "http_status": 200,
+      "h1": "Collection",
+      "bytes": 47049,
+      "sha256": "10236ec6ba372607028c2e3f10d99e8f975c202f95f2c97549d17cf64e21c759",
+      "native_details_count": 2
+    },
+    {
+      "page": "object",
+      "url": "http://127.0.0.1:8973/object/",
+      "http_status": 200,
+      "h1": "Object detail",
+      "bytes": 46514,
+      "sha256": "7640d73b39ba2d7e3142ca461c9a66e7028911d83fa792d51ce01c8b76b38606",
+      "native_details_count": 2
+    },
+    {
+      "page": "process",
+      "url": "http://127.0.0.1:8973/process/",
+      "http_status": 200,
+      "h1": "Our process",
+      "bytes": 45471,
+      "sha256": "fdf260ff54ad88f3314d74d5b712dc98c64bfabf8958fcadff95d0eac1c28456",
+      "native_details_count": 0
+    },
+    {
+      "page": "contact",
+      "url": "http://127.0.0.1:8973/contact/",
+      "http_status": 200,
+      "h1": "Contact",
+      "bytes": 39746,
+      "sha256": "18eb7e70e369e92ac108f072a003315506f9acf013161b663618e060fbb7e681",
+      "native_details_count": 1
+    }
+  ],
+  "all_five_pages_http_200": true,
+  "all_html_referenced_local_assets_http_200": true,
+  "assets": {
+    "http://127.0.0.1:8973/wp-includes/blocks/navigation/style.min.css?ver=6.6": {
+      "status": 200,
+      "bytes": 16507,
+      "sha256": "4a8714a7f45ff22f002ebb62a7f1e91f3f14d1938e21789710cfad199561b62c"
+    },
+    "http://127.0.0.1:8973/wp-content/themes/matter/style.css?ver=1.0.2": {
+      "status": 200,
+      "bytes": 11615,
+      "sha256": "c5347ae4bc974a822457b72b561c50f83326e08e0d84291c066c4184f80ac5cf"
+    },
+    "http://127.0.0.1:8973/wp-includes/blocks/navigation/view.min.js?ver=6.6": {
+      "status": 200,
+      "bytes": 3300,
+      "sha256": "cef72ad53596109595c152da16e28c2799d53b4c151274c7b28c0324e7230f24"
+    },
+    "http://127.0.0.1:8973/wp-content/uploads/2026/10/native-replacement-matter.png": {
+      "status": 200,
+      "bytes": 1627,
+      "sha256": "470b7f179cb9566b0d0748928b6124d6ec1eb78324bb43a3443612c3287efb14"
+    },
+    "http://127.0.0.1:8973/wp-content/themes/matter/assets/vessel.svg": {
+      "status": 200,
+      "bytes": 1551,
+      "sha256": "689a6147923d70614f1975dcf1c4aaf8fc2d6acf68ee9fc4630366978c3b3db9"
+    },
+    "http://127.0.0.1:8973/wp-content/themes/matter/assets/timber.svg": {
+      "status": 200,
+      "bytes": 946,
+      "sha256": "770a9127c4bd1278fb3358cc1ab3f500592fcd6ee4459b9074d5adb9ef41ed2b"
+    }
+  },
+  "phone_user_agent_html_200": true,
+  "phone_visual_render_test": false,
+  "saved_navigation_links_verified": true,
+  "primary_action_http_chain": [
+    {
+      "url": "http://127.0.0.1:8973/collection/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8973/contact/",
+      "status": 200
+    },
+    {
+      "target": "mailto:native-matter@example.test",
+      "verified": "href only; not opened or sent"
+    }
+  ],
+  "contact_mailto_verified": true,
+  "contact_mailto": [
+    "mailto:native-matter@example.test",
+    "mailto:native-matter@example.test"
+  ],
+  "email_sent": false,
+  "email_client_opened": false
+}

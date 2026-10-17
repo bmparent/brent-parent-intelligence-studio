@@ -1,0 +1,58 @@
+{
+  "timestampUtc": "2026-10-11T03:08:49.936Z",
+  "scope": "Read-only team shared environment metadata inventory; no values accessed, printed or saved",
+  "cliVersion": "63.1.2",
+  "teamId": "team_TEsnMvKU6SdbYjVhws6Ttp8H",
+  "command": "vercel api /v1/env?teamId=<existing_team> --method GET --raw --non-interactive",
+  "exitCode": 0,
+  "errorCode": null,
+  "errorMessage": null,
+  "dataCount": 0,
+  "metadata": [],
+  "pagination": {
+    "count": 0,
+    "next": null,
+    "prev": null
+  },
+  "responseKeys": [
+    "data",
+    "pagination"
+  ],
+  "valuesAccessed": false,
+  "valuesPrinted": false,
+  "valuesSaved": false,
+  "decryptedGetEndpointUsed": false,
+  "providerWrites": false,
+  "productionChanges": false,
+  "sourceEdits": false,
+  "cliInstall": {
+    "package": "vercel",
+    "version": "63.1.2",
+    "repository": "git+https://github.com/vercel/vercel.git",
+    "registryTarball": "https://registry.npmjs.org/vercel/-/vercel-63.1.2.tgz",
+    "publishedIntegrity": "sha512-kD/AKQVTV5Lwlg69fUNaW0OBGh6iSX42UTRrka10CtbOJDcxcqE8VoDRIuAsduGHiD3Hf90Ak9dX39nNzq8srA==",
+    "installedLockIntegrityMatches": true,
+    "location": "E:/CodexArtifacts/paid-templates-20261010/tools/vercel-63.1.2",
+    "installationLog": "vercel-cli-install.log"
+  },
+  "projectContext": {
+    "confirmed": true,
+    "id": "prj_5aL0COF1DONfPKI4fv25NitAdkOE",
+    "name": "eidos-sentinel-lab",
+    "owner": "1brentbm-1876s-projects",
+    "rootDirectory": "apps/sentinel-lab",
+    "command": "vercel project inspect --non-interactive --cwd apps/sentinel-lab --scope <existing_team>"
+  },
+  "conclusion": {
+    "teamSharedEnvironmentInventory": "empty; pagination complete in one page",
+    "existingSharedPreviewMailReferenceFound": false,
+    "candidateResendBinding": "absent; separately verified metadata24keys",
+    "productionOnlySensitiveResendRecord": "unchanged; value not read or scope changed",
+    "remainingMailGate": "blocked: securely provide a valid existing-service receipt/recovery credential scoped only to this preview branch, redeploy, and verify actual owned inbox receipt/recovery",
+    "backendRuntime": "unchanged d66ed7c081a211e402d39a23d4222135a4cb022e"
+  },
+  "sources": [
+    "https://vercel.com/docs/cli",
+    "https://vercel.com/docs/rest-api/environment/lists-all-shared-environment-variables-for-a-team"
+  ]
+}

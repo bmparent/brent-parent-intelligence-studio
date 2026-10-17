@@ -1,0 +1,15 @@
+{
+  "timestamp_utc": "2026-10-11T00:35:02.825056+00:00",
+  "target": "https://playground.wordpress.net/?wp=7.1&php=8.3&url=/wp-admin/",
+  "scope": "official browser Playground startup only",
+  "status": "blocked",
+  "wordpress": null,
+  "php": null,
+  "archive_installed": false,
+  "errors": [],
+  "frames": [
+    "https://playground.wordpress.net/"
+  ],
+  "app_excerpt": "Calm Hip School\nAutosaved\nNew\nPlaygrounds\nSite Settings\nExport\nDev Tools",
+  "screenshot": "E:\\CodexArtifacts\\paid-templates-20261010\\official-playground-startup.png"
+}

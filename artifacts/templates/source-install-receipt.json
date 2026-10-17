@@ -1,0 +1,139 @@
+{
+  "scope": "buyer developer source installation; local published HTTP test, no remote deployment or email send",
+  "checks": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "version": "1.0.2",
+      "archiveSha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
+      "install": "passed",
+      "editedBusiness": "passed",
+      "editedImage": "passed",
+      "configuredFields": [
+        "brand",
+        "email",
+        "colors.ink/paper/accent/panel/line",
+        "fonts.heading/body",
+        "motion=false",
+        "pages.index.title/intro/ctaLabel/ctaHref/image/imageAlt",
+        "pages.contact.title/intro"
+      ],
+      "markerScope": {
+        "checkedPages": [
+          "contact.html",
+          "index.html",
+          "legal.html",
+          "process.html",
+          "service-detail.html",
+          "services.html"
+        ],
+        "homeActionAndImageOnly": true,
+        "fiveDesignedPageTitleAndIntro": true,
+        "legalDirectHTML": true
+      },
+      "publishedTestPage": "local HTTP passed",
+      "mainAction": "configured CTA reached contact; email draft prepared to configured recipient; not sent",
+      "archiveUnchanged": true
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "version": "1.0.1",
+      "archiveSha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
+      "install": "passed",
+      "editedBusiness": "passed",
+      "editedImage": "passed",
+      "configuredFields": [
+        "brand",
+        "email",
+        "colors.ink/paper/accent/panel/line",
+        "fonts.heading/body",
+        "motion=false",
+        "pages.index.title/intro/ctaLabel/ctaHref/image/imageAlt",
+        "pages.contact.title/intro"
+      ],
+      "markerScope": {
+        "checkedPages": [
+          "contact.html",
+          "guide.html",
+          "index.html",
+          "legal.html",
+          "stay-detail.html",
+          "stays.html"
+        ],
+        "homeActionAndImageOnly": true,
+        "fiveDesignedPageTitleAndIntro": true,
+        "legalDirectHTML": true
+      },
+      "publishedTestPage": "local HTTP passed",
+      "mainAction": "configured CTA reached contact; email draft prepared to configured recipient; not sent",
+      "archiveUnchanged": true
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "version": "1.0.1",
+      "archiveSha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
+      "install": "passed",
+      "editedBusiness": "passed",
+      "editedImage": "passed",
+      "configuredFields": [
+        "brand",
+        "email",
+        "colors.ink/paper/accent/panel/line",
+        "fonts.heading/body",
+        "motion=false",
+        "pages.index.title/intro/ctaLabel/ctaHref/image/imageAlt",
+        "pages.contact.title/intro"
+      ],
+      "markerScope": {
+        "checkedPages": [
+          "collection.html",
+          "contact.html",
+          "index.html",
+          "legal.html",
+          "object.html",
+          "process.html"
+        ],
+        "homeActionAndImageOnly": true,
+        "fiveDesignedPageTitleAndIntro": true,
+        "legalDirectHTML": true
+      },
+      "publishedTestPage": "local HTTP passed",
+      "mainAction": "configured CTA reached contact; email draft prepared to configured recipient; not sent",
+      "archiveUnchanged": true
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.4",
+      "archiveSha256": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1",
+      "install": "passed",
+      "editedBusiness": "passed",
+      "editedImage": "passed",
+      "configuredFields": [
+        "brand",
+        "email",
+        "colors.ink/paper/accent/panel/line",
+        "fonts.heading/body",
+        "motion=false",
+        "pages.index.title/intro/ctaLabel/ctaHref/image/imageAlt",
+        "pages.contact.title/intro"
+      ],
+      "markerScope": {
+        "checkedPages": [
+          "about.html",
+          "contact.html",
+          "event.html",
+          "index.html",
+          "legal.html",
+          "program.html"
+        ],
+        "homeActionAndImageOnly": true,
+        "fiveDesignedPageTitleAndIntro": true,
+        "legalDirectHTML": true
+      },
+      "publishedTestPage": "local HTTP passed",
+      "mainAction": "configured CTA reached contact; email draft prepared to configured recipient; not sent",
+      "archiveUnchanged": true
+    }
+  ],
+  "failures": [],
+  "result": "passed"
+}

@@ -1,0 +1,12 @@
+GNU GENERAL PUBLIC LICENSE — version 2 or (at your option) any later version.
+Copyright (c) 2026 Eidos Works.
+
+All WordPress edition PHP, HTML, CSS, JSON, block patterns, and original SVG
+artwork in this theme are licensed under GPL-2.0-or-later. You may use, study,
+modify, and redistribute them under that license. No commercial one-site limit
+removes the rights this license grants. The purchase price is for the packaged
+design, documentation, and support described in SUPPORT.md.
+
+The complete GPL v2 text is included in COPYING. Theme provided without warranty.
+System fonts are not redistributed. No third-party plugins or dependencies are
+bundled. The original fictional sample content is included under the same license.

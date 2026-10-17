@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "product_id": "switchboard",
+  "edition_id": "switchboard-squarespace-v1",
+  "version": "1.0.0",
+  "platform": "Squarespace",
+  "platform_version": "7.1",
+  "plans": { "native_recipe_and_static_code": ["Basic", "Core", "Plus", "Advanced"], "optional_javascript": ["Core", "Plus", "Advanced", "qualifying legacy plans"] },
+  "product_type": "existing-site-kit",
+  "installation_method": "manual native section reconstruction plus optional scoped CSS and HTML Code block",
+  "editable_without_code": ["native page copy", "native imagery and alt text", "native sections", "native button links", "native form fields", "Site Styles"],
+  "editable_with_code": ["optional HTML selector copy/links", "optional targeted CSS", "optional interaction script"],
+  "pages": ["Home", "Services", "Service Detail", "Work / Process", "Contact"],
+  "dependencies": [],
+  "effects": ["optional service inquiry filter"],
+  "static_fallback": "all inquiry descriptions and ordinary anchor/contact links remain visible",
+  "fulfillment_method": "downloadable instructions and optional source kit if later accepted",
+  "status": "blocked",
+  "sale_enabled": false,
+  "blocked_reason": "No authorized Squarespace 7.1 editor, declared account plan, published test page, and connected form inbox supplied",
+  "evidence_scope": "local source preview only; native editor installation and publish acceptance pending"
+}

@@ -1,0 +1,60 @@
+{
+  "timestampUtc": "2026-10-11T00:54:38.831Z",
+  "mode": "test",
+  "webhooks": [
+    {
+      "id": "we_1UPAlBKC8pRG5Tr9zQ7h8O5A",
+      "url": "https://eidosworks-templates-test-20261010.pages.dev/api/shop/webhook",
+      "livemode": false,
+      "apiVersion": "2025-06-30.basil",
+      "enabledEvents": [
+        "checkout.session.completed",
+        "checkout.session.async_payment_succeeded",
+        "checkout.session.async_payment_failed",
+        "checkout.session.expired",
+        "charge.refunded",
+        "charge.dispute.created"
+      ]
+    },
+    {
+      "id": "we_1UIuqCKC8pRG5Tr91eNeAgtj",
+      "url": "https://eidosworks-test-20260923.pages.dev/api/shop/webhook",
+      "livemode": false,
+      "apiVersion": null,
+      "enabledEvents": [
+        "checkout.session.completed",
+        "checkout.session.async_payment_succeeded",
+        "checkout.session.expired",
+        "charge.refunded",
+        "charge.dispute.created"
+      ]
+    },
+    {
+      "id": "we_1UIf43KC8pRG5Tr9uNrzzFoO",
+      "url": "https://eidos-pg-preview-20260910.pages.dev/api/shop/webhook",
+      "livemode": false,
+      "apiVersion": "2025-06-30.basil",
+      "enabledEvents": [
+        "checkout.session.completed",
+        "checkout.session.async_payment_succeeded",
+        "checkout.session.expired",
+        "charge.refunded",
+        "charge.dispute.created"
+      ]
+    },
+    {
+      "id": "we_1UCRNYKC8pRG5Tr99IPveD7O",
+      "url": "https://release-validation-20260905.eidosworks.pages.dev/api/shop/webhook",
+      "livemode": false,
+      "apiVersion": null,
+      "enabledEvents": [
+        "checkout.session.completed",
+        "checkout.session.async_payment_succeeded",
+        "charge.refunded",
+        "charge.dispute.created"
+      ]
+    }
+  ],
+  "oldWebhookIdsRetained": true,
+  "newCandidateHook": "we_1UPAlBKC8pRG5Tr9zQ7h8O5A"
+}

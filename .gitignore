@@ -17,3 +17,12 @@ coverage
 ops/growth-team/private/
 
 ops/growth-team/runs/
+
+# Paid archives stay in private fulfillment storage, outside the static site/Git.
+artifacts/templates/packages/
+artifacts/templates/buyer-install-fixtures/
+artifacts/templates/browser/
+artifacts/templates/browser-review/
+artifacts/templates/wordpress-browser/*.png
+artifacts/templates/wordpress-browser/*.py
+products/templates/__pycache__/

@@ -1,0 +1,15 @@
+(node:18148) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+9:54:35 PM [vite] (client) [optimizer] scanning dependencies...
+✔ each collection entry points to its actual demo and independent five-page product detail (56.9136ms)
+✔ candidate price and guide records match the server-owned edition contract (0.5198ms)
+✔ platform help, terms, and recovery disclose product boundaries (6.0902ms)
+✔ new candidate preserves Cinematic Starter product files and price (16.2518ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7930.1387

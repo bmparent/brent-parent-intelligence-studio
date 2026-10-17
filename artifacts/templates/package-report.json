@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-11T03:13:09.764Z",
+  "catalogVersion": "2026-10-10.1",
+  "packages": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "version": "1.0.2",
+      "sourcePath": "products/templates/switchboard/developer",
+      "packagePath": "artifacts/templates/packages/switchboard-developer-v1.0.2.zip",
+      "sha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
+      "bytes": 28547,
+      "files": 16,
+      "demoPath": "/template-demos/switchboard/"
+    },
+    {
+      "editionId": "switchboard-wordpress-v1",
+      "version": "1.0.2",
+      "sourcePath": "products/templates/switchboard/wordpress",
+      "packagePath": "artifacts/templates/packages/switchboard-wordpress-v1.0.2.zip",
+      "sha256": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93",
+      "bytes": 30418,
+      "files": 28,
+      "demoPath": null
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "version": "1.0.1",
+      "sourcePath": "products/templates/tideglass/developer",
+      "packagePath": "artifacts/templates/packages/tideglass-developer-v1.0.1.zip",
+      "sha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
+      "bytes": 28338,
+      "files": 16,
+      "demoPath": "/template-demos/tideglass/"
+    },
+    {
+      "editionId": "tideglass-wordpress-v1",
+      "version": "1.0.2",
+      "sourcePath": "products/templates/tideglass/wordpress",
+      "packagePath": "artifacts/templates/packages/tideglass-wordpress-v1.0.2.zip",
+      "sha256": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d",
+      "bytes": 31040,
+      "files": 28,
+      "demoPath": null
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "version": "1.0.1",
+      "sourcePath": "products/templates/matter/developer",
+      "packagePath": "artifacts/templates/packages/matter-developer-v1.0.1.zip",
+      "sha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
+      "bytes": 29031,
+      "files": 17,
+      "demoPath": "/template-demos/matter/"
+    },
+    {
+      "editionId": "matter-wordpress-v1",
+      "version": "1.0.2",
+      "sourcePath": "products/templates/matter/wordpress",
+      "packagePath": "artifacts/templates/packages/matter-wordpress-v1.0.2.zip",
+      "sha256": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b",
+      "bytes": 31762,
+      "files": 29,
+      "demoPath": null
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.4",
+      "sourcePath": "products/templates/nightjar/developer",
+      "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.4.zip",
+      "sha256": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1",
+      "bytes": 31190,
+      "files": 16,
+      "demoPath": "/template-demos/nightjar/"
+    },
+    {
+      "editionId": "nightjar-wordpress-v1",
+      "version": "1.0.2",
+      "sourcePath": "products/templates/nightjar/wordpress",
+      "packagePath": "artifacts/templates/packages/nightjar-wordpress-v1.0.2.zip",
+      "sha256": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96",
+      "bytes": 30759,
+      "files": 28,
+      "demoPath": null
+    }
+  ]
+}

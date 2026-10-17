@@ -1,0 +1,60 @@
+{
+  "product": "switchboard",
+  "wordpress": "6.6",
+  "php": "8.1.34",
+  "mariadb": "10.11.19",
+  "url": "http://127.0.0.1:8971",
+  "phase": "configure",
+  "method": "Native PHP WordPress APIs; no fresh browser editor UI claim",
+  "version": "1.0.2",
+  "pages": {
+    "home": {
+      "id": 5,
+      "template": "default",
+      "url": "http://127.0.0.1:8971/"
+    },
+    "services": {
+      "id": 6,
+      "template": "services",
+      "url": "http://127.0.0.1:8971/services/"
+    },
+    "service-detail": {
+      "id": 7,
+      "template": "service-detail",
+      "url": "http://127.0.0.1:8971/service-detail/"
+    },
+    "process": {
+      "id": 8,
+      "template": "process",
+      "url": "http://127.0.0.1:8971/process/"
+    },
+    "contact": {
+      "id": 9,
+      "template": "contact",
+      "url": "http://127.0.0.1:8971/contact/"
+    }
+  },
+  "static_homepage": true,
+  "native_text_save": true,
+  "headline": "Switchboard business copy saved on native WordPress",
+  "native_image_save": true,
+  "image_url": "http://127.0.0.1:8971/wp-content/uploads/2026/10/native-replacement-switchboard.png",
+  "attachment_id": 10,
+  "front_template_id": 11,
+  "contact_template_id": 12,
+  "navigation_post_id": 13,
+  "header_part_id": 14,
+  "native_navigation_save": true,
+  "contact_email": "native-switchboard@example.test",
+  "core_site_editor_export": {
+    "path": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\exports\\switchboard-customized-site-editor.zip",
+    "sha256": "0b312bf777247675f60adf2109e227880cc73344741fa44ac84fc235f463bfcc",
+    "bytes": 31800,
+    "members": 30,
+    "contains_saved_text_and_image_url": true
+  },
+  "mail_suppressed": true,
+  "automatic_core_updates_disabled": true,
+  "cron_disabled": true,
+  "external_helper_navigation_reference_repair": true
+}
