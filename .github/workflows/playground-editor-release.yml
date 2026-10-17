@@ -12,7 +12,7 @@ concurrency:
 jobs:
   local-editor:
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,7 +43,7 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/pg-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/pg-browser/node_modules/.bin/playwright" install --with-deps chromium firefox webkit
-      - name: Actual React editor acceptance in three engines and two widths
+      - name: Unified local editor acceptance in three engines and three widths
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
           PG_EVIDENCE_DIR: ${{ runner.temp }}/pg-evidence
@@ -52,7 +52,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done
-          node scripts/verify-playground-editor-browser.mjs
+          node scripts/verify-playground-local-release.mjs
           node scripts/verify-hero-browser.mjs
           node scripts/verify-digital-experiences-browser.mjs
           node scripts/verify-business-systems-browser.mjs
@@ -131,7 +131,7 @@ jobs:
           PG_BASE_URL: https://eidosworks.pages.dev
           PG_ENGINES: chromium
         run: |
-          node scripts/verify-playground-editor-browser.mjs
+          node scripts/verify-playground-local-release.mjs
           node scripts/verify-quote-desk-browser.mjs
       - name: Verify stable production indexing and retained exclusions
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

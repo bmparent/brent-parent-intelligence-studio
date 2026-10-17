@@ -1,0 +1,17 @@
+{
+  "family": "DM Sans",
+  "license": "SIL Open Font License 1.1",
+  "source_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf",
+  "source_sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d",
+  "subset_file": "dm-sans-latin-variable.woff",
+  "subset_sha256": "f5be6a3cab40949994c639b2c29b270d389b9916b3ca692e5a897ae5eeb4c517",
+  "subset_bytes": 80464,
+  "subset_tool": "fontTools 4.38.0",
+  "subset_unicode_ranges": ["U+0020-00FF", "U+2000-206F", "U+2190-2193", "U+21A9"],
+  "axes": {
+    "wght": { "min": 100, "default": 400, "max": 1000 },
+    "opsz": { "min": 9, "default": 9, "max": 40 }
+  },
+  "captured_date": "2026-10-13",
+  "notes": "Variable axes retained. Original upstream bytes and a one-time preparation script were preserved outside the repository. The output hash is the authoritative bundled identity; upstream main may change."
+}
