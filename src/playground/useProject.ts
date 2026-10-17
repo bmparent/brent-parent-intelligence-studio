@@ -3,6 +3,8 @@ import { createProject, validateProject, type Project } from './model';
 import { loadWorkspace, saveWorkspace, listSavedProjects, type Saved, type SavedProjectSummary, type Snapshot } from './storage';
 import { editorSelection, workspace, workspaceReducer, type EditorSelection, type SaveTarget } from './workspace';
 
+const EMPTY_SNAPSHOTS: Snapshot[] = [];
+
 export function useProject() {
   const [state, dispatch] = useReducer(workspaceReducer, undefined, () => workspace(createProject(), crypto.randomUUID()));
   const generation = useRef(0), persistenceGeneration = useRef(0), switching = useRef(false);
@@ -11,9 +13,10 @@ export function useProject() {
   // This identity stays stable: Preview uses it to avoid rebuilding during a drag.
   const guard = useCallback(() => { const captured = generation.current; return () => captured === generation.current; }, []);
   const [ready, setReady] = useState(false), [started, setStarted] = useState(false), [hasSavedProject, setHasSavedProject] = useState(false);
-  const [snapshots, setSnapshots] = useState<Snapshot[]>([]), [savedProjects, setSavedProjects] = useState<SavedProjectSummary[]>([]);
+  const [snapshotsByDocument, setSnapshotsByDocument] = useState<Record<string, Snapshot[]>>({}), [savedProjects, setSavedProjects] = useState<SavedProjectSummary[]>([]);
   const [savedState, setSavedState] = useState<Saved | null>(null), [storageError, setStorageError] = useState('');
   const { project, documentId, editor } = state.current;
+  const snapshots = snapshotsByDocument[documentId] || EMPTY_SNAPSHOTS;
   const savedValue = (): Saved => ({ project, documentId, editor, snapshots, revision: editVersion, savedAt: new Date().toISOString() });
   function remember(value: Saved) {
     setSavedState(value);
@@ -26,7 +29,7 @@ export function useProject() {
       if (cancelled) return;
       if (saved) {
         dispatch({type:'load',project:saved.project,documentId:saved.documentId,editor:saved.editor});
-        setSnapshots(saved.snapshots); bumpEditVersion(saved.revision); setSavedState(saved); setHasSavedProject(true);
+        setSnapshotsByDocument(values => ({...values, [saved.documentId]: saved.snapshots})); bumpEditVersion(saved.revision); setSavedState(saved); setHasSavedProject(true);
       }
       setSavedProjects(projects); setReady(true);
     }).catch(() => {
@@ -82,7 +85,7 @@ export function useProject() {
       generation.current++; persistenceGeneration.current++; gesture.current = undefined;
       const identity = saved?.documentId || newIdentity || crypto.randomUUID();
       dispatch({type:'load',project:valid,documentId:identity,editor:saved?.editor});
-      setSnapshots(saved?.snapshots || []); bumpEditVersion(saved?.revision ?? 0);
+      setSnapshotsByDocument(values => ({...values, [identity]: saved?.snapshots || []})); bumpEditVersion(saved?.revision ?? 0);
       setSavedState(null); setHasSavedProject(true); setStarted(true);
       return true;
     } finally { switching.current = false; }
@@ -115,10 +118,21 @@ export function useProject() {
     revision: editVersion, saveNow, snapshots,
     status: storageError || (!ready ? 'Opening workspace…' : !hasSavedProject ? 'Choose a starting point' : dirty ? 'Saving…' : 'Saved on this device'),
     storageError, target: state.current.target, documentId, guard,
-    replace: (next: Project, target?: SaveTarget | null) => {
-      const valid = validateProject(next);
-      changed(); gesture.current = undefined; setHasSavedProject(true); setStarted(true);
-      dispatch({type:'replace',project:valid,target,documentId:crypto.randomUUID()});
+    replace: async (next: Project, target?: SaveTarget | null) => {
+      if (!ready || switching.current) return false;
+      const valid = validateProject(next), captured = generation.current;
+      switching.current = true;
+      try {
+        // Import/restore creates a new identity, but must persist the outgoing
+        // document first. Undo is a convenience, not its only durable backup.
+        if (hasSavedProject && !await saveNow()) return false;
+        if (captured !== generation.current) return false;
+        const identity = crypto.randomUUID();
+        changed(); gesture.current = undefined; setHasSavedProject(true); setStarted(true);
+        setSnapshotsByDocument(values => ({...values, [identity]: []}));
+        dispatch({type:'replace',project:valid,target,documentId:identity});
+        return true;
+      } finally { switching.current = false; }
     },
     acknowledge: (id: string, target: SaveTarget) => dispatch({type:'saved',documentId:id,target}),
     edit: (next: Project | ((current: Project) => Project), group?: string) => {
@@ -128,7 +142,7 @@ export function useProject() {
     redo: () => { changed(); gesture.current = undefined; dispatch({type:'redo'}); },
     canUndo: !!state.past.length, canRedo: !!state.future.length,
     saveSnapshot: (name: string) => {
-      changed(); setSnapshots(v => [{id:crypto.randomUUID(),name,project,savedAt:new Date().toISOString()},...v].slice(0,5));
+      changed(); setSnapshotsByDocument(values => ({...values, [documentId]: [{id:crypto.randomUUID(),name,project,savedAt:new Date().toISOString()},...(values[documentId] || [])].slice(0,5)}));
     },
   };
 }

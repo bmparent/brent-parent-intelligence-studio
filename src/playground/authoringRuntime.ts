@@ -24,7 +24,7 @@ export function authoringRuntime(initial: {
             return;
         const all = roots.flatMap(root => Array.from(root.querySelectorAll<HTMLElement>('[data-node]')));
         const style = document.createElement('style');
-        style.textContent = `.pg-node-selected{outline:2px solid #bce886;outline-offset:3px}.pg-node-toolbar{position:fixed;z-index:11000;display:flex;gap:3px;flex-wrap:wrap;max-width:calc(100vw - 12px);padding:4px;background:#15242c;color:white;border:1px solid #bce886;border-radius:8px;box-shadow:0 3px 16px #0004}.pg-node-toolbar button,.pg-node-resize{font:600 calc(12 * var(--pg-chrome-unit,1px)) Arial,sans-serif;min-height:calc(44 * var(--pg-chrome-unit,1px));min-width:calc(44 * var(--pg-chrome-unit,1px));border:0;border-radius:5px;background:#243c47;color:white;cursor:pointer}.pg-node-toolbar [data-drag],.pg-node-resize{touch-action:none;cursor:grab}.pg-node-resize{position:absolute;right:0;bottom:0;z-index:10;cursor:nwse-resize}.pg-node-ghost{position:fixed!important;inset:0 auto auto 0!important;z-index:10998!important;pointer-events:none!important;opacity:.8!important;margin:0!important;outline:2px solid #bce886;overflow:hidden}.pg-node-ghost *{pointer-events:none!important}.pg-node-placeholder{opacity:.25!important}.pg-node-destination{position:fixed;z-index:10999;pointer-events:none;border:2px dashed #bce886;background:#142b38dc;color:white;font:600 12px Arial;padding:6px;border-radius:5px;box-sizing:border-box}.pg-node [contenteditable]{outline:2px solid #bce886;user-select:text;cursor:text}.pg-node-resize[data-split]{right:calc(50% - 22px);top:0;bottom:auto;cursor:col-resize}`;
+        style.textContent = `.pg-node-selected{outline:2px solid #bce886;outline-offset:3px}.pg-node-toolbar{position:fixed;z-index:11000;display:flex;gap:3px;flex-wrap:nowrap;width:max-content;max-width:calc(100vw - 12px);box-sizing:border-box;overflow-x:auto;padding:4px;background:#15242c;color:white;border:1px solid #bce886;border-radius:8px;box-shadow:0 3px 16px #0004}.pg-node-toolbar>*{flex-shrink:0}.pg-node-toolbar button{white-space:nowrap}.pg-node-toolbar button,.pg-node-resize{font:600 calc(12 * var(--pg-chrome-unit,1px)) Arial,sans-serif;min-height:calc(44 * var(--pg-chrome-unit,1px));min-width:calc(44 * var(--pg-chrome-unit,1px));border:0;border-radius:5px;background:#243c47;color:white;cursor:pointer}.pg-node-toolbar [data-drag],.pg-node-resize{touch-action:none;cursor:grab}.pg-node-resize{position:absolute;right:0;bottom:0;z-index:10;cursor:nwse-resize}.pg-node-ghost{position:fixed!important;inset:0 auto auto 0!important;z-index:10998!important;pointer-events:none!important;opacity:.8!important;margin:0!important;outline:2px solid #bce886;overflow:hidden}.pg-node-ghost *{pointer-events:none!important}.pg-node-placeholder{opacity:.25!important}.pg-node-destination{position:fixed;z-index:10999;pointer-events:none;border:2px dashed #bce886;background:#142b38dc;color:white;font:600 12px Arial;padding:6px;border-radius:5px;box-sizing:border-box}.pg-node [contenteditable]{outline:2px solid #bce886;user-select:text;cursor:text}.pg-node-resize[data-split]{right:calc(50% - 22px);top:0;bottom:auto;cursor:col-resize}`;
         document.head.append(style);
         style.textContent += '.pg-node-hover:not(.pg-node-selected){outline:1px dashed #719b58;outline-offset:3px}.pg-node-drop-container{outline:2px dashed #bce886;outline-offset:5px}.pg-node-label{align-self:center;padding:0 8px;font:600 12px Arial;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}';
         style.textContent += '.pg-layout-guides{position:fixed;inset:0;width:100%;height:100%;z-index:10997;overflow:hidden;pointer-events:none}.pg-layout-guides text{font:600 calc(12 * var(--pg-chrome-unit,1px)) Arial,sans-serif;fill:#fff;stroke:#15242c;stroke-width:4px;paint-order:stroke}.pg-node-toolbar [aria-pressed="true"]{background:#bce886;color:#15242c}';
@@ -91,8 +91,18 @@ export function authoringRuntime(initial: {
         function finishText(commit: boolean) { const old = textEdit; if (!old)
             return; textEdit = null; const text = old.el.textContent || ''; old.el.removeAttribute('contenteditable'); old.el.textContent = old.original; if (commit && text !== old.original)
             send({ action: 'command', operation: { type: 'patch', id: old.node.id, patch: { text } } }, old.stamp); }
-        function position() { const el = document.getElementById(selected); if (!el || !toolbar)
-            return; const r = el.getBoundingClientRect(); toolbar.style.left = Math.max(6, Math.min(innerWidth - toolbar.offsetWidth - 6, r.left)) + 'px'; toolbar.style.top = Math.max(6, Math.min(innerHeight - toolbar.offsetHeight - 6, r.top - toolbar.offsetHeight - 5)) + 'px'; drawGuides(el); }
+        function position() {
+            const el = document.getElementById(selected);
+            if (!el || !toolbar) return;
+            const r = el.getBoundingClientRect(), height = toolbar.offsetHeight;
+            const above = r.top - height - 5, below = r.bottom + 5;
+            // Never clamp an above-block toolbar onto the block's first line.
+            // Large containers get a bottom dock, leaving their top content usable.
+            const top = above >= 6 ? above : below + height <= innerHeight - 6 ? below : innerHeight - height - 6;
+            toolbar.style.left = Math.max(6, Math.min(innerWidth - toolbar.offsetWidth - 6, r.left)) + 'px';
+            toolbar.style.top = Math.max(6, Math.min(innerHeight - height - 6, top)) + 'px';
+            drawGuides(el);
+        }
         function drawGuides(selectedNode: HTMLElement) {
             const moving = gesture?.active && gesture.kind === 'move';
             const automatic = gesture?.active && gesture.kind !== 'crop';
@@ -208,7 +218,15 @@ export function authoringRuntime(initial: {
                 send({ action: 'select', id: node.id, sectionId: node.closest('[data-authoring]')!.id });
         }
         function start(event: PointerEvent, node: HTMLElement, kind: Gesture['kind']) { if (!event.isPrimary || event.button !== 0)
-            return; event.preventDefault(); event.stopPropagation(); cancel(); finishText(true); const rect = node.getBoundingClientRect(); gesture = { kind, node, handle: event.currentTarget as HTMLButtonElement, pointer: event.pointerId, x: event.clientX, y: event.clientY, sx: event.clientX, sy: event.clientY, rect, parentRect: node.parentElement!.getBoundingClientRect(), originalStyle: node.getAttribute('style'), ghost: null, stamp: config.compositionStamp!, active: false, patch: {}, target: null, time: 0, lastSample: performance.now(), sample: 0, dirty: true, geometry: new Map(), extra: [] }; gesture.handle.setPointerCapture(event.pointerId); }
+            return;
+            event.preventDefault(); event.stopPropagation(); cancel(); finishText(true);
+            // Preventing pointerdown also suppresses native focus in Firefox/WebKit.
+            // Own keyboard focus before capture so Escape reaches this document even
+            // when the last action was a parent-editor control such as Save.
+            const handle = event.currentTarget as HTMLButtonElement;
+            const focusTarget = kind === 'crop' ? toolbar?.querySelector('button') : handle;
+            focusTarget?.focus({ preventScroll: true });
+            const rect = node.getBoundingClientRect(); gesture = { kind, node, handle: event.currentTarget as HTMLButtonElement, pointer: event.pointerId, x: event.clientX, y: event.clientY, sx: event.clientX, sy: event.clientY, rect, parentRect: node.parentElement!.getBoundingClientRect(), originalStyle: node.getAttribute('style'), ghost: null, stamp: config.compositionStamp!, active: false, patch: {}, target: null, time: 0, lastSample: performance.now(), sample: 0, dirty: true, geometry: new Map(), extra: [] }; gesture.handle.setPointerCapture(event.pointerId); }
         function destination(g: Gesture): Target | null {
             if (g.dirty) {
                 g.geometry = new Map(all.map(el => [el, el.getBoundingClientRect()]));

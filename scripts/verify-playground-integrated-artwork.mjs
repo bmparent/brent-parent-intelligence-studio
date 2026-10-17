@@ -1,3 +1,4 @@
+import { launchOptions, guardLocalEditor } from './playground-local-browser-guard.mjs';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -8,13 +9,13 @@ import path from 'node:path';
 import { flattenNodes } from '../src/playground/authoringSchema.ts';
 
 const pw=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright');
-const base=process.env.PG_BASE_URL||'http://127.0.0.1:5184',out=path.resolve(process.env.PG_ARTWORK_EVIDENCE||'artifacts/playground-unified/integrated-artwork');
+const base=process.env.PG_BASE_URL||'http://127.0.0.1:4173',out=path.resolve(process.env.PG_ARTWORK_EVIDENCE||'artifacts/playground-unified/integrated-artwork');
 const receipt={timestamp:new Date().toISOString(),base,source:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),environment:`${process.platform}/${process.arch}, Node ${process.version}; external Playwright; Browser plugin not available`,limitations:['Browser viewport tests are not physical-device or unfamiliar-user acceptance.','Artwork is inserted as a bounded PNG; editable objects remain in the same project. Page-level arbitrary object positioning is not implied.'],sourceFiles:{},records:[]};
 for(const name of ['src/playground/UnifiedPanels.tsx','src/playground/ArtworkStudio.tsx','src/playground/artworkSchema.ts','src/playground/artworkRenderer.ts','scripts/verify-playground-integrated-artwork.mjs'])receipt.sourceFiles[name]=createHash('sha256').update(await readFile(name)).digest('hex');
 await mkdir(out,{recursive:true});
 for(const engine of (process.env.PG_ENGINES||'chromium').split(',')){
- const browser=await pw[engine].launch({headless:true,...(engine==='chromium'?{args:['--disable-gpu']}: {})});
- for(const width of [1440,390]){
+ const browser=await pw[engine].launch(launchOptions(engine));
+ for(const width of (process.env.PG_WIDTHS || '1440,390,320').split(',').map(Number)){
   const run=path.join(out,engine,String(width));await mkdir(run,{recursive:true});
   const context=await browser.newContext({viewport:{width,height:1000},acceptDownloads:true,reducedMotion:'reduce',hasTouch:width===390,...(engine==='chromium'&&width===390?{isMobile:true}:{})}),page=await context.newPage();page.setDefaultTimeout(20000);page.setDefaultNavigationTimeout(60000);
   const record={engine,width,checks:[],errors:[],downloads:0,apiCalls:[]};receipt.records.push(record);
@@ -25,7 +26,7 @@ for(const engine of (process.env.PG_ENGINES||'chromium').split(',')){
   const assets=async()=>{await panel('Build');await page.getByRole('navigation',{name:'Build tools'}).getByRole('button',{name:'Assets',exact:true}).click();};
   const save=async()=>{await page.locator('.pg-save-inline').click();await page.waitForFunction(()=>document.querySelector('.pg-save-inline')?.textContent.includes('Saved on this device'));return page.evaluate(()=>new Promise((resolve,reject)=>{const request=indexedDB.open('eidos-playground-v1',1);request.onsuccess=()=>{const db=request.result,read=db.transaction('workspace').objectStore('workspace').get('current');read.onsuccess=()=>{db.close();resolve(read.result);};read.onerror=()=>reject(read.error);};request.onerror=()=>reject(request.error);}));};
   try{
-   await page.goto(base+'/playground/',{waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'What are you making?'}).waitFor();await page.getByRole('button',{name:/Switchboard/}).click();await page.getByLabel('Business or project name').fill('Artwork acceptance');await page.getByRole('button',{name:/Create project/}).click();await page.locator('.pg-unified').waitFor();
+   const assertLocalOnly = await guardLocalEditor(page);await page.goto(base+'/playground/',{waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'What are you making?'}).waitFor();await page.getByRole('button',{name:/Switchboard/}).click();await page.getByLabel('Business or project name').fill('Artwork acceptance');await page.getByRole('button',{name:/Create project/}).click();await page.locator('.pg-unified').waitFor();
    await page.getByRole('button',{name:'1 Content',exact:true}).click();const original=await save();await assets();await page.getByRole('button',{name:'Create artwork',exact:true}).click();
    const dialog=page.getByRole('dialog',{name:'Original artwork',exact:true});await dialog.waitFor();await dialog.getByRole('button',{name:'botanical poster',exact:true}).click();
    await dialog.getByLabel('Accent palette',{exact:true}).fill('#71905b');await dialog.getByLabel('Accent palette',{exact:true}).dispatchEvent('input');
@@ -56,7 +57,7 @@ for(const engine of (process.env.PG_ENGINES||'chromium').split(',')){
    while(bytes.readUInt32LE(offset)===0x04034b50){assert.equal(bytes.readUInt16LE(offset+8),0);const size=bytes.readUInt32LE(offset+18),length=bytes.readUInt16LE(offset+26),extra=bytes.readUInt16LE(offset+28),name=bytes.subarray(offset+30,offset+30+length).toString();assert.ok(!name.includes('..')&&!path.isAbsolute(name));const start=offset+30+length+extra,dest=path.join(extracted,name);await mkdir(path.dirname(dest),{recursive:true});await writeFile(dest,bytes.subarray(start,start+size));offset=start+size;}
    assert.deepEqual(JSON.parse(await readFile(path.join(extracted,'project.json'),'utf8')),inserted.project);assert.deepEqual(await readFile(path.join(extracted,'assets',image.id+'.png')),raw);
    const independent=await context.newPage();independent.on('pageerror',error=>record.errors.push(error.message));await independent.goto(pathToFileURL(path.join(extracted,'index.html')).href);await independent.locator('#'+image.id+' img').waitFor();assert.equal(await independent.locator('#'+image.id+' img').evaluate(img=>img.complete&&img.naturalWidth===720),true);await independent.locator('#'+image.id).scrollIntoViewIfNeeded();await independent.screenshot({path:path.join(run,'03-independent.png')});await independent.close();record.archive={bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};check('actual Finish ZIP retains exact artwork image/source and opens independently');
-   assert.equal(record.errors.length,0);assert.equal(await page.locator('vite-error-overlay').count(),0);assert.equal(record.downloads,1);assert.ok(record.apiCalls.every(name=>['/api/public-config','/api/members/account'].includes(name)));check('no runtime errors, unintended downloads, AI/payment API calls or blank editor');
+   await assertLocalOnly();assert.equal(record.errors.length,0);assert.equal(await page.locator('vite-error-overlay').count(),0);assert.equal(record.downloads,1);assert.ok(record.apiCalls.every(name=>['/api/public-config','/api/members/account'].includes(name)));check('no runtime errors, unintended downloads, AI/payment API calls or blank editor');
   }catch(error){record.failure=error.stack;console.error(error.stack);process.exitCode=1;await page.screenshot({path:path.join(run,'failure.png'),fullPage:true}).catch(()=>{});}
   finally{await context.close();receipt.completedAt=new Date().toISOString();await writeFile(path.join(out,'receipt.json'),JSON.stringify(receipt,null,2)+'\n');}
  }

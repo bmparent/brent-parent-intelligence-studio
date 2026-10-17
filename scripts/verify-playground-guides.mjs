@@ -1,3 +1,4 @@
+import { launchOptions, guardLocalEditor } from './playground-local-browser-guard.mjs';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -9,14 +10,15 @@ import { enableBlocks } from '../src/playground/authoring.ts';
 import { newNode } from '../src/playground/authoringSchema.ts';
 import { runtimeScript } from '../src/playground/renderer.ts';
 
-const require = createRequire(import.meta.url), { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const require = createRequire(import.meta.url), pw = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const before = process.env.PG_GUIDE_BEFORE === '1';
 const out = process.env.PG_GUIDE_EVIDENCE || `artifacts/playground-unified/continuation-guides/${before ? 'before' : 'after'}`;
 await mkdir(out, { recursive: true });
-const browser = await chromium.launch({ headless: true, args: ['--disable-gpu'] });
+const engine = process.env.PG_ENGINE || 'chromium';
+const browser = await pw[engine].launch(launchOptions(engine));
 const page = await browser.newPage({ viewport: { width: 1600, height: 1050 }, reducedMotion: 'reduce' });
 page.setDefaultTimeout(15000);
-const receipt = { source: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), workingTreeDirty: Boolean(execFileSync('git', ['status', '--porcelain'], { encoding: 'utf8' }).trim()), sourceFiles: {}, timestamp: new Date().toISOString(), before, checks: [], errors: [], measurements: [], environment: 'Actual Chromium pointer/keyboard controls, GPU disabled, reduced motion; not physical-device acceptance' };
+const receipt = { source: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), workingTreeDirty: Boolean(execFileSync('git', ['status', '--porcelain'], { encoding: 'utf8' }).trim()), sourceFiles: {}, timestamp: new Date().toISOString(), before, checks: [], errors: [], measurements: [], environment: `${engine} pointer/keyboard controls, Chromium GPU disabled, reduced motion; not physical-device acceptance` };
 for (const name of ['src/playground/authoringRuntime.ts', 'src/playground/runtimeBundle.ts', 'scripts/verify-playground-guides.mjs']) receipt.sourceFiles[name] = createHash('sha256').update(await readFile(name)).digest('hex');
 page.on('pageerror', error => receipt.errors.push(error.message));
 const check = name => { receipt.checks.push(name); console.log('PASS ' + name); };
@@ -26,7 +28,7 @@ const save = async () => {
   return page.evaluate(() => new Promise((resolve, reject) => { const r = indexedDB.open('eidos-playground-v1', 1); r.onsuccess = () => { const db = r.result, read = db.transaction('workspace').objectStore('workspace').get('current'); read.onsuccess = () => { db.close(); resolve(read.result.project); }; read.onerror = () => reject(read.error); }; r.onerror = () => reject(r.error); }));
 };
 try {
-  await page.goto((process.env.PG_BASE_URL || 'http://127.0.0.1:5184') + '/playground/', { waitUntil: 'domcontentloaded' });
+  const assertLocalOnly = await guardLocalEditor(page);await page.goto((process.env.PG_BASE_URL || 'http://127.0.0.1:4173') + '/playground/', { waitUntil: 'domcontentloaded' });
   await page.getByRole('button', { name: /Switchboard/ }).click();
   await page.getByRole('button', { name: /Create project/ }).click();
   await page.locator('.pg-unified').waitFor();
@@ -98,7 +100,7 @@ try {
     check('Preview excludes all guide chrome');
     assert.equal(runtimeScript(baseline, false).includes('pg-layout-guides'), false);
     check('export runtime contains no guide implementation');
-    assert.equal(receipt.errors.length, 0);
+    await assertLocalOnly();assert.equal(receipt.errors.length, 0);
   }
 } catch (error) { receipt.failure = error.stack; console.error(error.stack); await page.screenshot({ path: path.resolve(out, 'failure.png') }).catch(() => {}); process.exitCode = 1; }
 finally { await writeFile(path.join(out, 'receipt.json'), JSON.stringify(receipt, null, 2) + '\n'); await browser.close(); }

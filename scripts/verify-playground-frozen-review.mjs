@@ -1,14 +1,16 @@
+import { launchOptions, guardLocalEditor } from './playground-local-browser-guard.mjs';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
-import { readBuyerZip } from '../src/templates/buyerDerivative.ts';
+import { readLocalZip } from './playground-local-browser-guard.mjs';
 import { hashBytes } from '../src/playground/purchaseSnapshot.ts';
-const require = createRequire(import.meta.url), { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const base = process.env.PG_REVIEW_URL || 'http://127.0.0.1:5184/playground/';
+const require = createRequire(import.meta.url), pw = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const base = process.env.PG_REVIEW_URL || 'http://127.0.0.1:4173/playground/';
 const out = process.env.PG_REVIEW_EVIDENCE || 'artifacts/playground-unified/frozen-review';
 await mkdir(out, { recursive: true });
-const receipt = { kind: 'Local Chromium frozen review; no server order, payment, mail, or entitlement acceptance', base, checks: [], failures: [], errors: [], apiRequests: [] };
-const browser = await chromium.launch({ headless: true });
+const receipt = { kind: (process.env.PG_ENGINE||'chromium')+' frozen review; no server order, payment, mail, or entitlement acceptance', base, checks: [], failures: [], errors: [], apiRequests: [] };
+const engine = process.env.PG_ENGINE || 'chromium';
+const browser = await pw[engine].launch(launchOptions(engine));
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true, reducedMotion: 'reduce' });
 const page = await context.newPage(); page.setDefaultTimeout(15000);
 page.on('pageerror', error => receipt.errors.push(error.message));
@@ -27,7 +29,7 @@ const closeFinish = () => page.getByRole('button', { name: 'Close finish review'
 async function downloadZip(name) { const pending = page.waitForEvent('download'); await page.getByRole('button', { name: 'Download page package', exact: true }).click(); const download = await pending; await download.saveAs(out + '/' + name + '.zip'); return new Uint8Array(await readFile(out + '/' + name + '.zip')); }
 async function check(name, action) { try { await action(); receipt.checks.push(name); console.log('PASS ' + name); } catch (error) { receipt.failures.push({ name, error: error.message }); await page.screenshot({ path: out + '/failure.png', fullPage: true }); throw error; } }
 try {
-  await page.goto(base); await page.getByRole('heading', { name: 'What are you making?' }).waitFor();
+  const assertLocalOnly = await guardLocalEditor(page);await page.goto(base); await page.getByRole('heading', { name: 'What are you making?' }).waitFor();
   await check('missing bundled artwork does not block an uploaded-photo starter', async () => {
     await page.getByRole('button', { name: /Switchboard/ }).click();
     await page.getByLabel('Business or project name').fill('Frozen version A');
@@ -46,7 +48,7 @@ try {
     frozen = await review(first.documentId);
     assert.deepEqual(frozen.snapshot.project, first.project); assert.equal(frozen.snapshot.revision, first.revision);
     assert.equal(frozen.snapshot.parent.editionId, 'switchboard-developer-v1');
-    assert.equal(await page.getByRole('button', { name: 'Purchase unavailable' }).isDisabled(), true);
+    assert.equal(await page.getByRole('button', { name: /purchase|checkout|recovery/i }).count(), 0);
     const frame = page.frameLocator('iframe[title="Frozen package preview"]');
     await frame.getByRole('heading', { level: 1 }).waitFor();
     assert.equal(await frame.locator('body').evaluate(() => innerWidth), 1280);
@@ -58,7 +60,7 @@ try {
     await page.getByLabel('I reviewed this frozen version for my local download.', { exact: true }).check();
     firstZip = await downloadZip('revision-a');
     assert.equal(await hashBytes(firstZip), frozen.receipt.archiveSha256);
-    const files = await readBuyerZip(firstZip), editable = JSON.parse(new TextDecoder().decode(files.find(file => file.name === 'project.json').data));
+    const files = await readLocalZip(firstZip), editable = JSON.parse(new TextDecoder().decode(files.find(file => file.name === 'project.json').data));
     assert.deepEqual(editable, first.project); receipt.initialSnapshotHash = frozen.snapshot.snapshotHash; receipt.initialArchiveSha256 = frozen.receipt.archiveSha256;
   });
   await check('later draft edits and reload preserve the exact frozen revision and download', async () => {
@@ -89,6 +91,6 @@ try {
     await page.getByRole('alert').filter({ hasText: /PNG image is incomplete/ }).waitFor();
     assert.equal(await reviewHead(imported.documentId), null); assert.ok(await reviewHead(first.documentId));
   });
-  await check('frozen preparation does not call a payment, mail, AI, storage, or provider API', async () => { assert.deepEqual(receipt.apiRequests, []); assert.deepEqual(receipt.errors, []); });
+  await assertLocalOnly();await check('frozen preparation does not call a payment, mail, AI, storage, or provider API', async () => { assert.deepEqual(receipt.apiRequests, []); assert.deepEqual(receipt.errors, []); });
 } catch (error) { receipt.error = error.message; process.exitCode = 1; }
 finally { await browser.close(); receipt.timestamp = new Date().toISOString(); await writeFile(out + '/receipt.json', JSON.stringify(receipt, null, 2) + '\n'); console.log(JSON.stringify(receipt, null, 2)); }

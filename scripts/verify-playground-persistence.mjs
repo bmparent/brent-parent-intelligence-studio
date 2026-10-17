@@ -1,15 +1,17 @@
+import { launchOptions, guardLocalEditor } from './playground-local-browser-guard.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
 import {createProject,upgradeProject} from '../src/playground/model.ts';
 import {enableComposition} from '../src/playground/composition.ts';
 import {enableBlocks} from '../src/playground/authoring.ts';
-const require=createRequire(import.meta.url), {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
-const base=process.env.PG_PERSISTENCE_URL||'http://127.0.0.1:5184/playground/';
+const require=createRequire(import.meta.url), pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const base=process.env.PG_PERSISTENCE_URL||'http://127.0.0.1:4173/playground/';
 const out=process.env.PG_PERSISTENCE_EVIDENCE||'artifacts/playground-unified/persistence';
 await mkdir(out,{recursive:true});
-const receipt={kind:'Chromium desktop browser; local candidate; no provider/cloud/payment acceptance',base,checks:[],failures:[],consoleErrors:[]};
-const browser=await chromium.launch({headless:true});
+const receipt={kind:(process.env.PG_ENGINE||'chromium')+' desktop browser; local candidate; no provider/cloud/payment acceptance',base,checks:[],failures:[],consoleErrors:[]};
+const engine=process.env.PG_ENGINE||'chromium';
+const browser=await pw[engine].launch(launchOptions(engine));
 const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'}), page=await context.newPage();
 page.on('pageerror',error=>receipt.consoleErrors.push(error.message));
 page.on('dialog',dialog=>dialog.accept());
@@ -18,7 +20,7 @@ const seed=value=>page.evaluate(async value=>new Promise((resolve,reject)=>{cons
 const saved=async()=>{await page.locator('.pg-save-inline').filter({hasText:'Saved on this device'}).waitFor({timeout:15000});return read();};
 async function check(name,run){try{await run();receipt.checks.push(name);console.log('PASS '+name);}catch(error){receipt.failures.push({name,error:error.message});await page.screenshot({path:out+'/failure-'+receipt.failures.length+'.png',fullPage:true});throw error;}}
 try {
-  await page.goto(base);await page.getByRole('heading',{name:/Make something/}).waitFor();
+  const assertLocalOnly = await guardLocalEditor(page);await page.goto(base);await page.getByRole('heading',{name:'What are you making?'}).waitFor();
   await check('clean visit writes no unexplained starter',async()=>{await page.waitForTimeout(800);assert.equal(await read(),null);assert.equal(await page.getByRole('button',{name:/Continue project/}).count(),0);});
   const fixtures=[createProject(),upgradeProject(createProject()),enableComposition(createProject()),enableBlocks(createProject())];
   for(const project of fixtures){
@@ -62,7 +64,7 @@ try {
     await page.evaluate(()=>window.releaseSavedRead());const current=await saved();assert.equal(current.project.name,'Continued manual work');assert.notEqual(current.documentId,previous.documentId);
     await page.reload();await page.getByRole('button',{name:/Continue project/}).click();assert.equal(await page.getByRole('textbox',{name:'Project name',exact:true}).inputValue(),'Continued manual work');
   });
-  await check('no app runtime errors or framework overlay',async()=>{assert.deepEqual(receipt.consoleErrors,[]);assert.equal(await page.locator('vite-error-overlay').count(),0);});
+  await assertLocalOnly();await check('no app runtime errors or framework overlay',async()=>{assert.deepEqual(receipt.consoleErrors,[]);assert.equal(await page.locator('vite-error-overlay').count(),0);});
   await page.screenshot({path:out+'/continued-project.png',fullPage:true});
 }catch(error){receipt.error=error.message;process.exitCode=1;}
 finally{await browser.close();receipt.timestamp=new Date().toISOString();await writeFile(out+'/receipt.json',JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt,null,2));}
