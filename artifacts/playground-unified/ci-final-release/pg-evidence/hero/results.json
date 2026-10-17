@@ -1,0 +1,119 @@
+[
+  {
+    "engine": "chromium",
+    "width": 320,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "renderScale": "1.00",
+    "motion": "playing",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "renderScale": "1.00",
+    "motion": "playing",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 768,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "renderScale": "1.00",
+    "motion": "playing",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "renderScale": "1.00",
+    "motion": "playing",
+    "measuredFps": "6.4",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "width": 320,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "motion": "unavailable",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "width": 390,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "motion": "unavailable",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "width": 768,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "motion": "unavailable",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "width": 1440,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "motion": "unavailable",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 320,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "renderScale": "1.00",
+    "motion": "playing",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "renderScale": "1.00",
+    "motion": "playing",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 768,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "renderScale": "1.00",
+    "motion": "playing",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 1440,
+    "motionAmount": "0.45",
+    "water": "0.41",
+    "light": "0.38",
+    "renderScale": "1.00",
+    "motion": "playing",
+    "passed": true
+  }
+]

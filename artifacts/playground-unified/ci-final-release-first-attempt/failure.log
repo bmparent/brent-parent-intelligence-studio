@@ -1,0 +1,123 @@
+local-editor	Actual React editor acceptance in three engines and two widths	﻿2026-10-14T19:20:43.7902323Z ##[group]Run npm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7902888Z [36;1mnpm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7903234Z [36;1mSERVER_PID=$![0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7903484Z [36;1mtrap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7903919Z [36;1mfor i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7904363Z [36;1mnode scripts/verify-playground-unified-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7904740Z [36;1mnode --import tsx scripts/verify-playground-persistence.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7905126Z [36;1mnode --import tsx scripts/verify-playground-unified-gestures.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7905463Z [36;1mnode scripts/verify-hero-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7905757Z [36;1mnode scripts/verify-digital-experiences-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7906084Z [36;1mnode scripts/verify-business-systems-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7906408Z [36;1mnode scripts/verify-quote-desk-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7906702Z [36;1mnode scripts/verify-intelligent-systems-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7967240Z shell: /usr/bin/bash -e {0}
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7967473Z env:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7967763Z   PLAYWRIGHT_MODULE: /home/runner/work/_temp/pg-browser/node_modules/playwright
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7968141Z   PG_EVIDENCE_DIR: /home/runner/work/_temp/pg-evidence
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7968412Z   PG_BASE_URL: http://127.0.0.1:4173
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7968969Z   PG_ENGINES: chromium,firefox,webkit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7969241Z   PG_PERSISTENCE_URL: http://127.0.0.1:4173/playground/
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.7969490Z ##[endgroup]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:43.8339272Z curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Connection refused
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:46.6651697Z 1440: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:47.1076668Z 1440: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:47.3812926Z 1440: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:47.5655322Z 1440: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:47.8967277Z 1440: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:49.1818882Z 1440: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:49.2983869Z 1440: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:49.6591037Z 1440: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:50.1042129Z 1440: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:50.1065990Z 1440: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:51.3578171Z 390: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:51.7230001Z 390: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:52.0797463Z 390: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:52.1969754Z 390: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:52.5628889Z 390: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:53.9489628Z 390: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:54.0969225Z 390: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:54.6405626Z 390: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:55.1096767Z 390: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:55.1128391Z 390: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:59.0476547Z 1440: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:20:59.6706982Z 1440: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:00.3504221Z 1440: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:00.5730603Z 1440: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:01.0738959Z 1440: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:02.5745375Z 1440: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:02.7353927Z 1440: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:03.2946336Z 1440: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:03.7695273Z 1440: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:03.7873789Z 1440: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:04.7696428Z 390: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:05.2386781Z 390: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:05.8235146Z 390: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:06.0072747Z 390: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:06.4755228Z 390: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:07.7057820Z 390: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:07.8786049Z 390: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:08.2428377Z 390: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:08.5570136Z 390: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:08.5733589Z 390: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:11.6448113Z 1440: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:15.0165384Z 1440: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:15.9820165Z 1440: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:16.3650967Z 1440: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:17.6009703Z 1440: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:20.1515446Z 1440: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:20.4268790Z 1440: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:23.5858045Z 1440: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:24.8092056Z 1440: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:24.8170159Z 1440: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:26.3738158Z 390: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:27.4035465Z 390: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:27.7670561Z 390: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:27.8982155Z 390: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:28.2878784Z 390: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:29.9804619Z 390: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:30.1402762Z 390: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:31.1721882Z 390: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:31.9826756Z 390: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:31.9860001Z 390: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:34.6237039Z PASS clean visit writes no unexplained starter
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:36.5722417Z PASS legacy schema 1 saved envelope opens and gets stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:38.2322050Z PASS legacy schema 1 file import preserves validator and history
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:40.1587125Z PASS legacy schema 2 saved envelope opens and gets stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:41.8150035Z PASS legacy schema 2 file import preserves validator and history
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:43.7697051Z PASS legacy schema 3 saved envelope opens and gets stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:45.4376994Z PASS legacy schema 3 file import preserves validator and history
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:47.3696893Z PASS legacy schema 4 saved envelope opens and gets stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:49.0273090Z PASS legacy schema 4 file import preserves validator and history
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:49.5277614Z PASS invalid imported JSON leaves project, identity and revision unchanged
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:50.2441346Z PASS explicit new project preserves previous editable document and assets
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.4642546Z PASS delayed saved-project read cannot overwrite continued manual edits
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.4678485Z PASS no app runtime errors or framework overlay
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5787464Z {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5788169Z   "kind": "Chromium desktop browser; local candidate; no provider/cloud/payment acceptance",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5788932Z   "base": "http://127.0.0.1:4173/playground/",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5789322Z   "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5789641Z     "clean visit writes no unexplained starter",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5790126Z     "legacy schema 1 saved envelope opens and gets stable identity",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5790687Z     "legacy schema 1 file import preserves validator and history",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5791255Z     "legacy schema 2 saved envelope opens and gets stable identity",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5791835Z     "legacy schema 2 file import preserves validator and history",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5792395Z     "legacy schema 3 saved envelope opens and gets stable identity",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5793219Z     "legacy schema 3 file import preserves validator and history",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5793778Z     "legacy schema 4 saved envelope opens and gets stable identity",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5794340Z     "legacy schema 4 file import preserves validator and history",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5794914Z     "invalid imported JSON leaves project, identity and revision unchanged",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5795573Z     "explicit new project preserves previous editable document and assets",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5796211Z     "delayed saved-project read cannot overwrite continued manual edits",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5796748Z     "no app runtime errors or framework overlay"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5797112Z   ],
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5797345Z   "failures": [],
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5797620Z   "consoleErrors": [],
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5797938Z   "timestamp": "2026-10-14T19:21:52.577Z"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:52.5798267Z }
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:54.5248236Z AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Movable photograph/. Input:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:54.5249040Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:54.5249456Z '▤\nTwo columns'
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:54.5249638Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:54.5250407Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-unified-gestures.mjs:96:10
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-14T19:21:54.6659566Z ##[error]Process completed with exit code 1.

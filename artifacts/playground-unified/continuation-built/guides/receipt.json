@@ -1,0 +1,34 @@
+{
+  "source": "41f0d1e388220f62ca20d0c5930251276444c40c",
+  "workingTreeDirty": true,
+  "sourceFiles": {
+    "src/playground/authoringRuntime.ts": "6768fbff8b855b0332eba29c48e5e10d1d035aab1dc935f9be7b990420de1973",
+    "src/playground/runtimeBundle.ts": "3185ff7acf232be3149e8abbf993e8880ae0ee55b77e499fc0824af5f17bc2d0",
+    "scripts/verify-playground-guides.mjs": "bb69fe207a336cd06cf65321829f954fde14e11b0854ea358a5cf0643c6a8477"
+  },
+  "timestamp": "2026-10-15T00:07:27.732Z",
+  "before": false,
+  "checks": [
+    "keyboard toggle exposes actual CSS-pixel dimensions, sibling spacing and parent alignment without saving changes",
+    "active resize automatically measures current frame; Escape removes guides and restores exact project",
+    "actual drag measures the destination container and its configured spacing without changing the project on cancellation",
+    "mobile canvas has legible guides without horizontal overflow",
+    "Preview excludes all guide chrome",
+    "export runtime contains no guide implementation"
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "width": 1203.21875,
+      "height": 33,
+      "gap": 32,
+      "pointerEvents": "none"
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "labelFont": 12
+    }
+  ],
+  "environment": "Actual Chromium pointer/keyboard controls, GPU disabled, reduced motion; not physical-device acceptance"
+}

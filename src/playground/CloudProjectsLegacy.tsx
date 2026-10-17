@@ -53,9 +53,9 @@ export function CloudProjects({ project, target: active, documentId, load, ackno
     const history = await api('?id=' + encodeURIComponent(id) + '&revisions=1');
     if (!valid()) return;
     const saved = revision && revision !== result.head ? '' : JSON.stringify(document);
+    if (!await load(document, legacySaveTarget(id, result.head, document.name, saved))) throw Error('Open paused: save your current project and try again.');
     setMessage(revision ? 'Revision opened. Save to make it the latest revision. Undo restores your previous local design.' : 'Project opened. Undo restores your previous local design.');
     setRevisions(history.revisions);
-    load(document, legacySaveTarget(id, result.head, document.name, saved));
   }
   return <details className="pg-project-tools">
     <summary>Account projects</summary>

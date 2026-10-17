@@ -2,3 +2,7 @@
 products/templates/** text eol=lf
 products/platform-pilots/** text eol=lf
 public/template-demos/** text eol=lf
+# Proof inventories cover actual bytes, including logs and independent exports.
+artifacts/playground-unified/** -text
+# Canonical embedded runtimes are checked as exact generated source bytes.
+src/playground/runtimeBundle.ts text eol=lf

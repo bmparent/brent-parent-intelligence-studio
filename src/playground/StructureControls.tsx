@@ -7,7 +7,7 @@ import { defaultMedia } from './media';
 import { StructureControls as OriginalStructureControls } from './StructureControlsOriginal';
 import { EDITOR_RELEASE } from './releaseBoundary';
 
-type Props = { project: Project; selected: string; edit: (project: Project) => void; guard: () => () => boolean; notify: (message: string) => void };
+type Props = { project: Project; selected: string; edit: (project: Project) => void; guard: () => () => boolean; notify: (message: string) => void; sectionOnly?: boolean };
 
 export function StructureControls(props: Props) {
   const { project, edit, guard, notify } = props;
@@ -29,7 +29,7 @@ export function StructureControls(props: Props) {
     } catch (error) { if (valid()) notify(error instanceof Error ? error.message : 'The image could not be opened.'); }
     finally { setUploading(false); }
   }
-  if(project.schemaVersion>=4)return <OriginalStructureControls {...props} />;
+  if(project.schemaVersion>=4 || props.sectionOnly)return <OriginalStructureControls {...props} />;
   return <>
     <section className="pg-project-tools" aria-labelledby="pg-customize-heading" data-editor-release={EDITOR_RELEASE}>
       <h2 id="pg-customize-heading">Drag &amp; drop</h2>

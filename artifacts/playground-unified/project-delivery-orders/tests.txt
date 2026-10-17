@@ -1,0 +1,63 @@
+(node:13256) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Atomic quotas cannot overspend under concurrent reservations (52.4471ms)
+✔ Published knowledge and legacy clients spend zero model tokens (189.57ms)
+✔ AI is opt-in, capped globally, deduplicated, and fails closed without a database (185.8506ms)
+✔ Request boundaries reject oversized bodies and cross-origin writes (14.4216ms)
+✔ Questions and replies publish immediately, and requested Eidos suggestions remain capped (52.1118ms)
+✔ Agents can reply across communities; hourly quotas and removal still work (328.7541ms)
+✔ Untrusted thread HTML is escaped and unpublished content disappears (26.6725ms)
+✔ Proactive assistance respects opt-in, age, human identity, and the one-reply cap (34.2489ms)
+✔ Agents need registered revocable keys and cannot trigger bot loops (45.4884ms)
+✔ Turnstile cannot be bypassed on production hosts or with a mismatched hostname (29.3046ms)
+✔ Only matching signed paid events unlock a real ZIP; refunds revoke access, including out-of-order events (109.2937ms)
+✔ Checkout is disabled until configured and never trusts client pricing or redirects (27.4944ms)
+(node:7444) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ capability and checkout bind server parent, owner and frozen bytes before provider dispatch (582.2459ms)
+✔ only matching signed payment unlocks exact approved bytes; original download remains byte-identical (347.7376ms)
+✔ refund or independent revocation blocks recovery without claiming a ready artifact (198.1424ms)
+✔ checkout failure retry and recovery retain one immutable approved artifact (313.976ms)
+✔ concurrent same-attempt requests cannot replace the winning page attachment (186.8323ms)
+✔ historical and guest original orders never gain attachments and retain original checkout/download behavior (111.3131ms)
+✔ order attachment schema matches additive migration (1.4001ms)
+(node:25108) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ server freezes exact schema-5 package and keeps source/bytes owner-scoped and immutable (429.8504ms)
+✔ delivery is TEST opt-in; legacy cloud remains 409 and older formats stay outside new storage (51.166ms)
+✔ forged owner, rendered bytes, claimed hashes, unsafe images and oversized source fail closed (127.7858ms)
+✔ same-owner request races are idempotent, mismatched payloads conflict, and another owner is independent (302.3835ms)
+✔ owner count and byte quotas use atomic admission, and rejected races create no orphan chunks (389.1134ms)
+✔ chunk failure rolls back source and bytes; incomplete or corrupted archives cannot be delivered (118.4325ms)
+✔ delivery migration and runtime schema are identical (1.5116ms)
+✔ delivery relay uses the explicit bounded body ceiling and never falls back after rejection (29.465ms)
+✔ Playground billing is relayed with the signed-in session and no browser relay authority (126.6334ms)
+✔ Member relay forwards only the scoped session and accepts only the secure member cookie (7.5907ms)
+✔ Relay preserves webhook body and signature, overwrites client claims, and never redirects secrets (10.3872ms)
+✔ Protected preview relay uses only the server-configured Vercel credential (2.3131ms)
+(node:14504) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all eight buyer guides separate section headings, instructions, steps, and inline filenames (136.9708ms)
+✔ each collection entry points to its actual demo and independent five-page product detail (170.7396ms)
+✔ candidate price and guide records match the server-owned edition contract (1.7348ms)
+✖ all eight selected-edition guides and exact file/art contents are public before checkout (112.9492ms)
+✔ platform help, terms, and recovery disclose product boundaries (38.1185ms)
+✔ new candidate preserves Cinematic Starter product files and price (66.1989ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 36
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14849.7351
+
+✖ failing tests:
+
+test at scripts\test-template-shop.ts:1:3297
+✖ all eight selected-edition guides and exact file/art contents are public before checkout (112.9492ms)
+  SyntaxError: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at TestContext.<anonymous> (C:\Users\bmpar\codex-worktrees\playground-unified-site-20261014\scripts\test-template-shop.ts:65:29)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)

@@ -1,0 +1,28 @@
+✔ only an explicit authenticated TEST capability supplies original price/version, disabled and mismatch paths make zero POSTs (73.8042ms)
+✔ server acceptance must bind the exact owner, source, revision, snapshot and archive (6.3926ms)
+✔ checkout sends only server identifiers, stable attempt, terms and challenge; unsafe redirects never pass (11.1448ms)
+✔ status cannot turn a redirect, another owner, different revision, original edition, or revoked artifact into an approved download (3.8664ms)
+✔ paid approved-page download verifies the exact stored hash/bytes and retains default original download semantics (42.9066ms)
+✔ private attempts are isolated by owner and frozen hash and returned receipts must match exact approved page (3.8315ms)
+✔ return and recovery paths accept only the exact known same-origin path with the same receipt (1.6618ms)
+✔ stored parser preserves historical parent version and byte-exact archive while new checkout validation rejects the old reference (235.2892ms)
+✔ fresh-device recovery verifies owned source and preserves exact paid bytes independently of local workspace or current capability (98.6425ms)
+✔ an unsupported historical source keeps its verified ZIP available without pretending it can reopen (5.9401ms)
+✔ pending, revoked, unsigned and corrupted archived data do not grant restoration (20.6623ms)
+✔ canonical identity is stable across object key order and binds document, revision, parent, and exact source (74.9183ms)
+✔ frozen package contains byte-exact common exporter output, complete digests, original editable source and separate archive receipt (124.6301ms)
+✔ editing draft B cannot alter frozen revision A, its preview, its source, or archive (25.6916ms)
+✔ invalid snapshot hashes, extra fields, parent metadata and changed package bytes are rejected (60.694ms)
+✔ embedded raster completeness, remote assets, unsafe links, file names, duplicate paths and unknown output models fail closed (14.3306ms)
+✔ text content is escaped in output; the frozen preview uses packaged local bytes with no network capability (24.8527ms)
+✔ legacy projects remain exportable and are preserved in their original supported schema (16.2938ms)
+✔ checked-in runtime literals regenerate exactly with LF and no bundle-dependent names or paths (358.5125ms)
+✔ browser development, minified browser, tsx-like and server builds produce identical frozen files, archive and editor bridge bytes (456.3334ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1638.2045

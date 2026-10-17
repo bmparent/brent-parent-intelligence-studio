@@ -1,0 +1,51 @@
+{
+  "engine": "chromium",
+  "width": 390,
+  "name": "fresh-recovery",
+  "checks": [
+    "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+    "paid recovery succeeds while current checkout capability is unavailable",
+    "download matches the originally stored complete ZIP hash",
+    "bundled-renderer stored package opens independently with its own runtime",
+    "recovery opens a distinct editable identity and retains the exact historical review",
+    "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [],
+  "calls": [
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/download",
+      "method": "POST",
+      "artifact": "approved-page"
+    },
+    {
+      "path": "/api/playground/delivery?id=fixture-delivery",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/download",
+      "method": "POST",
+      "artifact": "approved-page"
+    },
+    {
+      "path": "/api/playground/delivery?id=fixture-delivery",
+      "method": "GET"
+    }
+  ],
+  "unexpected": [],
+  "expectedHttpDenials": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [],
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}

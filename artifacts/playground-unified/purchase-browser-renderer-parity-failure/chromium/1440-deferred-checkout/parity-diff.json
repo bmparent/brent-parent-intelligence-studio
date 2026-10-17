@@ -1,0 +1,16 @@
+{
+  "snapshotHashEqual": true,
+  "projectHashEqual": true,
+  "differences": [
+    {
+      "path": "script.js",
+      "browserBytes": 25732,
+      "serverBytes": 26820,
+      "browserSha256": "d4ed21b896c500069750b59d1cac24c611e8880cad4347055f4f78ef0aaf1b1b",
+      "serverSha256": "19813c7993346108ec125daf98a1fc85bac7e70eab6b4675f8873e69f0421532"
+    }
+  ],
+  "rootCause": "runtimeScript serializes pageRuntime.toString; compiler formatting/variable transforms alter ZIP bytes",
+  "browser": "Vite development source",
+  "server": "esbuild bundle keepNames:false"
+}

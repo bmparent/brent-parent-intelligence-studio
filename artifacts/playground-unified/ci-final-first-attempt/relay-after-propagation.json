@@ -1,0 +1,15 @@
+{
+  "config": {
+    "gaMeasurementId": "G-8N7Y7EM4CS",
+    "turnstileSiteKey": "",
+    "communityReady": false,
+    "accountsReady": false,
+    "aiReady": false,
+    "shopReady": false,
+    "localTest": false,
+    "runtimeSourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+    "runtimeBundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c"
+  },
+  "timestampUtc": "2026-10-14T19:24:08.4535675Z",
+  "scope": "Unauthenticated public alias readback after failed immediate deployment check; no direct backend credentials"
+}

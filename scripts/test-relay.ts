@@ -2,6 +2,32 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../functions/_middleware';
 const env = { EIDOS_PLATFORM_URL:'https://eidos-sentinel-lab.vercel.app', EIDOS_PLATFORM_TOKEN:'relay-test-at-least-32-characters-long' };
+await test('AI relay accepts its full bounded context, retains the provider deadline, and rejects overflow before transport', async () => {
+  const original = globalThis.fetch, originalTimeout = AbortSignal.timeout;
+  const deadlines: number[] = []; let calls = 0;
+  AbortSignal.timeout = (ms: number) => { deadlines.push(ms); return new AbortController().signal; };
+  globalThis.fetch = async (_url, init) => { calls++; assert.equal(String(init?.body).length, 110000); return Response.json({ state: 'settled' }); };
+  const invoke = (size: number) => onRequest({ env, next: async () => { throw Error('No fallback'); }, request: new Request('https://eidos-works.com/api/playground/ai', { method: 'POST', body: 'x'.repeat(size) }) });
+  try {
+    assert.equal((await invoke(110000)).status, 200);
+    assert.deepEqual(deadlines, [105000]);
+    assert.equal((await invoke(110001)).status, 413);
+    assert.equal(calls, 1);
+  } finally { globalThis.fetch = original; AbortSignal.timeout = originalTimeout; }
+});
+await test('Playground billing is relayed with the signed-in session and no browser relay authority', async () => {
+  const original=globalThis.fetch,token='a'.repeat(64);
+  globalThis.fetch=async(url,init)=>{
+    assert.equal(String(url),'https://eidos-sentinel-lab.vercel.app/api/works/v1/api/playground/ai');
+    const headers=new Headers(init?.headers);assert.equal(headers.get('cookie'),'__Host-eidos_session='+token);
+    assert.equal(headers.get('x-eidos-platform-token'),env.EIDOS_PLATFORM_TOKEN);assert.equal(headers.get('x-eidos-site-origin'),'https://eidos-works.com');
+    assert.equal(init?.body,'{"action":"limit","limitMicros":1000000}');return Response.json({enabled:false});
+  };
+  try{
+    const response=await onRequest({env,next:async()=>{throw Error('Billing must not use local fallback.');},request:new Request('https://eidos-works.com/api/playground/ai',{method:'POST',headers:{cookie:'__Host-eidos_session='+token,'x-eidos-platform-token':'forged','content-type':'application/json'},body:'{"action":"limit","limitMicros":1000000}'})});
+    assert.equal(response.status,200);assert.deepEqual(await response.json(),{enabled:false});
+  }finally{globalThis.fetch=original;}
+});
 await test('Member relay forwards only the scoped session and accepts only the secure member cookie', async () => {
   const original = globalThis.fetch;
   const token = 'a'.repeat(64), cookie = `__Host-eidos_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000; Secure`;

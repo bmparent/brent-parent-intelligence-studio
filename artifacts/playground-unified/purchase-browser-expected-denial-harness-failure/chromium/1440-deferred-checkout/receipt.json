@@ -1,0 +1,73 @@
+{
+  "engine": "chromium",
+  "width": 1440,
+  "name": "deferred-checkout",
+  "checks": [
+    "manual create/review/approval makes no purchase API request",
+    "revoking review approval during deferred preflight prevents checkout dispatch",
+    "late checkout response after closing review and editing does not navigate or replace the newer draft",
+    "account switch clears the previous owner accepted and paid display",
+    "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [],
+  "calls": [
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    }
+  ],
+  "unexpected": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [],
+  "browserFreeze": {
+    "kind": "eidos-local-package-receipt",
+    "snapshotHash": "919b7fc9cafdef4c372c0d31b819ef722a40f53045737180e5413a08a2b136ce",
+    "archiveSha256": "709e2adea4f26f9c7f147018de82a6c5067a76ddd3d2c6abf91b1dfb5355ee62",
+    "bytes": 128347,
+    "purchase": "not-performed"
+  },
+  "serverFreeze": {
+    "id": "fixture-delivery",
+    "ownerId": "fixture-owner",
+    "documentId": "200161d4-0ee9-4374-8815-4191afd4a4df",
+    "revision": 0,
+    "snapshotHash": "919b7fc9cafdef4c372c0d31b819ef722a40f53045737180e5413a08a2b136ce",
+    "projectHash": "707a5c796b982926f73562c36f109a9a1ae7a07b3d167070746ed780bc1c13cb",
+    "archiveSha256": "709e2adea4f26f9c7f147018de82a6c5067a76ddd3d2c6abf91b1dfb5355ee62",
+    "archiveBytes": 128347,
+    "mode": "test"
+  },
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}

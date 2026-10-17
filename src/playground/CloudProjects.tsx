@@ -5,7 +5,7 @@ import { CLOUD_FORMAT_NOTICE, supportsProductionCloud } from './releaseBoundary'
 
 export type LegacyCloudProps = {
   project: Project; target: SaveTarget | null; documentId: string; guard: () => () => boolean;
-  load: (project: Project, target?: SaveTarget | null) => void;
+  load: (project: Project, target?: SaveTarget | null) => Promise<boolean>;
   acknowledge: (id: string, target: SaveTarget) => void; disabled: boolean;
 };
 

@@ -1,0 +1,124 @@
+{
+  "timestamp": "2026-10-14T19:29:44.660Z",
+  "project": "eidosworks-playground-20261014",
+  "branch": "codex/playground-unified-20261014",
+  "siteSha": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0",
+  "previewUrl": "https://4c772471.eidosworks-playground-20261014.pages.dev",
+  "alias": "https://eidosworks-playground-20261014.pages.dev",
+  "backendUrl": "https://eidos-sentinel-lz611r2ml-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+  "backendDeployment": "dpl_3ybMcNrPqdT9dMWpbVvxDANqSaZr",
+  "bundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c",
+  "sourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6-bundle-1e471a710c1d4d13",
+  "database": "none",
+  "mode": "manual-only",
+  "publicConfig": {
+    "gaMeasurementId": "G-8N7Y7EM4CS",
+    "turnstileSiteKey": "",
+    "communityReady": false,
+    "accountsReady": false,
+    "aiReady": false,
+    "shopReady": false,
+    "localTest": false,
+    "runtimeSourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+    "runtimeBundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c"
+  },
+  "relayedConfig": {
+    "runtimeSourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+    "runtimeBundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c",
+    "accountsReady": false,
+    "communityReady": false,
+    "aiReady": false,
+    "shopReady": false,
+    "localTest": false
+  },
+  "relayReadiness": {
+    "state": "verified",
+    "origin": "https://eidosworks-playground-20261014.pages.dev",
+    "expected": {
+      "runtimeSourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+      "runtimeBundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c"
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": 200,
+        "observed": {
+          "runtimeSourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+          "runtimeBundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c"
+        },
+        "flags": {
+          "accountsReady": false,
+          "communityReady": false,
+          "aiReady": false,
+          "shopReady": false,
+          "localTest": false
+        },
+        "outcome": "verified"
+      }
+    ],
+    "config": {
+      "runtimeSourceRevision": "bd3c6ab2a636a5a1783babd304f2ac4c75f7a1b6",
+      "runtimeBundleHash": "1e471a710c1d4d1343f0ac50d294f5efcf9c4ef8f2c56a49223f65bb69bda27c",
+      "accountsReady": false,
+      "communityReady": false,
+      "aiReady": false,
+      "shopReady": false,
+      "localTest": false
+    }
+  },
+  "boundaryChecks": [
+    {
+      "schemaVersion": 5,
+      "status": 409
+    },
+    {
+      "schemaVersion": 1,
+      "status": 409
+    },
+    {
+      "schemaVersion": 6,
+      "status": 409
+    },
+    {
+      "name": "wrong-relay",
+      "status": 401
+    },
+    {
+      "name": "other-origin",
+      "status": 403
+    }
+  ],
+  "publishedAssets": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "failures": []
+      }
+    ],
+    "assets": [
+      {
+        "path": "/assets/index-BgPv5pcr.js",
+        "bytes": 844323,
+        "sha256": "3a097daf2d8e74c62d65c9960a7f3b82eef5dfbe86de2af7a8d501f4c47f4f39"
+      },
+      {
+        "path": "/assets/rolldown-runtime-D9-fqq9M.js",
+        "bytes": 86,
+        "sha256": "a2b9cf4b963756dc2cae1ebdd1c0e51ef5780dd5bf64a55b90e21679c2b2434f"
+      },
+      {
+        "path": "/assets/react-vendor-P0Lkgw2L.js",
+        "bytes": 190214,
+        "sha256": "d7915cfac74caf83c2fe234696e3f0d9fcb989ca3ff720203e895e1e1a144be6"
+      },
+      {
+        "path": "/assets/index-BtUgcVsh.css",
+        "bytes": 220406,
+        "sha256": "f68409fed53073148316025ced5f5b447c302cf67c691d22a5a2c67738f86d16"
+      }
+    ]
+  },
+  "canonicalBefore": "5926dfb4-1df2-4dbf-8864-1f3f38e034f1",
+  "canonicalAfter": "5926dfb4-1df2-4dbf-8864-1f3f38e034f1"
+}

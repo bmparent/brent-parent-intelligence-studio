@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { post } from '../lib/platform';
 import { Turnstile } from './Turnstile';
 import { SafeEmailLink } from './EmailAddress';
 import { editionName, money, pageNames, templateProduct, templateProducts, templateStyles, type TemplateProduct, type TemplateEdition } from '../data/templateCatalog';
 import packageContents from '../data/templatePackageContents.json';
+import { createTemplateRecovery, TemplateRecoveryError, type RecoveryResult } from './templateRecovery';
 
 function wordpressCompatibility(edition: TemplateEdition, available = false) {
   const evidence = packageContents.find(item => item.editionId === edition.id && item.version === (edition.version || '1.0.0'))?.wordpressEvidence;
@@ -113,24 +114,57 @@ export function TemplateTerms() {
 type Purchase = { status: string; paymentState?: 'pending' | 'paid' | 'expired' | 'failed'; mailStatus?: 'pending' | 'failed' | 'sent'; orderId: string; productId?: string; editionId?: string; version?: string; downloadName?: string; guidePath?: string; downloadToken?: string; downloadExpires?: string };
 export function TemplateStart() {
   const [receipt, setReceipt] = useState(''), [purchase, setPurchase] = useState<Purchase | null>(null), [email, setEmail] = useState(''), [challenge, setChallenge] = useState(''), [message, setMessage] = useState(''), [error, setError] = useState(''), [busy, setBusy] = useState(false), [reset, setReset] = useState(0);
-  const redemption = useRef<Promise<{ receipt: string }> | null>(null);
+  const recovery = useRef<ReturnType<typeof createTemplateRecovery> | null>(null);
+  const initialRedemption = useRef<Promise<RecoveryResult> | null>(null);
+  const [pendingRecovery, setPendingRecovery] = useState(false);
+  const [recoveryNeedsAccount, setRecoveryNeedsAccount] = useState(false), [privateStorageAvailable, setPrivateStorageAvailable] = useState(true);
+  const recoveryGeneration = useRef(0);
+  const recoveryMounted = useRef(false);
+  const acceptRecovery = useCallback(async (data: RecoveryResult, active: () => boolean) => {
+    if (!active()) return;
+    if (/^[a-f0-9]{64}$/.test(data.receipt)) {
+      try { sessionStorage.setItem('eidos.template.receipt', data.receipt); } catch { /* Receipt remains usable in this tab. */ }
+      setPendingRecovery(false); setError('');
+      if (data.saved === false) setMessage('This browser could not save the receipt. Keep this tab open and download your files before closing it.');
+      if (data.continuePath) {
+        const { safePurchaseContinuePath } = await import('../playground/purchaseClient');
+        if (!active()) return;
+        const path = safePurchaseContinuePath(data.continuePath, data.receipt);
+        if (path) { window.location.assign(path); return; }
+      }
+      setReceipt(data.receipt);
+    }
+  }, []);
   useEffect(() => {
     let active = true;
+    recoveryMounted.current = true;
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const fresh = fragment.get('receipt') || '';
     const token = fragment.get('token') || fragment.get('recovery') || '';
-    window.history.replaceState(null, '', '/shop/start');
     let saved = '';
     try { saved = sessionStorage.getItem('eidos.template.receipt') || ''; } catch { /* optional storage */ }
     if (/^[a-f0-9]{64}$/.test(fresh)) saved = fresh;
-    if (/^[a-f0-9]{64}$/.test(token) && !redemption.current) redemption.current = post<{ receipt: string }>('/api/shop/redeem', { token });
-    const pending = redemption.current ??= Promise.resolve({ receipt: saved });
-    pending.then((data) => {
-      if (!active) return;
-      if (/^[a-f0-9]{64}$/.test(data.receipt)) { setReceipt(data.receipt); try { sessionStorage.setItem('eidos.template.receipt', data.receipt); } catch { /* optional */ } }
-    }).catch((e) => { if (active) setError(e instanceof Error ? e.message : 'That recovery link could not be used. Request a new one below.'); });
-    return () => { active = false; };
-  }, []);
+    if (!recovery.current) {
+      // Storage can be disabled. Retain an in-memory intent while still clearing the private fragment.
+      const store = { getItem: (key: string) => sessionStorage.getItem(key), setItem: (key: string, value: string) => sessionStorage.setItem(key, value), removeItem: (key: string) => sessionStorage.removeItem(key) };
+      recovery.current = createTemplateRecovery(token, store);
+      if (/^[a-f0-9]{64}$/.test(fresh)) recovery.current.discard();
+    }
+    window.history.replaceState(null, '', '/shop/start');
+    const pending = initialRedemption.current ??= recovery.current.hasPending() ? recovery.current.redeem() : Promise.resolve({ receipt: saved });
+    pending.then(data => acceptRecovery(data, () => active)).catch((e) => {
+      if (active) { setPendingRecovery(Boolean(recovery.current?.hasPending())); setPrivateStorageAvailable(Boolean(recovery.current?.storageAvailable())); setRecoveryNeedsAccount(e instanceof TemplateRecoveryError && ['signin', 'owner'].includes(e.kind)); setError(e instanceof Error ? e.message : 'That recovery link could not be used. Request a new one below.'); }
+    });
+    return () => { active = false; recoveryMounted.current = false; };
+  }, [acceptRecovery]);
+  async function retryRecovery() {
+    if (!recovery.current) return;
+    const generation = ++recoveryGeneration.current, active = () => recoveryMounted.current && generation === recoveryGeneration.current;
+    setBusy(true); setError('');
+    try { await acceptRecovery(await recovery.current.redeem(), active); }
+    catch (e) { if (active()) { setPendingRecovery(recovery.current.hasPending()); setPrivateStorageAvailable(recovery.current.storageAvailable()); setRecoveryNeedsAccount(e instanceof TemplateRecoveryError && ['signin', 'owner'].includes(e.kind)); setError(e instanceof Error ? e.message : 'Recovery could not be confirmed. Request a fresh email below.'); } }
+    finally { if (active()) setBusy(false); }
+  }
   useEffect(() => {
     if (!receipt) return;
     let active = true;
@@ -159,6 +193,7 @@ export function TemplateStart() {
   }
   const product = purchase?.productId ? templateProducts.find((p) => purchase.productId === p.slug || p.editions.some((e) => e.id === purchase.productId)) : undefined;
   return <section className="ew-shell ew-reading et-guide"><a href="/shop">← The collection</a><h1>Your website.<br /><em>Start here.</em></h1><p>Get the right package, follow your edition’s guide, and keep a backup of the original archive. Purchase links are private.</p>
+    {pendingRecovery && <div className="et-start-status" aria-label="Resume private recovery"><h2>Continue your private recovery.</h2><p>{recoveryNeedsAccount ? 'Sign in to the account that owns this purchase. Keep this tab open, then retry here; you do not need to reopen the email.' : 'Your private link is kept in this tab for up to 30 minutes. Retry here when the connection is ready; you do not need to reopen the email.'}</p>{recoveryNeedsAccount && <p><a href="/account" target="_blank" rel="noreferrer">Sign in or switch account</a></p>}<button className="ew-button ew-button--primary" type="button" disabled={busy} onClick={() => void retryRecovery()}>{busy ? 'Checking private recovery…' : 'Retry private recovery'}</button>{!privateStorageAvailable && <p>This browser cannot save the private link. Keep this tab open while signing in.</p>}</div>}
     {purchase && <div className="et-start-status" aria-live="polite"><h2>{purchase.status === 'paid' ? `${product?.name || 'Your template'} is ready.` : 'Purchase status'}</h2><p>{purchase.status === 'paid' ? `Payment verified · ${purchase.editionId || 'source'} · version ${purchase.version || '1'}` : purchase.paymentState === 'failed' ? 'Payment failed. No download was granted. Return to the product page to start a new checkout.' : purchase.paymentState === 'expired' ? 'Checkout expired. No download was granted. Return to the product page to start a new checkout.' : purchase.status === 'pending' ? 'Payment is still pending. A checkout redirect does not grant access. Check again after Stripe confirms payment.' : `Status: ${purchase.status}. Contact billing if you need help.`}</p><p>Order reference: {purchase.orderId}</p>{purchase.status === 'paid' && <button className="ew-button ew-button--primary" type="button" disabled={busy} onClick={() => void download()}>{busy ? 'Preparing…' : 'Download your versioned package'}</button>}{purchase.status === 'pending' && !['failed', 'expired'].includes(purchase.paymentState || '') && <button className="ew-button ew-button--secondary" type="button" disabled={busy} onClick={() => void refresh()}>Check payment again</button>}</div>}
     {purchase?.status === 'paid' && <><h2>Install in three stages.</h2>{purchase.guidePath && /^\/templates\/guides\/[a-z-]+\/(developer|wordpress)\/$/.test(purchase.guidePath) && <p><a href={purchase.guidePath}>Open your edition’s installation guide →</a></p>}<ol><li>Unzip and read INSTALL.md and the license notices. Keep the untouched ZIP.</li><li>{purchase.editionId === 'wordpress' ? 'Back up your WordPress site. Upload the theme ZIP, activate in a test site, and follow its demo-content setup. Edit text, images, and navigation in the Site Editor.' : 'Open index.html. Replace the sample business content, imagery, and configuration using the included guide. Test every page before hosting.'}</li><li>Connect your real contact, booking, or ticket destination; verify it on a phone. Publish only after you check the guide’s installation checklist.</li></ol><p>The package contains rollback/removal steps. Platform accounts, subscriptions, and third-party services are separate.</p></>}
     {purchase?.status === 'paid' && purchase.mailStatus === 'failed' && <p role="status">Your payment is verified, but the email receipt could not be delivered. Download your package here and contact billing if you need help.</p>}

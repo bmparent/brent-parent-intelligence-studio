@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-14T18:34:34.462Z",
+  "source": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "workingTreeDirty": true,
+  "base": "http://127.0.0.1:5178",
+  "browser": "Headless browsers; Chromium GPU disabled; viewport emulation is not physical-device evidence",
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "documentId": "7c797be2-e841-44a7-8398-76e9d2cb7496",
+      "exportZip": "/home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/artifacts/playground-unified/browser-ci/1440-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "documentId": "125794fb-ac41-4808-9f3a-ce3459ba5f4d",
+      "exportZip": "/home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/artifacts/playground-unified/browser-ci/390-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5178/playground/"
+    }
+  ]
+}

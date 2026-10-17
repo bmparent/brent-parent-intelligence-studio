@@ -1,0 +1,45 @@
+✔ only an explicit authenticated TEST capability supplies original price/version, disabled and mismatch paths make zero POSTs (168.6997ms)
+✔ server acceptance must bind the exact owner, source, revision, snapshot and archive (14.1019ms)
+✔ checkout sends only server identifiers, stable attempt, terms and challenge; unsafe redirects never pass (127.8901ms)
+✔ status cannot turn a redirect, another owner, different revision, original edition, or revoked artifact into an approved download (9.5551ms)
+✔ paid approved-page download verifies the exact stored hash/bytes and retains default original download semantics (136.5265ms)
+✔ private attempts are isolated by owner and frozen hash and returned receipts must match exact approved page (4.7868ms)
+✔ return and recovery paths accept only the exact known same-origin path with the same receipt (1.8249ms)
+✔ stored parser preserves historical parent version and byte-exact archive while new checkout validation rejects the old reference (595.454ms)
+✔ fresh-device recovery verifies owned source and preserves exact paid bytes independently of local workspace or current capability (200.1936ms)
+✔ an unsupported historical source keeps its verified ZIP available without pretending it can reopen (19.1861ms)
+✔ pending, revoked, unsigned and corrupted archived data do not grant restoration (83.528ms)
+✔ canonical identity is stable across object key order and binds document, revision, parent, and exact source (177.0088ms)
+✔ frozen package contains byte-exact common exporter output, complete digests, original editable source and separate archive receipt (320.7991ms)
+✔ editing draft B cannot alter frozen revision A, its preview, its source, or archive (68.8356ms)
+✔ invalid snapshot hashes, extra fields, parent metadata and changed package bytes are rejected (168.7575ms)
+✔ embedded raster completeness, remote assets, unsafe links, file names, duplicate paths and unknown output models fail closed (26.7132ms)
+✔ text content is escaped in output; the frozen preview uses packaged local bytes with no network capability (89.3938ms)
+✔ legacy projects remain exportable and are preserved in their original supported schema (51.8707ms)
+(node:1392) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ capability and checkout bind server parent, owner and frozen bytes before provider dispatch (923.6491ms)
+✔ only matching signed payment unlocks exact approved bytes; original download remains byte-identical (547.7259ms)
+✔ refund or independent revocation blocks recovery without claiming a ready artifact (249.1109ms)
+✔ checkout failure retry and recovery retain one immutable approved artifact (515.3946ms)
+✔ concurrent same-attempt requests cannot replace the winning page attachment (307.1565ms)
+✔ historical and guest original orders never gain attachments and retain original checkout/download behavior (225.5956ms)
+✔ order attachment schema matches additive migration (2.328ms)
+(node:19556) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ server freezes exact schema-5 package and keeps source/bytes owner-scoped and immutable (782.3453ms)
+✔ delivery is TEST opt-in; legacy cloud remains 409 and older formats stay outside new storage (157.5169ms)
+✔ forged owner, rendered bytes, claimed hashes, unsafe images and oversized source fail closed (196.5277ms)
+✔ same-owner request races are idempotent, mismatched payloads conflict, and another owner is independent (442.9055ms)
+✔ owner count and byte quotas use atomic admission, and rejected races create no orphan chunks (455.0644ms)
+✔ chunk failure rolls back source and bytes; incomplete or corrupted archives cannot be delivered (232.9136ms)
+✔ delivery migration and runtime schema are identical (8.6332ms)
+✔ delivery relay uses the explicit bounded body ceiling and never falls back after rejection (27.7007ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5296.2078

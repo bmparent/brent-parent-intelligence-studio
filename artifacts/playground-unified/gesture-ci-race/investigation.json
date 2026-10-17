@@ -1,0 +1,35 @@
+{
+  "timestampUtc": "2026-10-14T19:27:27.4181118Z",
+  "ciRun": "38622652428",
+  "classification": "Test synchronization gap; exact failed CI interleaving not locally reproduced",
+  "script": "scripts/verify-playground-unified-gestures.mjs",
+  "scriptSha256": "7923aaf5cb829bd458340915b39a5d7c009e9ba2f16ea4c661b9bfeec51bb7af",
+  "productSourceChanged": false,
+  "assertionsPreserved": true,
+  "blindDelayAdded": false,
+  "localRuns": [
+    {
+      "run": "before-local",
+      "checks": 14,
+      "failure": null,
+      "source": "b2a53914bd065873ff3682935c9d3750cbe4264d",
+      "environment": "Chromium headless, GPU disabled, Windows host; browser viewport is not a physical device"
+    },
+    {
+      "run": "after-local-1",
+      "checks": 14,
+      "failure": null,
+      "source": "b2a53914bd065873ff3682935c9d3750cbe4264d",
+      "environment": "Chromium headless, GPU disabled, win32/x64, Node v24.14.0; browser viewport is not a physical device"
+    },
+    {
+      "run": "after-local-2",
+      "checks": 14,
+      "failure": null,
+      "source": "b2a53914bd065873ff3682935c9d3750cbe4264d",
+      "environment": "Chromium headless, GPU disabled, win32/x64, Node v24.14.0; browser viewport is not a physical device"
+    }
+  ],
+  "linuxCiRerun": "pending root",
+  "originalCiScreenshotAvailable": false
+}

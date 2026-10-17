@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "eidos-local-page-package",
+  "snapshotHash": "6ce23eac781a1234b5c9265d7bc59bbee7a6be35334f56da65fcf3b1207cfb62",
+  "projectHash": "53806087614d60d8ff81b9e04c598a45e9da35838a950e46a6e2a213b510b3c1",
+  "documentId": "service-number-fixture",
+  "revision": 0,
+  "pageId": "page-main",
+  "rendererVersion": "eidos-original-glass-2.0.0",
+  "output": "eidos-local-page-package-v1",
+  "platform": "developer",
+  "parent": null,
+  "entitlement": "not-verified",
+  "checkout": "disabled",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 7251,
+      "sha256": "c58338c9ad5541486212412347f6ba0d85044fc90877d3f1f4a3ba6eb25e3cc1"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 14847,
+      "sha256": "01e82aac7ad4dc7ccff5fa5dadea7d6b0c7b934c1ac0bb6d549bb3c82751f13d"
+    },
+    {
+      "path": "tokens.css",
+      "bytes": 231,
+      "sha256": "32427cb149bd8fc06d1569b20240ec21fdfc8db98c4148d2bbcbf9eb216eb4df"
+    },
+    {
+      "path": "script.js",
+      "bytes": 20813,
+      "sha256": "b9198e45b85fcb7e2302d648b81eb0b6e3922bde14797b3a241695c03527334e"
+    },
+    {
+      "path": "project.json",
+      "bytes": 6204,
+      "sha256": "c948c4a2e7529a2f10cd4a13964cd5499beb5b60229ba4cd67030d44fd6e3c8e"
+    },
+    {
+      "path": "approved-glass-preset.json",
+      "bytes": 1349,
+      "sha256": "8ee150f9aa0a86df116c28d02579972dd330a6f464ef886eda25bafc072225f4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1589,
+      "sha256": "7e37ab73c8333423d07c57c26bad571f084f7ee63c59d18996ce16489ddf86c7"
+    },
+    {
+      "path": "AI-HANDOFF.md",
+      "bytes": 1041,
+      "sha256": "fff2eac10a8b25a8415a3e71d6b140dc99e6b903716dac2855f017f06a95a64e"
+    },
+    {
+      "path": "SNAPSHOT.json",
+      "bytes": 7053,
+      "sha256": "ea7f07ff35480fae30be5903a8a7fc2d2f70221eecc0d8652453f1be4166841b"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 1268,
+      "sha256": "bb888f585caffc6928b0859a341237a5682ea49b93fe40402d604ddbda2b897a"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "siteOrigin": "https://eidosworks-templates-test-20261010.pages.dev",
+  "mode": "test",
+  "deploymentId": "dpl_CHrcAbPuTyKDmUKHTC8EFvHbfVEU",
+  "backendOrigin": "https://eidos-sentinel-oey0rgtql-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "16a1926d5bbd33cd52bb0c93ee15dd949b1bc698",
+  "bundleHash": "6c59882a4485fc02c2a97a91773d5cf38e3ad6b65340e616ff9db8eb6612a37c",
+  "sourceRevision": "16a1926d5bbd33cd52bb0c93ee15dd949b1bc698-bundle-6c59882a4485fc02"
+}

@@ -1,0 +1,56 @@
+{
+  "engine": "webkit",
+  "width": 1440,
+  "name": "preserve-draft",
+  "checks": [
+    "recovered copy preserves the existing draft under its original identity",
+    "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+    },
+    {
+      "type": "warning",
+      "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+    }
+  ],
+  "calls": [
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/download",
+      "method": "POST",
+      "artifact": "approved-page"
+    },
+    {
+      "path": "/api/playground/delivery?id=fixture-delivery",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/download",
+      "method": "POST",
+      "artifact": "approved-page"
+    },
+    {
+      "path": "/api/playground/delivery?id=fixture-delivery",
+      "method": "GET"
+    }
+  ],
+  "unexpected": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com",
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [],
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}

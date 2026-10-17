@@ -5,6 +5,7 @@ export interface PublicConfig {
   communityReady: boolean;
   accountsReady: boolean;
   aiReady: boolean;
+  playgroundAiReady: boolean;
   shopReady: boolean;
   localTest: boolean;
 }
@@ -14,6 +15,7 @@ const fallback: PublicConfig = {
   communityReady: false,
   accountsReady: false,
   aiReady: false,
+  playgroundAiReady: false,
   shopReady: false,
   localTest: false,
 };

@@ -1,0 +1,130 @@
+{
+  "timestampUtc": "2026-10-14T18:47:06.162Z",
+  "source": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "base": "http://127.0.0.1:5184",
+  "browserAvailability": "Browser plugin not available; Playwright fixture harness explicitly requested",
+  "flow": "Private return -> explicit authenticated fixture retrieval -> exact stored ZIP -> separate editable copy",
+  "fixtureOnly": true,
+  "actualPayment": false,
+  "actualEmail": false,
+  "hostedAcceptance": false,
+  "physicalDevice": false,
+  "fixtureArchive": {
+    "sha256": "37e1d495e8f413517d2164e1774e761143d98c2b961f853bd548e9bcfc40e662",
+    "bytes": 68447
+  },
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "fresh-recovery",
+      "checks": [],
+      "errors": [
+        "The requested module '/src/playground/PurchaseRecovery.ts' does not provide an export named 'PurchaseRecovery'"
+      ],
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "type": "warning",
+          "text": "%s\n\n%s\n An error occurred in one of your React components. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "calls": [],
+      "unexpected": [
+        "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      ],
+      "failure": "locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Restore my approved page', exact: true }) to be visible\u001b[22m\n\n    at C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:87:87\n    at async scenario (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:75:5)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:85:36"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "fresh-recovery",
+      "checks": [],
+      "errors": [
+        "The requested module '/src/playground/PurchaseRecovery.ts' does not provide an export named 'PurchaseRecovery'"
+      ],
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "type": "warning",
+          "text": "%s\n\n%s\n An error occurred in one of your React components. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "calls": [],
+      "unexpected": [
+        "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      ],
+      "failure": "locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Restore my approved page', exact: true }) to be visible\u001b[22m\n\n    at C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:87:87\n    at async scenario (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:75:5)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:85:36"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "preserve-draft",
+      "checks": [],
+      "errors": [
+        "The requested module '/src/playground/PurchaseRecovery.ts' does not provide an export named 'PurchaseRecovery'"
+      ],
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "type": "warning",
+          "text": "%s\n\n%s\n An error occurred in one of your React components. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "calls": [],
+      "unexpected": [
+        "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      ],
+      "failure": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /Switchboard/ })\u001b[22m\n\n    at create (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:73:90)\n    at C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:102:101\n    at async scenario (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:75:5)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:101:3"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [],
+      "errors": [
+        "The requested module '/src/playground/PurchaseRecovery.ts' does not provide an export named 'PurchaseRecovery'"
+      ],
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "type": "warning",
+          "text": "%s\n\n%s\n An error occurred in one of your React components. Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "calls": [],
+      "unexpected": [
+        "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      ],
+      "failure": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /Switchboard/ })\u001b[22m\n\n    at create (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:73:90)\n    at C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:112:86\n    at async scenario (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:75:5)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:110:3"
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "kind": "eidos-local-project-snapshot",
+  "documentId": "server-document-one",
+  "revision": 7,
+  "pageId": "page-main",
+  "project": {
+    "schemaVersion": 5,
+    "brand": {
+      "businessName": "Recovered Atlas",
+      "tone": "",
+      "locks": []
+    },
+    "rendererVersion": "eidos-original-glass-2.0.0",
+    "template": "homepage",
+    "name": "Recovered Atlas",
+    "tokens": {
+      "background": "#f5f5ed",
+      "foreground": "#17372f",
+      "accent": "#d8f35f",
+      "spacing": 72,
+      "radius": 8,
+      "typeScale": 1,
+      "width": 1280,
+      "font": "modern"
+    },
+    "glass": {
+      "presetId": "eidos-edge-light-v5",
+      "enabled": true,
+      "frost": 1.2,
+      "edge": 0.72,
+      "prism": 0.32,
+      "touch": 4.3,
+      "radius": 29,
+      "response": 28,
+      "solid": "#172632",
+      "start": 4,
+      "end": 72,
+      "reducedMotion": false
+    },
+    "sections": [
+      {
+        "id": "header",
+        "type": "header",
+        "navigation": [
+          {
+            "label": "Details",
+            "href": "#services"
+          }
+        ],
+        "visible": true,
+        "title": "Recovered Atlas",
+        "description": "",
+        "cta": "Start a conversation",
+        "href": "#contact",
+        "layout": "split",
+        "image": "",
+        "alt": ""
+      },
+      {
+        "id": "hero",
+        "type": "hero",
+        "authoring": {
+          "version": 1,
+          "root": {
+            "id": "node-1317d3cd-88ec-4754-8e90-3e6e1e3b1816",
+            "type": "columns",
+            "name": "Introduction and image",
+            "text": "",
+            "href": "",
+            "image": "",
+            "alt": "",
+            "width": 100,
+            "height": 320,
+            "gap": 48,
+            "align": "left",
+            "split": 55,
+            "lockAspect": true,
+            "mobile": {
+              "gap": 28,
+              "layout": "stack"
+            },
+            "children": [
+              {
+                "id": "node-177b0c27-9a1d-4347-a934-a34905dc8543",
+                "type": "stack",
+                "name": "Introduction",
+                "text": "",
+                "href": "",
+                "image": "",
+                "alt": "",
+                "width": 100,
+                "height": 320,
+                "gap": 28,
+                "align": "left",
+                "split": 50,
+                "lockAspect": true,
+                "children": [
+                  {
+                    "id": "node-3f5155db-a900-43a8-8f1f-2b08767cbe91",
+                    "type": "heading",
+                    "name": "Headline",
+                    "text": "Good work starts\nwith a clear plan.",
+                    "href": "",
+                    "image": "",
+                    "alt": "",
+                    "width": 100,
+                    "height": 320,
+                    "gap": 24,
+                    "align": "left",
+                    "split": 50,
+                    "lockAspect": true
+                  },
+                  {
+                    "id": "node-ac9a7097-4dcb-4bb8-90eb-b226aeeed4ff",
+                    "type": "text",
+                    "name": "Introduction",
+                    "text": "Tell people what you do, who you help, and how to get started.",
+                    "href": "",
+                    "image": "",
+                    "alt": "",
+                    "width": 100,
+                    "height": 320,
+                    "gap": 24,
+                    "align": "left",
+                    "split": 50,
+                    "lockAspect": true
+                  },
+                  {
+                    "id": "node-2e450b2d-2be9-42eb-a855-9a5a030ae029",
+                    "type": "button",
+                    "name": "Primary action",
+                    "text": "Start a conversation",
+                    "href": "#contact",
+                    "image": "",
+                    "alt": "",
+                    "width": 100,
+                    "height": 320,
+                    "gap": 24,
+                    "align": "left",
+                    "split": 50,
+                    "lockAspect": true
+                  }
+                ]
+              },
+              {
+                "id": "node-aac77d93-51e0-44b6-8630-ebd6d95a9d2b",
+                "type": "image",
+                "name": "Hero image",
+                "text": "",
+                "href": "",
+                "image": "",
+                "alt": "Eidos illustration of a house and a project plan",
+                "width": 100,
+                "height": 560,
+                "gap": 24,
+                "align": "left",
+                "split": 50,
+                "lockAspect": true,
+                "media": {
+                  "fit": "cover",
+                  "zoom": 1,
+                  "x": 50,
+                  "y": 50,
+                  "tint": "#000000",
+                  "opacity": 0,
+                  "decorative": false,
+                  "sourceId": "",
+                  "sourceName": "Eidos Switchboard illustration"
+                }
+              }
+            ]
+          }
+        },
+        "visible": true,
+        "title": "Good work starts\nwith a clear plan.",
+        "description": "Tell people what you do, who you help, and how to get started.",
+        "cta": "Start a conversation",
+        "href": "#contact",
+        "layout": "center",
+        "image": "",
+        "alt": ""
+      },
+      {
+        "id": "services",
+        "type": "services",
+        "visible": true,
+        "title": "What you can expect",
+        "description": "A clear first conversation\nA plan built around your needs\nCareful work, from start to finish",
+        "cta": "",
+        "href": "",
+        "layout": "split",
+        "image": "",
+        "alt": ""
+      },
+      {
+        "id": "work",
+        "type": "work",
+        "visible": false,
+        "title": "A closer look",
+        "description": "Add a photo and a short example that helps people understand your work.",
+        "cta": "",
+        "href": "",
+        "layout": "split",
+        "image": "",
+        "alt": ""
+      },
+      {
+        "id": "contact",
+        "type": "contact",
+        "visible": true,
+        "title": "Let’s make\nsomething happen.",
+        "description": "Add your email or phone link in the editor. This page has no connected contact form.",
+        "cta": "Add your contact destination",
+        "href": "#",
+        "layout": "split",
+        "image": "",
+        "alt": ""
+      },
+      {
+        "id": "footer",
+        "type": "footer",
+        "visible": true,
+        "title": "Recovered Atlas",
+        "description": "Made with care.",
+        "cta": "",
+        "href": "",
+        "layout": "split",
+        "image": "",
+        "alt": ""
+      }
+    ]
+  },
+  "projectHash": "56c45c303984a878b8bbba889922dc69e43182f2ba2a87df50006e73f9d54b70",
+  "output": "eidos-local-page-package-v1",
+  "parent": {
+    "family": "switchboard",
+    "editionId": "switchboard-developer-v1",
+    "version": "1.0.3",
+    "sha256": "e956fc2aad4f76ed0ff2c9aff71cdd6cfc202b0701da71c9bf9604e5264b00d5",
+    "bytes": 28560,
+    "catalogVersion": "2026-10-10.1",
+    "status": "candidate; sales unavailable",
+    "productId": "switchboard",
+    "platform": "developer",
+    "license": {
+      "id": "eidos-commercial-developer-1.0",
+      "path": "products/templates/switchboard/developer/LICENSE.txt",
+      "grant": "not-verified"
+    }
+  },
+  "snapshotHash": "98e7b3ff1e8be3a45d447e39a2cb98aff9070b8ace64441ca92896f55bb8de0d"
+}
