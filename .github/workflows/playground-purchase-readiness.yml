@@ -6,6 +6,7 @@ on:
       - 'functions/**'
       - 'migrations/**'
       - 'scripts/*purchase*'
+      - 'scripts/verify-playground-starter-focus.mjs'
       - 'scripts/test-project-delivery*'
       - '.github/workflows/playground-purchase-readiness.yml'
 permissions:
@@ -35,7 +36,6 @@ jobs:
           PG_BASE_URL: http://127.0.0.1:5184
           PG_PURCHASE_EVIDENCE: ${{ runner.temp }}/purchase-evidence
           PG_ENGINES: chromium
-          PG_FOCUS_DIAGNOSTIC_ONLY: '1'
         run: |
           npm run preview -- --host 127.0.0.1 --port 5184 > "$RUNNER_TEMP/purchase-preview.log" 2>&1 &
           for attempt in $(seq 1 30); do curl --fail --silent http://127.0.0.1:5184/playground/ > /dev/null && break; sleep 1; done
