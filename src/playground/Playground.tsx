@@ -18,6 +18,7 @@ import { download, headerFiles, zipFiles } from './export';
 import { FinishReview } from './FinishReview';
 import { StartScreen } from './StartScreen';
 import { AddPanel, AssetsPanel, BrandPanel } from './UnifiedPanels';
+import { PlaygroundTourButton } from './PlaygroundWalkthrough';
 import './editor.css';
 import './unifiedEditor.css';
 
@@ -103,7 +104,7 @@ export default function Playground() {
         {brandOpen ? <BrandPanel project={project} edit={change} guard={guard} notify={setNotice} /> : <><nav className="pg-breadcrumb" aria-label="Selection path"><button onClick={() => { openTool('pages'); }}>Home</button><span>›</span><button onClick={() => selectNode('', selected)}>{labels[sectionKind(section)]}</button>{breadcrumbs.map(node => <span key={node.id}><span>›</span><button aria-current={node.id === selectedNode ? 'location' : undefined} onClick={() => selectNode(node.id, selected)}>{node.name || node.type}</button></span>)}</nav>{section.authoring ? <BlockControls project={project} selected={selectedNode} onSelect={selectNode} edit={change} notify={setNotice} guard={guard} mobile={mobile} /> : <><Inspector key={selected} project={project} selected={selected} edit={change} notify={setNotice} guard={guard} /><div className="pg-section-settings"><StructureControls project={project} selected={selected} edit={change} guard={guard} notify={setNotice} sectionOnly /></div></>}</>}
       </aside>
     </div>
-    <footer className="pg-statusbar"><span><Icon name={mobile ? 'mobile' : 'desktop'} />{mobile ? 'Mobile layout' : 'Desktop layout'}</span><span>{comparison ? 'Saved variation' : editing ? 'Select an element · double-click text to edit' : 'Visitor preview'}</span><button disabled={!!comparison} onClick={() => void openExport()}>{warnings.length ? `${warnings.length} checks before finishing` : 'Review & download'} ↗</button></footer>
+    <footer className="pg-statusbar"><span><Icon name={mobile ? 'mobile' : 'desktop'} />{mobile ? 'Mobile layout' : 'Desktop layout'}</span><span>{comparison ? 'Saved variation' : editing ? 'Select an element · double-click text to edit' : 'Visitor preview'}</span><PlaygroundTourButton /><button disabled={!!comparison} onClick={() => void openExport()}>{warnings.length ? `${warnings.length} checks before finishing` : 'Review & download'} ↗</button></footer>
     {notice && <div className="pg-toast" role="status">{notice}<button aria-label="Dismiss message" onClick={() => setNotice('')}>×</button></div>}
     <FinishReview key={documentId} project={project} documentId={documentId} revision={w.revision} open={finishOpen} onClose={() => setFinishOpen(false)} />
   </div>;

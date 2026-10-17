@@ -14,6 +14,7 @@ function run(suite, extra = {}) {
   });
   records.push({ suite, engine: extra.PG_ENGINE || engines.join(','), status: result.status, signal: result.signal, error: result.error?.message });
 }
+run('walkthrough', { PG_ENGINES: engines.join(','), PG_TOUR_EVIDENCE: path.join(out, 'tour') });
 run('unified-browser', { PG_ENGINES: engines.join(','), PG_EVIDENCE_DIR: path.join(out, 'unified') });
 run('element-motion', { PG_ENGINES: engines.join(','), PG_MOTION_EVIDENCE: path.join(out, 'motion') });
 run('integrated-artwork', { PG_ENGINES: engines.join(','), PG_ARTWORK_EVIDENCE: path.join(out, 'artwork') });
