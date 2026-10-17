@@ -30,10 +30,10 @@ async function scenario(browser, engine, width, name, action) {
   const context = await browser.newContext({ viewport: { width, height: 1000 }, acceptDownloads: true, reducedMotion: 'reduce' });
   const page = await context.newPage(); page.setDefaultTimeout(20000);
   const record = { engine, width, name, checks: [], errors: [], console: [], calls: [], unexpected: [], expectedHttpDenials: [], checkoutFixtures: [], stubbedAssets: [], fixtureNavigations: [] }; records.push(record);
-  const state = { frozen: serverFrozen, availability: false, owner: ownerId, purchaseState: 'paid', localTest: true, checkoutFailures: 0, allowCheckoutNavigation: false, holdCheckout: null, holdCapability: null, holdStatus: null };
+  const state = { frozen: serverFrozen, availability: false, priceCents: 9900, orderPriceCents: 9900, owner: ownerId, purchaseState: 'paid', localTest: true, checkoutFailures: 0, allowCheckoutNavigation: false, holdCheckout: null, holdCapability: null, holdStatus: null };
   const accepted = () => ({ id: 'fixture-delivery', ownerId, documentId: state.frozen.snapshot.documentId, revision: state.frozen.snapshot.revision,
     snapshotHash: state.frozen.snapshot.snapshotHash, projectHash: state.frozen.snapshot.projectHash, archiveSha256: state.frozen.receipt.archiveSha256, archiveBytes: state.frozen.archive.length, mode: 'test' });
-  const status = () => ({ status: state.purchaseState, paymentState: state.purchaseState, fulfillmentStatus: state.purchaseState === 'paid' ? 'ready' : 'pending', mailStatus: 'fixture-only', orderId: 'fixture-order', productId: parent.editionId, editionId: 'developer', version: parent.version, downloadName: 'fixture-original.zip', downloadToken: state.purchaseState === 'paid' ? 'd'.repeat(64) : null,
+  const status = () => ({ priceCents: state.orderPriceCents, currency: 'usd', status: state.purchaseState, paymentState: state.purchaseState, fulfillmentStatus: state.purchaseState === 'paid' ? 'ready' : 'pending', mailStatus: 'fixture-only', orderId: 'fixture-order', productId: parent.editionId, editionId: 'developer', version: parent.version, downloadName: 'fixture-original.zip', downloadToken: state.purchaseState === 'paid' ? 'd'.repeat(64) : null,
     approvedPage: { ...accepted(), deliveryId: accepted().id, state: state.purchaseState === 'paid' ? 'ready' : state.purchaseState === 'refunded' ? 'revoked' : 'pending', output: state.frozen.snapshot.output, downloadName: 'fixture-approved.zip', parent: { productId: parent.editionId, editionId: 'developer', version: parent.version, archiveSha256: parent.sha256, archiveBytes: parent.bytes, licenseId: parent.license.id } } });
   await context.route('**/*', async route => {
     const request = route.request(), url = new URL(request.url());
@@ -54,7 +54,7 @@ async function scenario(browser, engine, width, name, action) {
       if (state.holdCapability) await state.holdCapability.promise;
       if (!state.availability) return route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'Current checkout intentionally unavailable in recovery fixture.' }) });
       return reply({ capabilities: { mode: 'test', ownerId: state.owner, available: true, reason: null, limits: { snapshotBytes: 1500000, archiveBytes: 6000000 }, turnstileSiteKey: state.localTest ? '' : 'fixture-site-key', localTest: state.localTest,
-        products: [{ productId: parent.editionId, editionId: 'developer', version: parent.version, priceCents: 9900, currency: 'usd', parentArchiveSha256: parent.sha256, parentArchiveBytes: parent.bytes }] } });
+        products: [{ productId: parent.editionId, editionId: 'developer', version: parent.version, priceCents: state.priceCents, currency: 'usd', parentArchiveSha256: parent.sha256, parentArchiveBytes: parent.bytes }] } });
     }
     if (url.pathname === '/api/shop/status') {
       if (state.holdStatus) await state.holdStatus.promise;
@@ -156,6 +156,42 @@ for (const engine of engines) {
     state.owner = ownerId; state.purchaseState = 'refunded'; await page.getByRole('button', { name: 'Open a new editable copy', exact: true }).click();
     await page.locator('.pg-recovery-panel [role="alert"]').filter({ hasText: /not ready.*refunded/ }).waitFor(); assert.equal(await saved(), null);
     await page.screenshot({ path: path.join(runOut, 'revoked-before-open.png') }); check('revocation after retrieval blocks opening a new editable copy');
+  });
+  await scenario(browser, engine, 390, 'returned-checkout-price', async ({ page, state, record, check, create, runOut }) => {
+    state.availability = true; state.priceCents = 8900; state.orderPriceCents = 9900; state.purchaseState = 'pending';
+    await page.goto(base + '/playground/', { waitUntil: 'domcontentloaded' }); await create('Original attempt price');
+    await page.getByRole('button', { name: 'Finish', exact: true }).click(); await page.locator('.pg-finish-parent summary').click(); await page.getByLabel('Parent developer edition').selectOption(parent.editionId);
+    await page.getByRole('button', { name: 'Prepare current draft', exact: true }).click(); await page.getByLabel('I reviewed this frozen version for my local download.', { exact: true }).check();
+    await page.getByRole('button', { name: 'Check account purchase availability', exact: true }).click(); await page.getByRole('button', { name: 'Save reviewed page to my account', exact: true }).click();
+    await page.locator('.pg-purchase-accepted').waitFor();
+    await page.evaluate(receipt => sessionStorage.setItem('eidos.playground.purchase-return', JSON.stringify({ state: 'returned', receipt })), privateReceipt);
+    await page.getByLabel(/I have read the/).check();
+    await page.getByRole('button', { name: 'Check returned purchase', exact: true }).click();
+    await page.getByText('$99.00 · one-time TEST purchase', { exact: true }).waitFor();
+    assert.equal(await page.getByLabel(/I have read the/).isChecked(), false);
+    assert.equal(await page.getByRole('button', { name: 'Retry this TEST checkout', exact: true }).isDisabled(), true);
+    assert.equal(record.checkoutFixtures.length, 0);
+    await page.screenshot({ path: path.join(runOut, 'returned-price-requires-consent.png') });
+    check('returned attempt shows its original price and clears previous catalog-price acceptance before retry');
+  });
+  await scenario(browser, engine, 390, 'changed-checkout-price', async ({ page, state, record, check, create, runOut }) => {
+    state.availability = true; state.allowCheckoutNavigation = true;
+    await page.goto(base + '/playground/', { waitUntil: 'domcontentloaded' }); await create('Review changed price');
+    await page.getByRole('button', { name: 'Finish', exact: true }).click(); await page.locator('.pg-finish-parent summary').click(); await page.getByLabel('Parent developer edition').selectOption(parent.editionId);
+    await page.getByRole('button', { name: 'Prepare current draft', exact: true }).click(); await page.getByLabel('I reviewed this frozen version for my local download.', { exact: true }).check();
+    await page.getByRole('button', { name: 'Check account purchase availability', exact: true }).click(); await page.getByRole('button', { name: 'Save reviewed page to my account', exact: true }).click();
+    await page.locator('.pg-purchase-accepted').waitFor(); await page.getByLabel(/I have read the/).check();
+    state.priceCents = 10900;
+    await page.getByRole('button', { name: 'Continue to TEST checkout', exact: true }).click();
+    await page.locator('.pg-purchase-flow [role="alert"]').filter({ hasText: /price or edition changed/ }).waitFor();
+    assert.equal(record.checkoutFixtures.length, 0); assert.equal(await page.getByLabel(/I have read the/).isChecked(), false);
+    await page.getByText('$109.00 · one-time TEST purchase', { exact: true }).waitFor();
+    assert.equal(await page.getByRole('button', { name: 'Continue to TEST checkout', exact: true }).isDisabled(), true);
+    await page.screenshot({ path: path.join(runOut, 'changed-price-requires-consent.png') });
+    check('changed displayed price blocks checkout, updates the price and requires renewed consent');
+    await page.getByLabel(/I have read the/).check(); await page.getByRole('button', { name: 'Continue to TEST checkout', exact: true }).click();
+    await page.getByRole('heading', { name: 'Controlled TEST checkout fixture', exact: true }).waitFor();
+    assert.equal(record.checkoutFixtures.length, 1); check('explicit renewed consent permits exactly one intercepted checkout');
   });
   await scenario(browser, engine, 1440, 'cancelled-checkout', async ({ page, state, record, check, create, runOut }) => {
     state.availability = true; state.allowCheckoutNavigation = true; state.purchaseState = 'pending';
