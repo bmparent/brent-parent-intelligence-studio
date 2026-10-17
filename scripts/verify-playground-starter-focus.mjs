@@ -12,7 +12,7 @@ const receipt = { kind: 'controlled WebKit deferred starter focus; no providers'
 try {
   const assertLocal = await guardLocalEditor(page);
   await page.addInitScript(() => {
-    const raf = window.requestAnimationFrame.bind(window), focus = HTMLElement.prototype.focus;
+    const raf = window.requestAnimationFrame.bind(window);
     const pending = []; window.__starterFocus = { held: 0, released: 0 };
     window.requestAnimationFrame = callback => {
       if (document.querySelector('.pg-start') && /\.focus\(/.test(String(callback))) {
@@ -20,15 +20,13 @@ try {
       }
       return raf(callback);
     };
-    HTMLElement.prototype.focus = function (...args) {
-      const result = focus.apply(this, args);
-      if (this.matches('.pg-start-customize input[autocomplete="organization"]') && pending.length) {
-        // Reproduce the allowed ordering: name field receives focus, then the
-        // previously scheduled heading focus runs before the input operation.
+    document.addEventListener('focusin', event => {
+      if (event.target.matches?.('.pg-start-customize input[autocomplete="organization"]') && pending.length) {
+        // DOM events cross the automation isolated world boundary. Release the
+        // heading callback after input focus but before WebKit inserts text.
         queueMicrotask(() => { for (const callback of pending.splice(0)) { window.__starterFocus.released++; callback(performance.now()); } });
       }
-      return result;
-    };
+    });
   });
   await page.goto(base + '/playground/');
   await page.getByRole('button', { name: /Switchboard/ }).click();
