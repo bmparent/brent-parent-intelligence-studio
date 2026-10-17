@@ -24,7 +24,7 @@ leave the previous logo/project intact. Files stay on-device.
 ## Evidence and release boundary
 
 Local TypeScript, lint (one pre-existing Wellway Fast Refresh warning), client/SSR
-build, Functions build, and 37 focused editor/image tests pass. Tests cover
+build, Functions build, and 38 focused editor/image tests pass. Tests cover
 48 MP headers, malformed/truncated input, all three WebP header forms, unsafe
 sizes, format guidance, bounded decoder fallback, cleanup, adaptive output,
 aggregate limits and export metadata. The three-engine release browser suite now

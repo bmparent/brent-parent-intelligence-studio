@@ -29,13 +29,13 @@ export function imageDimensions(bytes: Uint8Array): {width: number; height: numb
    }
    offset += size;
   }
- } else if (bytes.length >= 30 && text(0,4) === 'RIFF' && text(8,4) === 'WEBP') {
+ } else if (bytes.length >= 25 && text(0,4) === 'RIFF' && text(8,4) === 'WEBP') {
   type = 'image/webp'; const kind = text(12,4);
-  if (kind === 'VP8X' && view.getUint32(16,true) >= 10) {
+  if (bytes.length >= 30 && kind === 'VP8X' && view.getUint32(16,true) >= 10) {
    width = u24(24) + 1; height = u24(27) + 1;
-  } else if (kind === 'VP8 ' && text(23,3) === '\x9d\x01\x2a') {
+  } else if (bytes.length >= 30 && kind === 'VP8 ' && text(23,3) === '\x9d\x01\x2a') {
    width = view.getUint16(26,true) & 16383; height = view.getUint16(28,true) & 16383;
-  } else if (kind === 'VP8L' && bytes[20] === 47) {
+  } else if (bytes.length >= 25 && kind === 'VP8L' && bytes[20] === 47) {
    const bits = view.getUint32(21,true); width = (bits & 16383) + 1; height = ((bits >>> 14) & 16383) + 1;
   }
  }

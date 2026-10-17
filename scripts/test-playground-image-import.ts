@@ -24,6 +24,12 @@ test('WebP extended, lossy and lossless dimensions are bounded before decode',()
   assert.deepEqual(imageDimensions(b),{width:100,height:50,type:'image/webp'});
  }
 });
+test('tiny 26-byte lossless WebP header is accepted without weakening truncated-header checks',()=>{
+ const tiny=Buffer.from('5249464612000000574542505650384c060000002f0000000000','hex');
+ assert.equal(tiny.length,26);assert.deepEqual(imageDimensions(tiny),{width:1,height:1,type:'image/webp'});
+ for(let size=0;size<25;size++)assert.throws(()=>imageDimensions(tiny.subarray(0,size)));
+ for(const kind of ['VP8X','VP8 ']){const truncated=Buffer.from(tiny);truncated.write(kind,12);assert.throws(()=>imageDimensions(truncated));}
+});
 test('unsupported and over-budget files fail before browser allocation',async()=>{
  await assert.rejects(imageData(new File(['test'],'phone.heic',{type:'image/heic'})),/HEIC.*JPEG/);
  await assert.rejects(imageData(new File([],'empty.png',{type:'image/png'})),/32 MB/);
