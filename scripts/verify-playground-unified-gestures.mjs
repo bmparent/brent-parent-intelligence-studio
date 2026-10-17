@@ -172,7 +172,7 @@ try {
   await undoRedo(resized, cropped, 'crop drag');
 
   await selectPhoto();
-  await page.getByLabel('Move to container', { exact: true }).selectOption(sourceId);
+  await page.getByText('Move to another container', { exact: true }).click();await page.getByLabel('Move to container', { exact: true }).selectOption(sourceId);
   const keyboardMove = page.getByRole('button', { name: 'Move here', exact: true }); await keyboardMove.focus(); await page.keyboard.press('Enter');
   const keyboardMoved = await save(); assert.equal(parentOf(keyboardMoved, photoId).id, sourceId);
   const widthField = page.getByLabel(/^Width \(%\)/); await widthField.focus(); await page.keyboard.press('Control+A'); await page.keyboard.type('75'); await page.keyboard.press('Tab');
