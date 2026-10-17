@@ -57,7 +57,14 @@ export function validateAiResponse(value: unknown): AiResponse {
   return { ...(value.enabled === undefined ? {} : { enabled: value.enabled }), ...(typeof value.reason === 'string' ? { reason: value.reason } : {}),
     ...(value.balance === undefined ? {} : { balance: validateAiBalance(value.balance) }), ...(value.action === undefined ? {} : { action: validateAiAction(value.action) }) };
 }
-export function usd(micros: number) { return '$' + (micros / 1000000).toFixed(2); }
+export function usd(micros: number) {
+  // Receipts are metered in microdollars. Never round a real charge down to
+  // $0.00 or show an approved maximum below its exact server commitment.
+  if (!money(micros)) throw invalid();
+  const whole = Math.floor(micros / 1000000);
+  const fraction = String(micros % 1000000).padStart(6, '0').replace(/0+$/, '').padEnd(2, '0');
+  return '$' + whole + '.' + fraction;
+}
 export function limitMicros(dollars: string) {
   if (!/^(?:0|[1-9]\d{0,6})(?:\.\d{1,2})?$/.test(dollars.trim())) throw Error('Enter a USD limit with at most two decimal places.');
   const [whole, cents = ''] = dollars.trim().split('.');
