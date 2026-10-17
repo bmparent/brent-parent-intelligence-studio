@@ -1,3 +1,4 @@
+import { launchOptions, guardLocalEditor } from './playground-local-browser-guard.mjs';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -9,7 +10,7 @@ import { flattenNodes } from '../src/playground/authoringSchema.ts';
 import { exportFiles } from '../src/playground/export.ts';
 
 const require = createRequire(import.meta.url), pw = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const base = process.env.PG_BASE_URL || 'http://127.0.0.1:5184';
+const base = process.env.PG_BASE_URL || 'http://127.0.0.1:4173';
 const out = path.resolve(process.env.PG_MOTION_EVIDENCE || 'artifacts/playground-unified/element-motion');
 const engines = (process.env.PG_ENGINES || 'chromium').split(',');
 const files = ['src/playground/authoringSchema.ts','src/playground/model.ts','src/playground/authoring.ts','src/playground/BlockControls.tsx','src/playground/authoringRenderer.ts','src/playground/authoringEditor.css','src/playground/runtimeBundle.ts','scripts/verify-playground-element-motion.mjs'];
@@ -19,8 +20,8 @@ await mkdir(out,{recursive:true});
 const getNode = (project,id) => project.sections.flatMap(s=>s.authoring?flattenNodes(s.authoring.root):[]).find(n=>n.id===id);
 for (const engine of engines) {
  console.log('Starting element motion checks: '+engine);
- const browser = await pw[engine].launch({headless:true,...(engine==='chromium'?{args:['--disable-gpu']}: {})});
- for (const width of (process.env.PG_WIDTHS || '1440,390').split(',').map(Number)) {
+ const browser = await pw[engine].launch(launchOptions(engine));
+ for (const width of (process.env.PG_WIDTHS || '1440,390,320').split(',').map(Number)) {
   const run = path.join(out,engine,String(width)); await mkdir(run,{recursive:true});
   const context=await browser.newContext({viewport:{width,height:1000},acceptDownloads:true,reducedMotion:'no-preference'});
   const page=await context.newPage();page.setDefaultTimeout(20000);page.setDefaultNavigationTimeout(60000);
@@ -32,7 +33,7 @@ for (const engine of engines) {
   const tool=async name=>{await panel('Build');await page.getByRole('navigation',{name:'Build tools'}).getByRole('button',{name,exact:true}).click();};
   const save=async()=>{await page.locator('.pg-save-inline').click();await page.waitForFunction(()=>document.querySelector('.pg-save-inline')?.textContent.includes('Saved on this device'));return page.evaluate(()=>new Promise((resolve,reject)=>{const request=indexedDB.open('eidos-playground-v1',1);request.onsuccess=()=>{const db=request.result,read=db.transaction('workspace').objectStore('workspace').get('current');read.onsuccess=()=>{db.close();resolve(read.result);};read.onerror=()=>reject(read.error);};request.onerror=()=>reject(request.error);}));};
   try {
-   await page.goto(base+'/playground/',{waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'What are you making?'}).waitFor();
+   const assertLocalOnly = await guardLocalEditor(page);await page.goto(base+'/playground/',{waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'What are you making?'}).waitFor();
    await page.getByRole('button',{name:/Switchboard/}).click();await page.getByRole('button',{name:/Create project/}).click();await page.locator('.pg-unified').waitFor();
    await page.getByRole('button',{name:'1 Content',exact:true}).click();await panel('Edit selection');
    const before=await save(),id=before.editor.nodeId,frame=page.frameLocator('iframe[title="Your page preview"]');
@@ -70,12 +71,12 @@ for (const engine of engines) {
    const independent=await context.newPage();independent.on('pageerror',e=>record.errors.push(e.message));await independent.goto(pathToFileURL(path.join(extracted,'index.html')).href);
    await independent.locator('body[data-editing="false"]').waitFor();assert.equal(await independent.locator('#'+id).evaluate(el=>getComputedStyle(el).animationName),'pg-block-rise');assert.equal(await independent.locator('.pg-node-toolbar').count(),0);
    await independent.screenshot({path:path.join(run,'03-independent-export.png'),fullPage:true});await independent.close();check('actual downloaded ZIP matches common renderer bytes and executes motion independently');
-   const staticContext=await browser.newContext({javaScriptEnabled:false,viewport:{width,height:900}}),staticPage=await staticContext.newPage();await staticPage.goto(pathToFileURL(path.join(extracted,'index.html')).href);
-   assert.equal(await staticPage.locator('#'+id).evaluate(el=>getComputedStyle(el).opacity),'1');assert.equal(await staticPage.locator('#'+id).evaluate(el=>getComputedStyle(el).animationName),'none');await staticContext.close();check('export remains visible and static without JavaScript');
+   const staticContext=await browser.newContext({javaScriptEnabled:false,viewport:{width,height:900}}),staticPage=await staticContext.newPage();const assertStaticLocal=await guardLocalEditor(staticPage);await staticPage.goto(pathToFileURL(path.join(extracted,'index.html')).href);
+   assert.equal(await staticPage.locator('#'+id).evaluate(el=>getComputedStyle(el).opacity),'1');assert.equal(await staticPage.locator('#'+id).evaluate(el=>getComputedStyle(el).animationName),'none');await assertStaticLocal();await staticContext.close();check('export remains visible and static without JavaScript');
    await page.getByRole('button',{name:'Close finish review',exact:true}).click();await tool('Project');const reduced=structuredClone(configured.project);reduced.glass.reducedMotion=true;
    await page.getByLabel('Import project',{exact:true}).setInputFiles({name:'reduced-motion.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(reduced))});await page.locator('.pg-toast').filter({hasText:'Project imported'}).waitFor();await page.getByRole('button',{name:'Preview',exact:true}).click();
    await frame.locator('body[data-editing="false"][data-reduced="true"]').waitFor();assert.equal(await frame.locator('#'+id).evaluate(el=>getComputedStyle(el).animationName),'none');check('the saved project reduced-motion preference also suppresses element animation');
-   assert.equal(record.errors.length,0);assert.equal(await page.locator('vite-error-overlay').count(),0);assert.ok((await page.title()).length>0);assert.ok(record.apiCalls.every(name=>['/api/public-config','/api/members/account'].includes(name)));check('nonblank page identity, no framework/runtime errors and no AI/payment API requests');
+   await assertLocalOnly();assert.equal(record.errors.length,0);assert.equal(await page.locator('vite-error-overlay').count(),0);assert.ok((await page.title()).length>0);assert.ok(record.apiCalls.every(name=>['/api/public-config','/api/members/account'].includes(name)));check('nonblank page identity, no framework/runtime errors and no AI/payment API requests');
   } catch(error) {record.failure=error.stack;console.error(error.stack);process.exitCode=1;await page.screenshot({path:path.join(run,'failure.png'),fullPage:true}).catch(()=>{});}
   finally{await context.close();receipt.completedAt=new Date().toISOString();await writeFile(path.join(out,'receipt.json'),JSON.stringify(receipt,null,2)+'\n');}
  }
