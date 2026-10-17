@@ -88,7 +88,7 @@ export function Preview({
       if (data.type !== 'playground-composition' || !editing || !edit || !guard || ![3,5].includes(project.schemaVersion)) return;
       const receipt = sent.current;
       if (!receipt || receipt.consumed || data.stamp !== receipt.stamp || !receipt.valid()) return;
-      if (data.action === 'error') { notify?.('Drop one PNG, JPEG or WebP image, up to 8 MB.'); return; }
+      if (data.action === 'error') { notify?.('Drop one PNG, JPEG or WebP image, up to 32 MB.'); return; }
       const section = project.sections.find(s => s.id === data.sectionId && s.composition);
       if (!section) return;
       if (data.action === 'select') { onSelect(section.id); return; }

@@ -85,33 +85,4 @@ export async function listSavedProjects(): Promise<SavedProjectSummary[]> {
     });
   } finally { db.close(); }
 }
-export async function imageData(file: File): Promise<string> {
-  if (
-    !["image/png", "image/jpeg", "image/webp"].includes(file.type) ||
-    file.size > 8_000_000
-  )
-    throw new Error("Choose a PNG, JPEG, or WebP image smaller than 8 MB.");
-  const url = URL.createObjectURL(file);
-  try {
-    const image = new Image();
-    image.src = url;
-    await image.decode();
-    if (!image.width || !image.height || image.width * image.height > 16_000_000 || image.width > 12000 || image.height > 12000) throw new Error("Choose an image below 16 megapixels and 12,000 pixels per side.");
-    const scale = Math.min(1, 1600 / Math.max(image.width, image.height));
-    const canvas = document.createElement("canvas");
-    canvas.width = Math.round(image.width * scale);
-    canvas.height = Math.round(image.height * scale);
-    const context = canvas.getContext("2d");
-    if (!context)
-      throw new Error("Image processing is unavailable in this browser.");
-    context.drawImage(image, 0, 0, canvas.width, canvas.height);
-    const data = canvas.toDataURL("image/webp", 0.88);
-    if (data.length > 4_500_000)
-      throw new Error(
-        "This image is too large after processing. Try a smaller image.",
-      );
-    return data;
-  } finally {
-    URL.revokeObjectURL(url);
-  }
-}
+export { imageData } from './imageImport';
