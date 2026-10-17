@@ -111,7 +111,17 @@ try {
   const finishMetrics = await startGestureEvidence(page, frame);
   await beginMove();
   const target = await targetDestination();
-  for (let index = 0; index < 60; index++) { await page.mouse.move(target.x + Math.sin(index / 5) * 8, target.y + Math.cos(index / 5) * 6); await page.waitForTimeout(16); }
+  // Headless engines may coalesce many pointer samples into one painted frame.
+  // Collect actual paint observations rather than assuming 60 inputs imply 20 paints.
+  const measurementDeadline = Date.now() + 10000;
+  let inputSamples = 0, paintSamples = 0;
+  while ((inputSamples < 60 || paintSamples < 20) && Date.now() < measurementDeadline) {
+    await page.mouse.move(target.x + Math.sin(inputSamples / 5) * 8, target.y + Math.cos(inputSamples / 5) * 6);
+    inputSamples++;
+    await page.waitForTimeout(16);
+    paintSamples = await frame.locator('body').evaluate(() => window.__pgActiveEvidence.delays.length);
+  }
+  receipt.measurementSampling = { inputSamples, paintSamples, deadlineMs: 10000 };
   receipt.dragFeedback = await frame.locator('.pg-node-ghost').evaluate(ghost => {
     const rect = ghost.getBoundingClientRect(), image = ghost.querySelector('img'), frame = ghost.querySelector('.pg-block-frame');
     return { ghost: { x: rect.x, y: rect.y, width: rect.width, height: rect.height, opacity: getComputedStyle(ghost).opacity, display: getComputedStyle(ghost).display }, image: image ? { complete: image.complete, naturalWidth: image.naturalWidth, width: image.getBoundingClientRect().width, height: image.getBoundingClientRect().height } : null, imageFrame: frame ? { width: frame.getBoundingClientRect().width, height: frame.getBoundingClientRect().height } : null, viewport: { width: innerWidth, height: innerHeight } };
@@ -121,7 +131,7 @@ try {
   await page.screenshot({ path: path.resolve(out, '02-empty-container-drag-preview.png') });
   const metric = await finishMetrics(); metric.action = 'Real pointer drag with empty nested destination; canceled after measurement';
   metric.budgetMs = 33; metric.budgetMet = metric.inputToStyleUpdateP95Ms === null ? null : metric.inputToStyleUpdateP95Ms < 33;
-  receipt.metrics.push(metric); assert.ok(metric.delays.length >= 20); assert.equal(metric.rootReplacements, 0); assert.equal(metric.glassRemovals, 0); assert.equal(metric.writes, 0);
+  receipt.metrics.push(metric); assert.ok(metric.delays.length >= 20, `Expected at least 20 actual gesture paints within 10 seconds; observed ${metric.delays.length} from ${inputSamples} pointer samples`); assert.equal(metric.rootReplacements, 0); assert.equal(metric.glassRemovals, 0); assert.equal(metric.writes, 0);
   await page.keyboard.press('Escape'); await page.mouse.up();
   assert.equal(await frame.locator('.pg-node-ghost').count(), 0); assert.equal(await frame.locator('.pg-node-destination').count(), 0); assert.deepEqual(await save(), baseline);
   check('drag previews the named empty nested container; Escape restores exact state with no transient writes');
