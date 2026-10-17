@@ -21,10 +21,10 @@ async function historicalPackage(): Promise<FrozenPackage> {
   return value;
 }
 const json = (value: unknown) => new Response(JSON.stringify(value), { headers: { 'content-type': 'application/json' } });
-function fixture(frozen: FrozenPackage, state = 'paid', source?: unknown) {
+function fixture(frozen: FrozenPackage, state = 'paid', source?: unknown, mode: 'test' | 'live' = 'test') {
   const calls: string[] = [], parent = frozen.snapshot.parent!;
-  const accepted = { id: 'delivery-one', ownerId: 'owner-one', documentId: frozen.snapshot.documentId, revision: frozen.snapshot.revision, snapshotHash: frozen.snapshot.snapshotHash, projectHash: frozen.snapshot.projectHash, archiveSha256: frozen.receipt.archiveSha256, archiveBytes: frozen.archive.length, mode: 'test' };
-  const status = { status: state, paymentState: state, orderId: 'order-one', productId: parent.editionId, editionId: 'developer', version: parent.version, downloadToken: 'fixture-token', approvedPage: { ...accepted, deliveryId: accepted.id, state: state === 'paid' ? 'ready' : state === 'refunded' ? 'revoked' : state === 'sign_in_required' ? 'sign_in_required' : 'pending', output: frozen.snapshot.output, downloadName: 'approved.zip', parent: { productId: parent.editionId, editionId: 'developer', version: parent.version, archiveSha256: parent.sha256, archiveBytes: parent.bytes, licenseId: parent.license.id } } };
+  const accepted = { id: 'delivery-one', ownerId: 'owner-one', documentId: frozen.snapshot.documentId, revision: frozen.snapshot.revision, snapshotHash: frozen.snapshot.snapshotHash, projectHash: frozen.snapshot.projectHash, archiveSha256: frozen.receipt.archiveSha256, archiveBytes: frozen.archive.length, mode };
+  const status = { status: state, paymentState: state, priceCents: 9900, currency: 'usd', orderId: 'order-one', productId: parent.editionId, editionId: 'developer', version: parent.version, downloadToken: 'fixture-token', approvedPage: { ...accepted, deliveryId: accepted.id, state: state === 'paid' ? 'ready' : state === 'refunded' ? 'revoked' : state === 'sign_in_required' ? 'sign_in_required' : 'pending', output: frozen.snapshot.output, downloadName: 'approved.zip', parent: { productId: parent.editionId, editionId: 'developer', version: parent.version, archiveSha256: parent.sha256, archiveBytes: parent.bytes, licenseId: parent.license.id } } };
   const request = (async (input, init) => { const path = String(input); calls.push(path);
     if (path === '/api/shop/status') return json(status);
     if (path === '/api/shop/download') { assert.deepEqual(JSON.parse(String(init?.body)), { receipt, downloadToken: 'fixture-token', artifact: 'approved-page' }); return new Response(frozen.archive, { headers: { 'content-type': 'application/zip' } }); }
@@ -148,4 +148,12 @@ test('guest original recovery continues without an account or Playground redirec
   const storage = privateSession(), guest = createTemplateRecovery(recoveryToken, storage, { request: (async () => reply(200, { receipt })) as typeof fetch });
   assert.deepEqual(await guest.redeem(), { receipt, saved: true }); assert.equal(storage.getItem(receiptKey), receipt);
   const stale = createTemplateRecovery(recoveryToken, storage); stale.discard(); assert.equal(stale.hasPending(), false); assert.equal(storage.getItem(pendingKey), null);
+});
+
+test('LIVE paid recovery uses its stored mode and exact bytes without new-sales capability', async () => {
+  const mock = fixture(current, 'paid', undefined, 'live');
+  const recovered = await recoverApprovedPurchase(receipt, mock.request);
+  assert.equal(recovered.limitation, ''); assert.equal(recovered.attempt?.delivery.mode, 'live');
+  assert.deepEqual(recovered.archive, current.archive);
+  assert.deepEqual(mock.calls, ['/api/shop/status', '/api/shop/download', '/api/playground/delivery?id=delivery-one']);
 });

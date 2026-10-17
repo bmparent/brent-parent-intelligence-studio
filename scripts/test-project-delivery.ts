@@ -8,6 +8,7 @@ import { onRequestPost as legacySave } from '../functions/api/playground/project
 import { onRequest as relay } from '../functions/_middleware';
 import { DELIVERY_LIMITS, readProjectDeliveryArchive, type ProjectDeliveryEnv } from '../functions/_shared/platform/projectDelivery';
 import schema from '../functions/_shared/platform/projectDeliverySchema';
+import liveSchema from '../functions/_shared/platform/projectDeliveryLiveSchema';
 import { createProjectSnapshot, buildFrozenPackage, type ProjectSnapshot } from '../src/playground/purchaseSnapshot';
 import { createStarter } from '../src/playground/starters';
 import { createProject } from '../src/playground/model';
@@ -164,4 +165,23 @@ test('delivery relay uses the explicit bounded body ceiling and never falls back
   const invoke = (length: number) => relay({ env, request: new Request('https://controlled-preview.pages.dev/api/playground/delivery', { method: 'POST', headers: { 'content-type': 'application/json' }, body: 'x'.repeat(length) }), next: async () => { throw Error('Delivery must use the configured relay.'); } });
   try { assert.equal((await invoke(13000)).status, 200); assert.equal((await invoke(DELIVERY_LIMITS.requestBytes + 1)).status, 413); assert.equal(calls, 1); }
   finally { globalThis.fetch = originalFetch; }
+});
+
+test('additive LIVE migration preserves TEST rows, rejects cross-mode inserts and rolls back without touching TEST', async () => {
+  const f = await fixture();
+  try {
+    const saved = await successful(await f.freeze());
+    const testRows = JSON.stringify(f.sql.prepare('SELECT * FROM eidos_pg_delivery_snapshots').all());
+    const testChunks = JSON.stringify(f.sql.prepare('SELECT * FROM eidos_pg_delivery_chunks').all());
+    assert.equal(liveSchema, readFileSync('migrations/0008_project_delivery_live.sql', 'utf8'));
+    f.sql.exec(liveSchema); f.sql.exec(liveSchema);
+    assert.equal(JSON.stringify(f.sql.prepare('SELECT * FROM eidos_pg_delivery_snapshots').all()), testRows);
+    assert.equal(JSON.stringify(f.sql.prepare('SELECT * FROM eidos_pg_delivery_chunks').all()), testChunks);
+    assert.throws(() => f.sql.prepare('INSERT INTO eidos_pg_live_delivery_snapshots SELECT * FROM eidos_pg_delivery_snapshots').run(), /CHECK constraint/);
+    assert.equal(f.sql.prepare('SELECT COUNT(*) n FROM eidos_pg_live_delivery_snapshots').get()!.n, 0);
+    // Rollback practice is confined to this disposable in-memory fixture.
+    f.sql.exec('DROP TABLE eidos_pg_live_delivery_orders; DROP TABLE eidos_pg_live_delivery_chunks; DROP TABLE eidos_pg_live_delivery_snapshots;');
+    assert.equal((await readProjectDeliveryArchive(f.env, 'alice', saved.id)).archiveSha256, saved.archiveSha256);
+    assert.equal(JSON.stringify(f.sql.prepare('SELECT * FROM eidos_pg_delivery_snapshots').all()), testRows);
+  } finally { f.close(); }
 });

@@ -25,7 +25,9 @@ class Query implements Statement {
   all<T>() { return Promise.resolve({ results: this.sql.prepare(this.text).all(...this.values as never[]) as T[] }); }
   run() { return Promise.resolve({ meta: { changes: Number(this.sql.prepare(this.text).run(...this.values as never[]).changes) } }); }
 }
-async function fixture() {
+async function fixture(mode: 'test' | 'live' = 'test') {
+  const origin = mode === 'live' ? 'https://eidos-works.com' : 'http://localhost:8788';
+  const orderTable = mode === 'live' ? 'eidos_pg_live_delivery_orders' : 'eidos_pg_delivery_orders';
   const sql = new DatabaseSync(':memory:'); sql.exec('PRAGMA foreign_keys=ON');
   for (const name of ['0001_eidos_platform.sql', '0002_members.sql', '0004_paid_templates.sql']) sql.exec(readFileSync('migrations/' + name, 'utf8'));
   const database: Database = { prepare: text => new Query(sql, text), batch: statements => {
@@ -38,6 +40,7 @@ async function fixture() {
     STRIPE_SECRET_KEY: 'sk_test_fixture', EIDOS_KIT_WEBHOOK_SECRET: 'whsec_controlled_fixture', EIDOS_TEMPLATE_STRIPE_ACCOUNT_ID: merchant,
     RESEND_API_KEY: 'fixture-mail-key', EIDOS_MAIL_FROM: 'Eidos <hello@example.test>',
     EIDOS_TEMPLATE_ARCHIVES: { async get(key) { return key.startsWith('templates/') ? { bytes: archiveBytes, sha256: createHash('sha256').update(archiveBytes).digest('hex') } : null; } } };
+  if (mode === 'live') Object.assign(env, { EIDOS_ACCOUNTS_ENABLED: 'true', EIDOS_PLAYGROUND_DELIVERY_MODE: 'live', EIDOS_PLAYGROUND_DELIVERY_LIVE_ENABLED: 'true', EIDOS_TEMPLATE_LIVE_ENABLED: 'true', EIDOS_TEMPLATE_TEST_ENABLED: 'false', EIDOS_LOCAL_TEST: 'false', STRIPE_SECRET_KEY: 'sk_live_controlled_fixture', RESEND_API_KEY: 're_controlled_fixture', TURNSTILE_SITE_KEY: 'production-site-fixture', TURNSTILE_SECRET_KEY: 'production-secret-fixture', EIDOS_RATE_SECRET: 'r'.repeat(40) });
   for (const [owner, token] of [['alice', 'a'.repeat(64)], ['bob', 'b'.repeat(64)]]) {
     sql.prepare('INSERT INTO eidos_email_members(id,email,username,kind,created_at,newsletter_after) VALUES(?,?,?,?,?,?)').run(owner, owner + '@example.test', owner, 'person', '2026-10-14', '2026-10-14');
     sql.prepare('INSERT INTO eidos_member_sessions(token_hash,member_id,expires) VALUES(?,?,?)').run(await hash(token), owner, 2_000_000_000);
@@ -47,32 +50,33 @@ async function fixture() {
   const delivery = await freezeProjectDelivery(env, 'alice', { requestId: 'freeze-order-one', snapshot });
   const originalFetch = globalThis.fetch, sessions: URLSearchParams[] = [], mails: { text: string; to: string }[] = [];
   globalThis.fetch = async (url, init) => {
+    if (String(url) === 'https://challenges.cloudflare.com/turnstile/v0/siteverify') return Response.json({ success: true, hostname: 'eidos-works.com', action: 'checkout' });
     if (String(url) === 'https://api.stripe.com/v1/account') return Response.json({ id: merchant, charges_enabled: true, payouts_enabled: true });
     if (String(url) === 'https://api.stripe.com/v1/checkout/sessions') {
       const values = new URLSearchParams(String(init?.body)); sessions.push(values);
       const id = values.get('client_reference_id')!;
       if (values.has('metadata[eidos_delivery_id]')) {
-        const binding = sql.prepare('SELECT * FROM eidos_pg_delivery_orders WHERE order_id=?').get(id)!;
+        const binding = sql.prepare(`SELECT * FROM ${orderTable} WHERE order_id=?`).get(id)!;
         assert.equal(binding.delivery_id, values.get('metadata[eidos_delivery_id]'), 'attachment must commit before external dispatch');
         assert.equal(binding.snapshot_hash, values.get('metadata[eidos_snapshot_hash]'));
       }
-      return failCheckout ? Response.json({}, { status: 503 }) : Response.json({ id: 'cs_test_' + id.replaceAll('-', ''), url: 'https://checkout.stripe.com/c/pay/' + id, livemode: false });
+      return failCheckout ? Response.json({}, { status: 503 }) : Response.json({ id: 'cs_' + mode + '_' + id.replaceAll('-', ''), url: 'https://checkout.stripe.com/c/pay/' + id, livemode: mode === 'live' });
     }
     if (String(url) === 'https://api.resend.com/emails') { mails.push(JSON.parse(String(init?.body))); return Response.json({ id: 'fixture-mail-' + mails.length }); }
     throw Error('Unexpected real network request: ' + url);
   };
-  const context = (path: string, payload: unknown, owner = 'alice'): Context => ({ env, request: new Request(origin + path, { method: 'POST', headers: { origin, 'content-type': 'application/json', ...(owner ? { cookie: 'eidos_session_local=' + (owner === 'alice' ? 'a' : 'b').repeat(64) } : {}) }, body: JSON.stringify(payload) }) });
-  const begin = (attempt: string, deliveryId: unknown = delivery.id, owner = 'alice') => checkout(context('/api/shop/checkout', { productId: 'switchboard-developer-v1', editionId: 'developer', acceptTerms: true, attempt, ...(deliveryId === undefined ? {} : { deliveryId }) }, owner));
+  const context = (path: string, payload: unknown, owner = 'alice'): Context => ({ env, request: new Request(origin + path, { method: 'POST', headers: { origin, 'content-type': 'application/json', ...(owner ? { cookie: (mode === 'live' ? '__Host-eidos_session=' : 'eidos_session_local=') + (owner === 'alice' ? 'a' : 'b').repeat(64) } : {}) }, body: JSON.stringify(payload) }) });
+  const begin = (attempt: string, deliveryId: unknown = delivery.id, owner = 'alice') => checkout(context('/api/shop/checkout', { productId: 'switchboard-developer-v1', editionId: 'developer', acceptTerms: true, challenge: 'controlled-verification', reviewedPriceCents: 9900, attempt, ...(deliveryId === undefined ? {} : { deliveryId }) }, owner));
   const getOrder = async (attempt: string) => sql.prepare('SELECT o.*,t.* FROM eidos_orders o JOIN eidos_template_orders t ON t.order_id=o.id WHERE receipt_hash=?').get(await hash(attempt))!;
   const event = async (attempt: string, id: string, type = 'checkout.session.completed', overrides: Record<string, unknown> = {}, signature = true) => {
     const row = await getOrder(attempt), session = sessions.find(values => values.get('client_reference_id') === row.id)!;
     const metadata = Object.fromEntries([...session.entries()].filter(([key]) => key.startsWith('metadata[')).map(([key, value]) => [key.slice(9, -1), value]));
-    const payload = { id, type, livemode: false, data: { object: { id: row.session_id, client_reference_id: row.id, mode: 'payment', currency: 'usd', amount_total: row.price_cents,
+    const payload = { id, type, livemode: mode === 'live', data: { object: { id: row.session_id, client_reference_id: row.id, mode: 'payment', currency: 'usd', amount_total: row.price_cents,
       payment_status: 'paid', payment_intent: 'pi_fixture_' + row.id, customer_details: { email: row.email || 'guest@example.test' }, metadata, ...overrides } } };
     const raw = JSON.stringify(payload), timestamp = Math.floor(Date.now() / 1000), digest = createHmac('sha256', env.EIDOS_KIT_WEBHOOK_SECRET!).update(timestamp + '.' + raw).digest('hex');
     return webhook({ env, request: new Request(origin + '/api/shop/webhook', { method: 'POST', headers: { 'stripe-signature': `t=${timestamp},v1=${signature ? digest : '0'.repeat(64)}` }, body: raw }) });
   };
-  return { sql, env, delivery, snapshot, sessions, mails, context, begin, getOrder, event, setArchive(bytes: Uint8Array) { archiveBytes = bytes; }, setMerchant(value: string) { merchant = value; }, fail(value: boolean) { failCheckout = value; }, close() { globalThis.fetch = originalFetch; sql.close(); } };
+  return { sql, env, origin, orderTable, delivery, snapshot, sessions, mails, context, begin, getOrder, event, setArchive(bytes: Uint8Array) { archiveBytes = bytes; }, setMerchant(value: string) { merchant = value; }, fail(value: boolean) { failCheckout = value; }, close() { globalThis.fetch = originalFetch; sql.close(); } };
 }
 async function ok(response: Response) { assert.equal(response.status, 200, await response.clone().text()); return response.json(); }
 
@@ -191,4 +195,85 @@ test('historical and guest original orders never gain attachments and retain ori
 
 test('order attachment schema matches additive migration', () => {
   assert.equal(schema.replaceAll('\r\n', '\n'), readFileSync('migrations/0007_project_delivery_orders.sql', 'utf8').replaceAll('\r\n', '\n'));
+});
+
+test('LIVE attachment requires independent activation and never reuses TEST storage or payment mode', async () => {
+  const f = await fixture('live'), attempt = 'a'.repeat(64);
+  try {
+    assert.equal(f.delivery.mode, 'live');
+    assert.equal(f.sql.prepare("SELECT COUNT(*) n FROM sqlite_master WHERE name='eidos_pg_delivery_snapshots'").get()!.n, 0);
+    f.env.EIDOS_PLAYGROUND_DELIVERY_LIVE_ENABLED = 'false';
+    await assert.rejects(() => freezeProjectDelivery(f.env, 'alice', { requestId: 'disabled-new-page', snapshot: f.snapshot }), /not enabled/);
+    assert.equal((await f.begin(attempt)).status, 503); assert.equal(f.sessions.length, 0);
+    f.env.EIDOS_PLAYGROUND_DELIVERY_LIVE_ENABLED = 'true';
+    assert.equal((await f.begin(attempt, f.delivery.id, 'bob')).status, 404);
+    await ok(await f.begin(attempt));
+    assert.equal(f.sessions.length, 1); assert.equal((await f.getOrder(attempt)).session_id.toString().startsWith('cs_live_'), true);
+    // A stored LIVE attachment never grants against the TEST payment mode.
+    f.env.EIDOS_PLAYGROUND_DELIVERY_MODE = 'test';
+    assert.equal((await f.event(attempt, 'evt_wrong_delivery_mode')).status, 503);
+    f.env.EIDOS_PLAYGROUND_DELIVERY_MODE = 'live';
+    await ok(await f.event(attempt, 'evt_live_paid'));
+    const paid = await ok(await status(f.context('/api/shop/status', { receipt: attempt })));
+    assert.equal(paid.approvedPage.mode, 'live'); assert.equal(paid.approvedPage.state, 'ready');
+    f.env.EIDOS_PLAYGROUND_DELIVERY_LIVE_ENABLED = 'false'; f.env.EIDOS_SHOP_ENABLED = 'false';
+    const delivered = await download(f.context('/api/shop/download', { receipt: attempt, downloadToken: paid.downloadToken, artifact: 'approved-page' }));
+    assert.equal(delivered.status, 200); assert.equal(delivered.headers.get('x-eidos-archive-sha256'), f.delivery.archiveSha256);
+    assert.equal((await download(f.context('/api/shop/download', { receipt: attempt, downloadToken: paid.downloadToken, artifact: 'approved-page' }, 'bob'))).status, 403);
+    const token = f.mails[0].text.match(/#token=([a-f0-9]{64})/)![1];
+    const recovered = await ok(await redeem(f.context('/api/shop/redeem', { token })));
+    assert.equal(recovered.approvedPage.mode, 'live');
+    assert.equal((await redeem(f.context('/api/shop/redeem', { token }))).status, 401);
+    const fresh = await ok(await status(f.context('/api/shop/status', { receipt: recovered.receipt })));
+    await ok(await f.event(recovered.receipt, 'evt_live_refund', 'charge.refunded'));
+    assert.equal((await download(f.context('/api/shop/download', { receipt: recovered.receipt, downloadToken: fresh.downloadToken, artifact: 'approved-page' }))).status, 403);
+    await ok(await f.event(recovered.receipt, 'evt_live_paid_replay'));
+    assert.equal((await ok(await status(f.context('/api/shop/status', { receipt: recovered.receipt })))).approvedPage.state, 'revoked');
+  } finally { f.close(); }
+});
+
+test('LIVE gate rejects missing activation, wrong origin, TEST key, local verification and wrong merchant', async () => {
+  const f = await fixture('live'), attempt = 'b'.repeat(64);
+  try {
+    const initial = { ...f.env };
+    for (const changes of [
+      { EIDOS_PLAYGROUND_DELIVERY_LIVE_ENABLED: undefined },
+      { PUBLIC_SITE_URL: 'https://preview.example.test' },
+      { STRIPE_SECRET_KEY: 'sk_test_fixture' },
+      { EIDOS_LOCAL_TEST: 'true' },
+      { EIDOS_TEMPLATE_LIVE_ENABLED: 'false' },
+      { EIDOS_TEMPLATE_TEST_ENABLED: 'true' },
+      { TURNSTILE_SITE_KEY: '1x00000000000000000000AA' },
+    ]) {
+      Object.assign(f.env, initial, changes);
+      await assert.rejects(() => freezeProjectDelivery(f.env, 'alice', { requestId: 'blocked-freeze', snapshot: f.snapshot }));
+      assert.equal(f.sessions.length, 0);
+    }
+    Object.assign(f.env, initial);
+    f.setMerchant('acct_wrongmerchant'); assert.equal((await f.begin(attempt)).status, 503); assert.equal(f.sessions.length, 0);
+    f.setMerchant('acct_fixturemerchant'); await ok(await f.begin(attempt));
+    assert.equal((await f.event(attempt, 'evt_wrong_amount', 'checkout.session.completed', { amount_total: 1 })).status, 400);
+    assert.equal((await f.event(attempt, 'evt_wrong_currency', 'checkout.session.completed', { currency: 'eur' })).status, 400);
+    assert.equal((await f.event(attempt, 'evt_wrong_metadata', 'checkout.session.completed', { metadata: {} })).status, 200);
+    assert.equal((await f.event(attempt, 'evt_unsigned', 'checkout.session.completed', {}, false)).status, 400);
+    assert.equal((await ok(await status(f.context('/api/shop/status', { receipt: attempt })))).approvedPage.state, 'pending');
+    await ok(await f.event(attempt, 'evt_live_valid'));
+    await ok(await f.event(attempt, 'evt_live_valid'));
+    assert.equal((await ok(await status(f.context('/api/shop/status', { receipt: attempt })))).approvedPage.state, 'ready');
+    assert.equal(f.sql.prepare('SELECT COUNT(*) n FROM eidos_pg_live_delivery_orders').get()!.n, 1);
+  } finally { f.close(); }
+});
+
+test('retained LIVE checkout price must match explicit review even after catalog price changes', async () => {
+  const f = await fixture('live'), attempt = 'c'.repeat(64);
+  try {
+    await ok(await f.begin(attempt));
+    const checked = await ok(await status(f.context('/api/shop/status', { receipt: attempt })));
+    assert.equal(checked.priceCents, 9900); assert.equal(checked.currency, 'usd');
+    const retry = (reviewedPriceCents: number) => checkout(f.context('/api/shop/checkout', { productId: 'switchboard-developer-v1', editionId: 'developer', acceptTerms: true, challenge: 'fixture', attempt, deliveryId: f.delivery.id, reviewedPriceCents }));
+    assert.equal((await retry(8900)).status, 409); assert.equal(f.sessions.length, 1);
+    await ok(await retry(checked.priceCents)); assert.equal(f.sessions.length, 1);
+    const missing = await checkout(f.context('/api/shop/checkout', { productId: 'switchboard-developer-v1', editionId: 'developer', acceptTerms: true, challenge: 'fixture', attempt, deliveryId: f.delivery.id }));
+    assert.equal(missing.status, 400);
+  } finally { f.close(); }
 });

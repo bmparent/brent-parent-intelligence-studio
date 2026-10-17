@@ -1,28 +1,28 @@
 {
-  "timestamp": "2026-10-15T18:51:30.770Z",
-  "frontendCommit": "41f0d1e388220f62ca20d0c5930251276444c40c",
-  "backendCommit": "bbbfb9e77d373a29eb03e4f7836edce04bc8253b",
+  "timestamp": "2026-10-17T21:46:11.479Z",
+  "frontendCommit": "7d1b0ea2558be640ea1bf6e1d4ebfebe170d0cb0",
+  "backendCommit": "946c8697c2a5391c0861fabd80bb2eb37925f96a",
   "workingFiles": true,
   "checks": [
     {
       "path": "functions/_shared/platform/core.ts",
-      "sha256Utf8Lf": "bb89a319cf100c4bfd20101c3b4ebeb8c17ec2c82a28c7cbe6afec76acddf7a4"
+      "sha256Utf8Lf": "1346293d22fea257dc39868eb0b3f67132b2908f17c2fa0ac2e86ffbd28a4d2f"
     },
     {
       "path": "functions/_shared/platform/playgroundAi.ts",
-      "sha256Utf8Lf": "1d3bf7ce735e9e7575232d58b7bc89f6551ea199e1c49463dc5a490670eec2d9"
+      "sha256Utf8Lf": "8d135acf5f662dd5fb0ce969962d240f5edb00acd0ee398cc8bc81a5edc8e067"
     },
     {
       "path": "functions/_shared/platform/playgroundAiSchema.ts",
-      "sha256Utf8Lf": "45c82ac02c7a06945462a70a1bf556e9f5689ab75b6138d930f41f13993da2ff"
+      "sha256Utf8Lf": "d6c0db3c032fd9206b82fdd2a8aa009d8b0e57b9efb6565887b1757fedd72669"
     },
     {
       "path": "functions/_shared/platform/playgroundAiProvider.ts",
-      "sha256Utf8Lf": "d927ae39c9161928aae4a3c145d3933f809fd56c959cff862559c9564e3e9fdb"
+      "sha256Utf8Lf": "f72bd535a4f3d95cc486129dc5c2153b7aa78cc89158f66cce862fd2fe9eb230"
     },
     {
       "path": "functions/_shared/platform/templateShop.ts",
-      "sha256Utf8Lf": "47d49d09d5ed6f2e7c4d5cd18a2a2aecb1c8f8abb4c7bb8b504cc750c4d8f437"
+      "sha256Utf8Lf": "9c1331ee2d36e67f497f53c47730d00dd582cd1e742d6083d2625e3bc85120b8"
     },
     {
       "path": "functions/api/playground/ai.ts",
@@ -42,11 +42,11 @@
     },
     {
       "path": "migrations/0005_playground_ai.sql",
-      "sha256Utf8Lf": "bad71d8000a831b3c46a316aec238d8134e8f00432f347f3fe9f6af9d1064936"
+      "sha256Utf8Lf": "edab9c14cb3c17f2f2622b15cd35c66a7632790c256ef94222083e29349aa62f"
     },
     {
       "path": "functions/_shared/platform/projectDelivery.ts",
-      "sha256Utf8Lf": "b17d270cd7b5f40a711cb3ac67553cd5d927b2def25ab045ba7befab467f8614"
+      "sha256Utf8Lf": "b8e9fba8748a39e0c298899f2594a5a1f4c127458d37ae41aa1b0c59024c9612"
     },
     {
       "path": "functions/_shared/platform/projectDeliverySchema.ts",
@@ -62,7 +62,7 @@
     },
     {
       "path": "functions/_shared/platform/projectDeliveryOrders.ts",
-      "sha256Utf8Lf": "90d8218230a1b5e56a6cd4d1a30822a39e1587bc5fc141069d5d836488eb615a"
+      "sha256Utf8Lf": "79a6b0fa57ce0cfda0860bd4d78b1a5d5c71df2b1a5a6af83bff1439127b69b8"
     },
     {
       "path": "functions/_shared/platform/projectDeliveryOrdersSchema.ts",
@@ -71,6 +71,14 @@
     {
       "path": "migrations/0007_project_delivery_orders.sql",
       "sha256Utf8Lf": "34fb25d8792c96cb0d26206bd4ca40ecc1bcace4865f47fc5d8a5b7278b7d41f"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliveryLiveSchema.ts",
+      "sha256Utf8Lf": "73ec4c908e13d8bfee7b3fae6c09b71b7ae4285a7f6fdab0ba7749b59a545841"
+    },
+    {
+      "path": "migrations/0008_project_delivery_live.sql",
+      "sha256Utf8Lf": "367da15ee864ef32795d15beafcc488150b2b2749fcd7f2c07bfe30e568d5026"
     },
     {
       "path": "functions/api/shop/download.ts",
