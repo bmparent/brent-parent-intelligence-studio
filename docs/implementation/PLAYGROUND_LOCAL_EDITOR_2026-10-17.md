@@ -12,7 +12,7 @@ Import/restore now saves the outgoing document before changing identities, retai
 
 ## Verification and release conditions
 
-Local package installation, TypeScript, 96 editor/unit tests (including independent Python ZIP inspection and direct HTTP/database-boundary tests), lint, client/SSR build, Pages Functions compilation, platform/growth/analytics/glass/Snapshot tests, indexing policy, prerender/editorial/source and built Insights validation and URL checks pass on the integrated candidate. Lint retains the existing Wellway Fast Refresh warning.
+Local package installation, TypeScript, 97 editor/unit tests (including independent Python ZIP inspection and direct HTTP/database-boundary tests), lint, client/SSR build, Pages Functions compilation, platform/growth/analytics/glass/Snapshot tests, indexing policy, prerender/editorial/source and built Insights validation and URL checks pass on the integrated candidate. Lint retains the existing Wellway Fast Refresh warning.
 
 Local browser launch is restricted by the execution environment; it is not claimed as passing. The existing GitHub release workflow must pass on the exact proposed head, including Chromium, Firefox and WebKit at desktop, 390px and 320px widths, persistence/import/undo/cancellation, frozen export and no-provider-call assertions, plus retained public-site gates. CI observations do not establish physical-device Safari, assistive-technology or unfamiliar-user acceptance.
 
