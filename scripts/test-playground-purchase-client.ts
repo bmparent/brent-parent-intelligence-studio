@@ -17,8 +17,8 @@ test('only an explicit authenticated TEST capability supplies original price/ver
   assert.deepEqual(await fetchDeliveryCapabilities(mock.request), cap);
   assert.deepEqual(mock.calls.map(call => call.path), ['/api/playground/delivery?capabilities=1']);
   assert.equal(matchingProduct(cap, frozen)?.priceCents, 1234);
-  assert.throws(() => validateCapabilities({ ...rawCapabilities, mode: 'live' }), /TEST/);
-  assert.throws(() => validateCapabilities({ ...rawCapabilities, ownerId: null }), /TEST/);
+  assert.throws(() => validateCapabilities({ ...rawCapabilities, mode: 'live' }), /production verification/);
+  assert.throws(() => validateCapabilities({ ...rawCapabilities, ownerId: null }), /purchase capability/);
   assert.throws(() => validateCapabilities({ ...rawCapabilities, products: [{ ...rawCapabilities.products[0], priceCents: null }] }), /price/);
   const noNetwork = fixture(() => { throw Error('Unexpected network request'); });
   for (const unavailable of [{ ...cap, available: false, reason: 'Off' }, { ...cap, products: [] }, { ...cap, limits: { snapshotBytes: 1, archiveBytes: 1 } }]) {
@@ -40,7 +40,7 @@ test('checkout sends only server identifiers, stable attempt, terms and challeng
   const mock = fixture(() => response({ url: 'https://checkout.stripe.com/c/pay/cs_test_fixture' }));
   for (let index = 0; index < 2; index++) assert.equal(await startFrozenCheckout(cap, frozen, accepted, receipt, true, 'fixture', mock.request), 'https://checkout.stripe.com/c/pay/cs_test_fixture');
   assert.deepEqual(mock.calls[0].body, mock.calls[1].body);
-  assert.deepEqual(mock.calls[0].body, { productId: parent.editionId, editionId: 'developer', deliveryId: accepted.id, acceptTerms: true, attempt: receipt, challenge: 'fixture' });
+  assert.deepEqual(mock.calls[0].body, { productId: parent.editionId, editionId: 'developer', deliveryId: accepted.id, acceptTerms: true, attempt: receipt, challenge: 'fixture', reviewedPriceCents: 1234 });
   for (const url of ['https://evil.example/', 'http://checkout.stripe.com/a', 'https://checkout.stripe.com.evil.example', 'https://user@checkout.stripe.com/a', 'https://checkout.stripe.com:444/a', 'javascript:alert(1)']) await assert.rejects(() => startFrozenCheckout(cap, frozen, accepted, receipt, true, 'fixture', fixture(() => response({ url })).request), /checkout address/);
   await assert.rejects(() => startFrozenCheckout(cap, frozen, accepted, receipt, false, 'fixture', mock.request), /terms/);
   await assert.rejects(() => startFrozenCheckout(cap, frozen, accepted, receipt, true, '', mock.request), /verification/);
@@ -100,4 +100,21 @@ test('checkout revalidation requires renewed review when the displayed price cha
   assert.throws(() => assertReviewedPurchaseTerms(cap, { ...cap, ownerId: 'owner-b' }, frozen), /account changed/);
   assert.throws(() => assertReviewedPurchaseTerms(cap, { ...cap, available: false, reason: 'Sales paused' }, frozen), /Sales paused/);
   assert.equal(noNetwork.calls.length, 0);
+});
+
+test('LIVE capability and storage require production verification and cannot reuse TEST attempts', async () => {
+  const live = validateCapabilities({ ...rawCapabilities, mode: 'live', localTest: false, turnstileSiteKey: 'production-site-key' });
+  assert.equal(live.mode, 'live');
+  assert.throws(() => validateCapabilities({ ...rawCapabilities, mode: 'unknown' }), /purchase capability/);
+  assert.throws(() => validateAcceptedDelivery(accepted, live, frozen), /exact/);
+  assert.throws(() => assertReviewedPurchaseTerms(cap, live, frozen), /account changed/);
+  const liveAccepted = { ...accepted, mode: 'live' as const };
+  assert.equal(validateAcceptedDelivery(liveAccepted, live, frozen).mode, 'live');
+  const data = new Map<string, string>(), storage = { getItem: (key: string) => data.get(key) || null, setItem: (key: string, value: string) => { data.set(key, value); } };
+  savePurchaseAttempt({ ownerId: cap.ownerId, snapshotHash: frozen.snapshot.snapshotHash, receipt, delivery: accepted }, storage);
+  assert.equal(loadPurchaseAttempt(live, frozen, storage), null);
+  savePurchaseAttempt({ ownerId: cap.ownerId, snapshotHash: frozen.snapshot.snapshotHash, receipt: 'b'.repeat(64), delivery: liveAccepted }, storage);
+  assert.equal(loadPurchaseAttempt(cap, frozen, storage)?.receipt, receipt);
+  assert.equal(loadPurchaseAttempt(live, frozen, storage)?.receipt, 'b'.repeat(64));
+  assert.throws(() => validateDeliveryPurchase(status('paid'), live, frozen, liveAccepted), /does not match/);
 });
