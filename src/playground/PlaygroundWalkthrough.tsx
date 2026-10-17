@@ -37,8 +37,8 @@ export function PlaygroundWalkthrough({ onDone }: { onDone?: () => void }) {
   const active = steps[step], mobile = step >= 4, airy = step === 3 || step === 4;
   const isPlaying = playing && !reduced && step < steps.length - 1;
   function choose(index: number) { setPlaying(false); setStep(index); }
-  function play() { if (step === steps.length - 1) setStep(0); setPlaying(!isPlaying); }
-  return <section ref={root} className="pg-walkthrough" aria-labelledby={titleId} data-step={step} data-playing={isPlaying}>
+  function play() { setVisible(true); if (step === steps.length - 1) setStep(0); setPlaying(!isPlaying); }
+  return <section ref={root} className="pg-walkthrough" aria-labelledby={titleId} data-step={step} data-playing={isPlaying} data-visible={visible}>
     <div className="pg-walkthrough-intro"><div><span className="pg-walkthrough-kicker">A little tour. A lot of possibility.</span><h2 id={titleId}>From a starting point<br />to your point of view.</h2></div><p>See how a few small edits change a page.<br /><span>Demo only · your project stays untouched</span></p></div>
     <div className="pg-walkthrough-stage" aria-hidden="true">
       <div className="pg-walkthrough-orbit" />

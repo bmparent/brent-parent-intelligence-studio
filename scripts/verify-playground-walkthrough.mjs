@@ -43,6 +43,7 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
         assert.equal(await tour.getByRole('button', { name: 'Pause', exact: true }).count(), 0, 'Autoplay stops at the final step');
       }
       await page.emulateMedia({ reducedMotion: 'reduce' });
+      await tour.getByText('Reduced motion is on. Explore at your own pace.', { exact: true }).waitFor();
       assert.equal(await tour.getByRole('button', { name: 'Pause', exact: true }).count(), 0);
       await tour.getByRole('button', { name: 'Step 4: Space' }).focus();
       await page.keyboard.press('Enter');
@@ -62,7 +63,10 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
         request.onsuccess = () => { const db = request.result; const read = db.transaction('workspace').objectStore('workspace').get('current'); read.onsuccess = () => { db.close(); resolve(read.result); }; read.onerror = () => reject(read.error); };
         request.onerror = () => reject(request.error);
       }));
-      const before = await saved();
+      // Autosave can finish after a manual save. Its receipt timestamp is not document state.
+      const comparable = value => { const { savedAt: _savedAt, ...document } = value; return document; };
+      const before = comparable(await saved());
+      const historyBefore = await Promise.all(['Undo', 'Redo'].map(label => page.getByRole('button', { name: label, exact: true }).isEnabled()));
       const launch = page.getByRole('button', { name: 'How it works' });
       await launch.click();
       const dialog = page.getByRole('dialog', { name: 'How Playground works' });
@@ -72,7 +76,8 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
       await page.keyboard.press('Escape');
       await dialog.waitFor({ state: 'hidden' });
       assert.equal(await launch.evaluate(element => element === document.activeElement), true, 'Close restores focus');
-      assert.deepEqual(await saved(), before, 'Tutorial must not write workspace or Undo history');
+      assert.deepEqual(comparable(await saved()), before, 'Tutorial must preserve document, selection, revision and saved variations');
+      assert.deepEqual(await Promise.all(['Undo', 'Redo'].map(label => page.getByRole('button', { name: label, exact: true }).isEnabled())), historyBefore, 'Tour leaves history availability unchanged');
       await launch.click();
       assert.equal(await dialog.locator('.pg-walkthrough').getAttribute('data-step'), '0', 'Reopening resets demo');
       await dialog.getByRole('button', { name: 'Try it yourself' }).click();
@@ -83,7 +88,11 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
       await assertLocal();
       records.push({ engine, width, passed: true });
       console.log(`PASS tour: ${engine} ${width}`);
-    } catch (error) { records.push({ engine, width, passed: false, error: error.stack }); process.exitCode = 1; }
+    } catch (error) {
+      const state = await page.locator('.pg-walkthrough').first().evaluate(element => ({ step: element.dataset.step, playing: element.dataset.playing, visible: element.dataset.visible, reduced: matchMedia('(prefers-reduced-motion: reduce)').matches, rect: element.getBoundingClientRect().toJSON(), scrollY })).catch(() => null);
+      await page.screenshot({ path: path.join(out, `${engine}-${width}-failure.png`), fullPage: true }).catch(() => {});
+      records.push({ engine, width, passed: false, error: error.stack, state }); process.exitCode = 1;
+    }
     await context.close();
   }
   await browser.close();
