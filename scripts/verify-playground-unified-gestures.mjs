@@ -211,6 +211,9 @@ try {
   await back.focus(); await page.keyboard.press('Enter');
   await page.getByRole('heading', { name: 'What are you making?' }).waitFor();
   await page.getByRole('button', { name: /Tideglass/ }).focus(); await page.keyboard.press('Enter');
+  // Choosing a starter intentionally moves focus on the next animation frame.
+  // Wait for that transition before focusing Create, while keeping the pointer held.
+  await page.waitForFunction(() => document.activeElement?.id === 'pg-details-heading');
   await page.getByRole('button', { name: /Create project/ }).focus(); await page.keyboard.press('Enter');
   await page.locator('.pg-unified').waitFor();
   await page.mouse.up();

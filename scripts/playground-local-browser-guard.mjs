@@ -19,14 +19,23 @@ export async function guardLocalEditor(page) {
     const local = ['file:', 'data:', 'blob:', 'about:'].includes(url.protocol) || url.origin === editorOrigin;
     const readOnly = ['GET', 'HEAD'].includes(request.method());
     const provider = /(^|\.)(openai\.com|anthropic\.com|stripe\.com|resend\.com|replicate\.com|runwayml\.com)$/.test(url.hostname);
+    const baselineFont = request.method() === 'GET' && url.protocol === 'https:' && (
+      (url.hostname === 'fonts.googleapis.com' && url.pathname === '/css2' && request.resourceType() === 'stylesheet') ||
+      (url.hostname === 'fonts.gstatic.com' && /^\/s\/[a-z0-9/_.-]+\.woff2$/i.test(url.pathname) && request.resourceType() === 'font')
+    );
+    if (baselineFont) return route.continue();
     const api = url.pathname.startsWith('/api/');
     const allowedRead = ['/api/public-config', '/api/members/account'].includes(url.pathname);
     if (local && readOnly && !provider && allowedRead) return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(url.pathname === '/api/public-config' ? { accountsReady: false, aiReady: false, shopReady: false, communityReady: false, turnstileSiteKey: '', gaMeasurementId: '' } : { member: null }) });
     if (local && readOnly && !provider && !api) return route.continue();
-    forbidden.push(`${request.method()} ${url.pathname}`);
+    forbidden.push(`${request.method()} ${url.origin}${url.pathname}`);
+    // Preserve failure even if a request arrives after the suite's final check,
+    // without throwing from close handlers and aborting the remaining cases.
+    process.exitCode = 1;
     await route.abort('blockedbyclient');
   });
-  page.context().on('close', () => assert.deepEqual(forbidden, [], 'Local editor attempted a forbidden cloud/provider request'));
+  // Awaited assertions belong to each suite's try/catch, so a failure is
+  // recorded without an event-emitter throw aborting later widths or engines.
   return async () => {
     assert.deepEqual(forbidden, [], 'Local editor attempted a forbidden cloud/provider request');
     assert.equal(await page.getByRole('button', { name: /^(AI|AI assist|Generate with AI|Purchase.*|Recover purchase|Purchase recovery|Checkout)$/i }).count(), 0);
