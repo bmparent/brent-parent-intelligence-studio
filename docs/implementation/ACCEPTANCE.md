@@ -1,3 +1,7 @@
+# October 17 local editor release candidate
+
+The isolated local editor release, safety boundaries, evidence and remaining production gates are recorded in [PLAYGROUND_LOCAL_EDITOR_2026-10-17.md](PLAYGROUND_LOCAL_EDITOR_2026-10-17.md). This candidate does not enable hosted AI, paid checkout or new-format cloud saves. Exact-head CI and deployed-source readback are required before claiming publication.
+
 # Public-site release acceptance — 2026-09-30
 
 ## October 16 retained Insights publication
