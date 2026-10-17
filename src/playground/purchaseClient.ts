@@ -45,6 +45,12 @@ export function assertPurchaseCapability(capabilities: DeliveryCapabilities, fro
   if (new TextEncoder().encode(JSON.stringify(frozen.snapshot)).length > capabilities.limits.snapshotBytes || frozen.archive.length > capabilities.limits.archiveBytes) throw Error('This review exceeds the server size limit. Reduce image sizes in a new draft; your local package is unchanged.');
   return product;
 }
+export function assertReviewedPurchaseTerms(reviewed: DeliveryCapabilities, current: DeliveryCapabilities, frozen: FrozenPackage) {
+  const before = assertPurchaseCapability(reviewed, frozen), after = assertPurchaseCapability(current, frozen);
+  if (reviewed.ownerId !== current.ownerId) throw Error('The signed-in account changed. Check availability again.');
+  if (before.priceCents !== after.priceCents || before.currency !== after.currency || before.productId !== after.productId || before.editionId !== after.editionId || before.version !== after.version || before.parentArchiveSha256 !== after.parentArchiveSha256 || before.parentArchiveBytes !== after.parentArchiveBytes)
+    throw Error('The price or edition changed. Review the updated purchase details and accept the terms again before checkout.');
+}
 export function validateAcceptedDelivery(input: unknown, capabilities: PurchaseOwner, frozen: FrozenPackage): AcceptedDelivery {
   const value = object(input), snapshot = frozen.snapshot;
   if (!validId(value.id) || value.mode !== 'test' || value.ownerId !== capabilities.ownerId || value.documentId !== snapshot.documentId || value.revision !== snapshot.revision || value.snapshotHash !== snapshot.snapshotHash || value.projectHash !== snapshot.projectHash || value.archiveSha256 !== frozen.receipt.archiveSha256 || value.archiveBytes !== frozen.archive.length) throw Error('The server did not accept this exact owner, revision, and package. Your local review is unchanged.');

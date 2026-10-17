@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Turnstile } from '../components/Turnstile';
 import { download } from './export';
 import type { FrozenPackage } from './purchaseSnapshot';
-import { acceptFrozenDelivery, assertPurchaseCapability, clearPurchaseReturn, downloadDeliveryArtifact, fetchAcceptedDelivery, fetchDeliveryCapabilities, fetchDeliveryPurchase, inspectOwnedPurchase, loadPurchaseAttempt, matchingProduct, newPurchaseReceipt, PurchaseRequestError, purchaseReturn, saveCheckoutReturn, savePurchaseAttempt, startFrozenCheckout, type DeliveryCapabilities, type DeliveryPurchase, type PurchaseAttempt } from './purchaseClient';
+import { acceptFrozenDelivery, assertPurchaseCapability, assertReviewedPurchaseTerms, clearPurchaseReturn, downloadDeliveryArtifact, fetchAcceptedDelivery, fetchDeliveryCapabilities, fetchDeliveryPurchase, inspectOwnedPurchase, loadPurchaseAttempt, matchingProduct, newPurchaseReceipt, PurchaseRequestError, purchaseReturn, saveCheckoutReturn, savePurchaseAttempt, startFrozenCheckout, type DeliveryCapabilities, type DeliveryPurchase, type PurchaseAttempt } from './purchaseClient';
 import './finish-purchase.css';
 
 type Props = { frozen: FrozenPackage; approved: boolean; current: boolean; open: boolean; draftVersion: string };
@@ -58,6 +58,8 @@ export function FinishPurchase({ frozen, approved, current, open, draftVersion }
     if (!attempt || !ready || !terms) throw Error('Save the reviewed page and accept the terms before checkout.');
     const cap = await fetchDeliveryCapabilities(); valid(); assertPurchaseCapability(cap, frozen);
     if (cap.ownerId !== attempt.ownerId) { setCapabilities(null); setAttempt(null); setPurchase(null); throw Error('The signed-in account changed. Check availability again.'); }
+    try { assertReviewedPurchaseTerms(capabilities!, cap, frozen); }
+    catch (reason) { setCapabilities(cap); setTerms(false); setChallenge(''); setReset(value => value + 1); throw reason; }
     saveCheckoutReturn(attempt.receipt);
     let url: string;
     try { url = await startFrozenCheckout(cap, frozen, attempt.delivery, attempt.receipt, terms, cap.localTest ? 'local-test' : challenge); }

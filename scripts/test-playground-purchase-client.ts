@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildFrozenPackage, createProjectSnapshot, parentEditions } from '../src/playground/purchaseSnapshot';
 import { createStarter } from '../src/playground/starters';
-import { acceptFrozenDelivery, assertPurchaseCapability, capturePurchaseReturn, downloadDeliveryArtifact, fetchDeliveryCapabilities, fetchDeliveryPurchase, inspectReturnedPurchase, loadPurchaseAttempt, matchingProduct, newPurchaseReceipt, purchaseReturn, safePurchaseContinuePath, saveCheckoutReturn, savePurchaseAttempt, startFrozenCheckout, validateAcceptedDelivery, validateCapabilities, validateDeliveryPurchase, type DeliveryCapabilities } from '../src/playground/purchaseClient';
+import { acceptFrozenDelivery, assertPurchaseCapability, assertReviewedPurchaseTerms, capturePurchaseReturn, downloadDeliveryArtifact, fetchDeliveryCapabilities, fetchDeliveryPurchase, inspectReturnedPurchase, loadPurchaseAttempt, matchingProduct, newPurchaseReceipt, purchaseReturn, safePurchaseContinuePath, saveCheckoutReturn, savePurchaseAttempt, startFrozenCheckout, validateAcceptedDelivery, validateCapabilities, validateDeliveryPurchase, type DeliveryCapabilities } from '../src/playground/purchaseClient';
 
 const frozen = await buildFrozenPackage(await createProjectSnapshot(createStarter({ starter: 'switchboard', goal: 'business', action: 'contact' }), 'document-a', 7, parentEditions[0].editionId));
 const parent = parentEditions[0], receipt = 'a'.repeat(64);
@@ -85,4 +85,19 @@ test('return and recovery paths accept only the exact known same-origin path wit
   saveCheckoutReturn(receipt, storage);
   capturePurchaseReturn('https://preview.example/playground/?checkout=cancelled', storage);
   assert.deepEqual(purchaseReturn(storage), { state: 'cancelled', receipt }, 'a cancelled return keeps the dispatched private attempt without asking current sales capability');
+});
+
+test('checkout revalidation requires renewed review when the displayed price changes', async () => {
+  assert.doesNotThrow(() => assertReviewedPurchaseTerms(cap, structuredClone(cap), frozen));
+  const noNetwork = fixture(() => { throw Error('Unexpected checkout request'); });
+  for (const priceCents of [cap.products[0].priceCents + 1, cap.products[0].priceCents - 1]) {
+    const changed = { ...cap, products: [{ ...cap.products[0], priceCents }] };
+    await assert.rejects(async () => {
+      assertReviewedPurchaseTerms(cap, changed, frozen);
+      await startFrozenCheckout(changed, frozen, accepted, receipt, true, 'fixture', noNetwork.request);
+    }, /price or edition changed/);
+  }
+  assert.throws(() => assertReviewedPurchaseTerms(cap, { ...cap, ownerId: 'owner-b' }, frozen), /account changed/);
+  assert.throws(() => assertReviewedPurchaseTerms(cap, { ...cap, available: false, reason: 'Sales paused' }, frozen), /Sales paused/);
+  assert.equal(noNetwork.calls.length, 0);
 });
