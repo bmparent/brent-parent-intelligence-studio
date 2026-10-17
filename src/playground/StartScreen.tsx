@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { Project } from './model';
 import type { SavedProjectSummary } from './storage';
 import { imageData } from './storage';
@@ -56,7 +56,11 @@ export function StartScreen({savedProject,savedProjects=[],currentDocumentId,sto
     } catch (error) { setMessage((error as Error).message); }
     finally { if (active.current) setBusy(false); }
   }
-  function choose(id: StarterId) { setSelected(id); setCustomizing(true); requestAnimationFrame(() => details.current?.focus()); }
+  // Focus when the details form commits, before it can receive user input.
+  // A deferred animation-frame focus can steal focus from the name field and
+  // lose its first edit, particularly during WebKit's text insertion.
+  useLayoutEffect(() => { if (customizing) details.current?.focus(); }, [customizing]);
+  function choose(id: StarterId) { setSelected(id); setCustomizing(true); }
   return <main className="pg-start" aria-label="Start a Playground project">
     <header className="pg-start-brand"><a href="/" aria-label="Eidos Works home"><img src="/brand/eidos-mark-light.svg" alt="" width="30" height="30" /><span>eidos <strong>playground</strong></span></a><span>One page. Your point of view.</span></header>
     <div className="pg-start-body">

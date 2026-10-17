@@ -15,6 +15,10 @@ test('balance receipts reject unknown units, inconsistent usage and invalid mone
   for (const change of [{ unitsPerUsd: 100 }, { settled: 1 }, { pending: -1 }, { requestedLimit: Number.NaN }, { effectiveLimit: 1 }, { effectiveLimit: 1000001 }, { remainingCap: 999999 }, { loweringPending: true }, { resetsAt: 'unknown' }, { frozen: 'false' }]) assert.throws(() => validateAiBalance({ ...balance(), ...change }), /invalid spending receipt/);
   assert.throws(() => validateAiResponse({ enabled: true }), /invalid spending receipt/);
 });
+test('USD receipts retain microdollar charges and exact approved maxima without inventing free usage', () => {
+  for (const [micros, expected] of [[0, '$0.00'], [1, '$0.000001'], [1742, '$0.001742'], [1753, '$0.001753'], [3495, '$0.003495'], [10001, '$0.010001'], [600000, '$0.60'], [1000000, '$1.00'], [4996505, '$4.996505'], [1000000000000, '$1000000.00']] as const) assert.equal(usd(micros), expected);
+  for (const value of [-1, NaN, Infinity, 1.5, 1000000000001]) assert.throws(() => usd(value), /invalid spending receipt/);
+});
 test('action receipts bind explicit scope and cannot hide charges above the approved maximum', () => {
   assert.deepEqual(validateAiAction(action()), action());
   for (const change of [{ maximum: -1 }, { maximum: 0, estimate: 0 }, { estimate: 700000 }, { chargedIncluded: 400000, chargedPurchased: 300000 }, { scope: 'all' }, { targetId: '' }, { state: 'retry' }, { customerStatus: 'settled' }, { state: 'submitted', customerStatus: 'none' }, { result: { ops: [{ field: 'node.text', value: 'Hello' }] } }]) assert.throws(() => validateAiAction({ ...action(), ...change }));
