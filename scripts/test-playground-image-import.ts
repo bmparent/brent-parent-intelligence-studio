@@ -22,6 +22,7 @@ test('WebP extended, lossy and lossless dimensions are bounded before decode',()
   if(kind==='VP8 '){b.set([157,1,42],23);v.setUint16(26,100,true);v.setUint16(28,50,true);}
   if(kind==='VP8L'){b[20]=47;v.setUint32(21,99|(49<<14),true);}
   assert.deepEqual(imageDimensions(b),{width:100,height:50,type:'image/webp'});
+  if(kind==='VP8L')assert.deepEqual(imageDimensions(b.slice(0,26)),{width:100,height:50,type:'image/webp'});
  }
 });
 test('unsupported and over-budget files fail before browser allocation',async()=>{
