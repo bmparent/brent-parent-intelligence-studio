@@ -1,5 +1,7 @@
 name: Works isolated paired preview
 on:
+  pull_request:
+    types: [opened, synchronize, reopened]
   push:
     branches: [codex/works-paired-integration-20260927, codex/works-paired-recovery-20261006, ops/works-paired-release-20261019]
 permissions:
@@ -9,7 +11,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   preview:
-    if: contains(github.event.head_commit.message, '[paired-preview]')
+    if: >-
+      (github.event_name == 'push' && contains(github.event.head_commit.message, '[paired-preview]')) ||
+      (github.event_name == 'pull_request' && github.head_ref == 'ops/works-paired-release-20261019' && github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
