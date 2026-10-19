@@ -1,4 +1,4 @@
-import {openLegacyAccountDocument} from './works-account-browser-fixture.mjs';
+import {openLegacyAccountDocument,openAccountProjects} from './works-account-browser-fixture.mjs';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {mkdir,writeFile} from 'node:fs/promises';
@@ -11,8 +11,8 @@ const checks=[],errors=[];context.on('page',p=>p.on('pageerror',e=>errors.push(e
 async function signup(name){await account.goto(base+'/account');await account.getByLabel('Email',{exact:true}).fill(name+'@example.test');await account.getByLabel(/^Username/).fill(name);await account.getByLabel('Password',{exact:true}).fill(password);await account.getByRole('button',{name:'Create account',exact:true}).click();await account.getByRole('link',{name:'Local preview only: open the test account link',exact:true}).click();await account.getByRole('button',{name:'Continue to my account →',exact:true}).click();await account.waitForURL(base+'/account');await account.getByRole('heading').filter({hasText:name}).waitFor();}
 async function logout(){await account.getByRole('button',{name:'Sign out',exact:true}).click();await account.getByRole('heading',{name:'Create account',exact:true}).waitFor();}
 async function login(name){await account.getByRole('button',{name:'Sign in',exact:true}).click();await account.getByLabel('Username or email',{exact:true}).fill(name);await account.getByLabel('Password',{exact:true}).fill(password);await account.getByRole('button',{name:'Sign in',exact:true}).click();await account.getByRole('heading').filter({hasText:name}).waitFor();}
-async function cloud(page){const d=page.locator('details.pg-project-tools').filter({has:page.locator('summary',{hasText:'Account projects'})});if(!await d.evaluate(e=>e.open))await d.locator(':scope > summary').click();return d;}
-async function document(page){const d=page.locator('details.pg-project-tools').filter({has:page.locator('summary',{hasText:/^Projects & variations$/})});if(!await d.evaluate(e=>e.open))await d.locator(':scope > summary').click();const next=page.waitForEvent('download');await d.getByRole('button',{name:'Download project JSON',exact:true}).click();const chunks=[];for await(const chunk of await(await next).createReadStream())chunks.push(chunk);return JSON.parse(Buffer.concat(chunks));}
+async function cloud(page){return openAccountProjects(page);}
+async function document(page){await page.getByRole('button',{name:'Project',exact:true}).click();const d=page.locator('details.pg-project-tools').filter({has:page.locator(':scope > summary',{hasText:'Backup & restore'})});if(!await d.evaluate(e=>e.open))await d.locator(':scope > summary').click();const next=page.waitForEvent('download');await d.getByRole('button',{name:'Download project JSON',exact:true}).click();const chunks=[];for await(const chunk of await(await next).createReadStream())chunks.push(chunk);return JSON.parse(Buffer.concat(chunks));}
 let release;
 try{
  await signup(a);const editor=await context.newPage();await openLegacyAccountDocument(editor,base);let d=await cloud(editor);await d.getByRole('button',{name:'Import into my account',exact:true}).click();await d.getByRole('status').filter({hasText:'Saved to your account.'}).waitFor();const projects=await(await context.request.get(base+'/api/playground/projects')).json(),id=projects.projects[0].id;

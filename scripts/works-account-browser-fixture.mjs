@@ -14,3 +14,12 @@ export async function openLegacyAccountDocument(page, base='http://localhost:478
   await page.getByRole('button',{name:/Continue project/}).click();
   await page.locator('.pg-app').waitFor();
 }
+
+export async function openAccountProjects(page) {
+  await page.getByRole('button',{name:'Project',exact:true}).click();
+  const advanced=page.locator('details.pg-project-tools').filter({has:page.locator(':scope > summary',{hasText:'Advanced'})});
+  if(!await advanced.evaluate(e=>e.open))await advanced.locator(':scope > summary').click();
+  const details=page.locator('details.pg-project-tools').filter({has:page.locator(':scope > summary',{hasText:'Account projects'})});
+  if(!await details.evaluate(e=>e.open))await details.locator(':scope > summary').click();
+  return details;
+}

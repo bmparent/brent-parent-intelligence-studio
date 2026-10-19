@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
   push:
-    branches: [codex/works-paired-integration-20260927, codex/works-paired-recovery-20261006, ops/works-paired-release-20261019]
+    branches: [codex/works-paired-integration-20260927, codex/works-paired-recovery-20261006]
 permissions:
   contents: read
 concurrency:
