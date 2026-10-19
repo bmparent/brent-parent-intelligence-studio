@@ -1,0 +1,72 @@
+name: Playground retained-payload rehearsal
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths: ['.github/workflows/playground-rehearsal-upload.yml', 'scripts/rehearsal-*', 'scripts/refresh-rehearsal-source.py', 'scripts/test-rehearsal-pages.mjs', 'config/rehearsal-source-plan.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: playground-rehearsal-disabled-20261017
+  cancel-in-progress: false
+jobs:
+  rehearsal:
+    if: (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'ops/playground-rehearsal-deploy-20261018') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/ops/playground-rehearsal-deploy-20261018')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    env:
+      REHEARSAL_EVIDENCE_DIR: ${{ runner.temp }}/rehearsal-evidence
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reject unsafe provider configurations before credentials are available
+        run: node --test scripts/test-rehearsal-pages.mjs
+      - name: Fetch fresh source provenance and unchanged retained bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$REHEARSAL_EVIDENCE_DIR" "$RUNNER_TEMP/rehearsal-input" "$RUNNER_TEMP/rehearsal-upload"
+          python scripts/refresh-rehearsal-source.py
+          gh api repos/bmparent/brent-parent-intelligence-studio/actions/artifacts/12115683862/zip > "$RUNNER_TEMP/rehearsal-input/original-artifact.zip"
+          gh api -H 'Accept: application/octet-stream' repos/bmparent/brent-parent-intelligence-studio/releases/assets/655003699 > "$RUNNER_TEMP/rehearsal-input/frontend-preview-payload.zip"
+          node scripts/rehearsal-source-guard.mjs config/rehearsal-source-plan.json "$REHEARSAL_EVIDENCE_DIR/provenance/run.json" "$REHEARSAL_EVIDENCE_DIR/provenance/artifact.json" "$RUNNER_TEMP/rehearsal-input/original-artifact.zip" sha256:c1950dd2a20922bd9738f5a5ec4ec8628bae815dc358e9c6cae9cdb9b04ec913 "$REHEARSAL_EVIDENCE_DIR/provenance/source-evidence.json" check-only > "$REHEARSAL_EVIDENCE_DIR/source-provenance-check-only.json"
+          python scripts/rehearsal-payload.py "$RUNNER_TEMP/rehearsal-input/frontend-preview-payload.zip" "$RUNNER_TEMP/rehearsal-upload/payload" "$REHEARSAL_EVIDENCE_DIR/payload-inventory.json"
+      - name: Install the previously validated official deployment tool in isolation
+        run: |
+          npm install --prefix "$RUNNER_TEMP/rehearsal-wrangler" --no-audit --no-fund wrangler@4.151.1
+          cp "$RUNNER_TEMP/rehearsal-wrangler/package-lock.json" "$REHEARSAL_EVIDENCE_DIR/deployment-tool-lock.json"
+      - name: Verify dedicated account, Preview settings and unchanged Production identity
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/rehearsal-pages.mjs preflight
+      - name: Upload only the original prepared payload to the fixed Preview branch
+        working-directory: ${{ runner.temp }}/rehearsal-upload
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: node "$RUNNER_TEMP/rehearsal-wrangler/node_modules/wrangler/bin/wrangler.js" pages deploy payload --no-bundle --project-name=eidosworks-playground-rehearsal-20261017 --branch=rehearsal-disabled --commit-hash=8e3ed6c0470fa696452380a9981b794eacc02c5b --commit-message='Original PR126 build; isolated disabled rehearsal' --commit-dirty=true
+      - name: Verify the actual hosted frontend/backend relay pair and disabled failures
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/rehearsal-pages.mjs verify
+      - name: Preserve receipts including failed gates, without credentials or payload copies
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playground-rehearsal-${{ github.run_id }}
+          path: ${{ runner.temp }}/rehearsal-evidence
+          retention-days: 14
+          if-no-files-found: warn
