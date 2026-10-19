@@ -1,0 +1,71 @@
+{
+  "timestamp_utc": "2026-10-11T03:10:21.528950+00:00",
+  "scope": "Sanitized reproducible native acceptance helpers; no runtime configuration or credentials",
+  "files": [
+    {
+      "path": "accept-native.php",
+      "bytes": 13029,
+      "sha256": "1b2ee28d196426fecbfedf19ce783152badc4d3525c3a112758f0b32d8ed943c"
+    },
+    {
+      "path": "bootstrap-native.py",
+      "bytes": 13051,
+      "sha256": "baaa39b85b90e1aab709ecde68530df6e4a12c4f96e214dd1228afe8a2820bae"
+    },
+    {
+      "path": "download-mariadb.py",
+      "bytes": 2055,
+      "sha256": "d0bedbb9edea8e2d7d42ac9c591a3cc3c9f634cce1223145925c59fa60cc21ff"
+    },
+    {
+      "path": "install-core.php",
+      "bytes": 1721,
+      "sha256": "ea06bb37132f8130a41a07a5d3a0aaa66b046c5a93d7d8e2401fd14b8e128281"
+    },
+    {
+      "path": "mail-suppression.php",
+      "bytes": 293,
+      "sha256": "d2ef2742c0e5981efdf355cc7621b42fb04bf9033774196bdaf3925de42652d2"
+    },
+    {
+      "path": "manage-native.py",
+      "bytes": 4607,
+      "sha256": "387d49fcb4e803425f040a7742d91c7246c2dbfcef6f394e6f5b8d4a676a92b5"
+    },
+    {
+      "path": "prepare-native-inputs.py",
+      "bytes": 1702,
+      "sha256": "8bbc1e964c47f0a564a0f8d952d8e98a8dbaede847d4e70e3e3fe1cee19c60b9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7166,
+      "sha256": "68034744df2339166bb721ca7fe33bb8543c6b38fef550c74ac8be0bbbfded53"
+    },
+    {
+      "path": "restart-native.py",
+      "bytes": 5388,
+      "sha256": "26e1e077748037622ef2c358db085ac5d8b20fb6f1c5a592e05c3a322da2b703"
+    },
+    {
+      "path": "router.php",
+      "bytes": 554,
+      "sha256": "15d6128433b6ba856c01cc86af2534b05917be4ac2aa4f37e15350b8e0c95a06"
+    },
+    {
+      "path": "run-native-acceptance.py",
+      "bytes": 8336,
+      "sha256": "aa3f6f13e0ded8e898efd9755e6f002bdca5a323e89907272d3a4afd71973ea1"
+    },
+    {
+      "path": "runtime_args.py",
+      "bytes": 562,
+      "sha256": "074b513c071f5f00be7e784dbaffb3d756e8a5734a06b666f84a765c73206eab"
+    },
+    {
+      "path": "stop-php-gracefully.py",
+      "bytes": 1873,
+      "sha256": "ef339c16297f55a73bad19d9be4c3be1f7ed3ddcb2d03e28e8c6173c36efc91e"
+    }
+  ]
+}

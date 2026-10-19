@@ -1,0 +1,9 @@
+{
+  "os": "Windows-10-10.0.26200-SP0",
+  "node": "v24.14.0",
+  "git": "git version 2.36.1.windows.1",
+  "localBrowser": "Chromium145; GPU-disabled and reduced-motion/touch/390/1440/1600 cases",
+  "ci": "Ubuntu; Playwright1.58.2; compiled client+SSR+Functions; existing three-engine editor regressions",
+  "physicalDevice": false,
+  "secretsCaptured": false
+}

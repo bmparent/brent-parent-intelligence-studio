@@ -1,0 +1,115 @@
+{
+  "timestamp_utc": "2026-10-11T01:30:14.720126+00:00",
+  "headSha": "8d3d6081c7a1a10232ddf6f67692f61d3f2abcc5",
+  "siteQuality": {
+    "runId": 38101247023,
+    "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38101247023",
+    "status": "passed"
+  },
+  "templateCandidate": {
+    "runId": 38101246990,
+    "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38101246990",
+    "overallStatus": "passed",
+    "packageStaticBuildGates": "passed",
+    "threeEngineBrowserAcceptance": {
+      "status": "passed",
+      "engines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "receiptSha256": "fe19e6b90c686e427b3d354f8e81a4720e144750690a554390d4aa448fc4af83",
+      "checksRecorded": 32,
+      "failures": [],
+      "scope": "rendered static/source and shop, no provider transactions",
+      "artifactName": "paid-template-candidate-proof",
+      "externalReceipt": "E:\\CodexArtifacts\\paid-templates-20261010\\ci-38101246990\\browser-ci\\browser-receipt.json"
+    },
+    "cloudflareConfiguration": {
+      "status": "passed",
+      "receiptSha256": "cf2e4c8f5390ef49b6f2271f997c7ddf97e997ade9de5f298572f575dbe77287",
+      "customDomains": [],
+      "siteOrigin": "https://eidosworks-templates-test-20261010.pages.dev",
+      "uploadWorkflow": "passed",
+      "scope": "Workflow configuration guard and upload passed. Separate hosted HTTP/browser receipts establish deployed route behavior."
+    }
+  },
+  "wellwayGitHubAcceptance": {
+    "runId": 38101247005,
+    "status": "passed"
+  },
+  "communityStudio": {
+    "runId": 38101247009,
+    "status": "passed"
+  },
+  "playgroundEditor": {
+    "runId": 38101247456,
+    "status": "passed"
+  },
+  "previousHead": {
+    "timestamp_utc": "2026-10-11T01:14:20.727291+00:00",
+    "headSha": "537e629e40939f49d4057480ca4bd13773ef1d7f",
+    "siteQuality": {
+      "runId": 38100778699,
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38100778699",
+      "status": "passed"
+    },
+    "templateCandidate": {
+      "runId": 38100778718,
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38100778718",
+      "overallStatus": "failed",
+      "packageStaticBuildGates": "passed",
+      "threeEngineBrowserAcceptance": {
+        "status": "passed",
+        "engines": [
+          "chromium",
+          "firefox",
+          "webkit"
+        ],
+        "receiptSha256": "a7cd153d563b0571c3d45068718767e7d45d0a9f68d1f668fea63cc93bea4ee0",
+        "externalReceipt": "E:\\CodexArtifacts\\paid-templates-20261010\\ci-38100778718\\browser-ci\\browser-receipt.json",
+        "scope": "rendered static/source and shop, no provider transactions",
+        "checksRecorded": 32,
+        "failures": []
+      },
+      "cloudflareConfiguration": {
+        "status": "failed",
+        "stage": "First project inventory GET before creation/PATCH/upload",
+        "request": "GET /accounts/[redacted]/pages/projects?per_page=100&page=1",
+        "httpStatus": 400,
+        "providerCodes": [
+          8000024
+        ],
+        "loggedError": "Pages GET ?per_page=100&page=1 failed (400; codes 8000024).",
+        "providerMessage": null,
+        "providerMessageReason": "Configuration helper only logged error codes, not returned provider errors.message.",
+        "mutationsObserved": false,
+        "upload": "skipped"
+      }
+    },
+    "wellwayGitHubAcceptance": {
+      "runId": 38100778700,
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38100778700",
+      "status": "passed"
+    },
+    "communityStudio": {
+      "runId": 38100778722,
+      "status": "passed"
+    },
+    "playgroundEditor": {
+      "runId": 38100778729,
+      "status": "in_progress"
+    },
+    "limits": [
+      "Remote CI tests used runner-local built static HTTP server, not hosted Cloudflare acceptance.",
+      "No field performance or physical-device claim.",
+      "Provider Vercel failure is recorded separately in ci-provider-status.json."
+    ]
+  },
+  "limits": [
+    "This CI head precedes the WordPress 1.0.1 metadata and Nightjar developer 1.0.1 contrast fixes; it does not establish their final browser acceptance.",
+    "Remote CI browsers used a runner-local built static HTTP server. Hosted acceptance is recorded separately.",
+    "No field performance, physical-device, LIVE payment or general WordPress host claim.",
+    "Existing Wellway Vercel git_info_fail is recorded separately for its exact head in ci-provider-status.json."
+  ]
+}

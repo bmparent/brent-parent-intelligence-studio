@@ -1,0 +1,137 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:playground
+> npm run playground:glass && npm run templates:build && node --import tsx --test scripts/test-playground.ts scripts/test-playground-ai-scoped.ts scripts/test-playground-ai-cases.ts scripts/test-playground-ai-client.ts scripts/test-playground-cloud.ts scripts/test-playground-authoring.ts scripts/test-playground-workspace.ts scripts/test-playground-start.ts scripts/test-playground-unified.ts scripts/test-playground-purchase-snapshot.ts scripts/test-playground-purchase-client.ts scripts/test-playground-purchase-recovery.ts scripts/test-playground-runtime-parity.mjs scripts/test-project-delivery.ts scripts/test-project-delivery-orders.ts
+
+
+> brent-parent-intelligence-studio@1.1.0 playground:glass
+> npm run playground:runtime && node scripts/build-playground-glass.mjs
+
+
+> brent-parent-intelligence-studio@1.1.0 playground:runtime
+> node scripts/build-playground-runtime.mjs
+
+Generated canonical Playground runtime.
+
+> brent-parent-intelligence-studio@1.1.0 templates:build
+> node scripts/build-template-packages.mjs && node scripts/build-template-guides.mjs && node scripts/build-template-release-manifest.mjs
+
+Built 8 private template packages. Published four byte-identical source demos. No ZIP copied to public/.
+Generated 8 public installation guides and exact package-content summaries.
+Release manifest: 4 products, 8 frozen archives; commerce unavailable. Drive: Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied.
+✔ comparison corpus contains 20 public cases covering all requested categories and typed scopes without fabricated results (7.6748ms)
+✔ each case resolves a real visible target with deterministic compact provider context and no raw assets (254.3075ms)
+✔ every reference proposal is feasible within six typed operations and leaves all prohibited source paths unchanged (187.6851ms)
+✔ preservation cases actually contain manual edits and locked brand values reject out-of-scope changes (27.2926ms)
+✔ ambiguous or missing selectors and customer uploads cannot enter a comparison fixture (3.5599ms)
+✔ USD limit parsing uses integer cents without automatic funding or floating point accumulation (17.8906ms)
+✔ balance receipts reject unknown units, inconsistent usage and invalid money (8.2288ms)
+✔ action receipts bind explicit scope and cannot hide charges above the approved maximum (5.8608ms)
+✔ status and cancellation receipts must retain every frozen quote identity field (1.036ms)
+✔ generation sends only the server-quoted maximum and one request with same-origin credentials (111.2029ms)
+✔ network uncertainty never retries generation and existing-status reads use the saved action ID (8.0554ms)
+✔ HTTP and malformed receipt failures remain explicit and do not manufacture a usable proposal (14.7674ms)
+✔ scoped projection preserves target IDs and strips asset bytes, source filenames and standalone studio data (46.7061ms)
+✔ element proposal changes one stable node in full source, preserving manual content and assets (25.7672ms)
+✔ scope boundaries, locks and executable links reject the entire proposal without mutations (5.3795ms)
+✔ mobile container repair is explicit and leaves desktop geometry and siblings intact (12.9809ms)
+✔ brand/page proposals preserve content and obey common model bounds (7.0992ms)
+✔ no-op, duplicate fields and unsafe context assets cannot become usable proposals (28.4352ms)
+✔ whole-page structure preserves identities, section data and permanent positions (9.0807ms)
+✔ explicit visibility changes preserve hidden content and reject removing permanent/all content (4.4675ms)
+✔ opening versions 1-3 never upgrades or introduces authoring (40.3692ms)
+✔ explicit upgrade preserves all legacy section identities/data, tokens, renderer and glass and Undo restores exact original (11.7765ms)
+✔ two independently addressable images, text and buttons survive export and keep old archive input untouched (26.7808ms)
+✔ moves preserve node ID/data across compatible section containers, one history entry and exact Undo/Redo (4.4413ms)
+✔ duplicate assigns fresh IDs recursively; remove changes only the current document (9.3281ms)
+✔ cycles, roots and invalid sibling destinations cannot mutate input (3.4966ms)
+✔ mobile geometry is explicit, independent and exactly reversible (7.0467ms)
+✔ malformed, duplicate, excessive, unsafe and non-finite node inputs reject (15.1554ms)
+✔ text renders as escaped content and authored format stays explicitly local-only (7.9675ms)
+✔ maximum 96-node project renders and exports; 97th node and cross-section duplicate identities reject (34.1848ms)
+✔ mobile row override remains shrinkable instead of overflowing with full-width children (1.9741ms)
+✔ canvas structure moves preserve pinned sections, card identities and exact reversibility (20.3751ms)
+✔ mobile photo zoom is independent of desktop media and survives rendering (5.1443ms)
+✔ element motion explicitly upgrades only schema 4 and one Undo restores the exact legacy project (15.3185ms)
+✔ motion is strict schema-5 metadata; old formats and unsafe/unbounded settings reject (11.2391ms)
+✔ motion follows stable nodes through move/duplicate and uses identical preview/export styles with static fallback (10.1352ms)
+(node:25652) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Cloud revisions preserve images, enforce ownership, and reject stale writes (661.2115ms)
+✔ Frozen checkout is idempotent and entitlement requires signed matching payment (1010.1996ms)
+✔ only an explicit authenticated TEST capability supplies original price/version, disabled and mismatch paths make zero POSTs (130.3221ms)
+✔ server acceptance must bind the exact owner, source, revision, snapshot and archive (6.1813ms)
+✔ checkout sends only server identifiers, stable attempt, terms and challenge; unsafe redirects never pass (20.8032ms)
+✔ status cannot turn a redirect, another owner, different revision, original edition, or revoked artifact into an approved download (9.6668ms)
+✔ paid approved-page download verifies the exact stored hash/bytes and retains default original download semantics (80.5916ms)
+✔ private attempts are isolated by owner and frozen hash and returned receipts must match exact approved page (27.6641ms)
+✔ return and recovery paths accept only the exact known same-origin path with the same receipt (3.1771ms)
+✔ stored parser preserves historical parent version and byte-exact archive while new checkout validation rejects the old reference (698.6387ms)
+✔ fresh-device recovery verifies owned source and preserves exact paid bytes independently of local workspace or current capability (403.107ms)
+✔ an unsupported historical source keeps its verified ZIP available without pretending it can reopen (10.7577ms)
+✔ pending, revoked, unsigned and corrupted archived data do not grant restoration (72.0038ms)
+✔ private recovery survives logged-out rejection and same-tab reload, then resumes with the identical token after sign-in (7.6042ms)
+✔ wrong-owner rejection retains private recovery until an explicit retry with the owner account (3.7582ms)
+✔ concurrent callers share a single redemption and a successful result never resubmits the single-use token (1.6343ms)
+✔ local retention is bounded without extending on repeated links and terminal server expiry or revocation clears it (16.0045ms)
+✔ unknown transport outcomes and invalid success bodies retain intent without automatic retries or unsafe continuation (8.9726ms)
+✔ unavailable session storage permits in-memory retry, while a completed old request cannot erase a newer recovery link (6.6394ms)
+✔ guest original recovery continues without an account or Playground redirect and explicit receipt arrival can discard stale intent (1.7344ms)
+✔ canonical identity is stable across object key order and binds document, revision, parent, and exact source (151.4139ms)
+✔ frozen package contains byte-exact common exporter output, complete digests, original editable source and separate archive receipt (218.9789ms)
+✔ editing draft B cannot alter frozen revision A, its preview, its source, or archive (106.0722ms)
+✔ invalid snapshot hashes, extra fields, parent metadata and changed package bytes are rejected (222.3104ms)
+✔ embedded raster completeness, remote assets, unsafe links, file names, duplicate paths and unknown output models fail closed (20.9588ms)
+✔ text content is escaped in output; the frozen preview uses packaged local bytes with no network capability (39.2907ms)
+✔ legacy projects remain exportable and are preserved in their original supported schema (140.5885ms)
+✔ checked-in runtime literals regenerate exactly with LF and no bundle-dependent names or paths (1108.0636ms)
+✔ browser development, minified browser, tsx-like and server builds produce identical frozen files, archive and editor bridge bytes (3519.7386ms)
+✔ three starters render different compositions, imagery contracts, typography, and page purposes (46.7952ms)
+✔ brief personalizes the same project and manual contact remains explicitly unconnected (5.6439ms)
+✔ column flex ratios target stable content IDs rather than editor chrome siblings (4.0771ms)
+✔ booking links require explicit reviewed HTTPS destination and never create a store (4.4973ms)
+✔ legacy envelopes gain identity without upgrading or mutating their project (2.6981ms)
+✔ reopen retains document ID, revision, nodes, selection, images and variations (6.7612ms)
+✔ selection changes do not create history; cross-document Undo restores selection and identity (2.5332ms)
+✔ device storage retains prior projects atomically and drops stale queued writes (152.0036ms)
+✔ asset replaces selected block image without changing identity or unrelated content (39.1206ms)
+✔ asset inserted into selected nested container has one Undo transaction and independent export (22.2072ms)
+✔ legacy section image uses its own slot without silently changing renderer or schema (1.8009ms)
+✔ artwork insertion preserves the studio source and rejects malformed image without mutation (25.3671ms)
+✔ open A, open B, Undo restores A save identity; Redo restores B (5.6015ms)
+✔ template/import/variation replacements detach, ordinary edits and their undo keep target (5.6409ms)
+✔ late saved head updates only the matching document history, and undo after edit uses latest head (0.9887ms)
+✔ cloud document preflight counts UTF-8 bytes at exact boundary without changing input (160.0621ms)
+✔ Legacy projects stay legacy and component exports require explicit upgrade (196.3015ms)
+✔ all starter projects round trip and reject incompatible versions (37.898ms)
+✔ untrusted copy and links never become executable markup (7.5943ms)
+✔ exports use identical markup and package uploaded image bytes (13.871ms)
+✔ stored ZIP carries central directory and correct file count (411.0744ms)
+✔ contrast and visibility produce accessible baseline content (10.8588ms)
+✔ imports reject malformed base64 and mismatched image signatures (51.4054ms)
+(node:23344) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ capability and checkout bind server parent, owner and frozen bytes before provider dispatch (2541.7648ms)
+✔ only matching signed payment unlocks exact approved bytes; original download remains byte-identical (625.2917ms)
+✔ refund or independent revocation blocks recovery without claiming a ready artifact (261.7735ms)
+✔ checkout failure retry and recovery retain one immutable approved artifact (374.8188ms)
+✔ concurrent same-attempt requests cannot replace the winning page attachment (455.299ms)
+✔ historical and guest original orders never gain attachments and retain original checkout/download behavior (321.4164ms)
+✔ order attachment schema matches additive migration (10.7445ms)
+(node:23480) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ server freezes exact schema-5 package and keeps source/bytes owner-scoped and immutable (2299.5719ms)
+✔ delivery is TEST opt-in; legacy cloud remains 409 and older formats stay outside new storage (74.8276ms)
+✔ forged owner, rendered bytes, claimed hashes, unsafe images and oversized source fail closed (224.5418ms)
+✔ same-owner request races are idempotent, mismatched payloads conflict, and another owner is independent (564.2946ms)
+✔ owner count and byte quotas use atomic admission, and rejected races create no orphan chunks (420.3015ms)
+✔ chunk failure rolls back source and bytes; incomplete or corrupted archives cannot be delivered (186.6714ms)
+✔ delivery migration and runtime schema are identical (7.4968ms)
+✔ delivery relay uses the explicit bounded body ceiling and never falls back after rejection (35.88ms)
+ℹ tests 103
+ℹ suites 0
+ℹ pass 103
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13297.6808

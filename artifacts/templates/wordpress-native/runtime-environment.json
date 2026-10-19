@@ -1,0 +1,105 @@
+{
+  "timestamp_utc": "2026-10-11T03:00:49.202212+00:00",
+  "status": "post_restart_persistence_verified",
+  "scope": "Four independent, freshly initialized WordPress databases/document roots; one task-owned MariaDB server and one PHP built-in development server per site. All listeners bound only to 127.0.0.1. No Windows service or administrator installation.",
+  "wordpress": "6.6",
+  "php": "8.1.34",
+  "php_extensions": [
+    "Core",
+    "bcmath",
+    "calendar",
+    "ctype",
+    "date",
+    "filter",
+    "hash",
+    "iconv",
+    "json",
+    "SPL",
+    "pcre",
+    "readline",
+    "Reflection",
+    "session",
+    "standard",
+    "mysqlnd",
+    "tokenizer",
+    "zip",
+    "zlib",
+    "libxml",
+    "dom",
+    "PDO",
+    "openssl",
+    "SimpleXML",
+    "xml",
+    "xmlreader",
+    "xmlwriter",
+    "mysqli",
+    "pdo_mysql",
+    "curl",
+    "Phar",
+    "mbstring",
+    "gd",
+    "fileinfo"
+  ],
+  "mariadb": "10.11.19-MariaDB",
+  "mariadb_pid": 24068,
+  "mariadb_port": 33071,
+  "http_server": "PHP built-in development server",
+  "private_acl": "Inheritance removed; current user and SYSTEM full control only",
+  "wordpress_zip": {
+    "source_url": "https://wordpress.org/wordpress-6.6.zip",
+    "sha1": "4db7f3f95508fdb5b75c6985869efb0e53ed42a1",
+    "sha256": "289011b5bb5bbd1b37c03b5ac0543460216f07a780c6b252540efffd19a55536"
+  },
+  "php_zip": {
+    "source_url": "https://downloads.php.net/~windows/releases/php-8.1.34-nts-Win32-vs16-x64.zip",
+    "sha256": "9cfe246cb144076c16f5913a3ef88a474c3dd7e60f0f0c8bb95faf68674016cc"
+  },
+  "sites": [
+    {
+      "product": "switchboard",
+      "url": "http://127.0.0.1:8971",
+      "document_root": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\sites\\switchboard",
+      "database": "paid_templates_switchboard",
+      "php_pid": 27240,
+      "baseline_receipt": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\receipts\\switchboard-clean-baseline.json",
+      "http_status": 200
+    },
+    {
+      "product": "tideglass",
+      "url": "http://127.0.0.1:8972",
+      "document_root": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\sites\\tideglass",
+      "database": "paid_templates_tideglass",
+      "php_pid": 23344,
+      "baseline_receipt": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\receipts\\tideglass-clean-baseline.json",
+      "http_status": 200
+    },
+    {
+      "product": "matter",
+      "url": "http://127.0.0.1:8973",
+      "document_root": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\sites\\matter",
+      "database": "paid_templates_matter",
+      "php_pid": 10068,
+      "baseline_receipt": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\receipts\\matter-clean-baseline.json",
+      "http_status": 200
+    },
+    {
+      "product": "nightjar",
+      "url": "http://127.0.0.1:8974",
+      "document_root": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\sites\\nightjar",
+      "database": "paid_templates_nightjar",
+      "php_pid": 27800,
+      "baseline_receipt": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\receipts\\nightjar-clean-baseline.json",
+      "http_status": 200
+    }
+  ],
+  "limits": [
+    "PHP built-in development server, not Apache/nginx or production hosting",
+    "Native editing/setup/export performed through core PHP APIs, not fresh browser editor UI",
+    "No actual email delivery; wp_mail suppressed in task runtime",
+    "WordPress.com upload plan and physical-device acceptance not tested"
+  ],
+  "private_credentials": "Retained outside Git in ACL-restricted task runtime; no values published",
+  "runtime_state": "stopped",
+  "stopped_at_utc": "2026-10-11T03:09:12.138653+00:00",
+  "shutdown_receipt": "artifacts/templates/wordpress-native/final-shutdown-receipt.json"
+}

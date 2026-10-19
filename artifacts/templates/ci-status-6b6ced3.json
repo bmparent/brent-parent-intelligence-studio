@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "timestamp_utc": "2026-10-11T01:42:52.494070+00:00",
+  "headSha": "6b6ced37da71c374482fa9ce9aa7cb567f394ba5",
+  "status": "passed",
+  "siteQuality": {
+    "runId": 38102463830,
+    "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38102463830",
+    "status": "passed"
+  },
+  "templateCandidate": {
+    "runId": 38102463829,
+    "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38102463829",
+    "status": "passed",
+    "artifactName": "template-candidate-receipts",
+    "threeEngineBrowser": {
+      "status": "passed",
+      "receiptSha256": "62ca7b3aa1444af9c0bfc465992beb2856f90e9374821839d478858e2c9bab57",
+      "checks": 54,
+      "failures": [],
+      "engines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "viewports": [
+        390,
+        1440
+      ],
+      "scope": "rendered static/source and shop, no provider transactions",
+      "nightModeComputedTextContrastCases": 6,
+      "normalTextMinimumObservedRatio": 6.05809321834506,
+      "largeHeadingMinimumObservedRatio": 6.05809321834506,
+      "mockCatalogContractCases": 16,
+      "mockCatalogVariants": [
+        "matching",
+        "stale-version",
+        "unavailable",
+        "wrong-price"
+      ],
+      "checkoutSubmitted": false,
+      "challengeInteracted": false
+    },
+    "packages": {
+      "status": "passed",
+      "currentArchives": 8,
+      "allVersionsHashesBytesMatchLocalFreeze": true,
+      "wordPressEvidenceJoined": "Actual WP7.1.2/PHP8.3.33; final1.0.1 header/activation proof separated from baseline native content UI checks"
+    },
+    "cloudflare": {
+      "configuration": "passed",
+      "uploadWorkflow": "passed",
+      "configurationReceiptSha256": "5bbb198460361b843fb475e645e91e4c53119b24a23eb50d071a0b302ead2bf0",
+      "siteOrigin": "https://eidosworks-templates-test-20261010.pages.dev",
+      "customDomains": [],
+      "siteSha": "6b6ced37da71c374482fa9ce9aa7cb567f394ba5",
+      "backendSha": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+      "scope": "CI configuration guard/upload only. Root owns separate hosted HTTP acceptance."
+    }
+  },
+  "visualReview": {
+    "status": "passed_bounded_scope",
+    "reviewedFiles": [
+      "webkit-nightjar-390.jpg",
+      "chromium-nightjar-390.jpg",
+      "shop-390.jpg",
+      "detail-nightjar-390.jpg",
+      "firefox-nightjar-390.jpg",
+      "webkit-nightjar-1440.jpg"
+    ],
+    "findings": [
+      "Nightjar night hero, cards, navigation and ordinary actions are readable with unclipped phone headings.",
+      "Shop/detail mobile hierarchy and purchase text are readable in the inspected screenshots.",
+      "Full-page screenshots show blank offscreen lazy previews; this is not evidence of a failed visible preview. CI scrolls each preview into view and confirms loaded heading."
+    ],
+    "artifactDirectoryExternal": "E:\\CodexArtifacts\\paid-templates-20261010\\ci-38102463829\\browser-ci",
+    "desktopHeadlineConcern": "WebKit1440 night headline GATHERING wraps midword with existing oversized desktop typography and overflow-wrap:anywhere. It remains visible without clipping; visual polish concern reported to root before any further source/version change."
+  },
+  "priorEvidence": {
+    "ci": "artifacts/templates/ci-status.json",
+    "providerCurrentHead": "artifacts/templates/ci-provider-status-6b6ced3.json",
+    "providerPriorFailure": "artifacts/templates/ci-provider-status.json",
+    "correction": "The prior ci-status.json artifactName label was mistaken; actual final artifact name is template-candidate-receipts. Run links and hashes remain authoritative."
+  },
+  "limits": [
+    "Runner-local static HTTP browser tests are distinct from hosted provider/payment acceptance.",
+    "No LIVE sale, field metric, accessibility certification, physical-device or conventional WordPress host claim.",
+    "No screenshot/photo/browser profile was mirrored to Drive; final CI downloads stay external on E."
+  ]
+}

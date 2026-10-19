@@ -1,0 +1,23 @@
+Eidos Works Commercial Template License — Developer Source, version 1.0
+Buyer license terms, October 13, 2026. Purchase availability is controlled by the shop.
+
+Copyright (c) 2026 Eidos Works. Original HTML, CSS, JavaScript, and illustrations.
+For a valid purchase, you may modify and publish one finished website for yourself
+or one client. You may keep backups and use local/staging copies for that website.
+You may transfer the finished website to that client and give them its source for
+maintenance. The license does not permit reselling or redistributing the template
+or its artwork as a standalone template, theme, asset pack, or competing library.
+Buy a separate license for each additional finished website. System fonts are not
+redistributed and remain governed by their own operating-system licenses.
+
+No third-party brand, client data, stock photo, remote font, or dependency is bundled.
+Original illustrations may be used and modified within the licensed finished site.
+Fictional sample names and offerings are examples, not verified business claims.
+
+Support: see SUPPORT.md. Hosting, domains, platform subscriptions, paid plugins,
+booking, commerce, ticketing, email delivery, content entry, and legal advice are
+not included. No lifetime updates, uptime, conversion result, or support response
+time is promised. Mandatory consumer rights are unaffected by these terms.
+
+Provided as-is to the extent permitted by law, without warranty of fitness for a
+particular purpose. Review the implementation and your final content before launch.

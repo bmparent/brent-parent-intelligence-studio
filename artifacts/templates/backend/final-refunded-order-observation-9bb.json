@@ -1,0 +1,26 @@
+{
+  "timestampUtc": "2026-10-11T02:19:50.427Z",
+  "scope": "read-only original genuine TEST purchase on final protected source; no event replay",
+  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
+  "originalTransactionSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+  "orderId": "8852085b-9a42-45a6-8a30-123b774d772f",
+  "ledgerStatus": "refunded",
+  "fulfillmentStatus": "ready",
+  "downloadTokenGranted": false,
+  "oldDownloadHttp": 403,
+  "oldTokenCurrentlyUnexpired": false,
+  "originalUnexpiredTokenDeniedAtRefund": true,
+  "reconciliation": {
+    "implementation": "deployed",
+    "controlledRegression": "passed for genuine-shaped signed TEST refund and dispute after old-handler dedupe consumption",
+    "actualProviderReplay": "not performed",
+    "reason": "No installed Stripe CLI or connected event-resend capability; did not forge or re-sign a provider event."
+  },
+  "limits": [
+    "The original refund financial state already blocks retrieval.",
+    "The retained old event side-table value is reported as observed; controlled reconciliation tests are separate from actual provider delivery."
+  ],
+  "downloadVersion": "1.0.0",
+  "downloadName": "eidos-switchboard-developer-1.0.0.zip",
+  "currentCatalogSwitchboardVersion": "1.0.1"
+}

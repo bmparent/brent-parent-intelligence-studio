@@ -1,0 +1,132 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1280px"
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "ink",
+          "name": "Ink",
+          "color": "#201e39"
+        },
+        {
+          "slug": "paper",
+          "name": "Paper",
+          "color": "#fff5d8"
+        },
+        {
+          "slug": "accent",
+          "name": "Accent",
+          "color": "#ff7553"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "heading",
+          "name": "Heading",
+          "fontFamily": "\"Arial Black\", \"Segoe UI\", sans-serif"
+        },
+        {
+          "slug": "body",
+          "name": "System sans",
+          "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif"
+        }
+      ],
+      "fluid": true,
+      "fontSizes": [
+        {
+          "slug": "small",
+          "name": "Small",
+          "size": ".875rem"
+        },
+        {
+          "slug": "medium",
+          "name": "Medium",
+          "size": "1rem"
+        },
+        {
+          "slug": "large",
+          "name": "Large",
+          "size": "1.4rem"
+        },
+        {
+          "slug": "x-large",
+          "name": "Extra large",
+          "size": "2.8rem"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|paper",
+      "text": "var:preset|color|ink"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|body",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|heading"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var:preset|color|ink"
+        }
+      }
+    }
+  },
+  "customTemplates": [
+    {
+      "name": "program",
+      "title": "Nightjar \u2014 Program",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "event",
+      "title": "Nightjar \u2014 Event detail",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "about",
+      "title": "Nightjar \u2014 About",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "contact",
+      "title": "Nightjar \u2014 Contact",
+      "postTypes": [
+        "page"
+      ]
+    }
+  ],
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ]
+}

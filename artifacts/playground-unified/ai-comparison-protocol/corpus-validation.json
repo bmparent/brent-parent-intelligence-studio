@@ -1,0 +1,549 @@
+{
+  "timestampUtc": "2026-10-14T23:39:50.071Z",
+  "corpusId": "playground-scoped-public-v1-2026-10-14",
+  "validation": "fixture_feasibility_only",
+  "providerCalls": 0,
+  "aggregateBudgetUsd": 5,
+  "sourceFiles": [
+    {
+      "path": "scripts/fixtures/playground-ai-cases.json",
+      "sha256": "269ac50793c52dc45558fee120299c35adfdf59b1e286e6e11199f0b2b978181"
+    },
+    {
+      "path": "scripts/playground-ai-case-fixture.ts",
+      "sha256": "6e620008a44824d6fe70d92b087b7378c8b0ab3c1417fa2e34a76fa02e2f38d7"
+    },
+    {
+      "path": "scripts/test-playground-ai-cases.ts",
+      "sha256": "a4a3b72141f8e966b69412f406b7d51b651ae494a130a4e791c579d42de6694b"
+    },
+    {
+      "path": "src/playground/aiOperations.ts",
+      "sha256": "f172a57aa92d5a63e98fc0acf4cd90d0e1f0fa656fe2ed6b6af616555c806268"
+    }
+  ],
+  "caseCount": 20,
+  "maxContextBytes": 3651,
+  "cases": [
+    {
+      "id": "initial-service-page",
+      "category": "initial_design",
+      "scope": "page",
+      "sectionId": "hero",
+      "nodeId": "",
+      "contextBytes": 3359,
+      "projectSha256": "439e840c6e309c9c81b901e955a4fa7eda89d0f149acbe2d93f03467175a824d",
+      "contextSha256": "8b6086bb57646372867bf524ac19dc8cc25b614b3baadacf3c9bddc5eb75e228",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "initial-retreat-offer",
+      "category": "initial_design",
+      "scope": "page",
+      "sectionId": "hero",
+      "nodeId": "",
+      "contextBytes": 3056,
+      "projectSha256": "130707910325b0f33cefe682c94a7778cc2ce47e80f7fa9979deb7fb9c33e6c1",
+      "contextSha256": "e42da3a9cbf735b8f396f1381809e24442a5c5ea4da9895c0074c2af474c13ff",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "initial-creative-portfolio",
+      "category": "initial_design",
+      "scope": "page",
+      "sectionId": "hero",
+      "nodeId": "",
+      "contextBytes": 3594,
+      "projectSha256": "4ac47c4d5700fa1997738ec9d6268dd1f6465856dc8032f9d7add0d1d4d8d992",
+      "contextSha256": "dca563a41fc609ac114817c14d9762834468294af736a6244f6794a516197dc9",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "brand-service-palette",
+      "category": "brand_application",
+      "scope": "brand",
+      "sectionId": "hero",
+      "nodeId": "",
+      "contextBytes": 3360,
+      "projectSha256": "439e840c6e309c9c81b901e955a4fa7eda89d0f149acbe2d93f03467175a824d",
+      "contextSha256": "0dde70c19c1ea83ca4d159ec14d8b6f37c26cc66c86bf77bbec0fca358bcc5cc",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "brand-retreat-name-tone",
+      "category": "brand_application",
+      "scope": "brand",
+      "sectionId": "header",
+      "nodeId": "",
+      "contextBytes": 3059,
+      "projectSha256": "130707910325b0f33cefe682c94a7778cc2ce47e80f7fa9979deb7fb9c33e6c1",
+      "contextSha256": "00289fbe35ac4493862a72d21f3142c2cba07cd4b81fade24c08461246ba3dff",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "brand-portfolio-type",
+      "category": "brand_application",
+      "scope": "brand",
+      "sectionId": "hero",
+      "nodeId": "",
+      "contextBytes": 3595,
+      "projectSha256": "4ac47c4d5700fa1997738ec9d6268dd1f6465856dc8032f9d7add0d1d4d8d992",
+      "contextSha256": "efd3e5d08ea4b288349e1434e2dc7f5e9d80f453effbcd8ceb6636d934621cef",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "copy-service-headline",
+      "category": "copy_refinement",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-2",
+      "contextBytes": 3381,
+      "projectSha256": "439e840c6e309c9c81b901e955a4fa7eda89d0f149acbe2d93f03467175a824d",
+      "contextSha256": "84db0aed3e299e377343e74ede11595b76bc965074045b9c9446aa5bfe25fbb7",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "copy-retreat-introduction",
+      "category": "copy_refinement",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-2",
+      "contextBytes": 3078,
+      "projectSha256": "130707910325b0f33cefe682c94a7778cc2ce47e80f7fa9979deb7fb9c33e6c1",
+      "contextSha256": "808d52a669e6bd5115ebb9b2b8434760bbf16ca28c04a07bb243e9db9f84b254",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "copy-portfolio-action",
+      "category": "copy_refinement",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-5",
+      "contextBytes": 3616,
+      "projectSha256": "4ac47c4d5700fa1997738ec9d6268dd1f6465856dc8032f9d7add0d1d4d8d992",
+      "contextSha256": "3ee401a22f282339f70cabe00ee536d4fabba94d5e4651782d332d1fd3a99b9c",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "copy-contact-boundary",
+      "category": "copy_refinement",
+      "scope": "section",
+      "sectionId": "contact",
+      "nodeId": "",
+      "contextBytes": 3365,
+      "projectSha256": "439e840c6e309c9c81b901e955a4fa7eda89d0f149acbe2d93f03467175a824d",
+      "contextSha256": "1a04e7a27f1c0dec42510425b79acce6de48cb63060db109c001468bca20d7a0",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "section-services-spacing",
+      "category": "section_redesign",
+      "scope": "section",
+      "sectionId": "services",
+      "nodeId": "",
+      "contextBytes": 3366,
+      "projectSha256": "439e840c6e309c9c81b901e955a4fa7eda89d0f149acbe2d93f03467175a824d",
+      "contextSha256": "387c921caa2b6f5ba6e0c1f5b6d6938e5656dff007d4c1601342d323dca87a98",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "section-portfolio-work",
+      "category": "section_redesign",
+      "scope": "section",
+      "sectionId": "work",
+      "nodeId": "",
+      "contextBytes": 3597,
+      "projectSha256": "4ac47c4d5700fa1997738ec9d6268dd1f6465856dc8032f9d7add0d1d4d8d992",
+      "contextSha256": "a5c055b12c34260ddde15b1255f3d5768b80e5569233fd6e8e995053ac774bfc",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "section-hero-copy-refresh",
+      "category": "section_redesign",
+      "scope": "section",
+      "sectionId": "hero",
+      "nodeId": "",
+      "contextBytes": 3059,
+      "projectSha256": "130707910325b0f33cefe682c94a7778cc2ce47e80f7fa9979deb7fb9c33e6c1",
+      "contextSha256": "564b94b6f769f38d1d8d3b79340cdcf267d8cbb60623ba754a201f9ce8c48b6f",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "responsive-service-container",
+      "category": "responsive_repair",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-0",
+      "contextBytes": 3379,
+      "projectSha256": "9bc76ba83c88a334d16d8f46129e410e8bca1f5981e6827bd94f6b67c5dcf5cc",
+      "contextSha256": "f948046039c81e384e94aa3811800d190668741e5ee9587eb40140a8de570e75",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "responsive-portfolio-image",
+      "category": "responsive_repair",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-1",
+      "contextBytes": 3651,
+      "projectSha256": "5fbbfa4e97ccb0440d8dbcc8d8591387979452ef0362544fb031e30bf0df1c15",
+      "contextSha256": "a8d41745ec465fd718ace71413a79939c9f3cd1625b4d3dbcc7ed38050b17423",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "responsive-retreat-gap",
+      "category": "responsive_repair",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-0",
+      "contextBytes": 3113,
+      "projectSha256": "2b28257f4b4b80ddcf01a61ea44a56c4334abfa658e7d905b6092d2f3cda5a65",
+      "contextSha256": "b09a61d8574486e57c2d84f23dace00216d206fae8c0c397a3b6d1af9ab0c815",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "responsive-service-cta",
+      "category": "responsive_repair",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-4",
+      "contextBytes": 3424,
+      "projectSha256": "67176422de2ff5e1ffacae8363a0d3cd353c0304ad062f0828264fe6f0bfb896",
+      "contextSha256": "e361458eb3b5a887391cc12f175674384acdc28da21cd5e68413b89fe0887265",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "preserve-manual-headline",
+      "category": "manual_work_preservation",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-3",
+      "contextBytes": 3376,
+      "projectSha256": "146c23900acae3c0aba449a080cf1d813cb46c4214ea3f3b6078449577ed17d6",
+      "contextSha256": "30b551e2c7b8d2317164d38dfdc7877ce440d58aeae183bf3f3fa9010cf74a94",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "preserve-manual-layout",
+      "category": "manual_work_preservation",
+      "scope": "element",
+      "sectionId": "hero",
+      "nodeId": "node-fixture-hero-3",
+      "contextBytes": 3640,
+      "projectSha256": "149720ed93fc86d5595ad193718dd87b3f676447c4c60b608293a7ab21ce185c",
+      "contextSha256": "531eaec512c8f9d8c1023493a9c9060faa59a41baab94bc1cc18b618fd7a9230",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    },
+    {
+      "id": "preserve-locked-brand",
+      "category": "manual_work_preservation",
+      "scope": "section",
+      "sectionId": "contact",
+      "nodeId": "",
+      "contextBytes": 3087,
+      "projectSha256": "a27d2ede28145c468503d591dd1b3e9590a4f330ccc04f5f849cca84f7eded47",
+      "contextSha256": "f170a9f22aae0ec73aa0d0cbf5b7ec547ea9f05aa6b75d187d6da58684b5d37e",
+      "referenceFeasibility": "validated",
+      "modelRun": {
+        "status": "not_run",
+        "model": null,
+        "inputTokens": null,
+        "outputTokens": null,
+        "actualCostUsd": null,
+        "latencyMs": null,
+        "correctionCount": null
+      },
+      "humanReview": {
+        "status": "pending",
+        "reviewer": null,
+        "scores": null,
+        "accepted": null
+      }
+    }
+  ]
+}

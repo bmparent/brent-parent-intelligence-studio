@@ -1,0 +1,69 @@
+Starting element motion checks: chromium
+PASS chromium/1440 selected block motion is one exact Undo/Redo edit with stable identity
+PASS chromium/1440 keyboard numeric motion settings persist; editing stays static for selection and gestures
+PASS chromium/1440 visitor preview renders a bounded one-shot entrance on the selected block
+PASS chromium/1440 system reduced motion immediately presents static, visible content
+PASS chromium/1440 mobile shares the same explicit element motion without changing desktop layout
+PASS chromium/1440 Remove motion clears metadata and one Undo restores the exact configured project
+PASS chromium/1440 explicit Continue restores motion, source identity and saved content
+PASS chromium/1440 actual downloaded ZIP matches common renderer bytes and executes motion independently
+PASS chromium/1440 export remains visible and static without JavaScript
+PASS chromium/1440 the saved project reduced-motion preference also suppresses element animation
+PASS chromium/1440 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+PASS chromium/390 selected block motion is one exact Undo/Redo edit with stable identity
+PASS chromium/390 keyboard numeric motion settings persist; editing stays static for selection and gestures
+PASS chromium/390 visitor preview renders a bounded one-shot entrance on the selected block
+PASS chromium/390 system reduced motion immediately presents static, visible content
+PASS chromium/390 mobile shares the same explicit element motion without changing desktop layout
+PASS chromium/390 Remove motion clears metadata and one Undo restores the exact configured project
+PASS chromium/390 explicit Continue restores motion, source identity and saved content
+PASS chromium/390 actual downloaded ZIP matches common renderer bytes and executes motion independently
+PASS chromium/390 export remains visible and static without JavaScript
+PASS chromium/390 the saved project reduced-motion preference also suppresses element animation
+PASS chromium/390 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+Starting element motion checks: firefox
+PASS firefox/1440 selected block motion is one exact Undo/Redo edit with stable identity
+PASS firefox/1440 keyboard numeric motion settings persist; editing stays static for selection and gestures
+PASS firefox/1440 visitor preview renders a bounded one-shot entrance on the selected block
+PASS firefox/1440 system reduced motion immediately presents static, visible content
+PASS firefox/1440 mobile shares the same explicit element motion without changing desktop layout
+PASS firefox/1440 Remove motion clears metadata and one Undo restores the exact configured project
+PASS firefox/1440 explicit Continue restores motion, source identity and saved content
+PASS firefox/1440 actual downloaded ZIP matches common renderer bytes and executes motion independently
+PASS firefox/1440 export remains visible and static without JavaScript
+PASS firefox/1440 the saved project reduced-motion preference also suppresses element animation
+PASS firefox/1440 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+PASS firefox/390 selected block motion is one exact Undo/Redo edit with stable identity
+PASS firefox/390 keyboard numeric motion settings persist; editing stays static for selection and gestures
+PASS firefox/390 visitor preview renders a bounded one-shot entrance on the selected block
+PASS firefox/390 system reduced motion immediately presents static, visible content
+PASS firefox/390 mobile shares the same explicit element motion without changing desktop layout
+PASS firefox/390 Remove motion clears metadata and one Undo restores the exact configured project
+PASS firefox/390 explicit Continue restores motion, source identity and saved content
+PASS firefox/390 actual downloaded ZIP matches common renderer bytes and executes motion independently
+PASS firefox/390 export remains visible and static without JavaScript
+PASS firefox/390 the saved project reduced-motion preference also suppresses element animation
+PASS firefox/390 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+Starting element motion checks: webkit
+PASS webkit/1440 selected block motion is one exact Undo/Redo edit with stable identity
+PASS webkit/1440 keyboard numeric motion settings persist; editing stays static for selection and gestures
+PASS webkit/1440 visitor preview renders a bounded one-shot entrance on the selected block
+PASS webkit/1440 system reduced motion immediately presents static, visible content
+PASS webkit/1440 mobile shares the same explicit element motion without changing desktop layout
+PASS webkit/1440 Remove motion clears metadata and one Undo restores the exact configured project
+PASS webkit/1440 explicit Continue restores motion, source identity and saved content
+PASS webkit/1440 actual downloaded ZIP matches common renderer bytes and executes motion independently
+PASS webkit/1440 export remains visible and static without JavaScript
+PASS webkit/1440 the saved project reduced-motion preference also suppresses element animation
+PASS webkit/1440 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+PASS webkit/390 selected block motion is one exact Undo/Redo edit with stable identity
+PASS webkit/390 keyboard numeric motion settings persist; editing stays static for selection and gestures
+PASS webkit/390 visitor preview renders a bounded one-shot entrance on the selected block
+PASS webkit/390 system reduced motion immediately presents static, visible content
+PASS webkit/390 mobile shares the same explicit element motion without changing desktop layout
+PASS webkit/390 Remove motion clears metadata and one Undo restores the exact configured project
+PASS webkit/390 explicit Continue restores motion, source identity and saved content
+PASS webkit/390 actual downloaded ZIP matches common renderer bytes and executes motion independently
+PASS webkit/390 export remains visible and static without JavaScript
+PASS webkit/390 the saved project reduced-motion preference also suppresses element animation
+PASS webkit/390 nonblank page identity, no framework/runtime errors and no AI/payment API requests

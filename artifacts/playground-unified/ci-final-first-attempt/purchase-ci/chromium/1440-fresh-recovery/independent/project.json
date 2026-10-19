@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 5,
+  "brand": {
+    "businessName": "Recovered Atlas",
+    "tone": "",
+    "locks": []
+  },
+  "rendererVersion": "eidos-original-glass-2.0.0",
+  "template": "homepage",
+  "name": "Recovered Atlas",
+  "tokens": {
+    "background": "#f5f5ed",
+    "foreground": "#17372f",
+    "accent": "#d8f35f",
+    "spacing": 72,
+    "radius": 8,
+    "typeScale": 1,
+    "width": 1280,
+    "font": "modern"
+  },
+  "glass": {
+    "presetId": "eidos-edge-light-v5",
+    "enabled": true,
+    "frost": 1.2,
+    "edge": 0.72,
+    "prism": 0.32,
+    "touch": 4.3,
+    "radius": 29,
+    "response": 28,
+    "solid": "#172632",
+    "start": 4,
+    "end": 72,
+    "reducedMotion": false
+  },
+  "sections": [
+    {
+      "id": "header",
+      "type": "header",
+      "navigation": [
+        {
+          "label": "Details",
+          "href": "#services"
+        }
+      ],
+      "visible": true,
+      "title": "Recovered Atlas",
+      "description": "",
+      "cta": "Start a conversation",
+      "href": "#contact",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "hero",
+      "type": "hero",
+      "authoring": {
+        "version": 1,
+        "root": {
+          "id": "node-1482eb84-8e9a-4acc-aba8-20c10fdd6b57",
+          "type": "columns",
+          "name": "Introduction and image",
+          "text": "",
+          "href": "",
+          "image": "",
+          "alt": "",
+          "width": 100,
+          "height": 320,
+          "gap": 48,
+          "align": "left",
+          "split": 55,
+          "lockAspect": true,
+          "mobile": {
+            "gap": 28,
+            "layout": "stack"
+          },
+          "children": [
+            {
+              "id": "node-5f1584ff-ee58-4f4b-b31e-e0b3c1d9ce83",
+              "type": "stack",
+              "name": "Introduction",
+              "text": "",
+              "href": "",
+              "image": "",
+              "alt": "",
+              "width": 100,
+              "height": 320,
+              "gap": 28,
+              "align": "left",
+              "split": 50,
+              "lockAspect": true,
+              "children": [
+                {
+                  "id": "node-e282957b-4cd1-4497-9be7-1a87906efa60",
+                  "type": "heading",
+                  "name": "Headline",
+                  "text": "Good work starts\nwith a clear plan.",
+                  "href": "",
+                  "image": "",
+                  "alt": "",
+                  "width": 100,
+                  "height": 320,
+                  "gap": 24,
+                  "align": "left",
+                  "split": 50,
+                  "lockAspect": true
+                },
+                {
+                  "id": "node-fab1636a-d124-447d-8864-1625b4ffaef2",
+                  "type": "text",
+                  "name": "Introduction",
+                  "text": "Tell people what you do, who you help, and how to get started.",
+                  "href": "",
+                  "image": "",
+                  "alt": "",
+                  "width": 100,
+                  "height": 320,
+                  "gap": 24,
+                  "align": "left",
+                  "split": 50,
+                  "lockAspect": true
+                },
+                {
+                  "id": "node-2c2cf68d-1320-4820-81d3-075c31baa92a",
+                  "type": "button",
+                  "name": "Primary action",
+                  "text": "Start a conversation",
+                  "href": "#contact",
+                  "image": "",
+                  "alt": "",
+                  "width": 100,
+                  "height": 320,
+                  "gap": 24,
+                  "align": "left",
+                  "split": 50,
+                  "lockAspect": true
+                }
+              ]
+            },
+            {
+              "id": "node-baab8789-62de-4930-acbb-ff4cbc6fa21f",
+              "type": "image",
+              "name": "Hero image",
+              "text": "",
+              "href": "",
+              "image": "",
+              "alt": "Eidos illustration of a house and a project plan",
+              "width": 100,
+              "height": 560,
+              "gap": 24,
+              "align": "left",
+              "split": 50,
+              "lockAspect": true,
+              "media": {
+                "fit": "cover",
+                "zoom": 1,
+                "x": 50,
+                "y": 50,
+                "tint": "#000000",
+                "opacity": 0,
+                "decorative": false,
+                "sourceId": "",
+                "sourceName": "Eidos Switchboard illustration"
+              }
+            }
+          ]
+        }
+      },
+      "visible": true,
+      "title": "Good work starts\nwith a clear plan.",
+      "description": "Tell people what you do, who you help, and how to get started.",
+      "cta": "Start a conversation",
+      "href": "#contact",
+      "layout": "center",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "services",
+      "type": "services",
+      "visible": true,
+      "title": "What you can expect",
+      "description": "A clear first conversation\nA plan built around your needs\nCareful work, from start to finish",
+      "cta": "",
+      "href": "",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "work",
+      "type": "work",
+      "visible": false,
+      "title": "A closer look",
+      "description": "Add a photo and a short example that helps people understand your work.",
+      "cta": "",
+      "href": "",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "visible": true,
+      "title": "Let’s make\nsomething happen.",
+      "description": "Add your email or phone link in the editor. This page has no connected contact form.",
+      "cta": "Add your contact destination",
+      "href": "#",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    },
+    {
+      "id": "footer",
+      "type": "footer",
+      "visible": true,
+      "title": "Recovered Atlas",
+      "description": "Made with care.",
+      "cta": "",
+      "href": "",
+      "layout": "split",
+      "image": "",
+      "alt": ""
+    }
+  ]
+}

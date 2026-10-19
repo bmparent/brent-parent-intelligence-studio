@@ -1,0 +1,38 @@
+{
+  "engine": "firefox",
+  "width": 1440,
+  "name": "deferred-recovery",
+  "checks": [
+    "late recovery response after starting another project cannot open or replace the active draft",
+    "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+    }
+  ],
+  "calls": [
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/download",
+      "method": "POST",
+      "artifact": "approved-page"
+    },
+    {
+      "path": "/api/playground/delivery?id=fixture-delivery",
+      "method": "GET"
+    }
+  ],
+  "unexpected": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [],
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}

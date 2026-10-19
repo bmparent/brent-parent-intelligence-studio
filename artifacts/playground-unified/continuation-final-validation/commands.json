@@ -1,0 +1,65 @@
+[
+  {
+    "command": "npm run test:playground",
+    "exitCode": 0,
+    "startedAt": "2026-10-14T23:57:06.9564216Z",
+    "finishedAt": "2026-10-14T23:57:34.6162848Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/01.log"
+  },
+  {
+    "command": "npm run test:showcase",
+    "exitCode": 0,
+    "startedAt": "2026-10-14T23:57:34.6711478Z",
+    "finishedAt": "2026-10-14T23:57:48.9052486Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/02.log"
+  },
+  {
+    "command": "npm run test:platform",
+    "exitCode": 0,
+    "startedAt": "2026-10-14T23:57:48.9234322Z",
+    "finishedAt": "2026-10-14T23:58:18.2643272Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/03.log"
+  },
+  {
+    "command": "npm run test:templates",
+    "exitCode": 0,
+    "startedAt": "2026-10-14T23:58:18.2777448Z",
+    "finishedAt": "2026-10-14T23:59:16.9623877Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/04.log"
+  },
+  {
+    "command": "node --test scripts/test-playground-preview-pin.mjs scripts/test-playground-preview-assets.mjs",
+    "exitCode": 0,
+    "startedAt": "2026-10-14T23:59:16.9720146Z",
+    "finishedAt": "2026-10-14T23:59:18.2597591Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/05.log"
+  },
+  {
+    "command": "npm run lint",
+    "exitCode": 0,
+    "startedAt": "2026-10-14T23:59:18.2695159Z",
+    "finishedAt": "2026-10-15T00:00:48.9315484Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/06.log"
+  },
+  {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "startedAt": "2026-10-15T00:00:48.9431292Z",
+    "finishedAt": "2026-10-15T00:01:59.2414227Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/07.log"
+  },
+  {
+    "command": "npm run build",
+    "exitCode": 0,
+    "startedAt": "2026-10-15T00:01:59.2510552Z",
+    "finishedAt": "2026-10-15T00:03:24.9617282Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/08.log"
+  },
+  {
+    "command": "npm run build:functions",
+    "exitCode": 0,
+    "startedAt": "2026-10-15T00:03:24.9723539Z",
+    "finishedAt": "2026-10-15T00:03:39.5297338Z",
+    "log": "artifacts/playground-unified/continuation-final-validation/09.log"
+  }
+]

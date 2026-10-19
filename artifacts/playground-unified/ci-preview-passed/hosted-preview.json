@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-10-14T18:35:15.711Z",
+  "project": "eidosworks-playground-20261014",
+  "branch": "codex/playground-unified-20261014",
+  "siteSha": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "previewUrl": "https://b1ddf99d.eidosworks-playground-20261014.pages.dev",
+  "alias": "https://eidosworks-playground-20261014.pages.dev",
+  "backendUrl": "https://eidos-sentinel-gddofh939-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "0e0aabc48f0ca7894b917495b661ef44cd337dce",
+  "backendDeployment": "dpl_GKzpxmZ16TXCry6Pwr6jX5LgB48w",
+  "bundleHash": "77b27dd43cb78e66b83fff84bfba70c532aaf7d3a367d891e19e4b754023a870",
+  "sourceRevision": "0e0aabc48f0ca7894b917495b661ef44cd337dce-bundle-77b27dd43cb78e66",
+  "database": "none",
+  "mode": "manual-only",
+  "publicConfig": {
+    "gaMeasurementId": "G-8N7Y7EM4CS",
+    "turnstileSiteKey": "",
+    "communityReady": false,
+    "accountsReady": false,
+    "aiReady": false,
+    "shopReady": false,
+    "localTest": false,
+    "runtimeSourceRevision": "0e0aabc48f0ca7894b917495b661ef44cd337dce",
+    "runtimeBundleHash": "77b27dd43cb78e66b83fff84bfba70c532aaf7d3a367d891e19e4b754023a870"
+  },
+  "boundaryChecks": [
+    {
+      "schemaVersion": 5,
+      "status": 409
+    },
+    {
+      "schemaVersion": 1,
+      "status": 409
+    },
+    {
+      "schemaVersion": 6,
+      "status": 409
+    },
+    {
+      "name": "wrong-relay",
+      "status": 401
+    },
+    {
+      "name": "other-origin",
+      "status": 403
+    }
+  ],
+  "publishedAssets": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "failures": []
+      }
+    ],
+    "assets": [
+      {
+        "path": "/assets/index-DET4WRCo.js",
+        "bytes": 842348,
+        "sha256": "ca0d295c88afed436d6991b3ab8a334613d9412ce2607f47d2f5cd789f164e52"
+      },
+      {
+        "path": "/assets/rolldown-runtime-D9-fqq9M.js",
+        "bytes": 86,
+        "sha256": "a2b9cf4b963756dc2cae1ebdd1c0e51ef5780dd5bf64a55b90e21679c2b2434f"
+      },
+      {
+        "path": "/assets/react-vendor-P0Lkgw2L.js",
+        "bytes": 190214,
+        "sha256": "d7915cfac74caf83c2fe234696e3f0d9fcb989ca3ff720203e895e1e1a144be6"
+      },
+      {
+        "path": "/assets/index-BtUgcVsh.css",
+        "bytes": 220406,
+        "sha256": "f68409fed53073148316025ced5f5b447c302cf67c691d22a5a2c67738f86d16"
+      }
+    ]
+  },
+  "canonicalBefore": "5926dfb4-1df2-4dbf-8864-1f3f38e034f1",
+  "canonicalAfter": "5926dfb4-1df2-4dbf-8864-1f3f38e034f1"
+}

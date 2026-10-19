@@ -1,0 +1,46 @@
+{
+  "timestampUtc": "2026-10-14T23:53:17.6618210Z",
+  "status": "source_and_fixture_validated",
+  "realProviderCalls": 0,
+  "realProviderCostUsd": 0,
+  "unitTests": {
+    "passed": 7,
+    "command": "node --import tsx --test scripts/test-playground-ai-client.ts",
+    "failed": 0
+  },
+  "fullBrowserMatrix": {
+    "failures": 0,
+    "checks": 108,
+    "sourceFilesUnchangedDuringRun": true,
+    "records": 6,
+    "receipt": "ai-ui-final/receipt.json"
+  },
+  "finishFollowup": {
+    "failures": 0,
+    "checks": 12,
+    "records": 2,
+    "receipt": "ai-ui-finish-guard/receipt.json"
+  },
+  "dedicatedReadinessAndFinishFollowup": {
+    "failures": 0,
+    "checks": 14,
+    "sourceFilesUnchangedDuringRun": true,
+    "records": 2,
+    "receipt": "ai-ui-readiness-finish/receipt.json"
+  },
+  "sourceFilesAtFreeze": {
+    "src/playground/AIAssist.tsx": "04d5a42d162ae871d907b57f54ee5a3918a9c75cf098359a0395f167e3c859ae",
+    "src/playground/aiClient.ts": "f72c01eef4a5562f218ef1bef62e5a8d2de7c86bacb91abf9aa4550d2d47f101",
+    "src/playground/aiOperations.ts": "f172a57aa92d5a63e98fc0acf4cd90d0e1f0fa656fe2ed6b6af616555c806268",
+    "src/playground/aiAssist.css": "1c8cc547c8547e173ccf972b238c6c0ed580a8999eef9505dab59da433563487",
+    "src/playground/Playground.tsx": "04eab2df82806ebaa7f63eef92c33b005657da1b4f81c32b41e1460c8ecba88d",
+    "src/lib/platform.ts": "e3bbe316dfbdb38c4e047ce424730aec6c8e7dc72fa4c29139ec686a5ac8357e",
+    "scripts/verify-playground-ai-ui.mjs": "ad28cf42f96fda0f27fcbab4691a895427516f59eca96384f751eb8b8798f88c"
+  },
+  "limitations": [
+    "Controlled browser API fixtures are not hosted provider, hard-cap, payment or inbox acceptance.",
+    "The 108-check matrix predates the narrow Finish/readiness edits; their exact-source targeted receipts are retained separately.",
+    "Production generation and paid delivery activation were not performed by this UI task.",
+    "Physical-device and unfamiliar-user acceptance remain separate."
+  ]
+}

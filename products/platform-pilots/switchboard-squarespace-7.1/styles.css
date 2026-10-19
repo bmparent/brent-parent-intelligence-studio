@@ -1,0 +1,7 @@
+/* Optional. Replace REPLACE_WITH_SECTION_ID with the intended native Squarespace section's data-section-id. No selector applies until configured. */
+[data-section-id="REPLACE_WITH_SECTION_ID"]{background:#f6f6ee;color:#14302b}
+[data-section-id="REPLACE_WITH_SECTION_ID"] h1,[data-section-id="REPLACE_WITH_SECTION_ID"] h2{color:#14302b;letter-spacing:-.035em;line-height:1.08}
+[data-section-id="REPLACE_WITH_SECTION_ID"] a{color:#14302b;text-underline-offset:.25em}
+[data-section-id="REPLACE_WITH_SECTION_ID"] .sqs-block-button-element{background:#d8f35f!important;color:#14302b!important;border:1px solid #14302b!important;min-height:48px}
+[data-section-id="REPLACE_WITH_SECTION_ID"] a:focus-visible,[data-section-id="REPLACE_WITH_SECTION_ID"] button:focus-visible{outline:3px solid #14302b;outline-offset:5px}
+@media(prefers-reduced-motion:reduce){[data-section-id="REPLACE_WITH_SECTION_ID"] *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

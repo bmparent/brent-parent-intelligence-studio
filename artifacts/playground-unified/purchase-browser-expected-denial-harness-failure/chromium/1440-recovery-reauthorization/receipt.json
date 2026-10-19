@@ -1,0 +1,45 @@
+{
+  "engine": "chromium",
+  "width": 1440,
+  "name": "recovery-reauthorization",
+  "checks": [
+    "account switch after retrieval blocks opening a new editable copy",
+    "revocation after retrieval blocks opening a new editable copy"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+    }
+  ],
+  "calls": [
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/download",
+      "method": "POST",
+      "artifact": "approved-page"
+    },
+    {
+      "path": "/api/playground/delivery?id=fixture-delivery",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    }
+  ],
+  "unexpected": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at scenario (file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:95:118)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:147:3"
+}

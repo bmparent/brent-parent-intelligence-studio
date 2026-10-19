@@ -1,0 +1,507 @@
+{
+  "schema_version": 2,
+  "timestamp_utc": "2026-10-11T03:04:36.240008+00:00",
+  "status": "partial",
+  "sale_enabled": false,
+  "native_api_gate": "passed",
+  "wordpress": "6.6",
+  "php": "8.1.34",
+  "database": {
+    "engine": "MariaDB",
+    "version": "10.11.19",
+    "native": true,
+    "independent_databases": 4,
+    "server_processes": 1
+  },
+  "http_server": "PHP built-in development server, each site bound to its own 127.0.0.1 port",
+  "method": "Native PHP WordPress APIs, including Theme_Upgrader, block parsing/serialization, post/media/navigation/template APIs and core Site Editor export. HTTP publication checks before and after graceful owned PHP/MariaDB restart.",
+  "scope": "Four independently initialized WordPress6.6 document roots and databases on one Windows host. Each started with only default themes,2defaultpages,1defaultpost,0media and0activeplugins. Exact current1.0.2 buyer ZIP installed/activated separately; five actual designed pages, business title/heading, replacement PNG, native navigation/contact blocks published, exported and preserved across process restart.",
+  "baseline_receipt": "artifacts/templates/wordpress-install-external/browser-ui-receipt-wp1.0.1-historical.json",
+  "historical_native_ui_receipt": "artifacts/templates/wordpress-browser/installation-receipt.json",
+  "runtime_receipt": "artifacts/templates/wordpress-native/runtime-environment.json",
+  "restart_receipt": "artifacts/templates/wordpress-native/graceful-restart-receipt.json",
+  "themes": [
+    {
+      "product": "switchboard",
+      "version": "1.0.2",
+      "archive_path": "artifacts/templates/packages/switchboard-wordpress-v1.0.2.zip",
+      "archive_sha256": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93",
+      "archive_bytes": 30418,
+      "status": "partial",
+      "native_api_gate": "passed",
+      "installed_header": {
+        "version": "1.0.2",
+        "update_uri": "https://eidos-works.com/shop/templates/switchboard/",
+        "method": "Native wp_get_theme() after Theme_Upgrader installation; no editor UI claimed"
+      },
+      "checks": {
+        "archive_hash": "passed",
+        "final_exact_zip_fresh_install": "passed",
+        "final_exact_zip_activation": "passed",
+        "installed_header_native_api_read": "passed",
+        "four_independent_database_document_root_baseline": "passed",
+        "native_heading_edit_publish": "passed",
+        "native_image_upload_publish": "passed",
+        "five_published_page_templates_and_navigation": "passed",
+        "ordinary_primary_action_http_to_contact": "passed",
+        "contact_mailto_href_only": "passed",
+        "core_site_editor_export_contains_saved_edits": "passed",
+        "graceful_database_and_php_restart": "passed",
+        "native_text_image_navigation_contact_persist_after_restart": "passed",
+        "minimum_wordpress_6_6_php_8_1_34": "passed",
+        "final_frontend_stylesheet_cache_version": "passed"
+      },
+      "browser_editor_ui_repeated": false,
+      "native_api_receipts": {
+        "clean_baseline": "artifacts/templates/wordpress-native/switchboard-clean-baseline.json",
+        "install": "artifacts/templates/wordpress-native/switchboard-install.json",
+        "configure_and_export": "artifacts/templates/wordpress-native/switchboard-configure.json",
+        "post_restart_native_inspection": "artifacts/templates/wordpress-native/switchboard-inspect.json",
+        "post_restart_http": "artifacts/templates/wordpress-native/switchboard-after-restart-http.json"
+      },
+      "five_pages": [
+        {
+          "page": "home",
+          "url": "http://127.0.0.1:8971/",
+          "http_status": 200,
+          "h1": "Switchboard business copy saved on native WordPress",
+          "bytes": 46688,
+          "sha256": "a14404613c63c10a372d3bb600a1561d9fa00bdd5d3748a4881975c16567c26d",
+          "native_details_count": 3
+        },
+        {
+          "page": "services",
+          "url": "http://127.0.0.1:8971/services/",
+          "http_status": 200,
+          "h1": "Services",
+          "bytes": 39156,
+          "sha256": "c7bb5edb3a998cd74e20f8ddcc247b56e276f2483d394ee81a12511f083a512d",
+          "native_details_count": 3
+        },
+        {
+          "page": "service-detail",
+          "url": "http://127.0.0.1:8971/service-detail/",
+          "http_status": 200,
+          "h1": "Service detail",
+          "bytes": 46021,
+          "sha256": "741e597b93a03a148447fabece499764e3b6e87bbfcab769dd5c7ae3288786ab",
+          "native_details_count": 0
+        },
+        {
+          "page": "process",
+          "url": "http://127.0.0.1:8971/process/",
+          "http_status": 200,
+          "h1": "Our process",
+          "bytes": 38673,
+          "sha256": "7f0098cd0d3be81879e9d89e287f65a35c45e53303d4daa5b947948649c44fd9",
+          "native_details_count": 0
+        },
+        {
+          "page": "contact",
+          "url": "http://127.0.0.1:8971/contact/",
+          "http_status": 200,
+          "h1": "Contact",
+          "bytes": 39819,
+          "sha256": "d0a57e91c8d333bd7612f2e83bf29f3e4bdf2a9d80c4303daf9d87b1812e7c7c",
+          "native_details_count": 1
+        }
+      ],
+      "main_action": [
+        {
+          "url": "http://127.0.0.1:8971/services/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:8971/contact/",
+          "status": 200
+        },
+        {
+          "target": "mailto:native-switchboard@example.test",
+          "verified": "href only; not opened or sent"
+        }
+      ],
+      "media": {
+        "attachment_id": 10,
+        "url": "http://127.0.0.1:8971/wp-content/uploads/2026/10/native-replacement-switchboard.png",
+        "original_fixture_sha256": "470b7f179cb9566b0d0748928b6124d6ec1eb78324bb43a3443612c3287efb14"
+      },
+      "export": {
+        "method": "wp_generate_block_templates_export_file; native core Site Editor export API",
+        "sha256": "0b312bf777247675f60adf2109e227880cc73344741fa44ac84fc235f463bfcc",
+        "bytes": 31800,
+        "contains_saved_heading_and_media_url": true,
+        "external_filename": "switchboard-customized-site-editor.zip",
+        "limits": "Theme export references uploaded media URLs and navigation IDs; not a complete portable site backup. Private SQL dump and runtime uploads preserved separately."
+      }
+    },
+    {
+      "product": "tideglass",
+      "version": "1.0.2",
+      "archive_path": "artifacts/templates/packages/tideglass-wordpress-v1.0.2.zip",
+      "archive_sha256": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d",
+      "archive_bytes": 31040,
+      "status": "partial",
+      "native_api_gate": "passed",
+      "installed_header": {
+        "version": "1.0.2",
+        "update_uri": "https://eidos-works.com/shop/templates/tideglass/",
+        "method": "Native wp_get_theme() after Theme_Upgrader installation; no editor UI claimed"
+      },
+      "checks": {
+        "archive_hash": "passed",
+        "final_exact_zip_fresh_install": "passed",
+        "final_exact_zip_activation": "passed",
+        "installed_header_native_api_read": "passed",
+        "four_independent_database_document_root_baseline": "passed",
+        "native_heading_edit_publish": "passed",
+        "native_image_upload_publish": "passed",
+        "five_published_page_templates_and_navigation": "passed",
+        "ordinary_primary_action_http_to_contact": "passed",
+        "contact_mailto_href_only": "passed",
+        "core_site_editor_export_contains_saved_edits": "passed",
+        "graceful_database_and_php_restart": "passed",
+        "native_text_image_navigation_contact_persist_after_restart": "passed",
+        "minimum_wordpress_6_6_php_8_1_34": "passed",
+        "final_frontend_stylesheet_cache_version": "passed"
+      },
+      "browser_editor_ui_repeated": false,
+      "native_api_receipts": {
+        "clean_baseline": "artifacts/templates/wordpress-native/tideglass-clean-baseline.json",
+        "install": "artifacts/templates/wordpress-native/tideglass-install.json",
+        "configure_and_export": "artifacts/templates/wordpress-native/tideglass-configure.json",
+        "post_restart_native_inspection": "artifacts/templates/wordpress-native/tideglass-inspect.json",
+        "post_restart_http": "artifacts/templates/wordpress-native/tideglass-after-restart-http.json"
+      },
+      "five_pages": [
+        {
+          "page": "home",
+          "url": "http://127.0.0.1:8972/",
+          "http_status": 200,
+          "h1": "Tideglass business copy saved on native WordPress",
+          "bytes": 47658,
+          "sha256": "c5e235275f3154c6001d6604a2c34b237f5afa0a6cb9d563061b186eb766077a",
+          "native_details_count": 3
+        },
+        {
+          "page": "stays",
+          "url": "http://127.0.0.1:8972/stays/",
+          "http_status": 200,
+          "h1": "Stays",
+          "bytes": 40127,
+          "sha256": "2917719aa7ce8be3ccc7c82ad38bbad6efc8cc4939d8b81de27b6f3c6cdbf1b6",
+          "native_details_count": 3
+        },
+        {
+          "page": "stay-detail",
+          "url": "http://127.0.0.1:8972/stay-detail/",
+          "http_status": 200,
+          "h1": "The house",
+          "bytes": 45832,
+          "sha256": "09ccaa7ed53dfb8cb4c954b0a6a9aca1b4e4bce2f37eeb9d2bf10e544ebb7d8f",
+          "native_details_count": 0
+        },
+        {
+          "page": "guide",
+          "url": "http://127.0.0.1:8972/guide/",
+          "http_status": 200,
+          "h1": "Local guide",
+          "bytes": 39943,
+          "sha256": "907e89a7d20a22f164dc59bdcb013f0b0af32a77d6a73c421f9ceab85c71b79c",
+          "native_details_count": 0
+        },
+        {
+          "page": "contact",
+          "url": "http://127.0.0.1:8972/contact/",
+          "http_status": 200,
+          "h1": "Plan your stay",
+          "bytes": 39784,
+          "sha256": "11b8e4a57db789d9acace730125cab2a3c5d5f09d2ffb3266dd8c5f8c5184a6e",
+          "native_details_count": 1
+        }
+      ],
+      "main_action": [
+        {
+          "url": "http://127.0.0.1:8972/stays/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:8972/contact/",
+          "status": 200
+        },
+        {
+          "target": "mailto:native-tideglass@example.test",
+          "verified": "href only; not opened or sent"
+        }
+      ],
+      "media": {
+        "attachment_id": 10,
+        "url": "http://127.0.0.1:8972/wp-content/uploads/2026/10/native-replacement-tideglass.png",
+        "original_fixture_sha256": "470b7f179cb9566b0d0748928b6124d6ec1eb78324bb43a3443612c3287efb14"
+      },
+      "export": {
+        "method": "wp_generate_block_templates_export_file; native core Site Editor export API",
+        "sha256": "77ec8bfea14d38bde16ea2531e09ffcaa7c644c6609d6b1041d5cd5644daec2c",
+        "bytes": 32641,
+        "contains_saved_heading_and_media_url": true,
+        "external_filename": "tideglass-customized-site-editor.zip",
+        "limits": "Theme export references uploaded media URLs and navigation IDs; not a complete portable site backup. Private SQL dump and runtime uploads preserved separately."
+      }
+    },
+    {
+      "product": "matter",
+      "version": "1.0.2",
+      "archive_path": "artifacts/templates/packages/matter-wordpress-v1.0.2.zip",
+      "archive_sha256": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b",
+      "archive_bytes": 31762,
+      "status": "partial",
+      "native_api_gate": "passed",
+      "installed_header": {
+        "version": "1.0.2",
+        "update_uri": "https://eidos-works.com/shop/templates/matter/",
+        "method": "Native wp_get_theme() after Theme_Upgrader installation; no editor UI claimed"
+      },
+      "checks": {
+        "archive_hash": "passed",
+        "final_exact_zip_fresh_install": "passed",
+        "final_exact_zip_activation": "passed",
+        "installed_header_native_api_read": "passed",
+        "four_independent_database_document_root_baseline": "passed",
+        "native_heading_edit_publish": "passed",
+        "native_image_upload_publish": "passed",
+        "five_published_page_templates_and_navigation": "passed",
+        "ordinary_primary_action_http_to_contact": "passed",
+        "contact_mailto_href_only": "passed",
+        "core_site_editor_export_contains_saved_edits": "passed",
+        "graceful_database_and_php_restart": "passed",
+        "native_text_image_navigation_contact_persist_after_restart": "passed",
+        "minimum_wordpress_6_6_php_8_1_34": "passed",
+        "final_frontend_stylesheet_cache_version": "passed"
+      },
+      "browser_editor_ui_repeated": false,
+      "native_api_receipts": {
+        "clean_baseline": "artifacts/templates/wordpress-native/matter-clean-baseline.json",
+        "install": "artifacts/templates/wordpress-native/matter-install.json",
+        "configure_and_export": "artifacts/templates/wordpress-native/matter-configure.json",
+        "post_restart_native_inspection": "artifacts/templates/wordpress-native/matter-inspect.json",
+        "post_restart_http": "artifacts/templates/wordpress-native/matter-after-restart-http.json"
+      },
+      "five_pages": [
+        {
+          "page": "home",
+          "url": "http://127.0.0.1:8973/",
+          "http_status": 200,
+          "h1": "Matter business copy saved on native WordPress",
+          "bytes": 47899,
+          "sha256": "25697e42a5e5457f5592c33a058434069dad2b6df2d4f07e208cd616a356643a",
+          "native_details_count": 2
+        },
+        {
+          "page": "collection",
+          "url": "http://127.0.0.1:8973/collection/",
+          "http_status": 200,
+          "h1": "Collection",
+          "bytes": 47049,
+          "sha256": "10236ec6ba372607028c2e3f10d99e8f975c202f95f2c97549d17cf64e21c759",
+          "native_details_count": 2
+        },
+        {
+          "page": "object",
+          "url": "http://127.0.0.1:8973/object/",
+          "http_status": 200,
+          "h1": "Object detail",
+          "bytes": 46514,
+          "sha256": "7640d73b39ba2d7e3142ca461c9a66e7028911d83fa792d51ce01c8b76b38606",
+          "native_details_count": 2
+        },
+        {
+          "page": "process",
+          "url": "http://127.0.0.1:8973/process/",
+          "http_status": 200,
+          "h1": "Our process",
+          "bytes": 45471,
+          "sha256": "fdf260ff54ad88f3314d74d5b712dc98c64bfabf8958fcadff95d0eac1c28456",
+          "native_details_count": 0
+        },
+        {
+          "page": "contact",
+          "url": "http://127.0.0.1:8973/contact/",
+          "http_status": 200,
+          "h1": "Contact",
+          "bytes": 39746,
+          "sha256": "18eb7e70e369e92ac108f072a003315506f9acf013161b663618e060fbb7e681",
+          "native_details_count": 1
+        }
+      ],
+      "main_action": [
+        {
+          "url": "http://127.0.0.1:8973/collection/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:8973/contact/",
+          "status": 200
+        },
+        {
+          "target": "mailto:native-matter@example.test",
+          "verified": "href only; not opened or sent"
+        }
+      ],
+      "media": {
+        "attachment_id": 10,
+        "url": "http://127.0.0.1:8973/wp-content/uploads/2026/10/native-replacement-matter.png",
+        "original_fixture_sha256": "470b7f179cb9566b0d0748928b6124d6ec1eb78324bb43a3443612c3287efb14"
+      },
+      "export": {
+        "method": "wp_generate_block_templates_export_file; native core Site Editor export API",
+        "sha256": "0b6af0c337146682bbe2fbb2c56723536dd2cc75ab8ea5297cfdbd16926f7e0c",
+        "bytes": 33606,
+        "contains_saved_heading_and_media_url": true,
+        "external_filename": "matter-customized-site-editor.zip",
+        "limits": "Theme export references uploaded media URLs and navigation IDs; not a complete portable site backup. Private SQL dump and runtime uploads preserved separately."
+      }
+    },
+    {
+      "product": "nightjar",
+      "version": "1.0.2",
+      "archive_path": "artifacts/templates/packages/nightjar-wordpress-v1.0.2.zip",
+      "archive_sha256": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96",
+      "archive_bytes": 30759,
+      "status": "partial",
+      "native_api_gate": "passed",
+      "installed_header": {
+        "version": "1.0.2",
+        "update_uri": "https://eidos-works.com/shop/templates/nightjar/",
+        "method": "Native wp_get_theme() after Theme_Upgrader installation; no editor UI claimed"
+      },
+      "checks": {
+        "archive_hash": "passed",
+        "final_exact_zip_fresh_install": "passed",
+        "final_exact_zip_activation": "passed",
+        "installed_header_native_api_read": "passed",
+        "four_independent_database_document_root_baseline": "passed",
+        "native_heading_edit_publish": "passed",
+        "native_image_upload_publish": "passed",
+        "five_published_page_templates_and_navigation": "passed",
+        "ordinary_primary_action_http_to_contact": "passed",
+        "contact_mailto_href_only": "passed",
+        "core_site_editor_export_contains_saved_edits": "passed",
+        "graceful_database_and_php_restart": "passed",
+        "native_text_image_navigation_contact_persist_after_restart": "passed",
+        "minimum_wordpress_6_6_php_8_1_34": "passed",
+        "final_frontend_stylesheet_cache_version": "passed"
+      },
+      "browser_editor_ui_repeated": false,
+      "native_api_receipts": {
+        "clean_baseline": "artifacts/templates/wordpress-native/nightjar-clean-baseline.json",
+        "install": "artifacts/templates/wordpress-native/nightjar-install.json",
+        "configure_and_export": "artifacts/templates/wordpress-native/nightjar-configure.json",
+        "post_restart_native_inspection": "artifacts/templates/wordpress-native/nightjar-inspect.json",
+        "post_restart_http": "artifacts/templates/wordpress-native/nightjar-after-restart-http.json"
+      },
+      "five_pages": [
+        {
+          "page": "home",
+          "url": "http://127.0.0.1:8974/",
+          "http_status": 200,
+          "h1": "Nightjar business copy saved on native WordPress",
+          "bytes": 47532,
+          "sha256": "2120fbf89f20553bc448fcdeba02292ff90a619c9ea1e87ecc769606fef9b991",
+          "native_details_count": 0
+        },
+        {
+          "page": "program",
+          "url": "http://127.0.0.1:8974/program/",
+          "http_status": 200,
+          "h1": "Program",
+          "bytes": 40018,
+          "sha256": "eb43e59bd77b9b1903cd106a4a6749c501c55a58fcccc9b087bfdb1740e9a2f5",
+          "native_details_count": 0
+        },
+        {
+          "page": "event",
+          "url": "http://127.0.0.1:8974/event/",
+          "http_status": 200,
+          "h1": "Event detail",
+          "bytes": 46709,
+          "sha256": "78aa518541778118034e362d9e36a373364abeafe8d973485d179dd7eea8c408",
+          "native_details_count": 3
+        },
+        {
+          "page": "about",
+          "url": "http://127.0.0.1:8974/about/",
+          "http_status": 200,
+          "h1": "About",
+          "bytes": 39933,
+          "sha256": "5228446d909e16e1ab7624133f46a4454ac33333a019b03b932a72f62c36dc2f",
+          "native_details_count": 0
+        },
+        {
+          "page": "contact",
+          "url": "http://127.0.0.1:8974/contact/",
+          "http_status": 200,
+          "h1": "Contact",
+          "bytes": 39759,
+          "sha256": "32cb4547740d1c2bbafd47f00eb1a11cfb9bf66911308295e59cd2635d172c23",
+          "native_details_count": 1
+        }
+      ],
+      "main_action": [
+        {
+          "url": "http://127.0.0.1:8974/program/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:8974/contact/",
+          "status": 200
+        },
+        {
+          "target": "mailto:native-nightjar@example.test",
+          "verified": "href only; not opened or sent"
+        }
+      ],
+      "media": {
+        "attachment_id": 10,
+        "url": "http://127.0.0.1:8974/wp-content/uploads/2026/10/native-replacement-nightjar.png",
+        "original_fixture_sha256": "470b7f179cb9566b0d0748928b6124d6ec1eb78324bb43a3443612c3287efb14"
+      },
+      "export": {
+        "method": "wp_generate_block_templates_export_file; native core Site Editor export API",
+        "sha256": "ed9b8470b74a64a44f754caea302d7a322c7a45a4452068943992a06268b33d5",
+        "bytes": 32344,
+        "contains_saved_heading_and_media_url": true,
+        "external_filename": "nightjar-customized-site-editor.zip",
+        "limits": "Theme export references uploaded media URLs and navigation IDs; not a complete portable site backup. Private SQL dump and runtime uploads preserved separately."
+      }
+    }
+  ],
+  "public_frontend_browser_review": {
+    "method": "Independent root CUA public frontend inspection after restart; no authenticated editor actions",
+    "products": [
+      "switchboard",
+      "tideglass",
+      "matter",
+      "nightjar"
+    ],
+    "observed": "All four saved business headings, replacement artwork and five distinct clean navigation URLs visibly rendered. Switchboard Contact navigation clicked; edited mailto hrefs observed.",
+    "email_client_opened": false,
+    "message_sent": false
+  },
+  "limits": [
+    "Fresh native installation/edit/setup/export proof uses PHP APIs; four fresh visual admin installation/editor workflows were not rerun. Earlier browser-native UI proof is historical and separately scoped.",
+    "WordPress.com plan/upload permissions and real Apache/nginx/managed-host behavior remain untested.",
+    "Phone User-Agent HTTP checks are not visual mobile-browser or physical-phone proof for these native runtime sites.",
+    "Contact actions verify ordinary links and edited mailto hrefs only; no email app opened or message/form/booking/payment delivered. Task runtime suppresses wp_mail.",
+    "Core theme export is not a complete site backup; exported media URLs/navigation IDs may need migration. Export reimport into a fifth clean site was not tested.",
+    "Process restart persistence passed on this Windows host; machine reboot/disaster recovery and all possible supported versions were not tested."
+  ],
+  "first_party_sources": {
+    "php_windows_download": "https://www.php.net/downloads.php?os=windows&version=8.1",
+    "php_builtin_server": "https://www.php.net/manual/en/features.commandline.webserver.php",
+    "mariadb_windows_zip": "https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb/installing-mariadb/binary-packages/installing-mariadb-windows-zip-packages",
+    "mariadb_initializer": "https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb/installing-mariadb/installing-system-tables-mariadb-install-db/mariadb-install-db-exe",
+    "wordpress_release": "https://wordpress.org/download/releases/"
+  },
+  "runtime_state": "stopped",
+  "stopped_at_utc": "2026-10-11T03:09:12.138653+00:00",
+  "shutdown_receipt": "artifacts/templates/wordpress-native/final-shutdown-receipt.json"
+}

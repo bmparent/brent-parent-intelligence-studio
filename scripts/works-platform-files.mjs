@@ -7,7 +7,7 @@ export const platformSourcePaths = [
   'functions/api/assistant.ts', 'functions/api/public-config.ts', 'functions/api/operations',
   'functions/api/community', 'functions/api/members', 'functions/api/shop', 'functions/community',
   'functions/api/playground', 'src/playground/model.ts', 'src/playground/approved-glass-preset.json',
-  'src/playground/aiOperations.ts', 'src/playground/media.ts', 'src/playground/limits.ts', 'src/playground/export.ts', 'src/playground/renderer.ts', 'src/playground/runtime.ts', 'src/playground/pageStyles.ts', 'src/playground/glassBundle.ts',
+  'src/playground/legacyAiOperations.ts', 'src/playground/aiOperations.ts', 'src/playground/media.ts', 'src/playground/limits.ts', 'src/playground/export.ts', 'src/playground/renderer.ts', 'src/playground/runtime.ts', 'src/playground/pageStyles.ts', 'src/playground/glassBundle.ts',
   'src/playground/compositionSchema.ts', 'src/playground/composition.ts', 'src/playground/compositionRenderer.ts', 'src/playground/compositionRuntime.ts',
   'src/playground/studioSchema.ts', 'src/playground/artworkSchema.ts', 'src/playground/motionSchema.ts', 'src/playground/runtimeBundle.ts',
   'src/playground/authoringSchema.ts', 'src/playground/authoring.ts', 'src/playground/authoringRenderer.ts', 'src/playground/authoringRuntime.ts', 'src/playground/releaseBoundary.ts', 'src/playground/workspace.ts',

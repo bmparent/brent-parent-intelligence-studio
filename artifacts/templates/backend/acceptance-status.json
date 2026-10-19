@@ -1,0 +1,161 @@
+{
+  "timestampUtc": "2026-10-11T02:59:11.866Z",
+  "scope": "TEST candidate; no production promotion or LIVE transaction",
+  "source": {
+    "sha": "d66ed7c081a211e402d39a23d4222135a4cb022e",
+    "bundleHash": "bea44f211cc7229c5803097d6023095b50f354a966342e094055ef420b6caa6e",
+    "sourceRevision": "d66ed7c081a211e402d39a23d4222135a4cb022e-bundle-bea44f211cc7229c",
+    "url": "https://eidos-sentinel-nwov7dvp8-1brentbm-1876s-projects.vercel.app",
+    "deploymentId": "dpl_E6nV3JcmtfVXGMtj275Lkkc3eCoo",
+    "state": "READY",
+    "files": 143,
+    "previewOnly": true
+  },
+  "review": {
+    "url": "https://github.com/bmparent/eidos/pull/71",
+    "state": "OPEN",
+    "draft": true,
+    "checks": "4 passed at exact d66ed7c081a211e402d39a23d4222135a4cb022e; Actions38106706567"
+  },
+  "tests": {
+    "command": "npm --prefix apps/sentinel-lab test",
+    "passed": 65,
+    "failed": 0,
+    "skipped": 0,
+    "log": "guide-patch-tests.log",
+    "focused": {
+      "passed": 11,
+      "failed": 0,
+      "retainedSnapshotCases": 16,
+      "log": "guide-patch-retention-tests.log"
+    }
+  },
+  "typecheck": {
+    "status": "passed",
+    "command": "npm --prefix apps/sentinel-lab run lint -- --incremental false",
+    "log": "guide-patch-typecheck.log"
+  },
+  "build": {
+    "status": "passed",
+    "method": "exact source protected Vercel remote build",
+    "log": "remote-build-final.json",
+    "events": 68,
+    "localFinalBuild": "not rerun: C full and shared dependency junction; exact remote build used"
+  },
+  "archives": {
+    "private": true,
+    "current": 8,
+    "retained": 16,
+    "total": 24,
+    "priorSixteenArchiveHashesPreserved": true,
+    "actualPurchasedSwitchboard100Preserved": true,
+    "receipt": "private-archive-receipt-final.json",
+    "currentVersions": {
+      "switchboardDeveloper": "1.0.2",
+      "tideglassDeveloper": "1.0.1",
+      "matterDeveloper": "1.0.1",
+      "nightjarDeveloper": "1.0.4",
+      "allWordPress": "1.0.2"
+    },
+    "eligibleDeveloperEditions": [
+      "switchboard-developer-v1",
+      "tideglass-developer-v1",
+      "matter-developer-v1",
+      "nightjar-developer-v1"
+    ],
+    "wordpress": "unavailable by explicit allowlist",
+    "builderPilots": "unavailable"
+  },
+  "providers": {
+    "stripe": "existing Eidos Works TEST account only",
+    "database": "explicit existing named validation database; additive migration; six legacy orders retained",
+    "mail": "blocked: usable Resend credential unavailable; no received-message claim",
+    "turnstile": "official public TEST keys; actual siteverify; not live bot protection",
+    "githubPairPin": "candidate URL and backend SHA secrets updated; token and protection bypass unchanged",
+    "oldWebhookEndpoints": "all three retained unchanged"
+  },
+  "hosted": {
+    "protectedBackend": "READY; anonymous302/authenticatedcatalog200",
+    "catalog": "exact sourceRevision and current4developer editions verified; WP/pilotsclosed",
+    "negativeControls": "unknown404/clientpriceoverride400/unavailableWP503 passed on final protected backend",
+    "publicPairedSite": "Prior pair preserved; root will reconfigure/upload corrected frontend after current CI passes.",
+    "actualPurchase": {
+      "status": "passed",
+      "transactionSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+      "sandbox": true,
+      "amountCents": 9900,
+      "currency": "usd",
+      "stripePayment": "succeeded",
+      "providerPaidEvent": "genuine event and durable ledger observed",
+      "privateApiAndUiDownload": "26816bytes; SHA256e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "receiptUrlCapabilitiesRemovedInBrowser": true,
+      "receiptEmail": "failed; UI accurately reported failure"
+    },
+    "actualRefund": {
+      "status": "passed for full TEST refund and effective retrieval revocation",
+      "transactionSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+      "amountCents": 9900,
+      "stillUnexpiredOriginalTokenDenied403": true,
+      "financialAndArchiveSnapshotRetained": true,
+      "finalSourceObservation": {
+        "status": "refunded",
+        "fulfillmentStatus": "revoked",
+        "purchasedVersion": "1.0.0",
+        "currentCatalogVersion": "1.0.2",
+        "downloadHttp": 403,
+        "downloadTokenGranted": false
+      }
+    },
+    "actualOrdinaryDecline": {
+      "status": "passed",
+      "providerCode": "card_declined",
+      "declineCode": "generic_decline",
+      "providerIntentStatus": "requires_payment_method",
+      "paymentUnpaid": true,
+      "entitlement": false,
+      "attempts": 1,
+      "retries": 0,
+      "genuineSubsequentExpiryRecorded": true,
+      "terminalAsyncFailureRows": 0
+    },
+    "receivedReceiptEmail": "blocked",
+    "receivedRecoveryEmail": "blocked",
+    "twoBuyerAuthentication": "controlled local fixtures passed; actual hosted two-buyer flow not exercised",
+    "delayedPayment": "controlled local fixtures passed; real delayed-method transaction not attempted",
+    "twoGuestBuyerIsolation": "Not exercised yet; legitimate UI plan awaits exact paired source CI/deploy and root GO. Independent of missing mail."
+  },
+  "reconciliation": {
+    "status": "deployed; eleven focused tests passed",
+    "controlledProof": "old hook consumes shared event ID first; signed TEST refund/dispute reconciles side table, denies unexpired token, preserves snapshot and unrelated buyer, rejects matching LIVE event and late revival",
+    "actualOldRefundSideState": "revoked",
+    "initialSideRevocationCause": "unknown",
+    "actualProviderRetry": "one genuine original TEST refund retry acknowledged through official verified CLI; target-specific delivery HTTP unobserved",
+    "retryPreState": "already revoked",
+    "retryReceipt": "genuine-test-refund-retry.json",
+    "genuineVsControlledEvidenceSeparated": true
+  },
+  "limits": [
+    "No candidate RESEND_API_KEY binding; actual received receipt/recovery inbox delivery remains blocked.",
+    "Original actual refund denied an unexpired token on e20b. Fresh side state was already revoked before one genuine CLI retry; cause unknown and target-specific retry HTTP response unobserved.",
+    "No LIVE payment, production migration or production deployment.",
+    "WordPress and builder editions remain unavailable through explicit allowlist.",
+    "Exact-source protected remote build used; no new local build under C disk pressure.",
+    "Actual two-guest order-token isolation is planned independently of mail; authenticated-member and recovery-mail acceptance remain separate."
+  ],
+  "provenance": {
+    "trackedFiles": 119,
+    "trackedUploadedFilesMatchHead": true,
+    "privateArchiveFiles": 24,
+    "bundleHashRecomputed": true,
+    "noRuntimeDirtyPaths": true,
+    "receipt": "source-provenance-final.json"
+  },
+  "buyerGuideVersionTransition": {
+    "receipt": "guide-version-validation.json",
+    "currentPackages": 8,
+    "retainedPriorPackages": 16,
+    "allPriorBytesPreserved": true,
+    "exactDeveloperZipInstall": "4/4 passed",
+    "wordpress": "Separate native acceptance pending; checkout remains closed"
+  }
+}

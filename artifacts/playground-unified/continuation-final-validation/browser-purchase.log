@@ -1,0 +1,29 @@
+chromium 1440 fresh-recovery: PASS empty browser offers explicit recovery without creating a draft or calling purchase APIs
+chromium 1440 fresh-recovery: PASS paid recovery succeeds while current checkout capability is unavailable
+chromium 1440 fresh-recovery: PASS download matches the originally stored complete ZIP hash
+chromium 1440 fresh-recovery: PASS bundled-renderer stored package opens independently with its own runtime
+chromium 1440 fresh-recovery: PASS recovery opens a distinct editable identity and retains the exact historical review
+chromium 1440 fresh-recovery: PASS page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow
+chromium 390 fresh-recovery: PASS empty browser offers explicit recovery without creating a draft or calling purchase APIs
+chromium 390 fresh-recovery: PASS paid recovery succeeds while current checkout capability is unavailable
+chromium 390 fresh-recovery: PASS download matches the originally stored complete ZIP hash
+chromium 390 fresh-recovery: PASS bundled-renderer stored package opens independently with its own runtime
+chromium 390 fresh-recovery: PASS recovery opens a distinct editable identity and retains the exact historical review
+chromium 390 fresh-recovery: PASS page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow
+chromium 1440 preserve-draft: PASS recovered copy preserves the existing draft under its original identity
+chromium 1440 preserve-draft: PASS page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow
+chromium 1440 deferred-recovery: PASS late recovery response after starting another project cannot open or replace the active draft
+chromium 1440 deferred-recovery: PASS page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow
+chromium 1440 recovery-reauthorization: PASS account switch after retrieval blocks opening a new editable copy
+chromium 1440 recovery-reauthorization: PASS revocation after retrieval blocks opening a new editable copy
+chromium 1440 recovery-reauthorization: PASS page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow
+chromium 1440 cancelled-checkout: PASS cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable
+chromium 1440 cancelled-checkout: PASS page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow
+chromium 1440 deferred-checkout: PASS manual create/review/approval makes no purchase API request
+chromium 1440 deferred-checkout: PASS revoking review approval during deferred preflight prevents checkout dispatch
+chromium 1440 deferred-checkout: PASS late checkout response after closing review and editing does not navigate or replace the newer draft
+chromium 1440 deferred-checkout: PASS account switch clears the previous owner accepted and paid display
+chromium 1440 deferred-checkout: PASS page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow
+chromium 1440 challenge-retry: PASS failed dispatched checkout removes the consumed challenge and waits for a fresh verification token
+chromium 1440 challenge-retry: PASS retry keeps the immutable purchase attempt and dispatches only with the fresh token
+chromium 1440 challenge-retry: PASS page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow

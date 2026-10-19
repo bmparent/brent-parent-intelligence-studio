@@ -5,7 +5,7 @@ permissions:
   contents: read
 jobs:
   exact-pair:
-    if: github.head_ref == 'repair/account-acceptance-20261019'
+    if: github.head_ref == 'release/works-playground-20261019' || github.head_ref == 'repair/account-acceptance-20261019'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,15 +14,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Compare all registered source files with the exact recovered backend
+      - name: Compare all registered source files with the exact integrated backend
         env:
           SITE_REVISION: ${{ github.sha }}
-          BACKEND_REVISION: bc47de2c6eabe90c204a12643b88161a98a801d4
+          BACKEND_REVISION: 55044733c122067562321b412bd4f1b01b333106
         run: |
           git init "$RUNNER_TEMP/works-account-backend"
           git -C "$RUNNER_TEMP/works-account-backend" fetch --depth=1 https://github.com/bmparent/eidos.git "$BACKEND_REVISION"
           git -C "$RUNNER_TEMP/works-account-backend" checkout --detach FETCH_HEAD
           node scripts/verify-paired-contract.mjs "$RUNNER_TEMP/works-account-backend/apps/sentinel-lab" "$RUNNER_TEMP/works-account-contract.json"
+          node scripts/export-playground-delivery.mjs "$RUNNER_TEMP/works-account-backend/apps/sentinel-lab"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

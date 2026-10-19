@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-10-14T18:29:04.004Z",
+  "project": "eidosworks-playground-20261014",
+  "branch": "codex/playground-unified-20261014",
+  "siteSha": "01b31a50ea7f568fe18165fb2824c3127621acb9",
+  "previewUrl": "https://bb223a0c.eidosworks-playground-20261014.pages.dev",
+  "alias": "https://eidosworks-playground-20261014.pages.dev",
+  "backendUrl": "https://eidos-sentinel-gddofh939-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "0e0aabc48f0ca7894b917495b661ef44cd337dce",
+  "backendDeployment": "dpl_GKzpxmZ16TXCry6Pwr6jX5LgB48w",
+  "bundleHash": "77b27dd43cb78e66b83fff84bfba70c532aaf7d3a367d891e19e4b754023a870",
+  "sourceRevision": "0e0aabc48f0ca7894b917495b661ef44cd337dce-bundle-77b27dd43cb78e66",
+  "database": "none",
+  "mode": "manual-only",
+  "publicConfig": {
+    "gaMeasurementId": "G-8N7Y7EM4CS",
+    "turnstileSiteKey": "",
+    "communityReady": false,
+    "accountsReady": false,
+    "aiReady": false,
+    "shopReady": false,
+    "localTest": false,
+    "runtimeSourceRevision": "0e0aabc48f0ca7894b917495b661ef44cd337dce",
+    "runtimeBundleHash": "77b27dd43cb78e66b83fff84bfba70c532aaf7d3a367d891e19e4b754023a870"
+  },
+  "boundaryChecks": [
+    {
+      "schemaVersion": 5,
+      "status": 409
+    },
+    {
+      "schemaVersion": 1,
+      "status": 409
+    },
+    {
+      "schemaVersion": 6,
+      "status": 409
+    },
+    {
+      "name": "wrong-relay",
+      "status": 401
+    },
+    {
+      "name": "other-origin",
+      "status": 403
+    }
+  ],
+  "canonicalBefore": "5926dfb4-1df2-4dbf-8864-1f3f38e034f1",
+  "canonicalAfter": "5926dfb4-1df2-4dbf-8864-1f3f38e034f1"
+}

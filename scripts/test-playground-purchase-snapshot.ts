@@ -4,12 +4,7 @@ import { createStarter } from '../src/playground/starters';
 import { createProject, validateProject, mediaSlots } from '../src/playground/model';
 import { exportFiles } from '../src/playground/export';
 import { canonicalJson, createProjectSnapshot, validateProjectSnapshot, buildFrozenPackage, verifyFrozenPackage, hashBytes, digestFiles, isCurrentReview, parentEditions, rasterBytes, frozenPreviewDocument } from '../src/playground/purchaseSnapshot';
-import { execFileSync } from 'node:child_process';
-// Independently inspect the archive with Python's standard ZIP reader.
-function readLocalZip(archive: Uint8Array) {
-  const result = execFileSync('python3', ['-c', 'import sys,io,zipfile,json,base64; z=zipfile.ZipFile(io.BytesIO(sys.stdin.buffer.read())); print(json.dumps([{"name":n,"data":base64.b64encode(z.read(n)).decode()} for n in z.namelist()]))'], { input: archive });
-  return (JSON.parse(result.toString()) as {name:string;data:string}[]).map(file => ({name:file.name,data:new Uint8Array(Buffer.from(file.data,'base64'))}));
-}
+import { readBuyerZip } from '../src/templates/buyerDerivative';
 import { createArtwork, newArtworkObject } from '../src/playground/artworkSchema';
 
 const pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aLTsAAAAASUVORK5CYII=';
@@ -42,7 +37,7 @@ test('frozen package contains byte-exact common exporter output, complete digest
   assert.equal(frozen.manifest.entitlement, 'not-verified');
   assert.equal(frozen.receipt.purchase, 'not-performed');
   for (const source of sourceFiles) assert.deepEqual(frozen.files.find(file => file.name === source.name)?.data, source.data, source.name);
-  assert.deepEqual(readLocalZip(frozen.archive), frozen.files);
+  assert.deepEqual(await readBuyerZip(frozen.archive), frozen.files);
   assert.equal(frozen.receipt.archiveSha256, await hashBytes(frozen.archive));
   assert.equal(frozen.receipt.bytes, frozen.archive.length);
   assert.deepEqual(frozen.manifest.files, await digestFiles(frozen.files.filter(file => file.name !== 'PACKAGE_MANIFEST.json')));

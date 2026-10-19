@@ -1,0 +1,8 @@
+{
+  "status": "incomplete",
+  "scope": "local three-engine browser attempt",
+  "reason": "Playwright Node driver failed with Committing semi space failed / JavaScript heap out of memory; remaining WebKit checks could not run.",
+  "known_harness_repairs": ["cached navigation responses", "offscreen lazy-image decoding"],
+  "next_validation": "Run pinned three-engine built-site acceptance on the clean GitHub Actions runner.",
+  "product_acceptance": "No pass inferred from the interrupted run. Separate Chromium and source-install receipts remain valid."
+}

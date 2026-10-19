@@ -28,6 +28,11 @@ for (const file of await htmlFiles(root)) {
       failures.push('kit-preview: missing noindex directive');
     continue;
   }
+  const demoPath = relative(root, file).replaceAll('\\', '/');
+  if (demoPath.startsWith('template-demos/')) {
+    if (matches(html, /<h1(?:\s|>)/gi).length !== 1 || !/<title>[^<]+<\/title>/i.test(html) || !/<meta name="description" content="[^"]+"/i.test(html)) failures.push(`${demoPath}: incomplete standalone product metadata`);
+    continue;
+  }
   const label = (relative(root, file) || 'index.html').replaceAll('\\', '/');
   const h1Count = matches(html, /<h1(?:\s|>)/gi).length;
   const privateShell = label === 'private-app.html';
@@ -111,6 +116,7 @@ for (const file of await htmlFiles(root)) {
     'private-app.html',
     'snapshot/success/index.html',
     'shop/success/index.html',
+    'shop/start/index.html',
     'community/moderate/index.html',
     'account/index.html',
     'account/verify/index.html',

@@ -1,0 +1,86 @@
+{
+  "engine": "chromium",
+  "width": 1440,
+  "name": "challenge-retry",
+  "checks": [
+    "failed dispatched checkout removes the consumed challenge and waits for a fresh verification token",
+    "retry keeps the immutable purchase attempt and dispatches only with the fresh token",
+    "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)",
+      "url": "http://127.0.0.1:5178/api/shop/checkout"
+    }
+  ],
+  "calls": [
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    }
+  ],
+  "unexpected": [],
+  "expectedHttpDenials": [
+    {
+      "status": 502,
+      "url": "http://127.0.0.1:5178/api/shop/checkout"
+    }
+  ],
+  "checkoutFixtures": [
+    {
+      "attempt": "e24614f6dd20b5e9855ab98e76142b3c17f07b3f30e3bafa87ff41cb392f141c",
+      "challenge": "fixture-token-1",
+      "deliveryId": "fixture-delivery"
+    },
+    {
+      "attempt": "e24614f6dd20b5e9855ab98e76142b3c17f07b3f30e3bafa87ff41cb392f141c",
+      "challenge": "fixture-token-2",
+      "deliveryId": "fixture-delivery"
+    }
+  ],
+  "stubbedAssets": [
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [
+    "Interception-only TEST checkout document"
+  ],
+  "serverFreeze": {
+    "id": "fixture-delivery",
+    "ownerId": "fixture-owner",
+    "documentId": "15b67cf8-cb98-49fc-a939-cf31ae076da3",
+    "revision": 0,
+    "snapshotHash": "5ce61ab2594d2835f05fca15447ef2a6fea49027484dcabfdb72a65217792451",
+    "projectHash": "5a9f66ca2bd99e3954d88394534e2ce728468091c614eb90a1cafd68088d24fd",
+    "archiveSha256": "cb866933a90154c310db11ddc97852f786b05811aed1a0d4b5cd69bd6afc6c5b",
+    "archiveBytes": 128236,
+    "mode": "test"
+  },
+  "title": "",
+  "url": "https://checkout.stripe.com/c/pay/fixture-must-not-navigate-after-cancel"
+}

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "timestamp_utc": "2026-10-11T02:14:14.333747+00:00",
+  "headSha": "12d664f4526fee12a66979bc6274d3c0f7d3f7bb",
+  "status": "failed",
+  "templateCandidate": {
+    "runId": 38104163542,
+    "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104163542",
+    "artifactName": "template-candidate-receipts",
+    "artifactDirectoryExternal": "E:\\CodexArtifacts\\paid-templates-20261010\\ci-38104163542",
+    "threeEngineBrowser": {
+      "result": "failed",
+      "checks": 79,
+      "failures": [
+        {
+          "browser": "chromium",
+          "product": "switchboard",
+          "viewport": 1440,
+          "error": "Original headline splits a word: [{'word': 'Good', 'lineFragments': 1}, {'word': 'work', 'lineFragments': 1}, {'word': 'starts', 'lineFragments': 1}, {'word': 'with', 'lineFragments': 1}, {'word': 'a', 'lineFragments': 1}, {'word': 'clear', 'lineFragments': 1}, {'word': 'conversation.', 'lineFragments': 2}]"
+        },
+        {
+          "browser": "firefox",
+          "product": "switchboard",
+          "viewport": 1440,
+          "error": "Original headline splits a word: [{'word': 'Good', 'lineFragments': 1}, {'word': 'work', 'lineFragments': 1}, {'word': 'starts', 'lineFragments': 1}, {'word': 'with', 'lineFragments': 1}, {'word': 'a', 'lineFragments': 1}, {'word': 'clear', 'lineFragments': 1}, {'word': 'conversation.', 'lineFragments': 2}]"
+        },
+        {
+          "browser": "webkit",
+          "product": "switchboard",
+          "viewport": 1440,
+          "error": "Original headline splits a word: [{'word': 'Good', 'lineFragments': 1}, {'word': 'work', 'lineFragments': 1}, {'word': 'starts', 'lineFragments': 1}, {'word': 'with', 'lineFragments': 1}, {'word': 'a', 'lineFragments': 1}, {'word': 'clear', 'lineFragments': 1}, {'word': 'conversation.', 'lineFragments': 2}]"
+        }
+      ],
+      "receiptSha256": "5d0ecdcc7361409b0fc5a3a61c04cec6382e8ff54013adecd23e1e320ff92986",
+      "nightjarOriginalWordCases": 9,
+      "turnstileActionCases": 4,
+      "turnstileActionCasesPassed": true
+    },
+    "cloudflare": {
+      "configure": "skipped_after_failed_browser_gate",
+      "upload": "skipped_after_failed_browser_gate"
+    }
+  },
+  "diagnosis": "Confirmed Switchboard developer1.0.0 ordinary word conversation splits at1440 in Chromium, Firefox and WebKit. Prior6b Chromium screenshot independently shows conversatio / n. New assertion correctly caught product typography defect. Nightjar1.0.3 original-word/641 checks and options-only recovery-action checks passed.",
+  "plannedCorrection": "Root authorized separate immutable Switchboard developer1.0.1 heading clamp correction; retain1.0.0 archive and actual paid evidence; otherseven current archives unchanged.",
+  "limits": [
+    "Failed runner-local static browser gate is not a successful hosted release.",
+    "Screenshots/raw preview configuration remain external, excluded from Drive."
+  ],
+  "auxiliaryRuns": [
+    {
+      "name": "Site quality",
+      "runId": 38104163507,
+      "status": "passed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104163507"
+    },
+    {
+      "name": "Wellway acceptance",
+      "runId": 38104163539,
+      "status": "passed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104163539"
+    },
+    {
+      "name": "Community studio acceptance",
+      "runId": 38104163445,
+      "status": "passed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104163445"
+    },
+    {
+      "name": "Playground editor release",
+      "runId": 38104163436,
+      "status": "passed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104163436"
+    }
+  ]
+}

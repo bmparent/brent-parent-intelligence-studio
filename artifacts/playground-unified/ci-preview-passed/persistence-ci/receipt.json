@@ -1,0 +1,22 @@
+{
+  "kind": "Chromium desktop browser; local candidate; no provider/cloud/payment acceptance",
+  "base": "http://127.0.0.1:5178/playground/",
+  "checks": [
+    "clean visit writes no unexplained starter",
+    "legacy schema 1 saved envelope opens and gets stable identity",
+    "legacy schema 1 file import preserves validator and history",
+    "legacy schema 2 saved envelope opens and gets stable identity",
+    "legacy schema 2 file import preserves validator and history",
+    "legacy schema 3 saved envelope opens and gets stable identity",
+    "legacy schema 3 file import preserves validator and history",
+    "legacy schema 4 saved envelope opens and gets stable identity",
+    "legacy schema 4 file import preserves validator and history",
+    "invalid imported JSON leaves project, identity and revision unchanged",
+    "explicit new project preserves previous editable document and assets",
+    "delayed saved-project read cannot overwrite continued manual edits",
+    "no app runtime errors or framework overlay"
+  ],
+  "failures": [],
+  "consoleErrors": [],
+  "timestamp": "2026-10-14T18:34:53.970Z"
+}

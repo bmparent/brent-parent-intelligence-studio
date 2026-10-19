@@ -1,0 +1,115 @@
+{
+  "timestampUtc": "2026-10-11T01:33:22.581Z",
+  "deploymentId": "dpl_9ir2CuvDxvyLApHYzm22jSdyiQPo",
+  "sourceCommit": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+  "bundleHash": "b10fa5afe2852d8eda9d036355c6f1ea7c51466021fdf38ca6b66392fe5565e0",
+  "previewUrl": "https://eidos-sentinel-fd60dwuu3-1brentbm-1876s-projects.vercel.app",
+  "readyState": "READY",
+  "authenticatedStatus": 200,
+  "anonymousStatus": 302,
+  "catalog": {
+    "mode": "test",
+    "ready": true,
+    "sourceRevision": "e20b6207ad2f80e1497b83ece56e66c316dc5124-bundle-b10fa5afe2852d8e",
+    "editions": [
+      {
+        "id": "switchboard-developer-v1",
+        "productId": "switchboard-developer-v1",
+        "editionId": "developer",
+        "version": "1.0.0",
+        "priceCents": 9900,
+        "guidePath": "/templates/guides/switchboard/developer/",
+        "available": true,
+        "status": "test_available"
+      },
+      {
+        "id": "switchboard-wordpress-v1",
+        "productId": "switchboard-wordpress-v1",
+        "editionId": "wordpress",
+        "version": "1.0.1",
+        "priceCents": 12900,
+        "guidePath": "/templates/guides/switchboard/wordpress/",
+        "available": false,
+        "status": "installation_unverified"
+      },
+      {
+        "id": "tideglass-developer-v1",
+        "productId": "tideglass-developer-v1",
+        "editionId": "developer",
+        "version": "1.0.0",
+        "priceCents": 9900,
+        "guidePath": "/templates/guides/tideglass/developer/",
+        "available": true,
+        "status": "test_available"
+      },
+      {
+        "id": "tideglass-wordpress-v1",
+        "productId": "tideglass-wordpress-v1",
+        "editionId": "wordpress",
+        "version": "1.0.1",
+        "priceCents": 12900,
+        "guidePath": "/templates/guides/tideglass/wordpress/",
+        "available": false,
+        "status": "installation_unverified"
+      },
+      {
+        "id": "matter-developer-v1",
+        "productId": "matter-developer-v1",
+        "editionId": "developer",
+        "version": "1.0.0",
+        "priceCents": 9900,
+        "guidePath": "/templates/guides/matter/developer/",
+        "available": true,
+        "status": "test_available"
+      },
+      {
+        "id": "matter-wordpress-v1",
+        "productId": "matter-wordpress-v1",
+        "editionId": "wordpress",
+        "version": "1.0.1",
+        "priceCents": 12900,
+        "guidePath": "/templates/guides/matter/wordpress/",
+        "available": false,
+        "status": "installation_unverified"
+      },
+      {
+        "id": "nightjar-developer-v1",
+        "productId": "nightjar-developer-v1",
+        "editionId": "developer",
+        "version": "1.0.1",
+        "priceCents": 9900,
+        "guidePath": "/templates/guides/nightjar/developer/",
+        "available": true,
+        "status": "test_available"
+      },
+      {
+        "id": "nightjar-wordpress-v1",
+        "productId": "nightjar-wordpress-v1",
+        "editionId": "wordpress",
+        "version": "1.0.1",
+        "priceCents": 12900,
+        "guidePath": "/templates/guides/nightjar/wordpress/",
+        "available": false,
+        "status": "installation_unverified"
+      },
+      {
+        "id": "switchboard-squarespace-v1",
+        "productId": "switchboard-squarespace-v1",
+        "editionId": "squarespace",
+        "priceCents": 2900,
+        "version": null,
+        "available": false,
+        "status": "platform_installation_blocked"
+      },
+      {
+        "id": "switchboard-godaddy-v1",
+        "productId": "switchboard-godaddy-v1",
+        "editionId": "godaddy",
+        "priceCents": 2900,
+        "version": null,
+        "available": false,
+        "status": "platform_installation_blocked"
+      }
+    ]
+  }
+}

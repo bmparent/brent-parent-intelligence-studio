@@ -1,0 +1,150 @@
+{
+  "timestampUtc": "2026-10-14T19:09:59.2822153Z",
+  "kind": "playground-purchase-client-local-fixture-validation",
+  "gitHead": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "sourceState": "uncommitted shared candidate; no staging performed by subagent",
+  "tests": {
+    "command": "npx tsx --test scripts/test-playground-purchase-client.ts scripts/test-playground-purchase-recovery.ts scripts/test-playground-purchase-snapshot.ts scripts/test-playground-runtime-parity.mjs",
+    "passed": 20,
+    "failed": 0,
+    "log": "focused-tests.log"
+  },
+  "typecheck": "passed",
+  "scopedEslint": "passed",
+  "trackedDiffWhitespace": "passed",
+  "realCheckoutRequests": 0,
+  "realPayments": 0,
+  "realMailRequests": 0,
+  "browserEvidence": {
+    "path": "../purchase-browser/receipt.json",
+    "timestampUtc": "2026-10-14T19:10:20.274Z",
+    "scenarios": 21,
+    "checks": 78,
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "pageErrors": 0,
+    "unexpectedNetwork": 0,
+    "fixtureOnly": true,
+    "note": "Built 5185 before consumed-challenge reset and mobile service-number CSS repair; actual served files are pinned in ../purchase-browser/served-build-manifest.json. Later workspace hashes do not establish those two repairs."
+  },
+  "limitation": "Fixture validation only. No authorized hosted signed-owner/Stripe/mail transaction acceptance is claimed.",
+  "sourceFiles": [
+    {
+      "path": "src/components/TemplateShop.tsx",
+      "sha256": "32309ce9f8302654618665d5014c10fbe74536b782e2778c2f8cc059e768ae5b"
+    },
+    {
+      "path": "src/playground/FinishPurchase.tsx",
+      "sha256": "e566b2d08f0c6a7faf9481ddcda9c13903b79a3cfa11b76fb3a034f951a80673"
+    },
+    {
+      "path": "src/playground/PurchaseRecovery.tsx",
+      "sha256": "dc08c0d8ed56e88a1537df5c6615c5daa23c5eb3fd41d75a3b177efd7ede16c3"
+    },
+    {
+      "path": "src/playground/finish-purchase.css",
+      "sha256": "3a26703f56c7252ec0383ace9a13fe4c2b0f785022d63d7b071a5ec66c72fbb6"
+    },
+    {
+      "path": "src/playground/purchaseClient.ts",
+      "sha256": "b73b750a2524c610dd257284c7188df7f868a64c17668115b57b86190bdc5ed7"
+    },
+    {
+      "path": "src/playground/purchaseRecoveryClient.ts",
+      "sha256": "63402bd878c93bd57b608d2380473eddc32759b071a780750b3aae4b29398802"
+    },
+    {
+      "path": "src/playground/purchaseSnapshot.ts",
+      "sha256": "13bcf3dcb03441368cadf77d62bb34bf249163e92005418c22bcd5c52e922f5d"
+    },
+    {
+      "path": "src/playground/purchaseReviewStorage.ts",
+      "sha256": "4a344267a2441d7fded571551480cf7a12016c49fc3cb03eb843a6ba97e22b89"
+    },
+    {
+      "path": "src/playground/FinishReview.tsx",
+      "sha256": "79b4ebcd21c5c494a5e3851f153e9af6522f64997dcd3d168f9870b6d066187b"
+    },
+    {
+      "path": "src/playground/Playground.tsx",
+      "sha256": "c3a08070dd393b535741c9ea96f2d3b589399f037cd3c634430f3e847e25c4f3"
+    },
+    {
+      "path": "src/playground/useProject.ts",
+      "sha256": "4c89d2a5f408a913c2831d9e569166688e21a98f6ae8ed999eeee6e986195bf3"
+    },
+    {
+      "path": "src/playground/renderer.ts",
+      "sha256": "d568b9c78809d12d41af538ad09470cf5bfc3bbd971f9019ba27b89b6753ee34"
+    },
+    {
+      "path": "src/playground/runtimeBundle.ts",
+      "sha256": "c1020e8e744bd324bf4fed1c9ef07040222418034334f1692b9c8c4c5ac0cb30"
+    },
+    {
+      "path": "scripts/build-playground-runtime.mjs",
+      "sha256": "d8bc8ae3b8da3e6f7b0539a5edb44db1b88c97e299817e04c36f27b3ae4cc0b5"
+    },
+    {
+      "path": "scripts/test-playground-runtime-parity.mjs",
+      "sha256": "145bac99ae4886b66d40762c71f98caae8d89776fd5c9d2932e395a0ad895f6a"
+    },
+    {
+      "path": "scripts/test-playground-purchase-client.ts",
+      "sha256": "99d45164060796b3787917daabab81fcf281e0850d238a2bb40efe439398a173"
+    },
+    {
+      "path": "scripts/test-playground-purchase-recovery.ts",
+      "sha256": "309c2592d0d0c239d263b11d7abc509343632c582482f9f4c1c0f729c4971604"
+    },
+    {
+      "path": "package.json",
+      "sha256": "ac1e1e57e87b348a605aac6f5d78a03dffdaf51daab8eef2281a2901c49db14c"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "4db17e71df352bee2df03779294ec82d02ef529d19815d67f0632cc490d76f51"
+    }
+  ],
+  "runtimeGeneratorFreshness": "passed",
+  "priorStoredArchivePreserved": "stored-runtime-compatibility.json",
+  "optimizedNextParity": {
+    "project": "playground-unified-backend-20261014",
+    "path": "artifacts/playground-unified-backend-20261014/delivery/compiled-browser-parity/receipt.json",
+    "archiveSha256": "3f1b0c20f676a51126af4faa6207a6f90c8f0dda2af5d2b09d1f18699846fe71",
+    "archiveBytes": 128347,
+    "byteIdenticalToBuiltBrowser": true,
+    "runtime": "Plain Node actual optimized Next route module with real in-memory SQLite",
+    "network": "fetch forbidden",
+    "note": "Pre mobile service-number CSS adjustment"
+  },
+  "compiledArchiveExecution": {
+    "path": "../compiled-server-runtime-after/receipt.json",
+    "browsers": 3,
+    "viewports": [
+      1440,
+      390
+    ],
+    "runs": 6,
+    "archiveSha256": "b26d51c04ddee2f6ff2cb421d13edaaeb668e64c8e25ba3cc4209ccceb5956a3",
+    "archiveBytes": 66201,
+    "network": "Blocked HTTP(S); local files only"
+  },
+  "consumedChallengeRetry": {
+    "path": "../purchase-browser-challenge-after/receipt.json",
+    "timestampUtc": "2026-10-14T19:14:30.78Z",
+    "source": "Current Vite source at localhost:5184",
+    "engine": "chromium",
+    "scenarios": 1,
+    "checks": 3,
+    "result": "passed",
+    "fixtureFailureStatus": 502,
+    "sameAttemptAndDeliveryRetained": true,
+    "consumedTokenReplaced": true,
+    "actualCloudflareOrStripeRequest": false
+  },
+  "evidenceUpdatedUtc": "2026-10-14T19:15:25.7777782Z"
+}

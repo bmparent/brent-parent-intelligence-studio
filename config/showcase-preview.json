@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "project": "eidosworks-showcase-20261013",
+  "siteOrigin": "https://eidosworks-showcase-20261013.pages.dev",
+  "backendUrl": "https://eidos-sentinel-rkhg0orv8-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "3ebbc4d0e4cfd9b72947b097366e8b1b6fe8b573",
+  "backendDeployment": "dpl_HJnTcwVPPwj77qebkGZiCoXM9z5L",
+  "database": "existing isolated EIDOS_TEMPLATES_TEST validation database",
+  "providerModes": {
+    "accounts": "disabled",
+    "ai": "disabled",
+    "commerce": "disabled",
+    "openaiMailPaymentKeys": "not provisioned on this branch",
+    "studioCloud": "local-only; HTTP409 before legacy validation"
+  },
+  "scope": "Candidate branch Preview only. Existing branches, production and global GitHub secrets are unchanged. Relay/protection credentials come from existing scoped CI bindings, never this file."
+}

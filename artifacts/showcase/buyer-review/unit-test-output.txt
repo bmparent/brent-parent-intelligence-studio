@@ -1,0 +1,15 @@
+✔ trusted public pins contain hashes only and match the current frozen developer release (5.8506ms)
+✔ four actual-family adapters derive deterministic private files, preserving input and original notices (267.1771ms)
+✔ page/module pruning, contact-disabled fallback, schema migrations and exact new inventory (31.323ms)
+✔ wrong hash, metadata, edition, prefix, missing source, malformed and unsupported archive paths refuse (63.7269ms)
+✔ bounded ZIP parser refuses duplicate paths, traversal, and symbolic links directly (0.7254ms)
+✔ trusted synthetic archive pin cannot conceal wrong edition prefix or an embedded file hash mismatch (24.7144ms)
+✔ private preview retains bounded native search and anchor context without changing exported family handlers (21.5842ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 834.9526

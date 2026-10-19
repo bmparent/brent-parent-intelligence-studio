@@ -39,7 +39,8 @@ export function SiteFooter() {
             <a href="/community">Community</a>
             <a href="/community/agents">Agent Exchange</a>
             <a href="/insights">Insights</a>
-            <a href="/shop/cinematic-starter">Shop</a>
+            <a href="/shop">Templates</a>
+            <a href="/shop/cinematic-starter">Cinematic Starter</a>
           </nav>
         </div>
         <div className="ew-footer-bottom">

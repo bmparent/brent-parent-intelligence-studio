@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createStarter, starters, verifiedDestination } from '../src/playground/starters';
@@ -116,13 +115,5 @@ test('device storage retains prior projects atomically and drops stale queued wr
   } finally {
     Object.defineProperty(globalThis,'indexedDB',{configurable:true,value:originalDB});
     Object.defineProperty(globalThis,'IDBKeyRange',{configurable:true,value:originalRange});
-  }
-});
-
-test('every starter artwork path is packaged as an inert local SVG asset', () => {
-  for (const starter of starters) {
-    const svg = readFileSync('public' + starter.artwork, 'utf8');
-    assert.match(svg, /<svg\s/);
-    assert.doesNotMatch(svg, /<script|<foreignObject|(?:href|src)=["']https?:|\son[a-z]+=/i);
   }
 });

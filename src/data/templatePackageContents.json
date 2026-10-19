@@ -1,0 +1,298 @@
+[
+  {
+    "editionId": "switchboard-developer-v1",
+    "version": "1.0.3",
+    "guidePath": "/templates/guides/switchboard/developer/",
+    "files": [
+      "ASSETS.md",
+      "INSTALL.md",
+      "LICENSE.txt",
+      "PACKAGE_MANIFEST.json",
+      "README.md",
+      "SUPPORT.md",
+      "assets/service-plan.svg",
+      "contact.html",
+      "index.html",
+      "legal.html",
+      "process.html",
+      "script.js",
+      "service-detail.html",
+      "services.html",
+      "site-config.js",
+      "styles.css"
+    ],
+    "originalArt": [
+      "assets/service-plan.svg"
+    ],
+    "wordpressEvidence": null
+  },
+  {
+    "editionId": "switchboard-wordpress-v1",
+    "version": "1.0.3",
+    "guidePath": "/templates/guides/switchboard/wordpress/",
+    "files": [
+      "ASSETS.md",
+      "COPYING",
+      "INSTALL.md",
+      "LICENSE.txt",
+      "PACKAGE_MANIFEST.json",
+      "README.md",
+      "SUPPORT.md",
+      "assets/service-plan.svg",
+      "demo-content.xml",
+      "functions.php",
+      "parts/footer.html",
+      "parts/header.html",
+      "patterns/contact.php",
+      "patterns/index.php",
+      "patterns/process.php",
+      "patterns/service-detail.php",
+      "patterns/services.php",
+      "style.css",
+      "templates/404.html",
+      "templates/contact.html",
+      "templates/front-page.html",
+      "templates/index.html",
+      "templates/page.html",
+      "templates/process.html",
+      "templates/service-detail.html",
+      "templates/services.html",
+      "templates/single.html",
+      "theme.json"
+    ],
+    "originalArt": [
+      "assets/service-plan.svg"
+    ],
+    "wordpressEvidence": {
+      "exactCurrentZipActivation": false,
+      "nativeApiGate": false,
+      "wordpress": "6.6",
+      "php": "8.1.34",
+      "database": "MariaDB 10.11.19",
+      "scope": "Historical browser-sandbox evidence; not current-version acceptance"
+    }
+  },
+  {
+    "editionId": "tideglass-developer-v1",
+    "version": "1.0.2",
+    "guidePath": "/templates/guides/tideglass/developer/",
+    "files": [
+      "ASSETS.md",
+      "INSTALL.md",
+      "LICENSE.txt",
+      "PACKAGE_MANIFEST.json",
+      "README.md",
+      "SUPPORT.md",
+      "assets/coast.svg",
+      "contact.html",
+      "guide.html",
+      "index.html",
+      "legal.html",
+      "script.js",
+      "site-config.js",
+      "stay-detail.html",
+      "stays.html",
+      "styles.css"
+    ],
+    "originalArt": [
+      "assets/coast.svg"
+    ],
+    "wordpressEvidence": null
+  },
+  {
+    "editionId": "tideglass-wordpress-v1",
+    "version": "1.0.3",
+    "guidePath": "/templates/guides/tideglass/wordpress/",
+    "files": [
+      "ASSETS.md",
+      "COPYING",
+      "INSTALL.md",
+      "LICENSE.txt",
+      "PACKAGE_MANIFEST.json",
+      "README.md",
+      "SUPPORT.md",
+      "assets/coast.svg",
+      "demo-content.xml",
+      "functions.php",
+      "parts/footer.html",
+      "parts/header.html",
+      "patterns/contact.php",
+      "patterns/guide.php",
+      "patterns/index.php",
+      "patterns/stay-detail.php",
+      "patterns/stays.php",
+      "style.css",
+      "templates/404.html",
+      "templates/contact.html",
+      "templates/front-page.html",
+      "templates/guide.html",
+      "templates/index.html",
+      "templates/page.html",
+      "templates/single.html",
+      "templates/stay-detail.html",
+      "templates/stays.html",
+      "theme.json"
+    ],
+    "originalArt": [
+      "assets/coast.svg"
+    ],
+    "wordpressEvidence": {
+      "exactCurrentZipActivation": false,
+      "nativeApiGate": false,
+      "wordpress": "6.6",
+      "php": "8.1.34",
+      "database": "MariaDB 10.11.19",
+      "scope": "Historical browser-sandbox evidence; not current-version acceptance"
+    }
+  },
+  {
+    "editionId": "matter-developer-v1",
+    "version": "1.0.2",
+    "guidePath": "/templates/guides/matter/developer/",
+    "files": [
+      "ASSETS.md",
+      "INSTALL.md",
+      "LICENSE.txt",
+      "PACKAGE_MANIFEST.json",
+      "README.md",
+      "SUPPORT.md",
+      "assets/timber.svg",
+      "assets/vessel.svg",
+      "collection.html",
+      "contact.html",
+      "index.html",
+      "legal.html",
+      "object.html",
+      "process.html",
+      "script.js",
+      "site-config.js",
+      "styles.css"
+    ],
+    "originalArt": [
+      "assets/timber.svg",
+      "assets/vessel.svg"
+    ],
+    "wordpressEvidence": null
+  },
+  {
+    "editionId": "matter-wordpress-v1",
+    "version": "1.0.3",
+    "guidePath": "/templates/guides/matter/wordpress/",
+    "files": [
+      "ASSETS.md",
+      "COPYING",
+      "INSTALL.md",
+      "LICENSE.txt",
+      "PACKAGE_MANIFEST.json",
+      "README.md",
+      "SUPPORT.md",
+      "assets/timber.svg",
+      "assets/vessel.svg",
+      "demo-content.xml",
+      "functions.php",
+      "parts/footer.html",
+      "parts/header.html",
+      "patterns/collection.php",
+      "patterns/contact.php",
+      "patterns/index.php",
+      "patterns/object.php",
+      "patterns/process.php",
+      "style.css",
+      "templates/404.html",
+      "templates/collection.html",
+      "templates/contact.html",
+      "templates/front-page.html",
+      "templates/index.html",
+      "templates/object.html",
+      "templates/page.html",
+      "templates/process.html",
+      "templates/single.html",
+      "theme.json"
+    ],
+    "originalArt": [
+      "assets/timber.svg",
+      "assets/vessel.svg"
+    ],
+    "wordpressEvidence": {
+      "exactCurrentZipActivation": false,
+      "nativeApiGate": false,
+      "wordpress": "6.6",
+      "php": "8.1.34",
+      "database": "MariaDB 10.11.19",
+      "scope": "Historical browser-sandbox evidence; not current-version acceptance"
+    }
+  },
+  {
+    "editionId": "nightjar-developer-v1",
+    "version": "1.0.5",
+    "guidePath": "/templates/guides/nightjar/developer/",
+    "files": [
+      "ASSETS.md",
+      "INSTALL.md",
+      "LICENSE.txt",
+      "PACKAGE_MANIFEST.json",
+      "README.md",
+      "SUPPORT.md",
+      "about.html",
+      "assets/poster.svg",
+      "contact.html",
+      "event.html",
+      "index.html",
+      "legal.html",
+      "program.html",
+      "script.js",
+      "site-config.js",
+      "styles.css"
+    ],
+    "originalArt": [
+      "assets/poster.svg"
+    ],
+    "wordpressEvidence": null
+  },
+  {
+    "editionId": "nightjar-wordpress-v1",
+    "version": "1.0.3",
+    "guidePath": "/templates/guides/nightjar/wordpress/",
+    "files": [
+      "ASSETS.md",
+      "COPYING",
+      "INSTALL.md",
+      "LICENSE.txt",
+      "PACKAGE_MANIFEST.json",
+      "README.md",
+      "SUPPORT.md",
+      "assets/poster.svg",
+      "demo-content.xml",
+      "functions.php",
+      "parts/footer.html",
+      "parts/header.html",
+      "patterns/about.php",
+      "patterns/contact.php",
+      "patterns/event.php",
+      "patterns/index.php",
+      "patterns/program.php",
+      "style.css",
+      "templates/404.html",
+      "templates/about.html",
+      "templates/contact.html",
+      "templates/event.html",
+      "templates/front-page.html",
+      "templates/index.html",
+      "templates/page.html",
+      "templates/program.html",
+      "templates/single.html",
+      "theme.json"
+    ],
+    "originalArt": [
+      "assets/poster.svg"
+    ],
+    "wordpressEvidence": {
+      "exactCurrentZipActivation": false,
+      "nativeApiGate": false,
+      "wordpress": "6.6",
+      "php": "8.1.34",
+      "database": "MariaDB 10.11.19",
+      "scope": "Historical browser-sandbox evidence; not current-version acceptance"
+    }
+  }
+]

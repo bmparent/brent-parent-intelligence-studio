@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "kind": "eidos-local-page-package",
+  "snapshotHash": "6f6e6178f8cf433b3dd74e11412e31823d271ce52a9a07810e3476555bca7a7e",
+  "projectHash": "79c5eaa9a828c88da9cdf2bd5aa86db6feedaba0f7b8dfb2ed156787e31e4551",
+  "documentId": "77effec1-7bc0-4f99-8f04-d1cc83b653dc",
+  "revision": 9,
+  "pageId": "page-main",
+  "rendererVersion": "eidos-original-glass-2.0.0",
+  "output": "eidos-local-page-package-v1",
+  "platform": "developer",
+  "parent": null,
+  "entitlement": "not-verified",
+  "checkout": "disabled",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 8041,
+      "sha256": "82a1a45f7c6330324aaef35e39dfbb15927bc690978cdeeb14fa8c36b698889b"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 16344,
+      "sha256": "a9155dd0576185126760637c2d4fc8f06723c3dac137cc005baa7c026f88b0ca"
+    },
+    {
+      "path": "tokens.css",
+      "bytes": 231,
+      "sha256": "0cf40b47c4104149aa3bda1ab967ee8d6b15c1be9bd49d4bfd373a0ba73626ce"
+    },
+    {
+      "path": "script.js",
+      "bytes": 25732,
+      "sha256": "d4ed21b896c500069750b59d1cac24c611e8880cad4347055f4f78ef0aaf1b1b"
+    },
+    {
+      "path": "project.json",
+      "bytes": 28735,
+      "sha256": "5ff3b648cadb331a0f68e642ca661689be41753472ff8e2478a7b357391b5a4f"
+    },
+    {
+      "path": "approved-glass-preset.json",
+      "bytes": 1349,
+      "sha256": "8ee150f9aa0a86df116c28d02579972dd330a6f464ef886eda25bafc072225f4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1587,
+      "sha256": "59ed7c45672797cb85e8e5284c54cda193471be1f1199ff79d6922962142ac38"
+    },
+    {
+      "path": "AI-HANDOFF.md",
+      "bytes": 1039,
+      "sha256": "0248d7bd7883bbeebe10f57f63e560ee0a177460e99c8f181870fd5cbc48ed05"
+    },
+    {
+      "path": "assets/node-d7710c5a-5f2a-40ab-905e-1f8357204bf9.webp",
+      "bytes": 16098,
+      "sha256": "fcaa941ee6bc8dd7543d90be440f7b9ed600b5374186837576fc2794b62b0260"
+    },
+    {
+      "path": "assets/node-d22dbfe1-1457-48c4-a649-50da97c0b624.webp",
+      "bytes": 196,
+      "sha256": "bc10ff9c1779cbdfe8c553a99bdc483852a82756e5f2084ecdd0360fe862f380"
+    },
+    {
+      "path": "SNAPSHOT.json",
+      "bytes": 29650,
+      "sha256": "c917cd3d4d3ea6d19f2e13d6be708de1cfdb3cb7b3a2bcc116b491864472b776"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 1282,
+      "sha256": "5a8c5f60ac94460ff504a5c623c6add61a455f2fb6db6be7ad72d9543a977359"
+    }
+  ]
+}

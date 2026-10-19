@@ -6,6 +6,7 @@ import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   { ignores: ['dist', 'dist-ssr', 'apps/wellway/dist', 'node_modules', 'intelligence-agent-patch', '.wrangler', 'ops/snapshot-worker/worker-configuration.d.ts'] },
+  { ignores: ['dist', 'dist-ssr', 'apps/wellway/dist', 'node_modules', 'intelligence-agent-patch', '.wrangler', 'artifacts/playground-unified/**'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],

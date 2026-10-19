@@ -1,0 +1,14 @@
+{
+  "project": "eidosworks-templates-test-20261010",
+  "branch": "codex/paid-templates-20261010",
+  "siteOrigin": "https://eidosworks-templates-test-20261010.pages.dev",
+  "siteSha": "85ced14b954194e013a47b50a511778f4daf7bfe",
+  "backendOrigin": "https://eidos-sentinel-pmb8qllat-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
+  "database": "existing Eidos Works validation database; backend receipt has host and additive migration evidence",
+  "canonicalDeploymentBefore": "8f2836ad-8e5e-4584-8571-05a9db2ef35d",
+  "canonicalDeploymentAfter": "8f2836ad-8e5e-4584-8571-05a9db2ef35d",
+  "customDomains": [],
+  "sales": "TEST gated; no LIVE enabled",
+  "timestamp": "2026-10-11T02:24:35.080Z"
+}

@@ -1,10 +1,10 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {fixture,ctx,signup} from './playground-test-fixture';
 import {onRequestPost as save} from '../functions/api/playground/projects';
-import {onRequestGet as get,onRequestPost as generate} from '../functions/api/playground/ai';
-import {ensureAI,cost,type Usage,type AIConfig} from '../functions/_shared/platform/playgroundAI';
+import {onRequestGet as get,onRequestPost as generate} from '../functions/_shared/platform/playgroundLegacyAIEndpoint';
+import {ensureAI,cost,type Usage,type AIConfig} from '../functions/_shared/platform/playgroundLegacyAI';
 import {createProject,upgradeProject} from '../src/playground/model';
-import {aiContext,stateHash,applyProposal,validateProposal} from '../src/playground/aiOperations';
+import {aiContext,stateHash,applyProposal,validateProposal} from '../src/playground/legacyAiOperations';
 const config:AIConfig={model:'fixture-only',pricing:{version:'mock-1',input:1,cachedInput:0.1,cacheWrite:1.25,output:2,imageInput:1,imageOutput:2,cachedImageInput:0.1},accountMicro:100000,globalMicro:200000,maxInputBytes:12000,maxOutputTokens:1000};
 const usage:Usage={input:100,cachedInput:0,cacheWrite:0,output:50,reasoning:10,imageInput:0,imageOutput:0,cachedImageInput:0};
 async function setup(){const f=fixture(),alice=await signup(f.env,'alice'),bob=await signup(f.env,'bobby'),p=upgradeProject(createProject());const saved=await (await save(ctx(f.env,'/api/playground/projects',{document:p},alice.headers))).json();const owner=String(f.sql.prepare("SELECT id FROM eidos_email_members WHERE username='alice'").get()!.id);Object.assign(f.env,{EIDOS_RUNTIME:'sentinel',EIDOS_PLAYGROUND_AI_ENABLED:'true',EIDOS_PLAYGROUND_AI_KILL:'false',EIDOS_PLAYGROUND_AI_CONFIG:JSON.stringify(config)});await ensureAI(f.env);f.sql.exec('UPDATE eidos_pg_ai_control SET enabled=1');const input={kind:'text',request:'Shorten the headline',scope:'section',context:aiContext(p,'hero','section'),requestId:crypto.randomUUID(),projectId:saved.id,revisionId:saved.revision,expectedOwner:owner,documentId:'workspace-one',baseHash:await stateHash(p)};return {...f,alice,bob,p,input};}
