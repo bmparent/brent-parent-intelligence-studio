@@ -1,0 +1,104 @@
+{
+  "product": "tideglass",
+  "phase": "after-restart",
+  "pages": [
+    {
+      "page": "home",
+      "url": "http://127.0.0.1:8972/",
+      "http_status": 200,
+      "h1": "Tideglass business copy saved on native WordPress",
+      "bytes": 47658,
+      "sha256": "c5e235275f3154c6001d6604a2c34b237f5afa0a6cb9d563061b186eb766077a",
+      "native_details_count": 3
+    },
+    {
+      "page": "stays",
+      "url": "http://127.0.0.1:8972/stays/",
+      "http_status": 200,
+      "h1": "Stays",
+      "bytes": 40127,
+      "sha256": "2917719aa7ce8be3ccc7c82ad38bbad6efc8cc4939d8b81de27b6f3c6cdbf1b6",
+      "native_details_count": 3
+    },
+    {
+      "page": "stay-detail",
+      "url": "http://127.0.0.1:8972/stay-detail/",
+      "http_status": 200,
+      "h1": "The house",
+      "bytes": 45832,
+      "sha256": "09ccaa7ed53dfb8cb4c954b0a6a9aca1b4e4bce2f37eeb9d2bf10e544ebb7d8f",
+      "native_details_count": 0
+    },
+    {
+      "page": "guide",
+      "url": "http://127.0.0.1:8972/guide/",
+      "http_status": 200,
+      "h1": "Local guide",
+      "bytes": 39943,
+      "sha256": "907e89a7d20a22f164dc59bdcb013f0b0af32a77d6a73c421f9ceab85c71b79c",
+      "native_details_count": 0
+    },
+    {
+      "page": "contact",
+      "url": "http://127.0.0.1:8972/contact/",
+      "http_status": 200,
+      "h1": "Plan your stay",
+      "bytes": 39784,
+      "sha256": "11b8e4a57db789d9acace730125cab2a3c5d5f09d2ffb3266dd8c5f8c5184a6e",
+      "native_details_count": 1
+    }
+  ],
+  "all_five_pages_http_200": true,
+  "all_html_referenced_local_assets_http_200": true,
+  "assets": {
+    "http://127.0.0.1:8972/wp-includes/blocks/navigation/style.min.css?ver=6.6": {
+      "status": 200,
+      "bytes": 16507,
+      "sha256": "4a8714a7f45ff22f002ebb62a7f1e91f3f14d1938e21789710cfad199561b62c"
+    },
+    "http://127.0.0.1:8972/wp-content/themes/tideglass/style.css?ver=1.0.2": {
+      "status": 200,
+      "bytes": 11764,
+      "sha256": "3ae2a67a7477c009bcd8c6ef03f1914ccfa4fc569a6b1cd53d9915904b595448"
+    },
+    "http://127.0.0.1:8972/wp-includes/blocks/navigation/view.min.js?ver=6.6": {
+      "status": 200,
+      "bytes": 3300,
+      "sha256": "cef72ad53596109595c152da16e28c2799d53b4c151274c7b28c0324e7230f24"
+    },
+    "http://127.0.0.1:8972/wp-content/uploads/2026/10/native-replacement-tideglass.png": {
+      "status": 200,
+      "bytes": 1627,
+      "sha256": "470b7f179cb9566b0d0748928b6124d6ec1eb78324bb43a3443612c3287efb14"
+    },
+    "http://127.0.0.1:8972/wp-content/themes/tideglass/assets/coast.svg": {
+      "status": 200,
+      "bytes": 1434,
+      "sha256": "4a411c25830bf7bda4ed562850cafb7047916301e1a81567d8d98421deb55615"
+    }
+  },
+  "phone_user_agent_html_200": true,
+  "phone_visual_render_test": false,
+  "saved_navigation_links_verified": true,
+  "primary_action_http_chain": [
+    {
+      "url": "http://127.0.0.1:8972/stays/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8972/contact/",
+      "status": 200
+    },
+    {
+      "target": "mailto:native-tideglass@example.test",
+      "verified": "href only; not opened or sent"
+    }
+  ],
+  "contact_mailto_verified": true,
+  "contact_mailto": [
+    "mailto:native-tideglass@example.test",
+    "mailto:native-tideglass@example.test"
+  ],
+  "email_sent": false,
+  "email_client_opened": false
+}

@@ -1,0 +1,169 @@
+{
+  "timestamp": "2026-10-14T18:14:10.722Z",
+  "source": "3772075bb757bb372193cb5240e0ffa1820e00fb",
+  "workingTreeDirty": true,
+  "base": "http://127.0.0.1:5184",
+  "browser": "Headless browsers; Chromium GPU disabled; viewport emulation is not physical-device evidence",
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "documentId": "30050b43-479c-494e-abc1-8e537e31a90a",
+      "exportZip": "C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\artifacts\\playground-unified\\browser-three-engine\\chromium\\1440-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5184/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "documentId": "0fdabf3e-fbbf-4edf-b131-14c87b45ecc6",
+      "exportZip": "C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\artifacts\\playground-unified\\browser-three-engine\\chromium\\390-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5184/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5184/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5184/playground/\" line: 0}]"
+        }
+      ],
+      "documentId": "77effec1-7bc0-4f99-8f04-d1cc83b653dc",
+      "exportZip": "C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\artifacts\\playground-unified\\browser-three-engine\\firefox\\1440-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5184/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5184/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5184/playground/\" line: 0}]"
+        }
+      ],
+      "documentId": "8004cfd9-c965-495e-805b-c0aeaa35d1cc",
+      "exportZip": "C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\artifacts\\playground-unified\\browser-three-engine\\firefox\\390-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5184/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "documentId": "e38d93b3-43e7-46e9-b13d-c32ba947be17",
+      "exportZip": "C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\artifacts\\playground-unified\\browser-three-engine\\webkit\\1440-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5184/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "documentId": "60f24e86-ed4e-4f31-b09e-668df520fcb6",
+      "exportZip": "C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\artifacts\\playground-unified\\browser-three-engine\\webkit\\390-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5184/playground/"
+    }
+  ]
+}

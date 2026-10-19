@@ -1,0 +1,376 @@
+local-editor	Actual React editor acceptance in three engines and two widths	﻿2026-10-15T18:54:10.3872356Z ##[group]Run npm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3873814Z [36;1mnpm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3874395Z [36;1mSERVER_PID=$![0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3874685Z [36;1mtrap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3875210Z [36;1mfor i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3875752Z [36;1mnode scripts/verify-playground-unified-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3876181Z [36;1mnode --import tsx scripts/verify-playground-persistence.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3876657Z [36;1mnode --import tsx scripts/verify-playground-unified-gestures.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3877105Z [36;1mnode --import tsx scripts/verify-playground-guides.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3877542Z [36;1mnode --import tsx scripts/verify-playground-element-motion.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3878058Z [36;1mnode --import tsx scripts/verify-playground-integrated-artwork.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3878517Z [36;1mnode --import tsx scripts/verify-playground-ai-ui.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3878885Z [36;1mnode scripts/verify-hero-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3879250Z [36;1mnode scripts/verify-digital-experiences-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3879656Z [36;1mnode scripts/verify-business-systems-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3880025Z [36;1mnode scripts/verify-quote-desk-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3880399Z [36;1mnode scripts/verify-intelligent-systems-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3916278Z shell: /usr/bin/bash -e {0}
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3916547Z env:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3916895Z   PLAYWRIGHT_MODULE: /home/runner/work/_temp/pg-browser/node_modules/playwright
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3917346Z   PG_EVIDENCE_DIR: /home/runner/work/_temp/pg-evidence
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3917684Z   PG_BASE_URL: http://127.0.0.1:4173
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3917966Z   PG_ENGINES: chromium,firefox,webkit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3918306Z   PG_PERSISTENCE_URL: http://127.0.0.1:4173/playground/
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3918729Z   PG_PERSISTENCE_EVIDENCE: /home/runner/work/_temp/pg-evidence/persistence
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3919194Z   PG_GESTURE_EVIDENCE: /home/runner/work/_temp/pg-evidence/gestures
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3919609Z   PG_GUIDE_EVIDENCE: /home/runner/work/_temp/pg-evidence/guides
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3920004Z   PG_MOTION_EVIDENCE: /home/runner/work/_temp/pg-evidence/motion
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3920410Z   PG_ARTWORK_EVIDENCE: /home/runner/work/_temp/pg-evidence/artwork
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3920805Z   PG_AI_EVIDENCE: /home/runner/work/_temp/pg-evidence/ai-ui
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.3921111Z ##[endgroup]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:10.4159479Z curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Connection refused
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:14.1665273Z 1440: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:14.7509169Z 1440: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:15.0404136Z 1440: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:15.2399442Z 1440: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:15.6059054Z 1440: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:17.3914298Z 1440: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:17.5583329Z 1440: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:18.5104189Z 1440: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:18.8847120Z 1440: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:18.8881181Z 1440: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:20.2753493Z 390: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:20.7168926Z 390: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:21.0551466Z 390: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:21.1882565Z 390: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:21.5714677Z 390: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:22.9243404Z 390: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:23.0723623Z 390: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:23.3964299Z 390: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:23.6019404Z 390: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:23.6052635Z 390: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:25.6640874Z 1440: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:26.4679210Z 1440: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:26.8950272Z 1440: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:27.1116205Z 1440: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:27.6445113Z 1440: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:29.0818410Z 1440: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:29.2397516Z 1440: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:29.8525219Z 1440: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:30.3523660Z 1440: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:30.3736314Z 1440: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:31.3015482Z 390: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:31.9117954Z 390: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:32.3960062Z 390: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:32.5603766Z 390: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:33.0949444Z 390: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:34.4822330Z 390: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:34.6870595Z 390: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:35.1152632Z 390: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:35.4980913Z 390: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:35.5187167Z 390: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:45.0293335Z 1440: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:49.0028356Z 1440: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:50.2184513Z 1440: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:50.7968576Z 1440: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:52.5399377Z 1440: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:55.2954185Z 1440: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:55.6681330Z 1440: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:54:59.5795413Z 1440: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:00.9004335Z 1440: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:00.9185243Z 1440: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:02.6399400Z 390: PASS clean start does not save or silently open a default project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:04.0933976Z 390: PASS goal and starter create real page; inline headline editing
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:04.5346053Z 390: PASS uploaded image moves into columns and resizes through click/keyboard controls
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:04.7167598Z 390: PASS global brand updates shared project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:05.1620637Z 390: PASS section reorder and exact shared Undo/Redo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:07.0334085Z 390: PASS reload explicitly continues exact content, IDs, assets and selection
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:07.2158329Z 390: PASS invalid import preserves current work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:08.2879120Z 390: PASS Finish freezes and downloads actual standalone page ZIP
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:09.1514565Z 390: PASS extracted output opens independently with exact editable project and all images
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:09.1558678Z 390: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:11.3095229Z PASS clean visit writes no unexplained starter
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:13.3839687Z PASS legacy schema 1 saved envelope opens and gets stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:15.0631434Z PASS legacy schema 1 file import preserves validator and history
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:17.0883723Z PASS legacy schema 2 saved envelope opens and gets stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:18.7617445Z PASS legacy schema 2 file import preserves validator and history
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:20.8082378Z PASS legacy schema 3 saved envelope opens and gets stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:22.4814037Z PASS legacy schema 3 file import preserves validator and history
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:24.4908887Z PASS legacy schema 4 saved envelope opens and gets stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:26.1614929Z PASS legacy schema 4 file import preserves validator and history
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:26.6729495Z PASS invalid imported JSON leaves project, identity and revision unchanged
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:27.5012088Z PASS explicit new project preserves previous editable document and assets
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.7688475Z PASS delayed saved-project read cannot overwrite continued manual edits
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.7852247Z PASS no app runtime errors or framework overlay
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9752128Z {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9753103Z   "kind": "Chromium desktop browser; local candidate; no provider/cloud/payment acceptance",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9753862Z   "base": "http://127.0.0.1:4173/playground/",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9754311Z   "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9754732Z     "clean visit writes no unexplained starter",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9755367Z     "legacy schema 1 saved envelope opens and gets stable identity",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9756150Z     "legacy schema 1 file import preserves validator and history",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9756906Z     "legacy schema 2 saved envelope opens and gets stable identity",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9757615Z     "legacy schema 2 file import preserves validator and history",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9758333Z     "legacy schema 3 saved envelope opens and gets stable identity",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9759055Z     "legacy schema 3 file import preserves validator and history",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9759744Z     "legacy schema 4 saved envelope opens and gets stable identity",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9760453Z     "legacy schema 4 file import preserves validator and history",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9761247Z     "invalid imported JSON leaves project, identity and revision unchanged",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9762149Z     "explicit new project preserves previous editable document and assets",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9763119Z     "delayed saved-project read cannot overwrite continued manual edits",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9763804Z     "no app runtime errors or framework overlay"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9764250Z   ],
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9764550Z   "failures": [],
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9764868Z   "consoleErrors": [],
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9765286Z   "timestamp": "2026-10-15T18:55:29.974Z"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:29.9765668Z }
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:32.4481179Z PASS breadcrumb selects the actual parent; inspector and Layers agree before returning to photo
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:32.6325298Z PASS canvas selection and Layers agree on stable photo ID
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:35.8050512Z PASS drag previews the named empty nested container; Escape restores exact state with no transient writes
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:36.3703744Z PASS pointercancel during actual drag leaves document intact
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:36.9198524Z PASS lostpointercapture during actual drag leaves document intact
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:37.4719949Z PASS real iframe focus loss during an active canvas drag cancels without mutation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:38.1011909Z PASS actual canvas drop moves image across containers into the empty second column, preserving IDs
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:38.3017475Z PASS canvas cross-container drop: one Undo and Redo preserve the complete document
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:38.7686883Z PASS actual corner resize changes frame width/height and retains locked aspect ratio
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:38.9685115Z PASS frame resize: one Undo and Redo preserve the complete document
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:39.4850438Z PASS actual crop drag changes focal point while preserving frame geometry
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:39.6851927Z PASS crop drag: one Undo and Redo preserve the complete document
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:39.9515024Z PASS keyboard activated move and keyboard numeric resize provide alternatives to dragging
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:40.3033750Z PASS mobile explicitly inherits, overrides locally and resets without changing desktop geometry
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:41.0015679Z PASS Layers final-position move into empty container: one Undo and Redo preserve the complete document
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:41.0016409Z PASS canvas and Layers produce the same nested destination semantics
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:41.7980042Z PASS long text and an unbroken word grow vertically on mobile without overflow; one Undo restores the original content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:43.1382432Z PASS switching projects while the pointer is held preserves both the new project and exact archived source
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:45.5711900Z PASS keyboard toggle exposes actual CSS-pixel dimensions, sibling spacing and parent alignment without saving changes
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:46.0032875Z PASS active resize automatically measures current frame; Escape removes guides and restores exact project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:46.4530029Z PASS actual drag measures the destination container and its configured spacing without changing the project on cancellation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:46.7255585Z PASS mobile canvas has legible guides without horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:46.7789256Z PASS Preview excludes all guide chrome
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:46.7790998Z PASS export runtime contains no guide implementation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:47.4195949Z Starting element motion checks: chromium
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:48.9851365Z PASS chromium/1440 selected block motion is one exact Undo/Redo edit with stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:49.2033580Z PASS chromium/1440 keyboard numeric motion settings persist; editing stays static for selection and gestures
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:49.3954312Z PASS chromium/1440 visitor preview renders a bounded one-shot entrance on the selected block
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:49.4301828Z PASS chromium/1440 system reduced motion immediately presents static, visible content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:49.6188999Z PASS chromium/1440 mobile shares the same explicit element motion without changing desktop layout
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:49.8351644Z PASS chromium/1440 Remove motion clears metadata and one Undo restores the exact configured project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:50.9035270Z PASS chromium/1440 explicit Continue restores motion, source identity and saved content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:51.9447349Z PASS chromium/1440 actual downloaded ZIP matches common renderer bytes and executes motion independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:52.0562230Z PASS chromium/1440 export remains visible and static without JavaScript
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:52.5598036Z PASS chromium/1440 the saved project reduced-motion preference also suppresses element animation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:52.5620611Z PASS chromium/1440 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:54.1173351Z PASS chromium/390 selected block motion is one exact Undo/Redo edit with stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:54.4149671Z PASS chromium/390 keyboard numeric motion settings persist; editing stays static for selection and gestures
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:54.5516321Z PASS chromium/390 visitor preview renders a bounded one-shot entrance on the selected block
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:54.5814763Z PASS chromium/390 system reduced motion immediately presents static, visible content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:54.7847520Z PASS chromium/390 mobile shares the same explicit element motion without changing desktop layout
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:55.0010552Z PASS chromium/390 Remove motion clears metadata and one Undo restores the exact configured project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:56.0369617Z PASS chromium/390 explicit Continue restores motion, source identity and saved content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:56.6258410Z PASS chromium/390 actual downloaded ZIP matches common renderer bytes and executes motion independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:56.7154019Z PASS chromium/390 export remains visible and static without JavaScript
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:56.9556506Z PASS chromium/390 the saved project reduced-motion preference also suppresses element animation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:56.9578222Z PASS chromium/390 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:56.9844342Z Starting element motion checks: firefox
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:55:59.9586372Z PASS firefox/1440 selected block motion is one exact Undo/Redo edit with stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:00.2513382Z PASS firefox/1440 keyboard numeric motion settings persist; editing stays static for selection and gestures
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:00.4286460Z PASS firefox/1440 visitor preview renders a bounded one-shot entrance on the selected block
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:00.4645083Z PASS firefox/1440 system reduced motion immediately presents static, visible content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:00.7184862Z PASS firefox/1440 mobile shares the same explicit element motion without changing desktop layout
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:01.0236632Z PASS firefox/1440 Remove motion clears metadata and one Undo restores the exact configured project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:02.1100363Z PASS firefox/1440 explicit Continue restores motion, source identity and saved content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:03.4044297Z PASS firefox/1440 actual downloaded ZIP matches common renderer bytes and executes motion independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:03.8688885Z PASS firefox/1440 export remains visible and static without JavaScript
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:04.2446456Z PASS firefox/1440 the saved project reduced-motion preference also suppresses element animation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:04.2475183Z PASS firefox/1440 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:05.9905350Z PASS firefox/390 selected block motion is one exact Undo/Redo edit with stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:06.3362900Z PASS firefox/390 keyboard numeric motion settings persist; editing stays static for selection and gestures
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:06.4849997Z PASS firefox/390 visitor preview renders a bounded one-shot entrance on the selected block
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:06.5135584Z PASS firefox/390 system reduced motion immediately presents static, visible content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:06.8149971Z PASS firefox/390 mobile shares the same explicit element motion without changing desktop layout
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:07.1061020Z PASS firefox/390 Remove motion clears metadata and one Undo restores the exact configured project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:08.1434039Z PASS firefox/390 explicit Continue restores motion, source identity and saved content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:09.0315084Z PASS firefox/390 actual downloaded ZIP matches common renderer bytes and executes motion independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:09.3673491Z PASS firefox/390 export remains visible and static without JavaScript
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:09.7743197Z PASS firefox/390 the saved project reduced-motion preference also suppresses element animation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:09.7773553Z PASS firefox/390 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:10.2921763Z Starting element motion checks: webkit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:14.3774377Z PASS webkit/1440 selected block motion is one exact Undo/Redo edit with stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:15.1057618Z PASS webkit/1440 keyboard numeric motion settings persist; editing stays static for selection and gestures
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:15.6110104Z PASS webkit/1440 visitor preview renders a bounded one-shot entrance on the selected block
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:15.6908329Z PASS webkit/1440 system reduced motion immediately presents static, visible content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:17.5235261Z PASS webkit/1440 mobile shares the same explicit element motion without changing desktop layout
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:18.0234167Z PASS webkit/1440 Remove motion clears metadata and one Undo restores the exact configured project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:19.6704170Z PASS webkit/1440 explicit Continue restores motion, source identity and saved content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:24.5455953Z PASS webkit/1440 actual downloaded ZIP matches common renderer bytes and executes motion independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:25.4021099Z PASS webkit/1440 export remains visible and static without JavaScript
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:26.1484830Z PASS webkit/1440 the saved project reduced-motion preference also suppresses element animation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:26.1500719Z PASS webkit/1440 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:28.7858555Z PASS webkit/390 selected block motion is one exact Undo/Redo edit with stable identity
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:29.2025664Z PASS webkit/390 keyboard numeric motion settings persist; editing stays static for selection and gestures
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:29.3584230Z PASS webkit/390 visitor preview renders a bounded one-shot entrance on the selected block
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:29.3938591Z PASS webkit/390 system reduced motion immediately presents static, visible content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:29.7757802Z PASS webkit/390 mobile shares the same explicit element motion without changing desktop layout
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:29.9734303Z PASS webkit/390 Remove motion clears metadata and one Undo restores the exact configured project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:30.8538499Z PASS webkit/390 explicit Continue restores motion, source identity and saved content
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:34.2771849Z PASS webkit/390 actual downloaded ZIP matches common renderer bytes and executes motion independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:35.0108899Z PASS webkit/390 export remains visible and static without JavaScript
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:35.3377954Z PASS webkit/390 the saved project reduced-motion preference also suppresses element animation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:35.3446598Z PASS webkit/390 nonblank page identity, no framework/runtime errors and no AI/payment API requests
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:38.1819637Z PASS chromium/1440 asset tray opens editable poster with linked palette and bounded keyboard positioning/rotation/scale
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:38.5774121Z PASS chromium/1440 Insert artwork embeds decoded 720×960 PNG directly in the same project without any download/re-upload
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:38.7920352Z PASS chromium/1440 one Undo removes only insertion; Redo restores exact image and editable artwork
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:38.9842130Z PASS chromium/1440 inserted decorative composition fits the mobile container without horizontal page overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:40.2734799Z PASS chromium/1440 reload/Continue preserves original image bytes, same project and editable artwork source
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:41.1445495Z PASS chromium/1440 actual Finish ZIP retains exact artwork image/source and opens independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:41.1466385Z PASS chromium/1440 no runtime errors, unintended downloads, AI/payment API calls or blank editor
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:42.9425706Z PASS chromium/390 asset tray opens editable poster with linked palette and bounded keyboard positioning/rotation/scale
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:43.3051652Z PASS chromium/390 Insert artwork embeds decoded 720×960 PNG directly in the same project without any download/re-upload
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:43.7070479Z PASS chromium/390 one Undo removes only insertion; Redo restores exact image and editable artwork
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:44.0497041Z PASS chromium/390 inserted decorative composition fits the mobile container without horizontal page overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:44.3224738Z PASS chromium/390 Chromium touch emulation scrolls the current canvas outside explicit handles without mutating the project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:45.5515309Z PASS chromium/390 reload/Continue preserves original image bytes, same project and editable artwork source
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:46.1499141Z PASS chromium/390 actual Finish ZIP retains exact artwork image/source and opens independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:46.1505995Z PASS chromium/390 no runtime errors, unintended downloads, AI/payment API calls or blank editor
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:49.5584274Z PASS firefox/1440 asset tray opens editable poster with linked palette and bounded keyboard positioning/rotation/scale
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:50.0626566Z PASS firefox/1440 Insert artwork embeds decoded 720×960 PNG directly in the same project without any download/re-upload
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:50.3965170Z PASS firefox/1440 one Undo removes only insertion; Redo restores exact image and editable artwork
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:50.6733717Z PASS firefox/1440 inserted decorative composition fits the mobile container without horizontal page overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:51.9754295Z PASS firefox/1440 reload/Continue preserves original image bytes, same project and editable artwork source
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:53.1544688Z PASS firefox/1440 actual Finish ZIP retains exact artwork image/source and opens independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:53.1724250Z PASS firefox/1440 no runtime errors, unintended downloads, AI/payment API calls or blank editor
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:55.1131289Z PASS firefox/390 asset tray opens editable poster with linked palette and bounded keyboard positioning/rotation/scale
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:55.5693827Z PASS firefox/390 Insert artwork embeds decoded 720×960 PNG directly in the same project without any download/re-upload
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:55.8680107Z PASS firefox/390 one Undo removes only insertion; Redo restores exact image and editable artwork
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:56.1854153Z PASS firefox/390 inserted decorative composition fits the mobile container without horizontal page overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:57.5493193Z PASS firefox/390 reload/Continue preserves original image bytes, same project and editable artwork source
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:58.4327817Z PASS firefox/390 actual Finish ZIP retains exact artwork image/source and opens independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:56:58.4507450Z PASS firefox/390 no runtime errors, unintended downloads, AI/payment API calls or blank editor
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:05.8364712Z PASS webkit/1440 asset tray opens editable poster with linked palette and bounded keyboard positioning/rotation/scale
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:08.2215857Z PASS webkit/1440 Insert artwork embeds decoded 720×960 PNG directly in the same project without any download/re-upload
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:10.1264544Z PASS webkit/1440 one Undo removes only insertion; Redo restores exact image and editable artwork
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:11.0913328Z PASS webkit/1440 inserted decorative composition fits the mobile container without horizontal page overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:14.3087640Z PASS webkit/1440 reload/Continue preserves original image bytes, same project and editable artwork source
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:19.2583770Z PASS webkit/1440 actual Finish ZIP retains exact artwork image/source and opens independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:19.2608442Z PASS webkit/1440 no runtime errors, unintended downloads, AI/payment API calls or blank editor
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:23.1005624Z PASS webkit/390 asset tray opens editable poster with linked palette and bounded keyboard positioning/rotation/scale
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:23.6886085Z PASS webkit/390 Insert artwork embeds decoded 720×960 PNG directly in the same project without any download/re-upload
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:23.9654518Z PASS webkit/390 one Undo removes only insertion; Redo restores exact image and editable artwork
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:24.3813910Z PASS webkit/390 inserted decorative composition fits the mobile container without horizontal page overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:26.0052621Z PASS webkit/390 reload/Continue preserves original image bytes, same project and editable artwork source
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:28.2770273Z PASS webkit/390 actual Finish ZIP retains exact artwork image/source and opens independently
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:28.2792031Z PASS webkit/390 no runtime errors, unintended downloads, AI/payment API calls or blank editor
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:30.2360377Z PASS chromium/1440 collapsed Eidos performs no AI account/quote/provider request
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:30.3052075Z PASS chromium/1440 unavailable account/provider preview remains honestly gated with manual project intact
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:30.3835782Z PASS chromium/1440 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:30.4315413Z PASS chromium/1440 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:30.6357855Z PASS chromium/1440 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:31.0749399Z PASS chromium/1440 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:31.0750987Z PASS chromium/1440 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:31.1533628Z PASS chromium/1440 usable generation charges actual usage even when discarded and leaves manual project unchanged
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:31.6478595Z PASS chromium/1440 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:31.7866449Z PASS chromium/1440 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:32.7837295Z PASS chromium/1440 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:32.9634783Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:32.9635607Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:32.9636094Z false !== true
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:32.9639802Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:32.9641053Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-ai-ui.mjs:67:360
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:34.3401270Z PASS chromium/390 collapsed Eidos performs no AI account/quote/provider request
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:34.4164726Z PASS chromium/390 unavailable account/provider preview remains honestly gated with manual project intact
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:34.4989597Z PASS chromium/390 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:34.5424526Z PASS chromium/390 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:34.7847482Z PASS chromium/390 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:35.2519479Z PASS chromium/390 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:35.2521255Z PASS chromium/390 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:35.3348661Z PASS chromium/390 usable generation charges actual usage even when discarded and leaves manual project unchanged
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:35.8151620Z PASS chromium/390 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:35.9714146Z PASS chromium/390 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:36.9485626Z PASS chromium/390 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:37.5029074Z PASS chromium/390 selection and Brand changes retain the receipt but block stale confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:37.7841501Z PASS chromium/390 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:38.9001446Z PASS chromium/390 reload/Continue restores pending action status without resubmission or applying it to another revision
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:38.9633234Z PASS chromium/390 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:39.1786804Z PASS chromium/390 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:39.2505884Z PASS chromium/390 account changes clear the previous owner receipt and proposal without replacing local manual work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:39.3491744Z PASS chromium/390 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:39.4325999Z PASS chromium/390 a malformed monetary receipt cannot create a confirmation control or provider execution
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:39.4877924Z PASS chromium/390 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:42.0857971Z PASS firefox/1440 collapsed Eidos performs no AI account/quote/provider request
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:42.1556656Z PASS firefox/1440 unavailable account/provider preview remains honestly gated with manual project intact
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:42.2733997Z PASS firefox/1440 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:42.3735239Z PASS firefox/1440 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:42.5907549Z PASS firefox/1440 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:43.1696891Z PASS firefox/1440 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:43.1698410Z PASS firefox/1440 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:43.3056889Z PASS firefox/1440 usable generation charges actual usage even when discarded and leaves manual project unchanged
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:43.8898053Z PASS firefox/1440 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:44.1178240Z PASS firefox/1440 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:45.2134404Z PASS firefox/1440 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:45.9062958Z PASS firefox/1440 selection and Brand changes retain the receipt but block stale confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:46.2160684Z PASS firefox/1440 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:47.3754340Z PASS firefox/1440 reload/Continue restores pending action status without resubmission or applying it to another revision
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:47.4510354Z PASS firefox/1440 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:47.7438912Z PASS firefox/1440 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:47.8583818Z PASS firefox/1440 account changes clear the previous owner receipt and proposal without replacing local manual work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:47.9867652Z PASS firefox/1440 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:48.0777772Z PASS firefox/1440 a malformed monetary receipt cannot create a confirmation control or provider execution
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:48.1772481Z PASS firefox/1440 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:49.5284675Z PASS firefox/390 collapsed Eidos performs no AI account/quote/provider request
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:49.5885860Z PASS firefox/390 unavailable account/provider preview remains honestly gated with manual project intact
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:49.7069361Z PASS firefox/390 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:49.7946398Z PASS firefox/390 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:50.0247452Z PASS firefox/390 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:50.6027898Z PASS firefox/390 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:50.6029382Z PASS firefox/390 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:50.7356855Z PASS firefox/390 usable generation charges actual usage even when discarded and leaves manual project unchanged
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:51.3195927Z PASS firefox/390 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:51.5335263Z PASS firefox/390 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:52.5970168Z PASS firefox/390 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:53.4399204Z PASS firefox/390 selection and Brand changes retain the receipt but block stale confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:53.7333799Z PASS firefox/390 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:54.8959787Z PASS firefox/390 reload/Continue restores pending action status without resubmission or applying it to another revision
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:54.9702549Z PASS firefox/390 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:55.2684294Z PASS firefox/390 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:55.3711210Z PASS firefox/390 account changes clear the previous owner receipt and proposal without replacing local manual work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:55.5016355Z PASS firefox/390 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:55.5915448Z PASS firefox/390 a malformed monetary receipt cannot create a confirmation control or provider execution
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:55.6941225Z PASS firefox/390 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:59.3196316Z PASS webkit/1440 collapsed Eidos performs no AI account/quote/provider request
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:59.4368410Z PASS webkit/1440 unavailable account/provider preview remains honestly gated with manual project intact
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:57:59.8334224Z PASS webkit/1440 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:00.0324798Z PASS webkit/1440 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:00.7754455Z PASS webkit/1440 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:02.2758686Z PASS webkit/1440 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:02.2761719Z PASS webkit/1440 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:02.7856691Z PASS webkit/1440 usable generation charges actual usage even when discarded and leaves manual project unchanged
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:04.2155481Z PASS webkit/1440 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:04.7644167Z PASS webkit/1440 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:06.0480003Z PASS webkit/1440 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:06.5380306Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:06.5424653Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:06.5427358Z false !== true
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:06.5453054Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:06.5484573Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-ai-ui.mjs:67:360
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:09.1553908Z PASS webkit/390 collapsed Eidos performs no AI account/quote/provider request
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:09.2117369Z PASS webkit/390 unavailable account/provider preview remains honestly gated with manual project intact
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:09.3160006Z PASS webkit/390 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:09.3845619Z PASS webkit/390 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:09.5605762Z PASS webkit/390 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:10.4080488Z PASS webkit/390 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:10.4090306Z PASS webkit/390 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:10.4754500Z PASS webkit/390 usable generation charges actual usage even when discarded and leaves manual project unchanged
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:10.8933737Z PASS webkit/390 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:11.0242599Z PASS webkit/390 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:11.9756453Z PASS webkit/390 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:12.6531723Z PASS webkit/390 selection and Brand changes retain the receipt but block stale confirmation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:12.8843013Z PASS webkit/390 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:13.9716848Z PASS webkit/390 reload/Continue restores pending action status without resubmission or applying it to another revision
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:14.0240274Z PASS webkit/390 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:14.2147444Z PASS webkit/390 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:14.2949700Z PASS webkit/390 account changes clear the previous owner receipt and proposal without replacing local manual work
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:14.3938672Z PASS webkit/390 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:14.4595618Z PASS webkit/390 a malformed monetary receipt cannot create a confirmation control or provider execution
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:14.5224519Z PASS webkit/390 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+local-editor	Actual React editor acceptance in three engines and two widths	2026-10-15T18:58:15.6470568Z ##[error]Process completed with exit code 1.

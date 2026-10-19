@@ -27,6 +27,20 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: 'Signal House',
+    kind: 'Interactive case study · Original Eidos concept',
+    image: '/images/case-studies/signal-house.svg',
+    alt: 'Original vector scene of an imagined glass-fronted house over still water.',
+    href: '/work/signal-house',
+    action: 'Inspect the scene and its layers',
+    headline: 'Make the thinking part of the experience.',
+    description: 'One imagined place stays in view as visitors inspect imagery, light, interface, and assembly. Direct controls let people reveal the layers without losing the whole idea.',
+    build: ['React and TypeScript keep the chapter, light, and layer controls synchronized with one SVG scene.', 'Native range inputs and checkboxes offer keyboard and touch alternatives. Motion is optional and respects reduced motion.', 'Every chapter is prerendered with semantic headings. The full scene remains available without WebGL or animation.'],
+    application: 'A focused interactive example can help a visitor understand what is being built and choose a useful next step.',
+    disclosure: 'Original Eidos Works concept, including the vector artwork. No client engagement, private source material, or measured business outcome is claimed.',
+    color: 'teal'
+  },
+  {
     title: 'Holidays in Hollywood',
     kind: 'Theatrical storefront · Public reconstruction',
     image: holidaysImage,
@@ -165,6 +179,6 @@ export function DigitalExperiencesPage() {
 
     <section className="dx-translate" aria-labelledby="dx-translate-title"><div className="ew-shell dx-translate__inner"><div><p className="ew-eyebrow">Your work, made easier to experience</p><h2 id="dx-translate-title">What should your customers be able to understand or do?</h2><p>A school store, an event, a service business, and a product launch need different paths. Choose a starting point to see the kind of question we would tackle first.</p></div><div className="dx-translate__tool"><div className="dx-translate__choices" aria-label="Choose a customer goal">{startingPoints.map((point, index) => <button type="button" key={point.label} aria-pressed={index === startingPoint} onClick={() => setStartingPoint(index)}>{point.label}</button>)}</div><div className="dx-translate__result" aria-live="polite"><span>First question / {selectedPath.project}</span><h3>{selectedPath.title}</h3><p>{selectedPath.body}</p><a href="/friction-review">Show us your customer path ↗</a></div></div></div></section>
 
-    <section className="dx-process ew-shell" aria-labelledby="dx-process-title"><div><p className="ew-eyebrow">From idea to working experience</p><h2 id="dx-process-title">The build starts with the moment that matters.</h2></div><ol><li><span>01</span><h3>Understand the path</h3><p>Look at who arrives, what they know, where they hesitate, and the decision they need to make next.</p></li><li><span>02</span><h3>Shape the experience</h3><p>Map the content, navigation, and key interactions. Let the visual direction grow from the product and audience.</p></li><li><span>03</span><h3>Build within reality</h3><p>Work with the platform and workflow already in place when that is the right fit. Keep responsive behavior and accessible controls part of the design.</p></li><li><span>04</span><h3>Test the journey</h3><p>Check the essential path across screens and with reduced motion or advanced graphics unavailable.</p></li></ol></section>
+    <section className="dx-process ew-shell" aria-labelledby="dx-process-title"><div><p className="ew-eyebrow">From idea to working experience</p><h2 id="dx-process-title">The build starts with the moment that matters.</h2><p>Prefer a defined starting point? <a href="/shop">Explore the original website template collection →</a></p></div><ol><li><span>01</span><h3>Understand the path</h3><p>Look at who arrives, what they know, where they hesitate, and the decision they need to make next.</p></li><li><span>02</span><h3>Shape the experience</h3><p>Map the content, navigation, and key interactions. Let the visual direction grow from the product and audience.</p></li><li><span>03</span><h3>Build within reality</h3><p>Work with the platform and workflow already in place when that is the right fit. Keep responsive behavior and accessible controls part of the design.</p></li><li><span>04</span><h3>Test the journey</h3><p>Check the essential path across screens and with reduced motion or advanced graphics unavailable.</p></li></ol></section>
   </div>;
 }

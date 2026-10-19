@@ -1,0 +1,108 @@
+{
+  "timestamp_utc": "2026-10-14T01:01:45.798Z",
+  "deployment": {
+    "timestamp": "2026-10-14T00:58:17.452Z",
+    "project": "eidosworks-showcase-20261013",
+    "branch": "codex/showcase-20261013",
+    "siteSha": "24b7a985b186f81901df78d8e41a531ec5b8579c",
+    "previewUrl": "https://54d4e19d.eidosworks-showcase-20261013.pages.dev",
+    "alias": "https://eidosworks-showcase-20261013.pages.dev",
+    "backendUrl": "https://eidos-sentinel-rkhg0orv8-1brentbm-1876s-projects.vercel.app",
+    "backendSha": "3ebbc4d0e4cfd9b72947b097366e8b1b6fe8b573",
+    "backendDeployment": "dpl_HJnTcwVPPwj77qebkGZiCoXM9z5L",
+    "database": "existing isolated EIDOS_TEMPLATES_TEST validation database",
+    "modes": {
+      "accounts": "disabled",
+      "ai": "disabled",
+      "commerce": "disabled",
+      "openaiMailPaymentKeys": "not provisioned on this branch",
+      "studioCloud": "local-only; HTTP409 before legacy validation"
+    },
+    "canonicalBefore": "5ddd3dd8-9cb2-489b-8ea7-bd7320a0f74c",
+    "canonicalAfter": "5ddd3dd8-9cb2-489b-8ea7-bd7320a0f74c"
+  },
+  "checks": [
+    {
+      "route": "/playground",
+      "url": "https://eidosworks-showcase-20261013.pages.dev/playground/",
+      "status": 200,
+      "correctPrerender": true,
+      "noindex": true
+    },
+    {
+      "route": "/shop/configure?family=matter",
+      "url": "https://eidosworks-showcase-20261013.pages.dev/shop/configure/?family=matter",
+      "status": 200,
+      "correctPrerender": true,
+      "noindex": true
+    },
+    {
+      "route": "/work/signal-house",
+      "url": "https://eidosworks-showcase-20261013.pages.dev/work/signal-house/",
+      "status": 200,
+      "correctPrerender": true,
+      "noindex": true
+    },
+    {
+      "route": "/api/public-config",
+      "status": 200,
+      "accountsReady": false,
+      "aiReady": false,
+      "shopReady": false
+    },
+    {
+      "route": "/api/playground/projects",
+      "schemaVersion": 5,
+      "hasStudios": false,
+      "status": 409,
+      "localBackupNotice": true
+    },
+    {
+      "route": "/api/playground/projects",
+      "schemaVersion": 1,
+      "hasStudios": true,
+      "status": 409,
+      "localBackupNotice": true
+    },
+    {
+      "route": "/api/playground/projects",
+      "schemaVersion": 99,
+      "hasStudios": false,
+      "status": 409,
+      "localBackupNotice": true
+    },
+    {
+      "route": "/work/signal-house",
+      "environment": "Chromium 390px, JavaScript disabled",
+      "semanticStoryAndScene": true,
+      "finalAction": true
+    }
+  ],
+  "compiledAssetHashes": [
+    {
+      "asset": "/assets/index-BPVcatGN.css",
+      "sha256": "8041b7dbe8a841c00931f49168b1f0208e53cb87720b88828716bdc70aa3a06a"
+    },
+    {
+      "asset": "/assets/index-C253bwcd.js",
+      "sha256": "833e9c98258fb4db7f70fe4daf6971a664b280e4c7274c415065d3bd510ddd81"
+    },
+    {
+      "asset": "/assets/react-vendor-P0Lkgw2L.js",
+      "sha256": "d7915cfac74caf83c2fe234696e3f0d9fcb989ca3ff720203e895e1e1a144be6"
+    },
+    {
+      "asset": "/assets/rolldown-runtime-D9-fqq9M.js",
+      "sha256": "a2b9cf4b963756dc2cae1ebdd1c0e51ef5780dd5bf64a55b90e21679c2b2434f"
+    }
+  ],
+  "measurement": {
+    "navigationToStudioVisibleMs": 1441,
+    "domContentLoadedMs": 476.59999999403954,
+    "responseEndMs": 253.19999998807907,
+    "context": "One Windows Chromium headless navigation at1440x1000, GPU disabled, reduced motion. Network/machine dependent observation, not a performance benchmark."
+  },
+  "sourceIdentity": "Wrangler commit-hash and immutable Pages deployment receipt; alias and immutable compiled assets read back with equal SHA256",
+  "providerAcceptance": "Disabled-provider facts and local-format rejection verified; account/AI/paid functionality remains held",
+  "physicalDevice": false
+}

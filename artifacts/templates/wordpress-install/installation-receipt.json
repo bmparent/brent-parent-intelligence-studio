@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "timestamp_utc": "2026-10-11T00:35:55.028402+00:00",
+  "status": "blocked",
+  "command": "<temporary-node24.18> --experimental-wasm-jspi scripts/verify-template-wordpress.mjs --tools=<temporary-tools-dir>",
+  "runtime": {
+    "node": "v24.18.0",
+    "playground_cli": "3.1.57",
+    "requested_wordpress": "7.1",
+    "downloaded_wordpress": "7.1.3",
+    "observed_running_wordpress": null,
+    "requested_php": "8.3",
+    "observed_running_php": null,
+    "database": "SQLite intended, not booted",
+    "execution": "PHP WebAssembly / WordPress Playground",
+    "wasm_jspi": true,
+    "workers": 6
+  },
+  "reason": "Clean Playground startup unresolved. Supported temporary Node24.18.0 with explicit WASM JSPI/six workers failed both on C: scratch and on new E: scratch; E: startup timed out at180240ms before installation. No running WordPress/PHP version or theme acceptance established.",
+  "limitations": [
+    "No theme installed or activated.",
+    "No actual native block edit/publish or main action tested in WordPress.",
+    "No visual Site Editor, PHP/MySQL host, or WordPress.com acceptance.",
+    "Downloaded release metadata does not prove running runtime."
+  ],
+  "themes": [
+    {
+      "product": "switchboard",
+      "edition": "switchboard-wordpress-v1",
+      "archive": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "archive_sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+      "archive_bytes": 29391,
+      "status": "blocked",
+      "checks": {
+        "zip_install_and_activation": "not_run",
+        "native_block_text_image_api_edit_and_publish": "not_run",
+        "published_text_image_and_main_action": "not_run",
+        "visual_site_editor_edit": "not_run",
+        "native_host_mysql": "not_run"
+      },
+      "reason": "Clean Playground startup unresolved. Supported temporary Node24.18.0 with explicit WASM JSPI/six workers failed both on C: scratch and on new E: scratch; E: startup timed out at180240ms before installation. No running WordPress/PHP version or theme acceptance established.",
+      "archive_hash_scope": "Current final candidate target bytes; hash does not constitute an installation pass."
+    },
+    {
+      "product": "tideglass",
+      "edition": "tideglass-wordpress-v1",
+      "archive": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "archive_sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+      "archive_bytes": 30016,
+      "status": "not_run",
+      "checks": {
+        "zip_install_and_activation": "not_run",
+        "native_block_text_image_api_edit_and_publish": "not_run",
+        "published_text_image_and_main_action": "not_run",
+        "visual_site_editor_edit": "not_run",
+        "native_host_mysql": "not_run"
+      },
+      "reason": "Shared runtime startup failed; identical additional theme retries not run.",
+      "archive_hash_scope": "Current final candidate target bytes; hash does not constitute an installation pass."
+    },
+    {
+      "product": "matter",
+      "edition": "matter-wordpress-v1",
+      "archive": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "archive_sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+      "archive_bytes": 30739,
+      "status": "not_run",
+      "checks": {
+        "zip_install_and_activation": "not_run",
+        "native_block_text_image_api_edit_and_publish": "not_run",
+        "published_text_image_and_main_action": "not_run",
+        "visual_site_editor_edit": "not_run",
+        "native_host_mysql": "not_run"
+      },
+      "reason": "Shared runtime startup failed; identical additional theme retries not run.",
+      "archive_hash_scope": "Current final candidate target bytes; hash does not constitute an installation pass."
+    },
+    {
+      "product": "nightjar",
+      "edition": "nightjar-wordpress-v1",
+      "archive": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "archive_sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+      "archive_bytes": 29728,
+      "status": "not_run",
+      "checks": {
+        "zip_install_and_activation": "not_run",
+        "native_block_text_image_api_edit_and_publish": "not_run",
+        "published_text_image_and_main_action": "not_run",
+        "visual_site_editor_edit": "not_run",
+        "native_host_mysql": "not_run"
+      },
+      "reason": "Shared runtime startup failed; identical additional theme retries not run.",
+      "archive_hash_scope": "Current final candidate target bytes; hash does not constitute an installation pass."
+    }
+  ],
+  "external_attempt_receipt": "artifacts/templates/wordpress-install-external/installation-receipt.json"
+}

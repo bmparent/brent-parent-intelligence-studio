@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "kind": "eidos-local-page-package",
+  "snapshotHash": "98e7b3ff1e8be3a45d447e39a2cb98aff9070b8ace64441ca92896f55bb8de0d",
+  "projectHash": "56c45c303984a878b8bbba889922dc69e43182f2ba2a87df50006e73f9d54b70",
+  "documentId": "server-document-one",
+  "revision": 7,
+  "pageId": "page-main",
+  "rendererVersion": "eidos-original-glass-2.0.0",
+  "output": "eidos-local-page-package-v1",
+  "platform": "developer",
+  "parent": {
+    "family": "switchboard",
+    "editionId": "switchboard-developer-v1",
+    "version": "1.0.3",
+    "sha256": "e956fc2aad4f76ed0ff2c9aff71cdd6cfc202b0701da71c9bf9604e5264b00d5",
+    "bytes": 28560,
+    "catalogVersion": "2026-10-10.1",
+    "status": "candidate; sales unavailable",
+    "productId": "switchboard",
+    "platform": "developer",
+    "license": {
+      "id": "eidos-commercial-developer-1.0",
+      "path": "products/templates/switchboard/developer/LICENSE.txt",
+      "grant": "not-verified"
+    }
+  },
+  "entitlement": "not-verified",
+  "checkout": "disabled",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 7251,
+      "sha256": "5c0f688e3699c675289d39f78d56bc716722a2c1f2981716b6948e3f89e91a10"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 14814,
+      "sha256": "56e5611ce60efec56b53e4aa79503758c79c3d8d39d605ba2401b1cbd01ae5dc"
+    },
+    {
+      "path": "tokens.css",
+      "bytes": 231,
+      "sha256": "32427cb149bd8fc06d1569b20240ec21fdfc8db98c4148d2bbcbf9eb216eb4df"
+    },
+    {
+      "path": "script.js",
+      "bytes": 20813,
+      "sha256": "b9198e45b85fcb7e2302d648b81eb0b6e3922bde14797b3a241695c03527334e"
+    },
+    {
+      "path": "project.json",
+      "bytes": 6204,
+      "sha256": "266eaa9396c377b3142d7a6cf0cb9932166673fc9a919d2e14a53b7fbf64c1e0"
+    },
+    {
+      "path": "approved-glass-preset.json",
+      "bytes": 1349,
+      "sha256": "8ee150f9aa0a86df116c28d02579972dd330a6f464ef886eda25bafc072225f4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1589,
+      "sha256": "7e37ab73c8333423d07c57c26bad571f084f7ee63c59d18996ce16489ddf86c7"
+    },
+    {
+      "path": "AI-HANDOFF.md",
+      "bytes": 1041,
+      "sha256": "fff2eac10a8b25a8415a3e71d6b140dc99e6b903716dac2855f017f06a95a64e"
+    },
+    {
+      "path": "SNAPSHOT.json",
+      "bytes": 7565,
+      "sha256": "f134e20632e4d16ac99c8050a4d0326e70a473e6bee841bc73c0b3dfa2b59cc8"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 1674,
+      "sha256": "389a1d3e6cc7c77099f93331c0b2ea48a921c8862912884077fa3519ef68d96f"
+    }
+  ]
+}

@@ -1,0 +1,1268 @@
+{
+  "schemaVersion": 1,
+  "corpusId": "playground-scoped-public-v1-2026-10-14",
+  "purpose": "Model comparison over bounded edits of existing public starters; no full-site generation or human acceptance asserted.",
+  "dataPolicy": "Fictional public starter briefs only. No customer uploads, secrets, private content, real provider output or purchase artifacts.",
+  "aggregateTestBudgetUsd": 5,
+  "maxOperationsPerProposal": 6,
+  "contextLimitBytes": 48000,
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "resultState": "not_run",
+  "cases": [
+    {
+      "id": "initial-service-page",
+      "category": "initial_design",
+      "brief": {
+        "starter": "switchboard",
+        "goal": "business",
+        "action": "contact",
+        "name": "Harbor Workshop"
+      },
+      "target": {
+        "scope": "page",
+        "sectionId": "hero",
+        "node": null
+      },
+      "prompt": "Shape this public service-business starter for Harbor Workshop, a home-repair planning service. Make the hero specific and welcoming, use a modern font and a calm navy palette with a warm accent. Keep the existing sections and contact destination. Do not invent prices, credentials, reviews or connected services.",
+      "manualEdits": [],
+      "allowedFields": [
+        "section.title",
+        "section.description",
+        "section.cta",
+        "tokens.foreground",
+        "tokens.accent",
+        "tokens.font"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "section.title",
+            "value": "A clear plan for\nyour home repairs."
+          },
+          {
+            "field": "section.description",
+            "value": "Harbor Workshop helps you plan the next steps for everyday home repairs. Start with a conversation about your project."
+          },
+          {
+            "field": "section.cta",
+            "value": "Discuss your project"
+          },
+          {
+            "field": "tokens.foreground",
+            "value": "#17324d"
+          },
+          {
+            "field": "tokens.accent",
+            "value": "#d99c43"
+          },
+          {
+            "field": "tokens.font",
+            "value": "modern"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Hero identifies home-repair planning and a conversation as the next step.",
+          "No invented credentials, price, guarantee or testimonial."
+        ],
+        "renderedMobile": [
+          "Headline and CTA are legible at 1440 and 390 CSS pixels.",
+          "Keep readable foreground/accent contrast and no horizontal overflow."
+        ],
+        "preservation": [
+          "Section order, links, artwork, glass settings and all non-hero copy remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "initial-retreat-offer",
+      "category": "initial_design",
+      "brief": {
+        "starter": "tideglass",
+        "goal": "landing",
+        "action": "contact",
+        "name": "Quiet Coast"
+      },
+      "target": {
+        "scope": "page",
+        "sectionId": "hero",
+        "node": null
+      },
+      "prompt": "Adapt the public Quiet Coast landing starter for a fictional guided coastal day retreat. Make the selected hero inviting and concrete with one enquiry action. Use restrained editorial type and generous spacing. Keep #contact. Do not claim accommodation, booking, dates, price or availability are connected or verified.",
+      "manualEdits": [],
+      "allowedFields": [
+        "section.title",
+        "section.description",
+        "section.cta",
+        "tokens.font",
+        "tokens.spacing",
+        "tokens.typeScale"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "section.title",
+            "value": "A day to slow down\nby the coast."
+          },
+          {
+            "field": "section.description",
+            "value": "A guided coastal day retreat with space to walk, reflect and reconnect. Ask about the experience before making plans."
+          },
+          {
+            "field": "section.cta",
+            "value": "Ask about the retreat"
+          },
+          {
+            "field": "tokens.font",
+            "value": "editorial"
+          },
+          {
+            "field": "tokens.spacing",
+            "value": "88"
+          },
+          {
+            "field": "tokens.typeScale",
+            "value": "1.05"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Hero describes a day retreat and uses an enquiry action.",
+          "No invented dates, price, accommodation or confirmed booking."
+        ],
+        "renderedMobile": [
+          "Centered text remains readable at 1440 and 390 CSS pixels.",
+          "CTA stays visible without truncation."
+        ],
+        "preservation": [
+          "Keep existing sections, #contact links, brand name, palette and image settings."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "initial-creative-portfolio",
+      "category": "initial_design",
+      "brief": {
+        "starter": "matter",
+        "goal": "portfolio",
+        "action": "contact",
+        "name": "Field Studio"
+      },
+      "target": {
+        "scope": "page",
+        "sectionId": "hero",
+        "node": null
+      },
+      "prompt": "Shape the selected hero of this public Field Studio portfolio starter for a fictional independent ceramic design practice. Give it a short editorial introduction and a conversation action. Use a warm neutral background and dark brown copy. Preserve the project order, original illustration and all project/about text.",
+      "manualEdits": [],
+      "allowedFields": [
+        "section.title",
+        "section.description",
+        "section.cta",
+        "tokens.background",
+        "tokens.foreground",
+        "tokens.font"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "section.title",
+            "value": "Clay, form,\nand everyday rituals."
+          },
+          {
+            "field": "section.description",
+            "value": "Field Studio is an independent ceramic design practice exploring useful objects and considered forms."
+          },
+          {
+            "field": "section.cta",
+            "value": "Start a studio conversation"
+          },
+          {
+            "field": "tokens.background",
+            "value": "#f1e9dd"
+          },
+          {
+            "field": "tokens.foreground",
+            "value": "#392d25"
+          },
+          {
+            "field": "tokens.font",
+            "value": "editorial"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Selected hero clearly identifies a ceramic design practice.",
+          "Avoid invented commissions, clients, awards or endorsements."
+        ],
+        "renderedMobile": [
+          "Editorial hierarchy stays clear on desktop and mobile.",
+          "Text and CTA remain readable on the neutral background."
+        ],
+        "preservation": [
+          "Keep work/about sections, original illustration, navigation, links and section order unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "brand-service-palette",
+      "category": "brand_application",
+      "brief": {
+        "starter": "switchboard",
+        "goal": "business",
+        "action": "contact",
+        "name": "Harbor Workshop"
+      },
+      "target": {
+        "scope": "brand",
+        "sectionId": "hero",
+        "node": null
+      },
+      "prompt": "Apply a shared palette for Harbor Workshop: light warm background #f8f4ec, dark navy foreground #17324d and muted amber accent #b87920. Use modern type and a clear, practical brand tone. Keep all content, layout, business name and links.",
+      "manualEdits": [],
+      "allowedFields": [
+        "tokens.background",
+        "tokens.foreground",
+        "tokens.accent",
+        "tokens.font",
+        "brand.tone"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "tokens.background",
+            "value": "#f8f4ec"
+          },
+          {
+            "field": "tokens.foreground",
+            "value": "#17324d"
+          },
+          {
+            "field": "tokens.accent",
+            "value": "#b87920"
+          },
+          {
+            "field": "tokens.font",
+            "value": "modern"
+          },
+          {
+            "field": "brand.tone",
+            "value": "Clear, practical and welcoming."
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Apply the requested shared color values and font.",
+          "Brand tone is concise and practical."
+        ],
+        "renderedMobile": [
+          "Review text/button contrast in desktop and mobile screenshots.",
+          "No layout shift or clipped copy from the font change."
+        ],
+        "preservation": [
+          "Business name, all section/node copy, links, geometry, artwork and glass settings remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "brand-retreat-name-tone",
+      "category": "brand_application",
+      "brief": {
+        "starter": "tideglass",
+        "goal": "landing",
+        "action": "contact",
+        "name": "Quiet Coast"
+      },
+      "target": {
+        "scope": "brand",
+        "sectionId": "header",
+        "node": null
+      },
+      "prompt": "Rename this fictional retreat business to Stillwater Days and set the shared brand tone to warm, grounded and unhurried. Keep its existing palette, editorial font, hero wording, links and layout. Update the header and footer name consistently.",
+      "manualEdits": [],
+      "allowedFields": [
+        "brand.businessName",
+        "brand.tone"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "brand.businessName",
+            "value": "Stillwater Days"
+          },
+          {
+            "field": "brand.tone",
+            "value": "Warm, grounded and unhurried."
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Business name is Stillwater Days in the shared brand, header and footer.",
+          "Tone reflects the requested qualities."
+        ],
+        "renderedMobile": [
+          "Header/footer name remains legible at 1440 and 390 CSS pixels.",
+          "No navigation collision on mobile."
+        ],
+        "preservation": [
+          "Hero wording, palette, font, links, layout, images and section order remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "brand-portfolio-type",
+      "category": "brand_application",
+      "brief": {
+        "starter": "matter",
+        "goal": "portfolio",
+        "action": "contact",
+        "name": "Field Studio"
+      },
+      "target": {
+        "scope": "brand",
+        "sectionId": "hero",
+        "node": null
+      },
+      "prompt": "Give Field Studio a restrained modern shared type treatment. Set modern type, type scale 0.95 and section spacing 96. Keep its colors, all copy, images, links and block geometry.",
+      "manualEdits": [],
+      "allowedFields": [
+        "tokens.font",
+        "tokens.typeScale",
+        "tokens.spacing"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "tokens.font",
+            "value": "modern"
+          },
+          {
+            "field": "tokens.typeScale",
+            "value": "0.95"
+          },
+          {
+            "field": "tokens.spacing",
+            "value": "96"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Set the three requested shared typography/spacing values exactly."
+        ],
+        "renderedMobile": [
+          "Review hierarchy and whitespace across visible sections at 1440 and 390 CSS pixels.",
+          "No clipped text or horizontal overflow."
+        ],
+        "preservation": [
+          "Colors, brand name/tone, copy, images, links, per-block geometry and section order remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "copy-service-headline",
+      "category": "copy_refinement",
+      "brief": {
+        "starter": "switchboard",
+        "goal": "business",
+        "action": "contact",
+        "name": "Harbor Workshop"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "heading",
+          "name": "Headline"
+        }
+      },
+      "prompt": "Rewrite only the selected headline for a home-repair planning service. Use no more than eight words, plain language and no guarantees. Keep every other element and all styling exactly as they are.",
+      "manualEdits": [],
+      "allowedFields": [
+        "node.text"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.text",
+            "value": "A clearer plan for your home."
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Selected headline has at most eight words and mentions home/planning clearly.",
+          "No guarantee, sales superlative or extra claim."
+        ],
+        "renderedMobile": [
+          "Headline wraps cleanly at 1440 and 390 CSS pixels."
+        ],
+        "preservation": [
+          "Every other node, section field, token, link and asset remains unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "copy-retreat-introduction",
+      "category": "copy_refinement",
+      "brief": {
+        "starter": "tideglass",
+        "goal": "landing",
+        "action": "contact",
+        "name": "Quiet Coast"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "text",
+          "name": "Introduction"
+        }
+      },
+      "prompt": "Rewrite only the selected introduction in at most 30 words. Explain that Quiet Coast offers a guided coastal day retreat with walking and reflection. End with an invitation to enquire. Do not add dates, price, health outcomes or booking claims.",
+      "manualEdits": [],
+      "allowedFields": [
+        "node.text"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.text",
+            "value": "A guided coastal day retreat with time to walk and reflect. Enquire to learn about the experience."
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Introduction is at most 30 words and covers guided coastal walking/reflection.",
+          "No dates, price, health outcomes or booking claims."
+        ],
+        "renderedMobile": [
+          "Paragraph is readable at 1440 and 390 CSS pixels without overlap."
+        ],
+        "preservation": [
+          "Headline, CTA, links, layout, palette, images and other sections remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "copy-portfolio-action",
+      "category": "copy_refinement",
+      "brief": {
+        "starter": "matter",
+        "goal": "portfolio",
+        "action": "contact",
+        "name": "Field Studio"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "button",
+          "name": "Primary action"
+        }
+      },
+      "prompt": "Shorten only the selected button label to a clear invitation to discuss a creative project, at most four words. Keep its #contact link and all other content and styling.",
+      "manualEdits": [],
+      "allowedFields": [
+        "node.text"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.text",
+            "value": "Discuss a project"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Button label is at most four words and invites project discussion."
+        ],
+        "renderedMobile": [
+          "Button label fits at 1440 and 390 CSS pixels and keeps a useful focus target."
+        ],
+        "preservation": [
+          "Button href stays #contact; all other node fields, sections, tokens and assets stay unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "copy-contact-boundary",
+      "category": "copy_refinement",
+      "brief": {
+        "starter": "switchboard",
+        "goal": "business",
+        "action": "contact",
+        "name": "Harbor Workshop"
+      },
+      "target": {
+        "scope": "section",
+        "sectionId": "contact",
+        "node": null
+      },
+      "prompt": "Rewrite only the contact section description and button copy. Explain in plain language that the owner must add an email or phone destination and that no contact form is connected. Use the button label Add contact details. Keep the title, # placeholder link, layout and every other section.",
+      "manualEdits": [],
+      "allowedFields": [
+        "section.description",
+        "section.cta"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "section.description",
+            "value": "Add your own email or phone destination before publishing. No contact form is connected to this page."
+          },
+          {
+            "field": "section.cta",
+            "value": "Add contact details"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Description states both required owner destination and absent form connection.",
+          "CTA is Add contact details."
+        ],
+        "renderedMobile": [
+          "Contact copy and button remain readable on desktop/mobile."
+        ],
+        "preservation": [
+          "Title, # href, layout, other sections, tokens, artwork and glass settings remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "section-services-spacing",
+      "category": "section_redesign",
+      "brief": {
+        "starter": "switchboard",
+        "goal": "business",
+        "action": "contact",
+        "name": "Harbor Workshop"
+      },
+      "target": {
+        "scope": "section",
+        "sectionId": "services",
+        "node": null
+      },
+      "prompt": "Refine only this services section. Keep its three existing service promises unchanged. Rename its heading What working together looks like, left-align it and set section spacing to 88. Keep every other section and all shared styling.",
+      "manualEdits": [],
+      "allowedFields": [
+        "section.title",
+        "section.align",
+        "section.spacing"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "section.title",
+            "value": "What working together looks like"
+          },
+          {
+            "field": "section.align",
+            "value": "left"
+          },
+          {
+            "field": "section.spacing",
+            "value": "88"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Apply the requested title, alignment and spacing.",
+          "Keep all three existing service promises verbatim."
+        ],
+        "renderedMobile": [
+          "Section remains easy to scan at 1440 and 390 CSS pixels.",
+          "Spacing does not create overlap with neighbors."
+        ],
+        "preservation": [
+          "Description, links, other sections, shared tokens, images and glass settings remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "section-portfolio-work",
+      "category": "section_redesign",
+      "brief": {
+        "starter": "matter",
+        "goal": "portfolio",
+        "action": "contact",
+        "name": "Field Studio"
+      },
+      "target": {
+        "scope": "section",
+        "sectionId": "work",
+        "node": null
+      },
+      "prompt": "Refine only the Work section of Field Studio. Give it a concise heading and a two-sentence description about useful ceramic objects and considered everyday forms. Center-align it and set spacing 80. Do not invent clients, awards, dates or credentials.",
+      "manualEdits": [],
+      "allowedFields": [
+        "section.title",
+        "section.description",
+        "section.align",
+        "section.spacing"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "section.title",
+            "value": "Useful objects. Considered forms."
+          },
+          {
+            "field": "section.description",
+            "value": "Field Studio explores ceramic objects with care for form and everyday use. These studies consider how useful objects fit into ordinary rituals."
+          },
+          {
+            "field": "section.align",
+            "value": "center"
+          },
+          {
+            "field": "section.spacing",
+            "value": "80"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Work description has two sentences on useful ceramic objects and everyday forms.",
+          "No invented clients, awards, dates or credentials."
+        ],
+        "renderedMobile": [
+          "Centered section has a readable measure at 1440 and 390 CSS pixels."
+        ],
+        "preservation": [
+          "Other sections, navigation, links, palette, font, artwork and block geometry remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "section-hero-copy-refresh",
+      "category": "section_redesign",
+      "brief": {
+        "starter": "tideglass",
+        "goal": "landing",
+        "action": "contact",
+        "name": "Quiet Coast"
+      },
+      "target": {
+        "scope": "section",
+        "sectionId": "hero",
+        "node": null
+      },
+      "prompt": "Refine only the selected Quiet Coast hero copy into one calm invitation. Use the headline Make space for a slower day., one short introduction about a guided coastal day retreat, and CTA Ask a question. Keep all block geometry, image crop, shared styling and links.",
+      "manualEdits": [],
+      "allowedFields": [
+        "section.title",
+        "section.description",
+        "section.cta"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "section.title",
+            "value": "Make space for a slower day."
+          },
+          {
+            "field": "section.description",
+            "value": "A guided coastal day retreat with space to walk, reflect and reconnect."
+          },
+          {
+            "field": "section.cta",
+            "value": "Ask a question"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Use the requested headline and CTA, with a concise relevant introduction."
+        ],
+        "renderedMobile": [
+          "Linked section fields and rendered responsive blocks show the same new copy.",
+          "Headline, paragraph and button remain readable at 1440 and 390 CSS pixels."
+        ],
+        "preservation": [
+          "Authoring IDs/structure, geometry, crop, palette, font, links and other sections remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "responsive-service-container",
+      "category": "responsive_repair",
+      "brief": {
+        "starter": "switchboard",
+        "goal": "business",
+        "action": "contact",
+        "name": "Harbor Workshop"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "columns",
+          "name": "Introduction and image"
+        }
+      },
+      "prompt": "Repair only the selected container mobile settings. At narrow widths stack the introduction and image and use mobile gap 20. Keep desktop split, desktop gap, all child content, image crop, links and shared styling.",
+      "manualEdits": [
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "columns",
+              "name": "Introduction and image"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.mobile.layout",
+                "value": "row"
+              },
+              {
+                "field": "node.mobile.gap",
+                "value": "80"
+              }
+            ]
+          }
+        }
+      ],
+      "allowedFields": [
+        "node.mobile.layout",
+        "node.mobile.gap"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.mobile.layout",
+            "value": "stack"
+          },
+          {
+            "field": "node.mobile.gap",
+            "value": "20"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Set only mobile layout stack and mobile gap 20."
+        ],
+        "renderedMobile": [
+          "At390 CSS pixels introduction and image stack without horizontal overflow.",
+          "At1440 CSS pixels original split/gap remain intact."
+        ],
+        "preservation": [
+          "Desktop geometry, children, image settings, content, links, tokens and other sections remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "responsive-portfolio-image",
+      "category": "responsive_repair",
+      "brief": {
+        "starter": "matter",
+        "goal": "portfolio",
+        "action": "contact",
+        "name": "Field Studio"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "image",
+          "name": "Hero image"
+        }
+      },
+      "prompt": "Repair only the selected image mobile sizing: full width 100 and height 300. Keep its desktop width/height, crop, alt text, artwork and the rest of the page.",
+      "manualEdits": [
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "image",
+              "name": "Hero image"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.mobile.width",
+                "value": "45"
+              },
+              {
+                "field": "node.mobile.height",
+                "value": "900"
+              }
+            ]
+          }
+        }
+      ],
+      "allowedFields": [
+        "node.mobile.width",
+        "node.mobile.height"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.mobile.width",
+            "value": "100"
+          },
+          {
+            "field": "node.mobile.height",
+            "value": "300"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Set mobile width 100 and height 300 only."
+        ],
+        "renderedMobile": [
+          "At390 CSS pixels image stays inside its container with no overflow.",
+          "At1440 CSS pixels desktop image geometry remains unchanged."
+        ],
+        "preservation": [
+          "Desktop dimensions, crop/media, alt, image bytes, sibling content, tokens and other sections remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "responsive-retreat-gap",
+      "category": "responsive_repair",
+      "brief": {
+        "starter": "tideglass",
+        "goal": "landing",
+        "action": "contact",
+        "name": "Quiet Coast"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "stack",
+          "name": "Offer introduction"
+        }
+      },
+      "prompt": "Reduce only the selected offer container mobile gap to 18 and keep its mobile layout stacked. Keep desktop gap, alignment, content, image settings and shared styling.",
+      "manualEdits": [
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "stack",
+              "name": "Offer introduction"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.mobile.gap",
+                "value": "90"
+              },
+              {
+                "field": "node.mobile.layout",
+                "value": "row"
+              }
+            ]
+          }
+        }
+      ],
+      "allowedFields": [
+        "node.mobile.gap",
+        "node.mobile.layout"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.mobile.gap",
+            "value": "18"
+          },
+          {
+            "field": "node.mobile.layout",
+            "value": "stack"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Set mobile gap 18 and mobile layout stack only."
+        ],
+        "renderedMobile": [
+          "At390 CSS pixels vertical spacing is compact without touching/overlapping elements.",
+          "At1440 CSS pixels original gap and alignment remain intact."
+        ],
+        "preservation": [
+          "Desktop geometry, every child, image settings, links, palette, font and other sections remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "responsive-service-cta",
+      "category": "responsive_repair",
+      "brief": {
+        "starter": "switchboard",
+        "goal": "business",
+        "action": "contact",
+        "name": "Harbor Workshop"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "button",
+          "name": "Primary action"
+        }
+      },
+      "prompt": "Set only the selected primary button mobile width to 100 and mobile alignment to left. Preserve its desktop width/alignment, my label and #contact destination, all sibling elements and the rest of the page.",
+      "manualEdits": [
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "button",
+              "name": "Primary action"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.text",
+                "value": "Talk through your project"
+              },
+              {
+                "field": "node.mobile.width",
+                "value": "35"
+              },
+              {
+                "field": "node.mobile.align",
+                "value": "right"
+              }
+            ]
+          }
+        }
+      ],
+      "allowedFields": [
+        "node.mobile.width",
+        "node.mobile.align"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.mobile.width",
+            "value": "100"
+          },
+          {
+            "field": "node.mobile.align",
+            "value": "left"
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Set only mobile width 100 and mobile alignment left."
+        ],
+        "renderedMobile": [
+          "At390 CSS pixels the button fits its container and its label stays readable.",
+          "At1440 CSS pixels desktop button geometry remains unchanged."
+        ],
+        "preservation": [
+          "Button label/href, desktop geometry, siblings, shared styling, images and other sections remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "preserve-manual-headline",
+      "category": "manual_work_preservation",
+      "brief": {
+        "starter": "switchboard",
+        "goal": "business",
+        "action": "contact",
+        "name": "Harbor Workshop"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "text",
+          "name": "Introduction"
+        }
+      },
+      "prompt": "Shorten only the selected introduction to at most 20 words about practical home-repair planning. Keep my manually written headline exactly, including punctuation. Keep the custom button label, image settings, all geometry, brand and other sections.",
+      "manualEdits": [
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "heading",
+              "name": "Headline"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.text",
+                "value": "Plan it once. Build it well."
+              }
+            ]
+          }
+        },
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "button",
+              "name": "Primary action"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.text",
+                "value": "Let’s talk through it"
+              }
+            ]
+          }
+        }
+      ],
+      "allowedFields": [
+        "node.text"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.text",
+            "value": "Practical home-repair planning starts with a clear conversation about your project."
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Selected introduction is at most 20 words and describes home-repair planning."
+        ],
+        "renderedMobile": [
+          "New paragraph remains readable at 1440 and 390 CSS pixels."
+        ],
+        "preservation": [
+          "Manual headline Plan it once. Build it well. and custom button label remain byte-exact.",
+          "All other node fields, geometry, tokens, links, images and section content remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "preserve-manual-layout",
+      "category": "manual_work_preservation",
+      "brief": {
+        "starter": "matter",
+        "goal": "portfolio",
+        "action": "contact",
+        "name": "Field Studio"
+      },
+      "target": {
+        "scope": "element",
+        "sectionId": "hero",
+        "node": {
+          "type": "heading",
+          "name": "Headline"
+        }
+      },
+      "prompt": "Rewrite only the selected headline to say Useful objects. Considered forms. Keep my custom introduction gap 36, image height 480, mobile image height 260, existing crop, button link, all content outside the headline and all brand settings.",
+      "manualEdits": [
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "stack",
+              "name": "Introduction"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.gap",
+                "value": "36"
+              }
+            ]
+          }
+        },
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "image",
+              "name": "Hero image"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.height",
+                "value": "480"
+              },
+              {
+                "field": "node.mobile.height",
+                "value": "260"
+              }
+            ]
+          }
+        }
+      ],
+      "allowedFields": [
+        "node.text"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "node.text",
+            "value": "Useful objects.\nConsidered forms."
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Headline conveys exactly Useful objects and Considered forms."
+        ],
+        "renderedMobile": [
+          "New headline wraps without clipping at 1440 and 390 CSS pixels."
+        ],
+        "preservation": [
+          "Manual introduction gap 36, desktop image height 480 and mobile image height 260 remain exact.",
+          "All other content, geometry, crop, links, tokens, artwork and sections remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims"
+    },
+    {
+      "id": "preserve-locked-brand",
+      "category": "manual_work_preservation",
+      "brief": {
+        "starter": "tideglass",
+        "goal": "landing",
+        "action": "contact",
+        "name": "Quiet Coast"
+      },
+      "target": {
+        "scope": "section",
+        "sectionId": "contact",
+        "node": null
+      },
+      "prompt": "Rewrite only the contact section title and description as a calm invitation to ask about Quiet Coast. Keep the manually approved hero headline and primary action text. The palette, font, business name and tone are locked; keep them, all links and all layout unchanged.",
+      "manualEdits": [
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "heading",
+              "name": "Headline"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.text",
+                "value": "A little room to breathe."
+              }
+            ]
+          }
+        },
+        {
+          "target": {
+            "scope": "element",
+            "sectionId": "hero",
+            "node": {
+              "type": "button",
+              "name": "Primary action"
+            }
+          },
+          "proposal": {
+            "ops": [
+              {
+                "field": "node.text",
+                "value": "Explore at your pace"
+              }
+            ]
+          }
+        }
+      ],
+      "allowedFields": [
+        "section.title",
+        "section.description"
+      ],
+      "referenceProposal": {
+        "ops": [
+          {
+            "field": "section.title",
+            "value": "Ask about a quieter day."
+          },
+          {
+            "field": "section.description",
+            "value": "Have a question about Quiet Coast? Add your contact destination here before publishing; no enquiry form is connected."
+          }
+        ]
+      },
+      "successCriteria": {
+        "instructionFidelity": [
+          "Contact section offers a calm enquiry invitation and discloses the missing destination/form."
+        ],
+        "renderedMobile": [
+          "Contact title/description remain readable at 1440 and 390 CSS pixels."
+        ],
+        "preservation": [
+          "Manual hero headline and CTA remain exact.",
+          "Locked brand values, all links, layout, images, non-contact copy and glass settings remain unchanged."
+        ]
+      },
+      "humanVisualReview": "required_for_visual_claims",
+      "brandLocks": [
+        "palette",
+        "font",
+        "name",
+        "tone"
+      ]
+    }
+  ]
+}

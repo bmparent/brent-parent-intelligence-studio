@@ -1,0 +1,33 @@
+# Independent purchase client review
+
+The review covers exact snapshot/package acceptance, recovery without local browser data, account changes, delayed responses, and preservation of editable drafts. It does not establish a real payment, mail delivery, hosted acceptance, or physical-device acceptance.
+
+## Findings and repairs
+
+- Existing paid retrieval originally called new-checkout capabilities first. That would block a paid download when current merchant/catalog readiness failed. The client now checks the existing signed order directly. Recovery with checkout unavailable passed in Chromium at 1440 and 390 pixels.
+- Checkout initially guarded only component mounting. Closing Finish left the component mounted, so a delayed reply could navigate after the draft or approval changed. The client now checks open state, draft identity/revision, approval, terms, and operation generation across awaits. Final rendered delayed-response checks are recorded in the adjacent receipt.
+- Changing the capability owner originally retained the earlier owner's accepted/paid display. Owner changes now clear that state; recovery reauthorizes immediately before opening an editable copy.
+- `PurchaseRecovery.tsx` collided with `purchaseRecovery.ts` on Windows. The browser loaded the helper instead of the component and rendered blank. The helper is now `purchaseRecoveryClient.ts`. The original browser error and screenshots are retained in `../purchase-browser-windows-import-failure/`.
+- The browser and server initially generated different ZIP bytes from the exact same snapshot. Their project and snapshot hashes matched, but `script.js` differed because `pageRuntime.toString()` serialized compiler-specific output. The measured difference was 25,732 bytes in Vite and 26,820 bytes in the independent esbuild bundle. Both manifests and runtime sources are retained in `../purchase-browser-renderer-parity-failure/chromium/1440-deferred-checkout/`. The renderer now consumes canonical checked-in runtime strings; validation keeps the exact archive-hash check.
+
+## Additional evidence
+
+The actual production Next route module was invoked with plain Node and real in-memory SQLite by the backend reviewer. Its frozen ZIP rendered independently in Chromium at 1440 and 390 pixels with no JavaScript error, console warning/error, or network request. The mobile navigation opened and closed through its actual runtime. Evidence: `../compiled-server-runtime-before/receipt.json`. This confirmed runtime behavior while keeping the separate byte-parity failure visible.
+
+The fixture harness blocks every unhandled API request and external URL. Its optional synthetic checkout document is fulfilled locally by Playwright; no request reaches Stripe. Google Fonts CSS is stubbed with an empty stylesheet, so screenshots use existing fallback fonts. IndexedDB reads inspect results; primary project creation, recovery, review, and cancellation use visible controls.
+
+## Accepted checks and exact build scope
+
+The built preview at port 5185 passed all 21 scenarios and 78 checks in Chromium, Firefox, and WebKit. The matrix includes recovery at 1440 and 390 pixels, independent package opening, preserved drafts, delayed recovery, ownership/revocation reauthorization, cancellation without a URL fragment, and delayed checkout with approval/project/account changes. `receipt.json` records every check. `served-build-manifest.json` records the exact index, JavaScript, and CSS bytes served by this build. The directory has no stale failure screenshots.
+
+That build predates two final repairs: resetting a consumed challenge after a failed dispatch, and keeping service numbers together on mobile. The source hashes in the matrix are inspection metadata and may postdate its served build; they are not proof that the matrix tested those final repairs. Their separate evidence is:
+
+- `../purchase-browser-challenge-after/receipt.json`: the final Vite source passed a deliberate 502 response, removed/recreated the verification widget, required a fresh token, and retried the same immutable attempt and delivery with token 2. No external challenge or payment request was made. The 502 console entry is expected and retained.
+- `../service-number-wrap/receipt.json`: 12 before/after records at 320 and 390 pixels across all three engines. Chromium and Firefox reproduced split digits in the historical package. All six after cases kept each number on one line while longer headings still wrapped, with no overflow, JavaScript errors, or network requests. The CSS change is limited to `flex-shrink:0;white-space:nowrap` on mobile service numbers.
+- `../compiled-server-runtime-after/receipt.json`: the canonical actual Next-generated package ran in all three engines at both widths, including mobile navigation, without JavaScript/console/network errors. This package predates the two-declaration CSS repair. Separately, the backend reviewer invoked the actual compiled route against the browser-generated snapshot and reproduced all 128,347 archive bytes exactly (SHA-256 `3f1b0c20f676a51126af4faa6207a6f90c8f0dda2af5d2b09d1f18699846fe71`). The final CSS graph receives a fresh parity comparison.
+
+The first full matrix rejected the deliberate ownership 403 as a console error even though UI authorization behaved correctly. That run is preserved in `../purchase-browser-expected-denial-harness-failure/`. The final harness recognizes only the exact deliberately denied fixture URL/status, retains the raw error, and still rejects unexpected console errors and external requests. An initial mobile CSS harness incorrectly required WebKit to reproduce the historical font-dependent wrapping too; the final receipt records reproduction per engine and requires every repaired case to pass.
+
+The final source also passed the five delayed-checkout checks at port 5184 after both final repairs (`../purchase-browser-final-graph/receipt.json`). The backend reviewer then reproduced this latest raw browser package with the actual optimized Next route, plain Node, real SQLite, and outbound fetch forbidden: all 128,380 bytes matched exactly, SHA-256 `9def4cc49c1f79a061af9470c46fb96d6aa3550ba490304770ea1550364f29ed`. Its receipt is retained in the backend `delivery/mobile-final-browser-parity/` evidence. The canonical runtime is unchanged by the mobile CSS repair.
+
+Committed-source CI must rebuild and run the final eight-scenario Chromium harness. The tests above do not establish real payment, inbox delivery, hosted checkout readiness, or physical-device acceptance. No remaining material purchase-client issue was found in this bounded review.

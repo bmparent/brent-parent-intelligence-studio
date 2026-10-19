@@ -1,0 +1,168 @@
+{
+  "timestampUtc": "2026-10-14T19:16:33.979Z",
+  "source": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "sourceFiles": [
+    {
+      "path": "src/playground/PurchaseRecovery.tsx",
+      "sha256": "dc08c0d8ed56e88a1537df5c6615c5daa23c5eb3fd41d75a3b177efd7ede16c3"
+    },
+    {
+      "path": "src/playground/purchaseRecoveryClient.ts",
+      "sha256": "63402bd878c93bd57b608d2380473eddc32759b071a780750b3aae4b29398802"
+    },
+    {
+      "path": "src/playground/purchaseClient.ts",
+      "sha256": "b73b750a2524c610dd257284c7188df7f868a64c17668115b57b86190bdc5ed7"
+    },
+    {
+      "path": "src/playground/purchaseSnapshot.ts",
+      "sha256": "13bcf3dcb03441368cadf77d62bb34bf249163e92005418c22bcd5c52e922f5d"
+    },
+    {
+      "path": "src/playground/purchaseReviewStorage.ts",
+      "sha256": "4a344267a2441d7fded571551480cf7a12016c49fc3cb03eb843a6ba97e22b89"
+    },
+    {
+      "path": "src/playground/FinishPurchase.tsx",
+      "sha256": "e566b2d08f0c6a7faf9481ddcda9c13903b79a3cfa11b76fb3a034f951a80673"
+    },
+    {
+      "path": "src/playground/FinishReview.tsx",
+      "sha256": "79b4ebcd21c5c494a5e3851f153e9af6522f64997dcd3d168f9870b6d066187b"
+    },
+    {
+      "path": "src/playground/Playground.tsx",
+      "sha256": "c3a08070dd393b535741c9ea96f2d3b589399f037cd3c634430f3e847e25c4f3"
+    },
+    {
+      "path": "src/playground/useProject.ts",
+      "sha256": "4c89d2a5f408a913c2831d9e569166688e21a98f6ae8ed999eeee6e986195bf3"
+    },
+    {
+      "path": "src/playground/renderer.ts",
+      "sha256": "d568b9c78809d12d41af538ad09470cf5bfc3bbd971f9019ba27b89b6753ee34"
+    },
+    {
+      "path": "src/playground/runtimeBundle.ts",
+      "sha256": "c1020e8e744bd324bf4fed1c9ef07040222418034334f1692b9c8c4c5ac0cb30"
+    },
+    {
+      "path": "src/playground/pageStyles.ts",
+      "sha256": "3214b1f1ea64d3da89b4564c3f85b6761ec236c9d23ca17cfcf87dc21ab5a4ba"
+    },
+    {
+      "path": "src/components/Turnstile.tsx",
+      "sha256": "ee28a41edfb180a1b30f305b380739551f588584184296d5782fbf6570f2184f"
+    },
+    {
+      "path": "scripts/verify-playground-purchase-browser.mjs",
+      "sha256": "561d593a802a6ef5d3b540f303222fc446b10f84c36bfb016c92609b4d41f04e"
+    }
+  ],
+  "base": "http://127.0.0.1:5184",
+  "browserAvailability": "External Playwright fixture harness; Chromium, Firefox and WebKit locally available",
+  "flow": "Private return -> explicit authenticated fixture retrieval -> exact stored ZIP -> separate editable copy",
+  "fixtureOnly": true,
+  "actualPayment": false,
+  "actualEmail": false,
+  "hostedAcceptance": false,
+  "physicalDevice": false,
+  "fixtureArchive": {
+    "sha256": "f9387b0291b8b46936718dde1548cf0e15fc678fd0eb622aae983b1ed1eee08b",
+    "bytes": 66234
+  },
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [
+        "manual create/review/approval makes no purchase API request",
+        "revoking review approval during deferred preflight prevents checkout dispatch",
+        "late checkout response after closing review and editing does not navigate or replace the newer draft",
+        "account switch clears the previous owner accepted and paid display",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.",
+          "url": "http://127.0.0.1:5184/playground/"
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.",
+          "url": "http://127.0.0.1:5184/playground/"
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/checkout",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "expectedHttpDenials": [],
+      "checkoutFixtures": [
+        {
+          "attempt": "89666eff908ad19c4e3ff2d313d89fbbfb5ec400b633cde5e115e4dd1a385208",
+          "challenge": "local-test",
+          "deliveryId": "fixture-delivery"
+        }
+      ],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "fixtureNavigations": [],
+      "browserFreeze": {
+        "kind": "eidos-local-package-receipt",
+        "snapshotHash": "3261a3ff99db2266abc056b3bc1e4904874e2292729bbdb27f5e3a6a324302cb",
+        "archiveSha256": "9def4cc49c1f79a061af9470c46fb96d6aa3550ba490304770ea1550364f29ed",
+        "bytes": 128380,
+        "purchase": "not-performed"
+      },
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "56b3a216-7676-4539-a0f2-7e332a627f30",
+        "revision": 0,
+        "snapshotHash": "3261a3ff99db2266abc056b3bc1e4904874e2292729bbdb27f5e3a6a324302cb",
+        "projectHash": "e56812d192b4cc374b4de919c683c1e572cdbbf37b6aef8a08737c7414088bb9",
+        "archiveSha256": "9def4cc49c1f79a061af9470c46fb96d6aa3550ba490304770ea1550364f29ed",
+        "archiveBytes": 128380,
+        "mode": "test"
+      },
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5184/playground/"
+    }
+  ]
+}

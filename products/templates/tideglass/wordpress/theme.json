@@ -1,0 +1,132 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1280px"
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "ink",
+          "name": "Ink",
+          "color": "#182f38"
+        },
+        {
+          "slug": "paper",
+          "name": "Paper",
+          "color": "#eff3ed"
+        },
+        {
+          "slug": "accent",
+          "name": "Accent",
+          "color": "#d3b27f"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "heading",
+          "name": "Heading",
+          "fontFamily": "Georgia, \"Times New Roman\", serif"
+        },
+        {
+          "slug": "body",
+          "name": "System sans",
+          "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif"
+        }
+      ],
+      "fluid": true,
+      "fontSizes": [
+        {
+          "slug": "small",
+          "name": "Small",
+          "size": ".875rem"
+        },
+        {
+          "slug": "medium",
+          "name": "Medium",
+          "size": "1rem"
+        },
+        {
+          "slug": "large",
+          "name": "Large",
+          "size": "1.4rem"
+        },
+        {
+          "slug": "x-large",
+          "name": "Extra large",
+          "size": "2.8rem"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|paper",
+      "text": "var:preset|color|ink"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|body",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|heading"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var:preset|color|ink"
+        }
+      }
+    }
+  },
+  "customTemplates": [
+    {
+      "name": "stays",
+      "title": "Tideglass \u2014 Stays",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "stay-detail",
+      "title": "Tideglass \u2014 The house",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "guide",
+      "title": "Tideglass \u2014 Local guide",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "contact",
+      "title": "Tideglass \u2014 Plan your stay",
+      "postTypes": [
+        "page"
+      ]
+    }
+  ],
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ]
+}

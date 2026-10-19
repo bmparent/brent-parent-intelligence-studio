@@ -1,0 +1,1135 @@
+{
+  "schemaVersion": 1,
+  "timestampUtc": "2026-10-14T01:43:40.446Z",
+  "command": "node --import tsx artifacts/showcase/buyer-review/review-actual-bases.mjs",
+  "repoRoot": "C:\\Users\\bmpar\\codex-worktrees\\showcase-site-20261013",
+  "git": {
+    "head": "41cfde211757a66c963d51fbdfb534a628ab0731",
+    "branch": "codex/showcase-20261013",
+    "sourceBasis": "Working source module hashes below; concurrent uncommitted implementation may differ from HEAD."
+  },
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "osRelease": "10.0.26200",
+    "timezone": "America/New_York"
+  },
+  "scope": "Actual pinned developer candidate archives, every Home-required page subset, all optional native modules disabled, motion disabled. In-memory static output and preview dependency audit only.",
+  "privacy": "Only hashes, counts and filenames are written. No archive, paid source, derivative output, credentials or customer data are saved.",
+  "moduleHashes": [
+    {
+      "path": "src/templates/buyerDerivative.ts",
+      "sha256": "0831eeafea9dede3b408a549e8cfb8bd758551269dffa2f5ce933b3632259768"
+    },
+    {
+      "path": "src/components/BuyerTemplateDerivative.tsx",
+      "sha256": "058461a104a27523d758bcef2b27010400bbd501fc4f6d523f5f559af342c672"
+    },
+    {
+      "path": "src/templates/buyerContract.ts",
+      "sha256": "97fafe3cc4e347e913c894693164545860f837077c81bd3d1217d00c4412896f"
+    },
+    {
+      "path": "src/templates/configurator.ts",
+      "sha256": "23e0311dee1de3aa7b912c1d551ca0e002c5d16a5a35598b01bf9d47d485be47"
+    },
+    {
+      "path": "src/playground/export.ts",
+      "sha256": "162c2c741281fabbd7ab4b100ec5975c1dc8a5064228bceb4649499eb8f1df61"
+    },
+    {
+      "path": "src/data/buyerArchivePins.json",
+      "sha256": "8c34ec4e1d8e14945eb2d6afbd8bb9f5d64eb0920df387a5ee972bcf712d561b"
+    },
+    {
+      "path": "products/templates/release-manifest.json",
+      "sha256": "a45f5161a537801e8388674fd98df8659aa89bb54aca5ee8a1cd3bb69d0e8485"
+    },
+    {
+      "path": "artifacts/showcase/buyer-review/review-actual-bases.mjs",
+      "sha256": "1aed7c93083a5e3f482cfb80d6659afcb8b34e172d9f4232ca74fd6c82c48bea"
+    }
+  ],
+  "families": [
+    {
+      "family": "switchboard",
+      "editionId": "switchboard-developer-v1",
+      "version": "1.0.3",
+      "baseArchive": {
+        "sha256": "e956fc2aad4f76ed0ff2c9aff71cdd6cfc202b0701da71c9bf9604e5264b00d5",
+        "bytes": 28560,
+        "matchesFrozenPin": true
+      },
+      "sourceFiles": 16,
+      "preserved": [
+        {
+          "name": "LICENSE.txt",
+          "originalSha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb",
+          "preservedSha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
+        },
+        {
+          "name": "SUPPORT.md",
+          "originalSha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d",
+          "preservedSha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
+        },
+        {
+          "name": "ASSETS.md",
+          "originalSha256": "8afcb3bef22ed80de5a39f3e5a8b4895d97e32c8a3dd08ef953451c3a6a71ec7",
+          "preservedSha256": "8afcb3bef22ed80de5a39f3e5a8b4895d97e32c8a3dd08ef953451c3a6a71ec7"
+        },
+        {
+          "name": "INSTALL.md",
+          "originalSha256": "9a50df231e6c2f05620d9813d3b88e189e46dbf538c37af7239f925e2fd7c8b8",
+          "preservedSha256": "9a50df231e6c2f05620d9813d3b88e189e46dbf538c37af7239f925e2fd7c8b8"
+        },
+        {
+          "name": "script.js",
+          "originalSha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73",
+          "preservedSha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73"
+        }
+      ],
+      "variantCount": 16,
+      "allVariantsPreserveNoticesAndScript": true,
+      "originalArchiveUnchanged": true
+    },
+    {
+      "family": "tideglass",
+      "editionId": "tideglass-developer-v1",
+      "version": "1.0.2",
+      "baseArchive": {
+        "sha256": "fbc3cda145707d08b3bb51751bb0265144b23c82e0b0170d899af9ea6b8918b0",
+        "bytes": 28351,
+        "matchesFrozenPin": true
+      },
+      "sourceFiles": 16,
+      "preserved": [
+        {
+          "name": "LICENSE.txt",
+          "originalSha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb",
+          "preservedSha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
+        },
+        {
+          "name": "SUPPORT.md",
+          "originalSha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d",
+          "preservedSha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
+        },
+        {
+          "name": "ASSETS.md",
+          "originalSha256": "6651df21f5fa5ef4c5d28ed8ab8ef055d2ce441b3d258be1fd493211d167a00b",
+          "preservedSha256": "6651df21f5fa5ef4c5d28ed8ab8ef055d2ce441b3d258be1fd493211d167a00b"
+        },
+        {
+          "name": "INSTALL.md",
+          "originalSha256": "0e08af966116f26ac043c74cb3fa0faae247833094547b2f2555d5a90ecb0992",
+          "preservedSha256": "0e08af966116f26ac043c74cb3fa0faae247833094547b2f2555d5a90ecb0992"
+        },
+        {
+          "name": "script.js",
+          "originalSha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73",
+          "preservedSha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73"
+        }
+      ],
+      "variantCount": 16,
+      "allVariantsPreserveNoticesAndScript": true,
+      "originalArchiveUnchanged": true
+    },
+    {
+      "family": "matter",
+      "editionId": "matter-developer-v1",
+      "version": "1.0.2",
+      "baseArchive": {
+        "sha256": "8bd61d302b173b6143dcb2cbf1d111f8b5b283c6e19880f8792e20879297678d",
+        "bytes": 29047,
+        "matchesFrozenPin": true
+      },
+      "sourceFiles": 17,
+      "preserved": [
+        {
+          "name": "LICENSE.txt",
+          "originalSha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb",
+          "preservedSha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
+        },
+        {
+          "name": "SUPPORT.md",
+          "originalSha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d",
+          "preservedSha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
+        },
+        {
+          "name": "ASSETS.md",
+          "originalSha256": "7fff743a5af38ebd7119a85407e090c0ce4edef638641a222e1dddbb834c6412",
+          "preservedSha256": "7fff743a5af38ebd7119a85407e090c0ce4edef638641a222e1dddbb834c6412"
+        },
+        {
+          "name": "INSTALL.md",
+          "originalSha256": "c9903017fa4d3e926e821ed83729c477152a4dede0f322c297122f1342614286",
+          "preservedSha256": "c9903017fa4d3e926e821ed83729c477152a4dede0f322c297122f1342614286"
+        },
+        {
+          "name": "script.js",
+          "originalSha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73",
+          "preservedSha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73"
+        }
+      ],
+      "variantCount": 16,
+      "allVariantsPreserveNoticesAndScript": true,
+      "originalArchiveUnchanged": true
+    },
+    {
+      "family": "nightjar",
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.5",
+      "baseArchive": {
+        "sha256": "9ea6419f5b0398e517e0195205464c44fcd7521071f7ee420c8472a4dc85f870",
+        "bytes": 31207,
+        "matchesFrozenPin": true
+      },
+      "sourceFiles": 16,
+      "preserved": [
+        {
+          "name": "LICENSE.txt",
+          "originalSha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb",
+          "preservedSha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
+        },
+        {
+          "name": "SUPPORT.md",
+          "originalSha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d",
+          "preservedSha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
+        },
+        {
+          "name": "ASSETS.md",
+          "originalSha256": "7e3f2b966702b1316085bf3d0266cd634474fb2005c9b3e85aa6bd7c63cf403c",
+          "preservedSha256": "7e3f2b966702b1316085bf3d0266cd634474fb2005c9b3e85aa6bd7c63cf403c"
+        },
+        {
+          "name": "INSTALL.md",
+          "originalSha256": "c850f7f45230471726cd99ecd1997e59d58905d8d307bb918cadd86ccf8e8e67",
+          "preservedSha256": "c850f7f45230471726cd99ecd1997e59d58905d8d307bb918cadd86ccf8e8e67"
+        },
+        {
+          "name": "script.js",
+          "originalSha256": "6057e5d9d33c5ba12b639b3820f520b1197ad0342d78a6fc8ccc5fcb0fa3d7ed",
+          "preservedSha256": "6057e5d9d33c5ba12b639b3820f520b1197ad0342d78a6fc8ccc5fcb0fa3d7ed"
+        }
+      ],
+      "variantCount": 16,
+      "allVariantsPreserveNoticesAndScript": true,
+      "originalArchiveUnchanged": true
+    }
+  ],
+  "variants": [
+    {
+      "family": "switchboard",
+      "mask": 0,
+      "pages": [
+        "index.html"
+      ],
+      "fileCount": 15,
+      "localReferencesChecked": 20,
+      "derivativeId": "switchboard-developer-1.0.3-local-55d2875881eb6b7ae953",
+      "derivativeArchiveSha256": "57dd7efd917ad1bcaf6d527779face34bce5e0cb051b17e5a8f3b45da051159d",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 1,
+      "pages": [
+        "index.html",
+        "services.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 32,
+      "derivativeId": "switchboard-developer-1.0.3-local-462a18d068c60553ca64",
+      "derivativeArchiveSha256": "23d2ff6b2ddfd74c0aae221b545b9242f11ebca2bb7e04dc4ee66e4b706ed12d",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 2,
+      "pages": [
+        "index.html",
+        "service-detail.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 36,
+      "derivativeId": "switchboard-developer-1.0.3-local-78c434eeced166b2ef38",
+      "derivativeArchiveSha256": "0c54cdee30ede034d001e53408e396ae78e136fa7242a5867d611b26a441d8c5",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 3,
+      "pages": [
+        "index.html",
+        "services.html",
+        "service-detail.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 53,
+      "derivativeId": "switchboard-developer-1.0.3-local-4dd0e8281ff0a15c7a41",
+      "derivativeArchiveSha256": "c69616ef079388e83194ceb964cfa648449df1e8d4fb4bd09d71990f182df3f8",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 4,
+      "pages": [
+        "index.html",
+        "process.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 33,
+      "derivativeId": "switchboard-developer-1.0.3-local-5c0ba04b458b15f7be12",
+      "derivativeArchiveSha256": "261b4113eb1511275f982f09d2cb3a1812c9e4233b8e65318ba7096282f2fca3",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 5,
+      "pages": [
+        "index.html",
+        "services.html",
+        "process.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 47,
+      "derivativeId": "switchboard-developer-1.0.3-local-a32d602832ea011d0b6e",
+      "derivativeArchiveSha256": "e884380e0e8e32f4f345ebdbb6194e299b8bbbac5e2f935d0c7a6d49d62cec27",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 6,
+      "pages": [
+        "index.html",
+        "service-detail.html",
+        "process.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 51,
+      "derivativeId": "switchboard-developer-1.0.3-local-e9da4ecc6f70f317924b",
+      "derivativeArchiveSha256": "5299019e7fd21226978a3fcb502846c106d3a3a3dd8be542c39857928b6660dc",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 7,
+      "pages": [
+        "index.html",
+        "services.html",
+        "service-detail.html",
+        "process.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 70,
+      "derivativeId": "switchboard-developer-1.0.3-local-61272e8fadcec025f315",
+      "derivativeArchiveSha256": "fb5912a939c023cb1ae546804ad36491b89745a49cd35bb770841a8d5874e2bf",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 8,
+      "pages": [
+        "index.html",
+        "contact.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 38,
+      "derivativeId": "switchboard-developer-1.0.3-local-fbdf6ca8a85d9f639df6",
+      "derivativeArchiveSha256": "87e418e3378af0dfe65af74fcccffdf0816a60471309b13de53b35bcd33c5ead",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 9,
+      "pages": [
+        "index.html",
+        "services.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 54,
+      "derivativeId": "switchboard-developer-1.0.3-local-342c1273bf77ee437788",
+      "derivativeArchiveSha256": "c1469e89f70f27109448f8222333a1d73adbe58cf29b783634bcc9e66181dcf8",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 10,
+      "pages": [
+        "index.html",
+        "service-detail.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 60,
+      "derivativeId": "switchboard-developer-1.0.3-local-0ab4538ee79479e2c73e",
+      "derivativeArchiveSha256": "3b04c9a25678dc70dd68e255f1cc487fd423608bdd227c610e3f75403d180a24",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 11,
+      "pages": [
+        "index.html",
+        "services.html",
+        "service-detail.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 81,
+      "derivativeId": "switchboard-developer-1.0.3-local-722605b3da5a28060ead",
+      "derivativeArchiveSha256": "448d667f06e04ffb388df8e95a1e148c3aa5d566e1c53976a6e5a9645d4ac6b4",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 12,
+      "pages": [
+        "index.html",
+        "process.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 55,
+      "derivativeId": "switchboard-developer-1.0.3-local-def829a9fa77e0815cf9",
+      "derivativeArchiveSha256": "b446b7839e1f23a72bfc7736ed4afa0e2f697f61e532742f14f7f5f7b140a755",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 13,
+      "pages": [
+        "index.html",
+        "services.html",
+        "process.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 73,
+      "derivativeId": "switchboard-developer-1.0.3-local-d30dd3cbc255b185c9d2",
+      "derivativeArchiveSha256": "ff3eb309de080b8571134b9e97e8af0cd972cc706cef7bd44229baf4028f1135",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 14,
+      "pages": [
+        "index.html",
+        "service-detail.html",
+        "process.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 79,
+      "derivativeId": "switchboard-developer-1.0.3-local-769c9ffdac15da8178e6",
+      "derivativeArchiveSha256": "d609c72e522fae7ff4dc460898a7531a21a6debff94e57535632447a8cff453d",
+      "failures": []
+    },
+    {
+      "family": "switchboard",
+      "mask": 15,
+      "pages": [
+        "index.html",
+        "services.html",
+        "service-detail.html",
+        "process.html",
+        "contact.html"
+      ],
+      "fileCount": 19,
+      "localReferencesChecked": 102,
+      "derivativeId": "switchboard-developer-1.0.3-local-f376351779174266e01c",
+      "derivativeArchiveSha256": "b3481a0dd19f613be4fbdd49922c8ee26a4d33dd9ac97b451ed049f1b47b8694",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 0,
+      "pages": [
+        "index.html"
+      ],
+      "fileCount": 15,
+      "localReferencesChecked": 22,
+      "derivativeId": "tideglass-developer-1.0.2-local-22fd6e1149db53e8ee99",
+      "derivativeArchiveSha256": "734beac347c6d0d326cee645796a9ee4ce08c22676531905004f685f9ff1bbe5",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 1,
+      "pages": [
+        "index.html",
+        "stays.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 37,
+      "derivativeId": "tideglass-developer-1.0.2-local-895a832960094b460b69",
+      "derivativeArchiveSha256": "3a54e69f8ef216cb2c46679fb8cc045fb3905a8e667742d70b9abeee89e9d91e",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 2,
+      "pages": [
+        "index.html",
+        "stay-detail.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 36,
+      "derivativeId": "tideglass-developer-1.0.2-local-2d3664369bbaf2b54a6b",
+      "derivativeArchiveSha256": "c83e82cb6f50871b7afa56e2119e788e0fa2a65b8a9bab511b4845b9a9a07554",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 3,
+      "pages": [
+        "index.html",
+        "stays.html",
+        "stay-detail.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 54,
+      "derivativeId": "tideglass-developer-1.0.2-local-fddd59d68798971d0dbb",
+      "derivativeArchiveSha256": "524b06792a7ead9f36c0dadb2fe56c376e2f32fb4d3d4cc8795ff0da37acf319",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 4,
+      "pages": [
+        "index.html",
+        "guide.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 35,
+      "derivativeId": "tideglass-developer-1.0.2-local-3aa13e0178c354832e7b",
+      "derivativeArchiveSha256": "44440f9ed6b72a32575c3e0f98562bf4e52e2a3d865923decbf80e91f1e75c5f",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 5,
+      "pages": [
+        "index.html",
+        "stays.html",
+        "guide.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 52,
+      "derivativeId": "tideglass-developer-1.0.2-local-bc501ee9e1532d39728f",
+      "derivativeArchiveSha256": "9a30e31a6ceb91973f3e12f1e82ed7b72e599948254d223b74598941a026e1de",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 6,
+      "pages": [
+        "index.html",
+        "stay-detail.html",
+        "guide.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 51,
+      "derivativeId": "tideglass-developer-1.0.2-local-8923687da28c060f6e67",
+      "derivativeArchiveSha256": "ea205bdaa2aef4122081ec1b16a2e818fef69ac9ef5cce888edfc743f103fc34",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 7,
+      "pages": [
+        "index.html",
+        "stays.html",
+        "stay-detail.html",
+        "guide.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 71,
+      "derivativeId": "tideglass-developer-1.0.2-local-737ace2cbf0c0c6e0b04",
+      "derivativeArchiveSha256": "0a59b408760e2cf679b589124e00c737e0b87dd4ea8534c3df71f15282106d62",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 8,
+      "pages": [
+        "index.html",
+        "contact.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 40,
+      "derivativeId": "tideglass-developer-1.0.2-local-3a37d922d4b39e5a53ff",
+      "derivativeArchiveSha256": "7523ab4105aa3f6a2cedd1cd87d96a68a32b55701dfcdffb34f899e7607545ea",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 9,
+      "pages": [
+        "index.html",
+        "stays.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 60,
+      "derivativeId": "tideglass-developer-1.0.2-local-2924a30b2df8b4a83f86",
+      "derivativeArchiveSha256": "1175402eaacd70953ca8f2a9289b31c42754e2dbe9faf4ff478f6f44887fc933",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 10,
+      "pages": [
+        "index.html",
+        "stay-detail.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 58,
+      "derivativeId": "tideglass-developer-1.0.2-local-4d26d8f072bdb6aaca8d",
+      "derivativeArchiveSha256": "07a66717a1d7e21291efc78fecef021ab6d2a42894c4b5b6e4c9b61c6d9e022a",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 11,
+      "pages": [
+        "index.html",
+        "stays.html",
+        "stay-detail.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 81,
+      "derivativeId": "tideglass-developer-1.0.2-local-aa4788d59a0faeb55835",
+      "derivativeArchiveSha256": "a38cd179405ed87438fc60d25e8871fe1a113c9bd1f600d060f7b60d36e72956",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 12,
+      "pages": [
+        "index.html",
+        "guide.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 60,
+      "derivativeId": "tideglass-developer-1.0.2-local-40f5036f2cc5a3056099",
+      "derivativeArchiveSha256": "8eea6bfb338aa0efa0c272dbb6108a7ffce6565673b45a124661d33eda3e3232",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 13,
+      "pages": [
+        "index.html",
+        "stays.html",
+        "guide.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 82,
+      "derivativeId": "tideglass-developer-1.0.2-local-98781667462a75f0d268",
+      "derivativeArchiveSha256": "a074433d9180184c458089c618e3714e15f4866a6be90580e72c1293a836b513",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 14,
+      "pages": [
+        "index.html",
+        "stay-detail.html",
+        "guide.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 80,
+      "derivativeId": "tideglass-developer-1.0.2-local-1e9fdb7fded9e062228b",
+      "derivativeArchiveSha256": "c71f9d4a53e1027ff0f1bcdfff3fbab70e4416314c407dc3d4870c4e9e8edb41",
+      "failures": []
+    },
+    {
+      "family": "tideglass",
+      "mask": 15,
+      "pages": [
+        "index.html",
+        "stays.html",
+        "stay-detail.html",
+        "guide.html",
+        "contact.html"
+      ],
+      "fileCount": 19,
+      "localReferencesChecked": 105,
+      "derivativeId": "tideglass-developer-1.0.2-local-c24ac548d5e7d561a775",
+      "derivativeArchiveSha256": "7c0ba31550c8cf5c9daf86aae61c0268c3fde5dba67b764ec352ab32fab1cdce",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 0,
+      "pages": [
+        "index.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 23,
+      "derivativeId": "matter-developer-1.0.2-local-69292bad1040850cdafb",
+      "derivativeArchiveSha256": "f336c42d045a0758f5f23a0eafd98ea24423104c77d8e78020328f4106cf3583",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 1,
+      "pages": [
+        "index.html",
+        "collection.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 39,
+      "derivativeId": "matter-developer-1.0.2-local-0ff2d440fa8352b57b11",
+      "derivativeArchiveSha256": "07061180a231f642d53667a0a178edf0c57cd1a3a6c7afdd7f1685e02fcb4682",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 2,
+      "pages": [
+        "index.html",
+        "object.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 38,
+      "derivativeId": "matter-developer-1.0.2-local-81e974624200eb58dc56",
+      "derivativeArchiveSha256": "b3b356add966f45a01bd6fefddd0cbf76bdef43d265ae21546154f77ffdf47a4",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 3,
+      "pages": [
+        "index.html",
+        "collection.html",
+        "object.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 59,
+      "derivativeId": "matter-developer-1.0.2-local-8eefd5cbb17e1b43151a",
+      "derivativeArchiveSha256": "417416e1fca7513aa1cd3f78441af26c646cd080901a5fd6fc7484099c0e8645",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 4,
+      "pages": [
+        "index.html",
+        "process.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 36,
+      "derivativeId": "matter-developer-1.0.2-local-8244b5cf9f29510cbd9b",
+      "derivativeArchiveSha256": "be5cdc63d053386b0b0a27e01125121de0d3596f6538338b59bee4fdda92047d",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 5,
+      "pages": [
+        "index.html",
+        "collection.html",
+        "process.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 54,
+      "derivativeId": "matter-developer-1.0.2-local-cc190fb8938cd8f3aa68",
+      "derivativeArchiveSha256": "22acb3f72688c8cb326dbf6b3631952cc564032f9d130629cb9a430393ac4c54",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 6,
+      "pages": [
+        "index.html",
+        "object.html",
+        "process.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 53,
+      "derivativeId": "matter-developer-1.0.2-local-547683608c6d7e0b78a3",
+      "derivativeArchiveSha256": "44ba121d5797d696605ae657c5792df5fc5dfb2c1379204cc07491dfb36c14ba",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 7,
+      "pages": [
+        "index.html",
+        "collection.html",
+        "object.html",
+        "process.html"
+      ],
+      "fileCount": 19,
+      "localReferencesChecked": 76,
+      "derivativeId": "matter-developer-1.0.2-local-da61f1b1fad430777147",
+      "derivativeArchiveSha256": "aa95b32add7fb30c8fb2ac07133fa2cfd3562eb66643047804e40e104543a6f8",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 8,
+      "pages": [
+        "index.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 41,
+      "derivativeId": "matter-developer-1.0.2-local-0ab07ffb501246616fde",
+      "derivativeArchiveSha256": "dd0ba34057224ead45058964d9bc2a4f2026617d0119e8239ab35979efb13295",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 9,
+      "pages": [
+        "index.html",
+        "collection.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 61,
+      "derivativeId": "matter-developer-1.0.2-local-0b2821a1bd5e78c16ce4",
+      "derivativeArchiveSha256": "94356a6a20912110e67bd81faa8d6b91a2e4434551ac9c51e042115ebd0f1f85",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 10,
+      "pages": [
+        "index.html",
+        "object.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 60,
+      "derivativeId": "matter-developer-1.0.2-local-be6701c0d7abea513874",
+      "derivativeArchiveSha256": "e13a579fb9da64bf89cc05b9176fd015c8cd3913c95d01874506a1a80aac5708",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 11,
+      "pages": [
+        "index.html",
+        "collection.html",
+        "object.html",
+        "contact.html"
+      ],
+      "fileCount": 19,
+      "localReferencesChecked": 85,
+      "derivativeId": "matter-developer-1.0.2-local-83b4dd2ccca69d7fe087",
+      "derivativeArchiveSha256": "87c6e032695e51c93d91ef548999f185d36e2b4361712e8785d08fe4f9bb3559",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 12,
+      "pages": [
+        "index.html",
+        "process.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 58,
+      "derivativeId": "matter-developer-1.0.2-local-1260482d1864fc90c2b0",
+      "derivativeArchiveSha256": "3dc4d1d1defb61eb5b0357f3f9fed615792d1a152c449b55430117ddf219dfec",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 13,
+      "pages": [
+        "index.html",
+        "collection.html",
+        "process.html",
+        "contact.html"
+      ],
+      "fileCount": 19,
+      "localReferencesChecked": 80,
+      "derivativeId": "matter-developer-1.0.2-local-480e0e020fd7e7cf919d",
+      "derivativeArchiveSha256": "7351ff8aeb2ec3363cff9b604639de767493573a7dc15de7b98dc0bd683e93a3",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 14,
+      "pages": [
+        "index.html",
+        "object.html",
+        "process.html",
+        "contact.html"
+      ],
+      "fileCount": 19,
+      "localReferencesChecked": 79,
+      "derivativeId": "matter-developer-1.0.2-local-8b7a9900b40440d363d1",
+      "derivativeArchiveSha256": "5699a24cda04274c36fb8c69c11aab4381411ca8100a18a74f04df2816f3e656",
+      "failures": []
+    },
+    {
+      "family": "matter",
+      "mask": 15,
+      "pages": [
+        "index.html",
+        "collection.html",
+        "object.html",
+        "process.html",
+        "contact.html"
+      ],
+      "fileCount": 20,
+      "localReferencesChecked": 106,
+      "derivativeId": "matter-developer-1.0.2-local-c02c7be120b3271d4814",
+      "derivativeArchiveSha256": "cd7d2c2a61ab035673c756e255d5a58b1f872227c712727bfa1ac49d759a5305",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 0,
+      "pages": [
+        "index.html"
+      ],
+      "fileCount": 15,
+      "localReferencesChecked": 20,
+      "derivativeId": "nightjar-developer-1.0.5-local-fe31388a028bba9551b8",
+      "derivativeArchiveSha256": "9fc6fb932d7afe5bced0bfd911b35c6e5a27636f9e7581b8ba5b7bea6653a058",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 1,
+      "pages": [
+        "index.html",
+        "program.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 32,
+      "derivativeId": "nightjar-developer-1.0.5-local-683dd8b1244dabbdc38d",
+      "derivativeArchiveSha256": "1e8ea65c0880157a74260f6e8f2bbf9e4105cb009c1fbf513e868429e156d29b",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 2,
+      "pages": [
+        "index.html",
+        "event.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 42,
+      "derivativeId": "nightjar-developer-1.0.5-local-fc4657351f3bbf13d1a8",
+      "derivativeArchiveSha256": "a02ce3450506c4804859417f4ea48ee1fa2058888c82800f1171f55f80a56902",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 3,
+      "pages": [
+        "index.html",
+        "program.html",
+        "event.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 65,
+      "derivativeId": "nightjar-developer-1.0.5-local-e13661da6d3b4a8abe1a",
+      "derivativeArchiveSha256": "7b8f47632f23653bff2e2601436aa5ffaa9c339a33a5574735c9c13ca3427be7",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 4,
+      "pages": [
+        "index.html",
+        "about.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 33,
+      "derivativeId": "nightjar-developer-1.0.5-local-db4d417ef86d8fceff44",
+      "derivativeArchiveSha256": "8e908ad93b194dba2a30689e3325cf86ad3a3f2848805ad62b98866a75c3e7a6",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 5,
+      "pages": [
+        "index.html",
+        "program.html",
+        "about.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 48,
+      "derivativeId": "nightjar-developer-1.0.5-local-bc598e58aa6065ff416d",
+      "derivativeArchiveSha256": "593524f75316b7d768d42fb0adf1648e2197c35682f680f1614bb21cc8ba88ca",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 6,
+      "pages": [
+        "index.html",
+        "event.html",
+        "about.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 58,
+      "derivativeId": "nightjar-developer-1.0.5-local-6a17cacb1d26ac497ccf",
+      "derivativeArchiveSha256": "b4e9652aa002e1a12da089f1545a4e151b5ae1acbe8738c3bcb4b456bf06084f",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 7,
+      "pages": [
+        "index.html",
+        "program.html",
+        "event.html",
+        "about.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 84,
+      "derivativeId": "nightjar-developer-1.0.5-local-225346edac4638cd88e9",
+      "derivativeArchiveSha256": "3573b6fca1f5ba4d1144d74f632718093a65cbb13daf1696d20006dbfdd7701c",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 8,
+      "pages": [
+        "index.html",
+        "contact.html"
+      ],
+      "fileCount": 16,
+      "localReferencesChecked": 38,
+      "derivativeId": "nightjar-developer-1.0.5-local-785d8e8b0e4f14541f35",
+      "derivativeArchiveSha256": "860d5838cfa81058ecfcb5e01fa163e4d06080ebd49d93e12eb3b42baf140c4b",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 9,
+      "pages": [
+        "index.html",
+        "program.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 54,
+      "derivativeId": "nightjar-developer-1.0.5-local-d5c6694e0d17631b75a3",
+      "derivativeArchiveSha256": "cb08c1b2b210f0855219dffb15bbd81dace207dc1d0d3366124e0baff8c84b44",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 10,
+      "pages": [
+        "index.html",
+        "event.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 66,
+      "derivativeId": "nightjar-developer-1.0.5-local-cfae128c86becf807126",
+      "derivativeArchiveSha256": "ab741cad497e5848a6c46c3aa0cce022faea4eee5d867b60bf708e0ce20d45d0",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 11,
+      "pages": [
+        "index.html",
+        "program.html",
+        "event.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 93,
+      "derivativeId": "nightjar-developer-1.0.5-local-66fb919c4ae7ab4c18a4",
+      "derivativeArchiveSha256": "11732bbd6d741fb7b1608ebb96b77d7390a54ce4debfdb7b998a9d4273b72481",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 12,
+      "pages": [
+        "index.html",
+        "about.html",
+        "contact.html"
+      ],
+      "fileCount": 17,
+      "localReferencesChecked": 57,
+      "derivativeId": "nightjar-developer-1.0.5-local-ac72620529980dd79327",
+      "derivativeArchiveSha256": "97a661e90af67e9ef5ed276f73453928c0e3c3d38caaa7d83d964907e82c04c7",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 13,
+      "pages": [
+        "index.html",
+        "program.html",
+        "about.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 76,
+      "derivativeId": "nightjar-developer-1.0.5-local-df9ec99f2af5e0f187d5",
+      "derivativeArchiveSha256": "56c6687e1c486602169012d013d529ecf75e99e400ca093e18c57d73bdcfab0c",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 14,
+      "pages": [
+        "index.html",
+        "event.html",
+        "about.html",
+        "contact.html"
+      ],
+      "fileCount": 18,
+      "localReferencesChecked": 88,
+      "derivativeId": "nightjar-developer-1.0.5-local-02cd2546c9f078730484",
+      "derivativeArchiveSha256": "96d9fd4e941798ddc23ac6bbfa70547fd70e2f432508399ded8ebbab92d36bc0",
+      "failures": []
+    },
+    {
+      "family": "nightjar",
+      "mask": 15,
+      "pages": [
+        "index.html",
+        "program.html",
+        "event.html",
+        "about.html",
+        "contact.html"
+      ],
+      "fileCount": 19,
+      "localReferencesChecked": 118,
+      "derivativeId": "nightjar-developer-1.0.5-local-b691a1358e1866651440",
+      "derivativeArchiveSha256": "bacb2bbc263ffd84b82d4c9b6fb82311e641c68ff4133de90f9cfbe684c45019",
+      "failures": []
+    }
+  ],
+  "failures": [],
+  "limits": [
+    "Static reference and exact-byte preservation checks do not establish browser behavior, physical-device acceptance, hosting acceptance, email delivery, entitlement or commercial release.",
+    "Browser race and preview/export navigation parity regressions are recorded separately by the browser QA agent.",
+    "This receipt does not change immutable archives, fulfillment records, licensing or release gates."
+  ],
+  "summary": {
+    "status": "passed",
+    "families": 4,
+    "variants": 64,
+    "localReferencesChecked": 3728,
+    "previewPagesGeneratedInMemory": 256,
+    "disabledModuleChecks": 448,
+    "missingReferences": [],
+    "failureCount": 0,
+    "rawPaidFilesSaved": 0
+  }
+}

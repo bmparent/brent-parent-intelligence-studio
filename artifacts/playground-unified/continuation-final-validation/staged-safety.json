@@ -1,0 +1,8 @@
+{
+  "timestampUtc": "2026-10-15T18:52:12.784Z",
+  "scope": "staged source paths only",
+  "files": 115,
+  "credentialShapedFindings": [],
+  "privateArchivePaths": [],
+  "limitations": "Pattern scan is a focused precaution, not proof that all possible secrets are absent."
+}

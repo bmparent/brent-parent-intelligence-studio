@@ -1,0 +1,11 @@
+# Combined account preview preparation — October 19, 2026
+
+Operational continuation of frontend #133, using the same runtime source and backend `55044733c122067562321b412bd4f1b01b333106`. Backend integration #86 passed CI and merged into #85 (`944accb1c52d6af708b0f02709f5c819241d33b7`). The existing held acceptance backend branch was advanced, with an expected-head lease, from `c18b580358dcfeb0b70ba7a045c8f506513f452f` to the tested `5504473`. The original immutable preview remains intact.
+
+The new acceptance-scope deployment is `dpl_CVJ5ERsLQiigU8BoHC9uc5B7CEwB`, https://eidos-sentinel-172zex7la-1brentbm-1876s-projects.vercel.app. It is READY with the correct branch/source metadata. Reuse the existing preview-only database prefix, password/Google/mail bindings and protected relay; no credentials are copied or changed. The separate automatic repair-branch deployment is not used as an account environment.
+
+The guarded workflow adds only this operational branch to its trigger, pins the new backend, verifies 107 shared files plus the independent 18-file graph, runs existing source gates and controlled Chromium account tests before reading deployment credentials. The old account verifiers now explicitly seed a supported legacy local document and continue it through the current start screen. This does not activate newer cloud formats or claim hosted identity acceptance.
+
+The existing Pages project must retain exactly its pages.dev domain, production branch, relay/bypass credentials and other bindings. Only its ordinary backend URL may change. Production configuration is read and fingerprinted before/after, never written. Delivered account assets, canonical-origin redirects, the exact backend runtime revision, and anonymous/owner/origin/webhook boundaries must pass after upload.
+
+At authoring time, these deployment and browser gates have not yet run on this operational commit. Real Google consent/password/reset inbox delivery, two controlled hosted identities, owner access and intended signed Stripe TEST lifecycle remain separate and open. No hosted migration, LIVE payment/refund or AI generation is authorized or claimed by this preview receipt. Preserve the previous Pages deployment ID and old backend URL in the workflow receipt for rollback; retain all records and additive schema.

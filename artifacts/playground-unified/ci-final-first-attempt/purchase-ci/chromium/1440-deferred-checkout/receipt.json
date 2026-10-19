@@ -1,0 +1,81 @@
+{
+  "engine": "chromium",
+  "width": 1440,
+  "name": "deferred-checkout",
+  "checks": [
+    "manual create/review/approval makes no purchase API request",
+    "revoking review approval during deferred preflight prevents checkout dispatch",
+    "late checkout response after closing review and editing does not navigate or replace the newer draft",
+    "account switch clears the previous owner accepted and paid display",
+    "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [],
+  "calls": [
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    }
+  ],
+  "unexpected": [],
+  "expectedHttpDenials": [],
+  "checkoutFixtures": [
+    {
+      "attempt": "7ef592e28dfa15a608967471a6827a26c50c3525e055e8990d52d4f5243e2420",
+      "challenge": "local-test",
+      "deliveryId": "fixture-delivery"
+    }
+  ],
+  "stubbedAssets": [
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [],
+  "browserFreeze": {
+    "kind": "eidos-local-package-receipt",
+    "snapshotHash": "d7e7aa5b8091e6fec4959fe03665facded9e37ff13e68f882e8eddc56cf790a4",
+    "archiveSha256": "41322b4c5455d17683b6df452dcc68d69b937006d91fde4cb235560db7f31106",
+    "bytes": 128106,
+    "purchase": "not-performed"
+  },
+  "serverFreeze": {
+    "id": "fixture-delivery",
+    "ownerId": "fixture-owner",
+    "documentId": "aa12b65a-5b00-44c2-a7b2-090526426002",
+    "revision": 0,
+    "snapshotHash": "d7e7aa5b8091e6fec4959fe03665facded9e37ff13e68f882e8eddc56cf790a4",
+    "projectHash": "17465849f9d4668a67b4cdb8751feb19b031da035cbc7e39f401fe3148a5d90d",
+    "archiveSha256": "41322b4c5455d17683b6df452dcc68d69b937006d91fde4cb235560db7f31106",
+    "archiveBytes": 128106,
+    "mode": "test"
+  },
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5178/playground/"
+}

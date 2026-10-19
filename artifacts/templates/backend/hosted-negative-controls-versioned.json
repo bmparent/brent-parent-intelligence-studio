@@ -1,0 +1,31 @@
+{
+  "timestampUtc": "2026-10-11T01:42:58.137Z",
+  "scope": "actual final paired CF and e20b backend HTTP negative controls",
+  "site": "https://eidosworks-templates-test-20261010.pages.dev",
+  "backendSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+  "catalogSourceRevision": "e20b6207ad2f80e1497b83ece56e66c316dc5124-bundle-b10fa5afe2852d8e",
+  "controls": [
+    {
+      "name": "unknown_receipt",
+      "expected": 404,
+      "http": 404,
+      "passed": true,
+      "error": "This purchase receipt was not found. Contact billing with your payment reference."
+    },
+    {
+      "name": "client_price_override",
+      "expected": 400,
+      "http": 400,
+      "passed": true,
+      "error": "Prices and package versions are set by the server."
+    },
+    {
+      "name": "unavailable_wordpress",
+      "expected": 503,
+      "http": 503,
+      "passed": true,
+      "error": "This edition has not passed installation acceptance and cannot be purchased."
+    }
+  ],
+  "priceAndWpRejectedBeforeCheckoutCreation": true
+}

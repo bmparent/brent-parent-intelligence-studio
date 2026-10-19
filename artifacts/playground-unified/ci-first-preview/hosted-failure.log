@@ -1,0 +1,23 @@
+preview	Verify hosted desktop and mobile journey	﻿2026-10-14T18:29:04.0194687Z ##[group]Run node scripts/verify-playground-unified-browser.mjs
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:04.0195253Z [36;1mnode scripts/verify-playground-unified-browser.mjs[0m
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:04.0260401Z shell: /usr/bin/bash -e {0}
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:04.0260720Z env:
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:04.0261155Z   PLAYWRIGHT_MODULE: /home/runner/work/_temp/playground-browser/node_modules/playwright
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:04.0261759Z   PG_BASE_URL: https://eidosworks-playground-20261014.pages.dev
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:04.0262242Z   PG_EVIDENCE_DIR: artifacts/playground-unified/browser-hosted
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:04.0262618Z ##[endgroup]
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:24.9709383Z chromium 1440: FAIL locator.waitFor: Timeout 20000ms exceeded.
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:24.9710705Z Call log:
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:24.9711421Z   - waiting for getByRole('heading', { name: 'What are you making?' }) to be visible
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:24.9712067Z 
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:26.2731645Z 390: PASS clean start does not save or silently open a default project
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:26.7721214Z 390: PASS goal and starter create real page; inline headline editing
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:27.1352726Z 390: PASS uploaded image moves into columns and resizes through click/keyboard controls
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:27.2690890Z 390: PASS global brand updates shared project
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:27.6505595Z 390: PASS section reorder and exact shared Undo/Redo
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:29.0537051Z 390: PASS reload explicitly continues exact content, IDs, assets and selection
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:29.1843766Z 390: PASS invalid import preserves current work
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:29.5409172Z 390: PASS Finish freezes and downloads actual standalone page ZIP
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:29.7879740Z 390: PASS extracted output opens independently with exact editable project and all images
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:29.7909024Z 390: PASS page identity, no blank/overlay/runtime error/horizontal overflow
+preview	Verify hosted desktop and mobile journey	2026-10-14T18:29:29.8556838Z ##[error]Process completed with exit code 1.

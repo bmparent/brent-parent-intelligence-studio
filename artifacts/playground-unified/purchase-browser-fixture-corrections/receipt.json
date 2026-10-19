@@ -1,0 +1,260 @@
+{
+  "timestampUtc": "2026-10-14T18:52:37.431Z",
+  "source": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "sourceFiles": [
+    {
+      "path": "src/playground/PurchaseRecovery.tsx",
+      "sha256": "afd51326553613a934976b60bacd66cd110c0977a42baa44e73247ffc03e08f6"
+    },
+    {
+      "path": "src/playground/purchaseRecoveryClient.ts",
+      "sha256": "63402bd878c93bd57b608d2380473eddc32759b071a780750b3aae4b29398802"
+    },
+    {
+      "path": "src/playground/purchaseClient.ts",
+      "sha256": "b73b750a2524c610dd257284c7188df7f868a64c17668115b57b86190bdc5ed7"
+    },
+    {
+      "path": "src/playground/purchaseSnapshot.ts",
+      "sha256": "13bcf3dcb03441368cadf77d62bb34bf249163e92005418c22bcd5c52e922f5d"
+    },
+    {
+      "path": "src/playground/purchaseReviewStorage.ts",
+      "sha256": "4a344267a2441d7fded571551480cf7a12016c49fc3cb03eb843a6ba97e22b89"
+    },
+    {
+      "path": "src/playground/FinishPurchase.tsx",
+      "sha256": "11bf874bead78f2ad4f173c4acdbae9ed12b1e7b0b640bce2b1ba68bfbe46612"
+    },
+    {
+      "path": "src/playground/FinishReview.tsx",
+      "sha256": "79b4ebcd21c5c494a5e3851f153e9af6522f64997dcd3d168f9870b6d066187b"
+    },
+    {
+      "path": "src/playground/Playground.tsx",
+      "sha256": "c3a08070dd393b535741c9ea96f2d3b589399f037cd3c634430f3e847e25c4f3"
+    },
+    {
+      "path": "src/playground/useProject.ts",
+      "sha256": "4c89d2a5f408a913c2831d9e569166688e21a98f6ae8ed999eeee6e986195bf3"
+    },
+    {
+      "path": "scripts/verify-playground-purchase-browser.mjs",
+      "sha256": "7fa82835b59a82024b074d0a362b75d555bd4fc9d362149605cc214078aa0220"
+    }
+  ],
+  "base": "http://127.0.0.1:5184",
+  "browserAvailability": "Browser plugin not available; Playwright fixture harness explicitly requested",
+  "flow": "Private return -> explicit authenticated fixture retrieval -> exact stored ZIP -> separate editable copy",
+  "fixtureOnly": true,
+  "actualPayment": false,
+  "actualEmail": false,
+  "hostedAcceptance": false,
+  "physicalDevice": false,
+  "fixtureArchive": {
+    "sha256": "0bbf80316608935e2f59978c57a39b86290a41dfb46be611bb436005b46e59df",
+    "bytes": 68447
+  },
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "recovery opens a distinct editable identity and retains the exact historical review"
+      ],
+      "errors": [
+        "__name is not defined"
+      ],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at scenario (file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:81:79)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:90:36"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "recovery opens a distinct editable identity and retains the exact historical review"
+      ],
+      "errors": [
+        "__name is not defined"
+      ],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at scenario (file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:81:79)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:90:36"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "preserve-draft",
+      "checks": [],
+      "errors": [
+        "__name is not defined"
+      ],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com",
+        "fonts.googleapis.com"
+      ],
+      "failure": "locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Draft to keep', { exact: true }) to be visible\u001b[22m\n\u001b[2m    42 × locator resolved to hidden <span>Draft to keep</span>\u001b[22m\n\n    at C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:112:60\n    at async scenario (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:80:5)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:106:3"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-recovery",
+      "checks": [
+        "late recovery response after starting another project cannot open or replace the active draft",
+        "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "calls": [
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/download",
+          "method": "POST",
+          "artifact": "approved-page"
+        },
+        {
+          "path": "/api/playground/delivery?id=fixture-delivery",
+          "method": "GET"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:5184/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "calls": [],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "failure": "locator.selectOption: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Parent developer edition')\u001b[22m\n\u001b[2m    - locator resolved to <select aria-label=\"Parent developer edition\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    36 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:129:128\n    at async scenario (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:80:5)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:126:3"
+    }
+  ]
+}

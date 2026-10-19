@@ -14,7 +14,10 @@ if (manifest.files.length !== 75 || new Set(manifest.files.map(file => file.path
 }
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const contractFiles = [
-  ...manifest.files,
+  // Preserve the historical manifest; the legacy AI implementation now has a
+  // distinct name so it can coexist with scoped AI on case-insensitive disks.
+  ...manifest.files.map(file => file.path === 'functions/_shared/platform/playgroundAI.ts'
+    ? { ...file, path: 'functions/_shared/platform/playgroundLegacyAI.ts' } : file),
   { path: 'migrations/0007_operations.sql', normalization: 'UTF-8 LF' },
   { path: 'functions/_shared/platform/studioAgents.ts', normalization: 'UTF-8 LF' },
 ];
@@ -26,6 +29,9 @@ const exactRevisions = Boolean(process.env.SITE_REVISION && process.env.BACKEND_
 const readGitBlob = (cwd, revision, path) => execFileSync('git', ['show', `${revision}:${path}`], { cwd, maxBuffer: 8_000_000 });
 const checks = [];
 for (const { path, normalization } of contractFiles) {
+  // These two explicit adapters redirect to the isolated delivery/proposal
+  // graph, verified separately by export-playground-delivery.mjs (check mode).
+  if (['functions/_shared/platform/projectDeliveryRenderer.ts', 'functions/_shared/platform/playgroundAiRenderer.ts'].includes(path)) continue;
   const source = exactRevisions ? readGitBlob(process.cwd(), process.env.SITE_REVISION, path) : await readFile(resolve(path));
   const vendor = exactRevisions
     ? readGitBlob(resolve(backend, '../..'), process.env.BACKEND_REVISION, `apps/sentinel-lab/lib/works/vendor/${path}`)
@@ -42,6 +48,7 @@ const report = {
   siteRevision: process.env.SITE_REVISION || 'record separately',
   backendRevision: process.env.BACKEND_REVISION || 'record separately',
   sourceMode: exactRevisions ? 'Git blobs at exact revisions' : 'working tree files',
+  separateAdapterVerification: 'Run export-playground-delivery.mjs in check mode for projectDeliveryRenderer.ts and playgroundAiRenderer.ts plus their complete dependency graph.',
   count: checks.length,
   passed: checks.every(check => check.matches),
   checks,

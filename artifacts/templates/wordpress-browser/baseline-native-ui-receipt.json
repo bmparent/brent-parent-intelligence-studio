@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "scope": "One initially clean official browser Playground; four sequential ZIP installs/activation and native UI edits, not four independent clean sites",
+  "wordpress": "7.1.2",
+  "php": "8.3.33",
+  "server": "PHP.wasm",
+  "server_architecture": "Emscripten 4.0.19 wasm32",
+  "database": "SQLite/WASM; exact SQLite version not inspected",
+  "browser": "Chromium 145.0.7632.6",
+  "playground_remote_build": "63df6816ce0d40bce164631d45fa7b80f271648c",
+  "themes": [
+    {
+      "product": "switchboard",
+      "checks": {
+        "exact_zip_install": "passed",
+        "activation": "passed",
+        "native_heading_edit_publish": "passed",
+        "native_image_upload_publish": "passed",
+        "supplied_wxr_import": "passed",
+        "ordinary_primary_action_to_contact": "passed",
+        "five_published_page_templates_and_navigation": "passed",
+        "native_details_keyboard": "passed"
+      },
+      "status": "passed_bounded_browser_scope",
+      "archive_sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+      "archive_bytes": 29391,
+      "active_theme": "Theme Details\nActive: Switchboard by Eidos Works\nCustomize",
+      "contact_destination": "mailto:hello@example.com (explicit demo placeholder; no message sent)",
+      "screenshots": [
+        "switchboard-wordpress-edited-home.png",
+        "switchboard-wordpress-contact.png",
+        "switchboard-wordpress-contact.png"
+      ],
+      "primary_action_label": "Explore services",
+      "primary_action_path": "/services/",
+      "five_published_pages_via_header_navigation": [
+        {
+          "path": "/",
+          "heading": "Switchboard revised test studio"
+        },
+        {
+          "path": "/contact/",
+          "heading": "Contact"
+        },
+        {
+          "path": "/process/",
+          "heading": "Our process"
+        },
+        {
+          "path": "/service-detail/",
+          "heading": "Service detail"
+        },
+        {
+          "path": "/services/",
+          "heading": "Services"
+        }
+      ]
+    },
+    {
+      "product": "tideglass",
+      "checks": {
+        "exact_zip_install": "passed",
+        "activation": "passed",
+        "native_heading_edit_publish": "passed",
+        "native_image_upload_publish": "passed",
+        "supplied_wxr_import": "passed",
+        "five_published_page_templates_and_navigation": "passed",
+        "native_details_keyboard": "passed",
+        "ordinary_primary_action_to_contact": "passed"
+      },
+      "status": "passed_bounded_browser_scope",
+      "archive_sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+      "archive_bytes": 30016,
+      "active_theme": "Theme Details\nActive: Tideglass by Eidos Works\nCustomize",
+      "screenshots": [
+        "tideglass-wordpress-edited-home.png",
+        "tideglass-wordpress-contact.png"
+      ],
+      "five_published_pages_via_header_navigation": [
+        {
+          "path": "/",
+          "heading": "Tideglass revised test studio"
+        },
+        {
+          "path": "/contact/",
+          "heading": "Plan your stay"
+        },
+        {
+          "path": "/guide/",
+          "heading": "Local guide"
+        },
+        {
+          "path": "/stay-detail/",
+          "heading": "The house"
+        },
+        {
+          "path": "/stays/",
+          "heading": "Stays"
+        }
+      ],
+      "primary_action_label": "Find your place",
+      "primary_action_path": "/stays/",
+      "contact_destination": "mailto:hello@example.com (explicit demo placeholder; no message sent)"
+    },
+    {
+      "product": "matter",
+      "checks": {
+        "exact_zip_install": "passed",
+        "activation": "passed",
+        "native_heading_edit_publish": "passed",
+        "native_image_upload_publish": "passed",
+        "supplied_wxr_import": "passed",
+        "five_published_page_templates_and_navigation": "passed",
+        "native_details_keyboard": "passed",
+        "ordinary_primary_action_to_contact": "passed"
+      },
+      "status": "passed_bounded_browser_scope",
+      "archive_sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+      "archive_bytes": 30739,
+      "active_theme": "Theme Details\nActive: Matter by Eidos Works\nCustomize",
+      "screenshots": [
+        "matter-wordpress-edited-home.png",
+        "matter-wordpress-contact.png"
+      ],
+      "runner_adjustment": "Image-caption locator scoped to first image because Matter has three editable captions; no theme change.",
+      "five_published_pages_via_header_navigation": [
+        {
+          "path": "/",
+          "heading": "Matter revised test studio"
+        },
+        {
+          "path": "/collection/",
+          "heading": "Collection"
+        },
+        {
+          "path": "/contact/",
+          "heading": "Contact"
+        },
+        {
+          "path": "/object/",
+          "heading": "Object detail"
+        },
+        {
+          "path": "/process/",
+          "heading": "Our process"
+        }
+      ],
+      "primary_action_label": "Explore the collection",
+      "primary_action_path": "/collection/",
+      "contact_destination": "mailto:hello@example.com (explicit demo placeholder; no message sent)"
+    },
+    {
+      "product": "nightjar",
+      "checks": {
+        "exact_zip_install": "passed",
+        "activation": "passed",
+        "native_heading_edit_publish": "passed",
+        "native_image_upload_publish": "passed",
+        "supplied_wxr_import": "passed",
+        "five_published_page_templates_and_navigation": "passed",
+        "native_details_keyboard": "passed",
+        "ordinary_primary_action_to_contact": "passed"
+      },
+      "status": "passed_bounded_browser_scope",
+      "archive_sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+      "archive_bytes": 29728,
+      "active_theme": "New version available. Update now\n\nTheme Details\nActive: Nightjar by Eidos Works\nCustomize",
+      "screenshots": [
+        "nightjar-wordpress-edited-home.png",
+        "nightjar-wordpress-contact.png"
+      ],
+      "five_published_pages_via_header_navigation": [
+        {
+          "path": "/",
+          "heading": "Nightjar revised test studio"
+        },
+        {
+          "path": "/about/",
+          "heading": "About"
+        },
+        {
+          "path": "/contact/",
+          "heading": "Contact"
+        },
+        {
+          "path": "/event/",
+          "heading": "Event detail"
+        },
+        {
+          "path": "/program/",
+          "heading": "Program"
+        }
+      ],
+      "runner_adjustment": "Nightjar native Details are on Event detail, so keyboard test uses that designed page rather than the Home poster grid.",
+      "primary_action_label": "Explore the program",
+      "primary_action_path": "/program/",
+      "contact_destination": "mailto:hello@example.com (explicit demo placeholder; no message sent)"
+    }
+  ],
+  "commercial_status": "unavailable",
+  "limitations": [
+    "No native PHP/MySQL host or WordPress.com plan acceptance.",
+    "Contact action reaches explicit demo mailto placeholder; no message sent.",
+    "Sequential theme activation shares page records and media in one initially clean sandbox.",
+    "Browser viewport emulation is not physical device acceptance."
+  ],
+  "timestamp_utc": "2026-10-11T01:16:27.532973+00:00"
+}

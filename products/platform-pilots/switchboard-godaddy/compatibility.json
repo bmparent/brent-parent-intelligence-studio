@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "product_id": "switchboard",
+  "edition_id": "switchboard-godaddy-v1",
+  "version": "1.0.0",
+  "platform": "GoDaddy Websites + Marketing",
+  "plan": "not observed; verify HTML-section availability on buyer account",
+  "product_type": "visual-add-on",
+  "installation_method": "manual paste into HTML section",
+  "editable_without_code": ["native surrounding site content"],
+  "editable_with_code": ["business name", "service copy", "links", "colors", "process steps"],
+  "dependencies": [],
+  "effects": ["single-open service inquiry disclosure"],
+  "static_fallback": "native details disclosure and ordinary new-tab contact links",
+  "fulfillment_method": "downloadable section kit if later accepted",
+  "status": "blocked",
+  "sale_enabled": false,
+  "blocked_reason": "No authorized Websites + Marketing editor and published test site supplied",
+  "evidence_scope": "local source and iframe harness only; hosted acceptance pending"
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "real pointer input, isolated list harness",
+  "checks": [
+    "final nested position",
+    "cross-container final position",
+    "empty container",
+    "before first sibling",
+    "Escape creates no mutation",
+    "outside creates no mutation",
+    "pointercancel creates no mutation",
+    "lostpointercapture creates no mutation",
+    "blur creates no mutation",
+    "project-switch creates no mutation"
+  ],
+  "failures": []
+}

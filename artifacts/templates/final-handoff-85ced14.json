@@ -1,0 +1,518 @@
+{
+  "timestampUtc": "2026-10-11T02:36:35.263Z",
+  "status": "partial",
+  "productionDecision": "NO-GO",
+  "branch": "codex/paid-templates-20261010",
+  "site": {
+    "repository": "https://github.com/bmparent/brent-parent-intelligence-studio",
+    "sha": "85ced14b954194e013a47b50a511778f4daf7bfe",
+    "pullRequest": "https://github.com/bmparent/brent-parent-intelligence-studio/pull/102",
+    "preview": "https://eidosworks-templates-test-20261010.pages.dev"
+  },
+  "backend": {
+    "repository": "https://github.com/bmparent/eidos",
+    "sha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
+    "pullRequest": "https://github.com/bmparent/eidos/pull/71",
+    "preview": "https://eidos-sentinel-pmb8qllat-1brentbm-1876s-projects.vercel.app",
+    "deployment": "dpl_BvDduBrE4TvK7pjNEZbRCp9yHDRg",
+    "bundleHash": "75c0652872c9f8e91913e580ca51ade2a95729ff4267d3ea1d14ed4f2af070b7",
+    "trackedRuntimeFiles": 119,
+    "privateArchives": 16
+  },
+  "database": "eidos-works-validation-vercel-icfg-j5glcbpipda5txwa0a43dmjx.aws-us-east-1.turso.io",
+  "productionChanged": false,
+  "livePayments": false,
+  "subscriptionsCreated": false,
+  "packages": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "version": "1.0.1",
+      "sourcePath": "products/templates/switchboard/developer",
+      "packagePath": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+      "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
+      "bytes": 27055,
+      "files": 16,
+      "demoPath": "/template-demos/switchboard/"
+    },
+    {
+      "editionId": "switchboard-wordpress-v1",
+      "version": "1.0.1",
+      "sourcePath": "products/templates/switchboard/wordpress",
+      "packagePath": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+      "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+      "bytes": 29399,
+      "files": 28,
+      "demoPath": null
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "version": "1.0.0",
+      "sourcePath": "products/templates/tideglass/developer",
+      "packagePath": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+      "bytes": 26836,
+      "files": 16,
+      "demoPath": "/template-demos/tideglass/"
+    },
+    {
+      "editionId": "tideglass-wordpress-v1",
+      "version": "1.0.1",
+      "sourcePath": "products/templates/tideglass/wordpress",
+      "packagePath": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+      "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+      "bytes": 30027,
+      "files": 28,
+      "demoPath": null
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "version": "1.0.0",
+      "sourcePath": "products/templates/matter/developer",
+      "packagePath": "artifacts/templates/packages/matter-developer-v1.zip",
+      "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+      "bytes": 27533,
+      "files": 17,
+      "demoPath": "/template-demos/matter/"
+    },
+    {
+      "editionId": "matter-wordpress-v1",
+      "version": "1.0.1",
+      "sourcePath": "products/templates/matter/wordpress",
+      "packagePath": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+      "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+      "bytes": 30748,
+      "files": 29,
+      "demoPath": null
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.3",
+      "sourcePath": "products/templates/nightjar/developer",
+      "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
+      "sha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
+      "bytes": 27236,
+      "files": 16,
+      "demoPath": "/template-demos/nightjar/"
+    },
+    {
+      "editionId": "nightjar-wordpress-v1",
+      "version": "1.0.1",
+      "sourcePath": "products/templates/nightjar/wordpress",
+      "packagePath": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+      "sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+      "bytes": 29742,
+      "files": 28,
+      "demoPath": null
+    }
+  ],
+  "validation": {
+    "siteCi": {
+      "schemaVersion": 1,
+      "timestamp_utc": "2026-10-11T02:33:09.354364+00:00",
+      "headSha": "85ced14b954194e013a47b50a511778f4daf7bfe",
+      "status": "passed",
+      "siteQuality": {
+        "runId": 38104902749,
+        "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902749",
+        "status": "passed"
+      },
+      "templateCandidate": {
+        "runId": 38104902741,
+        "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902741",
+        "status": "passed",
+        "artifactName": "template-candidate-receipts",
+        "artifactDirectoryExternal": "E:\\CodexArtifacts\\paid-templates-20261010\\ci-38104902741",
+        "threeEngineBrowser": {
+          "status": "passed",
+          "receiptSha256": "60d93874257f32b9bd96b2e6ce88420bf6196b3503ade6dd376c523953d9a980",
+          "checks": 85,
+          "failures": [],
+          "engines": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ],
+          "viewports": [
+            390,
+            641,
+            1440
+          ],
+          "scope": "rendered static/source and shop, no provider transactions",
+          "originalHeadlineWordCases": 27,
+          "nightjar641Cases": 3,
+          "nightModeComputedTextContrastCases": 6,
+          "normalTextMinimumObservedRatio": 6.05809321834506,
+          "mockCatalogContractCases": 16,
+          "mockCatalogVariants": [
+            "matching",
+            "stale-version",
+            "unavailable",
+            "wrong-price"
+          ],
+          "turnstileOptionsOnlyActionCases": 4,
+          "turnstileActions": [
+            {
+              "scope": "Turnstile component action contract",
+              "path": "/shop/nightjar",
+              "viewport": 1440,
+              "expectedAction": "checkout",
+              "observedActions": [
+                "checkout"
+              ],
+              "result": "passed",
+              "challengeCallbackInvoked": false,
+              "tokensIssued": 0,
+              "paymentOrRecoverySubmitted": false
+            },
+            {
+              "scope": "Turnstile component action contract",
+              "path": "/shop/start",
+              "viewport": 1440,
+              "expectedAction": "recovery",
+              "observedActions": [
+                "recovery"
+              ],
+              "result": "passed",
+              "challengeCallbackInvoked": false,
+              "tokensIssued": 0,
+              "paymentOrRecoverySubmitted": false
+            },
+            {
+              "scope": "Turnstile component action contract",
+              "path": "/shop/nightjar",
+              "viewport": 390,
+              "expectedAction": "checkout",
+              "observedActions": [
+                "checkout"
+              ],
+              "result": "passed",
+              "challengeCallbackInvoked": false,
+              "tokensIssued": 0,
+              "paymentOrRecoverySubmitted": false
+            },
+            {
+              "scope": "Turnstile component action contract",
+              "path": "/shop/start",
+              "viewport": 390,
+              "expectedAction": "recovery",
+              "observedActions": [
+                "recovery"
+              ],
+              "result": "passed",
+              "challengeCallbackInvoked": false,
+              "tokensIssued": 0,
+              "paymentOrRecoverySubmitted": false
+            }
+          ],
+          "challengeInteracted": false,
+          "checkoutOrRecoverySubmitted": false
+        },
+        "packages": {
+          "status": "passed",
+          "currentArchives": 8,
+          "allVersionsHashesBytesMatchLocalFreeze": true,
+          "archives": [
+            {
+              "editionId": "switchboard-developer-v1",
+              "version": "1.0.1",
+              "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
+              "bytes": 27055
+            },
+            {
+              "editionId": "switchboard-wordpress-v1",
+              "version": "1.0.1",
+              "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+              "bytes": 29399
+            },
+            {
+              "editionId": "tideglass-developer-v1",
+              "version": "1.0.0",
+              "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+              "bytes": 26836
+            },
+            {
+              "editionId": "tideglass-wordpress-v1",
+              "version": "1.0.1",
+              "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+              "bytes": 30027
+            },
+            {
+              "editionId": "matter-developer-v1",
+              "version": "1.0.0",
+              "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+              "bytes": 27533
+            },
+            {
+              "editionId": "matter-wordpress-v1",
+              "version": "1.0.1",
+              "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+              "bytes": 30748
+            },
+            {
+              "editionId": "nightjar-developer-v1",
+              "version": "1.0.3",
+              "sha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
+              "bytes": 27236
+            },
+            {
+              "editionId": "nightjar-wordpress-v1",
+              "version": "1.0.1",
+              "sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+              "bytes": 29742
+            }
+          ]
+        },
+        "cloudflare": {
+          "configuration": "passed",
+          "uploadWorkflow": "passed",
+          "configurationReceipt": "artifacts/templates/preview-configuration-final.json",
+          "configurationReceiptSha256": "57125bae6911983a5d9fcaaf56ce4940c12a540645f0e8b169659e821e02b5c0",
+          "siteOrigin": "https://eidosworks-templates-test-20261010.pages.dev",
+          "customDomains": [],
+          "siteSha": "85ced14b954194e013a47b50a511778f4daf7bfe",
+          "backendSha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
+          "scope": "CI guarded isolated configuration/upload only; root owns separate hosted HTTP acceptance."
+        }
+      },
+      "auxiliaryRuns": [
+        {
+          "name": "Wellway acceptance",
+          "runId": 38104902716,
+          "status": "passed",
+          "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902716"
+        },
+        {
+          "name": "Community studio acceptance",
+          "runId": 38104902753,
+          "status": "passed",
+          "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902753"
+        },
+        {
+          "name": "Playground editor release",
+          "runId": 38104902740,
+          "status": "passed",
+          "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902740"
+        }
+      ],
+      "visualReview": {
+        "status": "passed_bounded_scope",
+        "reviewedFiles": [
+          {
+            "path": "chromium-switchboard-1440.jpg",
+            "sha256": "a9ab2a14474703073a4f6f23b52272d458b0acbca04dfa475cd511bbb59aa9fe"
+          },
+          {
+            "path": "chromium-switchboard-390.jpg",
+            "sha256": "7d22711e8f98153da4adaf3aaaa65611057b362b9dd8ba7403e5d5c157699929"
+          },
+          {
+            "path": "chromium-nightjar-1440.jpg",
+            "sha256": "ae3719e6e335bd107ea08911297a64ef22ca24fa5146339b40eea9c76a91f669"
+          },
+          {
+            "path": "chromium-nightjar-390.jpg",
+            "sha256": "863f5e543993b40002cbbae1c8e51c4c3c4adc520a8dc945bc3635ad1460dd2d"
+          },
+          {
+            "path": "firefox-switchboard-1440.jpg",
+            "sha256": "8fa51770706abb55c2ed27c11be9df91aa10fde4de29dfd9961856e308e2690e"
+          },
+          {
+            "path": "firefox-switchboard-390.jpg",
+            "sha256": "486353d934543f0bc3c6e3454224a26f1b9edf13d7b5a5915533e5e84c9b2d19"
+          },
+          {
+            "path": "firefox-nightjar-1440.jpg",
+            "sha256": "ed4ce3d9492d9a71e2849ee7ac1e34c77627e96479a2e0f8af5fcda73415e35e"
+          },
+          {
+            "path": "firefox-nightjar-390.jpg",
+            "sha256": "51c3b9e82a4078c87b15b1c17ed613f04d90959daec85a04bc84a468625fb579"
+          },
+          {
+            "path": "webkit-switchboard-1440.jpg",
+            "sha256": "187955ef5507c31883950b2b712d314260fe1aa10279f2e906b4be23a9c35b26"
+          },
+          {
+            "path": "webkit-switchboard-390.jpg",
+            "sha256": "caf0a2ee018852e1bfee4dfbb4ebf12f2d59a9d796eff747cecca81805384c99"
+          },
+          {
+            "path": "webkit-nightjar-1440.jpg",
+            "sha256": "fd240ab85412c5a28a6c7076e73a2fd41d520f6f5783f75872f88531e10e94c3"
+          },
+          {
+            "path": "webkit-nightjar-390.jpg",
+            "sha256": "090fdc125dedc7b7b9d013730c44c6d0ed0c57440eb02ac2b376dd4b6da6e483"
+          }
+        ],
+        "findings": [
+          "Switchboard ordinary word conversation and Nightjar gathering remain intact in all reviewed desktop/phone screenshots.",
+          "Hero text, navigation, action links, cards and footer remain readable with no observed clipping.",
+          "Nightjar night palette remains readable; computed contrast checks independently passed."
+        ],
+        "scope": "12 runner-generated source screenshots, two products x three engines x two widths. Nightjar641 verified by Range fragment assertions, without a641 screenshot."
+      },
+      "priorEvidence": {
+        "failedCandidate": "artifacts/templates/ci-status-12d664f.json",
+        "priorSuccessfulCandidate": "artifacts/templates/ci-status-6b6ced3.json",
+        "note": "Failed12d Switchboard1.0.0 gate and older immutable archives remain preserved."
+      },
+      "limits": [
+        "Runner-local static HTTP acceptance differs from hosted/provider/payment acceptance.",
+        "No LIVE sale, physical-device, field-metric, accessibility-certification or conventional WordPress-host claim.",
+        "Screenshots and raw configuration stay local/external and are excluded from Drive payload."
+      ],
+      "auxiliarySummary": "All exact-head auxiliary workflows passed; Playground production-only steps remained skipped on the candidate branch."
+    },
+    "hostedHttp": {
+      "result": "passed",
+      "checks": 11
+    },
+    "packageChecks": 766,
+    "releaseManifestTests": 6,
+    "storefrontTests": 4,
+    "existingPlatformTests": 35,
+    "backendTests": 65,
+    "backendTypecheck": "passed",
+    "exactZipDeveloperInstalls": 4,
+    "generatorFilesCompared": 166
+  },
+  "actualStripe": {
+    "mode": "TEST",
+    "merchant": "acct_1Rj03gKC8pRG5Tr9",
+    "observedSource": "e20b6207ad2f80e1497b83ece56e66c316dc5124",
+    "product": "Switchboard developer1.0.0",
+    "amountCents": 9900,
+    "currency": "USD",
+    "paid": "passed",
+    "signedPaidEvent": "observed",
+    "privateApiAndBrowserDownloadHash": "matched",
+    "refundAndUnexpiredTokenRevocation": "passed",
+    "oneOrdinaryDeclineWithoutEntitlement": "passed",
+    "unpaidExpiry": "observed",
+    "deliveredReceiptEmail": "blocked",
+    "deliveredRecoveryEmail": "blocked",
+    "delayedPaymentsDuplicateReplaysTwoBuyerRecovery": "controlled fixtures; no real delayed-method or hosted two-buyer acceptance"
+  },
+  "compatibility": {
+    "developer": "Four exact-ZIP local installations and final hosted source/browser checks passed; isolated TEST only.",
+    "wordpress": "Four baseline native UI edit/image/save/navigation/action checks plus final1.0.1 exact installs in two fresh shared official browser runtimes. WordPress7.1.2/PHP8.3.33. Partial; all unavailable.",
+    "squarespace": "Switchboard7.1 manual existing-site pilot; five local pilot checks include builder isolation. Hosted editor unavailable.",
+    "godaddy": "Switchboard Websites+Marketing isolated HTML-section pilot; hosted editor unavailable. Distinct from WordPress hosting."
+  },
+  "blockers": [
+    "Configure a valid scoped receipt/recovery mail binding in the existing validation preview; do not send secrets in chat. Then prove provider delivery and the authorized inbox/recovery path.",
+    "Provide authorized Squarespace7.1 and GoDaddy Websites+Marketing test sites/plans to follow the pilot guides, publish phone pages and verify actions.",
+    "WordPress conventional PHP/MySQL hosting, declared minimum versions, four independent clean installations, restart persistence and WordPress.com upload plans remain unverified.",
+    "No real delayed-method or hosted two-buyer authenticated acceptance. Controlled fixtures remain separately labeled.",
+    "Historical refunded order denies access on final source, but its secondary fulfillment field remains ready. New reconciliation has regression proof; no genuine provider replay occurred."
+  ],
+  "commercial": {
+    "pricing": "Draft source$99, WordPress$129, visual-kit$29; Cinematic Starter$29 preserved.",
+    "terms": "30days installation guidance,90days supplied-file defect help; dependency/GPL rights preserved; unit costs unknown, no revenue claim."
+  },
+  "rollback": {
+    "candidate": "Disable only candidate feature/relay or restore its prior paired deployment; retain orders and archives.",
+    "canonicalSiteDeployment": "8f2836ad-8e5e-4584-8571-05a9db2ef35d",
+    "canonicalBackendDeployment": "dpl_BDUhZ7W9Akz58SDaVXJ2bXVF4rNQ",
+    "productionRelease": "Not authorized by this handoff."
+  },
+  "drive": {
+    "receipt": "artifacts/templates/drive_manifest-final-version.json",
+    "cloudSynchronization": "unconfirmed; consult separate checksum-verified mounted-Drive receipt",
+    "historicalSnapshot": "The authorized-final-e3e85caf3af0 snapshot contains the eight ZIPs current at that earlier time, including Switchboard developer1.0.0 and Nightjar developer1.0.1. Use drive_manifest-final-version.json for final1.0.1/1.0.3 and all16 archive hashes."
+  },
+  "evidence": [
+    {
+      "path": "artifacts/templates/ci-status-85ced14.json",
+      "bytes": 9696,
+      "sha256": "b134b6b3aea24d8536a8193bb16953793a46508f22dee7dbde49c519ae64930a"
+    },
+    {
+      "path": "artifacts/templates/hosted-versioned-receipt.json",
+      "bytes": 12440,
+      "sha256": "c0f0338ac33883b1e14278f2a4ba9c2b10db2ce6796eff6b868eef055c9ff833"
+    },
+    {
+      "path": "artifacts/templates/preview-configuration-final.json",
+      "bytes": 743,
+      "sha256": "57125bae6911983a5d9fcaaf56ce4940c12a540645f0e8b169659e821e02b5c0"
+    },
+    {
+      "path": "artifacts/templates/package-report.json",
+      "bytes": 3224,
+      "sha256": "ace8905448bef3b1acf41d9fa00c20371dc8a43bcec1d264166b96ccd711b848"
+    },
+    {
+      "path": "artifacts/templates/release-manifest.json",
+      "bytes": 61682,
+      "sha256": "033bb740be55a12167c62d7a00a32bfea86d7168d78ca07787059245444eeb18"
+    },
+    {
+      "path": "artifacts/templates/source-install-receipt.json",
+      "bytes": 1919,
+      "sha256": "5cf2782f3a16f1f3f79b7bece12b6cb98ff2f0ffaa0a0d28a97555a04deea64f"
+    },
+    {
+      "path": "artifacts/templates/generator-parity.json",
+      "bytes": 391,
+      "sha256": "bca644b7cdb9ec13db843a9b77b6d5971a1188937725750acb4bef9f17950e36"
+    },
+    {
+      "path": "artifacts/templates/backend/source-provenance-final.json",
+      "bytes": 1365,
+      "sha256": "eb0b7c21892f255e024c500140e641cd21a9e8b29476fb87d465cb9fda467297"
+    },
+    {
+      "path": "artifacts/templates/backend/final-validation.json",
+      "bytes": 2716,
+      "sha256": "e31271d1ff4a92cb59a0c2bd0e96a81458bfca0107f07794de216a69a0170c69"
+    },
+    {
+      "path": "artifacts/templates/backend/actual-paid-fulfillment.json",
+      "bytes": 1974,
+      "sha256": "7f4aee26a50a7baf93b8dfe8a923dae1178ec52799c6fb954374d9e9a36bde40"
+    },
+    {
+      "path": "artifacts/templates/backend/actual-test-refund.json",
+      "bytes": 1498,
+      "sha256": "949e5a76485fe67ee5720ec15d851978d91e6bd6d0b2352ed7705dfd4e019f2a"
+    },
+    {
+      "path": "artifacts/templates/backend/actual-test-decline.json",
+      "bytes": 1909,
+      "sha256": "7b9784e9797bef854abe7e978ba434708e186ebc596e42d8be9a05d4dbefe1bf"
+    },
+    {
+      "path": "artifacts/templates/backend/browser-ui-receipt.json",
+      "bytes": 3433,
+      "sha256": "59ab95b67ec1e7cda1235dfced58c70efc3c865eafac0f941336c9ead1f4a5b3"
+    },
+    {
+      "path": "artifacts/templates/backend/final-refunded-order-observation.json",
+      "bytes": 1294,
+      "sha256": "73d088fa2b5c650ca0aba258d75ba0d3d25b4f485e2a2627a1fb5d21dafaaf65"
+    },
+    {
+      "path": "docs/paid-templates/platform-install-evidence.json",
+      "bytes": 22493,
+      "sha256": "58361706b2c223974bd4080a622628235b28a494707ecc588be2b8ab2bd56846"
+    },
+    {
+      "path": "docs/paid-templates/ACCEPTANCE.md",
+      "bytes": 17317,
+      "sha256": "c5c8c1aa3186b9820daef5e9d50a169beefb2aeb132e566788ffafd65ea47785"
+    },
+    {
+      "path": "docs/paid-templates/product-operations.md",
+      "bytes": 19596,
+      "sha256": "1c234b6abe4778c3027d2cb8381f6069b21de456ba6fc436de9fedf7ea81d6a4"
+    },
+    {
+      "path": "docs/paid-templates/codex-journal.md",
+      "bytes": 11291,
+      "sha256": "9e4f06f1ff8581cc62079e0a254dec382648f5f595f4deb1ea09973eb3f63f81"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "engine": "firefox",
+  "width": 1440,
+  "name": "deferred-checkout",
+  "checks": [
+    "manual create/review/approval makes no purchase API request",
+    "revoking review approval during deferred preflight prevents checkout dispatch",
+    "late checkout response after closing review and editing does not navigate or replace the newer draft",
+    "account switch clears the previous owner accepted and paid display",
+    "page identity, no runtime overlay/error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+    },
+    {
+      "type": "warning",
+      "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+    }
+  ],
+  "calls": [
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    }
+  ],
+  "unexpected": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [],
+  "browserFreeze": {
+    "kind": "eidos-local-package-receipt",
+    "snapshotHash": "15e217aecccb0fc5340e3969a91e6abc17a2b5fe37f678d18085945f1ee31eca",
+    "archiveSha256": "19cd3eee51ee0ff53dce4ccc291ba15a71951c03aee628167c2b97ca7b67c0ce",
+    "bytes": 126721,
+    "purchase": "not-performed"
+  },
+  "serverFreeze": {
+    "id": "fixture-delivery",
+    "ownerId": "fixture-owner",
+    "documentId": "f78cbc1e-3c95-4ee0-951b-5ab14ac72274",
+    "revision": 0,
+    "snapshotHash": "15e217aecccb0fc5340e3969a91e6abc17a2b5fe37f678d18085945f1ee31eca",
+    "projectHash": "a425a1d22a0bdb64e8fb2adea42ede45296b19c77d55ef29df111d06ec21b16c",
+    "archiveSha256": "19cd3eee51ee0ff53dce4ccc291ba15a71951c03aee628167c2b97ca7b67c0ce",
+    "archiveBytes": 126721,
+    "mode": "test"
+  },
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}

@@ -48,7 +48,10 @@ try {
     frozen = await review(first.documentId);
     assert.deepEqual(frozen.snapshot.project, first.project); assert.equal(frozen.snapshot.revision, first.revision);
     assert.equal(frozen.snapshot.parent.editionId, 'switchboard-developer-v1');
-    assert.equal(await page.getByRole('button', { name: /purchase|checkout|recovery/i }).count(), 0);
+    // The pending candidate retains its gated TEST purchase panel. Local review
+    // must not enable checkout or dispatch any provider/account write.
+    assert.equal(await page.getByRole('button', { name: 'Purchase unavailable', exact: true }).isDisabled(), true);
+    assert.equal(await page.getByRole('button', { name: /continue to.*checkout|retry.*checkout/i }).count(), 0);
     const frame = page.frameLocator('iframe[title="Frozen package preview"]');
     await frame.getByRole('heading', { level: 1 }).waitFor();
     assert.equal(await frame.locator('body').evaluate(() => innerWidth), 1280);

@@ -1,3 +1,7 @@
+# Combined source integration — October 19, 2026
+
+See [the combined release integration ledger](RELEASE_INTEGRATION_2026-10-19.md) for the account/Playground pair, local checks, CI pins and open hosted/provider gates. Prior acceptance remains scoped to its dated source and environment.
+
 # Current account recovery — October 19, 2026
 
 The successor account candidate reconciles current public main with the held account pair. See [the October 19 source, verification and remaining hosted gates](ACCEPTANCE_2026-10-19.md). Prior candidate and public-release receipts below retain their original dates and scope; they do not accept this new pair.
@@ -195,3 +199,14 @@ No provider configuration, backend, credentials, billing, deployment workflow or
 ## October 6 studio agent release recovery
 
 Brent authorized resolving the pending community agent issues and shipping this scoped pair. Site #84 is reconciled with current public main, backend #68 pins its acceptance to the existing isolated database without production fallback, and native maintenance now records roster/publication readback. Hosted backend persistence, deduplication and moderation checks pass; the real paired HTTP routes pass after canonical edge propagation. Hosted browser and exact final-source gates must pass before production activation. The evidence ledger, preview pairing, frozen launch anchor, cadence, scope limitations and rollback are in [COMMUNITY_STUDIO_RELEASE_2026-10-06.md](COMMUNITY_STUDIO_RELEASE_2026-10-06.md). Final provider, browser and production receipts are maintained on site #84/backend #68 so a status-only source commit does not trigger another deployment. This release does not accept or merge the held Works #98/#67 runtime.
+
+
+## October 14 Stripe payment deployment repair
+
+The existing template candidate now has a complete immutable private-archive
+bundle and a pinned, hosted-verified TEST relay. The paired code sources are
+site11e292f / backend16a1926; draft sitePR109/backendPR76 preserve the held
+production gates. No production deployment or LIVE sale is accepted. Actual
+receipt/recovery delivery, genuine signed TEST acknowledgement and final provider
+refund/replay still require the missing candidate mail binding and Stripe TEST
+access. See [dated payment evidence](../paid-templates/STRIPE_COMPLETION_2026-10-14.md).

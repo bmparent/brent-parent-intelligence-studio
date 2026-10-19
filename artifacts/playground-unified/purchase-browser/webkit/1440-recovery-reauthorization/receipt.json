@@ -1,0 +1,59 @@
+{
+  "engine": "webkit",
+  "width": 1440,
+  "name": "recovery-reauthorization",
+  "checks": [
+    "account switch after retrieval blocks opening a new editable copy",
+    "revocation after retrieval blocks opening a new editable copy",
+    "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)",
+      "url": "http://127.0.0.1:5185/api/shop/status"
+    },
+    {
+      "type": "warning",
+      "text": "The resource http://127.0.0.1:5185/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing.",
+      "url": ""
+    }
+  ],
+  "calls": [
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/download",
+      "method": "POST",
+      "artifact": "approved-page"
+    },
+    {
+      "path": "/api/playground/delivery?id=fixture-delivery",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    }
+  ],
+  "unexpected": [],
+  "expectedHttpDenials": [
+    {
+      "status": 403,
+      "url": "http://127.0.0.1:5185/api/shop/status"
+    }
+  ],
+  "stubbedAssets": [
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [],
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}

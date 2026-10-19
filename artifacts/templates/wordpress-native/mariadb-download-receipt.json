@@ -1,0 +1,13 @@
+{
+  "timestamp_utc": "2026-10-11T02:46:11.373737+00:00",
+  "product": "MariaDB Server",
+  "version": "10.11.19",
+  "source_url": "https://dlm.mariadb.com/4800088/MariaDB/mariadb-10.11.19/winx64-packages/mariadb-10.11.19-winx64.zip",
+  "checksum_source_url": "https://dlm.mariadb.com/4800090/MariaDB/mariadb-10.11.19/winx64-packages/sha256sums.txt",
+  "archive_filename": "mariadb-10.11.19-winx64.zip",
+  "bytes": 93557290,
+  "sha256": "398ea30e5036010bbebe01d2b1804280424dcc2626e36d8e95155c04d25a0490",
+  "sha256_verified": true,
+  "signature_verified": false,
+  "scope": "Official Windows ZIP; no Windows service or administrator installation"
+}

@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "version": "2026-10-10.1",
+  "currency": "USD",
+  "pricingStatus": "draft",
+  "rights": "Original Eidos Works artwork and source. Developer source uses included commercial license; WordPress theme code GPL-2.0-or-later.",
+  "products": [
+    {
+      "slug": "switchboard",
+      "name": "Switchboard",
+      "audience": "Service businesses",
+      "summary": "A clear five-page service website that turns a visitor's problem into a useful next step.",
+      "signature": "Accessible problem-to-service selector",
+      "pages": [
+        "Home",
+        "Services",
+        "Service detail",
+        "Work and process",
+        "Contact"
+      ],
+      "palette": [
+        "#14302b",
+        "#f6f6ee",
+        "#d8f35f"
+      ],
+      "editions": [
+        {
+          "id": "switchboard-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "label": "Developer source",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/switchboard/developer",
+          "packagePath": "artifacts/templates/packages/switchboard-developer-v1.0.3.zip",
+          "demoPath": "/template-demos/switchboard/",
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.3"
+        },
+        {
+          "id": "switchboard-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "label": "WordPress block theme",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/switchboard/wordpress",
+          "packagePath": "artifacts/templates/packages/switchboard-wordpress-v1.0.3.zip",
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.3"
+        },
+        {
+          "id": "switchboard-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "label": "Squarespace 7.1 kit",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable",
+          "pilotPath": "products/platform-pilots/switchboard-squarespace-7.1"
+        },
+        {
+          "id": "switchboard-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "label": "GoDaddy visual add-on",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable",
+          "pilotPath": "products/platform-pilots/switchboard-godaddy"
+        }
+      ],
+      "market": "Services",
+      "visualStyle": "Crisp & practical",
+      "tagline": "A clearer path to the next inquiry.",
+      "designDirection": {
+        "artCaption": "A useful place to start.",
+        "structure": "Problem-led service routing with a compact inquiry path.",
+        "typography": "System sans with strong labels and measured content density.",
+        "visualLanguage": "Warm white, forest ink, lime accents, and original service diagrams.",
+        "navigation": "Home, services, focused service detail, process, and contact.",
+        "interaction": "Problem-to-service selector with ordinary links as the fallback."
+      }
+    },
+    {
+      "slug": "tideglass",
+      "name": "Tideglass",
+      "audience": "Retreats and hospitality",
+      "summary": "An atmospheric five-page stay website with clear room details, a local guide, and an inquiry path.",
+      "signature": "Keyboard and touch time-of-day scene explorer",
+      "pages": [
+        "Home",
+        "Stays and experiences",
+        "Stay detail",
+        "Local guide",
+        "Contact and booking"
+      ],
+      "palette": [
+        "#182f38",
+        "#eff3ed",
+        "#d3b27f"
+      ],
+      "editions": [
+        {
+          "id": "tideglass-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "label": "Developer source",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/tideglass/developer",
+          "packagePath": "artifacts/templates/packages/tideglass-developer-v1.0.2.zip",
+          "demoPath": "/template-demos/tideglass/",
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.2"
+        },
+        {
+          "id": "tideglass-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "label": "WordPress block theme",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/tideglass/wordpress",
+          "packagePath": "artifacts/templates/packages/tideglass-wordpress-v1.0.3.zip",
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.3"
+        },
+        {
+          "id": "tideglass-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "label": "Squarespace 7.1 kit",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        },
+        {
+          "id": "tideglass-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "label": "GoDaddy visual add-on",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        }
+      ],
+      "market": "Hospitality",
+      "visualStyle": "Quiet & atmospheric",
+      "tagline": "Room to slow down. A clear way to stay.",
+      "designDirection": {
+        "artCaption": "Stay a little longer.",
+        "structure": "Spacious stay discovery with room details and a local guide.",
+        "typography": "Large system serif headlines and readable sans-serif body copy.",
+        "visualLanguage": "Coastal blue, pale stone, sand accents, and original landscape artwork.",
+        "navigation": "Home, stays and experiences, stay detail, local guide, and booking inquiry.",
+        "interaction": "Time-of-day scene explorer with a static illustrated fallback."
+      }
+    },
+    {
+      "slug": "matter",
+      "name": "Matter",
+      "audience": "Makers and design brands",
+      "summary": "A material-led five-page studio website for collections, product details, process, and considered inquiries.",
+      "signature": "Close-inspection material explorer",
+      "pages": [
+        "Home",
+        "Collection",
+        "Object detail",
+        "Our process",
+        "Contact"
+      ],
+      "palette": [
+        "#34261f",
+        "#f0e8dc",
+        "#a4472b"
+      ],
+      "editions": [
+        {
+          "id": "matter-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "label": "Developer source",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/matter/developer",
+          "packagePath": "artifacts/templates/packages/matter-developer-v1.0.2.zip",
+          "demoPath": "/template-demos/matter/",
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.2"
+        },
+        {
+          "id": "matter-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "label": "WordPress block theme",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/matter/wordpress",
+          "packagePath": "artifacts/templates/packages/matter-wordpress-v1.0.3.zip",
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.3"
+        },
+        {
+          "id": "matter-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "label": "Squarespace 7.1 kit",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        },
+        {
+          "id": "matter-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "label": "GoDaddy visual add-on",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        }
+      ],
+      "market": "Makers",
+      "visualStyle": "Warm & editorial",
+      "tagline": "Let the details do the talking.",
+      "designDirection": {
+        "artCaption": "Made with intention.",
+        "structure": "Editorial collection browsing centered on material, process, and a considered inquiry.",
+        "typography": "Serif editorial headings with compact sans-serif labels.",
+        "visualLanguage": "Clay, dark brown, warm paper, and original object studies.",
+        "navigation": "Home, collection, object detail, studio journal, and inquiry.",
+        "interaction": "Material lens controlled by pointer, keyboard, or touch, with static artwork fallback."
+      }
+    },
+    {
+      "slug": "nightjar",
+      "name": "Nightjar",
+      "audience": "Culture and creative events",
+      "summary": "A bold five-page program website that makes events, access information, and ticket destinations easy to find.",
+      "signature": "Accessible layered program and day/night treatment",
+      "pages": [
+        "Home",
+        "Program",
+        "Event detail",
+        "About",
+        "Contact"
+      ],
+      "palette": [
+        "#201e39",
+        "#fff5d8",
+        "#ff7553"
+      ],
+      "editions": [
+        {
+          "id": "nightjar-developer-v1",
+          "platform": "developer",
+          "kind": "complete-site-source",
+          "label": "Developer source",
+          "draftPriceCents": 9900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/nightjar/developer",
+          "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.5.zip",
+          "demoPath": "/template-demos/nightjar/",
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.5"
+        },
+        {
+          "id": "nightjar-wordpress-v1",
+          "platform": "wordpress",
+          "kind": "native-block-theme",
+          "label": "WordPress block theme",
+          "draftPriceCents": 12900,
+          "currency": "USD",
+          "status": "candidate",
+          "commercialAvailability": "unavailable",
+          "sourcePath": "products/templates/nightjar/wordpress",
+          "packagePath": "artifacts/templates/packages/nightjar-wordpress-v1.0.3.zip",
+          "installationGuide": "INSTALL.md",
+          "version": "1.0.3"
+        },
+        {
+          "id": "nightjar-squarespace-v1",
+          "platform": "squarespace",
+          "kind": "existing-site-kit",
+          "label": "Squarespace 7.1 kit",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        },
+        {
+          "id": "nightjar-godaddy-v1",
+          "platform": "godaddy",
+          "kind": "visual-add-on",
+          "label": "GoDaddy visual add-on",
+          "draftPriceCents": 2900,
+          "currency": "USD",
+          "status": "unavailable",
+          "commercialAvailability": "unavailable"
+        }
+      ],
+      "market": "Culture & events",
+      "visualStyle": "Bold & expressive",
+      "tagline": "Find your people. Find your next night.",
+      "designDirection": {
+        "artCaption": "Meet after dark.",
+        "structure": "High-contrast event discovery with a practical program and venue path.",
+        "typography": "Oversized system sans headlines and compact program metadata.",
+        "visualLanguage": "Charcoal, electric blue, warm white, and original poster artwork.",
+        "navigation": "Home, program, event detail, venue, and contact.",
+        "interaction": "Event mood filters with ordinary full program content as the fallback."
+      }
+    }
+  ],
+  "supportTermsStatus": "finalized"
+}

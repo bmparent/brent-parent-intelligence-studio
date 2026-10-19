@@ -8,6 +8,7 @@ export interface PublicConfig {
   passwordsReady: boolean;
   googleReady: boolean;
   aiReady: boolean;
+  playgroundAiReady: boolean;
   shopReady: boolean;
   localTest: boolean;
 }
@@ -19,6 +20,7 @@ const fallback: PublicConfig = {
   passwordsReady: false,
   googleReady: false,
   aiReady: false,
+  playgroundAiReady: false,
   shopReady: false,
   localTest: false,
 };

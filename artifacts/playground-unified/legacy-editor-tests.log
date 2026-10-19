@@ -1,0 +1,36 @@
+✔ full renderer and export preserve version 3, image placement and image asset ownership slots (25.8199ms)
+✔ legacy renderer path is still selected until opt-in upgrade (0.6934ms)
+✔ one upgrade/move is one undoable workspace operation (2.1102ms)
+✔ legacy templates retain their versions and do not gain layout data on validation (11.0667ms)
+✔ upgrade preserves identities, content, media, renderer, brand and page tokens (2.4263ms)
+✔ all placements survive JSON save/reopen with one media slot per original section (6.4123ms)
+✔ moving image within copy changes both reading order and placement without editing text (1.0698ms)
+✔ moving heading, description and button preserves each exactly once (1.0182ms)
+✔ mobile placement is independent; automatic side images stack and text order is shared (1.3385ms)
+✔ validation rejects unknown versions, duplicate/missing parts and unexpected fields (0.6475ms)
+✔ all numeric settings reject non-finite and out-of-range values (3.0976ms)
+✔ version 3 cannot silently downgrade or attach composition to other sections (1.5595ms)
+✔ operations refuse legacy projects and non-hero destinations (1.5308ms)
+✔ renderer uses selected element order and exactly one image node (1.8207ms)
+✔ CSS supplies bounded background stacking, responsive override and static mobile transforms (4.3521ms)
+✔ legacy sections produce no composition CSS (0.3558ms)
+✔ background placement adds an honest publishing contrast note (2.2189ms)
+✔ page section moves keep permanent identities, header/footer and original data (1.1798ms)
+✔ legacy AI layout fields cannot silently change an inactive hero layout (2.7907ms)
+✔ editor release keeps legacy cloud projects available after validation and JSON roundtrip (6.9342ms)
+✔ editor release blocks new formats without mutating them (2.4756ms)
+✔ new media and structural fields cannot bypass the client boundary under a legacy version (0.7045ms)
+✔ Pages Functions reject new-format cloud writes before accessing any database (5.0366ms)
+✔ legacy save identity follows document history across format upgrades and Undo (7.2326ms)
+✔ removing an experimental image also removes metadata and restores legacy cloud eligibility (0.995ms)
+✔ media placement and brand metadata roundtrip without rewriting legacy documents (16.1316ms)
+✔ explicit v2 migration preserves v1 bytes, renderer and destinations (10.9761ms)
+✔ repeated block/card identities roundtrip through renderer, export and validation (14.9165ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 996.2951

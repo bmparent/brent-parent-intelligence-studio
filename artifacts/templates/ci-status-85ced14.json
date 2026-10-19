@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "timestamp_utc": "2026-10-11T02:33:09.354364+00:00",
+  "headSha": "85ced14b954194e013a47b50a511778f4daf7bfe",
+  "status": "passed",
+  "siteQuality": {
+    "runId": 38104902749,
+    "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902749",
+    "status": "passed"
+  },
+  "templateCandidate": {
+    "runId": 38104902741,
+    "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902741",
+    "status": "passed",
+    "artifactName": "template-candidate-receipts",
+    "artifactDirectoryExternal": "E:\\CodexArtifacts\\paid-templates-20261010\\ci-38104902741",
+    "threeEngineBrowser": {
+      "status": "passed",
+      "receiptSha256": "60d93874257f32b9bd96b2e6ce88420bf6196b3503ade6dd376c523953d9a980",
+      "checks": 85,
+      "failures": [],
+      "engines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "viewports": [
+        390,
+        641,
+        1440
+      ],
+      "scope": "rendered static/source and shop, no provider transactions",
+      "originalHeadlineWordCases": 27,
+      "nightjar641Cases": 3,
+      "nightModeComputedTextContrastCases": 6,
+      "normalTextMinimumObservedRatio": 6.05809321834506,
+      "mockCatalogContractCases": 16,
+      "mockCatalogVariants": [
+        "matching",
+        "stale-version",
+        "unavailable",
+        "wrong-price"
+      ],
+      "turnstileOptionsOnlyActionCases": 4,
+      "turnstileActions": [
+        {
+          "scope": "Turnstile component action contract",
+          "path": "/shop/nightjar",
+          "viewport": 1440,
+          "expectedAction": "checkout",
+          "observedActions": [
+            "checkout"
+          ],
+          "result": "passed",
+          "challengeCallbackInvoked": false,
+          "tokensIssued": 0,
+          "paymentOrRecoverySubmitted": false
+        },
+        {
+          "scope": "Turnstile component action contract",
+          "path": "/shop/start",
+          "viewport": 1440,
+          "expectedAction": "recovery",
+          "observedActions": [
+            "recovery"
+          ],
+          "result": "passed",
+          "challengeCallbackInvoked": false,
+          "tokensIssued": 0,
+          "paymentOrRecoverySubmitted": false
+        },
+        {
+          "scope": "Turnstile component action contract",
+          "path": "/shop/nightjar",
+          "viewport": 390,
+          "expectedAction": "checkout",
+          "observedActions": [
+            "checkout"
+          ],
+          "result": "passed",
+          "challengeCallbackInvoked": false,
+          "tokensIssued": 0,
+          "paymentOrRecoverySubmitted": false
+        },
+        {
+          "scope": "Turnstile component action contract",
+          "path": "/shop/start",
+          "viewport": 390,
+          "expectedAction": "recovery",
+          "observedActions": [
+            "recovery"
+          ],
+          "result": "passed",
+          "challengeCallbackInvoked": false,
+          "tokensIssued": 0,
+          "paymentOrRecoverySubmitted": false
+        }
+      ],
+      "challengeInteracted": false,
+      "checkoutOrRecoverySubmitted": false
+    },
+    "packages": {
+      "status": "passed",
+      "currentArchives": 8,
+      "allVersionsHashesBytesMatchLocalFreeze": true,
+      "archives": [
+        {
+          "editionId": "switchboard-developer-v1",
+          "version": "1.0.1",
+          "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
+          "bytes": 27055
+        },
+        {
+          "editionId": "switchboard-wordpress-v1",
+          "version": "1.0.1",
+          "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+          "bytes": 29399
+        },
+        {
+          "editionId": "tideglass-developer-v1",
+          "version": "1.0.0",
+          "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+          "bytes": 26836
+        },
+        {
+          "editionId": "tideglass-wordpress-v1",
+          "version": "1.0.1",
+          "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+          "bytes": 30027
+        },
+        {
+          "editionId": "matter-developer-v1",
+          "version": "1.0.0",
+          "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+          "bytes": 27533
+        },
+        {
+          "editionId": "matter-wordpress-v1",
+          "version": "1.0.1",
+          "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+          "bytes": 30748
+        },
+        {
+          "editionId": "nightjar-developer-v1",
+          "version": "1.0.3",
+          "sha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
+          "bytes": 27236
+        },
+        {
+          "editionId": "nightjar-wordpress-v1",
+          "version": "1.0.1",
+          "sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+          "bytes": 29742
+        }
+      ]
+    },
+    "cloudflare": {
+      "configuration": "passed",
+      "uploadWorkflow": "passed",
+      "configurationReceipt": "artifacts/templates/preview-configuration-final.json",
+      "configurationReceiptSha256": "57125bae6911983a5d9fcaaf56ce4940c12a540645f0e8b169659e821e02b5c0",
+      "siteOrigin": "https://eidosworks-templates-test-20261010.pages.dev",
+      "customDomains": [],
+      "siteSha": "85ced14b954194e013a47b50a511778f4daf7bfe",
+      "backendSha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
+      "scope": "CI guarded isolated configuration/upload only; root owns separate hosted HTTP acceptance."
+    }
+  },
+  "auxiliaryRuns": [
+    {
+      "name": "Wellway acceptance",
+      "runId": 38104902716,
+      "status": "passed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902716"
+    },
+    {
+      "name": "Community studio acceptance",
+      "runId": 38104902753,
+      "status": "passed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902753"
+    },
+    {
+      "name": "Playground editor release",
+      "runId": 38104902740,
+      "status": "passed",
+      "url": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38104902740"
+    }
+  ],
+  "visualReview": {
+    "status": "passed_bounded_scope",
+    "reviewedFiles": [
+      {
+        "path": "chromium-switchboard-1440.jpg",
+        "sha256": "a9ab2a14474703073a4f6f23b52272d458b0acbca04dfa475cd511bbb59aa9fe"
+      },
+      {
+        "path": "chromium-switchboard-390.jpg",
+        "sha256": "7d22711e8f98153da4adaf3aaaa65611057b362b9dd8ba7403e5d5c157699929"
+      },
+      {
+        "path": "chromium-nightjar-1440.jpg",
+        "sha256": "ae3719e6e335bd107ea08911297a64ef22ca24fa5146339b40eea9c76a91f669"
+      },
+      {
+        "path": "chromium-nightjar-390.jpg",
+        "sha256": "863f5e543993b40002cbbae1c8e51c4c3c4adc520a8dc945bc3635ad1460dd2d"
+      },
+      {
+        "path": "firefox-switchboard-1440.jpg",
+        "sha256": "8fa51770706abb55c2ed27c11be9df91aa10fde4de29dfd9961856e308e2690e"
+      },
+      {
+        "path": "firefox-switchboard-390.jpg",
+        "sha256": "486353d934543f0bc3c6e3454224a26f1b9edf13d7b5a5915533e5e84c9b2d19"
+      },
+      {
+        "path": "firefox-nightjar-1440.jpg",
+        "sha256": "ed4ce3d9492d9a71e2849ee7ac1e34c77627e96479a2e0f8af5fcda73415e35e"
+      },
+      {
+        "path": "firefox-nightjar-390.jpg",
+        "sha256": "51c3b9e82a4078c87b15b1c17ed613f04d90959daec85a04bc84a468625fb579"
+      },
+      {
+        "path": "webkit-switchboard-1440.jpg",
+        "sha256": "187955ef5507c31883950b2b712d314260fe1aa10279f2e906b4be23a9c35b26"
+      },
+      {
+        "path": "webkit-switchboard-390.jpg",
+        "sha256": "caf0a2ee018852e1bfee4dfbb4ebf12f2d59a9d796eff747cecca81805384c99"
+      },
+      {
+        "path": "webkit-nightjar-1440.jpg",
+        "sha256": "fd240ab85412c5a28a6c7076e73a2fd41d520f6f5783f75872f88531e10e94c3"
+      },
+      {
+        "path": "webkit-nightjar-390.jpg",
+        "sha256": "090fdc125dedc7b7b9d013730c44c6d0ed0c57440eb02ac2b376dd4b6da6e483"
+      }
+    ],
+    "findings": [
+      "Switchboard ordinary word conversation and Nightjar gathering remain intact in all reviewed desktop/phone screenshots.",
+      "Hero text, navigation, action links, cards and footer remain readable with no observed clipping.",
+      "Nightjar night palette remains readable; computed contrast checks independently passed."
+    ],
+    "scope": "12 runner-generated source screenshots, two products x three engines x two widths. Nightjar641 verified by Range fragment assertions, without a641 screenshot."
+  },
+  "priorEvidence": {
+    "failedCandidate": "artifacts/templates/ci-status-12d664f.json",
+    "priorSuccessfulCandidate": "artifacts/templates/ci-status-6b6ced3.json",
+    "note": "Failed12d Switchboard1.0.0 gate and older immutable archives remain preserved."
+  },
+  "limits": [
+    "Runner-local static HTTP acceptance differs from hosted/provider/payment acceptance.",
+    "No LIVE sale, physical-device, field-metric, accessibility-certification or conventional WordPress-host claim.",
+    "Screenshots and raw configuration stay local/external and are excluded from Drive payload."
+  ],
+  "auxiliarySummary": "All exact-head auxiliary workflows passed; Playground production-only steps remained skipped on the candidate branch."
+}

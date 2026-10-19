@@ -7,8 +7,8 @@ import { fileURLToPath } from 'node:url';
 export const previewProject = 'eidosworks-test-20260923';
 export const previewOrigin = `https://${previewProject}.pages.dev`;
 export const previewBranch = 'codex/works-audit-implementation-20260921';
-export const backendRevision = 'c18b580358dcfeb0b70ba7a045c8f506513f452f';
-export const backendOrigin = 'https://eidos-sentinel-l2sbf8qf1-1brentbm-1876s-projects.vercel.app';
+export const backendRevision = '55044733c122067562321b412bd4f1b01b333106';
+export const backendOrigin = 'https://eidos-sentinel-172zex7la-1brentbm-1876s-projects.vercel.app';
 
 export function requireIsolatedProject(project) {
   assert.equal(project.name, previewProject, 'Refusing an unexpected Pages project.');
@@ -185,6 +185,7 @@ async function main(mode) {
   const configResponse = await fetch(`${previewOrigin}/api/public-config`, { redirect: 'error', signal: AbortSignal.timeout(30000) });
   assert.equal(configResponse.status, 200, 'The paired public configuration could not be read.');
   const config = await configResponse.json();
+  assert.equal(config.runtimeSourceRevision, backendRevision, 'The relay is serving a different backend revision.');
   assert.equal(config.localTest, false, 'Hosted fixture bypass must never be enabled.');
   assert.equal(config.accountsReady, true, 'The paired accounts are not configured.');
   assert.equal(config.passwordsReady, true, 'The paired password service is not configured.');

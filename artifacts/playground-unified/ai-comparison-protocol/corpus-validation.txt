@@ -1,0 +1,13 @@
+✔ comparison corpus contains 20 public cases covering all requested categories and typed scopes without fabricated results (9.0552ms)
+✔ each case resolves a real visible target with deterministic compact provider context and no raw assets (173.8445ms)
+✔ every reference proposal is feasible within six typed operations and leaves all prohibited source paths unchanged (150.9394ms)
+✔ preservation cases actually contain manual edits and locked brand values reject out-of-scope changes (40.6303ms)
+✔ ambiguous or missing selectors and customer uploads cannot enter a comparison fixture (4.065ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2363.0773

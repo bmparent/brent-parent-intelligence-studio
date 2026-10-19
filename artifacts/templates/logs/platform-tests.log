@@ -1,0 +1,74 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:platform
+> node --import tsx --test scripts/test-platform.ts scripts/test-members.ts scripts/test-relay.ts scripts/test-relay-runtime.mjs scripts/test-inquiries.ts scripts/test-thread-form.mjs scripts/test-community-studio.ts
+
+(node:28744) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Maintenance auth, feature switch, and start date fail before any identity or post is created (633.8065ms)
+✔ Repeated and overlapping runs publish one attributed prompt with no model or network call (208.2135ms)
+✔ Three weekly New York slots survive DST and skip missed slots without a catch-up burst (168.1879ms)
+✔ Revocation, unpublication, and queue exhaustion cannot manufacture more activity (82.3094ms)
+✔ Cleanup retains rejected studio receipts and never replies to studio-authored threads (83.8412ms)
+✔ The initial queue is bounded, distinct, and clearly disclosed (2.1262ms)
+✔ inquiry requires same origin and confirmed private-provider delivery (566.3586ms)
+✔ friction review keeps its label, useful context, and safe attribution (34.0405ms)
+✔ lab access requests receive a clearly labeled review brief (35.1458ms)
+✔ private mailer fixes destination, labels bounded inquiry types, enforces rate limit, and requires provider receipt (59.7244ms)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+Error: spawn UNKNOWN
+    at ChildProcess.spawn (node:internal/child_process:421:11)
+    at Object.spawn (node:child_process:796:9)
+    at ensureServiceIsRunning (C:\Users\bmpar\OneDrive\Documents\brent-parent-intelligence-studio-live\node_modules\tsx\node_modules\esbuild\lib\main.js:2268:29)
+    at startSyncServiceWorker (C:\Users\bmpar\OneDrive\Documents\brent-parent-intelligence-studio-live\node_modules\tsx\node_modules\esbuild\lib\main.js:2474:19)
+    at Object.<anonymous> (C:\Users\bmpar\OneDrive\Documents\brent-parent-intelligence-studio-live\node_modules\tsx\node_modules\esbuild\lib\main.js:2515:3)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19) {
+  errno: -4094,
+  code: 'UNKNOWN',
+  syscall: 'spawn',
+  name: 'TransformError'
+}
+
+Node.js v24.14.0
+✖ scripts\test-members.ts (5059.8886ms)
+(node:5452) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Atomic quotas cannot overspend under concurrent reservations (106.3724ms)
+✔ Published knowledge and legacy clients spend zero model tokens (405.9988ms)
+✔ AI is opt-in, capped globally, deduplicated, and fails closed without a database (440.138ms)
+✔ Request boundaries reject oversized bodies and cross-origin writes (96.1638ms)
+✔ Questions and replies publish immediately, and requested Eidos suggestions remain capped (338.6644ms)
+✔ Agents can reply across communities; hourly quotas and removal still work (1080.0343ms)
+✔ Untrusted thread HTML is escaped and unpublished content disappears (40.1567ms)
+✔ Proactive assistance respects opt-in, age, human identity, and the one-reply cap (52.6862ms)
+✔ Agents need registered revocable keys and cannot trigger bot loops (50.8516ms)
+✔ Turnstile cannot be bypassed on production hosts or with a mismatched hostname (44.3609ms)
+✔ Only matching signed paid events unlock a real ZIP; refunds revoke access, including out-of-order events (153.9264ms)
+✔ Checkout is disabled until configured and never trusts client pricing or redirects (61.0805ms)
+✔ Cloudflare runtime accepts the relay request options (2174.6784ms)
+✖ scripts\test-relay.ts (6500.5737ms)
+✔ Reply acknowledgement survives the next verification callback (32.4443ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 24
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17407.379
+
+✖ failing tests:
+
+test at scripts\test-members.ts:1:1
+✖ scripts\test-members.ts (5059.8886ms)
+  'test failed'
+
+test at scripts\test-relay.ts:1:1
+✖ scripts\test-relay.ts (6500.5737ms)
+  'test failed'

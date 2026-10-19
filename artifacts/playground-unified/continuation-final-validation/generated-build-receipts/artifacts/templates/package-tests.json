@@ -1,0 +1,3257 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-14T23:58:29.289Z",
+  "checks": [
+    {
+      "name": "catalog: four distinct families, unique edition IDs, unavailable until accepted",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: ZIP bytes equal reviewed source; manifest hashes complete",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: ASSETS.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: ASSETS.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: INSTALL.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: INSTALL.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: LICENSE.txt integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: LICENSE.txt demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: PACKAGE_MANIFEST.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: PACKAGE_MANIFEST.json demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: README.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: README.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: SUPPORT.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: SUPPORT.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: assets/service-plan.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: assets/service-plan.svg demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: script.js integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: script.js demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: site-config.js integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: site-config.js demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: styles.css integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: five designed pages plus legal page",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → services.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → services.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → services.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → assets/service-plan.svg",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html anchor comfort",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html anchor repair",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: index.html anchor planning",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → services.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → services.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: process.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → services.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → assets/service-plan.svg",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: service-detail.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → services.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → service-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html anchor comfort",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html anchor repair",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: services.html anchor planning",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: guide describes exact config marker scope",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-developer-v1: responsive, reduced motion, focus, progressive JS",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: ZIP bytes equal reviewed source; manifest hashes complete",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: ASSETS.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: COPYING integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: INSTALL.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: LICENSE.txt integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: PACKAGE_MANIFEST.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: README.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: SUPPORT.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: assets/service-plan.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: demo-content.xml integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: functions.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: parts/footer.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: parts/header.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/contact.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/index.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/process.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/service-detail.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/services.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: style.css integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/404.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/contact.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/front-page.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/index.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/page.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/process.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/service-detail.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/services.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/single.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: theme.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: native block theme structure and GPL",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: parts/footer.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: parts/header.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/contact.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/index.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/process.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/service-detail.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: patterns/services.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/404.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/contact.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/front-page.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/index.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/page.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/process.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/service-detail.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/services.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "switchboard-wordpress-v1: templates/single.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: ZIP bytes equal reviewed source; manifest hashes complete",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: ASSETS.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: ASSETS.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: INSTALL.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: INSTALL.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: LICENSE.txt integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: LICENSE.txt demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: PACKAGE_MANIFEST.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: PACKAGE_MANIFEST.json demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: README.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: README.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: SUPPORT.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: SUPPORT.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: assets/coast.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: assets/coast.svg demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: script.js integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: script.js demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: site-config.js integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: site-config.js demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: styles.css integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: five designed pages plus legal page",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → stays.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → stay-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → guide.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → stays.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → stay-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → guide.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → stays.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → stay-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → guide.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → stays.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → assets/coast.svg",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → assets/coast.svg",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → stay-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → assets/coast.svg",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → stays.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → guide.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: index.html anchor experiences",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → stays.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → stay-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → guide.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → stays.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → stay-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → guide.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → assets/coast.svg",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stay-detail.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → stays.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → stay-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → guide.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → assets/coast.svg",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → stay-detail.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → assets/coast.svg",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: stays.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: guide describes exact config marker scope",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-developer-v1: responsive, reduced motion, focus, progressive JS",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: ZIP bytes equal reviewed source; manifest hashes complete",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: ASSETS.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: COPYING integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: INSTALL.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: LICENSE.txt integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: PACKAGE_MANIFEST.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: README.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: SUPPORT.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: assets/coast.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: demo-content.xml integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: functions.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: parts/footer.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: parts/header.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/contact.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/guide.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/index.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/stay-detail.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/stays.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: style.css integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/404.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/contact.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/front-page.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/guide.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/index.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/page.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/single.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/stay-detail.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/stays.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: theme.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: native block theme structure and GPL",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: parts/footer.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: parts/header.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/contact.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/guide.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/index.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/stay-detail.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: patterns/stays.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/404.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/contact.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/front-page.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/guide.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/index.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/page.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/single.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/stay-detail.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "tideglass-wordpress-v1: templates/stays.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: ZIP bytes equal reviewed source; manifest hashes complete",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: ASSETS.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: ASSETS.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: INSTALL.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: INSTALL.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: LICENSE.txt integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: LICENSE.txt demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: PACKAGE_MANIFEST.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: PACKAGE_MANIFEST.json demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: README.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: README.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: SUPPORT.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: SUPPORT.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: assets/timber.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: assets/timber.svg demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: assets/vessel.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: assets/vessel.svg demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: script.js integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: script.js demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: site-config.js integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: site-config.js demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: styles.css integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: five designed pages plus legal page",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → assets/vessel.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → assets/timber.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: collection.html anchor timber",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → assets/vessel.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → assets/vessel.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → assets/vessel.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → assets/timber.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: index.html anchor timber",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → assets/vessel.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → assets/timber.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: object.html anchor timber",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → collection.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → object.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → process.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → assets/vessel.svg",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: process.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: guide describes exact config marker scope",
+      "status": "passed"
+    },
+    {
+      "name": "matter-developer-v1: responsive, reduced motion, focus, progressive JS",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: ZIP bytes equal reviewed source; manifest hashes complete",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: ASSETS.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: COPYING integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: INSTALL.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: LICENSE.txt integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: PACKAGE_MANIFEST.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: README.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: SUPPORT.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: assets/timber.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: assets/vessel.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: demo-content.xml integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: functions.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: parts/footer.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: parts/header.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/collection.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/contact.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/index.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/object.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/process.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: style.css integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/404.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/collection.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/contact.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/front-page.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/index.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/object.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/page.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/process.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/single.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: theme.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: native block theme structure and GPL",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: parts/footer.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: parts/header.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/collection.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/contact.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/index.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/object.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: patterns/process.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/404.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/collection.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/contact.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/front-page.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/index.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/object.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/page.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/process.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "matter-wordpress-v1: templates/single.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: ZIP bytes equal reviewed source; manifest hashes complete",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: ASSETS.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: ASSETS.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: INSTALL.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: INSTALL.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: LICENSE.txt integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: LICENSE.txt demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: PACKAGE_MANIFEST.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: PACKAGE_MANIFEST.json demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: README.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: README.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: SUPPORT.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: SUPPORT.md demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: assets/poster.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: assets/poster.svg demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: script.js integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: script.js demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: site-config.js integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: site-config.js demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: styles.css integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: styles.css demo parity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: five designed pages plus legal page",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → program.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → about.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → program.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: about.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → program.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → about.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: contact.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → program.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → about.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → assets/poster.svg",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: event.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → program.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → about.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → program.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → assets/poster.svg",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → about.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: index.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → program.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → about.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: legal.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html semantics and static fallback",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → styles.css",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → site-config.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → script.js",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → program.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → about.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → event.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → contact.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → legal.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html → index.html",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor sound",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor film",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: program.html anchor ideas",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: guide describes exact config marker scope",
+      "status": "passed"
+    },
+    {
+      "name": "Nightjar: real poster layers and independent fallback event information",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-developer-v1: responsive, reduced motion, focus, progressive JS",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: ZIP bytes equal reviewed source; manifest hashes complete",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: ASSETS.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: COPYING integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: INSTALL.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: LICENSE.txt integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: PACKAGE_MANIFEST.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: README.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: SUPPORT.md integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: assets/poster.svg integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: demo-content.xml integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: functions.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: parts/footer.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: parts/header.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/about.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/contact.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/event.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/index.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/program.php integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: style.css integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/404.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/about.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/contact.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/event.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/front-page.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/index.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/page.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/program.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/single.html integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: theme.json integrity",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: final buyer notices preserve support windows and edition rights",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: buyer guide covers rollback, removal, common mistakes and integration limits",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: native block theme structure and GPL",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: parts/footer.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: parts/header.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/about.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/contact.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/event.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/index.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: patterns/program.php native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/404.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/about.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/contact.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/event.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/front-page.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/index.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/page.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/program.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "nightjar-wordpress-v1: templates/single.html native block editing",
+      "status": "passed"
+    },
+    {
+      "name": "Existing archive mutation is rejected before any ZIP write",
+      "status": "passed"
+    },
+    {
+      "name": "Every static page has distinct content",
+      "status": "passed"
+    },
+    {
+      "name": "No public downloadable ZIP, credential, or third-party bundle",
+      "status": "passed"
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "Static structure and archive checks do not establish WordPress activation/editing, real device behavior, live checkout, or platform-builder acceptance. See separate clean-install/browser receipts."
+  ],
+  "status": "passed",
+  "passed": 811,
+  "failed": 0
+}

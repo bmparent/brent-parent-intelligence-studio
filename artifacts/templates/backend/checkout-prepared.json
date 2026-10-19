@@ -1,0 +1,19 @@
+{
+  "timestampUtc": "2026-10-11T01:00:23.421Z",
+  "scope": "actual Stripe TEST API checkout preparation; no payment submission",
+  "backendSource": "58e4a60859c6bc590bc3c4ea5b2689256330066d",
+  "orderId": "0a150434-1fb5-410e-83b5-a60c3945ba82",
+  "productId": "switchboard-developer-v1",
+  "editionId": "developer",
+  "version": "1.0.0",
+  "mode": "test",
+  "livemode": false,
+  "amountTotal": 9900,
+  "currency": "usd",
+  "providerPaymentStatus": "unpaid",
+  "providerCheckoutStatus": "open",
+  "ledgerStatus": "pending",
+  "downloadGranted": false,
+  "checkoutSessionSha256": "da99845c771c44b618796a919ff90001da5b87c3399525af06ed918dec4cf6f6",
+  "paymentNotSubmitted": true
+}

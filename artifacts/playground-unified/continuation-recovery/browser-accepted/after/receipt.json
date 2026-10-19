@@ -1,0 +1,152 @@
+{
+  "phase": "after",
+  "boundary": "Local browser with controlled account and commerce responses only; no real sign-in, mail, payment, provider, deployment, or original archive changes.",
+  "passed": true,
+  "records": [
+    {
+      "phase": "after",
+      "scenario": "sign-in-retry",
+      "width": 1440,
+      "checks": [
+        "private fragment removed, no token rendered, exactly one initial redemption",
+        "same private token resumes after account change without reopening email; one retry, safe Playground continuation, pending token cleared",
+        "existing named draft, source, selection, revision, and snapshots remain exact; ordinary load may refresh the save timestamp",
+        "no runtime errors, outside network requests, or horizontal overflow"
+      ],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/redeem",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/redeem",
+          "method": "POST"
+        }
+      ],
+      "errors": [],
+      "unexpected": [],
+      "expectedHttpDenials": [
+        401
+      ],
+      "draftSaveTimestampRefreshed": true,
+      "redemptions": 2
+    },
+    {
+      "phase": "after",
+      "scenario": "reload",
+      "width": 390,
+      "checks": [
+        "private fragment removed, no token rendered, exactly one initial redemption",
+        "same private token resumes after account change without reopening email; one retry, safe Playground continuation, pending token cleared",
+        "existing named draft, source, selection, revision, and snapshots remain exact; ordinary load may refresh the save timestamp",
+        "no runtime errors, outside network requests, or horizontal overflow"
+      ],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/redeem",
+          "method": "POST"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/redeem",
+          "method": "POST"
+        }
+      ],
+      "errors": [],
+      "unexpected": [],
+      "expectedHttpDenials": [
+        401
+      ],
+      "draftSaveTimestampRefreshed": true,
+      "redemptions": 2
+    },
+    {
+      "phase": "after",
+      "scenario": "wrong-owner",
+      "width": 1440,
+      "checks": [
+        "private fragment removed, no token rendered, exactly one initial redemption",
+        "same private token resumes after account change without reopening email; one retry, safe Playground continuation, pending token cleared",
+        "existing named draft, source, selection, revision, and snapshots remain exact; ordinary load may refresh the save timestamp",
+        "no runtime errors, outside network requests, or horizontal overflow"
+      ],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/redeem",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/redeem",
+          "method": "POST"
+        }
+      ],
+      "errors": [],
+      "unexpected": [],
+      "expectedHttpDenials": [
+        403
+      ],
+      "draftSaveTimestampRefreshed": true,
+      "redemptions": 2
+    },
+    {
+      "phase": "after",
+      "scenario": "guest-original",
+      "width": 1440,
+      "checks": [
+        "guest original recovery remains on its original download page without sign-in",
+        "existing named draft, source, selection, revision, and snapshots remain exact; ordinary load may refresh the save timestamp",
+        "no runtime errors, outside network requests, or horizontal overflow"
+      ],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/shop/redeem",
+          "method": "POST"
+        },
+        {
+          "path": "/api/shop/status",
+          "method": "POST"
+        }
+      ],
+      "errors": [],
+      "unexpected": [],
+      "expectedHttpDenials": [],
+      "draftSaveTimestampRefreshed": false,
+      "redemptions": 1
+    }
+  ]
+}

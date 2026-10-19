@@ -1,0 +1,59 @@
+{
+  "product": "tideglass",
+  "wordpress": "6.6",
+  "php": "8.1.34",
+  "mariadb": "10.11.19",
+  "url": "http://127.0.0.1:8972",
+  "phase": "configure",
+  "method": "Native PHP WordPress APIs; no fresh browser editor UI claim",
+  "version": "1.0.2",
+  "pages": {
+    "home": {
+      "id": 5,
+      "template": "default",
+      "url": "http://127.0.0.1:8972/"
+    },
+    "stays": {
+      "id": 6,
+      "template": "stays",
+      "url": "http://127.0.0.1:8972/stays/"
+    },
+    "stay-detail": {
+      "id": 7,
+      "template": "stay-detail",
+      "url": "http://127.0.0.1:8972/stay-detail/"
+    },
+    "guide": {
+      "id": 8,
+      "template": "guide",
+      "url": "http://127.0.0.1:8972/guide/"
+    },
+    "contact": {
+      "id": 9,
+      "template": "contact",
+      "url": "http://127.0.0.1:8972/contact/"
+    }
+  },
+  "static_homepage": true,
+  "native_text_save": true,
+  "headline": "Tideglass business copy saved on native WordPress",
+  "native_image_save": true,
+  "image_url": "http://127.0.0.1:8972/wp-content/uploads/2026/10/native-replacement-tideglass.png",
+  "attachment_id": 10,
+  "front_template_id": 11,
+  "contact_template_id": 12,
+  "navigation_post_id": 13,
+  "header_part_id": 14,
+  "native_navigation_save": true,
+  "contact_email": "native-tideglass@example.test",
+  "core_site_editor_export": {
+    "path": "E:\\CodexArtifacts\\paid-templates-20261010\\native-wordpress-acceptance\\exports\\tideglass-customized-site-editor.zip",
+    "sha256": "77ec8bfea14d38bde16ea2531e09ffcaa7c644c6609d6b1041d5cd5644daec2c",
+    "bytes": 32641,
+    "members": 30,
+    "contains_saved_text_and_image_url": true
+  },
+  "mail_suppressed": true,
+  "automatic_core_updates_disabled": true,
+  "cron_disabled": true
+}

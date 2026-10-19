@@ -1,0 +1,42 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:templates
+> npm run templates:build && node scripts/test-template-packages.mjs && node --test scripts/test-template-release-manifest.mjs && node --import tsx --test scripts/test-template-shop.ts
+
+
+> brent-parent-intelligence-studio@1.1.0 templates:build
+> node scripts/build-template-packages.mjs && node scripts/build-template-guides.mjs && node scripts/build-template-release-manifest.mjs
+
+Built 8 private template packages. Published four byte-identical source demos. No ZIP copied to public/.
+Generated 8 public installation guides and exact package-content summaries.
+Release manifest: 4 products, 8 frozen archives; commerce unavailable. Drive: Configured destinations unavailable, below payload plus 64 MiB reserve, or blocked by the preserved earlier copy failure. No mirror files copied.
+PASSED: 811 package checks passed; 0 failed. See artifacts/templates/package-tests.json.
+✔ release manifest joins exactly eight unchanged private buyer archives (5.8372ms)
+✔ catalog presentation records retain prior UI strings and public prices remain drafts (2.0448ms)
+✔ WordPress acceptance stays incomplete with version provenance and GPL rights (2.8637ms)
+✔ archive mismatch and existing-version mutation are rejected without writing bytes (2.33ms)
+✔ Drive mirror reserves 64 MiB and skips unknown or insufficient capacity (0.8897ms)
+✔ clean checkout test command builds ignored archives before integrity and SSR tests (37.3136ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 791.8267
+(node:13464) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all eight buyer guides separate section headings, instructions, steps, and inline filenames (173.405ms)
+✔ each collection entry points to its actual demo and independent five-page product detail (212.2404ms)
+✔ candidate price and guide records match the server-owned edition contract (1.8082ms)
+✔ all eight selected-edition guides and exact file/art contents are public before checkout (238.1289ms)
+✔ platform help, terms, and recovery disclose product boundaries (17.9309ms)
+✔ new candidate preserves Cinematic Starter product files and price (26.7006ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44486.3181

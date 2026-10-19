@@ -1,0 +1,46 @@
+preview	Deploy only the isolated manual Playground	﻿2026-10-14T19:21:33.7311065Z ##[group]Run node scripts/deploy-playground-preview.mjs
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:33.7311622Z [36;1mnode scripts/deploy-playground-preview.mjs[0m
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:33.7375705Z shell: /usr/bin/bash -e {0}
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:33.7376080Z env:
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:33.7376849Z   CLOUDFLARE_ACCOUNT_ID: ***
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:33.7377445Z   CLOUDFLARE_API_TOKEN: ***
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:33.7378139Z   EIDOS_PLAYGROUND_PLATFORM_TOKEN: ***
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:33.7378698Z   EIDOS_TEMPLATES_PREVIEW_BYPASS: ***
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:33.7379094Z ##[endgroup]
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5206887Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5207987Z  ⛅️ wrangler 4.98.0 (update available 4.151.0)
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5209055Z ──────────────────────────────────────────────
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5943995Z [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mPages now has wrangler.jsonc support.[0m
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5945594Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5947892Z   We detected a configuration file at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/wrangler.jsonc but it is missing the "pages_build_output_dir" field, required by Pages.
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5952004Z   If you would like to use this configuration file to deploy your project, please use "pages_build_output_dir" to specify the directory of static files to upload.
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5953943Z   Ignoring configuration file for now, and proceeding with project deploy.
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5954633Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:38.5954650Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:39.4880084Z [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mWarning: Your working directory is a git repo and has uncommitted changes[0m
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:39.4880809Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:39.4881204Z   To silence this warning, pass in --commit-dirty=true
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:39.4881559Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:39.4881568Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:40.4781590Z ✨ Compiled Worker successfully
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:43.1882710Z Uploading... (187/272)
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:44.1776127Z Uploading... (215/272)
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:44.7745670Z Uploading... (243/272)
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:44.7952906Z Uploading... (272/272)
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:44.7955143Z ✨ Success! Uploaded 85 files (187 already uploaded) (2.52 sec)
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:44.7955810Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:45.9772117Z ✨ Uploading _headers
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:45.9772850Z ✨ Uploading _redirects
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:45.9812942Z ✨ Uploading Functions bundle
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:48.4203669Z 🌎 Deploying...
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:53.4509326Z ✨ Deployment complete! Take a peek over at https://f5acc1db.eidosworks-playground-20261014.pages.dev
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2592123Z file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/deploy-playground-preview.mjs:50
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2596212Z if(relayedConfig.runtimeSourceRevision!==pin.backendSha || relayedConfig.runtimeBundleHash!==pin.bundleHash)throw Error('Published Pages relay does not reach the pinned backend.');
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2598199Z                                                                                                                   ^
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2598738Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2599235Z Error: Published Pages relay does not reach the pinned backend.
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2601141Z     at file:///home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/deploy-playground-preview.mjs:50:115
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2602801Z     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2603458Z 
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2603621Z Node.js v24.21.0
+preview	Deploy only the isolated manual Playground	2026-10-14T19:21:57.2669910Z ##[error]Process completed with exit code 1.

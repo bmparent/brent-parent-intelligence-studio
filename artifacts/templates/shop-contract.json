@@ -1,0 +1,28 @@
+{
+  "scope": "built frontend and product demo boundaries",
+  "checks": [
+    {
+      "product": "switchboard",
+      "detail": "passed",
+      "purchaseDefault": "unavailable"
+    },
+    {
+      "product": "tideglass",
+      "detail": "passed",
+      "purchaseDefault": "unavailable"
+    },
+    {
+      "product": "matter",
+      "detail": "passed",
+      "purchaseDefault": "unavailable"
+    },
+    {
+      "product": "nightjar",
+      "detail": "passed",
+      "purchaseDefault": "unavailable"
+    }
+  ],
+  "timestamp": "2026-10-11T00:39:43.517Z",
+  "paidStaticArchives": [],
+  "privateStart": "passed"
+}

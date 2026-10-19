@@ -1,14 +1,15 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {renderToStaticMarkup} from 'react-dom/server';import {createElement} from 'react';
-import {createProject} from '../src/playground/model';import {enableBlocks} from '../src/playground/authoring';import {flattenNodes} from '../src/playground/authoringSchema';import {aiContext,applyProposal,proposalDiff} from '../src/playground/aiOperations';
+import {createProject} from '../src/playground/model';import {enableBlocks} from '../src/playground/authoring';import {flattenNodes} from '../src/playground/authoringSchema';import {createProposalContext,applyProposal,contextProposalDiff} from '../src/playground/aiOperations';
 import {affiliatePilot,approvedRecommendation} from '../src/data/affiliatePilot';import {ToolsUsed} from '../src/components/ToolsUsed';
 import {fixture,ctx} from './playground-test-fixture';import {onRequestGet as readiness} from '../functions/api/operations/readiness';
 import {onRequestGet as audit} from '../functions/api/operations/audit';
 test('responsive block copy proposal changes rendered text, preserves document and exposes a correct review diff',()=>{
  const project=enableBlocks(createProject()),node=project.sections.flatMap(s=>s.authoring?flattenNodes(s.authoring.root):[]).find(n=>n.type==='heading')!;
- const context=aiContext(project,node.id,'section');assert.equal(context.section.title,node.text);assert.equal(JSON.stringify(context).includes('data:image'),false);
- const proposal={ops:[{field:'section.title',value:'A clearer fictional heading'}]};const next=applyProposal(project,node.id,'section',proposal);
- assert.equal(proposalDiff(project,node.id,'section',proposal)[0].after,'A clearer fictional heading');assert.notDeepEqual(next,project);assert.equal(node.text,context.section.title);
- assert.throws(()=>applyProposal(project,node.id,'section',{ops:[{field:'section.layout',value:'split'}]}));
+ const section=project.sections.find(s=>s.authoring&&flattenNodes(s.authoring.root).some(n=>n.id===node.id))!;
+ const context=createProposalContext(project,section.id,node.id,'element');assert.equal(JSON.stringify(context).includes('data:image'),false);
+ const proposal={ops:[{field:'node.text',value:'A clearer fictional heading'}]};const next=applyProposal(project,section.id,'element',proposal,node.id);
+ assert.equal(contextProposalDiff(context,proposal)[0].after,'A clearer fictional heading');assert.notDeepEqual(next,project);assert.notEqual(node.text,'A clearer fictional heading');
+ assert.throws(()=>applyProposal(project,section.id,'element',{ops:[{field:'section.layout',value:'split'}]},node.id));
 });
 test('affiliate pilot is absent without approval and rejects untrusted URLs',()=>{
  assert.equal(affiliatePilot.enabled,false);assert.equal(renderToStaticMarkup(createElement(ToolsUsed,{article:'example'})),'');

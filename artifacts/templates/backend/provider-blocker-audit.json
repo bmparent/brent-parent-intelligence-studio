@@ -1,0 +1,189 @@
+{
+  "timestampUtc": "2026-10-11T02:44:38.154Z",
+  "scope": "read-only candidate mail and genuine Stripe TEST resend capability audit",
+  "candidate": {
+    "id": "dpl_BvDduBrE4TvK7pjNEZbRCp9yHDRg",
+    "url": "eidos-sentinel-pmb8qllat-1brentbm-1876s-projects.vercel.app",
+    "readyState": "READY",
+    "target": "preview",
+    "meta": {
+      "githubCommitRef": "codex/paid-templates-20261010",
+      "githubCommitSha": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f",
+      "githubCommitMessage": "Unknown",
+      "githubRepo": "eidos",
+      "githubOrg": "bmparent"
+    },
+    "envNames": []
+  },
+  "mail": {
+    "status": "blocked",
+    "observedCandidateEnvironmentNameCount": 24,
+    "requiredBinding": "RESEND_API_KEY",
+    "candidateHasRequiredBinding": false,
+    "candidateMailNames": [
+      "EIDOS_MAIL_DAILY_LIMIT",
+      "EIDOS_MAIL_FROM"
+    ],
+    "observedProjectMailMetadata": [
+      {
+        "id": "ZPwMuIudl2qEO3Dj",
+        "key": "EIDOS_MAIL_DAILY_LIMIT",
+        "type": "encrypted",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/paid-templates-20261010",
+        "createdAt": 1791679505442,
+        "updatedAt": 1791685060803,
+        "configurationId": null
+      },
+      {
+        "id": "5cgnvPsOFjFLB0n5",
+        "key": "EIDOS_MAIL_FROM",
+        "type": "encrypted",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/paid-templates-20261010",
+        "createdAt": 1791679505442,
+        "updatedAt": 1791685060803,
+        "configurationId": null
+      },
+      {
+        "id": "6i4zZvrc8VKn2Hhp",
+        "key": "EIDOS_MAIL_FROM",
+        "type": "plain",
+        "target": [
+          "production"
+        ],
+        "createdAt": 1788910979329,
+        "updatedAt": 1788911114434,
+        "configurationId": null
+      },
+      {
+        "id": "NmrnayieXMKcuhT7",
+        "key": "RESEND_API_KEY",
+        "type": "sensitive",
+        "target": [
+          "production"
+        ],
+        "createdAt": 1788910464771,
+        "updatedAt": 1788910464771,
+        "configurationId": null
+      },
+      {
+        "id": "vZpWxfgfwfr1sdsT",
+        "key": "EIDOS_MAIL_DAILY_LIMIT",
+        "type": "plain",
+        "target": [
+          "production"
+        ],
+        "createdAt": 1788908494967,
+        "updatedAt": 1788911114434,
+        "configurationId": null
+      }
+    ],
+    "queryDecrypt": "false",
+    "secretValuesRead": false,
+    "secretValuesPrinted": false,
+    "productionRecordValidity": "unknown; not read or tested",
+    "supportedCurrentReference": "No candidate key or shared configuration reference appears in observed project metadata.",
+    "unlinkedSharedTeamInventory": "Verified complete: official external Vercel CLI63.1.2 authenticated metadata-only GET /v1/env for the existing team returned data[] and pagination count0/nextnull/prevnull. No shared variables or preview mail references. No value/decrypt access.",
+    "receivedEmailGate": "Still blocked; no email was sent in this audit.",
+    "requiredHandoff": "A valid existing-service Resend secret must be securely bound only to this candidate preview branch, then candidate redeployed and receipt/recovery delivered to the owned inbox. Do not change production secret scope.",
+    "sharedInventoryReceipt": "mail-shared-inventory.json"
+  },
+  "genuineReplay": {
+    "status": "provider retry acknowledged; original order already revoked before retry",
+    "connectedAccounts": [
+      {
+        "stripe_context": "acct_1Rj03gKC8pRG5Tr9",
+        "livemode": true,
+        "name": "Eidos Works"
+      }
+    ],
+    "hasConnectedTestContext": false,
+    "operationDiscovery": {
+      "intent": "genuine existing webhook event resend",
+      "resultCount": 0,
+      "openapiSpecVersion": "2026-09-30.preview",
+      "metadataOnly": true,
+      "noAccountOperationExecuted": true
+    },
+    "stripeCli": {
+      "version": "v1.53.1",
+      "officialPortableInstalled": true,
+      "publishedChecksumVerified": true,
+      "location": "E:/CodexArtifacts/paid-templates-20261010/tools/stripe-1.53.1"
+    },
+    "officialSupportedRoutes": [
+      "Stripe Workbench existing event delivery retry",
+      "Stripe CLI events resend for an existing event and webhook endpoint"
+    ],
+    "noForgedOrResignedEvent": true,
+    "noSyntheticEvent": true,
+    "noNewTransaction": true,
+    "noLiveOperation": true,
+    "requiredCapability": "Historical missing-tool observation superseded by authorized official portable CLI follow-up; endpoint-specific HTTP success remains unobserved.",
+    "originalKnownTestRefundEventId": "evt_3UPBqYKC8pRG5Tr912bS756V",
+    "candidateWebhookEndpointId": "we_1UPAlBKC8pRG5Tr9zQ7h8O5A",
+    "followupReceipt": "genuine-test-refund-retry.json",
+    "originalCapabilityAuditIsHistorical": true,
+    "currentCapability": {
+      "officialCliVersion": "v1.53.1",
+      "publishedChecksumVerified": true,
+      "existingAuthorizedTestCredentialUsed": true,
+      "genuineRetryAttemptedOnce": true,
+      "providerAcknowledged": true,
+      "endpointSpecificDeliveryHttp": "unknown",
+      "receipt": "genuine-test-refund-retry.json"
+    }
+  },
+  "changes": {
+    "sourceEdits": false,
+    "commits": false,
+    "providerWrites": false,
+    "productionChanges": false,
+    "newMailService": false
+  },
+  "sources": [
+    "https://vercel.com/docs/environment-variables/sensitive-environment-variables",
+    "https://vercel.com/docs/environment-variables/shared-environment-variables",
+    "https://vercel.com/docs/rest-api/environment/lists-all-shared-environment-variables-for-a-team",
+    "https://docs.stripe.com/webhooks",
+    "https://docs.stripe.com/workbench/event-destinations",
+    "https://docs.stripe.com/cli/events/resend"
+  ],
+  "latestCandidate": {
+    "timestampUtc": "2026-10-11T03:00:08.318Z",
+    "deploymentId": "dpl_E6nV3JcmtfVXGMtj275Lkkc3eCoo",
+    "url": "https://eidos-sentinel-nwov7dvp8-1brentbm-1876s-projects.vercel.app",
+    "sourceRevision": "d66ed7c081a211e402d39a23d4222135a4cb022e-bundle-bea44f211cc7229c",
+    "readyState": "READY",
+    "branch": "codex/paid-templates-20261010",
+    "environmentCount": 24,
+    "candidateHasResend": false,
+    "mailMetadata": [
+      {
+        "key": "EIDOS_MAIL_DAILY_LIMIT",
+        "type": "encrypted",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/paid-templates-20261010",
+        "configurationId": null
+      },
+      {
+        "key": "EIDOS_MAIL_FROM",
+        "type": "encrypted",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/paid-templates-20261010",
+        "configurationId": null
+      }
+    ],
+    "decrypt": "false",
+    "secretValuesRead": false
+  }
+}

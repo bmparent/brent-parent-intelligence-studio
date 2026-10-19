@@ -1,0 +1,274 @@
+{
+  "timestamp": "2026-10-15T00:04:02.044Z",
+  "base": "http://127.0.0.1:5194",
+  "source": "41f0d1e388220f62ca20d0c5930251276444c40c",
+  "sourceFiles": {
+    "src/playground/authoringSchema.ts": "08cb3b813e1ba8eaa4e0877150e94b4137ed7689e4f04988df6f5c62baee8fb2",
+    "src/playground/model.ts": "dff0747da6bf8233f64d010c378846776f533e6002b1f81c7e24e624ebc690d1",
+    "src/playground/authoring.ts": "d23010cdad98e3e8c459918baac2789647de4ad624954b1f64a7b9dae7780ea7",
+    "src/playground/BlockControls.tsx": "32978bf3b06e099ab4e03d3920a3706d98a93f8e4cd31c0331fe072157d22b19",
+    "src/playground/authoringRenderer.ts": "a15811240d9737244fe990fb4337484728ec8c574b3251034ec0adb48a57f197",
+    "src/playground/authoringEditor.css": "ba2a9122b455f794532f6e190caa581c5ee864ff7cce7de08b3abca5f2bfaa00",
+    "src/playground/runtimeBundle.ts": "3185ff7acf232be3149e8abbf993e8880ae0ee55b77e499fc0824af5f17bc2d0",
+    "scripts/verify-playground-element-motion.mjs": "0e150171e2924cfd6c0e22e5d7f570c12b00a1f03a3d09f0321ad8e6fd9fc1b3"
+  },
+  "environment": "win32/x64, Node v24.14.0; external Playwright fixture harness; Browser plugin not available",
+  "limitations": [
+    "Desktop and narrow browser viewports are not physical-device or unfamiliar-user acceptance.",
+    "Animations are sampled with browser animation APIs; no display-latency claim."
+  ],
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "selected block motion is one exact Undo/Redo edit with stable identity",
+        "keyboard numeric motion settings persist; editing stays static for selection and gestures",
+        "visitor preview renders a bounded one-shot entrance on the selected block",
+        "system reduced motion immediately presents static, visible content",
+        "mobile shares the same explicit element motion without changing desktop layout",
+        "Remove motion clears metadata and one Undo restores the exact configured project",
+        "explicit Continue restores motion, source identity and saved content",
+        "actual downloaded ZIP matches common renderer bytes and executes motion independently",
+        "export remains visible and static without JavaScript",
+        "the saved project reduced-motion preference also suppresses element animation",
+        "nonblank page identity, no framework/runtime errors and no AI/payment API requests"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5194/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "apiCalls": [],
+      "previewSample": {
+        "name": "pg-block-rise",
+        "opacity": 0.929579,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.12674)",
+        "iterations": "1",
+        "duration": "0.8s"
+      },
+      "archive": {
+        "bytes": 127935,
+        "sha256": "2aede616b68480e9db4fd7b0e7e2aca64e0773ed7120740a4a3f7e6cf1bb0512"
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": [
+        "selected block motion is one exact Undo/Redo edit with stable identity",
+        "keyboard numeric motion settings persist; editing stays static for selection and gestures",
+        "visitor preview renders a bounded one-shot entrance on the selected block",
+        "system reduced motion immediately presents static, visible content",
+        "mobile shares the same explicit element motion without changing desktop layout",
+        "Remove motion clears metadata and one Undo restores the exact configured project",
+        "explicit Continue restores motion, source identity and saved content",
+        "actual downloaded ZIP matches common renderer bytes and executes motion independently",
+        "export remains visible and static without JavaScript",
+        "the saved project reduced-motion preference also suppresses element animation",
+        "nonblank page identity, no framework/runtime errors and no AI/payment API requests"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5194/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "apiCalls": [],
+      "previewSample": {
+        "name": "pg-block-rise",
+        "opacity": 0.929579,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.12674)",
+        "iterations": "1",
+        "duration": "0.8s"
+      },
+      "archive": {
+        "bytes": 127935,
+        "sha256": "c60545d0bf67abf9544e00cc812d924bc0f006784e0acf9e7201283bed3e3710"
+      }
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "checks": [
+        "selected block motion is one exact Undo/Redo edit with stable identity",
+        "keyboard numeric motion settings persist; editing stays static for selection and gestures",
+        "visitor preview renders a bounded one-shot entrance on the selected block",
+        "system reduced motion immediately presents static, visible content",
+        "mobile shares the same explicit element motion without changing desktop layout",
+        "Remove motion clears metadata and one Undo restores the exact configured project",
+        "explicit Continue restores motion, source identity and saved content",
+        "actual downloaded ZIP matches common renderer bytes and executes motion independently",
+        "export remains visible and static without JavaScript",
+        "the saved project reduced-motion preference also suppresses element animation",
+        "nonblank page identity, no framework/runtime errors and no AI/payment API requests"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5194/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5194/playground/\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5194/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5194/playground/\" line: 0}]"
+        }
+      ],
+      "apiCalls": [],
+      "previewSample": {
+        "name": "pg-block-rise",
+        "opacity": 0.929579,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.12674)",
+        "iterations": "1",
+        "duration": "0.8s"
+      },
+      "archive": {
+        "bytes": 126309,
+        "sha256": "34dff1a9a7bd694d21c17b08079a168e8561e19048c32232be3371719387e50a"
+      }
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "checks": [
+        "selected block motion is one exact Undo/Redo edit with stable identity",
+        "keyboard numeric motion settings persist; editing stays static for selection and gestures",
+        "visitor preview renders a bounded one-shot entrance on the selected block",
+        "system reduced motion immediately presents static, visible content",
+        "mobile shares the same explicit element motion without changing desktop layout",
+        "Remove motion clears metadata and one Undo restores the exact configured project",
+        "explicit Continue restores motion, source identity and saved content",
+        "actual downloaded ZIP matches common renderer bytes and executes motion independently",
+        "export remains visible and static without JavaScript",
+        "the saved project reduced-motion preference also suppresses element animation",
+        "nonblank page identity, no framework/runtime errors and no AI/payment API requests"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5194/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5194/playground/\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        },
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"The resource at “http://127.0.0.1:5194/images/case-studies/production-dashboard.png” preloaded with link preload was not used within a few seconds. Make sure all attributes of the preload tag are set correctly.\" {file: \"http://127.0.0.1:5194/playground/\" line: 0}]"
+        }
+      ],
+      "apiCalls": [],
+      "previewSample": {
+        "name": "pg-block-rise",
+        "opacity": 0.929579,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.12674)",
+        "iterations": "1",
+        "duration": "0.8s"
+      },
+      "archive": {
+        "bytes": 126309,
+        "sha256": "e5f2624d8611c9488dfe444ee27b53ab7c32701b79178795e0b2b270708b9286"
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "checks": [
+        "selected block motion is one exact Undo/Redo edit with stable identity",
+        "keyboard numeric motion settings persist; editing stays static for selection and gestures",
+        "visitor preview renders a bounded one-shot entrance on the selected block",
+        "system reduced motion immediately presents static, visible content",
+        "mobile shares the same explicit element motion without changing desktop layout",
+        "Remove motion clears metadata and one Undo restores the exact configured project",
+        "explicit Continue restores motion, source identity and saved content",
+        "actual downloaded ZIP matches common renderer bytes and executes motion independently",
+        "export remains visible and static without JavaScript",
+        "the saved project reduced-motion preference also suppresses element animation",
+        "nonblank page identity, no framework/runtime errors and no AI/payment API requests"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5194/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5194/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "apiCalls": [],
+      "previewSample": {
+        "name": "pg-block-rise",
+        "opacity": 0.929579,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.126739)",
+        "iterations": "1",
+        "duration": "0.8s"
+      },
+      "archive": {
+        "bytes": 127991,
+        "sha256": "7e0bbfe3fd0879b9a47bf580331877e3fa016b6b60054e06100f0fbcaa41bf3a"
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "checks": [
+        "selected block motion is one exact Undo/Redo edit with stable identity",
+        "keyboard numeric motion settings persist; editing stays static for selection and gestures",
+        "visitor preview renders a bounded one-shot entrance on the selected block",
+        "system reduced motion immediately presents static, visible content",
+        "mobile shares the same explicit element motion without changing desktop layout",
+        "Remove motion clears metadata and one Undo restores the exact configured project",
+        "explicit Continue restores motion, source identity and saved content",
+        "actual downloaded ZIP matches common renderer bytes and executes motion independently",
+        "export remains visible and static without JavaScript",
+        "the saved project reduced-motion preference also suppresses element animation",
+        "nonblank page identity, no framework/runtime errors and no AI/payment API requests"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5194/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5194/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "apiCalls": [],
+      "previewSample": {
+        "name": "pg-block-rise",
+        "opacity": 0.929579,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.126739)",
+        "iterations": "1",
+        "duration": "0.8s"
+      },
+      "archive": {
+        "bytes": 127991,
+        "sha256": "f88e9d248ce752fa6a926df9aeedea3aa5c62b59ec0a8d4924da3bbbed3b11b0"
+      }
+    }
+  ],
+  "completedAt": "2026-10-15T00:07:21.898Z",
+  "sourceFilesAtEnd": {
+    "src/playground/authoringSchema.ts": "08cb3b813e1ba8eaa4e0877150e94b4137ed7689e4f04988df6f5c62baee8fb2",
+    "src/playground/model.ts": "dff0747da6bf8233f64d010c378846776f533e6002b1f81c7e24e624ebc690d1",
+    "src/playground/authoring.ts": "d23010cdad98e3e8c459918baac2789647de4ad624954b1f64a7b9dae7780ea7",
+    "src/playground/BlockControls.tsx": "32978bf3b06e099ab4e03d3920a3706d98a93f8e4cd31c0331fe072157d22b19",
+    "src/playground/authoringRenderer.ts": "a15811240d9737244fe990fb4337484728ec8c574b3251034ec0adb48a57f197",
+    "src/playground/authoringEditor.css": "ba2a9122b455f794532f6e190caa581c5ee864ff7cce7de08b3abca5f2bfaa00",
+    "src/playground/runtimeBundle.ts": "3185ff7acf232be3149e8abbf993e8880ae0ee55b77e499fc0824af5f17bc2d0",
+    "scripts/verify-playground-element-motion.mjs": "0e150171e2924cfd6c0e22e5d7f570c12b00a1f03a3d09f0321ad8e6fd9fc1b3"
+  },
+  "changedSourceFilesDuringRun": []
+}

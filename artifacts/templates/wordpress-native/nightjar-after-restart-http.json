@@ -1,0 +1,104 @@
+{
+  "product": "nightjar",
+  "phase": "after-restart",
+  "pages": [
+    {
+      "page": "home",
+      "url": "http://127.0.0.1:8974/",
+      "http_status": 200,
+      "h1": "Nightjar business copy saved on native WordPress",
+      "bytes": 47532,
+      "sha256": "2120fbf89f20553bc448fcdeba02292ff90a619c9ea1e87ecc769606fef9b991",
+      "native_details_count": 0
+    },
+    {
+      "page": "program",
+      "url": "http://127.0.0.1:8974/program/",
+      "http_status": 200,
+      "h1": "Program",
+      "bytes": 40018,
+      "sha256": "eb43e59bd77b9b1903cd106a4a6749c501c55a58fcccc9b087bfdb1740e9a2f5",
+      "native_details_count": 0
+    },
+    {
+      "page": "event",
+      "url": "http://127.0.0.1:8974/event/",
+      "http_status": 200,
+      "h1": "Event detail",
+      "bytes": 46709,
+      "sha256": "78aa518541778118034e362d9e36a373364abeafe8d973485d179dd7eea8c408",
+      "native_details_count": 3
+    },
+    {
+      "page": "about",
+      "url": "http://127.0.0.1:8974/about/",
+      "http_status": 200,
+      "h1": "About",
+      "bytes": 39933,
+      "sha256": "5228446d909e16e1ab7624133f46a4454ac33333a019b03b932a72f62c36dc2f",
+      "native_details_count": 0
+    },
+    {
+      "page": "contact",
+      "url": "http://127.0.0.1:8974/contact/",
+      "http_status": 200,
+      "h1": "Contact",
+      "bytes": 39759,
+      "sha256": "32cb4547740d1c2bbafd47f00eb1a11cfb9bf66911308295e59cd2635d172c23",
+      "native_details_count": 1
+    }
+  ],
+  "all_five_pages_http_200": true,
+  "all_html_referenced_local_assets_http_200": true,
+  "assets": {
+    "http://127.0.0.1:8974/wp-includes/blocks/navigation/style.min.css?ver=6.6": {
+      "status": 200,
+      "bytes": 16507,
+      "sha256": "4a8714a7f45ff22f002ebb62a7f1e91f3f14d1938e21789710cfad199561b62c"
+    },
+    "http://127.0.0.1:8974/wp-content/themes/nightjar/style.css?ver=1.0.2": {
+      "status": 200,
+      "bytes": 12097,
+      "sha256": "cb5f79284afa03117ba650626ac86afef8062d0afa7b6aeaec6fcb3ac7000ff7"
+    },
+    "http://127.0.0.1:8974/wp-includes/blocks/navigation/view.min.js?ver=6.6": {
+      "status": 200,
+      "bytes": 3300,
+      "sha256": "cef72ad53596109595c152da16e28c2799d53b4c151274c7b28c0324e7230f24"
+    },
+    "http://127.0.0.1:8974/wp-content/uploads/2026/10/native-replacement-nightjar.png": {
+      "status": 200,
+      "bytes": 1627,
+      "sha256": "470b7f179cb9566b0d0748928b6124d6ec1eb78324bb43a3443612c3287efb14"
+    },
+    "http://127.0.0.1:8974/wp-content/themes/nightjar/assets/poster.svg": {
+      "status": 200,
+      "bytes": 1078,
+      "sha256": "f97123c0ea0fe2b06550f3ddddd863638c8b5baefd03b8e877af6469df970118"
+    }
+  },
+  "phone_user_agent_html_200": true,
+  "phone_visual_render_test": false,
+  "saved_navigation_links_verified": true,
+  "primary_action_http_chain": [
+    {
+      "url": "http://127.0.0.1:8974/program/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8974/contact/",
+      "status": 200
+    },
+    {
+      "target": "mailto:native-nightjar@example.test",
+      "verified": "href only; not opened or sent"
+    }
+  ],
+  "contact_mailto_verified": true,
+  "contact_mailto": [
+    "mailto:native-nightjar@example.test",
+    "mailto:native-nightjar@example.test"
+  ],
+  "email_sent": false,
+  "email_client_opened": false
+}

@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "timestamp_utc": "2026-10-11T02:28:38.708493+00:00",
+  "siteSha": "85ced14b954194e013a47b50a511778f4daf7bfe",
+  "status": "passed",
+  "currentArchives": 8,
+  "retainedArchives": 8,
+  "allLocalArchives": 16,
+  "scope": "All current and retained private buyer ZIPs verified against preserved package reports. Original paid TEST Switchboard1.0.0 archive is retained; historical proof remains tied to its own bytes.",
+  "archives": [
+    {
+      "editionId": "matter-developer-v1",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/matter-developer-v1.zip",
+      "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6",
+      "bytes": 27533,
+      "status": "current",
+      "referenceReports": [
+        "package-report-v1.0.0.json",
+        "package-report-v1.0.1.json",
+        "package-report-v1.0.2.json",
+        "package-report-pre-switchboard-v1.0.1.json",
+        "package-report.json"
+      ]
+    },
+    {
+      "editionId": "matter-wordpress-v1",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+      "bytes": 30739,
+      "status": "retained",
+      "referenceReports": [
+        "package-report-v1.0.0.json"
+      ]
+    },
+    {
+      "editionId": "matter-wordpress-v1",
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/matter-wordpress-v1.0.1.zip",
+      "sha256": "3fa8fe6902085b3bf2f06a9bdc51e14b861d9e1764a26d0c95d7f856beb415fe",
+      "bytes": 30748,
+      "status": "current",
+      "referenceReports": [
+        "package-report-v1.0.1.json",
+        "package-report-v1.0.2.json",
+        "package-report-pre-switchboard-v1.0.1.json",
+        "package-report.json"
+      ]
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
+      "sha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8",
+      "bytes": 26765,
+      "status": "retained",
+      "referenceReports": [
+        "package-report-v1.0.0.json"
+      ]
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.1.zip",
+      "sha256": "f8a07e7fe22e3ecf1eeb3dbbd3783a81c940fa39191f56230c64a7ad4faa0a39",
+      "bytes": 26978,
+      "status": "retained",
+      "referenceReports": [
+        "package-report-v1.0.1.json"
+      ]
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.2",
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.2.zip",
+      "sha256": "1026635e095129dfff9bc2c0a21baa1cf313a64041e9b66bd1fecf065d89487f",
+      "bytes": 27165,
+      "status": "retained",
+      "referenceReports": [
+        "package-report-v1.0.2.json"
+      ]
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "version": "1.0.3",
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.3.zip",
+      "sha256": "99152f05e391a81b4290dc9e08cb0a8c45689f1a17d98f726646c85eec15eb4d",
+      "bytes": 27236,
+      "status": "current",
+      "referenceReports": [
+        "package-report-pre-switchboard-v1.0.1.json",
+        "package-report.json"
+      ]
+    },
+    {
+      "editionId": "nightjar-wordpress-v1",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+      "bytes": 29728,
+      "status": "retained",
+      "referenceReports": [
+        "package-report-v1.0.0.json"
+      ]
+    },
+    {
+      "editionId": "nightjar-wordpress-v1",
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.1.zip",
+      "sha256": "558a42d695338fc94df90968fcf643d155e84767a33ff150c41c9534a7e49739",
+      "bytes": 29742,
+      "status": "current",
+      "referenceReports": [
+        "package-report-v1.0.1.json",
+        "package-report-v1.0.2.json",
+        "package-report-pre-switchboard-v1.0.1.json",
+        "package-report.json"
+      ]
+    },
+    {
+      "editionId": "switchboard-developer-v1",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "sha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a",
+      "bytes": 26816,
+      "status": "retained",
+      "referenceReports": [
+        "package-report-v1.0.0.json",
+        "package-report-v1.0.1.json",
+        "package-report-v1.0.2.json",
+        "package-report-pre-switchboard-v1.0.1.json"
+      ]
+    },
+    {
+      "editionId": "switchboard-developer-v1",
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.1.zip",
+      "sha256": "5ceb3e123ebd531d8b3d1bd113f3f135296c0a8dd7d320959afb0285cef70678",
+      "bytes": 27055,
+      "status": "current",
+      "referenceReports": [
+        "package-report.json"
+      ]
+    },
+    {
+      "editionId": "switchboard-wordpress-v1",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846",
+      "bytes": 29391,
+      "status": "retained",
+      "referenceReports": [
+        "package-report-v1.0.0.json"
+      ]
+    },
+    {
+      "editionId": "switchboard-wordpress-v1",
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.1.zip",
+      "sha256": "da30119d1d3e65f44c75dc24cb677b8dcb5a5517c6f68aea0bbcc78590a43abb",
+      "bytes": 29399,
+      "status": "current",
+      "referenceReports": [
+        "package-report-v1.0.1.json",
+        "package-report-v1.0.2.json",
+        "package-report-pre-switchboard-v1.0.1.json",
+        "package-report.json"
+      ]
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7",
+      "bytes": 26836,
+      "status": "current",
+      "referenceReports": [
+        "package-report-v1.0.0.json",
+        "package-report-v1.0.1.json",
+        "package-report-v1.0.2.json",
+        "package-report-pre-switchboard-v1.0.1.json",
+        "package-report.json"
+      ]
+    },
+    {
+      "editionId": "tideglass-wordpress-v1",
+      "version": "1.0.0",
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+      "bytes": 30016,
+      "status": "retained",
+      "referenceReports": [
+        "package-report-v1.0.0.json"
+      ]
+    },
+    {
+      "editionId": "tideglass-wordpress-v1",
+      "version": "1.0.1",
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.1.zip",
+      "sha256": "4881c5d5ad34258454c8f542819f5ef0b469b80e72abd61a785f69d77b6ae785",
+      "bytes": 30027,
+      "status": "current",
+      "referenceReports": [
+        "package-report-v1.0.1.json",
+        "package-report-v1.0.2.json",
+        "package-report-pre-switchboard-v1.0.1.json",
+        "package-report.json"
+      ]
+    }
+  ],
+  "limits": [
+    "Archive retention and checksums do not themselves prove every historical version was purchased or installed.",
+    "Private archives remain excluded from public site output."
+  ]
+}

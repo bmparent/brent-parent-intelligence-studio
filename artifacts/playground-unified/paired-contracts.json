@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-10-17T21:46:11.479Z",
+  "frontendCommit": "7d1b0ea2558be640ea1bf6e1d4ebfebe170d0cb0",
+  "backendCommit": "946c8697c2a5391c0861fabd80bb2eb37925f96a",
+  "workingFiles": true,
+  "checks": [
+    {
+      "path": "functions/_shared/platform/core.ts",
+      "sha256Utf8Lf": "1346293d22fea257dc39868eb0b3f67132b2908f17c2fa0ac2e86ffbd28a4d2f"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAi.ts",
+      "sha256Utf8Lf": "8d135acf5f662dd5fb0ce969962d240f5edb00acd0ee398cc8bc81a5edc8e067"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAiSchema.ts",
+      "sha256Utf8Lf": "d6c0db3c032fd9206b82fdd2a8aa009d8b0e57b9efb6565887b1757fedd72669"
+    },
+    {
+      "path": "functions/_shared/platform/playgroundAiProvider.ts",
+      "sha256Utf8Lf": "f72bd535a4f3d95cc486129dc5c2153b7aa78cc89158f66cce862fd2fe9eb230"
+    },
+    {
+      "path": "functions/_shared/platform/templateShop.ts",
+      "sha256Utf8Lf": "9c1331ee2d36e67f497f53c47730d00dd582cd1e742d6083d2625e3bc85120b8"
+    },
+    {
+      "path": "functions/api/playground/ai.ts",
+      "sha256Utf8Lf": "e6669a0e557cafd8cf5ecc6b0d8949edab96b490366d8b8da6f83cf8109599a1"
+    },
+    {
+      "path": "functions/api/public-config.ts",
+      "sha256Utf8Lf": "d6be3c0e37f5c4269175aa26ff99bfd222355ef0213eb865cf807a7cf5266e33"
+    },
+    {
+      "path": "functions/api/shop/webhook.ts",
+      "sha256Utf8Lf": "d8d9ff844929b6186b67cd0657bf738d7bb48c4e633a83eb5da27c27f475fc16"
+    },
+    {
+      "path": "functions/api/community/maintenance.ts",
+      "sha256Utf8Lf": "ee369feea0191989b936dcc9276e4a6e9c460c6352d9a158ad13a3b04f30fbc1"
+    },
+    {
+      "path": "migrations/0005_playground_ai.sql",
+      "sha256Utf8Lf": "edab9c14cb3c17f2f2622b15cd35c66a7632790c256ef94222083e29349aa62f"
+    },
+    {
+      "path": "functions/_shared/platform/projectDelivery.ts",
+      "sha256Utf8Lf": "b8e9fba8748a39e0c298899f2594a5a1f4c127458d37ae41aa1b0c59024c9612"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliverySchema.ts",
+      "sha256Utf8Lf": "9ff3edfd777b43410d7499e6a2abb66625187b6b15f6bc889324c2b917913c4b"
+    },
+    {
+      "path": "functions/api/playground/delivery.ts",
+      "sha256Utf8Lf": "0a8f465d54abfa9221b9be25d9b9eb2b55850a408b47e9ec2adc1110c1cc0fb2"
+    },
+    {
+      "path": "migrations/0006_project_delivery.sql",
+      "sha256Utf8Lf": "711faa1efc31c66ae37056c1eec51aca3f8ffeba975a4d9873b0282fc8c9ba43"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliveryOrders.ts",
+      "sha256Utf8Lf": "79a6b0fa57ce0cfda0860bd4d78b1a5d5c71df2b1a5a6af83bff1439127b69b8"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliveryOrdersSchema.ts",
+      "sha256Utf8Lf": "99f909e2ef9d0e3e7327557239d2ee7a97815e689ebb4f274d53d8af77156209"
+    },
+    {
+      "path": "migrations/0007_project_delivery_orders.sql",
+      "sha256Utf8Lf": "34fb25d8792c96cb0d26206bd4ca40ecc1bcace4865f47fc5d8a5b7278b7d41f"
+    },
+    {
+      "path": "functions/_shared/platform/projectDeliveryLiveSchema.ts",
+      "sha256Utf8Lf": "73ec4c908e13d8bfee7b3fae6c09b71b7ae4285a7f6fdab0ba7749b59a545841"
+    },
+    {
+      "path": "migrations/0008_project_delivery_live.sql",
+      "sha256Utf8Lf": "367da15ee864ef32795d15beafcc488150b2b2749fcd7f2c07bfe30e568d5026"
+    },
+    {
+      "path": "functions/api/shop/download.ts",
+      "sha256Utf8Lf": "a5923916f39e9907e5df8a8b07a468cd90a51938a25044a934859c15c3485618"
+    }
+  ],
+  "legacyCloudRenderer": "not copied or upgraded",
+  "snapshotRendererAdapter": "separate graph; use export-playground-delivery.mjs for its manifest/parity"
+}
