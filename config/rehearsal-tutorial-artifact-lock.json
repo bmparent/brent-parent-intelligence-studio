@@ -1,0 +1,14 @@
+{
+  "frontendSha": "3c09fa425f3f41f40ae89d9ea6116cf3200a91d7",
+  "baseSha": "4505148c71dc06e17c3cc5359fc628d836d20410",
+  "buildCommit": "d6acd7e094f2ba6bf3bb6b396685caf46b9525bf",
+  "sourceTree": "b20cd8e36f022cfc1cd5468acd49903375e77256",
+  "runId": 39196752070,
+  "runAttempt": 1,
+  "artifactId": 12163006075,
+  "jobId": 117881075137,
+  "workflowId": 355341585,
+  "workflowBlob": "4be889d89d0df4b86a8b7b2ce34f72bc5d57421a",
+  "digest": "sha256:0ff9a126822abe8d3165e41f84af38f3ce9b84868ec8299a95c585c8cfa8862b",
+  "bytes": 77337346
+}

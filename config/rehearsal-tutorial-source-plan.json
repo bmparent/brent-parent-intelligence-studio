@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "classification": "reviewed-build-for-disabled-rehearsal",
+  "frontendSha": "3c09fa425f3f41f40ae89d9ea6116cf3200a91d7",
+  "backendSha": "f16bd3a94ae8a3a49065baac4c4d7ccfd5da1be7",
+  "deploymentAllowed": false,
+  "target": {
+    "project": "eidosworks-playground-rehearsal-20261017",
+    "branch": "rehearsal-disabled",
+    "origin": "https://rehearsal-disabled.eidosworks-playground-rehearsal-20261017.pages.dev",
+    "environment": "preview",
+    "customDomains": []
+  },
+  "database": {
+    "bindingPrefix": "EIDOS_PG_INTEGRATION",
+    "environment": "preview",
+    "dedicated": true
+  },
+  "capabilities": {
+    "accountsReady": false,
+    "communityReady": false,
+    "aiReady": false,
+    "playgroundAiReady": false,
+    "shopReady": false,
+    "localTest": false
+  },
+  "flags": {
+    "EIDOS_AI_ENABLED": "false",
+    "EIDOS_PLAYGROUND_AI_ENABLED": "false",
+    "EIDOS_SHOP_ENABLED": "false",
+    "EIDOS_TEMPLATE_LIVE_ENABLED": "false",
+    "EIDOS_PLAYGROUND_DELIVERY_LIVE_ENABLED": "false",
+    "EIDOS_TEMPLATE_TEST_ENABLED": "false",
+    "EIDOS_TEMPLATE_TEST_CHALLENGE": "false",
+    "EIDOS_ACCOUNTS_ENABLED": "false",
+    "EIDOS_LOCAL_TEST": "false",
+    "EIDOS_PROACTIVE_ENABLED": "false",
+    "EIDOS_COMMUNITY_STUDIO_ENABLED": "false",
+    "EIDOS_NEWSLETTER_ENABLED": "false"
+  },
+  "modes": {
+    "EIDOS_PLAYGROUND_AI_MODE": "disabled",
+    "EIDOS_PLAYGROUND_DELIVERY_MODE": "disabled"
+  }
+}

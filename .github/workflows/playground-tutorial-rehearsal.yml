@@ -1,0 +1,79 @@
+name: Playground accepted-tutorial rehearsal
+on:
+  pull_request:
+    branches: [ops/playground-rehearsal-deploy-20261018]
+    types: [opened, synchronize, reopened]
+    paths: ['.github/workflows/playground-tutorial-rehearsal.yml', 'scripts/rehearsal-*', 'scripts/refresh-tutorial-rehearsal-source.py', 'scripts/test-rehearsal-*', 'config/rehearsal-*']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: playground-rehearsal-disabled-20261017
+  cancel-in-progress: false
+jobs:
+  tutorial-rehearsal:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'ops/playground-tutorial-rehearsal-20261018'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Set runner-local evidence destination
+        run: echo "REHEARSAL_EVIDENCE_DIR=$RUNNER_TEMP/tutorial-rehearsal-evidence" >> "$GITHUB_ENV"
+      - name: Reject source and provider drift before credentials are available
+        run: node --test scripts/test-rehearsal-pages.mjs scripts/test-rehearsal-update-predecessor.mjs scripts/test-rehearsal-update-runtime.mjs scripts/test-rehearsal-tutorial-source.mjs
+      - name: Prove the new successful CI source and prepare its distinct payload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$REHEARSAL_EVIDENCE_DIR" "$RUNNER_TEMP/tutorial-input" "$RUNNER_TEMP/tutorial-upload"
+          python scripts/refresh-tutorial-rehearsal-source.py
+          ARTIFACT_ID=$(node --input-type=module -e "import fs from 'node:fs'; console.log(JSON.parse(fs.readFileSync('config/rehearsal-tutorial-artifact-lock.json')).artifactId)")
+          DIGEST=$(node --input-type=module -e "import fs from 'node:fs'; console.log(JSON.parse(fs.readFileSync('config/rehearsal-tutorial-artifact-lock.json')).digest)")
+          gh api "repos/bmparent/brent-parent-intelligence-studio/actions/artifacts/$ARTIFACT_ID/zip" > "$RUNNER_TEMP/tutorial-input/artifact.zip"
+          node scripts/rehearsal-tutorial-source-guard.mjs config/rehearsal-tutorial-source-plan.json "$REHEARSAL_EVIDENCE_DIR/provenance/run.json" "$REHEARSAL_EVIDENCE_DIR/provenance/artifact.json" "$RUNNER_TEMP/tutorial-input/artifact.zip" "$DIGEST" "$REHEARSAL_EVIDENCE_DIR/provenance/source-evidence.json" check-only > "$REHEARSAL_EVIDENCE_DIR/source-provenance-check-only.json"
+          python scripts/rehearsal-tutorial-payload.py "$RUNNER_TEMP/tutorial-input/artifact.zip" "$RUNNER_TEMP/tutorial-upload/payload" "$REHEARSAL_EVIDENCE_DIR/payload-inventory.json" "$REHEARSAL_EVIDENCE_DIR/source-provenance-check-only.json"
+          node --input-type=module -e "import fs from 'node:fs'; const lock=JSON.parse(fs.readFileSync('config/rehearsal-tutorial-artifact-lock.json')); fs.appendFileSync(process.env.GITHUB_ENV,'BUILD_COMMIT='+lock.buildCommit+'\n')"
+      - name: Install the previously validated official deployment tool from its lockfile
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          mkdir -p "$RUNNER_TEMP/tutorial-wrangler"
+          cp config/rehearsal-wrangler-lock.json "$RUNNER_TEMP/tutorial-wrangler/package-lock.json"
+          node --input-type=module -e "import fs from 'node:fs'; const lock=JSON.parse(fs.readFileSync('config/rehearsal-wrangler-lock.json')); fs.writeFileSync(process.env.RUNNER_TEMP+'/tutorial-wrangler/package.json',JSON.stringify({name:lock.name,private:true,dependencies:lock.packages[''].dependencies}))"
+          npm ci --prefix "$RUNNER_TEMP/tutorial-wrangler" --no-audit --no-fund
+          node --input-type=module -e "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+'/tutorial-wrangler/node_modules/wrangler/package.json')); if(p.version!=='4.151.1')throw Error('Deployment tool drift')"
+          cp "$RUNNER_TEMP/tutorial-wrangler/package-lock.json" "$REHEARSAL_EVIDENCE_DIR/deployment-tool-lock.json"
+      - name: Verify exact known predecessor, disabled Preview and dedicated account
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/rehearsal-update-pages.mjs preflight
+      - name: Upload only the new verified static build and unchanged Functions
+        working-directory: ${{ runner.temp }}/tutorial-upload
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: node "$RUNNER_TEMP/tutorial-wrangler/node_modules/wrangler/bin/wrangler.js" pages deploy payload --no-bundle --project-name=eidosworks-playground-rehearsal-20261017 --branch=rehearsal-disabled --commit-hash="$BUILD_COMMIT" --commit-message='Accepted PR128 tutorial; isolated disabled rehearsal' --commit-dirty=true
+      - name: Verify actual new hosted source, relay and disabled failures
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/rehearsal-update-pages.mjs verify
+      - name: Preserve exact receipts and failures without credentials or payload copies
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playground-tutorial-rehearsal-${{ github.run_id }}
+          path: ${{ runner.temp }}/tutorial-rehearsal-evidence
+          retention-days: 14
+          if-no-files-found: warn
