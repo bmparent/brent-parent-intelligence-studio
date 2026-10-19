@@ -1,0 +1,1654 @@
+{
+  "originalPreparedZipSha256": "46d7288502a784383d56897f967af35888a12d916e1732acf94b512cadef262f",
+  "originalArtifactSha256": "c1950dd2a20922bd9738f5a5ec4ec8628bae815dc358e9c6cae9cdb9b04ec913",
+  "originalArtifactPrefix": "brent-parent-intelligence-studio/brent-parent-intelligence-studio/dist/",
+  "retainedOverlaySha256": "37d51e48c43b43abc6c39cbced0d3084031104db81759e27fe7e907bc6b49c61",
+  "memberBytesUnchanged": true,
+  "sourceRebuild": false,
+  "files": [
+    {
+      "path": "404.html",
+      "bytes": 10240,
+      "sha256": "f554c1753a2334ef0b0d32bd9cb636b2aa823eca9a0c4683b55fee959939ba8f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "_headers",
+      "bytes": 1238,
+      "sha256": "1afb88322cbde692723a532b6901a3adc95da0d5992274780d35647ee1b63d16",
+      "source": "retained-deployment-overlay"
+    },
+    {
+      "path": "_redirects",
+      "bytes": 797,
+      "sha256": "55185833b4bc1d9107e4580909243dc4b77c791bcdf7bd71a2db49fba7e844c6",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "_routes.json",
+      "bytes": 113,
+      "sha256": "e23eac338986784f8d108324aa86defbd82cd92b820888840ae75a78c82cd47e",
+      "source": "retained-deployment-overlay"
+    },
+    {
+      "path": "_worker.js",
+      "bytes": 561670,
+      "sha256": "faacb7b43371e3e081259be78ce29401e99364cce96ff6d5185121d4a02b5bb2",
+      "source": "retained-deployment-overlay"
+    },
+    {
+      "path": "about/index.html",
+      "bytes": 18229,
+      "sha256": "edcccc14368f88b0d65322688c364b4183723c09d90327c94a40efddd5e8b25a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "account/index.html",
+      "bytes": 10134,
+      "sha256": "a7f71d490aadd1f2967c2d4a787acd842ec65ad00a2d6d7778c80f98344e38b3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "account/unsubscribe/index.html",
+      "bytes": 10156,
+      "sha256": "88eff2c408062d78cd87f3e58213c88be4843c5a48dcb3af41c5339b6aaedff9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "account/verify/index.html",
+      "bytes": 10141,
+      "sha256": "55ef9f188fca1201e98a71b60744ff6e5bea14b40091a430b08079be97207f0b",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "apple-touch-icon.png",
+      "bytes": 3671,
+      "sha256": "6bdb26ee55128de224434c3da9ca321ddf40b9fe3aaee792b43800b32c2d5567",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "assets/index-BtUgcVsh.css",
+      "bytes": 220406,
+      "sha256": "f68409fed53073148316025ced5f5b447c302cf67c691d22a5a2c67738f86d16",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "assets/index-DbEX-f9v.js",
+      "bytes": 853320,
+      "sha256": "147df7b1aa608769e77e6aed7c9375a7a4f81b6d373469ade3aa1840b35e0b1f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "assets/Playground-0JumCkYG.css",
+      "bytes": 68858,
+      "sha256": "b35dc9d9ddf583a8e477c5ab9ee3f96c3fff99f36f89ed5e81a91ffdb43e8aed",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "assets/Playground-Cqq5K3GM.js",
+      "bytes": 343924,
+      "sha256": "030b1e5c39291c94cde9a76712947cc4f077a1c2a64cb3db8e5793b9cf895f13",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "assets/purchaseClient-B5FhKIMy.js",
+      "bytes": 24410,
+      "sha256": "54537235489d638f4dcde6f77be3b196f9b7c76e7f87f10af7f7e0822d5dc080",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "assets/react-vendor-P0Lkgw2L.js",
+      "bytes": 190214,
+      "sha256": "d7915cfac74caf83c2fe234696e3f0d9fcb989ca3ff720203e895e1e1a144be6",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "assets/rolldown-runtime-D9-fqq9M.js",
+      "bytes": 86,
+      "sha256": "a2b9cf4b963756dc2cae1ebdd1c0e51ef5780dd5bf64a55b90e21679c2b2434f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-apple-touch-v2.png",
+      "bytes": 3671,
+      "sha256": "6bdb26ee55128de224434c3da9ca321ddf40b9fe3aaee792b43800b32c2d5567",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-favicon-48-v2.png",
+      "bytes": 972,
+      "sha256": "60338511f9e2f15b2940afc7cf20925e2df2df8a66927d0a08a6eb243361feb4",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-logo-square.png",
+      "bytes": 43125,
+      "sha256": "ed038540a592ef66c6939ea84c96140a241bfeaccb661174f002ec3b14eeeb05",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-logo-square.svg",
+      "bytes": 1042,
+      "sha256": "164a4eecb94da0dc8367822c3695fbd1ac4aa36844a07459ebe967641276b6d5",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-mark-light.svg",
+      "bytes": 997,
+      "sha256": "c19914cad780fb8a8201d89b7103fd286e4c459d47d1c636f43341880c408999",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-mark.png",
+      "bytes": 23587,
+      "sha256": "f3719e0a9338b0c7e4eb6e45dcbc1ebe60409bf54ac42df6400c17789b133519",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-mark.svg",
+      "bytes": 997,
+      "sha256": "7f8c9d447b710828c885a3dc5c65d11710ea20ada3b595aa7bc7629af2f50280",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-social-preview-v2.png",
+      "bytes": 30946,
+      "sha256": "590f3bbb7038020b20c1a18de2f1103031efcc8648dc224460412272c70309ed",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "brand/eidos-social-preview-v2.svg",
+      "bytes": 1245,
+      "sha256": "794bd230505c1bf2870b13918852538231d4149a2dc0b289bea45ee28e1118b0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "central-florida/index.html",
+      "bytes": 13651,
+      "sha256": "91478ef53f7c60a89323d68b43f59bdd73d330d96b2178edf4431506aa904aab",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "community/agent-guide/index.html",
+      "bytes": 14193,
+      "sha256": "795408dcb9ae4b6c988ac66e2fae965808e808bade3f49e783b896b4182d696d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "community/agents/index.html",
+      "bytes": 13948,
+      "sha256": "d05446e9bbfb4306bad9cc05d23ebe912b700ef3f47112fc4ad2565ab0f2dac3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "community/guidelines/index.html",
+      "bytes": 12455,
+      "sha256": "df9c55bc41572b753a54c9cb92d3662513d5817579a255b252b60066584f0ff3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "community/index.html",
+      "bytes": 13465,
+      "sha256": "dcedaad284bfd4b347ec00abcb429dcb7203d60372af6e04be7a97133d0bb9e5",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "community/moderate/index.html",
+      "bytes": 10375,
+      "sha256": "bc877192f1fde4628766c068038b2c03be7576b8fa59db854803bfee970361c6",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "community-thread.css",
+      "bytes": 3812,
+      "sha256": "fd3f35cc82d677be754ee626e508f63033495834bcbdf492d41d1052c0cbe8f3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "community-thread.js",
+      "bytes": 9429,
+      "sha256": "38a07cb09cc2071c7bdcb4d758846c9256ce365274a92e74498f05b6f7f476ca",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "contact/index.html",
+      "bytes": 13625,
+      "sha256": "6021c294de190be9a64ea1eac7d687439e9bcb65a6cb965a72d9fc2a7a332d3c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "demos/wellway/index.html",
+      "bytes": 3173819,
+      "sha256": "ffc1d1811ea9c28b5d32ba467924d6e64a3425ad491634b5a39c1c865626f91d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "editorial-policy/index.html",
+      "bytes": 12759,
+      "sha256": "709388aaa7abc818737d1ee3a783161c49ca70c342ba58f30e005236a861c508",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "favicon.ico",
+      "bytes": 6659,
+      "sha256": "b1e21b18ff076657bb28350cea0ad4c05cf47d9ff61e9eedce718243b909375f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "favicon.svg",
+      "bytes": 1038,
+      "sha256": "671681f4ca1e8226b6f04c631249b7d2de0af8f5df71cc7fe57c6c31ae6c93da",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "feed.xml",
+      "bytes": 11046,
+      "sha256": "c48c20b0ddd06b1990f1318146e70cd33d6e0f6fed78891f501358fe03b8db0c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "fonts/artwork/dm-sans-latin-variable.woff",
+      "bytes": 80464,
+      "sha256": "f5be6a3cab40949994c639b2c29b270d389b9916b3ca692e5a897ae5eeb4c517",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "fonts/artwork/OFL.txt",
+      "bytes": 4389,
+      "sha256": "2af94f4fb533be8fa23282eb33e08ca311ddf47c2f32777e2040b282deeec65c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "fonts/artwork/provenance.json",
+      "bytes": 919,
+      "sha256": "c07766db14c4eaa9f31beaf42ffec6f64ad2e504abba83bb47f9db65e4d8de1c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "fonts/artwork/README.md",
+      "bytes": 508,
+      "sha256": "2e9081ab310da2f93a92e0d446d3cfb3bbeb56adf3b6555c6d1390bffe442440",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "friction-review/index.html",
+      "bytes": 14664,
+      "sha256": "c34db39f66901904a320e2357d9955b0e1aae560d823d6a2f880991d3e06a6fe",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/case-studies/pernr-access-gate.png",
+      "bytes": 163068,
+      "sha256": "cd63fcec9e9d8c99c2a416e9c55b8cb676000ef1c358d86d0638ef6311421a8e",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/case-studies/production-dashboard.png",
+      "bytes": 60886,
+      "sha256": "4541f1af3e4f9758c55e360667fb3c8bd75ef9c36862708604fb626bf373daf7",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/case-studies/signal-house.svg",
+      "bytes": 2058,
+      "sha256": "744646f5495fb6e42fbd8de8805a48c860a18692a789a3a4fe06095ea50daab1",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/case-studies/storefront-experience-framed.png",
+      "bytes": 416849,
+      "sha256": "f9f02d3dfac181e357a997d3c9ee0fa5572b9698eb63753804d16daa4d6ee182",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/eidos-glass-hero.webp",
+      "bytes": 86074,
+      "sha256": "f6c75b94d4d3a253044e47464dd3b64709560e4d0976256229eb8c8ceb7bdaf8",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/digital-experiences.png",
+      "bytes": 100242,
+      "sha256": "74b8854861afd698a2c7aebfae9352801c68a79cbd5d2c1c92e8abf1987f850a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/arrow-up-right.svg",
+      "bytes": 411,
+      "sha256": "8b149f040d34c24adda45f425c45a03c7780309fdb99b48076dfa2f8296eb698",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/assistants-small.webp",
+      "bytes": 46022,
+      "sha256": "ec9796ea00c3ee176bceb7d6547a787f17a72e0932ddf11b42619c080ec2fe17",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/assistants.webp",
+      "bytes": 142068,
+      "sha256": "316390f37c9a60bee83de1e224f5a773ced2fd9c15e88148b363bc9977bddf44",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/automation-small.webp",
+      "bytes": 41576,
+      "sha256": "746ef9ee0662e917b504014d169155cc7472c19055e82c7b817235731487d2ec",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/automation.webp",
+      "bytes": 130714,
+      "sha256": "bc1fd8460247284f90db775e648981ed64db30654577aaf39f95f2ad13a6e24a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/business-small.webp",
+      "bytes": 43722,
+      "sha256": "a5c1bd59f541c94a6d0cfb4bb2f3694bb3d8cf590f7c10256188505367b8b6f6",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/business.webp",
+      "bytes": 135886,
+      "sha256": "d17cba7c34e053a731cde768244f14251aa2519facb4352c7b3339d1e779305d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/commerce-small.webp",
+      "bytes": 71998,
+      "sha256": "4cc5fd14761605214690623c8e468a574490657a4dde8a460b3fba5ae134d2e0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/commerce.webp",
+      "bytes": 236146,
+      "sha256": "6d42d48b44df6ea200583c033ad0decab94529faa62457ba4260bef73c78dacb",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/paper.webp",
+      "bytes": 816,
+      "sha256": "46db8816943d3dfa2d7372e82c8891e7e38c590eb9074e5b13b928f9de626f9f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/performance-small.webp",
+      "bytes": 58556,
+      "sha256": "524a93d25b6c6b84522a868541fbc9527c794bd2449d92f3ac1c53babef342e3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/performance.webp",
+      "bytes": 193886,
+      "sha256": "cc24ccade839d679f536cef9d816af3a3509b67be3adf5049897fd4a31e966e9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/TABLER-LICENSE.txt",
+      "bytes": 1074,
+      "sha256": "384bad79d7f23eae723071cb340ed8333de0faa5216c92e8d53f750ad2260a96",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/websites-small.webp",
+      "bytes": 65370,
+      "sha256": "fd983cdc271867e82775b6b25c34c5e55016c1fa2e5b8a3b7fd87844877e1389",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/services/folio/websites.webp",
+      "bytes": 221446,
+      "sha256": "1a3b9a4947bddf7e11b448a64479cb0a7f6c2f3a3574938e46ade0b20bff6959",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/afterlight-observatory-thumb.webp",
+      "bytes": 14454,
+      "sha256": "5c9b1dc228c09a9ec37c2f07f5ca0260bb3a58a96284bfb1363fc4823e375cac",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/afterlight-observatory.webp",
+      "bytes": 51692,
+      "sha256": "7d056a25e4cf3d24e995d47f4383d0039a6af8b561504f3a8b9cebefa6acf078",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/canopy-home-concept-thumb.webp",
+      "bytes": 200346,
+      "sha256": "f719806e24688adda9a9f3a9a505fd4806a923c63b563e0c9f1e58d34bbadf55",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/canopy-home-concept.webp",
+      "bytes": 353494,
+      "sha256": "16df08ce61f099e2a6e86cbbd305d1f10e80fe3a5a20b38b461676c44ec2488e",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/dgpromo-platform-review-thumb.webp",
+      "bytes": 23254,
+      "sha256": "cdb1b9d52c46c485f88630bdb279393f50cceaf86358cfd974da221004aa6402",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/dgpromo-platform-review.webp",
+      "bytes": 72408,
+      "sha256": "b33871b2df0df4916d139b4d423ec50400d70c1b173a0d7b056189ec25091bb0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/disney-junior-20261001-thumb.webp",
+      "bytes": 60962,
+      "sha256": "f587fce301080c59f216832240f5e6653c2ef5141a973c117b4721443e710e0e",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/disney-junior-20261001.webp",
+      "bytes": 217006,
+      "sha256": "872c290e978cdd72a7c79b58afddb4937ea6bca43317b090a30036b25bcd0a68",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/disney-villains-inksoft-preview-thumb.webp",
+      "bytes": 26808,
+      "sha256": "f391e712db7eace60eb4175e54a3c6b34b5281fa2afbee48833105456fe92224",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/disney-villains-inksoft-preview.webp",
+      "bytes": 103386,
+      "sha256": "528a2b377ecfdccc5f96f2098912282edea9a2d58227cad9aabda6343871eda2",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/eidos-works-proof-lab-thumb.webp",
+      "bytes": 15342,
+      "sha256": "4a6b5bfe980818db69693517bdd55385e3429cc30bc6971ed29adbb50c3d3714",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/eidos-works-proof-lab.webp",
+      "bytes": 49738,
+      "sha256": "11eb1c2f3ef4e17afe5f58b237efb5a0305a7a8661bef2f95cdea922d05383a4",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/embroiderycalc-preview-thumb.webp",
+      "bytes": 10206,
+      "sha256": "f1e301c35c034f5143d971020c5fe1d1296272aebd82be84fae22991f3241d34",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/embroiderycalc-preview.webp",
+      "bytes": 30164,
+      "sha256": "9de9256fd7e6e68f469c1738425991e2f4aaa863ff7320d58a4c1e86aecdb5a2",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/embroiderycalc-pro-thumb.webp",
+      "bytes": 20576,
+      "sha256": "20c0db5177b4144999cf4c8fe6a2a99bdca04f95d3dd8fbc2459935858c16485",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/embroiderycalc-pro.webp",
+      "bytes": 71086,
+      "sha256": "63a41d7d605d9b0ba52bf222d3405bde0af03c56560dc5223ae5e3a52c201738",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/form-and-field-concept-thumb.webp",
+      "bytes": 136794,
+      "sha256": "4005ccd9b444bdcd9122f41727a8e0c088772f58f4acfdb5497f401b33a7d40f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/form-and-field-concept.webp",
+      "bytes": 239278,
+      "sha256": "b35eca1a2aaf5d6149a71ab9a95148d7e6e8c80e9349fb3e32c4973f6f78769e",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/liberty-christian-prep-20261001-thumb.webp",
+      "bytes": 110922,
+      "sha256": "9eb1ffdd79f6536ce68b6aec88abd83fa3e8621f59d508d523f9f1750c390aeb",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/liberty-christian-prep-20261001.webp",
+      "bytes": 406928,
+      "sha256": "706a2c49defb8bad1d219148e126f606421383db22e7eb2cf78471bf6c9c8384",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/little-house-big-adventures-thumb.webp",
+      "bytes": 19328,
+      "sha256": "0012ca9f272aba57afaad53a14bc19120e15570178fdc1615b4cea8acdb679a5",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/little-house-big-adventures.webp",
+      "bytes": 62944,
+      "sha256": "4387403ff2fe1951511cfbcc12b7ee83838f3e119f905804070c0377d73d2830",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/los-santos-anomaly-explorer-thumb.webp",
+      "bytes": 34768,
+      "sha256": "e39bbcbfff720f0a2601fd148863c04ef663514f366cd71a54ab46e4d47e5597",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/los-santos-anomaly-explorer.webp",
+      "bytes": 113210,
+      "sha256": "a9221a2b4cf2d757947416232b06168f60094126bdcd1c992b1b0f853976665a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/mdca-uniforms-20261001-thumb.webp",
+      "bytes": 87444,
+      "sha256": "970dbd41bf358eb6849db147ba5bbb491eec0fb048cb8217ac0855960a7ea201",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/mdca-uniforms-20261001.webp",
+      "bytes": 333982,
+      "sha256": "f763c711b300ac84daf04f31a7a10681610a934f022cfa1617f83b0385676f14",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/portal-pocket-ar-thumb.webp",
+      "bytes": 17722,
+      "sha256": "bec0869d43032b5822856c0ff974fab537028a90e3e30c45f8506f343de416c1",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/portal-pocket-ar.webp",
+      "bytes": 57894,
+      "sha256": "57f381b2c5b67c2eb3fc4bfaa0b5c579c14e4d1b2c158fff7434fb6336ce27ed",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/sayward-thumb.webp",
+      "bytes": 19080,
+      "sha256": "2dcba144c31c15b08a41ad6cae5fe5909fe338cec0ed4c718ea53b4dfc3b2885",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/sayward.webp",
+      "bytes": 58558,
+      "sha256": "6b5a6819cc1a82779d377a960361a69d5e97252c7bd7582e376b40bad5b6579a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/small-hours-thumb.png",
+      "bytes": 25275,
+      "sha256": "4e0a6d4d1dcf6df35ae2a6959ffd59140779e8ecf2a3234c62f6a6ecd771c290",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/small-hours.png",
+      "bytes": 127643,
+      "sha256": "c2a8306c1301d68d5b651aed79b61741bae064962178052ceaeaa93568630ba6",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/stillwater-house-concept-thumb.webp",
+      "bytes": 196818,
+      "sha256": "06b22bf5af33f3b907ef5bb72b723d25cc2aef72ebce7ecac400ac42352e58ea",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/stillwater-house-concept.webp",
+      "bytes": 337714,
+      "sha256": "14fc329b4ffa10e89639b6b47f397c10be24adfa5c09bf89970e434916eed15a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/tidal-field-thumb.webp",
+      "bytes": 47150,
+      "sha256": "b41f12f22f35a1542200d874ef17b4891074a3b5835b25df6275d6c199ad81d9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/tidal-field.webp",
+      "bytes": 206824,
+      "sha256": "8ce39eda8882a6952de1f1895f6b4ae621724eab38f55c467f92068c90cdb65c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/wellway-journey-mobile.webp",
+      "bytes": 33174,
+      "sha256": "23935bfe8e25eeffe3aaf41d41eb5c2dea3545d6e543dbb67964718fcacc42c8",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/wellway-journey-thumb.webp",
+      "bytes": 24394,
+      "sha256": "021fb588d3566dce683ba83b645e11e1ff443ef507786edf863ecf78fc5ec9f9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/site-gallery/wellway-journey.webp",
+      "bytes": 83522,
+      "sha256": "4b0d37fd2c44693a78405abed1e071a660e83ab44a8afc8c3df516436ee222ec",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "images/work/sentinel-lab.webp",
+      "bytes": 86016,
+      "sha256": "15710c80e3935ac88fd08910892b7874b004a71c1d5d804233db5f62d8f6fae3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "index.html",
+      "bytes": 42555,
+      "sha256": "274d934fefa84ed37a4707668f9dd0b3a232c3ca45fd921a6fa18bfc9ac17798",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/accessible-quote-form-errors-recovery/index.html",
+      "bytes": 22608,
+      "sha256": "9f5688b6aaa20ba69e2ccb236e1753fb0f45ee1ea00320cc0439ac9ec5e016f9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/after-submit-website-tell-truth-about-waiting/index.html",
+      "bytes": 20486,
+      "sha256": "55534d9ea29b0873dd870528d2331a86522fecb7a177743964cb17e8fc5caa10",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/agentic-seo-small-business-websites/index.html",
+      "bytes": 17342,
+      "sha256": "59deb5ce6e0c6b3232c8ff6b356be58471cd102661da663ca92b5c4c7d0faa5e",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/ai-agent-permissions-before-pilot/index.html",
+      "bytes": 22817,
+      "sha256": "86a60cdab97e995dcdf25cd320d6148a596658c0ab7e1d8fa985f849ff054367",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/ai-prototype-production-pilot-evidence/index.html",
+      "bytes": 21533,
+      "sha256": "c3b73c4bb4b8c997e7781022fd2a6c31b5c05759386e847da0aba9636c71a97b",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/baseline-2026-browser-support-design-system-decision/index.html",
+      "bytes": 20579,
+      "sha256": "dffc242b6037e860f6c4f596e33a1b3f73e374ec802eade61f3a6e2593beab54",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/bing-ai-citations-measure-business-value/index.html",
+      "bytes": 21679,
+      "sha256": "e6a19dad2989ad3be38fc8cbfa423b8a7c239ce41eb4b3690ee7d6a223dbbea5",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/eidos-brain-sentinel-small-business-intelligence/index.html",
+      "bytes": 17567,
+      "sha256": "732c7a10fc8b833443577422679ae46b10e87433e04bf5ac12cb3fa3ac5a8986",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/good-website-does-not-ask-you-remember-everything/index.html",
+      "bytes": 20348,
+      "sha256": "398a25204d65a58302bb39d56aef2934a1c1f3ec4650d541abce38cbeb6e096e",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/index.html",
+      "bytes": 31172,
+      "sha256": "63e4fb723a69a86d704da0b9adef361f498762c6b54a5373d54f85f3596df946",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/indexnow-changing-business-pages/index.html",
+      "bytes": 20813,
+      "sha256": "7a16c3836e400004019b82bfd912d8b55d109b8dcf30aacea7fce7d6972eceb0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/mobile-hierarchy-over-desktop-polish/index.html",
+      "bytes": 17292,
+      "sha256": "c4be3e50eac46decdf54084f18c355873d1a16bc344508846d9a4cdd1599d7c5",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/mobile-storefront-filters-safe-reversible-choices/index.html",
+      "bytes": 23259,
+      "sha256": "4bd969655787c09a644cbf3c0f7c08c55316066470668f33e290f88e4381908f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/practical-source-map-ai-ready-service-pages/index.html",
+      "bytes": 21206,
+      "sha256": "a3243b72cf3a277cb4cdb32e35857bf9fcb516f2f8103f1ca3afde9d7e377a4b",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/spreadsheet-chaos-operational-dashboards/index.html",
+      "bytes": 17199,
+      "sha256": "f83b3548effd93fdf2a46d44fdc28166699f454f934eb0a59f6e1b7aa69a9841",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/storefront-proof-loop-ux-assets-operations/index.html",
+      "bytes": 21573,
+      "sha256": "a7a90c107c55ac21f64bf83955e3bd2cddde3e70e5dc5080c7373f7d791b34a3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/storefront-size-guide-inline-dialog-page/index.html",
+      "bytes": 23233,
+      "sha256": "09999047c0f05484cbe2489ec09aa900b223cb376725f22a287724e57d492121",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/storefront-ux-find-right-product-faster/index.html",
+      "bytes": 17373,
+      "sha256": "64ba03aff0cf5330d7415dc150a12c9932c0ff1275e595d1f32612e2dec516a0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/structure-website-people-ai-assistants-understand/index.html",
+      "bytes": 17657,
+      "sha256": "e31d1dc991da60e1bbad6a8a69c9276985719bc34ad99c886b6a683c400a6e0f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights/website-snapshot-before-redesign/index.html",
+      "bytes": 17056,
+      "sha256": "de9fcdf19143411c20a877c7abdd152f328333e9ebacbc918f1c1e771af2e73a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-feed.json",
+      "bytes": 98095,
+      "sha256": "fdf3ff79bbb4fdae77d166c4da077e2648889d3a65eee794880b7433225bb2dc",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/accessible-quote-form-errors-recovery.svg",
+      "bytes": 2317,
+      "sha256": "355973989413ff3984796fc9280c438d12bfbfa90b34d4463079f54eea37d8d1",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/after-submit-website-tell-truth-about-waiting.svg",
+      "bytes": 2322,
+      "sha256": "ba8ee9100ae0d32a9c0655500f2b236b638fe38ad624362cea051486cbfc6b53",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/agentic-seo-small-business-websites.svg",
+      "bytes": 2290,
+      "sha256": "0213e6a0b09d214e50a0b492895194710f79cae635c35b468bb6f054f6ad7f60",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/ai-agent-permissions-before-pilot.svg",
+      "bytes": 2304,
+      "sha256": "2d1667d97158ff70fa6c4a1dc55406a687cbb14ea23e182c55ef789248b550f6",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/ai-prototype-production-pilot-evidence.svg",
+      "bytes": 2308,
+      "sha256": "11535dd2bb370729b18da56cfaf2c47272b781fd9c026a31907b7ce3bfa7c93c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/baseline-2026-browser-support-design-system-decision.svg",
+      "bytes": 2378,
+      "sha256": "ea0fcb4fd8c067c5ef0216949588cebc5922811235372c641e41dd330bf85174",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/bing-ai-citations-measure-business-value.svg",
+      "bytes": 2311,
+      "sha256": "502d36c15cf6671675a6e990600f07234040305027681901ada234c0469a40d9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/eidos-brain-sentinel-small-business-intelligence.svg",
+      "bytes": 2311,
+      "sha256": "6daca9fc781e67d30eb9279d17db24d369bb107a7cab779f057365223ff69978",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/good-website-does-not-ask-you-remember-everything.svg",
+      "bytes": 2312,
+      "sha256": "7a5db594f3312fd88ae734a4e89cb57dfba5ebd665ea3c735f1fc8d2194be04a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/indexnow-changing-business-pages.svg",
+      "bytes": 2283,
+      "sha256": "ed938ffef54a29c5d1f7dc69f2296597cff4503a93b3b6689d1aac03e1c14bd8",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/mobile-hierarchy-over-desktop-polish.svg",
+      "bytes": 2301,
+      "sha256": "b19b89dc51bfa3e84b8b0d816f1b6a37466f0d4794525a1a8f7c0f0e50f89441",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/mobile-storefront-filters-safe-reversible-choices.svg",
+      "bytes": 2389,
+      "sha256": "3ca5bd723e89828728a30835f9c7e2e7c02080bfd81ac858d5191d7e4a1907f4",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/practical-source-map-ai-ready-service-pages.svg",
+      "bytes": 2297,
+      "sha256": "4853c831988f4cb7dcdf7dc559bbb54448ccdb0882e7a7633b8855eb67a016a6",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/spreadsheet-chaos-operational-dashboards.svg",
+      "bytes": 2285,
+      "sha256": "eff4553a44b034fa5c453b5927b3dad7c97f7be9cc074153b4ca49b89b509a2c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/storefront-proof-loop-ux-assets-operations.svg",
+      "bytes": 2323,
+      "sha256": "6006aba39590fb1188119b9147e6d883342c9b0302900402f976cc7979fd69be",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/storefront-size-guide-inline-dialog-page.svg",
+      "bytes": 2315,
+      "sha256": "1278fde16c3aa2161101e4b14ab09465f5cf3ff6fe66707b4dee6c489dd2d643",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/storefront-ux-find-right-product-faster.svg",
+      "bytes": 2316,
+      "sha256": "0018300520602812e7af24741110905c17991b1d49e3b58ae9f2c5e35f73ba6a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/structure-website-people-ai-assistants-understand.svg",
+      "bytes": 2375,
+      "sha256": "c761f82505ee92d5cdd8e9ba3a55e548ba410b1568e05a403a5a6d8fe8ff70ab",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "insights-og/website-snapshot-before-redesign.svg",
+      "bytes": 2301,
+      "sha256": "bff8fc0bb9754715997cc2e05773874d06def53db42e0dd95278bdcc090f8f70",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "kit-preview/index.html",
+      "bytes": 2820,
+      "sha256": "61fd0dd8c8b203ae71b09ad2acb15a30857f5fd8349b397563289debd874f502",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "kit-preview/script.js",
+      "bytes": 1050,
+      "sha256": "7917a5b8654381b437c9d225e12e074d367813dbe72c1db5ce22d4a6f5fa7cda",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "kit-preview/styles.css",
+      "bytes": 5811,
+      "sha256": "dcb86cfb8fd208233bdbc1c34016f505ceb58c8b31c8b2419d4ac73ab11e7de7",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "lab/access/index.html",
+      "bytes": 12628,
+      "sha256": "5b20d150f272d5c305b5f2c433c9a6ae7abe1220bf8f7d9860cfd7060d25cfdd",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "lab/eidos-brain/index.html",
+      "bytes": 12855,
+      "sha256": "80f6a50023c21a31388329747d517a62f85e2cd16e66dba3d6ee5f758ed361f4",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "lab/index.html",
+      "bytes": 14562,
+      "sha256": "e9370c7d1b36b9db93dc9bc95e77d680f8364fed12ae2e50e87148b2452af0e3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "llms.txt",
+      "bytes": 7310,
+      "sha256": "62573609b482ba0451e4311c99a98496dc6f5a6700d5e2760fd7490fef51e2c8",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "playground/index.html",
+      "bytes": 3262,
+      "sha256": "89824932cb2d142356cc52a461b82b2201650ea97ab7f30e222da8cdaf8f0d11",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "privacy/index.html",
+      "bytes": 16087,
+      "sha256": "8bc54a47a6ed6ce709e2ad10f91c1bfc9a13380e336a0832879dc7428ee15428",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "private-app.html",
+      "bytes": 2922,
+      "sha256": "3328e4998b5a6b43c67dd20798675ac28ac57330291e65316014bfc226d406ad",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/app.mjs",
+      "bytes": 17424,
+      "sha256": "e80ec7a4889e3318eeee67d57b5bbfa0cc64664018535b525ced602abfa00218",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/eidos-mark.svg",
+      "bytes": 997,
+      "sha256": "c19914cad780fb8a8201d89b7103fd286e4c459d47d1c636f43341880c408999",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/estimator.mjs",
+      "bytes": 3808,
+      "sha256": "5ac91733f80b9ca5f8e38b46c63ab5e50586e6ebe787de6dbed38fbb38bea4f1",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/favicon.svg",
+      "bytes": 1038,
+      "sha256": "671681f4ca1e8226b6f04c631249b7d2de0af8f5df71cc7fe57c6c31ae6c93da",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/index.html",
+      "bytes": 10343,
+      "sha256": "9dc5c57201ee6fca6e35394258a451295cb3840bd25128ffc5ae035d3b1cfefd",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/privacy.html",
+      "bytes": 3503,
+      "sha256": "0d3c7ed25061730e1a068fe29b0b090da2f19dd39779bdaa0847c4ad2d0e79d0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/quote-guide.html",
+      "bytes": 4022,
+      "sha256": "1eca5570f679cdc12c8f2542ac92a0074cf0046e5f7473b96671bef68baecf28",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/style.css",
+      "bytes": 10121,
+      "sha256": "88e68e0be5701ded91a7b753188ba4bfdc4f6917da7df4de786222088cdf26a8",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "quote-desk/terms.html",
+      "bytes": 3613,
+      "sha256": "7495e52285e78ebe21ca04943435d6da7a5a655d66a059cafec5617c9916fe33",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "robots.txt",
+      "bytes": 26,
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+      "source": "retained-deployment-overlay"
+    },
+    {
+      "path": "services/agentic-seo/index.html",
+      "bytes": 17728,
+      "sha256": "c7218869b6e48917e9f639c420c0011eacee1d381175ae18852babd285cb0621",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "services/business-systems/index.html",
+      "bytes": 22403,
+      "sha256": "53f5f43523bdf8a42d29f880eb9585be01cb2ad01dad0b4b8d1bd3942fa88a8b",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "services/dashboards-workflow-tools/index.html",
+      "bytes": 22596,
+      "sha256": "998e5d4bb2ded1015ca0187a9a25ea46e90ee6fd1fb545fe6c4b076431d1c119",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "services/digital-experiences/index.html",
+      "bytes": 37678,
+      "sha256": "6bbfab42ec6b0717953bf346fe1f76e00dbf531935837299d6aa866cc54383d1",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "services/intelligent-systems/index.html",
+      "bytes": 22355,
+      "sha256": "e3157b4ed228459533554bafdd32799286c9eafcf9b96dc592a4b4ec39b8625c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "services/storefront-access-systems/index.html",
+      "bytes": 37619,
+      "sha256": "850ffd749298c1c7469819e304fe7f9a6dda10d4ed69c4f4c66ad195ae18f836",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/choose/index.html",
+      "bytes": 11176,
+      "sha256": "986334b61d5d63cd67cadb1da1e8c896da6c1a8feb7d532b85660f0441d0edec",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/cinematic-starter/index.html",
+      "bytes": 13715,
+      "sha256": "8b159344339aadc6b0e860bc99c7bf25e14febfc1a3c6718c8e425735603129d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/configure/index.html",
+      "bytes": 29912,
+      "sha256": "4891427b7f59b1eb5a16d3fc41e02f15893c5fd2d734d1ea0db69baaa3c7fcd4",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/index.html",
+      "bytes": 15774,
+      "sha256": "bb640672048dda5fb3ab7a34d07475db9ed9c497e40a31b97298c23ec0fa2750",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/matter/index.html",
+      "bytes": 16030,
+      "sha256": "f45cf713917ef20bc81372123c5844754eda736fa136fb0da5217d525bdff168",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/nightjar/index.html",
+      "bytes": 16025,
+      "sha256": "d8564b758c14ed7ea57585144893f6066760f796859ec5c25e6561f5e091e225",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/start/index.html",
+      "bytes": 10823,
+      "sha256": "1004a726059a8d83ec9e06038fcafaf158d09cd5cc78b8ecdc0a932b0050b081",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/success/index.html",
+      "bytes": 10290,
+      "sha256": "bf0cbd63abbb6bb49b27e43463de3c02423d323b24b916c4b274574b1ac627f7",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/switchboard/index.html",
+      "bytes": 16023,
+      "sha256": "a667b04f8dfa9071dff95ea442dc11d90b1bb3cf64b63845ae436a32b5290db2",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/template-terms/index.html",
+      "bytes": 12228,
+      "sha256": "99b9551b831d9a056db2be4616297d5fedec65387a2c38458f09b0605f7d35f8",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "shop/tideglass/index.html",
+      "bytes": 16026,
+      "sha256": "11a7edff8f58b3ef21e13b361f14a0b88b7e86e607df774c72dc30f88c97701b",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "sitemap.xml",
+      "bytes": 7056,
+      "sha256": "26ea2bee41da9fe3ed8ed6316acfd619004cc23119676b5d22c15898a8c64ae4",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "snapshot/index.html",
+      "bytes": 13692,
+      "sha256": "fdfbd40e55d10ad867a83ef99dac4cc9e5a9410d7771b67c980bb9439db00f79",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "snapshot/start/index.html",
+      "bytes": 10492,
+      "sha256": "1e06d958ba691e67abc9b726a09eb86dfda645275ba621133bf8710d731f6acf",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "snapshot/success/index.html",
+      "bytes": 10348,
+      "sha256": "00e33c09321b0ef8167864c89cd35b6ac454752a2fcca1a34fa9587d4989745f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "social-preview.png",
+      "bytes": 30946,
+      "sha256": "590f3bbb7038020b20c1a18de2f1103031efcc8648dc224460412272c70309ed",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "social-preview.svg",
+      "bytes": 1245,
+      "sha256": "794bd230505c1bf2870b13918852538231d4149a2dc0b289bea45ee28e1118b0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/assets/timber.svg",
+      "bytes": 946,
+      "sha256": "770a9127c4bd1278fb3358cc1ab3f500592fcd6ee4459b9074d5adb9ef41ed2b",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/assets/vessel.svg",
+      "bytes": 1551,
+      "sha256": "689a6147923d70614f1975dcf1c4aaf8fc2d6acf68ee9fc4630366978c3b3db9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/ASSETS.md",
+      "bytes": 736,
+      "sha256": "7fff743a5af38ebd7119a85407e090c0ce4edef638641a222e1dddbb834c6412",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/collection.html",
+      "bytes": 5064,
+      "sha256": "b5703740dde4fac866b416a11110ec8fac24faca696ee0c90c341b80a9896240",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/contact.html",
+      "bytes": 5958,
+      "sha256": "fd86e053b878a2e224740bf4ecea01234303510a307fdb0e57e7a98060b56294",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/index.html",
+      "bytes": 6100,
+      "sha256": "98c286e51e279b9fe096525068e1bd792c8fcefde0fa298ecd47a37de8ef90c2",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/INSTALL.md",
+      "bytes": 8637,
+      "sha256": "c9903017fa4d3e926e821ed83729c477152a4dede0f322c297122f1342614286",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/legal.html",
+      "bytes": 4597,
+      "sha256": "4830fb68e15131f9b0e7cd78aed94628c80abba15809318537bc8ddbbb9d1387",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/LICENSE.txt",
+      "bytes": 1553,
+      "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/object.html",
+      "bytes": 5194,
+      "sha256": "5c3eb033734b821fb2988140ce84f0be392b3aa8be6cba75547ddd3c85688445",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/PACKAGE_MANIFEST.json",
+      "bytes": 2816,
+      "sha256": "c1746041385ab342983abe5db93dc7f954cda12dba51d65cd763c9feb83e065a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/process.html",
+      "bytes": 5441,
+      "sha256": "28bddf63b04c753b68f46d6996cd5b1f40e2171e7d78731560b435485f4b7021",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/README.md",
+      "bytes": 468,
+      "sha256": "75cb75fc56400bcbcefe4fb978f02a3249467643f4a7c55f2c3b1b4b19ada396",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/script.js",
+      "bytes": 8149,
+      "sha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/site-config.js",
+      "bytes": 827,
+      "sha256": "fdff472575e63b84ea8ee0e996ac24a7fd3ea31ae1e896b42dc5de3b134c9b13",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/styles.css",
+      "bytes": 9470,
+      "sha256": "830d105d689e1ffe033c7e376cf4d3afffb337916d362bbeb35e7c54e0489c12",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/matter/SUPPORT.md",
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/about.html",
+      "bytes": 5158,
+      "sha256": "5a87ea5498a0a3e61623c989ee6ff6913bfcbc09473ffade7b582840504ae32a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/assets/poster.svg",
+      "bytes": 1078,
+      "sha256": "f97123c0ea0fe2b06550f3ddddd863638c8b5baefd03b8e877af6469df970118",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/ASSETS.md",
+      "bytes": 726,
+      "sha256": "7e3f2b966702b1316085bf3d0266cd634474fb2005c9b3e85aa6bd7c63cf403c",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/contact.html",
+      "bytes": 6072,
+      "sha256": "af8addbfed39a2cabb389ee41d4f1c1ec7880cf1e4a4c86557dd7827afe024b3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/event.html",
+      "bytes": 5402,
+      "sha256": "e86e78342b1326c62a4b56c11fded5f855219e45c28ea5a7909b57f634a27f3f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/index.html",
+      "bytes": 9878,
+      "sha256": "1979277fbc06cc2c93c90bed472d4d0a5a61504b0b0e70e4169c261f274e54cc",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/INSTALL.md",
+      "bytes": 10342,
+      "sha256": "c850f7f45230471726cd99ecd1997e59d58905d8d307bb918cadd86ccf8e8e67",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/legal.html",
+      "bytes": 4715,
+      "sha256": "19306b9a9a57b5ee1a736d6ffd0a9b13fdf7983cfe395b2abdd519ed8f63b536",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/LICENSE.txt",
+      "bytes": 1553,
+      "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/PACKAGE_MANIFEST.json",
+      "bytes": 2665,
+      "sha256": "da8735ce9f716b142841167602f1837158d38372069532acd1614241abd2f29d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/program.html",
+      "bytes": 9410,
+      "sha256": "f03269f5cb9c5aa88775fce3544807c5c609ab877670b5d2f0e53aca77ea7459",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/README.md",
+      "bytes": 464,
+      "sha256": "3c7c5856c0eb433c77be6d858d38a29065f2a0d1f0a7458b44672eb2c1f0ff65",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/script.js",
+      "bytes": 8924,
+      "sha256": "6057e5d9d33c5ba12b639b3820f520b1197ad0342d78a6fc8ccc5fcb0fa3d7ed",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/site-config.js",
+      "bytes": 830,
+      "sha256": "29525bb0d638313d475eedddfec6c7a6372f364cba855c05dc616cd63583cdea",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/styles.css",
+      "bytes": 12325,
+      "sha256": "ce6a13d209ad6e2ebac71aec129b451f5c81a5734fe04081ae39c251518fd243",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/nightjar/SUPPORT.md",
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/assets/service-plan.svg",
+      "bytes": 1174,
+      "sha256": "5b92a311cdf5bd0e069ca1c52c3d4dd57b3371ac52d839b1e7a5f05b31450301",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/ASSETS.md",
+      "bytes": 735,
+      "sha256": "8afcb3bef22ed80de5a39f3e5a8b4895d97e32c8a3dd08ef953451c3a6a71ec7",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/contact.html",
+      "bytes": 6006,
+      "sha256": "4029178fc0f83d7f1c3bd78a953ba3bf96adceef94ae4064d4d7005ced937346",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/index.html",
+      "bytes": 6760,
+      "sha256": "2586c1d08c3d88328c84731938e861ac8035d9b8d7ad70558201b7f8f961bd03",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/INSTALL.md",
+      "bytes": 9081,
+      "sha256": "9a50df231e6c2f05620d9813d3b88e189e46dbf538c37af7239f925e2fd7c8b8",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/legal.html",
+      "bytes": 4644,
+      "sha256": "b94ec402f19ad276609de821dfb85e73596121bb358cb46150414c25f030af27",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/LICENSE.txt",
+      "bytes": 1553,
+      "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/PACKAGE_MANIFEST.json",
+      "bytes": 2687,
+      "sha256": "6b4186fe5653ad6f600fe163bcf4a7f7b2bf58959124700783aa5000a5298910",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/process.html",
+      "bytes": 5024,
+      "sha256": "f4608c334ab3845a6ab41351997959d6acd1c024fcc76524bba727e327d9ed17",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/README.md",
+      "bytes": 479,
+      "sha256": "ac29f34aaf5f211004a7374bfc9333566c071bdf27a52b32d80de15e075a2ab7",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/script.js",
+      "bytes": 8149,
+      "sha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/service-detail.html",
+      "bytes": 4989,
+      "sha256": "4fbb4bbf7d0fe9d6a1e131b5d3f9b7e97e13e590c402c9b2632bd89444ad0ef9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/services.html",
+      "bytes": 5839,
+      "sha256": "3d96e0a5e68976b8dfc69eef108dbc20ced61355ea4d75dcd68be9d6480c5b38",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/site-config.js",
+      "bytes": 878,
+      "sha256": "56835746a97621f715f8994f83788167809a9b87ba0e3961b88c0f271e0550b0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/styles.css",
+      "bytes": 8543,
+      "sha256": "cbcaeab6cb8aaf5c2fc092bbcda5825fafca8522b0f4fcb03c3dfaee0293771e",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/switchboard/SUPPORT.md",
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/assets/coast.svg",
+      "bytes": 1434,
+      "sha256": "4a411c25830bf7bda4ed562850cafb7047916301e1a81567d8d98421deb55615",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/ASSETS.md",
+      "bytes": 726,
+      "sha256": "6651df21f5fa5ef4c5d28ed8ab8ef055d2ce441b3d258be1fd493211d167a00b",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/contact.html",
+      "bytes": 5970,
+      "sha256": "d600e88140770c954e5f1d8bdd46713943006a6b6cc807f502b171fc5d2e3a31",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/guide.html",
+      "bytes": 5176,
+      "sha256": "7650c7c304835da64d1529a59fd7170dacde19deae5e26ba37b024ee5d0ea7b2",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/index.html",
+      "bytes": 6039,
+      "sha256": "698a817fcc3f20ecc52d3d6a17eae91b7579347e12d5059cc73d59e57d1d608f",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/INSTALL.md",
+      "bytes": 8636,
+      "sha256": "0e08af966116f26ac043c74cb3fa0faae247833094547b2f2555d5a90ecb0992",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/legal.html",
+      "bytes": 4601,
+      "sha256": "ad76c459b07ae01d4b74a5a598f1b9c5e6e56dc78fbf8e3618020b5f9b259377",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/LICENSE.txt",
+      "bytes": 1553,
+      "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/PACKAGE_MANIFEST.json",
+      "bytes": 2668,
+      "sha256": "01c9b9291f5e72d14372aad0094cc0cbd1f7b9fc88af1f440aa9c58ff92e15d0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/README.md",
+      "bytes": 482,
+      "sha256": "c264923f6ab08bca0a9627acd94fac00498f14bd9009e98f812bf2cdf08da1a9",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/script.js",
+      "bytes": 8149,
+      "sha256": "851e1c4705242ab2764959542f0cc729e278c1aa3ecb7b2be87454336be66d73",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/site-config.js",
+      "bytes": 838,
+      "sha256": "ea82f3b1c1cb797c3c841bc03b63e0b9ea4cb777cd07b80895e604f112ce34df",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/stay-detail.html",
+      "bytes": 5093,
+      "sha256": "37aad0acabf5271bf902777b022f0238dfc3254519a7f86c969435ebad01b85d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/stays.html",
+      "bytes": 5011,
+      "sha256": "1f44781731efd29e8814b42323d044491016bbdc56f2fecffa999f874a8d313d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/styles.css",
+      "bytes": 9605,
+      "sha256": "f42ca75e4f40581b8c03b225c7d32415ec4389224ef09a4acb6ce90863856d69",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "template-demos/tideglass/SUPPORT.md",
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "templates/guides/matter/developer/index.html",
+      "bytes": 19807,
+      "sha256": "111eb5ed1558b568c66de3d763abbe671a84e91fc71b78101960734eb82bc699",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "templates/guides/matter/wordpress/index.html",
+      "bytes": 17976,
+      "sha256": "7394359590884674c9d82c82e9e3d9914551491bf03b0cacca8ef5abbfe1baa0",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "templates/guides/nightjar/developer/index.html",
+      "bytes": 21619,
+      "sha256": "487f73b06ef132efd19684ecf7c0094a83157d77acef270a7532d74de68d2544",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "templates/guides/nightjar/wordpress/index.html",
+      "bytes": 18000,
+      "sha256": "e175608621c4f1e294965d8d57b3a3fbb5b154de55d20a06cd9e5b18ba65c402",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "templates/guides/switchboard/developer/index.html",
+      "bytes": 20332,
+      "sha256": "c66f4e087479de59eef4654e9b9d6fef0d3962696092fb2c38e511340c190d46",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "templates/guides/switchboard/wordpress/index.html",
+      "bytes": 18057,
+      "sha256": "330a88621c8a6a90ebf2bf5de7a73e00eade9d5a58bc947b9b0c5b625f2efbc7",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "templates/guides/tideglass/developer/index.html",
+      "bytes": 19836,
+      "sha256": "4f0717b0ed868a8172fb0cf336a941009433609a4af5667e514eb85b5fc30707",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "templates/guides/tideglass/wordpress/index.html",
+      "bytes": 18019,
+      "sha256": "0e0f01edff3eb28c44034aa895b87cb664183b7d0c5c87b1b87f22393aed880a",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "terms/index.html",
+      "bytes": 12513,
+      "sha256": "ec81aa70e01550caa50ec043fd0fbd2eaff0cf697f0b7599050d4868f6d12f95",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/beauty-and-the-beast/index.html",
+      "bytes": 22582,
+      "sha256": "fe1729fb90eb10013019d1df06c0be21cb11a12e4539b85a3dc581cf8fe6cb95",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/disney-villains/index.html",
+      "bytes": 22877,
+      "sha256": "bc4bcf40b94cfa3c557fb22a6544a0073cd59c37d8df8f4ce60ce36571ba22a3",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/holidays-in-hollywood/index.html",
+      "bytes": 22797,
+      "sha256": "9672170bb6fdcac3e001d703e32615649768d729d62d17806decbbca06ad1327",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/index.html",
+      "bytes": 57808,
+      "sha256": "e7df88a2fa3584363123a72cf8998bda6e3be93008f83ff570182b5ee5dbfc98",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/jingle-bell-jingle-bam/index.html",
+      "bytes": 24392,
+      "sha256": "ecbfec164c8836eb48063762d6e2226fa9025f50552f761129738144bf6fa025",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/nighttime-spectaculars/index.html",
+      "bytes": 23267,
+      "sha256": "cf67e0eb14edde5600fdb0302e07f028930ca6feafe052aaed92428d71e16f09",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/pernr-access-gate/index.html",
+      "bytes": 18532,
+      "sha256": "ea0b8d7d005c468af46fbe21ab51e4310e14cd213f81e88e9930706de26cc4f8",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/production-dashboard/index.html",
+      "bytes": 14379,
+      "sha256": "78a68e30d09951351d5c00aa00eb5f77f9598a97e2ff30c80368fc8367f41f97",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/signal-house/index.html",
+      "bytes": 18694,
+      "sha256": "c36fe01c5ab3b9c8ebe1ce4b7fb0cb71f5a040e2d251b92403275a60ae909ccf",
+      "source": "original-ci-artifact"
+    },
+    {
+      "path": "work/storefront-experience/index.html",
+      "bytes": 14186,
+      "sha256": "2a038b1986b145f75f9e06db17a42f3f326010f72148ec5a1f97de27e0ac1e69",
+      "source": "original-ci-artifact"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened]
-    paths: ['.github/workflows/playground-rehearsal-upload.yml', 'scripts/rehearsal-*', 'scripts/refresh-rehearsal-source.py', 'scripts/test-rehearsal-pages.mjs', 'config/rehearsal-source-plan.json']
+    paths: ['.github/workflows/playground-rehearsal-upload.yml', 'scripts/rehearsal-*', 'scripts/refresh-rehearsal-source.py', 'scripts/test-rehearsal-pages.mjs', 'config/rehearsal-*']
   workflow_dispatch:
 permissions:
   contents: read
@@ -38,9 +38,8 @@ jobs:
           mkdir -p "$REHEARSAL_EVIDENCE_DIR" "$RUNNER_TEMP/rehearsal-input" "$RUNNER_TEMP/rehearsal-upload"
           python scripts/refresh-rehearsal-source.py
           gh api repos/bmparent/brent-parent-intelligence-studio/actions/artifacts/12115683862/zip > "$RUNNER_TEMP/rehearsal-input/original-artifact.zip"
-          gh api -H 'Accept: application/octet-stream' repos/bmparent/brent-parent-intelligence-studio/releases/assets/655003699 > "$RUNNER_TEMP/rehearsal-input/frontend-preview-payload.zip"
           node scripts/rehearsal-source-guard.mjs config/rehearsal-source-plan.json "$REHEARSAL_EVIDENCE_DIR/provenance/run.json" "$REHEARSAL_EVIDENCE_DIR/provenance/artifact.json" "$RUNNER_TEMP/rehearsal-input/original-artifact.zip" sha256:c1950dd2a20922bd9738f5a5ec4ec8628bae815dc358e9c6cae9cdb9b04ec913 "$REHEARSAL_EVIDENCE_DIR/provenance/source-evidence.json" check-only > "$REHEARSAL_EVIDENCE_DIR/source-provenance-check-only.json"
-          python scripts/rehearsal-payload.py "$RUNNER_TEMP/rehearsal-input/frontend-preview-payload.zip" "$RUNNER_TEMP/rehearsal-upload/payload" "$REHEARSAL_EVIDENCE_DIR/payload-inventory.json"
+          python scripts/rehearsal-payload.py "$RUNNER_TEMP/rehearsal-input/original-artifact.zip" "$RUNNER_TEMP/rehearsal-upload/payload" "$REHEARSAL_EVIDENCE_DIR/payload-inventory.json"
       - name: Install the previously validated official deployment tool in isolation
         run: |
           npm install --prefix "$RUNNER_TEMP/rehearsal-wrangler" --no-audit --no-fund wrangler@4.151.1
