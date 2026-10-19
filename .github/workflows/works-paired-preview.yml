@@ -1,7 +1,7 @@
 name: Works isolated paired preview
 on:
   push:
-    branches: [codex/works-paired-integration-20260927, codex/works-paired-recovery-20261006]
+    branches: [codex/works-paired-integration-20260927, codex/works-paired-recovery-20261006, ops/works-paired-release-20261019]
 permissions:
   contents: read
 concurrency:
@@ -11,7 +11,7 @@ jobs:
   preview:
     if: contains(github.event.head_commit.message, '[paired-preview]')
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,13 +23,14 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Verify the committed frontend/backend contract
         env:
-          BACKEND_REVISION: c18b580358dcfeb0b70ba7a045c8f506513f452f
+          BACKEND_REVISION: 55044733c122067562321b412bd4f1b01b333106
           SITE_REVISION: ${{ github.sha }}
         run: |
           git init "$RUNNER_TEMP/works-backend-contract"
           git -C "$RUNNER_TEMP/works-backend-contract" fetch --depth=1 https://github.com/bmparent/eidos.git "$BACKEND_REVISION"
           git -C "$RUNNER_TEMP/works-backend-contract" checkout --detach FETCH_HEAD
           node scripts/verify-paired-contract.mjs "$RUNNER_TEMP/works-backend-contract/apps/sentinel-lab" "$RUNNER_TEMP/works-paired-preview/contract.json"
+          node scripts/export-playground-delivery.mjs "$RUNNER_TEMP/works-backend-contract/apps/sentinel-lab"
       - name: Verify the candidate before accessing deployment credentials
         run: |
           node --test scripts/test-works-paired-preview.mjs
@@ -45,6 +46,21 @@ jobs:
           npm run validate:insights -- --skip-source-fetch
           npm run validate:insights:dist
           npm run verify:urls
+      - name: Install isolated account browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/account-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/account-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Real local password sessions and delayed cross-account project responses
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/account-browser/node_modules/playwright
+          PG_EVIDENCE_DIR: ${{ runner.temp }}/works-paired-preview/controlled-accounts
+        run: |
+          node --import tsx scripts/serve-works-account-fixture.ts "$RUNNER_TEMP/works-backend-contract/apps/sentinel-lab/lib/works/passwords.ts" >"$RUNNER_TEMP/account-fixture.log" 2>&1 &
+          ACCOUNT_PID=$!
+          trap 'kill "$ACCOUNT_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://localhost:4788/account/ >/dev/null && break || sleep 1; done
+          node --import tsx scripts/verify-works-accounts-controlled.mjs
+          PG_EVIDENCE_DIR="$RUNNER_TEMP/works-paired-preview/controlled-account-switch" node --import tsx scripts/verify-works-account-switch.mjs
       - name: Verify isolation and reconcile only the existing preview relay URL
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

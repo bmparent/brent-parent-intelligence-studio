@@ -1,3 +1,4 @@
+import {openLegacyAccountDocument} from './works-account-browser-fixture.mjs';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {mkdir,writeFile} from 'node:fs/promises';
@@ -14,7 +15,7 @@ async function cloud(page){const d=page.locator('details.pg-project-tools').filt
 async function document(page){const d=page.locator('details.pg-project-tools').filter({has:page.locator('summary',{hasText:/^Projects & variations$/})});if(!await d.evaluate(e=>e.open))await d.locator(':scope > summary').click();const next=page.waitForEvent('download');await d.getByRole('button',{name:'Download project JSON',exact:true}).click();const chunks=[];for await(const chunk of await(await next).createReadStream())chunks.push(chunk);return JSON.parse(Buffer.concat(chunks));}
 let release;
 try{
- await signup(a);const editor=await context.newPage();await editor.goto(base+'/playground/');await editor.locator('.pg-app').waitFor();let d=await cloud(editor);await d.getByRole('button',{name:'Import into my account',exact:true}).click();await d.getByRole('status').filter({hasText:'Saved to your account.'}).waitFor();const projects=await(await context.request.get(base+'/api/playground/projects')).json(),id=projects.projects[0].id;
+ await signup(a);const editor=await context.newPage();await openLegacyAccountDocument(editor,base);let d=await cloud(editor);await d.getByRole('button',{name:'Import into my account',exact:true}).click();await d.getByRole('status').filter({hasText:'Saved to your account.'}).waitFor();const projects=await(await context.request.get(base+'/api/playground/projects')).json(),id=projects.projects[0].id;
  await editor.getByLabel('Project name',{exact:true}).fill('Preserve this local design');await editor.getByLabel('Project name',{exact:true}).press('Tab');const before=await document(editor);
  await d.getByRole('button',{name:'Refresh account projects',exact:true}).click();await d.getByRole('status').filter({hasText:'Project list refreshed.'}).waitFor();
  let entered;const pending=new Promise(r=>entered=r),hold=new Promise(r=>release=r);
