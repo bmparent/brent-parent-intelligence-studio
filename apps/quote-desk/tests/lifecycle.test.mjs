@@ -30,6 +30,20 @@ function fixture(){
 async function user(f,id,email,customer){const token=id==='a'?'a'.repeat(64):'b'.repeat(64);await f.env.QUOTE_DB.prepare('INSERT INTO quote_accounts(id,email,stripe_customer_id,created_at) VALUES(?,?,?,?)').bind(id,email,customer,ts()).run();await f.env.QUOTE_DB.prepare('INSERT INTO quote_sessions(token_hash,account_id,expires_at) VALUES(?,?,?)').bind(await hash(token),id,ts()+86400).run();return token;}
 function request(path,token,method='GET',input,origin='http://localhost:8787'){return new Request('http://localhost:8787/api/'+path,{method,headers:{origin,'content-type':'application/json',...(token?{cookie:'quote_local='+token}:{})},...(input===undefined?{}:{body:JSON.stringify(input)})});}
 const event=(type,value,id=crypto.randomUUID())=>({id:'evt_'+id,type,livemode:false,api_version:'2026-08-26.dahlia',data:{object:value}});
+test('remote sign-in readiness requires verification keys and a usable rate secret',async()=>{
+  const f=fixture();
+  const localConfig=await (await f.worker.fetch(request('config'),f.env)).json();
+  assert.equal(localConfig.signInEnabled,true);
+  f.env.QUOTE_SITE_ORIGIN='https://desk.example.invalid';
+  const remote=new Request('https://desk.example.invalid/api/config');
+  const config=async()=>(await f.worker.fetch(remote,f.env)).json();
+  assert.equal((await config()).signInEnabled,false);
+  f.env.TURNSTILE_SITE_KEY='site_fixture';f.env.TURNSTILE_SECRET_KEY='secret_fixture';
+  assert.equal((await config()).signInEnabled,true);
+  f.env.QUOTE_RATE_SECRET='too-short';
+  assert.equal((await config()).signInEnabled,false);
+  f.env.QUOTE_DB.sqlite.close();
+});
 test('paid ownership is isolated across two accounts; stale writes and cross-owner deletes fail',async()=>{
   const f=fixture();const a=await user(f,'a','a@example.invalid','cus_a'),b=await user(f,'b','b@example.invalid','cus_b');
   const save=await f.worker.fetch(request('records',a,'POST',{kind:'quote',name:'Job 101',input:defaults}),f.env);assert.equal(save.status,201);const record=await save.json();
