@@ -1,5 +1,21 @@
 # Implementation baseline — 2026-09-21
 
+## Release cleanup continuation — 2026-10-19
+
+Google signup and reload/session persistence are now passed on the paired
+preview; the earlier incomplete-signup text below is historical. Owner MFA/read
+access passed on baseline `1bbcab6`, while the owner Worker still needs current
+backend routing. The public-only PR114 reconciliation is carried into the held
+release candidate. Nineteen obsolete review threads are closed with branches
+and evidence preserved; Works source review is consolidated in #131/#85.
+
+A fresh guest template checkout reached Stripe Sandbox (Switchboard developer
+1.0.3). No payment was submitted: automatic browser approval review blocked
+receipt-address/test-card entry pending explicit approval. Password/reset inbox,
+two hosted owners/project isolation, current owner backend and the signed TEST
+lifecycle remain open. Production publication is recorded separately on PR114;
+this update does not activate the held runtime.
+
 ## Current recovery update — 2026-10-19
 
 Network-interrupted source integration is recovered and merged into the held release branches: frontend #134 then #133, resulting account-branch merge `34d2c034ebc3e70c79463323792682b4795728b9`, tree `885a14d3da651e92a198ac9c882ebd2a979eed60`; backend #86 into held #85, merge `944accb1c52d6af708b0f02709f5c819241d33b7`. Seven fresh frontend workflows pass, including full editor/browser run `39291754860`; backend merged-source quality passes. The canonical isolated account preview serves the same tested frontend tree and exact backend `55044733c122067562321b412bd4f1b01b333106` through deployment `dpl_CVJ5ERsLQiigU8BoHC9uc5B7CEwB`. Preview deployment `1396daa7-0e67-4fdf-9fe6-2acad23d06ff` is verified; it is not production.

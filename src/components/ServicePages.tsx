@@ -1,3 +1,4 @@
+import { StorefrontPreview } from "./StorefrontDemo";
 import { IntelligentSystemsPage } from './IntelligentSystemsPage';
 import { BusinessSystemsPage } from './BusinessSystemsPage';
 import { DigitalExperiencesPage } from './DigitalExperiencesPage';
@@ -166,13 +167,7 @@ export function ServiceFamiliesSection() {
           {serviceFamilies.map((service) => (
             <article key={service.slug}>
               <figure className={`ew-service-index__image ew-service-index__image--${service.slug}`}>
-                <img
-                  src={service.image}
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  alt={service.imageAlt}
-                />
+                {service.slug === 'digital-experiences' ? <a className="ew-service-preview" href="/work/holidays-in-hollywood" aria-label="Explore Holidays in Hollywood"><StorefrontPreview slug="holidays-in-hollywood" thumbnail /></a> : <img src={service.image} width="1200" height="800" loading="lazy" alt={service.imageAlt} />}
                 <figcaption>{service.imageCaption}</figcaption>
               </figure>
               <div>

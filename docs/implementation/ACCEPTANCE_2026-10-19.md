@@ -45,3 +45,34 @@ The Stripe connector exposes only the LIVE Eidos Works context. Intended TEST ac
 This is a source recovery, not hosted account acceptance. Real Google consent/password confirmation/reset inbox delivery, two controlled member identities, owner-console access, isolated saved-project reopen and intended signed TEST lifecycle remain open. Existing deployment workflow still pins the older backend; do not use it to claim this new pair is hosted. No database/binding/credential/provider/cost/schedule changes or production promotion occurred. Production remains unaccepted for the held runtime.
 
 Rollback uses the original held pair and preserved deployed previews, retaining every member, project/revision, immutable order/archive and additive schema. Recovering an old branch is not authority to replace production with it.
+
+## Release and queue closeout continuation
+
+Brent explicitly authorized readying and releasing the open Works work on
+October 19. Google member signup **completed**, the account dashboard showed the
+linked Google identity, and a full reload preserved that session (PR131's
+19:01 UTC follow-up). This supersedes this file's earlier unfinished-signup
+observation. Owner MFA and dashboard reads also passed, but only against owner
+backend source `1bbcab6bf1e2483d8a769bf12534039c397a994d`; the owner Worker
+configuration still targets its older immutable backend, rather than `5504473`.
+
+The public-only PR114 reconciliation is carried into this candidate without
+changing the 107 shared runtime files or 18-file delivery graph. Its own release
+receipt remains separate. The 19 duplicate/superseded/retired reviews closed in
+this continuation retain their branches and evidence. Historical PR109's sole
+extra documentation-only spacing correction is retained here too.
+
+Fresh browser UI opened the guest template preview's Switchboard developer
+1.0.3 checkout and Stripe explicitly showed Sandbox and TEST. No payment was
+submitted. Automatic approval review rejected entry of the receipt email and
+Stripe test-card data because explicit permission for that particular test was
+not present; no alternate entry method was attempted. This is an approval
+blocker, not a failed card payment or proof of fulfillment. The connector still
+exposes only LIVE.
+
+The current browser has no recovered authenticated member/owner session. Actual
+password/reset inbox receipt, two hosted controlled members with owned project
+reopen/isolation, owner routing/current-backend acceptance, signed TEST
+webhook/download/recovery/refund/replay and full production configuration remain
+open. No status is silently changed to pass. Paid AI, new-format cloud, new LIVE
+sales and Snapshot remain disabled pending their own gates.

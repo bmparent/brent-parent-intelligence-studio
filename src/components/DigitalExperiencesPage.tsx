@@ -1,3 +1,4 @@
+import { StorefrontPreview } from "./StorefrontDemo";
 import { useState } from 'react';
 import { showcase } from '../data/showcase';
 import { mdcaBuild, storefrontBuilds, type BuildStory } from '../data/buildStories';
@@ -137,7 +138,7 @@ export function DigitalExperiencesPage() {
       <div className={`dx-stage dx-stage--${featured.color}`}>
         <div className="dx-stage__top"><span>Selected experience</span><span aria-hidden="true">✳</span></div>
         <a href={featured.href} {...(featured.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${featured.title}`}>
-          <img key={featured.title} src={featured.image} width="960" height="670" alt={featured.alt} fetchPriority={active === 0 ? 'high' : undefined} />
+          {active === 0 ? <StorefrontPreview slug="holidays-in-hollywood" thumbnail /> : <img key={featured.title} src={featured.image} width="960" height="670" alt={featured.alt} />}
         </a>
         <div className="dx-stage__footer"><div><small>{featured.kind}</small><strong>{featured.title}</strong></div><span aria-hidden="true">↗</span></div>
       </div>
@@ -166,7 +167,7 @@ export function DigitalExperiencesPage() {
     <section className="dx-projects" aria-label="Featured digital experience projects">
       {projects.map((project) => <article className={`dx-project dx-project--${project.color}`} key={project.title}>
         <div className="dx-project__inner ew-shell">
-          <div className="dx-project__visual"><a href={project.href} {...(project.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${project.title}`}><img src={project.image} width="1200" height="800" loading="lazy" alt={project.alt}/></a><p>{project.kind}</p></div>
+          <div className="dx-project__visual"><a href={project.href} {...(project.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${project.title}`}>{project.title === 'Holidays in Hollywood' ? <StorefrontPreview slug="holidays-in-hollywood" thumbnail /> : <img src={project.image} width="1200" height="800" loading="lazy" alt={project.alt}/>}</a><p>{project.kind}</p></div>
           <div className="dx-project__story"><p className="ew-eyebrow">{project.title}</p><h3>{project.headline}</h3><p className="dx-project__description">{project.description}</p>{project.buildStory ? <BuildDetails story={project.buildStory} /> : <div className="dx-project__build"><h4>Behind the build</h4><ol>{project.build?.map((step) => <li key={step}>{step}</li>)}</ol></div>}<p className="dx-project__application"><strong>For your work</strong>{project.application}</p><ProjectLink project={project}/><small className="dx-project__disclosure">{project.disclosure}</small></div>
         </div>
       </article>)}
