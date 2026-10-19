@@ -87,3 +87,23 @@ The regression also checks that initial Signal House keeps its original artwork
 and Holidays retains both composed pairs. This is a frontend-only repair; shared
 backend and delivery contracts remain unchanged. The failed artifact is retained;
 new-source CI must pass before this candidate is accepted.
+
+### Google disclosure and transient authentication follow-up
+
+The prepared [Google identity privacy record](GOOGLE_IDENTITY_PRIVACY_2026-10-19.md)
+is integrated on the existing held pair. Backend source is
+`0f44777604e9cec56c04e0dd00efe130b3b6469b`; the read-only account contract CI
+pins that source. Preview/deployment workflow pins remain unchanged, and this
+follow-up does not deploy either application. The original tested bundle is
+`eidos-google-policy-patch-2026-10-19.tar.gz`, SHA256
+`c9a109b50af6f16976f55289a0a102b415f90fb9bea532cfcf69ddcd814813f5`.
+
+Fresh integration checks pass 44 site platform tests, four focused backend
+Google/maintenance tests, both TypeScript checks and the 107-file shared-source
+comparison. Full patch build/browser receipts remain scoped to the prepared
+candidate; required integrated-head CI is recorded on PR131/PR85. Manual privacy
+request handling, whole-account deletion/unlink and all existing hosted/provider
+acceptance gates remain open. No hosted maintenance or payment was executed.
+Site lint and Pages Functions compilation also pass. The independent delivery
+graph verifies all 18 files after restoring an unchanged adapter's local LF
+checkout bytes; no renderer source change or broad re-export was included.

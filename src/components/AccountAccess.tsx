@@ -76,6 +76,7 @@ export function AccountAccess({ onSuccess }: { onSuccess: () => void }) {
       </button>
       {mode === 'signin' && config.passwordsReady && <button type="button" className="ew-account-text" onClick={() => choose('reset')}>Forgot password?</button>}
       {(mode === 'signup' || mode === 'signin') && <><div className="ew-account-or"><span>OR</span></div>
+        <p>Google shares your verified email and Google account identifier with Eidos Works to sign you in or link your account. We store the linked identifier and, for new accounts, your email. This sign-in does not request Gmail or Drive access. <a href="/privacy#google-signin">Google sign-in privacy and removal requests</a>.</p>
         <button type="button" className="ew-button ew-button--secondary ew-google-button" disabled={busy || !config.googleReady} onClick={() => void google()}>Continue with Google</button>
         {!config.googleReady && <small>Google sign-in is being connected.</small>}
       </>}

@@ -62,6 +62,7 @@ function setup(overrides: Partial<PlatformEnv> = {}) {
   sql.exec('PRAGMA foreign_keys=ON;');
   sql.exec(readFileSync('migrations/0001_eidos_platform.sql', 'utf8'));
   sql.exec(readFileSync('migrations/0002_members.sql', 'utf8'));
+  sql.exec(readFileSync('migrations/0006_member_credentials.sql', 'utf8'));
   sql.exec(readFileSync('migrations/0004_paid_templates.sql', 'utf8'));
   const db: Database = {
     prepare: (q) => new SQLiteStatement(sql, q),

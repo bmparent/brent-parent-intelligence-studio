@@ -19,7 +19,7 @@ jobs:
       - name: Compare all registered source files with the exact integrated backend
         env:
           SITE_REVISION: ${{ github.sha }}
-          BACKEND_REVISION: 55044733c122067562321b412bd4f1b01b333106
+          BACKEND_REVISION: 0f44777604e9cec56c04e0dd00efe130b3b6469b
         run: |
           git init "$RUNNER_TEMP/works-account-backend"
           git -C "$RUNNER_TEMP/works-account-backend" fetch --depth=1 https://github.com/bmparent/eidos.git "$BACKEND_REVISION"
