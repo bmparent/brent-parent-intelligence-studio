@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-15T12:05:09Z",
+  "updatedAt": "2026-10-19T12:30:19Z",
   "operator": "studio_manager",
   "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
   "activeOffer": "quote-desk",
@@ -36,10 +36,11 @@
         "https://github.com/bmparent/brent-parent-intelligence-studio/pull/95",
         "receipts/2026-10-06-revenue-operator.md",
         "receipts/2026-10-07-revenue-operator.md",
-        "receipts/2026-10-14-revenue-operator.md"
+        "receipts/2026-10-14-revenue-operator.md",
+        "receipts/2026-10-19-revenue-operator.md"
       ],
-      "blocker": "October 14 LIVE read: matching Eidos Works merchant profile is submitted with charges/payouts enabled, but the Quote Desk Product is inactive. No accepted isolated Worker/D1 runtime or connected Stripe sandbox; hosted login, two-owner isolation, signed TEST payment, recovery, cancellation, tax and device gates remain open.",
-      "nextAction": "Keep checkout disabled and Product inactive. Obtain cost-verified least-privilege Cloudflare Workers Scripts/D1/route access and a separate Stripe sandbox; provision an isolated preview and complete README hosted acceptance before any LIVE selling state change."
+      "blocker": "October 19 LIVE read: the intended merchant profile is submitted with charges/payouts enabled, but the Quote Desk Product remains inactive. The isolated Worker/D1 runtime and a connected Stripe sandbox are unavailable for hosted acceptance; the Cloudflare dashboard reached sign-in and the prior provider probe reported D1 HTTP 401. Hosted login, two-owner isolation, signed TEST payment, recovery, cancellation, tax and device gates remain open.",
+      "nextAction": "Keep checkout and the Quote Desk Product inactive. Use cost-verified least-privilege Cloudflare Workers Scripts/D1/route access and a separate Stripe sandbox to provision an isolated preview, then run every README hosted acceptance gate before any LIVE selling state change."
     },
     {
       "id": "REV-003",
@@ -105,20 +106,39 @@
     {
       "id": "REV-007",
       "owner": "studio_manager",
-      "stage": "release_in_progress",
+      "stage": "complete",
       "task": "Make the free Quote Desk estimator eligible for search indexing",
       "doneCondition": "Canonical free page is indexable, generated sitemap includes it, exact-head checks pass, and production release/readback verifies indexing and working free flow.",
       "evidence": [
         "../../public/quote-desk/index.html",
         "../../scripts/generate-insights-assets.mjs",
         "../../scripts/verify-growth-seo.mjs",
-        "receipts/2026-10-15-revenue-operator.md"
+        "receipts/2026-10-15-revenue-operator.md",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/112",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/113",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38896850195"
       ],
       "blocker": null,
-      "nextAction": "Inspect exact PR checks and diff, merge verified head, then verify production deployment/readback and record final release in the PR."
+      "nextAction": "Retain PRs #112 and #113 and the later passing production indexing audit in run 38896850195; search eligibility is not observed search traffic."
+    },
+    {
+      "id": "REV-008",
+      "owner": "studio_manager",
+      "stage": "complete",
+      "task": "Capture Quote Desk workflow and price feedback from the public quoting guide",
+      "doneCondition": "Guide makes no purchase promise, links to the existing attributed Quote Desk feedback form, desktop/phone browser checks pass, and production handoff is read back with deployment and rollback reference.",
+      "evidence": [
+        "../../public/quote-desk/quote-guide.html",
+        "../../scripts/verify-quote-desk-browser.mjs",
+        "receipts/2026-10-16-revenue-operator.md",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/pull/116",
+        "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/38901881207"
+      ],
+      "blocker": null,
+      "nextAction": "Retain PR #116's October 16 final release receipt, production readback and rollback reference; measure genuine responses, not synthetic engagement."
     }
   ],
-  "latestReceipt": "receipts/2026-10-15-revenue-operator.md",
+  "latestReceipt": "receipts/2026-10-19-revenue-operator.md",
   "notes": [
     "One active commercial offer and one supporting blocker task maximum.",
     "Interactive bootstrap is not an independent scheduled or specialist run.",

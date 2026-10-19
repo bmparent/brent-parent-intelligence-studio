@@ -102,3 +102,20 @@ untested. Nothing here closes the separately held account/payment runtime.
 
 Rollback: revert this isolated source change to the public-main baseline above;
 there is no data migration or provider-setting rollback.
+
+## Authorized release recovery — October 19, 2026
+
+Brent authorized preparing and releasing the open Eidos Works changes. This
+public-only recovery merges current main `09cb0b0` and the original PR114
+`b062f38`. The sole workflow conflict retains the current unified local-editor
+verifier and adds the affected Digital Experiences browser flow before it.
+Existing production upload guards and all remaining browser/source gates remain
+intact. No account, checkout, backend, provider binding or migration is changed.
+
+Fresh lockfile installation, lint (zero errors; retained Wellway advisory),
+TypeScript/client/SSR/prerender build, 34-route editorial checks, URL checks,
+Pages Functions compilation and diff checks pass locally. Current-source CI,
+artifact visual review and canonical deployed readback are required before live
+publication is claimed. Physical devices and screen readers remain untested.
+Rollback is pre-release main `09cb0b0199c8e6b1f4df3689464cf0fee67e2ae3`;
+reverting this public presentation release requires no data migration.

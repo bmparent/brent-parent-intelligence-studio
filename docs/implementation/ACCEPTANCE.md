@@ -1,4 +1,14 @@
+# October 17 local editor release candidate
+
+The isolated local editor release, safety boundaries, evidence and remaining production gates are recorded in [PLAYGROUND_LOCAL_EDITOR_2026-10-17.md](PLAYGROUND_LOCAL_EDITOR_2026-10-17.md). This candidate does not enable hosted AI, paid checkout or new-format cloud saves. Exact-head CI and deployed-source readback are required before claiming publication.
+
 # Public-site release acceptance — 2026-09-30
+
+## October 16 retained Insights publication
+
+PR110 resumes the existing "Reduced Motion Without a Reduced Experience" practical guide. Its incorrect October 7 publication and modified timestamps are corrected to the October 16 release cut; the original Wednesday midday slot and October 14 recovery remain in the [publication receipt](../../artifacts/insights/runs/2026-10-16-pr110-date-correction/publication.json). Article text, URL, byline, research metadata and other articles remain unchanged. This release incorporates current public main `895aa81f58d76e3595745d01890235012482064d` and preserves the separate dirty local checkouts.
+
+The new midday run receipt records all nine local publication gates. Exact-head CI, the main Cloudflare deployment receipt and explicit live article/JSON-LD/RSS/JSON-feed/sitemap date comparisons are required before publication is claimed. The final deployment evidence is retained separately to avoid triggering a second production upload for a status-only commit. The existing Friday 18:00 America/New_York job remains in place. No backend, provider configuration or held runtime acceptance changes are included; rollback uses the preceding public-main source and its existing Pages deployment.
 
 ## October 15 advertising service copy
 
@@ -108,4 +118,3 @@ flow, verification limits and rollback are recorded in
 The PR retains exact-head CI and screenshot evidence. Source preparation does
 not establish production publication, Brent's visual acceptance or acceptance of
 the held account/payment runtime.
-

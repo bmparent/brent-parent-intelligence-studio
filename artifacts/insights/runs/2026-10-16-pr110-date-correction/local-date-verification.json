@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-16T11:43:14.682Z",
+  "mode": "local dist",
+  "article": "reduced-motion-without-reduced-experience",
+  "publishedAt": "2026-10-16T11:39:00Z",
+  "updatedAt": "2026-10-16T11:39:00Z",
+  "rssPubDate": "Fri, 16 Oct 2026 11:39:00 GMT",
+  "rssLastBuildDate": "Fri, 16 Oct 2026 11:39:00 GMT",
+  "sitemapLastmod": "2026-10-16",
+  "articleFieldsPreservedExceptDates": true,
+  "otherArticleRecordsPreserved": true,
+  "articleCount": 20,
+  "jsonLd": {
+    "@type": "BlogPosting",
+    "@id": "https://eidos-works.com/insights/reduced-motion-without-reduced-experience#article",
+    "headline": "Reduced Motion Without a Reduced Experience",
+    "description": "A practical guide to respecting reduced-motion preferences while keeping state changes, controls, and important information clear.",
+    "datePublished": "2026-10-16T11:39:00Z",
+    "dateModified": "2026-10-16T11:39:00Z",
+    "author": {
+      "@type": "Organization",
+      "name": "Eidos Works Editorial",
+      "url": "https://eidos-works.com"
+    },
+    "publisher": {
+      "@id": "https://eidos-works.com/#organization"
+    },
+    "mainEntityOfPage": "https://eidos-works.com/insights/reduced-motion-without-reduced-experience",
+    "image": "https://eidos-works.com/insights-og/reduced-motion-without-reduced-experience.svg",
+    "keywords": "Reduced motion, Accessibility, Interaction design, Frontend development",
+    "articleSection": "Website Strategy"
+  },
+  "statuses": [],
+  "status": "passed"
+}
