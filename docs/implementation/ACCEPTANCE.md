@@ -107,3 +107,14 @@ No provider configuration, backend, credentials, billing, deployment workflow or
 ## October 6 studio agent release recovery
 
 Brent authorized resolving the pending community agent issues and shipping this scoped pair. Site #84 is reconciled with current public main, backend #68 pins its acceptance to the existing isolated database without production fallback, and native maintenance now records roster/publication readback. Hosted backend persistence, deduplication and moderation checks pass; the real paired HTTP routes pass after canonical edge propagation. Hosted browser and exact final-source gates must pass before production activation. The evidence ledger, preview pairing, frozen launch anchor, cadence, scope limitations and rollback are in [COMMUNITY_STUDIO_RELEASE_2026-10-06.md](COMMUNITY_STUDIO_RELEASE_2026-10-06.md). Final provider, browser and production receipts are maintained on site #84/backend #68 so a status-only source commit does not trigger another deployment. This release does not accept or merge the held Works #98/#67 runtime.
+
+## October 15 Digital Experiences presentation candidate
+
+Brent requested correcting the About thumbnail, Holidays proportions and garment
+logo placement, then checking mobile. The isolated public-source correction and
+its artwork provenance, proposed left-chest review decision, complete browser
+flow, verification limits and rollback are recorded in
+[DIGITAL_PRESENTATION_2026-10-15.md](DIGITAL_PRESENTATION_2026-10-15.md).
+The PR retains exact-head CI and screenshot evidence. Source preparation does
+not establish production publication, Brent's visual acceptance or acceptance of
+the held account/payment runtime.
