@@ -16,8 +16,6 @@ jobs:
     if: (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'ops/playground-rehearsal-deploy-20261018') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/ops/playground-rehearsal-deploy-20261018')
     runs-on: ubuntu-22.04
     timeout-minutes: 15
-    env:
-      REHEARSAL_EVIDENCE_DIR: ${{ runner.temp }}/rehearsal-evidence
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Set the runner-local evidence destination
+        run: echo "REHEARSAL_EVIDENCE_DIR=$RUNNER_TEMP/rehearsal-evidence" >> "$GITHUB_ENV"
       - name: Reject unsafe provider configurations before credentials are available
         run: node --test scripts/test-rehearsal-pages.mjs
       - name: Fetch fresh source provenance and unchanged retained bytes
