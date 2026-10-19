@@ -30,10 +30,10 @@ async function scenario(browser, engine, width, name, action) {
   const context = await browser.newContext({ viewport: { width, height: 1000 }, acceptDownloads: true, reducedMotion: 'reduce' });
   const page = await context.newPage(); page.setDefaultTimeout(20000);
   const record = { engine, width, name, checks: [], errors: [], console: [], calls: [], unexpected: [], expectedHttpDenials: [], checkoutFixtures: [], stubbedAssets: [], fixtureNavigations: [] }; records.push(record);
-  const state = { frozen: serverFrozen, availability: false, owner: ownerId, purchaseState: 'paid', localTest: true, checkoutFailures: 0, allowCheckoutNavigation: false, holdCheckout: null, holdCapability: null, holdStatus: null };
+  const state = { frozen: serverFrozen, availability: false, priceCents: 9900, orderPriceCents: 9900, owner: ownerId, purchaseState: 'paid', localTest: true, checkoutFailures: 0, allowCheckoutNavigation: false, holdCheckout: null, holdCapability: null, holdStatus: null };
   const accepted = () => ({ id: 'fixture-delivery', ownerId, documentId: state.frozen.snapshot.documentId, revision: state.frozen.snapshot.revision,
     snapshotHash: state.frozen.snapshot.snapshotHash, projectHash: state.frozen.snapshot.projectHash, archiveSha256: state.frozen.receipt.archiveSha256, archiveBytes: state.frozen.archive.length, mode: 'test' });
-  const status = () => ({ status: state.purchaseState, paymentState: state.purchaseState, fulfillmentStatus: state.purchaseState === 'paid' ? 'ready' : 'pending', mailStatus: 'fixture-only', orderId: 'fixture-order', productId: parent.editionId, editionId: 'developer', version: parent.version, downloadName: 'fixture-original.zip', downloadToken: state.purchaseState === 'paid' ? 'd'.repeat(64) : null,
+  const status = () => ({ priceCents: state.orderPriceCents, currency: 'usd', status: state.purchaseState, paymentState: state.purchaseState, fulfillmentStatus: state.purchaseState === 'paid' ? 'ready' : 'pending', mailStatus: 'fixture-only', orderId: 'fixture-order', productId: parent.editionId, editionId: 'developer', version: parent.version, downloadName: 'fixture-original.zip', downloadToken: state.purchaseState === 'paid' ? 'd'.repeat(64) : null,
     approvedPage: { ...accepted(), deliveryId: accepted().id, state: state.purchaseState === 'paid' ? 'ready' : state.purchaseState === 'refunded' ? 'revoked' : 'pending', output: state.frozen.snapshot.output, downloadName: 'fixture-approved.zip', parent: { productId: parent.editionId, editionId: 'developer', version: parent.version, archiveSha256: parent.sha256, archiveBytes: parent.bytes, licenseId: parent.license.id } } });
   await context.route('**/*', async route => {
     const request = route.request(), url = new URL(request.url());
@@ -52,9 +52,9 @@ async function scenario(browser, engine, width, name, action) {
     record.calls.push({ path: url.pathname + url.search, method: request.method(), ...(input?.artifact ? { artifact: input.artifact } : {}) });
     if (url.pathname === '/api/playground/delivery' && url.search === '?capabilities=1') {
       if (state.holdCapability) await state.holdCapability.promise;
-      if (!state.availability) return route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'Current checkout intentionally unavailable in recovery fixture.' }) });
+      if (!state.availability) { record.expectedHttpDenials.push({ status: 503, url: url.href }); return route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'Member sign-in is being connected. The complete Insights archive is free to read now.' }) }); }
       return reply({ capabilities: { mode: 'test', ownerId: state.owner, available: true, reason: null, limits: { snapshotBytes: 1500000, archiveBytes: 6000000 }, turnstileSiteKey: state.localTest ? '' : 'fixture-site-key', localTest: state.localTest,
-        products: [{ productId: parent.editionId, editionId: 'developer', version: parent.version, priceCents: 9900, currency: 'usd', parentArchiveSha256: parent.sha256, parentArchiveBytes: parent.bytes }] } });
+        products: [{ productId: parent.editionId, editionId: 'developer', version: parent.version, priceCents: state.priceCents, currency: 'usd', parentArchiveSha256: parent.sha256, parentArchiveBytes: parent.bytes }] } });
     }
     if (url.pathname === '/api/shop/status') {
       if (state.holdStatus) await state.holdStatus.promise;
@@ -104,9 +104,25 @@ async function scenario(browser, engine, width, name, action) {
 
 for (const engine of engines) {
   const browser = await pw[engine].launch({ headless: true, ...(engine === 'chromium' ? { args: ['--disable-gpu'] } : {}) });
+  for (const width of [1440, 390]) await scenario(browser, engine, width, 'unavailable-purchase-local-download', async ({ page, record, check, create, runOut }) => {
+    await page.goto(base + '/playground/', { waitUntil: 'domcontentloaded' }); await create('Local page while purchases are unavailable');
+    await page.getByRole('button', { name: 'Finish', exact: true }).click();
+    await page.getByRole('button', { name: 'Prepare current draft', exact: true }).click();
+    await page.getByLabel('I reviewed this frozen version for my local download.', { exact: true }).check();
+    await page.getByRole('button', { name: 'Check account purchase availability', exact: true }).click();
+    await page.locator('.pg-purchase-flow [role="alert"]').filter({ hasText: 'Account purchases are unavailable right now. You can keep editing and download your page package locally.' }).waitFor();
+    assert.equal(await page.getByRole('button', { name: 'Purchase unavailable', exact: true }).isDisabled(), true);
+    assert.deepEqual(record.calls, [{ path: '/api/playground/delivery?capabilities=1', method: 'GET' }]);
+    const waiting = page.waitForEvent('download'); await page.getByRole('button', { name: 'Download page package', exact: true }).click();
+    const file = path.join(runOut, 'local-page.zip'); await (await waiting).saveAs(file);
+    assert.ok((await readFile(file)).length > 1000);
+    await page.screenshot({ path: path.join(runOut, 'unavailable-purchase-local-download.png'), fullPage: true });
+    check('disabled purchase shows a contextual message, retains local ZIP download and makes no POST, checkout or payment request');
+  });
   for (const width of [1440, 390]) await scenario(browser, engine, width, 'fresh-recovery', async ({ page, context, record, check, saved, save, closeFinish, runOut }) => {
     await page.goto(base + '/playground/?checkout=returned#receipt=' + privateReceipt, { waitUntil: 'domcontentloaded' });
     await page.getByRole('button', { name: 'Restore my approved page', exact: true }).waitFor();
+    assert.equal(await page.locator('.pg-recovery-panel > div > span').textContent(), 'Private purchase return', 'unverified return must not claim a payment mode');
     assert.equal(await saved(), null); assert.equal(record.calls.length, 0); check('empty browser offers explicit recovery without creating a draft or calling purchase APIs');
     await page.screenshot({ path: path.join(runOut, 'return.png'), fullPage: true });
     await page.getByRole('button', { name: 'Restore my approved page', exact: true }).click(); await page.getByRole('button', { name: 'Download exact approved ZIP', exact: true }).waitFor();
@@ -156,6 +172,42 @@ for (const engine of engines) {
     state.owner = ownerId; state.purchaseState = 'refunded'; await page.getByRole('button', { name: 'Open a new editable copy', exact: true }).click();
     await page.locator('.pg-recovery-panel [role="alert"]').filter({ hasText: /not ready.*refunded/ }).waitFor(); assert.equal(await saved(), null);
     await page.screenshot({ path: path.join(runOut, 'revoked-before-open.png') }); check('revocation after retrieval blocks opening a new editable copy');
+  });
+  await scenario(browser, engine, 390, 'returned-checkout-price', async ({ page, state, record, check, create, runOut }) => {
+    state.availability = true; state.priceCents = 8900; state.orderPriceCents = 9900; state.purchaseState = 'pending';
+    await page.goto(base + '/playground/', { waitUntil: 'domcontentloaded' }); await create('Original attempt price');
+    await page.getByRole('button', { name: 'Finish', exact: true }).click(); await page.locator('.pg-finish-parent summary').click(); await page.getByLabel('Parent developer edition').selectOption(parent.editionId);
+    await page.getByRole('button', { name: 'Prepare current draft', exact: true }).click(); await page.getByLabel('I reviewed this frozen version for my local download.', { exact: true }).check();
+    await page.getByRole('button', { name: 'Check account purchase availability', exact: true }).click(); await page.getByRole('button', { name: 'Save reviewed page to my account', exact: true }).click();
+    await page.locator('.pg-purchase-accepted').waitFor();
+    await page.evaluate(receipt => sessionStorage.setItem('eidos.playground.purchase-return', JSON.stringify({ state: 'returned', receipt })), privateReceipt);
+    await page.getByLabel(/I have read the/).check();
+    await page.getByRole('button', { name: 'Check returned purchase', exact: true }).click();
+    await page.getByText('$99.00 · one-time TEST purchase', { exact: true }).waitFor();
+    assert.equal(await page.getByLabel(/I have read the/).isChecked(), false);
+    assert.equal(await page.getByRole('button', { name: 'Retry this TEST checkout', exact: true }).isDisabled(), true);
+    assert.equal(record.checkoutFixtures.length, 0);
+    await page.screenshot({ path: path.join(runOut, 'returned-price-requires-consent.png') });
+    check('returned attempt shows its original price and clears previous catalog-price acceptance before retry');
+  });
+  await scenario(browser, engine, 390, 'changed-checkout-price', async ({ page, state, record, check, create, runOut }) => {
+    state.availability = true; state.allowCheckoutNavigation = true;
+    await page.goto(base + '/playground/', { waitUntil: 'domcontentloaded' }); await create('Review changed price');
+    await page.getByRole('button', { name: 'Finish', exact: true }).click(); await page.locator('.pg-finish-parent summary').click(); await page.getByLabel('Parent developer edition').selectOption(parent.editionId);
+    await page.getByRole('button', { name: 'Prepare current draft', exact: true }).click(); await page.getByLabel('I reviewed this frozen version for my local download.', { exact: true }).check();
+    await page.getByRole('button', { name: 'Check account purchase availability', exact: true }).click(); await page.getByRole('button', { name: 'Save reviewed page to my account', exact: true }).click();
+    await page.locator('.pg-purchase-accepted').waitFor(); await page.getByLabel(/I have read the/).check();
+    state.priceCents = 10900;
+    await page.getByRole('button', { name: 'Continue to TEST checkout', exact: true }).click();
+    await page.locator('.pg-purchase-flow [role="alert"]').filter({ hasText: /price or edition changed/ }).waitFor();
+    assert.equal(record.checkoutFixtures.length, 0); assert.equal(await page.getByLabel(/I have read the/).isChecked(), false);
+    await page.getByText('$109.00 · one-time TEST purchase', { exact: true }).waitFor();
+    assert.equal(await page.getByRole('button', { name: 'Continue to TEST checkout', exact: true }).isDisabled(), true);
+    await page.screenshot({ path: path.join(runOut, 'changed-price-requires-consent.png') });
+    check('changed displayed price blocks checkout, updates the price and requires renewed consent');
+    await page.getByLabel(/I have read the/).check(); await page.getByRole('button', { name: 'Continue to TEST checkout', exact: true }).click();
+    await page.getByRole('heading', { name: 'Controlled TEST checkout fixture', exact: true }).waitFor();
+    assert.equal(record.checkoutFixtures.length, 1); check('explicit renewed consent permits exactly one intercepted checkout');
   });
   await scenario(browser, engine, 1440, 'cancelled-checkout', async ({ page, state, record, check, create, runOut }) => {
     state.availability = true; state.allowCheckoutNavigation = true; state.purchaseState = 'pending';

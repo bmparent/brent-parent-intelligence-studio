@@ -23,6 +23,7 @@ import { saveRecoveredReview } from './purchaseReviewStorage';
 import type { FrozenPackage } from './purchaseSnapshot';
 import { StartScreen } from './StartScreen';
 import { AddPanel, AssetsPanel, BrandPanel } from './UnifiedPanels';
+import { PlaygroundTourButton } from './PlaygroundWalkthrough';
 import './editor.css';
 import './unifiedEditor.css';
 
@@ -136,7 +137,7 @@ export default function Playground() {
         <AIAssist project={project} documentId={documentId} revision={w.revision} selected={selected} selectedNode={selectedNode} brandSelected={brandOpen} guard={guard} edit={change} preview={previewAI} previewActive={!!aiComparison} />
       </aside>
     </div>
-    <footer className="pg-statusbar"><span><Icon name={mobile ? 'mobile' : 'desktop'} />{mobile ? 'Mobile layout' : 'Desktop layout'}</span><span>{aiComparison ? 'Eidos proposal preview' : comparison ? 'Saved variation' : editing ? 'Select an element · double-click text to edit' : 'Visitor preview'}</span><button disabled={!!comparison || !!aiComparison} onClick={() => void openExport()}>{warnings.length ? `${warnings.length} checks before finishing` : 'Review & download'} ↗</button></footer>
+    <footer className="pg-statusbar"><span><Icon name={mobile ? 'mobile' : 'desktop'} />{mobile ? 'Mobile layout' : 'Desktop layout'}</span><span>{aiComparison ? 'Eidos proposal preview' : comparison ? 'Saved variation' : editing ? 'Select an element · double-click text to edit' : 'Visitor preview'}</span><PlaygroundTourButton /><button disabled={!!comparison || !!aiComparison} onClick={() => void openExport()}>{warnings.length ? `${warnings.length} checks before finishing` : 'Review & download'} ↗</button></footer>
     {notice && <div className="pg-toast" role="status">{notice}<button aria-label="Dismiss message" onClick={() => setNotice('')}>×</button></div>}
     <FinishReview key={`${documentId}:${reviewLoad}`} project={project} documentId={documentId} revision={w.revision} open={finishOpen} onClose={() => setFinishOpen(false)} />
   </div>;

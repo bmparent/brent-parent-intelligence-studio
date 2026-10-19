@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildFrozenPackage, createProjectSnapshot, parentEditions } from '../src/playground/purchaseSnapshot';
 import { createStarter } from '../src/playground/starters';
-import { acceptFrozenDelivery, assertPurchaseCapability, capturePurchaseReturn, downloadDeliveryArtifact, fetchDeliveryCapabilities, fetchDeliveryPurchase, inspectReturnedPurchase, loadPurchaseAttempt, matchingProduct, newPurchaseReceipt, purchaseReturn, safePurchaseContinuePath, saveCheckoutReturn, savePurchaseAttempt, startFrozenCheckout, validateAcceptedDelivery, validateCapabilities, validateDeliveryPurchase, type DeliveryCapabilities } from '../src/playground/purchaseClient';
+import { acceptFrozenDelivery, assertPurchaseCapability, assertReviewedPurchaseTerms, capturePurchaseReturn, downloadDeliveryArtifact, fetchDeliveryCapabilities, fetchDeliveryPurchase, inspectReturnedPurchase, loadPurchaseAttempt, matchingProduct, newPurchaseReceipt, PurchaseRequestError, purchaseReturn, safePurchaseContinuePath, saveCheckoutReturn, savePurchaseAttempt, startFrozenCheckout, validateAcceptedDelivery, validateCapabilities, validateDeliveryPurchase, type DeliveryCapabilities } from '../src/playground/purchaseClient';
 
 const frozen = await buildFrozenPackage(await createProjectSnapshot(createStarter({ starter: 'switchboard', goal: 'business', action: 'contact' }), 'document-a', 7, parentEditions[0].editionId));
 const parent = parentEditions[0], receipt = 'a'.repeat(64);
@@ -12,13 +12,23 @@ const accepted = { id: 'delivery-a', ownerId: cap.ownerId, documentId: frozen.sn
 const status = (state = 'pending') => ({ status: state, paymentState: state, orderId: 'order-a', productId: parent.editionId, editionId: 'developer', version: parent.version, downloadName: 'original.zip', downloadToken: 'server-signed-token', approvedPage: { ...accepted, deliveryId: accepted.id, state: state === 'paid' ? 'ready' : state === 'refunded' ? 'revoked' : 'pending', output: frozen.snapshot.output, downloadName: 'approved-page.zip', parent: { productId: parent.editionId, editionId: 'developer', version: parent.version, archiveSha256: parent.sha256, archiveBytes: parent.bytes, licenseId: parent.license.id } } });
 const response = (value: unknown, status = 200) => new Response(JSON.stringify(value), { status, headers: { 'content-type': 'application/json' } });
 function fixture(handler: (path: string, body: Record<string, unknown> | undefined) => Response | Promise<Response>) { const calls: { path: string; body?: Record<string, unknown> }[] = []; return { calls, request: (async (input, init) => { const path = String(input), body = init?.body ? JSON.parse(String(init.body)) : undefined; calls.push({ path, body }); return handler(path, body); }) as typeof fetch }; }
+test('unavailable account purchase checks explain the local path and preserve HTTP denial semantics', async () => {
+  for (const reply of [response({ error: 'Member sign-in is being connected. The complete Insights archive is free to read now.' }, 503), new Response('<h1>Unavailable</h1>', { status: 503 })]) {
+    const mock = fixture(() => reply);
+    await assert.rejects(() => fetchDeliveryCapabilities(mock.request), (error: unknown) => error instanceof PurchaseRequestError && error.status === 503 && error.message === 'Account purchases are unavailable right now. You can keep editing and download your page package locally.');
+    assert.deepEqual(mock.calls, [{ path: '/api/playground/delivery?capabilities=1', body: undefined }]);
+  }
+  for (const status of [401, 403, 429]) {
+    await assert.rejects(() => fetchDeliveryCapabilities(fixture(() => response({ error: 'Keep this specific denial' }, status)).request), (error: unknown) => error instanceof PurchaseRequestError && error.status === status && error.message === 'Keep this specific denial');
+  }
+});
 test('only an explicit authenticated TEST capability supplies original price/version, disabled and mismatch paths make zero POSTs', async () => {
   const mock = fixture(() => response({ capabilities: rawCapabilities }));
   assert.deepEqual(await fetchDeliveryCapabilities(mock.request), cap);
   assert.deepEqual(mock.calls.map(call => call.path), ['/api/playground/delivery?capabilities=1']);
   assert.equal(matchingProduct(cap, frozen)?.priceCents, 1234);
-  assert.throws(() => validateCapabilities({ ...rawCapabilities, mode: 'live' }), /TEST/);
-  assert.throws(() => validateCapabilities({ ...rawCapabilities, ownerId: null }), /TEST/);
+  assert.throws(() => validateCapabilities({ ...rawCapabilities, mode: 'live' }), /production verification/);
+  assert.throws(() => validateCapabilities({ ...rawCapabilities, ownerId: null }), /purchase capability/);
   assert.throws(() => validateCapabilities({ ...rawCapabilities, products: [{ ...rawCapabilities.products[0], priceCents: null }] }), /price/);
   const noNetwork = fixture(() => { throw Error('Unexpected network request'); });
   for (const unavailable of [{ ...cap, available: false, reason: 'Off' }, { ...cap, products: [] }, { ...cap, limits: { snapshotBytes: 1, archiveBytes: 1 } }]) {
@@ -40,7 +50,7 @@ test('checkout sends only server identifiers, stable attempt, terms and challeng
   const mock = fixture(() => response({ url: 'https://checkout.stripe.com/c/pay/cs_test_fixture' }));
   for (let index = 0; index < 2; index++) assert.equal(await startFrozenCheckout(cap, frozen, accepted, receipt, true, 'fixture', mock.request), 'https://checkout.stripe.com/c/pay/cs_test_fixture');
   assert.deepEqual(mock.calls[0].body, mock.calls[1].body);
-  assert.deepEqual(mock.calls[0].body, { productId: parent.editionId, editionId: 'developer', deliveryId: accepted.id, acceptTerms: true, attempt: receipt, challenge: 'fixture' });
+  assert.deepEqual(mock.calls[0].body, { productId: parent.editionId, editionId: 'developer', deliveryId: accepted.id, acceptTerms: true, attempt: receipt, challenge: 'fixture', reviewedPriceCents: 1234 });
   for (const url of ['https://evil.example/', 'http://checkout.stripe.com/a', 'https://checkout.stripe.com.evil.example', 'https://user@checkout.stripe.com/a', 'https://checkout.stripe.com:444/a', 'javascript:alert(1)']) await assert.rejects(() => startFrozenCheckout(cap, frozen, accepted, receipt, true, 'fixture', fixture(() => response({ url })).request), /checkout address/);
   await assert.rejects(() => startFrozenCheckout(cap, frozen, accepted, receipt, false, 'fixture', mock.request), /terms/);
   await assert.rejects(() => startFrozenCheckout(cap, frozen, accepted, receipt, true, '', mock.request), /verification/);
@@ -85,4 +95,36 @@ test('return and recovery paths accept only the exact known same-origin path wit
   saveCheckoutReturn(receipt, storage);
   capturePurchaseReturn('https://preview.example/playground/?checkout=cancelled', storage);
   assert.deepEqual(purchaseReturn(storage), { state: 'cancelled', receipt }, 'a cancelled return keeps the dispatched private attempt without asking current sales capability');
+});
+
+test('checkout revalidation requires renewed review when the displayed price changes', async () => {
+  assert.doesNotThrow(() => assertReviewedPurchaseTerms(cap, structuredClone(cap), frozen));
+  const noNetwork = fixture(() => { throw Error('Unexpected checkout request'); });
+  for (const priceCents of [cap.products[0].priceCents + 1, cap.products[0].priceCents - 1]) {
+    const changed = { ...cap, products: [{ ...cap.products[0], priceCents }] };
+    await assert.rejects(async () => {
+      assertReviewedPurchaseTerms(cap, changed, frozen);
+      await startFrozenCheckout(changed, frozen, accepted, receipt, true, 'fixture', noNetwork.request);
+    }, /price or edition changed/);
+  }
+  assert.throws(() => assertReviewedPurchaseTerms(cap, { ...cap, ownerId: 'owner-b' }, frozen), /account changed/);
+  assert.throws(() => assertReviewedPurchaseTerms(cap, { ...cap, available: false, reason: 'Sales paused' }, frozen), /Sales paused/);
+  assert.equal(noNetwork.calls.length, 0);
+});
+
+test('LIVE capability and storage require production verification and cannot reuse TEST attempts', async () => {
+  const live = validateCapabilities({ ...rawCapabilities, mode: 'live', localTest: false, turnstileSiteKey: 'production-site-key' });
+  assert.equal(live.mode, 'live');
+  assert.throws(() => validateCapabilities({ ...rawCapabilities, mode: 'unknown' }), /purchase capability/);
+  assert.throws(() => validateAcceptedDelivery(accepted, live, frozen), /exact/);
+  assert.throws(() => assertReviewedPurchaseTerms(cap, live, frozen), /account changed/);
+  const liveAccepted = { ...accepted, mode: 'live' as const };
+  assert.equal(validateAcceptedDelivery(liveAccepted, live, frozen).mode, 'live');
+  const data = new Map<string, string>(), storage = { getItem: (key: string) => data.get(key) || null, setItem: (key: string, value: string) => { data.set(key, value); } };
+  savePurchaseAttempt({ ownerId: cap.ownerId, snapshotHash: frozen.snapshot.snapshotHash, receipt, delivery: accepted }, storage);
+  assert.equal(loadPurchaseAttempt(live, frozen, storage), null);
+  savePurchaseAttempt({ ownerId: cap.ownerId, snapshotHash: frozen.snapshot.snapshotHash, receipt: 'b'.repeat(64), delivery: liveAccepted }, storage);
+  assert.equal(loadPurchaseAttempt(cap, frozen, storage)?.receipt, receipt);
+  assert.equal(loadPurchaseAttempt(live, frozen, storage)?.receipt, 'b'.repeat(64));
+  assert.throws(() => validateDeliveryPurchase(status('paid'), live, frozen, liveAccepted), /does not match/);
 });
