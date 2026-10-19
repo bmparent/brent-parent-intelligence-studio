@@ -1,5 +1,11 @@
 # Implementation baseline — 2026-09-21
 
+## Current recovery update — 2026-10-19
+
+Network-interrupted source integration is recovered and merged into the held release branches: frontend #134 then #133, resulting account-branch merge `34d2c034ebc3e70c79463323792682b4795728b9`, tree `885a14d3da651e92a198ac9c882ebd2a979eed60`; backend #86 into held #85, merge `944accb1c52d6af708b0f02709f5c819241d33b7`. Seven fresh frontend workflows pass, including full editor/browser run `39291754860`; backend merged-source quality passes. The canonical isolated account preview serves the same tested frontend tree and exact backend `55044733c122067562321b412bd4f1b01b333106` through deployment `dpl_CVJ5ERsLQiigU8BoHC9uc5B7CEwB`. Preview deployment `1396daa7-0e67-4fdf-9fe6-2acad23d06ff` is verified; it is not production.
+
+Fresh local-on-device create/save/reopen/frozen-export download passed in hosted desktop Chromium. Real Google callback verified email and reached the public-username completion step after user takeover; account creation is not complete. Password/reset inbox delivery, two hosted identities/project isolation, authenticated owner/current-backend acceptance and the signed Stripe TEST lifecycle remain open. Stripe connector is LIVE only. Production remains held at site `09cb0b0199c8e6b1f4df3689464cf0fee67e2ae3` / backend `34c3d21509dfa1017705244e0d42a6eb7bc7dff9`; no activation, production upload, migration or LIVE transaction occurred. See [current acceptance](ACCEPTANCE_2026-10-19.md) and [exact source integration receipts](RELEASE_INTEGRATION_2026-10-19.md). Older pointers below retain their original historical scope.
+
 ## Current recovery update — 2026-10-13
 
 Brent requested starting today's account/template priorities. The held site #98 and backend #67 are being recovered against current main without rewriting historical receipts. See [ACCEPTANCE_2026-10-13.md](ACCEPTANCE_2026-10-13.md) for exact merge parents, observed canonical account UI, source parity and remaining controlled-identity/provider gates. The final PR receipt identifies the committed pair and any refreshed isolated preview. Production remains NO-GO.
