@@ -47,16 +47,42 @@ export async function saveWorkspace(value, stillCurrent = () => true) {
 }
 `;
 const compiled = await build({
-  stdin: { contents: `export { useProject } from './src/playground/useProject'; export { createProject } from './src/playground/model'; export { mount, flush, dispose } from 'react'; export { records, controls } from './src/playground/storage'; export { switchAccount } from './src/lib/accountEpoch';`, resolveDir: process.cwd() },
+  stdin: { contents: `export { useProject } from './src/playground/useProject'; export { CloudProjects as LegacyCloudProjects } from './src/playground/CloudProjectsLegacy'; export { createProject } from './src/playground/model'; export { mount, flush, dispose } from 'react'; export { records, controls } from './src/playground/storage'; export { switchAccount } from './src/lib/accountEpoch';`, resolveDir: process.cwd() },
   bundle: true, write: false, format: 'esm', platform: 'node',
   plugins: [{ name: 'document-switch-fixtures', setup(builder) {
     builder.onResolve({ filter: /^react$/ }, () => ({ path: 'hooks', namespace: 'fixture' }));
+    builder.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: 'jsx', namespace: 'fixture' }));
+    builder.onResolve({ filter: /\/Purchases$/ }, () => ({ path: 'purchases', namespace: 'fixture' }));
     builder.onResolve({ filter: /\/accountEpoch$/ }, () => ({ path: 'epoch', namespace: 'fixture' }));
     builder.onResolve({ filter: /\/storage$/ }, () => ({ path: 'storage', namespace: 'fixture' }));
-    builder.onLoad({ filter: /.*/, namespace: 'fixture' }, args => ({ contents: args.path === 'hooks' ? hooks : args.path === 'epoch' ? `let epoch = ''; export function accountEpoch() { return epoch; } export function switchAccount() { epoch = crypto.randomUUID(); }` : storage, loader: 'js' }));
+    builder.onLoad({ filter: /.*/, namespace: 'fixture' }, args => ({ contents: args.path === 'hooks' ? hooks : args.path === 'jsx' ? `export function jsx(type,props) {return {type,props};} export const jsxs=jsx; export const Fragment='fragment';` : args.path === 'purchases' ? `export function Purchases() { return null; }` : args.path === 'epoch' ? `let epoch = ''; const listeners = new Set(); export function accountEpoch() { return epoch; } export function subscribeAccountChanges(callback) { listeners.add(callback); return () => listeners.delete(callback); } export function switchAccount() { epoch = crypto.randomUUID(); listeners.forEach(callback => callback()); }` : storage, loader: 'js' }));
   } }],
 });
 let instance = 0;
+test('local legacy projects fetch account data only on explicit action and clear it on account changes', async t => {
+  const source = compiled.outputFiles[0].text + '\n// isolated cloud fixture ' + instance++;
+  const f = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+  const priorFetch = globalThis.fetch, priorLocation = globalThis.location, calls = [];
+  globalThis.location = { search: '' };
+  globalThis.fetch = async (url, options) => {
+    calls.push({url, method: options.method || 'GET'});
+    return new Response(JSON.stringify({ ownerId: 'fixture-owner', newFormatSaveEnabled: false, projects: [{id:'fixture-project', name:'Explicit account project', head:'fixture-head', updated_at:''}] }), {headers:{'content-type':'application/json'}});
+  };
+  t.after(() => { f.dispose(); globalThis.fetch = priorFetch; if (priorLocation === undefined) delete globalThis.location; else globalThis.location = priorLocation; });
+  const props = { project:f.createProject(), target:null, documentId:'local-document', guard:()=>()=>true, load:async()=>true, acknowledge:()=>{}, disabled:false };
+  const render = () => { const wrapper = f.LegacyCloudProjects(props); return wrapper.type(wrapper.props); };
+  const elements = node => !node || typeof node !== 'object' ? [] : Array.isArray(node) ? node.flatMap(elements) : [node, ...elements(node.props?.children)];
+  let tree = f.mount(render); await Promise.resolve(); tree = f.flush();
+  assert.deepEqual(calls, [], 'mounting a local project makes no account request');
+  f.switchAccount(); tree = f.flush(); assert.deepEqual(calls, [], 'session invalidation never opts into cloud access');
+  const refresh = elements(tree).find(node => node.type === 'button' && node.props.children === 'Refresh account projects');
+  assert.ok(refresh); refresh.props.onClick(); await new Promise(resolve => setImmediate(resolve)); tree = f.flush();
+  assert.deepEqual(calls, [{url:'/api/playground/projects', method:'GET'}]);
+  assert.ok(elements(tree).some(node => node.type === 'button' && node.props.children?.includes?.('Explicit account project')));
+  f.switchAccount(); tree = f.flush();
+  assert.equal(elements(tree).some(node => node.type === 'button' && node.props.children?.includes?.('Explicit account project')), false, 'the old account list is cleared');
+  assert.equal(calls.length, 1, 'clearing the old account does not fetch the next one');
+});
 async function fixture(t) {
   const source = compiled.outputFiles[0].text + '\n// isolated fixture ' + instance++;
   const api = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));

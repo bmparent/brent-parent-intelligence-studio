@@ -33,15 +33,12 @@ function AcceptedCloudProjects({ project, target: active, documentId, guard, loa
   const cloudFormatReady = supportsProductionCloud(project) || newFormatSaveEnabled;
   useEffect(() => { let mounted = true; queueMicrotask(() => { if (mounted) { const id = new URLSearchParams(location.search).get('open') || ''; if (/^[a-f0-9-]{36}$/.test(id)) setRequestedProject(id); } }); return () => { mounted = false; }; }, []);
   useEffect(() => {
-    let mounted = true;
-    const reload = () => {
+    const invalidate = () => {
       setProjects([]); setHistory(null); setPreview(null); setNewFormatSaveEnabled(false);
-      const epoch = accountEpoch();
-      void api().then(result => { if (mounted && epoch === accountEpoch() && typeof result.ownerId === 'string') { setProjects(result.projects); setNewFormatSaveEnabled(result.newFormatSaveEnabled === true); } }).catch(() => {});
     };
-    reload();
-    const unsubscribe = subscribeAccountChanges(reload);
-    return () => { mounted = false; unsubscribe(); };
+    // Opening a local project does not opt into account access. Session changes
+    // clear the old account's view; only an explicit cloud action fetches it.
+    return subscribeAccountChanges(invalidate);
   }, []);
   const lock = useRef(false);
   const preflight = cloudPreflight(project);

@@ -22,6 +22,10 @@ Read-only public-browser observations around 10:26–10:33 AM Eastern: canonical
 
 ## Current blockers and release gates
 
+### Local-only regression discovered during release integration
+
+Editor run `39270651040` failed the retained no-provider-request check: opening/importing a supported legacy local document mounted the account panel and automatically fetched `/api/playground/projects`. The continuation removes that mount/session-change fetch. Session changes still clear the previous account's list, history, proposal and new-format capability; explicit Refresh/Open/Save actions keep their authorization and account-epoch checks. The production-component hook regression verifies zero requests on mount/session change, one GET on explicit Refresh, and removal of the old account list without fetching the next account. Existing three-engine persistence acceptance retains its strict zero-request assertion. This frontend-only correction changes no shared runtime, account identity, API, provider flag or backend pin.
+
 The Stripe connector exposes only the LIVE Eidos Works context. Intended TEST access, actual endpoint/event HTTP results and the selected guest 105/76 paid lifecycle remain unavailable. The account-access link was presented to Brent; no LIVE operation was substituted. Historical webhook retry cutoffs remain October 19 at 9:46:45 PM and 9:49:31 PM Eastern, not proof of a currently failed or obsolete route.
 
 This is a source recovery, not hosted account acceptance. Real Google consent/password confirmation/reset inbox delivery, two controlled member identities, owner-console access, isolated saved-project reopen and intended signed TEST lifecycle remain open. Existing deployment workflow still pins the older backend; do not use it to claim this new pair is hosted. No database/binding/credential/provider/cost/schedule changes or production promotion occurred. Production remains unaccepted for the held runtime.
