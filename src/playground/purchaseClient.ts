@@ -33,7 +33,13 @@ export function validateCapabilities(input: unknown): DeliveryCapabilities {
   if (value.mode === 'live' && (value.localTest || !value.turnstileSiteKey)) throw Error('LIVE purchases require production verification.');
   return { mode: value.mode as 'test' | 'live', ownerId: value.ownerId as string, available: value.available, reason: value.reason as string || '', limits: { snapshotBytes: limits.snapshotBytes as number, archiveBytes: limits.archiveBytes as number }, products, turnstileSiteKey: value.turnstileSiteKey as string, localTest: value.localTest };
 }
-export async function fetchDeliveryCapabilities(request: Fetch = fetch) { return validateCapabilities((await jsonRequest('/api/playground/delivery?capabilities=1', undefined, request)).capabilities); }
+export async function fetchDeliveryCapabilities(request: Fetch = fetch) {
+  try { return validateCapabilities((await jsonRequest('/api/playground/delivery?capabilities=1', undefined, request)).capabilities); }
+  catch (error) {
+    if (error instanceof PurchaseRequestError && error.status === 503) throw new PurchaseRequestError(503, 'Account purchases are unavailable right now. You can keep editing and download your page package locally.');
+    throw error;
+  }
+}
 export function matchingProduct(capabilities: DeliveryCapabilities, frozen: FrozenPackage): DeliveryProduct | null {
   const parent = frozen.snapshot.parent;
   if (!parent) return null;

@@ -52,7 +52,7 @@ async function scenario(browser, engine, width, name, action) {
     record.calls.push({ path: url.pathname + url.search, method: request.method(), ...(input?.artifact ? { artifact: input.artifact } : {}) });
     if (url.pathname === '/api/playground/delivery' && url.search === '?capabilities=1') {
       if (state.holdCapability) await state.holdCapability.promise;
-      if (!state.availability) return route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'Current checkout intentionally unavailable in recovery fixture.' }) });
+      if (!state.availability) { record.expectedHttpDenials.push({ status: 503, url: url.href }); return route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'Member sign-in is being connected. The complete Insights archive is free to read now.' }) }); }
       return reply({ capabilities: { mode: 'test', ownerId: state.owner, available: true, reason: null, limits: { snapshotBytes: 1500000, archiveBytes: 6000000 }, turnstileSiteKey: state.localTest ? '' : 'fixture-site-key', localTest: state.localTest,
         products: [{ productId: parent.editionId, editionId: 'developer', version: parent.version, priceCents: state.priceCents, currency: 'usd', parentArchiveSha256: parent.sha256, parentArchiveBytes: parent.bytes }] } });
     }
@@ -104,6 +104,21 @@ async function scenario(browser, engine, width, name, action) {
 
 for (const engine of engines) {
   const browser = await pw[engine].launch({ headless: true, ...(engine === 'chromium' ? { args: ['--disable-gpu'] } : {}) });
+  for (const width of [1440, 390]) await scenario(browser, engine, width, 'unavailable-purchase-local-download', async ({ page, record, check, create, runOut }) => {
+    await page.goto(base + '/playground/', { waitUntil: 'domcontentloaded' }); await create('Local page while purchases are unavailable');
+    await page.getByRole('button', { name: 'Finish', exact: true }).click();
+    await page.getByRole('button', { name: 'Prepare current draft', exact: true }).click();
+    await page.getByLabel('I reviewed this frozen version for my local download.', { exact: true }).check();
+    await page.getByRole('button', { name: 'Check account purchase availability', exact: true }).click();
+    await page.locator('.pg-purchase-flow [role="alert"]').filter({ hasText: 'Account purchases are unavailable right now. You can keep editing and download your page package locally.' }).waitFor();
+    assert.equal(await page.getByRole('button', { name: 'Purchase unavailable', exact: true }).isDisabled(), true);
+    assert.deepEqual(record.calls, [{ path: '/api/playground/delivery?capabilities=1', method: 'GET' }]);
+    const waiting = page.waitForEvent('download'); await page.getByRole('button', { name: 'Download page package', exact: true }).click();
+    const file = path.join(runOut, 'local-page.zip'); await (await waiting).saveAs(file);
+    assert.ok((await readFile(file)).length > 1000);
+    await page.screenshot({ path: path.join(runOut, 'unavailable-purchase-local-download.png'), fullPage: true });
+    check('disabled purchase shows a contextual message, retains local ZIP download and makes no POST, checkout or payment request');
+  });
   for (const width of [1440, 390]) await scenario(browser, engine, width, 'fresh-recovery', async ({ page, context, record, check, saved, save, closeFinish, runOut }) => {
     await page.goto(base + '/playground/?checkout=returned#receipt=' + privateReceipt, { waitUntil: 'domcontentloaded' });
     await page.getByRole('button', { name: 'Restore my approved page', exact: true }).waitFor();
