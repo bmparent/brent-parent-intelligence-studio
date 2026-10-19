@@ -174,6 +174,9 @@ function generateSitemap() {
       lastmod: '2026-09-15',
       priority: '0.8',
     },
+    { loc: absolute('/quote-desk/'), lastmod: '2026-10-15', priority: '0.7' },
+    { loc: absolute('/quote-desk/quote-guide'), lastmod: '2026-10-15', priority: '0.6' },
+    { loc: absolute('/demos/wellway/'), lastmod: '2026-10-15', priority: '0.6' },
     {
       loc: absolute('/services/intelligent-systems'),
       lastmod: '2026-09-15',

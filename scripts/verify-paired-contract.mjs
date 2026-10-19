@@ -1,3 +1,4 @@
+import { platformSourceFiles } from './works-platform-files.mjs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -17,6 +18,10 @@ const contractFiles = [
   { path: 'migrations/0007_operations.sql', normalization: 'UTF-8 LF' },
   { path: 'functions/_shared/platform/studioAgents.ts', normalization: 'UTF-8 LF' },
 ];
+const registered = new Set(contractFiles.map(file => file.path));
+for (const path of await platformSourceFiles()) {
+  if (!registered.has(path)) contractFiles.push({path, normalization: 'UTF-8 LF'});
+}
 const exactRevisions = Boolean(process.env.SITE_REVISION && process.env.BACKEND_REVISION);
 const readGitBlob = (cwd, revision, path) => execFileSync('git', ['show', `${revision}:${path}`], { cwd, maxBuffer: 8_000_000 });
 const checks = [];

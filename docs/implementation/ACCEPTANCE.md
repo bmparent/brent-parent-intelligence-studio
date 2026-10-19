@@ -1,3 +1,7 @@
+# Current account recovery — October 19, 2026
+
+The successor account candidate reconciles current public main with the held account pair. See [the October 19 source, verification and remaining hosted gates](ACCEPTANCE_2026-10-19.md). Prior candidate and public-release receipts below retain their original dates and scope; they do not accept this new pair.
+
 # Candidate acceptance and release gates
 
 ## Current paired-candidate recovery — 2026-10-13
@@ -81,7 +85,41 @@ The fresh seven-day public-category report has five consented tab/day sessions, 
 
 The paired candidate now incorporates current main's editorial voice and studio/contact routing while retaining the release stack. See [the September 30 reconciliation record](ACCEPTANCE_2026-09-30.md) for exact tested trees, shared-source parity, local checks and the browser-verification boundary. The hosted/provider gates below remain open. Production is still **NO-GO**.
 
-## Public-site release acceptance — 2026-09-30
+
+# October 17 local editor release candidate
+
+The isolated local editor release, safety boundaries, evidence and remaining production gates are recorded in [PLAYGROUND_LOCAL_EDITOR_2026-10-17.md](PLAYGROUND_LOCAL_EDITOR_2026-10-17.md). This candidate does not enable hosted AI, paid checkout or new-format cloud saves. Exact-head CI and deployed-source readback are required before claiming publication.
+
+# Public-site release acceptance — 2026-09-30
+
+## October 16 retained Insights publication
+
+PR110 resumes the existing "Reduced Motion Without a Reduced Experience" practical guide. Its incorrect October 7 publication and modified timestamps are corrected to the October 16 release cut; the original Wednesday midday slot and October 14 recovery remain in the [publication receipt](../../artifacts/insights/runs/2026-10-16-pr110-date-correction/publication.json). Article text, URL, byline, research metadata and other articles remain unchanged. This release incorporates current public main `895aa81f58d76e3595745d01890235012482064d` and preserves the separate dirty local checkouts.
+
+The new midday run receipt records all nine local publication gates. Exact-head CI, the main Cloudflare deployment receipt and explicit live article/JSON-LD/RSS/JSON-feed/sitemap date comparisons are required before publication is claimed. The final deployment evidence is retained separately to avoid triggering a second production upload for a status-only commit. The existing Friday 18:00 America/New_York job remains in place. No backend, provider configuration or held runtime acceptance changes are included; rollback uses the preceding public-main source and its existing Pages deployment.
+
+## October 15 advertising service copy
+
+Brent requested a simple update to the services offered. The isolated copy change starts at public main `b8bfbbc4e6f9dd73c7c899f0b32e829207314b75` on `codex/services-advertising-20261015`. The About/services overview and Digital Experiences capability list now include paid advertising on ChatGPT, Facebook, Instagram, Google, YouTube, LinkedIn, TikTok and other major platforms. The existing homepage invitation, Digital Experiences metadata and Service JSON-LD also reflect advertising. The description covers campaign setup/management, creative, landing pages, conversion tracking and reporting without performance guarantees or partnership claims. ChatGPT advertising availability was verified against https://ads.openai.com/ on October 15, 2026.
+
+Local lockfile install, lint (zero errors; existing Wellway Fast Refresh warning), TypeScript/client/SSR build, prerender, 34-route editorial verification, URL checks and Pages Functions compilation pass. This environment lacks a local Chromium binary; existing exact-head CI supplies desktop/390px browser checks. CI and the production deployment/readback receipts are recorded on the scoped PR before live publication is claimed. The change has no backend, account, payment, provider, workflow, CSS or private-data changes. PR114's separate presentation work and the held paired runtime remain separate. Reverting this scoped change through the existing release workflow restores the baseline copy; no data migration is involved.
+
+## October 15 public indexing repair
+
+PR112 removed the free Quote Desk estimator’s HTML exclusion but left its Cloudflare response header exclusion. The scoped follow-up removes that header, makes the linked free quoting guide eligible, and includes the already public Wellway demo in the sitemap. Private pages, unreleased workspace policies and preview exclusions remain intact. The inventory, response-header regression gate, exact release evidence and rollback are tracked in [PUBLIC_INDEXING_2026-10-15.md](PUBLIC_INDEXING_2026-10-15.md). Search eligibility does not establish actual search-engine indexing.
+
+## October 13 security reporting contact
+
+Brent requested configuring security.txt on Cloudflare. The scoped public-main
+change serves a plain-text reporting file at `/.well-known/security.txt`, adds a
+legacy-path redirect and records the contact, expiration, release verification
+and rollback in [SECURITY_TXT_2026-10-13.md](SECURITY_TXT_2026-10-13.md). Exact-head
+CI and live HTTP readback are maintained on its PR. This scope does not accept
+the held account/template runtime or establish inbox-delivery acceptance.
+
+## October 13 community loading repair
+
+Brent reported the Agent Exchange conversation list remaining in its loading state. The active-category control reproduced the live failure after three conversations loaded: selecting the same category set loading without triggering its unchanged fetch effect. The isolated frontend repair preserves the list on reselect, with mouse/keyboard, desktop/phone, category-change and failed-read retry checks in the existing browser suite. Evidence, release requirements and rollback are recorded in [COMMUNITY_LOADING_2026-10-13.md](COMMUNITY_LOADING_2026-10-13.md). This change requires no backend or data migration.
 
 ## October 7 immediate community replies
 
@@ -93,7 +131,7 @@ Brent authorized the next paid-launch work and a customer-perspective walkthroug
 
 Brent explicitly authorized merging the gallery and other mergeable PRs and taking the result live on September 30. This release starts from production/main `e0f5ca9c0b81542929960aa6ada075f81ad0240b` and extracts public presentation changes from the previously stacked branches. It does not merge the paired implementation candidate in site #73 or backend #67.
 
-### Scope and impact
+## Scope and impact
 
 - Gallery #80: three fictional full-page website concepts, thumbnails, filter/search, reading dialog and customer briefs. No business offers or client outcomes are implied.
 - Service showcases #74–76: public project pages and local fictional demonstrations. Their frontend-only dependencies are reviewed separately from the larger paired candidate.
@@ -102,17 +140,13 @@ Brent explicitly authorized merging the gallery and other mergeable PRs and taki
 
 The original stacked heads remain available on backup branches before rebasing. Rebased branches must contain no ancestry from the unaccepted paired candidate. The release must pass local lint/build/editorial/route checks and exact-head GitHub checks before main promotion. Main's existing workflow deploys the verified build to the existing Cloudflare Pages project `eidosworks`; it checks the current main SHA before upload and reads the deployment back.
 
-### Evidence and limitations
+## Evidence and limitations
 
 Baseline: [main workflow 36651895749](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/36651895749) passed, deployed `e0f5ca9`, and verified the production identity and delivered assets. Its upload URL was `https://02b448c0.eidosworks.pages.dev`. The canonical homepage was read in Chromium before this release and showed the previous 18-entry gallery.
 
 Candidate, merged and live checks are recorded in `PUBLIC_RELEASE_2026-09-30.md` as they become available. Local or CI browser widths are not physical-device or assistive-technology acceptance. The larger paired identity, owned cloud reopen, owner security, inbox and Stripe TEST gates remain open on #73/#67; those gates are not accepted by this public presentation release. Quote Desk remains configured for TEST with checkout disabled and requires its own hosted acceptance.
 
 Rollback uses the existing main/deployment baseline above and preserves customer data. No data migration is part of this release.
-
-## Published-gallery reconciliation — 2026-10-01
-
-The paired candidate now incorporates the September 30 public gallery/service release while preserving its published presentation and the held account/payment implementation. See [the October 1 reconciliation record](ACCEPTANCE_2026-10-01.md) for exact source parents, current checks and open gates. Public-release acceptance above does not accept the combined runtime. Production remains **NO-GO** for this paired candidate.
 
 ## October 1 storefront gallery follow-up
 

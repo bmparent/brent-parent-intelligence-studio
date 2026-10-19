@@ -1,0 +1,109 @@
+{
+  "slug": "after-submit-website-tell-truth-about-waiting",
+  "resumed_scheduled_at": "2026-10-12T08:00:00-04:00",
+  "published_at": "2026-10-13T18:46:21.153Z",
+  "original_run_id": "2026-10-12T12-05-55-morning",
+  "original_failure": "eslint missing from fresh worktree",
+  "recovery_base": "88e209133d53807f85ffa870fa139b35d6e76d81",
+  "new_articles": 1,
+  "older_backlog_published": false,
+  "changes": [
+    "publication timestamp reflects actual release day",
+    "CTA uses current /contact route"
+  ],
+  "release_status": "pending PR checks and deployment",
+  "dependency_install": {
+    "command": "npm ci --no-audit --no-fund",
+    "exit_code": 0,
+    "packages_added": 190
+  },
+  "initial_trusted_validation": {
+    "command": "npm run validate:insights",
+    "exit_code": 0,
+    "published_articles": 19
+  },
+  "automations": [
+    {
+      "id": "eidos-works-insights-morning-current-analysis",
+      "status": "ACTIVE",
+      "schedule": "Monday 08:00 America/New_York"
+    },
+    {
+      "id": "eidos-works-insights-midday-practical-guide",
+      "status": "ACTIVE",
+      "schedule": "Wednesday 13:00 America/New_York"
+    },
+    {
+      "id": "eidos-works-insights-evening-strategy",
+      "status": "ACTIVE",
+      "schedule": "Friday 18:00 America/New_York"
+    }
+  ],
+  "automation_changes": [
+    "install lockfile dependencies before validation",
+    "resume retained slot on current main",
+    "run all nine gates including editorial and Functions",
+    "wait for existing CI Direct Upload and production verification"
+  ],
+  "automation_fields_preserved": [
+    "IDs",
+    "names",
+    "weekly cadence",
+    "local project",
+    "model",
+    "reasoning effort",
+    "status",
+    "notification preference"
+  ],
+  "production_workflow": ".github/workflows/playground-editor-release.yml",
+  "limits": [
+    "next scheduled unattended run not yet observed",
+    "older blocked backlog preserved and not published"
+  ],
+  "local_gate_report": "../runs/2026-10-13T18-51-35-morning/run_report.json",
+  "local_validation": [
+    {
+      "command": "npm run content:generate",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run validate:insights",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run lint",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run verify:prerender",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run verify:editorial",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run validate:insights:dist",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run verify:urls",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run build:functions",
+      "exit_code": 0
+    }
+  ],
+  "runner_regression_tests": {
+    "command": "node --test scripts/test-insight-run.mjs",
+    "passed": 6,
+    "failed": 0,
+    "evidence": "runner-tests.txt"
+  },
+  "local_gate_status": "passed"
+}

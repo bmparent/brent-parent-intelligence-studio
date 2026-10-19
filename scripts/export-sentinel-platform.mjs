@@ -1,3 +1,4 @@
+import { platformSourcePaths } from './works-platform-files.mjs';
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
@@ -10,18 +11,8 @@ const pkg = JSON.parse(await readFile(resolve(app, 'package.json'), 'utf8'));
 if (pkg.name !== 'eidos-sentinel-lab') throw Error('Destination is not Sentinel Lab.');
 const vendor = resolve(app, 'lib/works/vendor');
 await mkdir(vendor, { recursive: true });
-const files = [
-  'functions/_shared/platform',
-  'functions/_shared/snapshot/stripe.ts', 'functions/_shared/snapshot/http.ts', 'functions/_shared/snapshot/types.ts',
-  'functions/api/assistant.ts', 'functions/api/public-config.ts', 'functions/api/operations',
-  'functions/api/community', 'functions/api/members', 'functions/api/shop', 'functions/community',
-  'functions/api/playground', 'src/playground/model.ts', 'src/playground/approved-glass-preset.json',
-  'src/playground/aiOperations.ts', 'src/playground/media.ts', 'src/playground/limits.ts', 'src/playground/export.ts', 'src/playground/renderer.ts', 'src/playground/runtime.ts', 'src/playground/pageStyles.ts', 'src/playground/glassBundle.ts',
-  'src/playground/compositionSchema.ts', 'src/playground/composition.ts', 'src/playground/compositionRenderer.ts', 'src/playground/compositionRuntime.ts',
-  'src/playground/authoringSchema.ts', 'src/playground/authoring.ts', 'src/playground/authoringRenderer.ts', 'src/playground/authoringRuntime.ts', 'src/playground/releaseBoundary.ts', 'src/playground/workspace.ts',
-  'migrations',
-];
-for (const file of files) {
+
+for (const file of platformSourcePaths) {
   await mkdir(resolve(vendor, file, '..'), { recursive: true });
   await cp(resolve(file), resolve(vendor, file), { recursive: true });
 }

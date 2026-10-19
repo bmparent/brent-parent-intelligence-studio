@@ -12,6 +12,10 @@ for(const path of routes) {
   assert.ok(html.includes('application/ld+json'));results.push({path,canonical:true,title:true,description:true,social:true,h1:true,cta:true,sitemap:true});
 }
 assert.match(await readFile('dist/robots.txt','utf8'),/Sitemap: https:\/\/eidos-works.com\/sitemap.xml/);
+const quoteDesk=await readFile('dist/quote-desk/index.html','utf8');
+assert.ok(quoteDesk.includes('rel="canonical" href="https://eidos-works.com/quote-desk/"'));
+assert.ok(!/<meta name="robots"[^>]*noindex/i.test(quoteDesk),'free estimator must not be noindexed');
+assert.ok(sitemap.includes('<loc>https://eidos-works.com/quote-desk/</loc>'),'free estimator is in the generated sitemap');
 const latest=JSON.parse(await readFile('src/data/articles.json','utf8')).sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt))[0];
 assert.ok((await readFile(`dist/insights/${latest.slug}/index.html`,'utf8')).includes('utm_source=eidos_insights'));
 await mkdir('artifacts/growth/phase1-20260920',{recursive:true});

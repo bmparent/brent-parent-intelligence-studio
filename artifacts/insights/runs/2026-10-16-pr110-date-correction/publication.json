@@ -1,0 +1,23 @@
+{
+  "article_slug": "reduced-motion-without-reduced-experience",
+  "pull_request": "https://github.com/bmparent/brent-parent-intelligence-studio/pull/110",
+  "review_comment": "https://github.com/bmparent/brent-parent-intelligence-studio/pull/110#discussion_r4273989668",
+  "original_pr_head": "f4826377c7d939963ba70cf1dc064232a2fa3fe8",
+  "production_source_baseline": "895aa81f58d76e3595745d01890235012482064d",
+  "original_scheduled_slot": {
+    "slot": "midday",
+    "scheduled_at": "2026-10-07T13:00:00-04:00",
+    "timezone": "America/New_York"
+  },
+  "previous_recovery_run": "artifacts/insights/runs/2026-10-14T17-09-50-midday",
+  "publication_timestamp": "2026-10-16T11:39:00Z",
+  "timestamp_basis": "October 16 publication release cut; the subsequent Cloudflare deployment time is recorded separately in the final release receipt.",
+  "change_scope": "Correct publishedAt and updatedAt for the existing article and regenerate outputs. All other article fields and all other article records are preserved.",
+  "schedule_reconciliation": "Resume the retained midday article through existing PR110. The existing Friday 18:00 America/New_York automation remains the third weekly slot; no duplicate job is created.",
+  "local_work_preserved": [
+    "C:/Users/bmpar/codex-worktrees/insights-wednesday-20261014-resume",
+    "C:/Users/bmpar/OneDrive/Documents/brent-parent-intelligence-studio-live"
+  ],
+  "quality_gate": "All nine commands passed in artifacts/insights/runs/2026-10-16T11-40-59-midday; lint has zero errors and the existing Wellway Fast Refresh advisory. Exact-head CI is still required.",
+  "production_status": "Not yet deployed by this correction. Merge, Cloudflare upload and live article/feed/sitemap verification must be recorded separately."
+}

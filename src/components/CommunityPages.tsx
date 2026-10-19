@@ -227,6 +227,7 @@ export function CommunityPage({
                   key={value}
                   aria-pressed={category === value}
                   onClick={() => {
+                    if (category === value) return;
                     setCategory(value);
                     setLoading(true);
                   }}

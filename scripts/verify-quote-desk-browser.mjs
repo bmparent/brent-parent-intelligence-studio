@@ -155,7 +155,8 @@ try {
         }
         await page.getByRole('heading', { name: /Quote the job.*Know the time/ }).waitFor();
         assert.match(await page.title(), /Eidos Quote Desk/);
-        assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, follow');
+        assert.equal(await page.locator('meta[name="robots"]').count(), 0, 'free estimator is eligible for indexing');
+        assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://eidos-works.com/quote-desk/');
         await page.waitForFunction(() => document.getElementById('quote-price').textContent.startsWith('$'));
         assert.equal(await page.locator('.print-details').isVisible(), false, 'print-only assumptions stay out of the screen estimate');
         const initial = await page.locator('#quote-price').innerText();
@@ -242,7 +243,18 @@ try {
           assert.match(submittedFeedback.problem, /Typical weekly embroidery quotes: 6–15/);
           assert.match(submittedFeedback.problem, /Interest at the proposed \$19\/month: I might try it/);
           await verifyContactServiceSelection(page, width);
-          assert.deepEqual(errors, [], 'no browser errors after contact service changes');
+          await page.goto(base + '/quote-desk/quote-guide', { waitUntil: 'networkidle' });
+          assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://eidos-works.com/quote-desk/quote-guide');
+          await page.locator('#guide-feedback-link').click();
+          await page.getByRole('heading', { name: /Tell us what needs to become better/ }).waitFor();
+          const guideFeedbackUrl = new URL(page.url());
+          assert.equal(guideFeedbackUrl.pathname.replace(/\/$/, ''), '/contact');
+          assert.equal(guideFeedbackUrl.searchParams.get('utm_source'), 'quote-desk');
+          assert.equal(guideFeedbackUrl.searchParams.get('utm_content'), 'quote-guide');
+          await page.waitForFunction(() => document.querySelector('.ew-contact-form select')?.value === 'Quote Desk workspace feedback');
+          assert.equal(await page.getByLabel('About how many embroidery quotes do you build in a typical week?').isVisible(), true);
+          assert.equal(await page.getByLabel('If it handled that workflow well, how does $19/month feel?').isVisible(), true);
+          assert.deepEqual(errors, [], 'no browser errors after contact and guide handoffs');
         }
         console.log(`PASS Quote Desk ${width}/${storage}: discovery, estimate, print, validation recovery, honest availability, no account requests${storage === 'available' ? ', inquiry navigation' : ''}`);
       } finally { await context.close(); }

@@ -139,6 +139,7 @@ export function DigitalExperiencesPage() {
         <div><dt>InkSoft storefront customization</dt><dd>Branded HTML and CSS entrances, collection navigation, and responsive ecommerce UX within an existing hosted commerce platform.</dd></div>
         <div><dt>Responsive web design & UI/UX</dt><dd>Mobile layouts, keyboard controls, product inspection, HTML Canvas animation, and reduced-motion options built around useful customer actions.</dd></div>
         <div><dt>Technical SEO & search-ready content</dt><dd>Descriptive page titles, semantic HTML, canonical URLs, structured data, and prerendered service and case-study content. <a href="/services/agentic-seo">Explore our search-readiness approach →</a></dd></div>
+        <div><dt>Digital advertising & campaign management</dt><dd>Campaign setup and management across ChatGPT, Facebook, Instagram, Google, YouTube, LinkedIn, TikTok, and other major advertising platforms, with ad creative, landing pages, conversion tracking, and performance reporting.</dd></div>
       </dl>
     </section>
 

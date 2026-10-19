@@ -156,7 +156,10 @@ export function createWorker(services={}){
           headers.set('content-security-policy',"default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; img-src 'self' data:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
           headers.set('referrer-policy','no-referrer');headers.set('x-content-type-options','nosniff');return new Response(res.body,{status:res.status,headers});
         }
-        if(path==='/api/config'&&request.method==='GET')return json({environment:env.QUOTE_ENVIRONMENT||'test',priceCents:1900,checkoutEnabled:env.QUOTE_CHECKOUT_ENABLED==='true',signInEnabled:Boolean(env.QUOTE_DB&&env.RESEND_API_KEY&&env.QUOTE_MAIL_FROM&&env.QUOTE_RATE_SECRET),turnstileSiteKey:env.TURNSTILE_SITE_KEY||null});
+        if(path==='/api/config'&&request.method==='GET'){
+          const signInEnabled=Boolean(env.QUOTE_DB&&env.RESEND_API_KEY&&env.QUOTE_MAIL_FROM&&env.QUOTE_RATE_SECRET?.length>=32&&(local(request,env)||(env.TURNSTILE_SITE_KEY&&env.TURNSTILE_SECRET_KEY)));
+          return json({environment:env.QUOTE_ENVIRONMENT||'test',priceCents:1900,checkoutEnabled:env.QUOTE_CHECKOUT_ENABLED==='true',signInEnabled,turnstileSiteKey:env.TURNSTILE_SITE_KEY||null});
+        }
         if(path==='/api/webhook'&&request.method==='POST'){
           if(!env.STRIPE_WEBHOOK_SECRET)fail(503,'Webhook verification is not configured.');
           const raw=await textBody(request,256000);const stripe=stripeFor(env);let event;

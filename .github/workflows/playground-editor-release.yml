@@ -12,7 +12,7 @@ concurrency:
 jobs:
   local-editor:
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,13 +24,26 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run playground:glass
       - name: Local editing, export and server/client cloud boundary tests
-        run: node --import tsx --test scripts/test-playground-composition.ts scripts/test-playground-composition-integration.ts scripts/test-playground-media.ts scripts/test-playground-structure.ts scripts/test-playground-workspace.ts scripts/test-playground-editor-release.ts scripts/test-playground-editor-review.ts
+        run: node --import tsx --test scripts/test-playground-composition.ts scripts/test-playground-composition-integration.ts scripts/test-playground-media.ts scripts/test-playground-image-import.ts scripts/test-playground-structure.ts scripts/test-playground-workspace.ts scripts/test-playground-editor-release.ts scripts/test-playground-editor-review.ts
       - run: npm run build
+      - name: Public indexing policy and final Pages response headers
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npm run test:indexing
+          npm run verify:indexing
+          # The pinned local workerd supports this date. This affects only local
+          # static/Functions verification, never production configuration.
+          npx --no-install wrangler pages dev dist --ip 127.0.0.1 --port 8791 --compatibility-date 2026-06-10 --local >"$RUNNER_TEMP/indexing-pages.log" 2>&1 &
+          INDEXING_PID=$!
+          trap 'kill "$INDEXING_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8791/quote-desk/ >/dev/null && break || sleep 1; done
+          node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8791 --output="$RUNNER_TEMP/indexing-local.json"
       - name: Install isolated browser test tools (no repository dependency changes)
         run: |
           npm install --prefix "$RUNNER_TEMP/pg-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/pg-browser/node_modules/.bin/playwright" install --with-deps chromium firefox webkit
-      - name: Actual React editor acceptance in three engines and two widths
+      - name: Unified local editor acceptance in three engines and three widths
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/pg-browser/node_modules/playwright
           PG_EVIDENCE_DIR: ${{ runner.temp }}/pg-evidence
@@ -39,8 +52,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done
-          node scripts/verify-playground-editor-browser.mjs
-          node scripts/verify-playground-journey.mjs
+          node scripts/verify-playground-local-release.mjs
           node scripts/verify-hero-browser.mjs
           node scripts/verify-digital-experiences-browser.mjs
           node scripts/verify-business-systems-browser.mjs
@@ -119,8 +131,24 @@ jobs:
           PG_BASE_URL: https://eidosworks.pages.dev
           PG_ENGINES: chromium
         run: |
-          node scripts/verify-playground-editor-browser.mjs
+          node scripts/verify-playground-local-release.mjs
           node scripts/verify-quote-desk-browser.mjs
+      - name: Verify stable production indexing and retained exclusions
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: node scripts/verify-indexing.mjs --base-url=https://eidosworks.pages.dev --output="$RUNNER_TEMP/indexing-pages-production.json"
+      - name: Verify canonical domain through the propagation window
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          # Keep every attempt's evidence. A persistent challenge or policy
+          # failure remains an unverified canonical host, never a passing audit.
+          for attempt in 1 2 3 4; do
+            if node scripts/verify-indexing.mjs --base-url=https://eidos-works.com --output="$RUNNER_TEMP/indexing-canonical-production-$attempt.json"; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 4 ]; then sleep 30; fi
+          done
+          echo '::error::Canonical-domain indexing verification did not pass after four attempts. Inspect response evidence for an indexing failure, stale delivery or an access challenge; do not claim live canonical eligibility.'
+          exit 1
       - name: M2 live Friction Review desktop and mobile acceptance
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[m2-friction-qa]')
         env:
@@ -146,6 +174,8 @@ jobs:
             ${{ runner.temp }}/pg-production-evidence
             ${{ runner.temp }}/pg-preview.log
             ${{ runner.temp }}/pg-pages-receipt.json
+            ${{ runner.temp }}/indexing-*.json
+            ${{ runner.temp }}/indexing-pages.log
             ${{ runner.temp }}/growth-local
             ${{ runner.temp }}/growth-production
             ${{ runner.temp }}/growth-local.log

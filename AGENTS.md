@@ -21,14 +21,19 @@ These rules apply when working in this repository on Eidos Works public-site con
 4. Run:
 
 ```bash
+npm ci --no-audit --no-fund
 npm run content:generate
 npm run validate:insights
 npm run lint
 npm run build
 npm run verify:prerender
+npm run verify:editorial
 npm run validate:insights:dist
 npm run verify:urls
+npm run build:functions
 ```
+
+Install the lockfile dependencies in each fresh isolated worktree before the gate. Do not borrow executables or `node_modules` from another checkout. `npm run publish:insight-run -- --slot=<slot>` checks local dependency entry points and records all nine quality commands; a missing dependency blocks before generated content changes.
 
 For an untrusted pull request or draft, begin with `npm run validate:insights -- --skip-source-fetch` so contributor-controlled source URLs are not requested. The normal trusted publish gate must still run `npm run validate:insights` with source retrieval enabled when current external claims depend on those sources.
 

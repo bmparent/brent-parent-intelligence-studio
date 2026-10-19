@@ -1958,5 +1958,218 @@
       "href": "/#contact"
     },
     "ogImage": "/insights-og/good-website-does-not-ask-you-remember-everything.svg"
+  },
+  {
+    "title": "After Submit, a Website Should Tell the Truth About Waiting",
+    "slug": "after-submit-website-tell-truth-about-waiting",
+    "description": "An essay about the small moment after a customer asks for help, and why a trustworthy website makes the next step clear without pretending the wait does not exist.",
+    "dek": "A form can collect a question in seconds. The harder work is telling a person, honestly, what their question has entered and what will happen next.",
+    "category": "Website Strategy",
+    "publishedAt": "2026-10-13T18:46:21.153Z",
+    "updatedAt": "2026-10-13T18:46:21.153Z",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 5,
+    "tags": [
+      "Website strategy",
+      "Customer experience",
+      "Digital trust",
+      "Contact forms"
+    ],
+    "canonicalPath": "/insights/after-submit-website-tell-truth-about-waiting",
+    "excerpt": "A form can collect a question in seconds. The harder work is telling a person, honestly, what their question has entered and what will happen next.",
+    "pillar": "Website strategy, information architecture, and content design",
+    "slot": "morning",
+    "format": "essay",
+    "searchIntent": "Explore what a small-business website should communicate after someone submits a question or request.",
+    "featured": false,
+    "draft": false,
+    "thesis": "The moment after submit is part of the customer experience: a trustworthy small-business website acknowledges the request, preserves orientation, and names the next human step without manufacturing instant certainty.",
+    "sources": [],
+    "takeaways": [],
+    "relatedSlugs": [
+      "good-website-does-not-ask-you-remember-everything",
+      "accessible-quote-form-errors-recovery",
+      "website-snapshot-before-redesign"
+    ],
+    "body": [
+      {
+        "heading": "The quiet minute after the button changes",
+        "paragraphs": [
+          "Someone sends a question when the rest of the day has finally made a little room. It may be after the store has closed, while a child is asleep, between two shifts, or in the thin pause before a meeting begins. The question is often ordinary: Can you make this? Is this still available? What would it cost? But asking it can take more resolve than a business remembers.",
+          "Then the button changes. A spinner disappears. A sentence says thank you. The browser remains open, and the person is left to decide what that sentence means. Was the message received? Did they write the right email? Will someone answer tomorrow, next week, or not at all? Should they send it again?",
+          "That small uncertainty is easy to dismiss because no page is visibly broken. But it is part of the experience. A form does not end when it accepts text. It ends when a person knows where their question has gone and what kind of waiting they have agreed to."
+        ]
+      },
+      {
+        "heading": "Waiting is not a design failure",
+        "paragraphs": [
+          "A small business cannot always answer immediately. Nor should a website pretend otherwise with the choreography of instant service: a bright confirmation, a promise that someone is already on it, a simulated sense of motion with no human behind it. Speed can be useful. False certainty is not.",
+          "The better promise is more modest. We received your request. Here is the information we have recorded. Here is when or how the team usually responds. Here is what you can do if the matter is urgent, and here is a route back if you need to correct something. These details do not erase the wait. They give it a shape.",
+          "There is dignity in that shape. It lets a customer put the matter down for a while without wondering whether the system has misplaced it. It also makes a business more accountable to its own process. Once a page names the next step, the team can see whether it is truly able to keep that promise."
+        ]
+      },
+      {
+        "heading": "The request is not just a lead",
+        "paragraphs": [
+          "Digital systems encourage businesses to see a submitted form as a unit moving into a funnel. That view can be useful for organizing work, but it is incomplete. On the other side of the record is a person who has offered time, contact information, and a little trust. They may be comparing providers. They may be trying to solve a problem before a deadline. They may simply be looking for evidence that a real person will meet them halfway.",
+          "The interface cannot create the human response by itself. It can, however, avoid making the person carry the confusion of the business's internal workflow. It can ask only for information that will help the next person act. It can preserve a clear summary. It can resist the temptation to hide the response path behind a generic success message.",
+          "This is not a promise that every inquiry becomes work. It is a promise that the inquiry will be treated as communication rather than as raw material. That distinction is where trust begins to become operational."
+        ]
+      },
+      {
+        "heading": "What the page can carry",
+        "paragraphs": [
+          "At Eidos Works, the moment after submit belongs in the same design conversation as the form itself. The page needs a clear success state, a useful error-recovery path, and language that reflects the actual handoff. If a request goes to a small team, the confirmation should not imitate a call center. If a detail is required before a quote can be prepared, the person should be told what that detail changes.",
+          "The technical choices serve that honesty. Accessible error messages help a visitor correct a problem before their request disappears into uncertainty. A durable confirmation state makes it clear that the action completed. A well-scoped form keeps the next human from having to infer the purpose of the message. These are practical choices, but they are also choices about attention: whose attention is protected, and whose is spent.",
+          "A contact path is strongest when it makes no grand promise beyond its evidence. It says what happened. It says what comes next. It leaves room for the person to continue their evening."
+        ]
+      },
+      {
+        "heading": "A door that closes gently",
+        "paragraphs": [
+          "Good digital experiences are often praised for opening doors: more options, faster access, a quick way to begin. There is another responsibility at the end of a small interaction. A website should know how to close a door gently.",
+          "That does not mean making the visitor disappear. It means letting them leave with their bearings. Their request has a name. The business has a next move. The waiting has not been disguised as magic. The question can rest until an answer arrives.",
+          "For a small business, that kind of clarity is not decorative polish. It is a way of being recognizable before anyone has picked up the phone: a promise that when a person reaches out, the page will not leave them alone with the silence it created."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Talk through your customer contact path",
+      "href": "/contact"
+    },
+    "ogImage": "/insights-og/after-submit-website-tell-truth-about-waiting.svg"
+  },
+  {
+    "title": "Reduced Motion Without a Reduced Experience",
+    "slug": "reduced-motion-without-reduced-experience",
+    "description": "A practical guide to respecting reduced-motion preferences while keeping state changes, controls, and important information clear.",
+    "dek": "When motion becomes too much, the answer is not to make a website mute. It is to make meaning survive without movement.",
+    "category": "Website Strategy",
+    "publishedAt": "2026-10-16T11:39:00Z",
+    "updatedAt": "2026-10-16T11:39:00Z",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 6,
+    "tags": [
+      "Reduced motion",
+      "Accessibility",
+      "Interaction design",
+      "Frontend development"
+    ],
+    "canonicalPath": "/insights/reduced-motion-without-reduced-experience",
+    "excerpt": "Use reduced-motion preferences to remove unnecessary movement while preserving the cues, controls, and recovery paths a person needs to understand a website.",
+    "pillar": "UI/UX design, accessibility, responsive behavior, and design systems",
+    "slot": "midday",
+    "format": "practical-guide",
+    "searchIntent": "How can a website respect reduced-motion preferences without making interactions unclear or losing essential feedback?",
+    "featured": false,
+    "draft": false,
+    "thesis": "A reduced-motion mode succeeds when it replaces nonessential movement with durable visual, textual, and structural cues instead of merely shortening every animation.",
+    "sources": [
+      {
+        "title": "Media Queries Level 5: prefers-reduced-motion",
+        "url": "https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion",
+        "publisher": "W3C CSS Working Group",
+        "publishedDate": "2026-02-19",
+        "accessedDate": "2026-10-07",
+        "type": "standard"
+      },
+      {
+        "title": "Understanding Success Criterion 2.3.3: Animation from Interactions",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-10-07",
+        "type": "standard"
+      },
+      {
+        "title": "Carousel (Slide Show or Image Rotator) Pattern",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/carousel/",
+        "publisher": "W3C Web Accessibility Initiative",
+        "publishedDate": "unknown",
+        "accessedDate": "2026-10-07",
+        "type": "official-docs"
+      }
+    ],
+    "takeaways": [
+      "Make the still version of each interaction understandable before adding motion.",
+      "Use prefers-reduced-motion to remove or simplify nonessential animation, not to suppress focus, selection, validation, or loading feedback.",
+      "Give automatic motion an obvious pause or stop path, then test that path with real content and keyboard navigation.",
+      "Treat reduced motion as a user preference to honor, not evidence that one implementation fits every person."
+    ],
+    "relatedSlugs": [
+      "mobile-hierarchy-over-desktop-polish",
+      "accessible-quote-form-errors-recovery",
+      "good-website-does-not-ask-you-remember-everything"
+    ],
+    "body": [
+      {
+        "heading": "Begin with the moment after the movement stops",
+        "paragraphs": [
+          "A customer opens a menu, adds a product, or submits a form. In a polished interface, the change may glide, fade, spring, or slide into place. But the useful question is quieter: if that movement never happened, would the person still know what changed and what to do next?",
+          "That is the practical work of reduced motion. It is not a request to drain a site of character. It is a request to avoid making movement carry information that has no other home. A product added to a bag still needs a count, a confirmation, and a route to review it. A newly opened panel still needs a heading, focus, and a clear way back.",
+          "This guide offers an implementation and review method, not a claim that one preference setting solves motion sensitivity or establishes full accessibility conformance. The right result depends on the content, platform, and interaction being built."
+        ]
+      },
+      {
+        "heading": "Separate feedback from decoration",
+        "paragraphs": [
+          "List the moving parts of one real customer path: page-load effects, hover transitions, expanding details, modal entrances, carousels, loading indicators, success messages, and background scenes. For each one, name the job it performs. If the answer is only atmosphere or emphasis, it is a strong candidate to remove or greatly simplify when a person prefers reduced motion.",
+          "If animation communicates a state change, provide another signal before changing its timing. A disclosure can expose its content immediately while its button updates aria-expanded and its visible label. A cart can update a visible item count and show a plain confirmation near the action. A form can move focus or announce a result without relying on a field shaking. Motion may remain an enhancement, but it should not be the only receipt.",
+          "The W3C Media Queries Level 5 draft defines prefers-reduced-motion as a user-preference media feature. That mechanism tells the page which presentation branch to use; it does not decide which animations are necessary. The design team still has to distinguish a useful state cue from a flourish."
+        ]
+      },
+      {
+        "heading": "Build the quiet path first",
+        "paragraphs": [
+          "Start with a stable default for the interaction itself: the final layout, readable labels, visible focus, and an answer for what happens if an asset is slow or JavaScript does not enhance the moment. Then layer motion on top for people who have not expressed a reduced-motion preference. This order makes the fallback less likely to become a forgotten version of the page.",
+          "In CSS, target the preference directly rather than using a global rule that turns every duration into a nearly invisible fraction of a second. For example, a decorative hero can stop its loop; a panel can appear without translating across the screen; and a carousel can stop auto-rotation. Keep the final state intact. A blanket override can accidentally make a progress indicator, focus transition, or status change too fleeting to perceive.",
+          "For JavaScript-driven motion, use matchMedia('(prefers-reduced-motion: reduce)') when choosing whether to start a timeline, particle field, or autoplay behavior. Also listen for preference changes when the experience remains open. If a library has its own reduced-motion setting, verify its behavior rather than assuming the CSS query reaches its canvas or inline styles."
+        ]
+      },
+      {
+        "heading": "Do not make automatic movement the price of seeing content",
+        "paragraphs": [
+          "A rotating promotion is the familiar failure case. The WAI-ARIA carousel pattern says an automatically rotating carousel needs a control to stop rotation, and its examples preserve a clear control and keyboard behavior. The point is broader than carousels: when content changes on its own, a person needs time and agency to inspect it.",
+          "For a storefront, do not put the only description of a sale, deadline, size constraint, or shipping condition in a moving slide. Surface the decisive information in nearby text or a durable destination. If a slider remains, make the current item identifiable, provide explicit previous and next controls, and let the reader stop automatic movement. Do not restart it merely because a pointer leaves the control.",
+          "Interaction-triggered motion has a different constraint. WCAG 2.2 Success Criterion 2.3.3 concerns motion animation triggered by interaction unless the animation is essential to the functionality or information. The standard is not a visual-style ban. It is a reminder to provide a way to disable nonessential movement when it begins because the person acted."
+        ]
+      },
+      {
+        "heading": "Test a customer path, not a preference checkbox",
+        "paragraphs": [
+          "Use a staging or local build and turn on the operating-system or browser reduced-motion preference. Then walk one complete task with a keyboard as well as a pointer: locate an item, reveal its options, add it, review the bag, and recover from one intentional error. Record what changed, what remained visible, and where the quiet path became less understandable.",
+          "Check both branches. With normal motion, ensure effects do not delay input, obscure focus, or compete with text. With reduced motion, ensure a modal does not appear without focus, an accordion does not reveal content without a state change, a toast does not vanish before it can be read, and a disabled autoplay feature still leaves the content reachable. Screen-reader behavior, browser support, and platform-owned widgets need their own review; this checklist does not substitute for that work.",
+          "The tradeoff is intentionality. Building two presentation paths adds test cases and can expose component-library shortcuts. But it also makes the ordinary path more honest: a customer can understand the site because the state is clear, not because they caught the right animation at the right moment."
+        ]
+      },
+      {
+        "heading": "What this means for your site",
+        "paragraphs": [
+          "Choose the most consequential animated path on your site and review it before adding another effect. The goal is a durable interaction that remains legible when motion is reduced, paused, slow, unavailable, or simply unwelcome."
+        ],
+        "bullets": [
+          "Inventory: Which moving elements are decorative, and which are currently carrying state or instruction?",
+          "Alternative cue: For each stateful animation, can a person see a label, count, focus change, structural change, or status message without watching it move?",
+          "Preference: Does prefers-reduced-motion stop or simplify nonessential CSS and JavaScript-driven motion without hiding the final state?",
+          "Autoplay: Can a person pause or stop automatically changing content, and is the same information available outside the moving region?",
+          "Input: With keyboard navigation, do focus, selection, error recovery, and confirmation remain understandable in both modes?",
+          "Evidence: Record the device, browser, preference state, task, expected behavior, and actual result. Treat an unchecked platform widget as an open limitation."
+        ]
+      },
+      {
+        "heading": "How Eidos Works applies this",
+        "paragraphs": [
+          "Eidos Works treats motion as a layer of communication with a proof obligation: what does it help a person notice, and what remains when it is absent? In a design or storefront review, that becomes a compact acceptance list for the live customer path—state cues, focus behavior, autoplay controls, and a reduced-motion check against the actual platform.",
+          "The aim is not a sterile interface. It is an interface that does not make a visitor negotiate with the presentation in order to understand the decision in front of them. A calmer path can be both more accessible and more trustworthy, while still leaving room for craft where craft does not ask too much of the person using it."
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Review a high-stakes customer path",
+      "href": "/friction-review"
+    },
+    "ogImage": "/insights-og/reduced-motion-without-reduced-experience.svg"
   }
 ]

@@ -86,8 +86,11 @@ Before adding a topic, inspect `src/data/articles.json` for:
 Run the full gate:
 
 ```bash
+npm ci --no-audit --no-fund
 npm run publish:insight-run -- --slot=manual
 ```
+
+Run the dependency installation in every fresh worktree before validation. The publishing runner checks worktree-local dependency entry points before generating assets and reports an actionable installation command if they are missing. It does not install packages or alter the lockfile itself. If an install fails, preserve the error and retry in a new clean isolated worktree with the same retained article; do not borrow dependency shims from another checkout or create another article for that slot.
 
 That command performs:
 
@@ -96,9 +99,11 @@ That command performs:
 - lint
 - production build
 - prerender verification
+- editorial/privacy verification against the generated output
 - dist HTML validation
 - URL-presence verification
-- run report creation
+- Pages Functions build
+- incremental run report creation before and after each command
 
 Blocking failures leave production unchanged.
 
@@ -106,17 +111,17 @@ Blocking failures leave production unchanged.
 
 1. Research the topic when it uses outside facts, and open the sources. For a purely reflective essay, document that no external claim required a source.
 2. Add exactly one article record to `src/data/articles.json`.
-3. Run `npm run publish:insight-run -- --slot=<morning|midday|evening|manual>`.
+3. Run `npm ci --no-audit --no-fund`, then `npm run publish:insight-run -- --slot=<morning|midday|evening|manual>`.
 4. Review the generated diff.
 5. Commit with a message like `content(insights): publish storefront proof loop`.
-6. Wait for the publishing PR's required CI checks and merge it when they pass. Continue in the same run; an open PR is not publication. Fetch merged `origin/main` into the isolated release checkout and rerun the release checks documented in `docs/site-gallery.md`. The existing `eidosworks` Cloudflare Pages project uses direct upload: merging does not trigger deployment. Deploy the complete built app and existing Functions with `node node_modules/wrangler/bin/wrangler.js pages deploy dist --project-name eidosworks --branch main --commit-hash <verified-main-commit> --commit-dirty=false`. Preserve configured bindings and runtime settings. Check current production and origin/main immediately before release to avoid replacing newer work.
+6. Wait for the publishing PR's required CI checks and merge it when they pass. Continue in the same run; an open PR is not publication. Fetch the merged `origin/main`. The existing `Playground editor release` workflow (`.github/workflows/playground-editor-release.yml`) runs on every main push and performs the Cloudflare Direct Upload to `eidosworks` after full site/browser checks. Wait for that exact merge commit's workflow, inspect its deployment receipt, and verify production; do not start a competing manual upload while CI is deploying. If a newer main supersedes it, follow the newer run only after confirming it contains the article. A workflow failure is a blocker, not permission to bypass a quality check. If the automated upload is unavailable and all release checks pass, use the existing authenticated manual fallback documented in `docs/site-gallery.md` from the verified latest main commit. Preserve configured bindings and runtime settings and never replace a newer deployment.
 7. Verify production:
 
 ```bash
 npm run verify:production-insight -- --slug=<article-slug>
 ```
 
-The production verifier accepts Cloudflare Pages' same-article trailing-slash redirect while still requiring the expected canonical metadata. Redirects to another page, origin, scheme, or query remain failures. Runner and redirect regression checks run with `node --test scripts/test-insight-run.mjs`.
+The production verifier accepts Cloudflare Pages' same-article trailing-slash redirect while still requiring the expected canonical metadata. Redirects to another page, origin, scheme, or query remain failures. Runner, dependency preflight, and redirect regression checks run with `node --test scripts/test-insight-run.mjs`. The runner's nine checks validate the local candidate; CI adds the broader site and browser checks. Neither a local pass nor a merge alone proves publication.
 
 ## Failure and Recovery
 
@@ -127,6 +132,8 @@ If validation fails:
 - Record the failing command and exact error in `artifacts/insights/runs/<run-id>/run_report.md`.
 - Attempt one safe correction pass.
 - If it still fails, stop and report the blocker.
+
+Resume retained slot drafts on current `origin/main` by transferring only that article record and keeping the original failed receipt linked in the recovery report. Preserve unrelated work and older backlog. Record the original scheduled slot separately; publication and modified dates must reflect when the article actually goes live. Check article slug, slot, pending PRs, and live inventory before adding a record.
 
 To pause automation, pause the three Codex cron automations named:
 
