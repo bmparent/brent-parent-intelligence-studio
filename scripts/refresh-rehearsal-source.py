@@ -4,12 +4,16 @@ No credential files or values are requested, printed, copied or configured.
 import datetime,json,pathlib,re,subprocess,os
 root=pathlib.Path(os.environ['REHEARSAL_EVIDENCE_DIR']).resolve()
 area=root/'provenance'
+supports_escape_flag=b'--allow-escape-sequences' in subprocess.run(['gh','api','--help'],capture_output=True).stdout
 def api(endpoint,json_value=True):
- p=subprocess.run(['gh','api',endpoint],capture_output=True)
+ args=['gh','api',endpoint]
+ if not json_value and supports_escape_flag:args.append('--allow-escape-sequences')
+ p=subprocess.run(args,capture_output=True)
  if p.returncode:
   detail=re.sub(r'https?://\S+','[provider-url]',p.stderr.decode('utf-8','replace'))[:1000]
   raise RuntimeError('Read-only GitHub request failed: '+endpoint+'; exit '+str(p.returncode)+'; '+detail)
- return json.loads(p.stdout) if json_value else p.stdout.decode('utf-8')
+ # Log bytes are captured as data, never emitted as terminal control sequences.
+ return json.loads(p.stdout) if json_value else re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]','',p.stdout.decode('utf-8'))
 repo='repos/bmparent/brent-parent-intelligence-studio'
 front=api(repo+'/pulls/126');back=api('repos/bmparent/eidos/pulls/83')
 head=api(repo+'/git/commits/4505148c71dc06e17c3cc5359fc628d836d20410')
