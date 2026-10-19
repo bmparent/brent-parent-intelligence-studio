@@ -5,6 +5,7 @@ import { imageData } from './storage';
 import { pageMarkup, renderedStyles, tokensCss } from './renderer';
 import { createStarter, loadStarterArtwork, starters, type ProjectGoal, type StarterBrief, type StarterId, type VisitorAction } from './starters';
 import './start-screen.css';
+import { PlaygroundWalkthrough } from './PlaygroundWalkthrough';
 
 type Props = {
   savedProject?: Project;
@@ -67,9 +68,10 @@ export function StartScreen({savedProject,savedProjects=[],currentDocumentId,sto
       <div className="pg-start-intro"><p className="pg-start-eyebrow">A useful starting point</p><h1>Make something<br /><em>that feels like you.</em></h1><p>Start with a real design. Make it your own, one detail at a time.</p></div>
       {savedProject && <section className="pg-start-continue" aria-label="Continue your project"><div><span className="pg-start-eyebrow">Your work is here</span><h2>{savedProject.name}</h2><p>Continue the same page, images, and saved selection.</p></div><button className="pg-start-primary" onClick={onContinue}>Continue project <span aria-hidden="true">↗</span></button></section>}
       {savedProjects.some(s => s.documentId !== currentDocumentId) && onOpenSaved && <details className="pg-start-saved"><summary>Other projects saved on this device</summary><ul>{savedProjects.filter(s => s.documentId !== currentDocumentId).map(s => <li key={s.documentId}><span>{s.name}</span><button disabled={busy} onClick={async()=>{setBusy(true);const opened=await onOpenSaved(s.documentId);if(active.current){setBusy(false);if(!opened)setMessage('This saved project could not be opened. Your current design is unchanged.');}}}>Open project</button></li>)}</ul></details>}
+      {!customizing && <PlaygroundWalkthrough onDone={() => document.getElementById('pg-new-heading')?.focus()} />}
       {storageError && <p className="pg-start-message" role="status">{storageError}</p>}
       {!customizing ? <section className="pg-start-new" aria-labelledby="pg-new-heading">
-        <div className="pg-start-section-heading"><div><p className="pg-start-eyebrow">New project</p><h2 id="pg-new-heading">What are you making?</h2></div>{savedProject && <p>Starting fresh keeps your previous project in your saved projects.</p>}</div>
+        <div className="pg-start-section-heading"><div><p className="pg-start-eyebrow">New project</p><h2 id="pg-new-heading" tabIndex={-1}>What are you making?</h2></div>{savedProject && <p>Starting fresh keeps your previous project in your saved projects.</p>}</div>
         <fieldset className="pg-start-goals"><legend>Choose the kind of page</legend>{([{id:'business',label:'Business site',detail:'Introduce what you do'},{id:'landing',label:'Landing page',detail:'Give one offer a home'},{id:'portfolio',label:'Portfolio',detail:'Put your work first'}] as const).map(g=><label key={g.id} className={goal===g.id?'is-selected':''}><input type="radio" name="project-goal" value={g.id} checked={goal===g.id} onChange={()=>{setGoal(g.id);setSelected(starters.find(s=>s.goal===g.id)!.id);}}/><span><strong>{g.label}</strong><small>{g.detail}</small></span></label>)}</fieldset>
         <label className="pg-start-action">What should a visitor do?<select value={action} onChange={e=>setAction(e.target.value as VisitorAction)}><option value="contact">Contact me</option><option value="estimate">Request an estimate</option><option value="link">Use my booking or purchase link</option></select></label>
         {action==='link' && <div className="pg-start-link"><label>Booking or purchase destination<input type="url" placeholder="https://" value={link} onChange={e=>{setLink(e.target.value);setConfirmed(false);}}/></label><label className="pg-start-check"><input type="checkbox" checked={confirmed} onChange={e=>setConfirmed(e.target.checked)}/>I control this destination and have checked where it leads.</label><small>This adds a link. It does not connect a booking system or online store.</small></div>}
@@ -84,7 +86,7 @@ export function StartScreen({savedProject,savedProjects=[],currentDocumentId,sto
         </form>
       </section>}
       {message&&<p className="pg-start-message" role="status">{message}</p>}
-      <footer className="pg-start-footnote">Start and edit freely on this device. Review the supported package and its price when you finish. Contact links need your destination; no contact form is connected.</footer>
+      <footer className="pg-start-footnote">Start and edit freely on this device. Review and download your page package when you finish. Contact links need your destination; no contact form is connected.</footer>
     </div>
   </main>;
 }

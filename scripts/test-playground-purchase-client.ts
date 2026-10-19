@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildFrozenPackage, createProjectSnapshot, parentEditions } from '../src/playground/purchaseSnapshot';
 import { createStarter } from '../src/playground/starters';
-import { acceptFrozenDelivery, assertPurchaseCapability, assertReviewedPurchaseTerms, capturePurchaseReturn, downloadDeliveryArtifact, fetchDeliveryCapabilities, fetchDeliveryPurchase, inspectReturnedPurchase, loadPurchaseAttempt, matchingProduct, newPurchaseReceipt, purchaseReturn, safePurchaseContinuePath, saveCheckoutReturn, savePurchaseAttempt, startFrozenCheckout, validateAcceptedDelivery, validateCapabilities, validateDeliveryPurchase, type DeliveryCapabilities } from '../src/playground/purchaseClient';
+import { acceptFrozenDelivery, assertPurchaseCapability, assertReviewedPurchaseTerms, capturePurchaseReturn, downloadDeliveryArtifact, fetchDeliveryCapabilities, fetchDeliveryPurchase, inspectReturnedPurchase, loadPurchaseAttempt, matchingProduct, newPurchaseReceipt, PurchaseRequestError, purchaseReturn, safePurchaseContinuePath, saveCheckoutReturn, savePurchaseAttempt, startFrozenCheckout, validateAcceptedDelivery, validateCapabilities, validateDeliveryPurchase, type DeliveryCapabilities } from '../src/playground/purchaseClient';
 
 const frozen = await buildFrozenPackage(await createProjectSnapshot(createStarter({ starter: 'switchboard', goal: 'business', action: 'contact' }), 'document-a', 7, parentEditions[0].editionId));
 const parent = parentEditions[0], receipt = 'a'.repeat(64);
@@ -12,6 +12,16 @@ const accepted = { id: 'delivery-a', ownerId: cap.ownerId, documentId: frozen.sn
 const status = (state = 'pending') => ({ status: state, paymentState: state, orderId: 'order-a', productId: parent.editionId, editionId: 'developer', version: parent.version, downloadName: 'original.zip', downloadToken: 'server-signed-token', approvedPage: { ...accepted, deliveryId: accepted.id, state: state === 'paid' ? 'ready' : state === 'refunded' ? 'revoked' : 'pending', output: frozen.snapshot.output, downloadName: 'approved-page.zip', parent: { productId: parent.editionId, editionId: 'developer', version: parent.version, archiveSha256: parent.sha256, archiveBytes: parent.bytes, licenseId: parent.license.id } } });
 const response = (value: unknown, status = 200) => new Response(JSON.stringify(value), { status, headers: { 'content-type': 'application/json' } });
 function fixture(handler: (path: string, body: Record<string, unknown> | undefined) => Response | Promise<Response>) { const calls: { path: string; body?: Record<string, unknown> }[] = []; return { calls, request: (async (input, init) => { const path = String(input), body = init?.body ? JSON.parse(String(init.body)) : undefined; calls.push({ path, body }); return handler(path, body); }) as typeof fetch }; }
+test('unavailable account purchase checks explain the local path and preserve HTTP denial semantics', async () => {
+  for (const reply of [response({ error: 'Member sign-in is being connected. The complete Insights archive is free to read now.' }, 503), new Response('<h1>Unavailable</h1>', { status: 503 })]) {
+    const mock = fixture(() => reply);
+    await assert.rejects(() => fetchDeliveryCapabilities(mock.request), (error: unknown) => error instanceof PurchaseRequestError && error.status === 503 && error.message === 'Account purchases are unavailable right now. You can keep editing and download your page package locally.');
+    assert.deepEqual(mock.calls, [{ path: '/api/playground/delivery?capabilities=1', body: undefined }]);
+  }
+  for (const status of [401, 403, 429]) {
+    await assert.rejects(() => fetchDeliveryCapabilities(fixture(() => response({ error: 'Keep this specific denial' }, status)).request), (error: unknown) => error instanceof PurchaseRequestError && error.status === status && error.message === 'Keep this specific denial');
+  }
+});
 test('only an explicit authenticated TEST capability supplies original price/version, disabled and mismatch paths make zero POSTs', async () => {
   const mock = fixture(() => response({ capabilities: rawCapabilities }));
   assert.deepEqual(await fetchDeliveryCapabilities(mock.request), cap);
