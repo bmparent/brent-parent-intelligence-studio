@@ -6,7 +6,9 @@ root=pathlib.Path(os.environ['REHEARSAL_EVIDENCE_DIR']).resolve()
 area=root/'provenance'
 def api(endpoint,json_value=True):
  p=subprocess.run(['gh','api',endpoint],capture_output=True)
- if p.returncode:raise RuntimeError('Read-only GitHub request failed: '+endpoint+'; exit '+str(p.returncode))
+ if p.returncode:
+  detail=re.sub(r'https?://\S+','[provider-url]',p.stderr.decode('utf-8','replace'))[:1000]
+  raise RuntimeError('Read-only GitHub request failed: '+endpoint+'; exit '+str(p.returncode)+'; '+detail)
  return json.loads(p.stdout) if json_value else p.stdout.decode('utf-8')
 repo='repos/bmparent/brent-parent-intelligence-studio'
 front=api(repo+'/pulls/126');back=api('repos/bmparent/eidos/pulls/83')
@@ -15,7 +17,7 @@ build=api(repo+'/git/commits/8e3ed6c0470fa696452380a9981b794eacc02c5b')
 workflow=api(repo+'/contents/.github/workflows/playground-editor-release.yml?ref=8e3ed6c0470fa696452380a9981b794eacc02c5b')
 run=api(repo+'/actions/runs/39072538950');artifact=api(repo+'/actions/artifacts/12115683862')
 job=api(repo+'/actions/jobs/117512941864')
-logs=api(repo+'/actions/jobs/117512941864/logs',False)
+logs=api(repo+'/actions/jobs/117512941864/logs?fresh='+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d%H%M%S'),False)
 excerpt='\n'.join(l for l in logs.splitlines() if re.search(r'refs/remotes/pull/126/merge|HEAD is now at 8e3ed6c|git log -1 --format=%H|^\S+ 8e3ed6c0470fa696452380a9981b794eacc02c5b$',l))+'\n'
 now=datetime.datetime.now(datetime.timezone.utc)
 proof={'schemaVersion':1,'observedAt':now.isoformat(),'frontendPR':front,'backendPR':back,'headCommit':head,'buildCommit':build,'producerWorkflow':{'path':workflow['path'],'sha':workflow['sha']},'job':job,'checkoutLogExcerpt':excerpt}
