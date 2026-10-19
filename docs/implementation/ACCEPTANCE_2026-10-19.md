@@ -76,3 +76,14 @@ reopen/isolation, owner routing/current-backend acceptance, signed TEST
 webhook/download/recovery/refund/replay and full production configuration remain
 open. No status is silently changed to pass. Paid AI, new-format cloud, new LIVE
 sales and Snapshot remain disabled pending their own gates.
+
+### Reconciled presentation regression
+
+New candidate browser run `39327644730` failed at the affected service link: the
+combined project selector begins with Signal House, while the old presentation
+conditional and test assumed Holidays was first. Composition now selects the
+actual Holidays project by title, and the browser flow explicitly selects it.
+The regression also checks that initial Signal House keeps its original artwork
+and Holidays retains both composed pairs. This is a frontend-only repair; shared
+backend and delivery contracts remain unchanged. The failed artifact is retained;
+new-source CI must pass before this candidate is accepted.

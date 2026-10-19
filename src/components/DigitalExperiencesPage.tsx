@@ -138,7 +138,7 @@ export function DigitalExperiencesPage() {
       <div className={`dx-stage dx-stage--${featured.color}`}>
         <div className="dx-stage__top"><span>Selected experience</span><span aria-hidden="true">✳</span></div>
         <a href={featured.href} {...(featured.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} aria-label={`Explore ${featured.title}`}>
-          {active === 0 ? <StorefrontPreview slug="holidays-in-hollywood" thumbnail /> : <img key={featured.title} src={featured.image} width="960" height="670" alt={featured.alt} />}
+          {featured.title === 'Holidays in Hollywood' ? <StorefrontPreview slug="holidays-in-hollywood" thumbnail /> : <img key={featured.title} src={featured.image} width="960" height="670" alt={featured.alt} />}
         </a>
         <div className="dx-stage__footer"><div><small>{featured.kind}</small><strong>{featured.title}</strong></div><span aria-hidden="true">↗</span></div>
       </div>
