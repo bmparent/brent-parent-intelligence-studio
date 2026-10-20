@@ -44,8 +44,12 @@ try {
         }
         if (label === 'Polo details') {
           await dialog.getByRole('button', { name: 'Read at full size', exact: true }).click();
+          await dialog.getByRole('button', { name: 'Fit to width', exact: true }).waitFor();
+          console.log('Full-size image state', await image.evaluate(el => ({ style: el.getAttribute('style'), width: el.getBoundingClientRect().width, computedWidth: getComputedStyle(el).width, maxWidth: getComputedStyle(el).maxWidth })));
+          await dialog.screenshot({ path: path.join(evidence, `fnbmd-gallery-full-size-${width}.png`) });
           assert.equal(await image.evaluate(el => Math.round(el.getBoundingClientRect().width)), 1346);
           await dialog.getByRole('button', { name: 'Fit to width', exact: true }).click();
+          await dialog.getByRole('button', { name: 'Read at full size', exact: true }).waitFor();
           await dialog.screenshot({ path: path.join(evidence, `fnbmd-gallery-product-${width}.png`) });
         }
       }
