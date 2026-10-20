@@ -41,6 +41,8 @@ Browser and parity receipts are in `artifacts/implementation/2026-10-20/playgrou
 
 ## Open acceptance and rollback
 
+Purchase CI on the first commit caught toolbar clipping and a verification widget mounted by the closed account dialog. Both reproduced against the built app and were repaired without weakening checks. See [the CI repair record](PLAYGROUND_CI_REPAIR_2026-10-20.md); the failed receipt is retained alongside the corrected built-browser evidence.
+
 This is implemented and locally tested, **not hosted/provider/live verified**. No preview or production deployment, database migration execution, account-resume activation, real login/email, payment or AI call was performed. Before enabling resume, deploy the exact pair to an isolated database and verify two controlled hosted owners, current-format save/reopen/export, quota responses, session change and empty-device resume. Real Google consent/inbox and physical-device/screen-reader acceptance remain their existing gates. No release gate changes to pass from these local results.
 
 Rollback uses the held parent revisions above and preserves all additive tables/triggers, images, projects, revisions and recovery records. No destructive cleanup is part of rollback. The backend candidate's own Git deployment exclusion prevents an automatic preview for this branch; production configuration is unchanged.
