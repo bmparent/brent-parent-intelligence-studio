@@ -1,0 +1,15 @@
+{
+  "source": "0039db68d8ccfa4e326e7d294f0511cf0a9aa38e",
+  "testedMerge": "36dd93ad6dcb8c5bdf5e3c5653d3816d522e61ad",
+  "run": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/39455913886",
+  "jobId": 118742647426,
+  "state": "failed; retained historical receipt",
+  "artifact": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/39455913886/artifacts/12281945180",
+  "artifactSha256": "c779366e06b49f605436802bcfd08565b80565acf080eea2eca431ab7cb07957",
+  "failedCheck": "Frozen preparation must not call account, purchase, mail, AI, storage or provider APIs.",
+  "observed": "Chromium, Firefox and WebKit each observed two account reads during create/reload/freeze without opening Account.",
+  "cause": "The account form mounted lazily, but useAccount still ran in the persistent closed dialog wrapper.",
+  "fix": "Move the account hook and all account controls into a child mounted only by an explicit open Account dialog.",
+  "testAssertionsWeakened": false,
+  "providerOperations": false
+}

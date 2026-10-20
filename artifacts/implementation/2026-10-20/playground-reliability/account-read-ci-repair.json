@@ -1,0 +1,103 @@
+{
+  "validatedWorkingTreeBasedOn": "0039db68d8ccfa4e326e7d294f0511cf0a9aa38e",
+  "fixtureOnly": true,
+  "providerOperations": false,
+  "sourceFiles": [
+    {
+      "path": "src/playground/PlaygroundAccount.tsx",
+      "sha256": "2fce3cd27d35cf2b1542f268e08b0fc3a0c85fce028de5027da5d8ab8aab407f"
+    },
+    {
+      "path": "scripts/verify-playground-account.mjs",
+      "sha256": "0e4eca7e8cae43e64ed767ccfcf85dcfecebf79cf5656caf7cb76112d78cfbe4"
+    }
+  ],
+  "frozen": [
+    {
+      "engine": "chromium",
+      "kind": "chromium frozen review; no server order, payment, mail, or entitlement acceptance",
+      "base": "http://127.0.0.1:4188/playground/",
+      "checks": [
+        "missing bundled artwork does not block an uploaded-photo starter",
+        "Finish freezes exact editable source and local archive, with true desktop and mobile review sizes",
+        "later draft edits and reload preserve the exact frozen revision and download",
+        "explicit new review advances to the newer draft while retaining the previous frozen record",
+        "truncated embedded image cannot freeze or replace a prior valid package",
+        "frozen preparation does not call a payment, mail, AI, storage, or provider API"
+      ],
+      "failures": [],
+      "errors": [],
+      "apiRequests": [],
+      "initialSnapshotHash": "f16eb5423ca0b9b9dddb948ebde0e70bc40df21a7c108f5d200b2dea3f4bf235",
+      "initialArchiveSha256": "484eb08eaf98c0975d4dd324d5119ae37ac4b8b2711f773abe4abb96f4ab891a",
+      "timestamp": "2026-10-20T16:35:22.304Z"
+    },
+    {
+      "engine": "firefox",
+      "kind": "firefox frozen review; no server order, payment, mail, or entitlement acceptance",
+      "base": "http://127.0.0.1:4188/playground/",
+      "checks": [
+        "missing bundled artwork does not block an uploaded-photo starter",
+        "Finish freezes exact editable source and local archive, with true desktop and mobile review sizes",
+        "later draft edits and reload preserve the exact frozen revision and download",
+        "explicit new review advances to the newer draft while retaining the previous frozen record",
+        "truncated embedded image cannot freeze or replace a prior valid package",
+        "frozen preparation does not call a payment, mail, AI, storage, or provider API"
+      ],
+      "failures": [],
+      "errors": [],
+      "apiRequests": [],
+      "initialSnapshotHash": "0e26b8f8223fc6160f02bd5a0efac8d9243d594978d770d0cef115bede3f20f2",
+      "initialArchiveSha256": "3b543ad308704d558e6d51733d3216a252be2a1cde5a6670f5465e1760933817",
+      "timestamp": "2026-10-20T16:35:49.149Z"
+    },
+    {
+      "engine": "webkit",
+      "kind": "webkit frozen review; no server order, payment, mail, or entitlement acceptance",
+      "base": "http://127.0.0.1:4188/playground/",
+      "checks": [
+        "missing bundled artwork does not block an uploaded-photo starter",
+        "Finish freezes exact editable source and local archive, with true desktop and mobile review sizes",
+        "later draft edits and reload preserve the exact frozen revision and download",
+        "explicit new review advances to the newer draft while retaining the previous frozen record",
+        "truncated embedded image cannot freeze or replace a prior valid package",
+        "frozen preparation does not call a payment, mail, AI, storage, or provider API"
+      ],
+      "failures": [],
+      "errors": [],
+      "apiRequests": [],
+      "initialSnapshotHash": "e6e66d74e0a45d4a10a7e859afeea01718c700d2cbcbc3c9c02db989f62aaa57",
+      "initialArchiveSha256": "1733483e2e86b65069dca4db015c02a5e1c734c54ea2faf9ea14b6ac1ce5ec5e",
+      "timestamp": "2026-10-20T16:36:10.891Z"
+    }
+  ],
+  "account": {
+    "base": "http://127.0.0.1:4188/playground/",
+    "environment": "Isolated Chromium; controlled local account responses; no real identity/provider/cloud acceptance",
+    "checks": [
+      "start-screen account mounts and reads only on request; Escape returns focus",
+      "an empty device can resume an account project without saving an unexplained starter",
+      "password sign-in keeps local project and Undo history",
+      "missing owner and disabled resume capabilities fail closed without writes",
+      "session changes clear capability without losing the project",
+      "desktop, 390px and 320px toolbar controls and account dialog remain reachable",
+      "failed device saving offers backup before separate-tab Google sign-in"
+    ],
+    "errors": [],
+    "forbidden": [],
+    "timestamp": "2026-10-20T16:36:23.383Z"
+  },
+  "challenge": [
+    {
+      "name": "challenge-retry",
+      "checks": [
+        "failed dispatched checkout removes the consumed challenge and waits for a fresh verification token",
+        "retry keeps the immutable purchase attempt and dispatches only with the fresh token",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    }
+  ]
+}

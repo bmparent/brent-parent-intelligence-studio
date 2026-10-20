@@ -11,13 +11,13 @@ await mkdir(out,{recursive:true});
 const receipt={base,environment:'Isolated Chromium; controlled local account responses; no real identity/provider/cloud acceptance',checks:[],errors:[],forbidden:[]};
 const browser=await pw.chromium.launch(launchOptions('chromium'));
 const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'}),page=await context.newPage();
-let member=null,capability='missing',posts=0,availableProject=false;
+let member=null,capability='missing',posts=0,availableProject=false,accountReads=0;
 await context.route('**/*',async route=>{
  const req=route.request(),url=new URL(req.url());
  if(url.origin!==new URL(base).origin){if(['data:','blob:','about:'].includes(url.protocol))return route.continue();return route.abort();}
  const fulfill=value=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(value)});
  if(url.pathname==='/api/public-config')return fulfill({accountsReady:true,passwordsReady:true,googleReady:true,localTest:true,aiReady:false,shopReady:false,turnstileSiteKey:''});
- if(url.pathname==='/api/members/account')return fulfill({member});
+ if(url.pathname==='/api/members/account'){accountReads++;return fulfill({member});}
  if(url.pathname==='/api/members/credentials'&&req.method()==='POST'){assert.equal(req.postDataJSON().action,'login');member={username:'local_qa',kind:'person'};return fulfill({member});}
  if(url.pathname==='/api/members/auth'&&req.method()==='POST'){assert.equal(req.postDataJSON().action,'logout');member=null;return fulfill({ok:true});}
  if(url.pathname==='/api/playground/projects'&&req.method()==='GET'){
@@ -34,7 +34,7 @@ const modal=()=>page.getByRole('dialog',{name:'Your account',exact:true});
 async function check(name,run){await run();receipt.checks.push(name);console.log('PASS '+name);}
 try{
  await page.goto(base);await page.getByRole('heading',{name:'What are you making?'}).waitFor();
- await check('start-screen account mounts only on request; Escape returns focus',async()=>{assert.equal(await page.locator('.ew-account-access').count(),0);await entry().focus();await page.keyboard.press('Enter');await modal().waitFor();await modal().getByRole('heading',{name:'Create account',exact:true}).waitFor();assert.equal(await modal().getByRole('button',{name:'Back to Playground'}).evaluate(el=>el===document.activeElement),true);await page.keyboard.press('Escape');assert.equal(await entry().evaluate(el=>el===document.activeElement),true);assert.equal(await page.locator('.ew-account-access').count(),0);});
+ await check('start-screen account mounts and reads only on request; Escape returns focus',async()=>{assert.equal(accountReads,0,'local startup does not read an account');assert.equal(await page.locator('.ew-account-access').count(),0);await entry().focus();await page.keyboard.press('Enter');await modal().waitFor();await modal().getByRole('heading',{name:'Create account',exact:true}).waitFor();assert.equal(accountReads,1);assert.equal(await modal().getByRole('button',{name:'Back to Playground'}).evaluate(el=>el===document.activeElement),true);await page.keyboard.press('Escape');assert.equal(await entry().evaluate(el=>el===document.activeElement),true);assert.equal(await page.locator('.ew-account-access').count(),0);});
  await check('an empty device can resume an account project without saving an unexplained starter',async()=>{
   member={username:'local_qa',kind:'person'};capability='disabled';availableProject=true;await entry().click();await modal().getByRole('button',{name:'Check sign-in again'}).click();await modal().getByText('Signed in as @local_qa',{exact:true}).waitFor();await modal().getByText('Account projects',{exact:true}).click();await modal().getByRole('button',{name:'Refresh account projects'}).click();await modal().getByRole('button',{name:'Resume from account',exact:true}).waitFor();assert.equal(await modal().getByRole('button',{name:'Import into my account'}).isDisabled(),true);
   await modal().getByRole('button',{name:'Resume from account',exact:true}).click();await modal().getByText(/Project opened. Undo restores/).waitFor();await modal().getByRole('button',{name:'Sign out',exact:true}).click();await modal().getByRole('heading',{name:'Create account',exact:true}).waitFor();await modal().getByRole('button',{name:'Back to Playground'}).click();assert.equal(await page.getByRole('textbox',{name:'Project name',exact:true}).inputValue(),'Resume from account');assert.equal(await entry().evaluate(el=>el===document.activeElement),true);availableProject=false;capability='missing';await page.getByRole('button',{name:'Back to projects',exact:true}).click();
