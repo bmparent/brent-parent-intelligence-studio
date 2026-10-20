@@ -1,3 +1,7 @@
+# Playground recovery and account entry — October 20, 2026
+
+The bounded successor to held PR131 adds data-preserving local recovery, visible account access and asset-only downloads, plus an inactive paired resume/quota contract. Local evidence and remaining hosted gates are recorded in [PLAYGROUND_RECOVERY_2026-10-20.md](PLAYGROUND_RECOVERY_2026-10-20.md). This does not accept production or enable account storage.
+
 # Combined source integration — October 19, 2026
 
 See [the combined release integration ledger](RELEASE_INTEGRATION_2026-10-19.md) for the account/Playground pair, local checks, CI pins and open hosted/provider gates. Prior acceptance remains scoped to its dated source and environment.

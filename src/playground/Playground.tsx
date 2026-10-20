@@ -22,6 +22,8 @@ import { PurchaseRecovery } from './PurchaseRecovery';
 import { saveRecoveredReview } from './purchaseReviewStorage';
 import type { FrozenPackage } from './purchaseSnapshot';
 import { StartScreen } from './StartScreen';
+import { PlaygroundAccount } from './PlaygroundAccount';
+import { RecoveryControls } from './RecoveryControls';
 import { AddPanel, AssetsPanel, BrandPanel } from './UnifiedPanels';
 import { PlaygroundTourButton } from './PlaygroundWalkthrough';
 import './editor.css';
@@ -36,6 +38,7 @@ function nodePath(node: BlockNode, id: string): BlockNode[] {
 
 export default function Playground() {
   const w = useProject();
+  const [accountOpen, setAccountOpen] = useState(false);
   const { project, target, documentId, guard, replace, acknowledge, ready, edit, undo, redo, canUndo, canRedo, status, snapshots, saveSnapshot, storageError } = w;
   const [mobile, setMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 640);
   const [editing, setEditing] = useState(true), [panel, setPanel] = useState('canvas'), [tool, setTool] = useState<Tool>('pages');
@@ -95,9 +98,10 @@ export default function Playground() {
   }
 
   if (!ready) return <div className="pg-app pg-start-loading"><img src="/brand/eidos-mark.svg" alt="Eidos" width="44" height="44" /><p>Opening your workspace…</p></div>;
-  if (!w.started) return <>{returnReceipt && <PurchaseRecovery receipt={returnReceipt} guard={guard} restore={restorePurchase} />}<StartScreen savedProject={w.hasSavedProject ? project : undefined} savedProjects={w.savedProjects} currentDocumentId={documentId} onOpenSaved={w.openSavedProject} onContinue={w.continueProject} onStart={w.startProject} storageError={storageError} /></>;
-  if (project.studios && project.studios.active !== 'page') return <StudioWorkspace workspace={w} />;
-  return <div className={`pg-app pg-unified ${!editing ? 'pg-trying' : ''}`} data-panel={panel}
+  const account = <PlaygroundAccount open={accountOpen} close={() => setAccountOpen(false)} workspace={w}/>;
+  if (!w.started) return <>{account}{returnReceipt && <PurchaseRecovery receipt={returnReceipt} guard={guard} restore={restorePurchase} />}<StartScreen savedProject={w.hasSavedProject ? project : undefined} savedProjects={w.savedProjects} currentDocumentId={documentId} onOpenSaved={w.openSavedProject} onContinue={w.continueProject} onStart={w.startProject} onAccount={() => setAccountOpen(true)} recovery={<RecoveryControls workspace={w}/>} /></>;
+  if (project.studios && project.studios.active !== 'page') return <>{account}<StudioWorkspace workspace={w} onAccount={() => setAccountOpen(true)} /></>;
+  return <>{account}<div className={`pg-app pg-unified ${!editing ? 'pg-trying' : ''}`} data-panel={panel}
     onPointerDownCapture={event => { if ((event.target as HTMLElement).matches('input[type=range]')) w.beginGesture(); }}
     onPointerUpCapture={w.endGesture} onPointerCancelCapture={w.endGesture}
     onKeyDownCapture={event => { if ((event.target as HTMLElement).matches('input[type=range]') && !event.repeat && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) w.beginGesture(); }}
@@ -106,10 +110,12 @@ export default function Playground() {
       <button className="pg-brand" aria-label="Back to projects" onClick={() => { setAIComparison(null); w.returnToStart(); }}><img className="pg-brand-mark" src="/brand/eidos-mark.svg" alt="" width="30" height="30" /><strong>Eidos</strong><span>Playground</span></button>
       <div className="pg-project-identity"><input className="pg-project-name" aria-label="Project name" value={project.name} maxLength={100} onChange={event => change({ ...project, name: event.target.value }, 'name')} /><button className={`pg-save-inline ${storageError ? 'error' : ''}`} title={storageError || 'Save this project in this browser'} onClick={() => void w.saveNow()}><span className="pg-save-dot" />{status}</button></div>
       <div className="pg-history"><button title="Undo" aria-label="Undo" disabled={!canUndo || !!comparison} onClick={undo}><Icon name="undo" /></button><button title="Redo" aria-label="Redo" disabled={!canRedo || !!comparison} onClick={redo}><Icon name="redo" /></button></div>
+      <button className="pg-account-entry" onClick={() => setAccountOpen(true)}>Account / Sign in</button>
       <button className={`pg-brand-button ${brandOpen ? 'active' : ''}`} aria-pressed={brandOpen} onClick={() => { setBrandOpen(!brandOpen); setPanel('inspector'); }}><span className="pg-brand-colors"><i style={{ background: project.tokens.background }} /><i style={{ background: project.tokens.accent }} /></span>Brand</button>
       <div className="pg-device" aria-label="Preview size"><button aria-label="Desktop" aria-pressed={!mobile} onClick={() => setMobile(false)}><Icon name="desktop" /><span>Desktop</span></button><button aria-label="Mobile" aria-pressed={mobile} onClick={() => setMobile(true)}><Icon name="mobile" /><span>Mobile</span></button></div>
       <div className="pg-toolbar-actions"><button className="pg-button-secondary" aria-label={editing ? 'Preview' : 'Edit page'} title={editing ? 'Preview' : 'Edit page'} onClick={() => { setEditing(!editing); setPanel('canvas'); }}><Icon name="eye" /><span>{editing ? 'Preview' : 'Edit page'}</span></button><button className="pg-primary" disabled={!!comparison || !!aiComparison} onClick={() => void openExport()}>Finish <span aria-hidden="true">↗</span></button></div>
     </header>
+    <RecoveryControls workspace={w}/>
     <nav className="pg-mobile-tabs" aria-label="Workspace panels">{['sections', 'canvas', 'inspector'].map(value => <button key={value} aria-pressed={panel === value} onClick={() => setPanel(value)}>{value === 'sections' ? 'Build' : value === 'canvas' ? 'Canvas' : 'Edit selection'}</button>)}</nav>
     {checklist && editing && <div className="pg-checklist"><span><strong>Make it yours.</strong> Start with your headline.</span><div>{['Content', 'Brand', 'Layout', 'Mobile', 'Finish'].map((label, index) => <button key={label} disabled={label === 'Finish' && !!(comparison || aiComparison)} onClick={() => { if (label === 'Brand') { setBrandOpen(true); setPanel('inspector'); } else if (label === 'Mobile') { setMobile(true); setPanel('canvas'); } else if (label === 'Finish') void openExport(); else if (label === 'Layout') openTool('layers'); else { const hero = project.sections.find(s => sectionKind(s) === 'hero'); if (hero) { selectNode(hero.authoring ? flattenNodes(hero.authoring.root).find(n => n.type === 'heading')?.id || '' : '', hero.id); setPanel('inspector'); } } }}><b>{index + 1}</b>{label}</button>)}</div><button className="pg-checklist-dismiss" aria-label="Dismiss getting started checklist" onClick={() => setChecklist(false)}>×</button></div>}
     <div className="pg-workspace">
@@ -140,5 +146,5 @@ export default function Playground() {
     <footer className="pg-statusbar"><span><Icon name={mobile ? 'mobile' : 'desktop'} />{mobile ? 'Mobile layout' : 'Desktop layout'}</span><span>{aiComparison ? 'Eidos proposal preview' : comparison ? 'Saved variation' : editing ? 'Select an element · double-click text to edit' : 'Visitor preview'}</span><PlaygroundTourButton /><button disabled={!!comparison || !!aiComparison} onClick={() => void openExport()}>{warnings.length ? `${warnings.length} checks before finishing` : 'Review & download'} ↗</button></footer>
     {notice && <div className="pg-toast" role="status">{notice}<button aria-label="Dismiss message" onClick={() => setNotice('')}>×</button></div>}
     <FinishReview key={`${documentId}:${reviewLoad}`} project={project} documentId={documentId} revision={w.revision} open={finishOpen} onClose={() => setFinishOpen(false)} />
-  </div>;
+  </div></>;
 }

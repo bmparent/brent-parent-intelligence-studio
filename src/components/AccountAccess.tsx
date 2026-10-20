@@ -11,7 +11,7 @@ export function PasswordField({ label = 'Password', value, onChange, current = f
     <button type="button" aria-label={(visible ? 'Hide ' : 'Show ') + label.toLowerCase()} aria-pressed={visible} onClick={() => setVisible(!visible)}>{visible ? 'Hide' : 'Show'}</button>
   </span>{!current && <small id={id + '-help'}>15–128 characters. A few memorable words work well.</small>}</div>;
 }
-export function AccountAccess({ onSuccess }: { onSuccess: () => void }) {
+export function AccountAccess({ onSuccess, onGoogle }: { onSuccess: () => void; onGoogle?: () => void }) {
   const config = usePublicConfig();
   const [mode, setMode] = useState<Mode>('signup'), [email, setEmail] = useState(''), [name, setName] = useState(''), [password, setPassword] = useState('');
   const [kind, setKind] = useState('person'), [newsletter, setNewsletter] = useState(false), [verification, setVerification] = useState(''), [reset, setReset] = useState(0);
@@ -77,7 +77,7 @@ export function AccountAccess({ onSuccess }: { onSuccess: () => void }) {
       {mode === 'signin' && config.passwordsReady && <button type="button" className="ew-account-text" onClick={() => choose('reset')}>Forgot password?</button>}
       {(mode === 'signup' || mode === 'signin') && <><div className="ew-account-or"><span>OR</span></div>
         <p>Google shares your verified email and Google account identifier with Eidos Works to sign you in or link your account. We store the linked identifier and, for new accounts, your email. This sign-in does not request Gmail or Drive access. <a href="/privacy#google-signin">Google sign-in privacy and removal requests</a>.</p>
-        <button type="button" className="ew-button ew-button--secondary ew-google-button" disabled={busy || !config.googleReady} onClick={() => void google()}>Continue with Google</button>
+        <button type="button" className="ew-button ew-button--secondary ew-google-button" disabled={busy || !config.googleReady} onClick={() => onGoogle ? onGoogle() : void google()}>Continue with Google{onGoogle ? ' in a new tab' : ''}</button>
         {!config.googleReady && <small>Google sign-in is being connected.</small>}
       </>}
       {message && <p className="ew-notice" role="status">{message}</p>}

@@ -1,3 +1,7 @@
+# Local Playground reliability candidate — October 20, 2026
+
+`fix/playground-saving-account-20261020` is stacked on held site PR131 `82b3ec8`; its paired backend branch starts from PR85 `0f44777`. It adds recoverable local saving, visible account access, image-only download and a default-off account-resume/quota contract. See [the local acceptance record](PLAYGROUND_RECOVERY_2026-10-20.md). No production/provider state or existing owner session changed; hosted account-resume acceptance remains open.
+
 # Implementation baseline — 2026-09-21
 
 ## Release cleanup continuation — 2026-10-19

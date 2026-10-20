@@ -35,9 +35,10 @@ export function useEffect(effect, dependencies) {
 `;
 const storage = `
 export const records = new Map();
-export const controls = { fail: false, delay: false, pending: [] };
-export async function loadWorkspace(id) { return structuredClone(records.get(id || 'current') || null); }
-export async function listSavedProjects() { return []; }
+export const controls = { fail: false, readFail: false, listFail: false, recordError: null, delay: false, pending: [] };
+export class WorkspaceRecordError extends Error { constructor(record) {super(record.message); this.record=record;} }
+export async function loadWorkspace(id) { if(controls.readFail)throw Error('Injected read failure'); if(controls.recordError)throw new WorkspaceRecordError(controls.recordError); return structuredClone(records.get(id || 'current') || null); }
+export async function readSavedProjects() { if(controls.listFail)throw Error('Injected list failure'); return {projects:[],recovery:[]}; }
 export async function saveWorkspace(value, stillCurrent = () => true) {
   if (controls.delay) await new Promise(resolve => controls.pending.push(resolve));
   if (!stillCurrent()) return;
@@ -217,4 +218,39 @@ test('an account change during outgoing persistence cancels a cloud replacement'
   assert.equal(f.records.get(originalId).project.name, 'A-final-local-edit');
   assert.equal(f.get().target, null);
   assert.equal(await f.get().replace(f.project('C-explicit-local-import')), true);
+});
+
+async function startupFixture(t, configure) {
+  const f = await import('data:text/javascript;base64,' + Buffer.from(compiled.outputFiles[0].text + '\n// startup ' + instance++).toString('base64'));
+  const previousWindow = globalThis.window;
+  globalThis.window = {addEventListener(){},removeEventListener(){}};
+  t.after(() => {f.dispose();if(previousWindow === undefined)delete globalThis.window;else globalThis.window=previousWindow;});
+  configure(f);
+  f.mount(f.useProject);
+  for(let i=0;i<8;i++)await Promise.resolve();
+  return {...f,get:()=>f.flush()};
+}
+test('a failed catalogue read does not discard a valid workspace or block saving', async t => {
+  const f = await startupFixture(t, f => {f.controls.listFail=true;f.records.set('current',{project:f.createProject(),documentId:'valid',editor:{},snapshots:[],revision:0,savedAt:''});});
+  assert.equal(f.get().hasSavedProject,true);assert.equal(f.get().documentId,'valid');assert.equal(f.get().storageError,'');assert.match(f.get().listError,/list could not/);
+  f.get().edit({...f.get().project,name:'Still editable'});assert.equal(await f.get().saveNow(),true);
+  f.controls.listFail=false;await f.get().retryStorage();assert.equal(f.get().listError,'');assert.equal(f.get().project.name,'Still editable');
+});
+test('unreadable current data is offered for recovery without claiming a write failure', async t => {
+  const raw={project:{schemaVersion:999},snapshots:['keep me']};
+  const f=await startupFixture(t,f=>{f.controls.recordError={key:'current',raw,message:'Record needs recovery'};});
+  assert.equal(f.get().ready,true);assert.equal(f.get().storageError,'');assert.deepEqual(f.get().recovery[0].raw,raw);
+  assert.equal(await f.get().startProject(f.createProject()),true);f.controls.recordError=null;
+  assert.equal(await f.get().saveNow(),true);assert.deepEqual(f.get().recovery[0].raw,raw,'saving does not dismiss unreadable data');
+});
+test('genuine read failure remains visible until successful retry and never replaces new edits', async t => {
+  const f=await startupFixture(t,f=>{f.controls.readFail=true;});assert.match(f.get().storageError,/could not be read/);
+  assert.equal(await f.get().startProject(f.createProject()),true);f.get().edit({...f.get().project,name:'New unsaved work'});
+  f.controls.fail=true;await f.get().retryStorage();assert.match(f.get().storageError,/Could not save/);assert.equal(f.get().project.name,'New unsaved work');
+  f.controls.readFail=false;f.controls.fail=false;await f.get().retryStorage();assert.equal(f.get().storageError,'');assert.equal(f.records.get('current').project.name,'New unsaved work');
+});
+test('the save indicator stays pending until the durable write resolves',async t=>{
+ const f=await fixture(t);f.get().edit(f.project('Awaiting commit'));f.controls.delay=true;
+ const pending=f.get().saveNow();assert.match(f.get().status,/^Saving/);assert.equal(f.records.get('current').project.name,'A-original');
+ f.controls.delay=false;f.controls.pending.shift()();assert.equal(await pending,true);assert.equal(f.get().status,'Saved on this device');assert.equal(f.records.get('current').project.name,'Awaiting commit');
 });

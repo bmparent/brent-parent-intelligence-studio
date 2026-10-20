@@ -7,6 +7,7 @@ import { onRequestPost as download } from '../functions/api/playground/purchases
 import { onRequestPost as webhook } from '../functions/api/playground/webhook';
 import { createProject, upgradeProject, newBlock } from '../src/playground/model';
 import { createHmac } from 'node:crypto';
+import { selectStudio } from '../src/playground/studioProject';
 
 test('Cloud revisions preserve images, enforce ownership, and reject stale writes', async () => {
   const {env,sql}=fixture(), alice=await signup(env,'alice'), bob=await signup(env,'bobby');
@@ -92,4 +93,45 @@ test('v2 card assets hydrate only for their owner and preserve earlier document 
  const response=await save(ctx(env,'/api/playground/projects',{document},alice.headers));assert.equal(response.status,200,await response.clone().text());const saved=await response.json();
  assert.deepEqual((await (await get(ctx(env,'/api/playground/projects?id='+saved.id,undefined,alice.headers))).json()).document,document);
  assert.equal((await get(ctx(env,'/api/playground/projects?id='+saved.id,undefined,bob.headers))).status,404);sql.close();
+});
+
+test('current-format resume is default-off, owner-bound, lossless and separate from authoring activation',async()=>{
+ const {env,sql}=fixture(),alice=await signup(env,'resume_alice'),bob=await signup(env,'resume_bob');
+ try {
+  const document=selectStudio(createProject(),'artwork');
+  const caps=await (await get(ctx(env,'/api/playground/projects',undefined,alice.headers))).json();
+  assert.equal(caps.resumeProtocol,1);assert.equal(caps.resumeSaveEnabled,false);
+  assert.equal((await save(ctx(env,'/api/playground/projects',{document,intent:'resume',expectedOwner:caps.ownerId},alice.headers))).status,409);
+  env.EIDOS_PLAYGROUND_RESUME_ENABLED='true';env.EIDOS_PLAYGROUND_AUTHORING_ENABLED='false';
+  assert.equal((await save(ctx(env,'/api/playground/projects',{document,intent:'resume'},alice.headers))).status,409);
+  assert.equal((await save(ctx(env,'/api/playground/projects',{document,intent:'resume',expectedOwner:'wrong-owner'},alice.headers))).status,409);
+  assert.equal((await save(ctx(env,'/api/playground/projects',{document},alice.headers))).status,409,'ordinary cloud contract remains closed');
+  const response=await save(ctx(env,'/api/playground/projects',{document,intent:'resume',expectedOwner:caps.ownerId},alice.headers));
+  assert.equal(response.status,200,await response.clone().text());const saved=await response.json();
+  assert.deepEqual((await (await get(ctx(env,'/api/playground/projects?id='+saved.id,undefined,alice.headers))).json()).document,document);
+  assert.equal((await get(ctx(env,'/api/playground/projects?id='+saved.id,undefined,bob.headers))).status,404);
+  assert.equal((await save(ctx(env,'/api/playground/projects',{document,intent:'resume',expectedOwner:caps.ownerId,id:saved.id,expectedRevision:saved.revision},bob.headers))).status,409);
+  const latest=await (await get(ctx(env,'/api/playground/projects',undefined,alice.headers))).json();
+  assert.equal(latest.resumeSaveEnabled,true);assert.ok(latest.storage.documentBytes>0);assert.equal(latest.storage.documentLimit,20_000_000);assert.equal(latest.storage.imageLimit,40_000_000);
+ } finally {sql.close();}
+});
+
+test('document-history quota is transactional and preserves the previous head and other owners',async()=>{
+ const {env,sql}=fixture(),alice=await signup(env,'quota_alice'),bob=await signup(env,'quota_bob');
+ try {
+  const document=createProject(),saved=await (await save(ctx(env,'/api/playground/projects',{document},alice.headers))).json();
+  const archiveId=crypto.randomUUID();
+  const used=Number(sql.prepare('SELECT SUM(length(CAST(document AS BLOB))) bytes FROM eidos_pg_revisions WHERE project_id=?').get(saved.id)!.bytes);
+  sql.prepare('INSERT INTO eidos_pg_revisions(id,project_id,parent,document,created_at) VALUES(?,?,NULL,zeroblob(?),?)').run(archiveId,saved.id,20_000_000-used,new Date().toISOString());
+  const before=sql.prepare('SELECT COUNT(*) n FROM eidos_pg_revisions').get()!.n;
+  const larger={...document,name:'Later work',sections:document.sections.map((section,index)=>index===1?{...section,image:'data:image/png;base64,iVBORw0KGgo='}:section)};
+  const result=await save(ctx(env,'/api/playground/projects',{document:larger,id:saved.id,expectedRevision:saved.revision},alice.headers));
+  assert.equal(result.status,413,await result.clone().text());
+  assert.match((await result.json()).error,/Earlier work is kept/);
+  assert.equal(sql.prepare('SELECT head FROM eidos_pg_projects WHERE id=?').get(saved.id)!.head,saved.revision);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_pg_revisions').get()!.n,before);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM eidos_pg_assets').get()!.n,0,'rejected history cannot leave an orphan image');
+  assert.equal((await save(ctx(env,'/api/playground/projects',{document},bob.headers))).status,200,'another owner has independent quota');
+  assert.deepEqual((await (await get(ctx(env,'/api/playground/projects?id='+saved.id+'&revision='+saved.revision,undefined,alice.headers))).json()).document,document);
+ } finally {sql.close();}
 });

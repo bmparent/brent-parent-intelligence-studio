@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { Project } from './model';
 import type { SavedProjectSummary } from './storage';
 import { imageData } from './storage';
@@ -12,6 +12,8 @@ type Props = {
   savedProjects?: SavedProjectSummary[];
   currentDocumentId?: string;
   storageError?: string;
+  recovery?: ReactNode;
+  onAccount?: () => void;
   onContinue: () => void;
   onStart: (project: Project) => Promise<boolean>;
   onOpenSaved?: (id: string) => Promise<boolean>;
@@ -20,7 +22,7 @@ function StarterPreview({project,title}:{project:Project;title:string}) {
   const document = useMemo(() => `<!doctype html><html lang="en"><head><meta charset="utf-8"><style>${tokensCss(project)}${renderedStyles(project)}html{scroll-behavior:auto}.pg-header{position:relative;top:0}.pg-skip{display:none}</style></head><body>${pageMarkup(project)}</body></html>`,[project]);
   return <span className="pg-start-preview"><iframe title={title} srcDoc={document} sandbox="" tabIndex={-1} aria-hidden="true" loading="lazy" /></span>;
 }
-export function StartScreen({savedProject,savedProjects=[],currentDocumentId,storageError,onContinue,onStart,onOpenSaved}:Props) {
+export function StartScreen({savedProject,savedProjects=[],currentDocumentId,storageError,recovery,onAccount,onContinue,onStart,onOpenSaved}:Props) {
   const [goal,setGoal] = useState<ProjectGoal>('business'), [action,setAction] = useState<VisitorAction>('contact');
   const [selected,setSelected] = useState<StarterId>('switchboard'), [customizing,setCustomizing] = useState(false);
   const [name,setName] = useState(''), [offer,setOffer] = useState(''), [link,setLink] = useState(''), [confirmed,setConfirmed] = useState(false);
@@ -63,13 +65,14 @@ export function StartScreen({savedProject,savedProjects=[],currentDocumentId,sto
   useLayoutEffect(() => { if (customizing) details.current?.focus(); }, [customizing]);
   function choose(id: StarterId) { setSelected(id); setCustomizing(true); }
   return <main className="pg-start" aria-label="Start a Playground project">
-    <header className="pg-start-brand"><a href="/" aria-label="Eidos Works home"><img src="/brand/eidos-mark-light.svg" alt="" width="30" height="30" /><span>eidos <strong>playground</strong></span></a><span>One page. Your point of view.</span></header>
+    <header className="pg-start-brand"><a href="/" aria-label="Eidos Works home"><img src="/brand/eidos-mark-light.svg" alt="" width="30" height="30" /><span>eidos <strong>playground</strong></span></a><span>One page. Your point of view.</span>{onAccount && <button className="pg-account-entry" onClick={onAccount}>Account / Sign in</button>}</header>
     <div className="pg-start-body">
       <div className="pg-start-intro"><p className="pg-start-eyebrow">A useful starting point</p><h1>Make something<br /><em>that feels like you.</em></h1><p>Start with a real design. Make it your own, one detail at a time.</p></div>
       {savedProject && <section className="pg-start-continue" aria-label="Continue your project"><div><span className="pg-start-eyebrow">Your work is here</span><h2>{savedProject.name}</h2><p>Continue the same page, images, and saved selection.</p></div><button className="pg-start-primary" onClick={onContinue}>Continue project <span aria-hidden="true">↗</span></button></section>}
       {savedProjects.some(s => s.documentId !== currentDocumentId) && onOpenSaved && <details className="pg-start-saved"><summary>Other projects saved on this device</summary><ul>{savedProjects.filter(s => s.documentId !== currentDocumentId).map(s => <li key={s.documentId}><span>{s.name}</span><button disabled={busy} onClick={async()=>{setBusy(true);const opened=await onOpenSaved(s.documentId);if(active.current){setBusy(false);if(!opened)setMessage('This saved project could not be opened. Your current design is unchanged.');}}}>Open project</button></li>)}</ul></details>}
       {!customizing && <PlaygroundWalkthrough onDone={() => document.getElementById('pg-new-heading')?.focus()} />}
       {storageError && <p className="pg-start-message" role="status">{storageError}</p>}
+      {recovery}
       {!customizing ? <section className="pg-start-new" aria-labelledby="pg-new-heading">
         <div className="pg-start-section-heading"><div><p className="pg-start-eyebrow">New project</p><h2 id="pg-new-heading" tabIndex={-1}>What are you making?</h2></div>{savedProject && <p>Starting fresh keeps your previous project in your saved projects.</p>}</div>
         <fieldset className="pg-start-goals"><legend>Choose the kind of page</legend>{([{id:'business',label:'Business site',detail:'Introduce what you do'},{id:'landing',label:'Landing page',detail:'Give one offer a home'},{id:'portfolio',label:'Portfolio',detail:'Put your work first'}] as const).map(g=><label key={g.id} className={goal===g.id?'is-selected':''}><input type="radio" name="project-goal" value={g.id} checked={goal===g.id} onChange={()=>{setGoal(g.id);setSelected(starters.find(s=>s.goal===g.id)!.id);}}/><span><strong>{g.label}</strong><small>{g.detail}</small></span></label>)}</fieldset>

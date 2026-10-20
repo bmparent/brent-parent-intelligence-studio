@@ -13,12 +13,13 @@ import { motionFiles } from './motionRenderer';
 import { download, exportFiles, headerFiles, zipFiles } from './export';
 import { CloudProjects } from './CloudProjects';
 import { MediaBrand } from './MediaBrand';
+import { RecoveryControls } from './RecoveryControls';
 import './studioWorkspace.css';
 
 export function StudioPicker({value,choose,disabled=false}:{value:StudioMode;choose:(v:StudioMode)=>void;disabled?:boolean}) {
   return <label className="studio-picker">Workspace<select aria-label="Studio" disabled={disabled} value={value} onChange={e=>choose(e.target.value as StudioMode)}>{studioModes.map(v=><option key={v} value={v}>{v==='page'?'Page editor':v[0].toUpperCase()+v.slice(1)+' Studio'}</option>)}</select></label>;
 }
-export function StudioWorkspace({workspace:w}:{workspace:ReturnType<typeof useProject>}) {
+export function StudioWorkspace({workspace:w,onAccount}:{workspace:ReturnType<typeof useProject>;onAccount?:()=>void}) {
   const {project}=w;
   const mode=project.studios?.active||'effect';
   const [notice,setNotice]=useState(''),[variation,setVariation]=useState(''),[mobile,setMobile]=useState(()=>typeof window!=='undefined'&&window.innerWidth<=760),[panel,setPanel]=useState<'canvas'|'tools'>('canvas'),[compare,setCompare]=useState<Project|null>(null),[media,setMedia]=useState(false);
@@ -45,7 +46,9 @@ export function StudioWorkspace({workspace:w}:{workspace:ReturnType<typeof usePr
     <header className="studio-toolbar"><a href="/" className="studio-brand"><img src="/brand/eidos-mark.svg" alt="Eidos Works" width="28" height="28"/><span>Playground</span></a><StudioPicker value={mode} choose={v=>{w.endGesture();edit(selectStudio(project,v));}}/>
       <input aria-label="Project name" value={project.name} maxLength={100} onChange={e=>edit({...project,name:e.target.value},'name')}/>
       <div className="studio-actions"><button aria-label="Undo" disabled={!w.canUndo} onClick={()=>{w.undo();setCompare(null);}}>Undo</button><button aria-label="Redo" disabled={!w.canRedo} onClick={w.redo}>Redo</button><button onClick={async()=>setNotice(await w.saveNow()?'Saved on this device.':'Save did not complete for this revision. Download project JSON to keep your work.')}>Save locally</button><button className="studio-primary" onClick={()=>output('studio')}>Export {mode==='motion'?'animation':mode==='artwork'?'artwork':'page'}</button></div>
+      {onAccount && <button className="pg-account-entry" onClick={onAccount}>Account / Sign in</button>}
     </header>
+    <RecoveryControls workspace={w}/>
     <nav className="studio-mobile-panels" aria-label="Studio panels"><button aria-pressed={panel==='canvas'} onClick={()=>setPanel('canvas')}>Canvas</button><button aria-pressed={panel==='tools'} onClick={()=>setPanel('tools')}>Project & tools</button></nav>
     <div className="studio-body"><aside className="studio-project-tools"><h1>{mode[0].toUpperCase()+mode.slice(1)} Studio</h1><p className={'studio-save '+(w.storageError?'is-error':'')} role="status">{w.status}<small>Local browser workspace · account save is separate</small></p>
       <label className="studio-import">Import project JSON<input type="file" aria-label="Import studio project" accept="application/json,.json" onChange={async e=>{const file=e.target.files?.[0];e.target.value='';if(!file)return;const current=guard();try{if(file.size>16_000_000)throw Error('Maximum project size is 16 MB.');const next=validateProject(JSON.parse(await file.text()));if(!current())throw Error('Import ignored because the project changed. Choose it again.');if(!await w.replace(next))throw Error('Import paused: save your current project and try again.');setCompare(null);setNotice('Project reopened. Undo restores the previous workspace.');}catch(err){setNotice((err as Error).message);}}}/></label>
