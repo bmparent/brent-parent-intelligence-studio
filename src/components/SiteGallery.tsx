@@ -26,6 +26,8 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
   const [selected, setSelected] = useState<Site | null>(null);
   const selectedConcept = selected?.category === 'Concepts';
   const [actualSize, setActualSize] = useState(false);
+  const [pageIndex, setPageIndex] = useState(0);
+  const activePage = selected?.pages?.[pageIndex] || selected;
   const dialog = useRef<HTMLDialogElement>(null);
   const imageScroll = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLElement | null>(null);
@@ -33,7 +35,7 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
     ? sites.slice(0, 6)
     : sites.filter((site) =>
         (category === 'All' || site.category === category) &&
-        `${site.title} ${site.description} ${site.sector || ''} ${site.goal || ''}`.toLowerCase().includes(query.trim().toLowerCase()),
+        `${site.slug} ${site.title} ${site.description} ${site.sector || ''} ${site.goal || ''}`.toLowerCase().includes(query.trim().toLowerCase()),
       );
 
   useEffect(() => {
@@ -46,6 +48,7 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
   function openPreview(site: Site) {
     trigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setActualSize(false);
+    setPageIndex(0);
     setSelected(site);
   }
 
@@ -83,7 +86,7 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
             {site.fullPage && <p className="ew-site-concept-summary">{site.description}</p>}
             <div className="ew-site-actions">
               {site.url && <a href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`${destinationLabel(site)}: ${site.title} (new tab)`}>{destinationLabel(site)} ↗</a>}
-              <button className="ew-site-preview" type="button" aria-label={`Preview ${site.title}`} aria-haspopup="dialog" onClick={() => openPreview(site)}>{site.fullPage ? 'Explore full page' : 'Preview'}</button>
+              <button className="ew-site-preview" type="button" aria-label={`Preview ${site.title}`} aria-haspopup="dialog" onClick={() => openPreview(site)}>{site.pages?.length ? 'Explore storefront' : site.fullPage ? 'Explore full page' : 'Preview'}</button>
             </div>
           </article>
         ))}
@@ -95,17 +98,26 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
           {selected.fullPage ? <>
             <div className="ew-site-dialog-copy ew-site-concept-intro">
               <h3 id="site-preview-title">{selected.title}</h3><p>{selected.description}</p>
-              <span className="ew-site-private">{selected.previewLabel}. {selectedConcept ? 'This is a static design illustration; the business and its offer are imagined.' : 'A saved capture of the live homepage. Storefront work completed through Data Graphics’ client-services workflow; store content and ordering eligibility remain with the client.'}</span>
+              <span className="ew-site-private">{selected.previewLabel}. {selectedConcept ? 'This is a static design illustration; the business and its offer are imagined.' : `${selected.pages?.length ? 'Saved captures of the live storefront.' : 'A saved capture of the live homepage.'} Storefront work completed through Data Graphics’ client-services workflow; store content and ordering eligibility remain with the client.`}</span>
             </div>
+            {selected.pages && <div className="ew-site-page-picker" role="group" aria-label={`Choose a page from ${selected.title}`}>
+              {selected.pages.map((page, index) => <button type="button" key={page.image} aria-pressed={pageIndex === index} aria-controls="site-page-scroll" onClick={() => {
+                setPageIndex(index);
+                setActualSize(false);
+                if (imageScroll.current) { imageScroll.current.scrollTop = 0; imageScroll.current.scrollLeft = 0; }
+              }}><img src={page.thumbnail} alt="" width="240" height="160" loading="lazy" /><span>{page.title}</span></button>)}
+            </div>}
+            {selected.pages && <p className="ew-site-page-caption" aria-live="polite">{selected.pages[pageIndex].caption}</p>}
             <div className="ew-site-page-toolbar">
-              <p id="site-page-scroll-help">Scroll to explore from hero to footer{actualSize ? '; scroll sideways to read the details' : ''}.</p>
+              <p id="site-page-scroll-help">{selected.pages ? `Viewing ${selected.pages[pageIndex].title.toLowerCase()}. Scroll to explore` : 'Scroll to explore from hero to footer'}{actualSize ? '; scroll sideways to read the details' : ''}.</p>
               <button type="button" aria-pressed={actualSize} aria-controls="site-page-scroll" onClick={() => { setActualSize(!actualSize); if (imageScroll.current) imageScroll.current.scrollLeft = 0; }}>{actualSize ? 'Fit to width' : 'Read at full size'}</button>
             </div>
-            <div id="site-page-scroll" ref={imageScroll} className="ew-site-page-scroll" tabIndex={0} role="region" aria-label={`${selected.title} complete page image`} aria-describedby="site-page-scroll-help">
-              <img className="ew-site-full-page-image" src={selected.image} alt={selected.alt || `${selected.title} complete ${selectedConcept ? 'website concept' : 'storefront homepage'}`} width={selected.imageWidth} height={selected.imageHeight} style={actualSize ? { width: `${selected.imageWidth}px`, maxWidth: 'none' } : undefined} />
+            <div id="site-page-scroll" ref={imageScroll} className="ew-site-page-scroll" tabIndex={0} role="region" aria-label={`${selected.title}${selected.pages ? ` ${selected.pages[pageIndex].title}` : ''} complete page image`} aria-describedby="site-page-scroll-help">
+              <img className="ew-site-full-page-image" key={activePage?.image} src={activePage?.image} alt={activePage?.alt || `${selected.title} complete ${selectedConcept ? 'website concept' : 'storefront homepage'}`} width={activePage?.imageWidth} height={activePage?.imageHeight} style={actualSize ? { width: `${activePage?.imageWidth}px`, maxWidth: 'none' } : undefined} />
             </div>
             <div className="ew-site-dialog-copy ew-site-concept-brief">
               <dl><div><dt>The customer goal</dt><dd>{selected.goal}</dd></div><div><dt>The design approach</dt><dd>{selected.approach}</dd></div></dl>
+              {selected.pages && <p><a className="ew-text-link" href={selected.pages[pageIndex].url} target="_blank" rel="noopener noreferrer">Open this page in the live store ↗</a></p>}
               {selected.url && <p><a className="ew-text-link" href={selected.url} target="_blank" rel="noopener noreferrer">{destinationLabel(selected)} ↗</a></p>}
               <a className="ew-text-link" href="/contact">Plan a project like this ↗</a>
             </div>
