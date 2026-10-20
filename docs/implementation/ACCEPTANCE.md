@@ -118,3 +118,12 @@ flow, verification limits and rollback are recorded in
 The PR retains exact-head CI and screenshot evidence. Source preparation does
 not establish production publication, Brent's visual acceptance or acceptance of
 the held account/payment runtime.
+
+## October 20 FNBMD storefront showcase
+
+Brent requested featuring the newly public FNBMD storefront with a complete
+homepage image and product-page views. This isolated public-main addition
+features real homepage, collection and two product captures with page-selection
+controls in the gallery's existing reading dialog. Image provenance, validation,
+release gates and rollback are recorded in
+[FNBMD_GALLERY_2026-10-20.md](FNBMD_GALLERY_2026-10-20.md).

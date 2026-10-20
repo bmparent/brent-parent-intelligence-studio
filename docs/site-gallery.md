@@ -51,3 +51,18 @@ The first record links to the standalone public calculator at https://embroidery
 Before the Wellway addition, the gallery contained 17 records: 11 public Sites apps, this standalone calculator, and five saved InkSoft references. The separate embroiderycalc-preview Site remains accessible. The stable calculator slug and image filenames are retained.
 
 The older embroiderycalc-pro Cloudflare project retains its June 10 Printavo/AI deployment c27e2636-e7b8-40c3-a99f-c405a5d92a0d and existing runtime settings. Its automatic production builds are paused so the current standalone repository cannot replace the operational interface. The public project is a separate static direct upload. No private order search or paid AI call was used for release verification.
+
+## FNBMD employee storefront — October 20, 2026
+
+First National Bank of Mount Dora is the first gallery record, appearing in the
+homepage's six featured previews and the Work page's Storefronts filter. The
+full 1346 × 2907 homepage capture is accompanied by category, polo, and woven
+shirt detail captures. Optional `pages` records provide native page-selection
+buttons in the existing reading dialog; each includes its own image dimensions,
+caption, thumbnail, alternative text, and verified live destination. Selecting a
+page resets zoom and image scroll. Existing one-image previews retain their
+presentation. All views remain saved captures; product prices, availability,
+and ordering eligibility remain with the client.
+
+The capture and acceptance ledger is
+[ FNBMD gallery acceptance ](implementation/FNBMD_GALLERY_2026-10-20.md).

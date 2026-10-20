@@ -65,6 +65,7 @@ for (const file of await htmlFiles(root)) {
   }
 
   const approvedPlatformPages = new Set([
+    'index.html', // The featured FNBMD gallery card links to the public InkSoft store.
     'work/index.html',
     'work/nighttime-spectaculars/index.html',
     'work/holidays-in-hollywood/index.html',

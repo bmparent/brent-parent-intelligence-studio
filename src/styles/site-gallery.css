@@ -320,3 +320,15 @@
   .ew-site-page-toolbar p { flex-basis: 100%; }
   .ew-site-concept-brief dl { grid-template-columns: 1fr; gap: 18px; }
 }
+
+/* Related live pages share the existing full-page reading surface. */
+.ew-site-page-picker { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0 30px 18px; }
+.ew-site-page-picker button { min-width: 0; padding: 5px; border: 1px solid #bdc9c4; border-radius: 8px; background: #fffdf8; color: #23483f; font: inherit; cursor: pointer; text-align: left; }
+.ew-site-page-picker button[aria-pressed="true"] { border-color: #174e42; box-shadow: 0 0 0 2px #174e42; background: #edf2ed; }
+.ew-site-page-picker img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: top; border-radius: 4px; }
+.ew-site-page-picker span { display: block; padding: 10px 6px 6px; font-size: 13px; line-height: 1.4; }
+.ew-site-page-caption { margin: 0; padding: 0 30px 20px; color: #526c64; font-size: 14px; line-height: 1.6; }
+@media (max-width: 760px) {
+  .ew-site-page-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-inline: 20px; }
+  .ew-site-page-caption { padding-inline: 20px; }
+}
