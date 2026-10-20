@@ -1,9 +1,9 @@
 {
   "siteOrigin": "https://eidosworks-templates-test-20261010.pages.dev",
   "mode": "test",
-  "deploymentId": "dpl_HGmhbcauge8PzmARbYobQoTpzAmw",
-  "backendOrigin": "https://eidos-sentinel-fkjjekqbn-1brentbm-1876s-projects.vercel.app",
-  "backendSha": "16a1926d5bbd33cd52bb0c93ee15dd949b1bc698",
-  "bundleHash": "6c59882a4485fc02c2a97a91773d5cf38e3ad6b65340e616ff9db8eb6612a37c",
-  "sourceRevision": "16a1926d5bbd33cd52bb0c93ee15dd949b1bc698-bundle-6c59882a4485fc02"
+  "deploymentId": "dpl_GesqekEU1ftaU1Z7L8WhB44Ly2FT",
+  "backendOrigin": "https://eidos-sentinel-e4a7lchw5-1brentbm-1876s-projects.vercel.app",
+  "backendSha": "0f44777604e9cec56c04e0dd00efe130b3b6469b",
+  "bundleHash": "fe8fdf169e1048c4f424bbe31c4c0d09d46e1053e9fca069c389ef2f0ae133d5",
+  "sourceRevision": "0f44777604e9cec56c04e0dd00efe130b3b6469b-bundle-fe8fdf169e1048c4"
 }
