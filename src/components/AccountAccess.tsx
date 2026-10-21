@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type FormEvent } from 'react';
+import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { post, usePublicConfig } from '../lib/platform';
 import { Turnstile } from './Turnstile';
 
@@ -16,6 +16,9 @@ export function AccountAccess({ onSuccess, onGoogle }: { onSuccess: () => void; 
   const [mode, setMode] = useState<Mode>('signup'), [email, setEmail] = useState(''), [name, setName] = useState(''), [password, setPassword] = useState('');
   const [kind, setKind] = useState('person'), [newsletter, setNewsletter] = useState(false), [verification, setVerification] = useState(''), [reset, setReset] = useState(0);
   const [busy, setBusy] = useState(false), [message, setMessage] = useState(''), [error, setError] = useState(''), [localLink, setLocalLink] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
+  const confirmationHeading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => { if (emailSent) confirmationHeading.current?.focus(); }, [emailSent]);
   useEffect(() => {
     const oauth = new URLSearchParams(location.search).get('oauth');
     if (!oauth) return;
@@ -28,7 +31,7 @@ export function AccountAccess({ onSuccess, onGoogle }: { onSuccess: () => void; 
       history.replaceState(null, '', location.pathname);
     });
   }, []);
-  function choose(next: Mode) { setMode(next); setPassword(''); setError(''); setMessage(''); setLocalLink(''); }
+  function choose(next: Mode) { setMode(next); setPassword(''); setError(''); setMessage(''); setLocalLink(''); setEmailSent(false); }
   async function google() {
     setBusy(true); setError('');
     try {
@@ -46,11 +49,19 @@ export function AccountAccess({ onSuccess, onGoogle }: { onSuccess: () => void; 
       const action = mode === 'google-username' ? 'complete-signup' : mode === 'reset' ? 'request-reset' : mode === 'signin' ? (usePassword ? 'login' : 'signin') : mode === 'email' ? 'signin' : 'signup';
       const result = await post<{ message?: string; localVerificationUrl?: string; member?: unknown; ok?: boolean }>(endpoint, { action, email, identifier: email, username: name, password, kind, newsletter, challenge: verification, website: new FormData(event.currentTarget).get('website') });
       if ((mode === 'signin' && usePassword) || mode === 'google-username') { setPassword(''); onSuccess(); }
-      else { setPassword(''); setMessage(result.message || 'Check your email.'); if (config?.localTest && result.localVerificationUrl) setLocalLink(result.localVerificationUrl); }
+      else { setPassword(''); setMessage(result.message || 'Check your email.'); setEmailSent(true); if (config?.localTest && result.localVerificationUrl) setLocalLink(result.localVerificationUrl); }
     } catch (e) { setError((e as Error).message); }
     finally { setBusy(false); setVerification(''); setReset(n => n + 1); }
   }
   if (!config) return <p role="status">Loading sign-in options…</p>;
+  if (emailSent) return <div className="ew-account-access"><section className="ew-member-card ew-form-stack">
+    <p className="ew-eyebrow">Your Eidos Works account</p>
+    <h2 ref={confirmationHeading} tabIndex={-1}>Check your email</h2>
+    <p role="status">{message}</p>
+    <p>Open the email link to continue. You are not signed in yet.</p>
+    {localLink && <a href={localLink}>Local preview only: open the test account link</a>}
+    <button type="button" className="ew-button ew-button--secondary" onClick={() => choose('signin')}>Back to sign in</button>
+  </section></div>;
   const isPasswordLogin = mode === 'signin' && config.passwordsReady;
   const needsChallenge = mode !== 'google-username';
   return <div className="ew-account-access">
