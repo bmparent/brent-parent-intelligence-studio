@@ -71,8 +71,8 @@ export function Turnstile({
       if (widget) window.turnstile?.remove(widget);
     };
   }, [config, action, resetKey, attempt]);
-  return <div className="ew-turnstile"><div ref={ref} />{issue && <>
+  return <><div ref={ref} className="ew-turnstile" />{issue && <>
     <p role="status">{issue}</p>
     <button type="button" className="ew-button ew-button--secondary" onClick={() => { setIssue(''); onTokenRef.current(''); setAttempt(n => n + 1); }}>Retry verification</button>
-  </>}</div>;
+  </>}</>;
 }
