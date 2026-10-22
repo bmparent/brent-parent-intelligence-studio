@@ -22,8 +22,14 @@ From the repository root, create deterministic private-review packages:
 
 ```bash
 python3 scripts/build-value-templates.py
+python3 scripts/build-value-template-preview.py
 python3 scripts/verify-value-templates.py
 ```
+
+The portable `Eidos_Affordable_Template_Preview_2026-10-22.html` in that output
+folder embeds the exact source, styles and image for offline product/page/phone
+review. Its sandbox routes only known sibling pages inside the review frame;
+the standalone buyer files retain ordinary HTML navigation.
 
 Generated ZIPs and manifests are under `artifacts/value-templates/`, outside
 public static hosting and ignored by git. Product source, the generated asset,
