@@ -1,12 +1,13 @@
 /** Loopback-only, in-memory account QA. Never deployed; no external provider or delivery acceptance. */
 import {createServer} from 'node:http';import {readFile,stat} from 'node:fs/promises';import {resolve,sep,extname} from 'node:path';import {pathToFileURL} from 'node:url';
 import {fixture} from './playground-test-fixture';
+import {onRequestGet as previewFrame} from '../functions/playground-frame';
 import * as credentials from '../functions/api/members/credentials';import * as auth from '../functions/api/members/auth';import * as account from '../functions/api/members/account';import * as config from '../functions/api/public-config';import * as projects from '../functions/api/playground/projects';import * as purchases from '../functions/api/playground/purchases';import * as google from '../functions/api/members/google';
 const {env,sql}=fixture();sql.exec(await readFile('migrations/0006_member_credentials.sql','utf8'));env.PUBLIC_SITE_URL='http://localhost:4788';env.EIDOS_PASSWORD_AUTH_ENABLED='true';env.EIDOS_PASSWORD_SERVICE=(await import(pathToFileURL(resolve(process.argv[2])).href)).passwordService;
 const routes:Record<string,Record<string,unknown>>={'/api/members/credentials':credentials,'/api/members/auth':auth,'/api/members/account':account,'/api/public-config':config,'/api/playground/projects':projects,'/api/playground/purchases':purchases,'/api/members/google':google};
 const root=resolve('dist');const server=createServer(async(req,res)=>{try{
  if(req.headers.host!=='localhost:4788'){res.writeHead(403);res.end();return;}
- const url=new URL(req.url||'/',env.PUBLIC_SITE_URL);if(url.pathname.startsWith('/api/')){
+ const url=new URL(req.url||'/',env.PUBLIC_SITE_URL);if(url.pathname==='/playground-frame'){const response=previewFrame();res.writeHead(response.status,Object.fromEntries(response.headers));res.end(await response.text());return;}if(url.pathname.startsWith('/api/')){
  const chunks:Buffer[]=[];let size=0;for await(const part of req){size+=part.length;if(size>2020000){res.writeHead(413);res.end();return;}chunks.push(part);}
  const handler=routes[url.pathname]?.[req.method==='GET'?'onRequestGet':'onRequestPost'] as ((v:unknown)=>Promise<Response>)|undefined;
  const response=handler?await handler({env,request:new Request(url,{method:req.method,headers:req.headers as Record<string,string>,...(req.method==='GET'?{}:{body:Buffer.concat(chunks)})})}):Response.json({error:'Fixture route unavailable'},{status:404});

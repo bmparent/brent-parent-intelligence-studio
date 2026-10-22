@@ -70,3 +70,9 @@ Ask Eidos source controls remain five enhanced attempts per visitor/day, 200 glo
 Prepare additive migrations and backend first. Verify exact catalogue/handler and editor dependency parity, then preview the frontend against that backend. Do not enable new-format cloud access until owner/reopen tests pass on the pair. Keep legacy schema support and existing member IDs, orders and entitlements. Production rollback targets are the deployments above; do not reverse additive data migrations or destroy new accounts to roll back code.
 
 No production deployment, live financial transaction, public post or external email has been performed by this implementation task.
+# Playground preview reliability correction — October 22, 2026
+
+The isolated candidate adds the [CSP-compatible frame correction and recovery
+regression](PLAYGROUND_PREVIEW_FIX_2026-10-22.md) after reproducing Brent's nested
+walkthrough report. Backend `77dc718` and production `53c25ba` / `d01920b` are
+unchanged. Exact-source rendered CI and hosted results belong to PR139.

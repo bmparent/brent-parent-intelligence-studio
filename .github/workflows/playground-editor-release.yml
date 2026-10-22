@@ -39,6 +39,7 @@ jobs:
           trap 'kill "$INDEXING_PID" 2>/dev/null || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8791/quote-desk/ >/dev/null && break || sleep 1; done
           node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8791 --output="$RUNNER_TEMP/indexing-local.json"
+          node scripts/verify-playground-frame-http.mjs --base-url=http://127.0.0.1:8791
       - name: Install isolated browser test tools (no repository dependency changes)
         run: |
           npm install --prefix "$RUNNER_TEMP/pg-browser" --no-save --no-package-lock playwright@1.58.2
@@ -98,7 +99,7 @@ jobs:
           npm run verify:growth-seo
       - name: Full site gates on the exact candidate before any production upload
         run: |
-          git diff --exit-code -- src/playground/glassBundle.ts src/playground/runtimeBundle.ts functions/_shared/platform/playgroundSchema.ts
+          git diff --exit-code -- src/playground/glassBundle.ts src/playground/runtimeBundle.ts functions/_shared/playgroundFrameBootstrap.ts functions/_shared/platform/playgroundSchema.ts
           npm run lint
           npm run test:platform
           npm run test:playground

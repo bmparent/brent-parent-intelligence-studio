@@ -250,3 +250,11 @@ features real homepage, collection and two product captures with page-selection
 controls in the gallery's existing reading dialog. Image provenance, validation,
 release gates and rollback are recorded in
 [FNBMD_GALLERY_2026-10-20.md](FNBMD_GALLERY_2026-10-20.md).
+# Playground hosted preview correction — October 22, 2026
+
+The reported nested walkthrough was reproduced as contact-link navigation inside
+the sandbox after the hosted CSP blocked inline preview scripts. The preserved
+project reopened normally. See [the root cause, correction and exact acceptance
+boundary](PLAYGROUND_PREVIEW_FIX_2026-10-22.md). The public policy stays strict;
+rendered CI now enforces it. Previous source/HTTP/account receipts do not close
+this newly reproduced canvas defect.

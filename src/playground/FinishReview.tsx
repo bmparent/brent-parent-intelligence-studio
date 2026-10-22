@@ -5,6 +5,7 @@ import { buildFrozenPackage, createProjectSnapshot, decodeSnapshotImages, frozen
 import { loadFrozenReview, saveFrozenReview } from './purchaseReviewStorage';
 import { FinishPurchase } from './FinishPurchase';
 import './finish-review.css';
+import { SandboxFrame } from './SandboxFrame';
 
 type Props = { project: Project; documentId: string; revision: number; open: boolean; onClose(): void };
 function FrozenPreview({ markup, mobile }: { markup: string; mobile: boolean }) {
@@ -15,7 +16,7 @@ function FrozenPreview({ markup, mobile }: { markup: string; mobile: boolean }) 
     return () => observer.disconnect();
   }, []);
   const width = mobile ? 390 : 1280, scale = Math.min(1, size.width / width);
-  return <div ref={frame} className="pg-finish-frame" data-mobile={mobile}><iframe title="Frozen package preview" sandbox="allow-scripts" srcDoc={markup} style={{ width, height: Math.ceil(size.height / scale), transform: `scale(${scale})`, transformOrigin: 'top left' }} /></div>;
+  return <div ref={frame} className="pg-finish-frame" data-mobile={mobile}><SandboxFrame title="Frozen package preview" markup={markup} style={{ width, height: Math.ceil(size.height / scale), transform: `scale(${scale})`, transformOrigin: 'top left' }} /></div>;
 }
 export function FinishReview({ project, documentId, revision, open, onClose }: Props) {
   const dialog = useRef<HTMLDialogElement>(null), operation = useRef(0);
