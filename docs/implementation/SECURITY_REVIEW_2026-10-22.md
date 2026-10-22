@@ -48,6 +48,8 @@ Wrangler's bundled Miniflare changes its constructor and removes createFetchMock
 The existing runtime relay test now uses the provided V4 options converter and
 a closed outbound service fixture, asserting the exact upstream URL and one
 request. It makes no real upstream call. Production relay source is unchanged.
+The existing Wellway Workers budget/runtime fixture uses the same options
+converter; its mock upstream and all cap/identity assertions are retained.
 
 Exact-head CI also found that the community browser job's floating
 ubuntu-latest image now selects Ubuntu 26.04, unsupported by its pinned

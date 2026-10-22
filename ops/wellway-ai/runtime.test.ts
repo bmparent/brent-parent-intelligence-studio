@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { build } from "esbuild";
-import { Miniflare } from "miniflare";
+import { Miniflare, convertV4MiniflareOptions } from "miniflare";
 import { evidence, seedState } from "../../apps/wellway/src/lib/data";
 import { onRequest } from "../../functions/api/wellway/[[path]]";
 
@@ -15,7 +15,7 @@ test("real Workers runtime: durable admission, structured response, duplicate an
     external: ["cloudflare:workers"],
   });
   let calls = 0;
-  const mf = new Miniflare({
+  const mf = new Miniflare(convertV4MiniflareOptions({
     modules: true,
     script: compiled.outputFiles[0].text,
     compatibilityDate: "2026-06-10",
@@ -60,7 +60,7 @@ test("real Workers runtime: durable admission, structured response, duplicate an
         ],
       });
     },
-  });
+  }));
   try {
     const status = await mf.dispatchFetch("http://wellway/status");
     assert.equal(
