@@ -1,0 +1,13 @@
+DRAFT ONE-WEBSITE SOURCE LICENSE — FOR BRENT'S REVIEW
+
+This is a private development draft, not a publicly activated commercial offer.
+Proposed scope: permission to adapt the supplied source and included original
+asset for one end website, including a commercial business website. A developer
+may build that one site for a client. No standalone resale, redistribution as a
+template, sublicensing library, or competing template package is proposed.
+
+Hosting, installation, paid integrations, customer-specific editing and ongoing
+support are not included in this draft. Final license, support and refund terms
+must be approved before a commercial release. Existing Eidos Works products and
+licenses are unchanged. No claim of exclusive rights in generated imagery is
+made. Remove this development-only notice only through an approved release.

@@ -1,0 +1,44 @@
+name: Affordable template drafts
+on:
+  pull_request:
+    paths:
+      - 'products/value-templates/**'
+      - 'scripts/build-value-templates.py'
+      - 'scripts/verify-value-template*'
+      - '.github/workflows/value-templates.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  draft-packages:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Build and verify exact private draft packages
+        run: |
+          python3 scripts/build-value-templates.py
+          python3 scripts/verify-value-templates.py
+          node --check products/value-templates/shared/runtime.js
+      - name: Install isolated official browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/value-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/value-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Actual extracted-package browser and download checks
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/value-browser/node_modules/playwright
+          VALUE_TEMPLATE_EVIDENCE: ${{ runner.temp }}/value-evidence
+        run: node scripts/verify-value-template-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: value-template-draft-evidence
+          path: |
+            artifacts/value-templates/
+            ${{ runner.temp }}/value-evidence/*.*
+          if-no-files-found: error
