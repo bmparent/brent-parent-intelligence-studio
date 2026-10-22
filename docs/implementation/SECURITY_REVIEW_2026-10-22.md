@@ -49,6 +49,13 @@ The existing runtime relay test now uses the provided V4 options converter and
 a closed outbound service fixture, asserting the exact upstream URL and one
 request. It makes no real upstream call. Production relay source is unchanged.
 
+Exact-head CI also found that the community browser job's floating
+ubuntu-latest image now selects Ubuntu 26.04, unsupported by its pinned
+Playwright 1.58.2. Pin that job to ubuntu-22.04, matching the existing editor,
+Quote Desk and Wellway browser jobs. No browser assertion is removed.
+Regenerate the checked-in Wellway standalone gallery page with the patched
+bundler so its existing source/artifact parity gate continues to pass.
+
 ## Verification and remaining boundaries
 
 - All four candidate lockfiles: `npm audit --package-lock-only` returns zero
