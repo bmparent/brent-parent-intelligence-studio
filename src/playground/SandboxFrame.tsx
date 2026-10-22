@@ -1,6 +1,6 @@
 import { forwardRef, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 
-type Props = { markup: string; channel?: string; title: string; className?: string; style?: CSSProperties };
+type Props = { markup: string | (() => string); channel?: string; title: string; className?: string; style?: CSSProperties };
 
 /** The shell authorizes exact local script bytes without relaxing the app CSP. */
 export const SandboxFrame = forwardRef<HTMLIFrameElement, Props>(function SandboxFrame({ markup, channel: suppliedChannel, ...props }, forwardedRef) {
@@ -19,7 +19,7 @@ const FrameInstance = forwardRef<HTMLIFrameElement, Props & { channel: string }>
     else if (forwardedRef) forwardedRef.current = element;
   }, [forwardedRef]);
   const open = useCallback(() => {
-    frame.current?.contentWindow?.postMessage({ type: 'playground-frame-open', channel, html: markup }, '*');
+    frame.current?.contentWindow?.postMessage({ type: 'playground-frame-open', channel, html: typeof markup === 'function' ? markup() : markup }, '*');
   }, [channel, markup]);
   useEffect(() => {
     const message = (event: MessageEvent) => {

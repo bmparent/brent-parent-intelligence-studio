@@ -1,6 +1,6 @@
 import {applyBlockOperation, type BlockOperation} from './authoring';
 import {flattenNodes} from './authoringSchema';
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { SandboxFrame } from './SandboxFrame';
 import type { Project } from "./model";
 import { pageDocument, pageMarkup, runtimeConfig, tokensCss, renderedStyles } from "./renderer";
@@ -52,7 +52,8 @@ export function Preview({
   const revision = useRef(0);
   const sent = useRef<{ stamp: string; valid: () => boolean; consumed: boolean } | null>(null);
   const [channel] = useState(() => crypto.randomUUID());
-  const source = useMemo(() => pageDocument(project, { editing, bridge: true, channel }), [project, editing, channel]);
+  // Large embedded images are serialized only when the frame opens or retries.
+  const source = useCallback(() => pageDocument(project, { editing, bridge: true, channel }), [project, editing, channel]);
   const [loaded, setLoaded] = useState(0);
   useLayoutEffect(() => {
     revision.current++;
