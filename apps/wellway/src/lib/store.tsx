@@ -1,17 +1,23 @@
-import {Context} from './storeContext';
 import {
-
-
+  createContext,
+  useContext,
   useReducer,
   useState,
   useEffect,
   useSyncExternalStore,
-
+  type Dispatch,
   type ReactNode,
 } from "react";
-import { reducer, STORAGE_KEY } from "./data";
+import { seedState, reducer, STORAGE_KEY } from "./data";
 import { loadWorkspace } from "./storage";
-import type { AppState } from "./types";
+import type { AppState, Action } from "./types";
+const Context = createContext<{
+  state: AppState;
+  dispatch: Dispatch<Action>;
+  storageError: string;
+  recoveryWarning: string;
+  saving: boolean;
+}>({ state: seedState(), dispatch: () => {}, storageError: "", recoveryWarning: "", saving: false });
 // Storage availability is external to React. Notify only when its status changes.
 let storageStatus: { error: string; saved: AppState | null } = {
   error: "",
@@ -80,3 +86,4 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     </Context.Provider>
   );
 }
+export const useStore = () => useContext(Context);

@@ -57,7 +57,7 @@ test('real HTTP final headers catch the original regression after a Pages-style 
   const server = createServer((request, response) => {
     if (request.url === '/quote-desk') { response.writeHead(308, { location: '/quote-desk/' }); response.end(); return; }
     if (request.url === '/wrong') { response.writeHead(302, { location: '/account' }); response.end(); return; }
-    response.writeHead(200, { 'content-type': 'text/html', 'x-robots-tag': 'noindex, follow' }); response.end(html);
+    response.writeHead(200, { 'content-type': 'text/html', 'x-robots-tag': 'noindex, follow', 'referrer-policy': 'no-referrer', 'cache-control': 'private, no-store' }); response.end(html);
   });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => new Promise((done) => { server.closeAllConnections(); server.close(done); }));
@@ -65,6 +65,8 @@ test('real HTTP final headers catch the original regression after a Pages-style 
   const result = await fetchPage(base, '/quote-desk');
   assert.equal(result.status, 200);
   assert.equal(result.finalUrl, `${base}/quote-desk/`);
+  assert.equal(result.referrerPolicy, 'no-referrer');
+  assert.equal(result.cacheControl, 'private, no-store');
   assert.deepEqual(htmlMetadata(result.html).robots, []);
   assert.match(checkPublicPage({ ...page, html: result.html, headers: result.headers }).join('\n'), /X-Robots-Tag/);
   await assert.rejects(fetchPage(base, '/wrong'), /unexpected HTTP redirect/);

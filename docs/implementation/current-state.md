@@ -1,3 +1,13 @@
+# Patched Playground integration — October 22, 2026
+
+The held account/recovery source is reconciled with production security release
+`53c25ba` and backend PR90 `77dc718`, using the existing isolated acceptance
+database and origin. The new `/account/reset` static build/HTTP checks, full
+verification and remaining user/hosted gates are in
+[PLAYGROUND_RELEASE_2026-10-22.md](PLAYGROUND_RELEASE_2026-10-22.md).
+Production security is deployed separately; no Playground feature activation
+or new paid-provider operation is inferred from those receipts.
+
 # Local Playground reliability candidate — October 20, 2026
 
 `fix/playground-saving-account-20261020` is stacked on held site PR131 `82b3ec8`; its paired backend branch starts from PR85 `0f44777`. It adds recoverable local saving, visible account access, image-only download and a default-off account-resume/quota contract. See [the local acceptance record](PLAYGROUND_RECOVERY_2026-10-20.md). No production/provider state or existing owner session changed; hosted account-resume acceptance remains open.

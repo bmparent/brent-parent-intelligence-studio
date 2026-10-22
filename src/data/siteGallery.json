@@ -1,5 +1,65 @@
 [
   {
+    "slug": "fnbmd-employee-collection",
+    "title": "First National Bank of Mount Dora",
+    "category": "Storefronts",
+    "sector": "Employee apparel",
+    "description": "A navy-and-gold employee storefront that carries the bank’s identity from a tailored apparel entrance into collection browsing and individual product pages.",
+    "goal": "Help bank employees find everyday apparel, understand the embroidery finish, and use their apparel benefit with clear delivery guidance.",
+    "approach": "A restrained palette, generous spacing, and editorial typography connect the homepage, category navigation, and product details. Apparel imagery leads the shopping journey, with employee benefits, embroidery information, and bank courier delivery explained along the way.",
+    "alt": "Complete FNBMD employee storefront homepage from the navy and gold apparel hero through collection choices, benefits, embroidery reference, delivery help, and footer.",
+    "image": "/images/site-gallery/fnbmd-home-20261020.webp",
+    "thumbnail": "/images/site-gallery/fnbmd-home-20261020-thumb.webp",
+    "imageWidth": 1346,
+    "imageHeight": 2907,
+    "fullPage": true,
+    "capturedAt": "2026-10-20",
+    "previewLabel": "Client storefront · InkSoft · Captured October 20, 2026",
+    "url": "https://stores.inksoft.com/fnbmd/shop/home",
+    "pages": [
+      {
+        "title": "Homepage",
+        "caption": "The complete entrance: apparel collections, employee benefits, embroidery guidance, and courier delivery.",
+        "alt": "Complete FNBMD employee storefront homepage from the navy and gold apparel hero through collection choices, benefits, embroidery reference, delivery help, and footer.",
+        "url": "https://stores.inksoft.com/fnbmd/shop/home",
+        "image": "/images/site-gallery/fnbmd-home-20261020.webp",
+        "thumbnail": "/images/site-gallery/fnbmd-home-20261020-thumb.webp",
+        "imageWidth": 1346,
+        "imageHeight": 2907
+      },
+      {
+        "title": "Collection",
+        "caption": "Category navigation, color swatches, and an editorial product grid help employees explore the collection.",
+        "alt": "FNBMD polo collection with category navigation, product photographs, color swatches, names and prices.",
+        "url": "https://stores.inksoft.com/fnbmd/shop/products/polos_knits_easy_care?page=1",
+        "image": "/images/site-gallery/fnbmd-category-20261020.webp",
+        "thumbnail": "/images/site-gallery/fnbmd-category-20261020-thumb.webp",
+        "imageWidth": 1346,
+        "imageHeight": 936
+      },
+      {
+        "title": "Polo details",
+        "caption": "A navy Silk Touch polo with front and back views, color and size choices, and the embroidery information panel.",
+        "alt": "FNBMD navy Port Authority Silk Touch polo detail page with front and back thumbnails, product options and embroidery guidance.",
+        "url": "https://stores.inksoft.com/fnbmd/shop/product-detail/1001241",
+        "image": "/images/site-gallery/fnbmd-polo-20261020.webp",
+        "thumbnail": "/images/site-gallery/fnbmd-polo-20261020-thumb.webp",
+        "imageWidth": 1346,
+        "imageHeight": 936
+      },
+      {
+        "title": "Shirt details",
+        "caption": "A light-blue Easy Care shirt carries the same visual language into product selection and ordering controls.",
+        "alt": "FNBMD light-blue Port Authority Easy Care shirt detail page with product photography, front and back thumbnails, color, size and quantity controls.",
+        "url": "https://stores.inksoft.com/fnbmd/shop/product-detail/1001275",
+        "image": "/images/site-gallery/fnbmd-shirt-20261020.webp",
+        "thumbnail": "/images/site-gallery/fnbmd-shirt-20261020-thumb.webp",
+        "imageWidth": 1346,
+        "imageHeight": 936
+      }
+    ]
+  },
+  {
     "slug": "stillwater-house-concept",
     "title": "Stillwater House",
     "category": "Concepts",

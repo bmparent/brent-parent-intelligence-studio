@@ -13,8 +13,8 @@ jobs:
   preview:
     if: >-
       (github.event_name == 'push' && contains(github.event.head_commit.message, '[paired-preview]')) ||
-      (github.event_name == 'pull_request' && github.head_ref == 'ops/works-paired-release-20261019' && github.event.pull_request.head.repo.full_name == github.repository)
-    runs-on: ubuntu-latest
+      (github.event_name == 'pull_request' && (github.head_ref == 'ops/works-paired-release-20261019' || github.head_ref == 'codex/playground-release-20261022') && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-22.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +27,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Verify the committed frontend/backend contract
         env:
-          BACKEND_REVISION: 55044733c122067562321b412bd4f1b01b333106
+          BACKEND_REVISION: 77dc718255317a24338fd8a82a60be2a8f6651bf
           SITE_REVISION: ${{ github.sha }}
         run: |
           git init "$RUNNER_TEMP/works-backend-contract"
@@ -50,6 +50,15 @@ jobs:
           npm run validate:insights -- --skip-source-fetch
           npm run validate:insights:dist
           npm run verify:urls
+      - name: Verify static account recovery routes and privacy in the Pages runtime
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npx --no-install wrangler pages dev dist --ip 127.0.0.1 --port 8792 --compatibility-date 2026-06-10 --local >"$RUNNER_TEMP/works-recovery-pages.log" 2>&1 &
+          RECOVERY_PID=$!
+          trap 'kill "$RECOVERY_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8792/account/reset/ >/dev/null && break || sleep 1; done
+          node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8792 --output="$RUNNER_TEMP/works-paired-preview/recovery-http.json"
       - name: Install isolated account browser tools
         run: |
           npm install --prefix "$RUNNER_TEMP/account-browser" --no-save --no-package-lock playwright@1.58.2

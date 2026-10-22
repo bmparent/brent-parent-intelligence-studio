@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStore } from "../lib/storeContext";
+import { useStore } from "../lib/store";
 import { dateLabel } from "../lib/data";
 import { Modal, Button, Note } from "./UI";
 import { Icon } from "./Icon";

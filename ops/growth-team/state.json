@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-19T12:30:19Z",
+  "updatedAt": "2026-10-20T23:19:16Z",
   "operator": "studio_manager",
   "mandate": "Implement one revenue path, verify release and measure real cash against actual costs.",
   "activeOffer": "quote-desk",
@@ -37,10 +37,11 @@
         "receipts/2026-10-06-revenue-operator.md",
         "receipts/2026-10-07-revenue-operator.md",
         "receipts/2026-10-14-revenue-operator.md",
-        "receipts/2026-10-19-revenue-operator.md"
+        "receipts/2026-10-19-revenue-operator.md",
+        "receipts/2026-10-20-revenue-operator.md"
       ],
-      "blocker": "October 19 LIVE read: the intended merchant profile is submitted with charges/payouts enabled, but the Quote Desk Product remains inactive. The isolated Worker/D1 runtime and a connected Stripe sandbox are unavailable for hosted acceptance; the Cloudflare dashboard reached sign-in and the prior provider probe reported D1 HTTP 401. Hosted login, two-owner isolation, signed TEST payment, recovery, cancellation, tax and device gates remain open.",
-      "nextAction": "Keep checkout and the Quote Desk Product inactive. Use cost-verified least-privilege Cloudflare Workers Scripts/D1/route access and a separate Stripe sandbox to provision an isolated preview, then run every README hosted acceptance gate before any LIVE selling state change."
+      "blocker": "October 20 LIVE read reconfirmed the intended Eidos Works merchant is submitted with charges/payouts enabled and no current verification requirements, but the Quote Desk Product remains inactive. Isolated Worker/D1 access and a connected Stripe sandbox are still unavailable for hosted acceptance; hosted login, two-owner isolation, signed TEST payment, recovery, cancellation, tax and device gates remain open.",
+      "nextAction": "Keep LIVE checkout and the Quote Desk Product inactive. With cost-verified least-privilege Cloudflare Workers Scripts/D1/route access and a separate Stripe sandbox, provision an isolated preview and run the README hosted acceptance sequence before any LIVE selling state change."
     },
     {
       "id": "REV-003",
@@ -138,7 +139,7 @@
       "nextAction": "Retain PR #116's October 16 final release receipt, production readback and rollback reference; measure genuine responses, not synthetic engagement."
     }
   ],
-  "latestReceipt": "receipts/2026-10-19-revenue-operator.md",
+  "latestReceipt": "receipts/2026-10-20-revenue-operator.md",
   "notes": [
     "One active commercial offer and one supporting blocker task maximum.",
     "Interactive bootstrap is not an independent scheduled or specialist run.",

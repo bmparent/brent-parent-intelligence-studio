@@ -1,3 +1,20 @@
+# Playground release integration — October 22, 2026
+
+The current patched pair, reset-route correction, local checks, selected isolated
+preview and remaining user/hosted gates are recorded in
+[PLAYGROUND_RELEASE_2026-10-22.md](PLAYGROUND_RELEASE_2026-10-22.md).
+Earlier dated passes and the separate DG owner-authentication pause are retained.
+The security update is live; the Playground runtime remains a held candidate.
+
+## October 22 PHP and dependency security review
+
+The scoped PHP exposure check and dependency updates are recorded in
+[SECURITY_REVIEW_2026-10-22.md](SECURITY_REVIEW_2026-10-22.md). No direct PHP
+runtime was found. All four reviewed application lockfiles report zero known
+advisories after the candidate updates; local regression/build checks pass.
+Exact-head CI and deployment receipts are tracked separately on the security
+PRs. This update does not enable the held account/payment/AI integrations.
+
 # Playground recovery and account entry — October 20, 2026
 
 The bounded successor to held PR131 adds data-preserving local recovery, visible account access and asset-only downloads, plus an inactive paired resume/quota contract. Local evidence and remaining hosted gates are recorded in [PLAYGROUND_RECOVERY_2026-10-20.md](PLAYGROUND_RECOVERY_2026-10-20.md). This does not accept production or enable account storage.
@@ -224,3 +241,12 @@ flow, verification limits and rollback are recorded in
 The PR retains exact-head CI and screenshot evidence. Source preparation does
 not establish production publication, Brent's visual acceptance or acceptance of
 the held account/payment runtime.
+
+## October 20 FNBMD storefront showcase
+
+Brent requested featuring the newly public FNBMD storefront with a complete
+homepage image and product-page views. This isolated public-main addition
+features real homepage, collection and two product captures with page-selection
+controls in the gallery's existing reading dialog. Image provenance, validation,
+release gates and rollback are recorded in
+[FNBMD_GALLERY_2026-10-20.md](FNBMD_GALLERY_2026-10-20.md).

@@ -64,7 +64,7 @@ export async function fetchPage(base, path, { headOnly = false, allowPrivateShel
       redirects.push({ status: response.status, path: target.pathname }); url = target; continue;
     }
     const html = headOnly ? '' : await response.text();
-    return { status: response.status, finalUrl: url.href, headers: [response.headers.get('x-robots-tag') || ''], html, redirects };
+    return { status: response.status, finalUrl: url.href, headers: [response.headers.get('x-robots-tag') || ''], referrerPolicy: response.headers.get('referrer-policy'), cacheControl: response.headers.get('cache-control'), html, redirects };
   }
   throw new Error(`${path}: too many HTTP redirects`);
 }
@@ -101,7 +101,9 @@ export async function auditHttp(base, urls) {
       const shell = entry.headOnly && new URL(response.finalUrl).pathname === '/private-app' ? await fetchPage(base, '/private-app') : undefined;
       const noindexMeta = htmlMetadata(shell?.html || response.html).robots.some(hasNoindex);
       if (!response.headers.some(hasNoindex) && !noindexMeta) errors.push(`${entry.path}: final response has neither header nor HTML noindex exclusion`);
-      results.push({ path: entry.path, excluded: true, method: entry.headOnly ? 'HEAD' : 'GET', status: response.status, finalUrl: response.finalUrl, redirects: response.redirects, xRobotsTag: response.headers.filter(Boolean), noindexMeta, anonymousShellMetadataChecked: Boolean(shell) });
+      if (entry.privateCredentials && response.referrerPolicy !== 'no-referrer') errors.push(`${entry.path}: credential page is missing no-referrer protection`);
+      if (entry.privateCredentials && !/(?:^|[,\s])no-store(?:$|[,\s])/i.test(response.cacheControl || '')) errors.push(`${entry.path}: credential page is missing no-store protection`);
+      results.push({ path: entry.path, excluded: true, method: entry.headOnly ? 'HEAD' : 'GET', status: response.status, finalUrl: response.finalUrl, redirects: response.redirects, xRobotsTag: response.headers.filter(Boolean), noindexMeta, referrerPolicy: response.referrerPolicy, cacheControl: response.cacheControl, anonymousShellMetadataChecked: Boolean(shell) });
     } catch (error) { errors.push(error.message); }
   }
   return { errors, results };

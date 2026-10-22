@@ -1,5 +1,5 @@
 import { useId, useState, useEffect, useRef } from "react";
-import { useStore } from "../lib/storeContext";
+import { useStore } from "../lib/store";
 import {
   series,
   metricInfo,

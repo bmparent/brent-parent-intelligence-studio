@@ -1,6 +1,6 @@
 # Eidos Works recurring revenue program
 
-**State: implementation candidate; revenue goal NOT VERIFIED.** Prepared September 29, 2026, America/New_York. Provider observations were read after midnight UTC September 30.
+**State: implementation candidate; revenue goal NOT VERIFIED.** Prepared September 29, 2026, America/New_York; provider and private-record status reconciled October 20, 2026. Historical implementation checks below remain dated evidence, not hosted acceptance.
 
 ## Offer and rationale
 
@@ -14,11 +14,11 @@ First-party market context checked: [Printavo pricing](https://www.printavo.com/
 
 | Area | Observed evidence | Meaning |
 |---|---|---|
-| Available Stripe account | LIVE context; business profile unsubmitted; charges false, payouts false; no linked payout account | Payments cannot launch through this account. Its intended Eidos Works ownership needs confirmation. |
-| Account catalog and revenue | Complete unpaginated LIVE product, charge and subscription lists were empty | Zero observed live charges or subscriptions **in this connected account**; not a claim about every possible business account. |
-| Workbook | Current native workbook and saved snapshot show Finance not configured; no revenue/cost/cash records; GA4 not linked | Monthly expenses and net coverage are unknown. A blank is not a zero. |
+| Intended Stripe account (October 20 LIVE read) | Public merchant profile names Eidos Works; details submitted, charges and payouts enabled, no current verification requirements returned | Merchant identity is established for the connected account, but this alone does not accept the hosted Quote Desk payment path. Keep LIVE checkout held. |
+| Quote Desk catalog and connected cash (October 20 LIVE read) | Eidos Quote Desk Product inactive; complete connected subscription, charge, payout and balance-transaction lists empty | The $19/month workspace is not for sale. No product-attributed cash is observed in this account; bank settlement and total business cash are not established. |
+| Private workbook (October 20 bounded read) | Revenue, Transactions and Costs entry ranges and actual invoice fields in the Expense Register remain blank; opening cash remains blank | Actual operating expenses, cash and net coverage are unknown. A blank is not a zero. |
 | Billing-email search | Targeted 60-day provider invoice/receipt search returned marketing mail only | No corroborating expense total was found in that bounded search. This is not a complete invoice audit. |
-| Site integration | Draft #73/#67 still have open exact-revision hosted gates | The new app is separate; this work does not authorize or satisfy those gates. |
+| Site integration | The current held Works site/backend successors retain exact-revision hosted gates | The Quote Desk app is separate; this work does not authorize or satisfy those gates. |
 | New product | Quote model, isolated Worker, email sign-in/recovery, Checkout/Portal lifecycle, owner-scoped saves, export, cancellation and deletion exist locally | Product source is real; paid launch and customer demand remain unverified. |
 
 ## Local implementation validation
@@ -68,8 +68,8 @@ The existing $29 Cinematic Starter may provide supplementary one-time sales afte
 
 ## Next executable steps
 
-1. Confirm/connect the intended Stripe account and complete its real identity/payout onboarding. The bank and identity step requires Brent's own information.
-2. Bind an isolated Worker/D1, sandbox Stripe price/webhook/Portal, verified transactional sender and Turnstile. Run the hosted acceptance sequence in the app README.
+1. Retain the October 20 connected LIVE merchant verification as a dated observation; do not repeat onboarding or activate the inactive Quote Desk Product. Verify product, bank/settlement and tax readiness again at launch, using Brent's real identity information only where an actual provider step requires it.
+2. Obtain cost-verified least-privilege Cloudflare Workers Scripts/D1/route access and a separate Stripe sandbox, then bind the isolated Worker/D1, sandbox Price/webhook/Portal, verified transactional sender and Turnstile. Run the hosted acceptance sequence in the app README; do not infer runtime readiness from source tests.
 3. Verify one actual independent LIVE purchase, self-service access/recovery/cancellation and settlement, then open acquisition. Update the launch-candidate public terms and review applicable tax registration/collection first.
 4. Enter complete real business expenses and opening cash into the current workbook. Reconcile product payments and processing fees without double counting cash.
 5. Review the revenue and retention evidence regularly; carry progress in the existing growth cycle so no parallel reminder pile is needed. Automatic reviews cannot approve identity, produce customers on demand or make a failed payment path acceptable.

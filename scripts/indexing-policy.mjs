@@ -19,6 +19,7 @@ export const REQUIRED_PUBLIC_PATHS = [
 export const EXCLUDED_PAGES = [
   { path: '/account', header: true },
   { path: '/account/verify', header: true },
+  { path: '/account/reset', header: true, privateCredentials: true },
   { path: '/account/unsubscribe', header: true },
   { path: '/shop/success', header: true },
   { path: '/snapshot/start' },

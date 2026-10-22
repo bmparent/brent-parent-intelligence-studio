@@ -343,6 +343,7 @@ export function prerenderPagePaths() {
     '/lab/access',
     '/account',
     '/account/verify',
+    '/account/reset',
     '/account/unsubscribe',
     '/community',
     '/community/agents',

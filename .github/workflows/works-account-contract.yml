@@ -5,7 +5,7 @@ permissions:
   contents: read
 jobs:
   exact-pair:
-    if: github.head_ref == 'release/works-playground-20261019' || github.head_ref == 'repair/account-acceptance-20261019' || github.head_ref == 'fix/playground-saving-account-20261020'
+    if: github.head_ref == 'release/works-playground-20261019' || github.head_ref == 'repair/account-acceptance-20261019' || github.head_ref == 'fix/playground-saving-account-20261020' || github.head_ref == 'codex/playground-release-20261022'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
       - name: Compare all registered source files with the exact integrated backend
         env:
           SITE_REVISION: ${{ github.sha }}
-          BACKEND_REVISION: 740ae31f163e701242c846d284a6868413109d64
+          BACKEND_REVISION: 77dc718255317a24338fd8a82a60be2a8f6651bf
         run: |
           git init "$RUNNER_TEMP/works-account-backend"
           git -C "$RUNNER_TEMP/works-account-backend" fetch --depth=1 https://github.com/bmparent/eidos.git "$BACKEND_REVISION"

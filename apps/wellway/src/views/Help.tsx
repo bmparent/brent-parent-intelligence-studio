@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useStore } from "../lib/storeContext";
+import { useStore } from "../lib/store";
 import {
   downloadFile,
   validateBackup,

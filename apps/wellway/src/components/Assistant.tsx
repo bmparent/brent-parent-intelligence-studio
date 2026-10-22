@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStore } from "../lib/storeContext";
+import { useStore } from "../lib/store";
 import { evidence, dateLabel } from "../lib/data";
 import { useAI } from "../lib/useAI";
 import type { Segment, Turn } from "../lib/ai-contract";
@@ -182,11 +182,11 @@ export function Assistant({
                 ? "Checking connection…"
                 : ai.availability === "ready"
                   ? "Available · Sends the supplied fictional records and this conversation to OpenAI."
-                  : ai.availability==='exhausted' ? 'The showcase AI allowance is used for now. Guided answers still work with your selected records.' : "Unavailable · Guided answers are available."}
+                  : "Unavailable · Guided answers are available."}
             </small>
           </span>
         </label>
-        {['unavailable','exhausted'].includes(ai.availability) && (
+        {ai.availability === "unavailable" && (
           <Button variant="text" onClick={ai.check}>
             Check connection
           </Button>

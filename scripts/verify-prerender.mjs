@@ -72,6 +72,7 @@ for (const file of await htmlFiles(root)) {
   const approvedPlatformPages = new Set([
     // The studio About page now includes the service families and their platform evidence.
     'about/index.html',
+    'index.html', // The featured FNBMD gallery card links to the public InkSoft store.
     'work/index.html',
     'work/nighttime-spectaculars/index.html',
     'work/holidays-in-hollywood/index.html',
