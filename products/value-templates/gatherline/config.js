@@ -3,7 +3,7 @@ window.TEMPLATE_CONFIG = {
   copy: {
     brand: 'gatherline',
     headline: 'Make something.\nTake it home.',
-    description: 'A small-group workshop for curious hands. Materials, a little guidance, and room to try.',
+    description: 'A small-group workshop for curious hands.\nMaterials, a little guidance, and room to try.',
     day: '14', month: 'NOVEMBER', date: 'Saturday, November 14',
     time: '10:00 am – 12:00 pm ET', location: 'Studio details on request',
     details: 'An example two-hour creative workshop. The calendar file is a reminder only; contact the organizer separately to ask about places, access, materials, and the venue.',

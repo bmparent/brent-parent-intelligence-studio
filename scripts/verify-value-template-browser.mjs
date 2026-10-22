@@ -174,11 +174,6 @@ try {
     const screenshot = await nativePage.screenshot({ fullPage: true, type: 'jpeg', quality: 82 });
     await fs.writeFile(path.join(output, name), screenshot);
     screenshots.push(name);
-    // Optional text transport of these public fictional UI captures for environments
-    // whose connected GitHub reader cannot download binary Actions artifacts.
-    if (process.env.VALUE_TEMPLATE_INLINE_VISUALS === '1') {
-      console.log('EIDOS_VISUAL_PROOF:' + JSON.stringify({ name, base64: screenshot.toString('base64') }));
-    }
     check('native-concept-size render captured for visual comparison', { slug, width, height });
     await context.close();
   }

@@ -10,6 +10,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: value-template-drafts-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   draft-packages:
     runs-on: ubuntu-22.04
@@ -28,14 +31,17 @@ jobs:
           python3 scripts/verify-value-templates.py
           node --check products/value-templates/shared/runtime.js
       - name: Install isolated official browser tools
+        timeout-minutes: 5
         run: |
+          # Preserve signed Ubuntu packages and security sources; avoid the
+          # Azure mirror that stalled this dedicated runner's apt installation.
+          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g; s|https://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
           npm install --prefix "$RUNNER_TEMP/value-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/value-browser/node_modules/.bin/playwright" install --with-deps chromium
       - name: Actual extracted-package browser and download checks
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/value-browser/node_modules/playwright
           VALUE_TEMPLATE_EVIDENCE: ${{ runner.temp }}/value-evidence
-          VALUE_TEMPLATE_INLINE_VISUALS: '1'
         run: node scripts/verify-value-template-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
