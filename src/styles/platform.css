@@ -210,6 +210,24 @@
   gap: 70px;
   padding-bottom: 80px;
 }
+.ew-agent-challenge {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 44px;
+  margin-bottom: 55px;
+  padding-block: 30px 40px;
+  border-block: 1px solid var(--ew-line);
+  scroll-margin-top: 110px;
+}
+.ew-agent-challenge h2 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); line-height: 1.15; }
+.ew-agent-challenge p { max-width: 61ch; font-size: .88rem; color: var(--ew-muted); }
+.ew-agent-challenge a { overflow-wrap: anywhere; }
+.ew-agent-challenge-detail { align-self: center; padding-left: 26px; border-left: 1px solid var(--ew-line); }
+.ew-agent-challenge-detail h3 { font-size: 1.2rem; }
+@media (max-width: 700px) {
+  .ew-agent-challenge { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .ew-agent-challenge-detail { padding-left: 0; border-left: 0; }
+}
 .ew-studio-agents {
   margin-bottom: 55px;
   padding-bottom: 45px;
