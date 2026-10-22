@@ -5,7 +5,7 @@ import { once } from 'node:events';
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
-import { SITE_ORIGIN, REQUIRED_PUBLIC_PATHS, EXCLUDED_PAGES, ROBOTS_EXCLUSIONS, checkPublicPage, hasNoindex, htmlMetadata, robotsAllowed, sourceRobotsHeaders, sitemapUrls, excludedPath } from './indexing-policy.mjs';
+import { SITE_ORIGIN, REQUIRED_PUBLIC_PATHS, EXCLUDED_PAGES, ROBOTS_EXCLUSIONS, checkPublicPage, hasNoindex, effectiveReferrerPolicy, htmlMetadata, robotsAllowed, sourceRobotsHeaders, sitemapUrls, excludedPath } from './indexing-policy.mjs';
 import { auditBuild, fetchPage } from './verify-indexing.mjs';
 
 const canonical = 'https://eidos-works.com/quote-desk/';
@@ -18,6 +18,14 @@ test('header-only noindex blocks clean HTML, including bot-specific and conflict
     assert.match(checkPublicPage({ ...page, headers: [directive] }).join('\n'), /X-Robots-Tag/);
   }
   assert.equal(hasNoindex('unavailable_after: 25 Jun 2020 15:00:00 PST'), false);
+});
+
+test('credential referrer privacy uses the final recognized policy and rejects a later unsafe override', () => {
+  assert.equal(effectiveReferrerPolicy('strict-origin-when-cross-origin, no-referrer'), 'no-referrer');
+  assert.equal(effectiveReferrerPolicy('unknown-policy, no-referrer, future-policy'), 'no-referrer');
+  for (const value of ['', 'no-referrer, unsafe-url', 'no-referrer, origin', 'no-referrer, strict-origin', '"no-referrer"']) {
+    assert.notEqual(effectiveReferrerPolicy(value), 'no-referrer', value);
+  }
 });
 
 test('HTML metadata handles attribute order, casing, single quotes, and bot directives', () => {

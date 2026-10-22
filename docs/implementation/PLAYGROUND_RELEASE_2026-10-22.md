@@ -25,6 +25,14 @@ preserved on its original branch.
   `uv_interface_addresses` in this execution environment. Both the editor and
   guarded preview workflows run the real Pages HTTP/privacy check on their
   Ubuntu runner; no local HTTP pass is claimed and no routing assertion is removed.
+- The first real Pages HTTP receipt in run 39834589095 confirms reset HTTP 200,
+  noindex and no-store, with `strict-origin-when-cross-origin, no-referrer`.
+  Its strict single-value verifier was a false failure. Verification now applies
+  the W3C last-recognized-policy rule, including an adversarial regression that
+  rejects a later unsafe override. Application headers and protections are unchanged.
+- Template-commerce run 39834589092 could not install pinned Playwright 1.58.0
+  on the floating Ubuntu 26.04 image. Its job now uses Ubuntu 22.04, matching the
+  other browser gates; all three engines and every assertion remain required.
 - The backend retains Next.js 16.4.2/sharp 0.35.5 with zero known advisories.
   Historical AI tests use their reviewed fixture clock; the actual rate-card
   expiry and all no-I/O budget/expiry protections remain unchanged.

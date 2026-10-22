@@ -48,6 +48,15 @@ export function hasNoindex(value = '') {
   return /(?:^|[\s,:])(?:noindex|none)(?:$|[\s,;])/i.test(value);
 }
 
+// HTTP fields may combine the global and route-specific header values.
+// Match the browser's last recognized policy, not merely a substring:
+// https://www.w3.org/TR/referrer-policy/#parse-referrer-policy-from-header
+export function effectiveReferrerPolicy(value = '') {
+  const policies = new Set(['no-referrer', 'no-referrer-when-downgrade', 'same-origin',
+    'origin', 'strict-origin', 'origin-when-cross-origin', 'strict-origin-when-cross-origin', 'unsafe-url']);
+  return value.split(',').map((token) => token.trim()).filter((token) => policies.has(token)).at(-1) || '';
+}
+
 export function htmlMetadata(html) {
   const head = (html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] || html)
     .replace(/<!--[\s\S]*?-->|<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
