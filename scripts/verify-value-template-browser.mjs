@@ -70,6 +70,8 @@ try {
         assert.match(await page.locator('[data-calendar-status]').innerText(), /No booking has been made/);
         await page.getByText('Workshop details', { exact: true }).click();
         assert.ok(await page.locator('details').getAttribute('open') !== null);
+        await page.getByText('Workshop details', { exact: true }).press('Enter');
+        assert.equal(await page.locator('details').getAttribute('open'), null);
         check('actual .ics download, explicit UTC times, no booking and native details', { slug, width });
       } else {
         if (slug === 'plainspoken') {
@@ -170,6 +172,10 @@ try {
     const nativePage = await context.newPage();
     await nativePage.goto(url(slug));
     await nativePage.locator('h1').waitFor();
+    if (slug === 'porchlight') {
+      const headingLines = await nativePage.locator('h1').evaluate(element => element.getBoundingClientRect().height / parseFloat(getComputedStyle(element).lineHeight));
+      assert.equal(Math.round(headingLines), 2, 'Porchlight concept headline must stay on two lines at its reference width');
+    }
     const name = `${slug}-native.jpg`;
     const screenshot = await nativePage.screenshot({ fullPage: true, type: 'jpeg', quality: 82 });
     await fs.writeFile(path.join(output, name), screenshot);
@@ -183,6 +189,16 @@ try {
   await viewer.goto(new URL(`file://${path.join(root, 'artifacts/value-templates/Eidos_Affordable_Template_Preview_2026-10-22.html')}`).href);
   await viewer.getByRole('button', { name: 'Porchlight · $29', exact: true }).click();
   await viewer.frameLocator('#preview').getByRole('heading', { name: 'A little care. A better place.', exact: true }).waitFor();
+  const reviewFrame = viewer.frameLocator('#preview');
+  await reviewFrame.getByLabel('Project type', { exact: true }).selectOption('garden');
+  await reviewFrame.getByLabel('Your area', { exact: true }).fill('Mount Dora');
+  await reviewFrame.getByLabel('Timing', { exact: true }).selectOption({ label: 'Flexible' });
+  await reviewFrame.getByLabel('A few details', { exact: true }).fill('A small garden project from the portable review.');
+  await reviewFrame.getByRole('button', { name: 'Prepare inquiry', exact: true }).click();
+  assert.equal(await reviewFrame.locator('[data-inquiry-result]').isVisible(), true);
+  const previewDownload = viewer.waitForEvent('download');
+  await reviewFrame.getByRole('button', { name: 'Download draft', exact: true }).click();
+  assert.match(await fs.readFile(await (await previewDownload).path(), 'utf8'), /portable review/);
   await viewer.getByRole('button', { name: 'Plainspoken · $59', exact: true }).click();
   await viewer.getByLabel('Template page', { exact: true }).selectOption('services.html');
   await viewer.frameLocator('#preview').getByRole('link', { name: 'Ask about a working plan', exact: true }).click();
@@ -191,7 +207,7 @@ try {
   assert.equal(await viewer.locator('#stage').evaluate(element => element.getBoundingClientRect().width), 390);
   await viewer.screenshot({ path: path.join(output, 'portable-preview.png'), fullPage: true });
   screenshots.push('portable-preview.png');
-  check('portable review switches products, pages, service context and phone width');
+  check('portable review switches products/pages, composes and downloads locally, and preserves service context/phone width');
   await viewerContext.close();
 } finally {
   receipt.screenshots = screenshots;
