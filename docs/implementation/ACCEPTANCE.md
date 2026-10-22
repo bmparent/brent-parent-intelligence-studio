@@ -1,3 +1,12 @@
+## October 22 PHP and dependency security review
+
+The scoped PHP exposure check and dependency updates are recorded in
+[SECURITY_REVIEW_2026-10-22.md](SECURITY_REVIEW_2026-10-22.md). No direct PHP
+runtime was found. All four reviewed application lockfiles report zero known
+advisories after the candidate updates; local regression/build checks pass.
+Exact-head CI and deployment receipts are tracked separately on the security
+PRs. This update does not enable the held account/payment/AI integrations.
+
 # October 17 local editor release candidate
 
 The isolated local editor release, safety boundaries, evidence and remaining production gates are recorded in [PLAYGROUND_LOCAL_EDITOR_2026-10-17.md](PLAYGROUND_LOCAL_EDITOR_2026-10-17.md). This candidate does not enable hosted AI, paid checkout or new-format cloud saves. Exact-head CI and deployed-source readback are required before claiming publication.

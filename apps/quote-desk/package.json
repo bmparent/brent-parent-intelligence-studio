@@ -9,6 +9,10 @@
     "test": "node tests/estimator.test.mjs && node tests/lifecycle.test.mjs && node tests/revenue.test.mjs",
     "preview": "node preview.mjs"
   },
-  "dependencies": { "stripe": "22.6.0" },
-  "devDependencies": { "wrangler": "4.98.0" }
+  "dependencies": {
+    "stripe": "22.6.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.3"
+  }
 }
