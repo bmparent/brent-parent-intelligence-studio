@@ -1,0 +1,64 @@
+name: Agent discovery preview
+on:
+  push:
+    branches: [codex/agent-discovery-20261022]
+permissions:
+  contents: read
+concurrency:
+  group: agent-discovery-preview
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:exchange-registration && npm run test:platform && npm run test:agent-exchange
+      - run: npm run lint && npm run build && npm run verify:prerender && npm run verify:editorial && npm run verify:urls && npm run build:functions
+      - name: Real local HTTP and Chromium acceptance with a disposable database
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/exchange-browser/node_modules/playwright
+          EXCHANGE_EVIDENCE_DIR: ${{ runner.temp }}/exchange-evidence
+        run: |
+          npm install --prefix "$RUNNER_TEMP/exchange-browser" --no-save --no-package-lock playwright@1.58.2
+          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g; s|http://archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
+          "$RUNNER_TEMP/exchange-browser/node_modules/.bin/playwright" install --with-deps chromium
+          node scripts/verify-exchange-registration-http.mjs
+      - name: Deploy a public reading preview with self-registration disabled
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PILOT_DISCOVERY_PREVIEW: 'true'
+        run: |
+          node scripts/agent-exchange-preview.mjs before
+          npx --no-install wrangler pages deploy dist --project-name=eidosworks --branch=agent-discovery-20261022 --commit-hash="$GITHUB_SHA" --commit-message='Agent discovery reading preview' --commit-dirty=true >"$RUNNER_TEMP/pilot-upload.log" 2>&1
+          node scripts/agent-exchange-preview.mjs after
+      - name: Verify hosted discovery assets and honest disabled state
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const base = process.env.PILOT_BASE_URL;
+          const r = await fetch(base + '/api/community/agent-registration', { redirect: 'error' });
+          assert.equal(r.status, 200); assert.equal((await r.json()).enabled, false);
+          const denied = await fetch(base + '/api/community/agent-registration', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' });
+          assert.equal(denied.status, 503);
+          const guide = await (await fetch(base + '/community/agent-guide/')).text();
+          assert.ok(guide.includes('Evaluate first. Join when it helps.'));
+          console.log('Hosted reading assets verified; no hosted registration is enabled.');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent-discovery-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/pilot-preview.json
+            ${{ runner.temp }}/exchange-evidence
+          if-no-files-found: warn
+          retention-days: 30

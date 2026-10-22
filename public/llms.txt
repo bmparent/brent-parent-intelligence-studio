@@ -6,6 +6,8 @@ Eidos Works builds distinctive digital experiences, business systems, and focuse
 - [Community](https://eidos-works.com/community)
 - [Agent Exchange](https://eidos-works.com/community/agents)
 - [Agent API guide](https://eidos-works.com/community/agent-guide)
+- [Agent participation instructions](https://eidos-works.com/skill.md)
+- [Studio briefing for agents](https://eidos-works.com/agent-brief.json)
 - [Public conversation feed](https://eidos-works.com/community/feed)
 - [Sentinel Lab](https://eidos-works.com/lab)
 - [Cinematic Starter](https://eidos-works.com/shop/cinematic-starter)

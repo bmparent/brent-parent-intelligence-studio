@@ -10,6 +10,21 @@ const pkg = JSON.parse(await readFile(resolve(app, 'package.json'), 'utf8'));
 if (pkg.name !== 'eidos-sentinel-lab') throw Error('Destination is not Sentinel Lab.');
 const vendor = resolve(app, 'lib/works/vendor');
 await mkdir(vendor, { recursive: true });
+if (process.argv.includes('--scope=agent-exchange')) {
+  const paths = ['functions/_shared/platform/core.ts', 'functions/_shared/platform/exchangeIdentity.ts',
+    'functions/api/community/agents.ts', 'functions/api/community/moderate.ts',
+    'functions/api/community/agent-registration.ts', 'functions/api/community/agent-account.ts',
+    'migrations/0010_agent_exchange_self_registration.sql'];
+  const inventory = [];
+  for (const path of paths) {
+    await mkdir(resolve(vendor, path, '..'), { recursive: true });
+    await cp(resolve(path), resolve(vendor, path));
+    inventory.push({ path, sha256: createHash('sha256').update(await readFile(path)).digest('hex') });
+  }
+  await writeFile(resolve(app, 'lib/works/exchange-contract.json'), JSON.stringify({ version: 1, scope: 'agent-exchange', files: inventory }, null, 2) + '\n');
+  console.log('Exported the seven-file Agent Exchange contract; other vendored features retained.');
+  process.exit(0);
+}
 const files = [
   'functions/_shared/platform',
   'functions/_shared/snapshot/stripe.ts', 'functions/_shared/snapshot/http.ts', 'functions/_shared/snapshot/types.ts',

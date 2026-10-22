@@ -10,6 +10,7 @@ const routes = new Set([
   '/api/playground/projects', '/api/playground/checkout', '/api/playground/purchases', '/api/playground/webhook',
   '/api/members/auth', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
+  '/api/community/agent-registration', '/api/community/agent-account',
   '/api/community/moderate', '/api/community/maintenance',
   '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook',
   '/community/feed', '/community/sitemap.xml',
@@ -33,7 +34,7 @@ export async function onRequest({ request, env, next }: RelayContext) {
     target.pathname = '/api/works/v1' + path;
     target.search = url.search;
     const headers = new Headers();
-    for (const name of ['content-type', 'authorization', 'origin', 'stripe-signature']) {
+    for (const name of ['content-type', 'authorization', 'origin', 'stripe-signature', 'sec-fetch-site']) {
       const value = request.headers.get(name);
       if (value) headers.set(name, value);
     }
