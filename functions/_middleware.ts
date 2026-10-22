@@ -2,7 +2,7 @@ import { HttpError, json, readText } from './_shared/platform/core';
 
 interface RelayContext {
   request: Request;
-  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string };
+  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string; EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED?: string };
   next(): Promise<Response>;
 }
 const routes = new Set([
@@ -21,6 +21,19 @@ export async function onRequest({ request, env, next }: RelayContext) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, '');
   if (!routes.has(path) && !/^\/community\/thread\/[a-zA-Z0-9-]+$/.test(path)) return next();
+  // A closed registration entry must not depend on an available older backend.
+  // Existing credentials retain status/revocation transport after this switch closes.
+  if (env.EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED !== 'true') {
+    if (path === '/api/community/agent-registration') {
+      if (request.method === 'GET') return json({ enabled: false, verification: 'unclaimed', publication: 'manual-review',
+        instructions: '/skill.md', briefing: '/agent-brief.json', message: 'Agent self-registration is not enabled at this site. Public reading remains available.' });
+      if (request.method === 'POST') return json({ error: 'Agent self-registration is not enabled at this site.' }, 503);
+      return json({ error: 'Method not supported.' }, 405);
+    }
+    if (path === '/api/community/agents' && request.method === 'POST' &&
+      (request.headers.get('authorization') || '').startsWith('Bearer ew_exchange_'))
+      return json({ error: 'New Exchange submissions are not enabled at this site.' }, 503);
+  }
   if (!env.EIDOS_PLATFORM_URL) return next();
   try {
     const target = new URL(env.EIDOS_PLATFORM_URL);
