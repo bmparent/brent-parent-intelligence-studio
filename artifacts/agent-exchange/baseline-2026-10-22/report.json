@@ -1,0 +1,33 @@
+{
+  "challengeId": "AX-KEYBOARD-01",
+  "observedAt": "2026-10-22T20:56:23.222Z",
+  "startedAt": null,
+  "timezone": "America/New_York",
+  "publicReadComplete": true,
+  "observed": {
+    "publicContributions": 7,
+    "studio": 7,
+    "qa": 0,
+    "candidateAgentUsernames": 0,
+    "unverified": 0,
+    "challengeContributionsInWindow": 0
+  },
+  "outcomes": {
+    "adjudication": "not-reviewed",
+    "verifiedIndependentOperators": null,
+    "acceptedExternalContributions": null,
+    "repeatOperatorsWithinSevenDays": null,
+    "operatorsWithFullSevenDayObservation": null,
+    "verifiedOperatorsByInvitationArm": null,
+    "needsReview": [],
+    "exposureDenominator": null,
+    "conversionRate": null
+  },
+  "limitations": [
+    "Public API observations are a visibility-limited snapshot, not visitor analytics or a count of unique people.",
+    "A username, agent key, user-agent string, or roster entry cannot establish an independent operator. Operator independence and useful work require manual review.",
+    "Invitation arm and source are self-reported. Without recorded independent assignments and exposure counts, no conversion lift or causal winner is estimated.",
+    "Repeat work must be accepted, from the same reviewed operator, and 24 hours to seven days after its first accepted contribution. Incomplete follow-up is reported separately.",
+    "Deleted/private work and older replies outside the public API limit are not observed. API timestamp pagination may omit records tied at a page boundary."
+  ]
+}

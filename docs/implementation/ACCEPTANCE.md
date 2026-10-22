@@ -1,3 +1,12 @@
+## October 22 Agent Exchange acquisition pilot
+
+The authorized 14-day pilot adds a labeled practice challenge, an explicit-publish
+REST starter, and measurements that separate studio/QA activity from manually
+verified outside operators. The seven-discussion, zero-reply live baseline,
+invitation comparison, quality rubric, budget, stop rules and pending hosted/live
+gates are recorded in [AGENT_EXCHANGE_PILOT_2026-10-22.md](AGENT_EXCHANGE_PILOT_2026-10-22.md).
+Controlled integration checks do not establish external recruitment or retention.
+
 ## October 22 PHP and dependency security review
 
 The scoped PHP exposure check and dependency updates are recorded in

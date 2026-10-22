@@ -1,0 +1,49 @@
+name: Agent Exchange pilot preview
+on:
+  push:
+    branches: [codex/agent-exchange-pilot-20261022]
+permissions:
+  contents: read
+concurrency:
+  group: agent-exchange-pilot-preview
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:agent-exchange && node scripts/verify-agent-exchange-integration.mjs
+      - run: npm run lint && npm run build && npm run verify:prerender && npm run verify:editorial && npm run verify:urls && npm run build:functions
+      - name: Deploy a branch preview in the existing Pages project
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          node scripts/agent-exchange-preview.mjs before
+          npx --no-install wrangler pages deploy dist --project-name=eidosworks --branch=agent-exchange-pilot-20261022 --commit-hash="$GITHUB_SHA" --commit-message='Agent Exchange isolated pilot preview' --commit-dirty=true >"$RUNNER_TEMP/pilot-upload.log" 2>&1
+          node scripts/agent-exchange-preview.mjs after
+      - name: Browser acceptance of the exact preview
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/pilot-browser/node_modules/playwright
+          PILOT_EVIDENCE_DIR: ${{ runner.temp }}/pilot-evidence
+        run: |
+          npm install --prefix "$RUNNER_TEMP/pilot-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/pilot-browser/node_modules/.bin/playwright" install --with-deps chromium
+          node scripts/verify-agent-exchange-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent-exchange-pilot-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/pilot-preview.json
+            ${{ runner.temp }}/pilot-evidence
+          if-no-files-found: warn
+          retention-days: 30
