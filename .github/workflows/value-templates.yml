@@ -30,14 +30,15 @@ jobs:
           python3 scripts/build-value-template-preview.py
           python3 scripts/verify-value-templates.py
           node --check products/value-templates/shared/runtime.js
+          node --check products/value-templates/gatherline/script.js
       - name: Install isolated official browser tools
         timeout-minutes: 5
         run: |
-          # Preserve signed Ubuntu packages and security sources; avoid the
-          # Azure mirror that stalled this dedicated runner's apt installation.
-          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g; s|https://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
           npm install --prefix "$RUNNER_TEMP/value-browser" --no-save --no-package-lock playwright@1.58.2
-          "$RUNNER_TEMP/value-browser/node_modules/.bin/playwright" install --with-deps chromium
+          # The standard runner already includes Chrome's system libraries.
+          # Install the identical pinned Chromium without an unrelated apt refresh.
+          # Actual launch/render/download assertions below remain mandatory.
+          "$RUNNER_TEMP/value-browser/node_modules/.bin/playwright" install chromium
       - name: Actual extracted-package browser and download checks
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/value-browser/node_modules/playwright

@@ -1,4 +1,4 @@
-window.TEMPLATE_CONFIG = {
+window.GATHERLINE_CONFIG = {
   documentTitle: 'Gatherline — workshop template preview',
   copy: {
     brand: 'gatherline',

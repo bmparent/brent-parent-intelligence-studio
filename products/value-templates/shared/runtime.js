@@ -9,7 +9,7 @@
   });
   if (typeof config.documentTitle === 'string') document.title = config.documentTitle;
   const safeColor = value => typeof value === 'string' && /^#[0-9a-f]{6}$/i.test(value);
-  const themeRoot = document.querySelector('[data-template-root]') || document.documentElement;
+  const themeRoot = document.documentElement;
   Object.entries(config.colors || {}).forEach(([key, value]) => {
     if (/^(ink|paper|accent|surface)$/.test(key) && safeColor(value)) themeRoot.style.setProperty(`--${key}`, value);
   });
@@ -24,53 +24,6 @@
     anchor.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-  function icsEscape(value) {
-    return String(value).replace(/\\/g, '\\\\').replace(/\r\n|\r|\n/g, '\\n').replace(/;/g, '\\;').replace(/,/g, '\\,');
-  }
-  function foldLine(line) {
-    const encoder = new TextEncoder();
-    const chunks = [];
-    let current = '';
-    for (const character of line) {
-      if (encoder.encode(current + character).length > 75) {
-        chunks.push(current);
-        current = ' ';
-      }
-      current += character;
-    }
-    chunks.push(current);
-    return chunks.join('\r\n');
-  }
-  function utcStamp(value) {
-    if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(value || '')) throw new Error('Use an explicit UTC event time.');
-    const parsed = new Date(value);
-    if (!Number.isFinite(parsed.getTime()) || parsed.toISOString() !== value.replace('Z', '.000Z')) throw new Error('Use a valid event date.');
-    return value.replace(/[-:]/g, '');
-  }
-  const calendarButton = document.querySelector('[data-calendar]');
-  if (calendarButton) calendarButton.addEventListener('click', () => {
-    const status = document.querySelector('[data-calendar-status]');
-    try {
-      const event = config.event || {};
-      const start = utcStamp(event.startUtc);
-      const end = utcStamp(event.endUtc);
-      if (end <= start) throw new Error('The event must end after it starts.');
-      const uid = String(event.uid || 'gatherline-example@template.invalid').replace(/[^a-zA-Z0-9@._-]/g, '');
-      const lines = [
-        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Eidos Works//Gatherline//EN',
-        'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
-        `UID:${uid}`, `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z')}`,
-        `DTSTART:${start}`, `DTEND:${end}`, `SUMMARY:${icsEscape(event.title || 'Workshop')}`,
-        `LOCATION:${icsEscape(event.location || '')}`, `DESCRIPTION:${icsEscape(event.description || '')}`,
-        'END:VEVENT', 'END:VCALENDAR'
-      ];
-      download(lines.map(foldLine).join('\r\n') + '\r\n', 'workshop.ics', 'text/calendar;charset=utf-8');
-      status.textContent = 'Calendar file prepared. No booking has been made.';
-    } catch {
-      status.textContent = 'The calendar date needs attention. Check the event times in config.js.';
-    }
-  });
-
   const form = document.querySelector('[data-inquiry-form]');
   if (!form) return;
   const result = document.querySelector('[data-inquiry-result]');

@@ -38,7 +38,8 @@ document.addEventListener('click', event => {
  }
 });'''
             scripts = '<script>' + (source / 'config.js').read_text() + '</script>'
-            scripts += '<script>' + runtime.replace('window.location.search', '(window.TEMPLATE_PREVIEW_QUERY || "")') + '</script>'
+            active_runtime = (source / 'script.js').read_text() if slug == 'gatherline' else runtime
+            scripts += '<script>' + active_runtime.replace('window.location.search', '(window.TEMPLATE_PREVIEW_QUERY || "")') + '</script>'
             scripts += '<script>' + navigation + '</script>'
             document = document.replace('</body>', scripts + '</body>')
             documents[f'{slug}/{filename}'] = document

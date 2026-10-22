@@ -67,7 +67,7 @@ try {
         assert.ok(bytes.includes('DTSTART:20261114T150000Z\r\nDTEND:20261114T170000Z'));
         assert.ok(bytes.includes('SUMMARY:Gatherline creative workshop'));
         assert.ok(bytes.endsWith('END:VCALENDAR\r\n'));
-        assert.match(await page.locator('[data-calendar-status]').innerText(), /No booking has been made/);
+        assert.match(await page.locator('[data-gatherline-status]').innerText(), /No booking has been made/);
         await page.getByText('Workshop details', { exact: true }).click();
         assert.ok(await page.locator('details').getAttribute('open') !== null);
         await page.getByText('Workshop details', { exact: true }).press('Enter');
@@ -115,7 +115,7 @@ try {
   const edge = await browser.newContext({ acceptDownloads: true, viewport: { width: 1440, height: 1000 } });
   const page = await edge.newPage();
   await page.addInitScript(() => {
-    Object.defineProperty(window, 'TEMPLATE_CONFIG', {
+    Object.defineProperty(window, 'GATHERLINE_CONFIG', {
       configurable: true,
       set(value) {
         value.copy.headline = '<img src=x onerror=alert(1)> & a real headline';
@@ -141,14 +141,14 @@ try {
   const invalid = await browser.newContext();
   const badPage = await invalid.newPage();
   await badPage.addInitScript(() => {
-    Object.defineProperty(window, 'TEMPLATE_CONFIG', {
+    Object.defineProperty(window, 'GATHERLINE_CONFIG', {
       set(value) { value.event.endUtc = value.event.startUtc; this.__badConfig = value; },
       get() { return this.__badConfig; }
     });
   });
   await badPage.goto(url('gatherline'));
   await badPage.getByRole('button', { name: 'Save the date', exact: true }).click();
-  assert.match(await badPage.locator('[data-calendar-status]').innerText(), /date needs attention/);
+  assert.match(await badPage.locator('[data-gatherline-status]').innerText(), /date needs attention/);
   check('invalid/reversed calendar configuration reports a visible error');
   await invalid.close();
 
@@ -165,6 +165,24 @@ try {
     check('readable no-JavaScript fallback', { slug, width: 390 });
     await context.close();
   }
+
+  const hostContext = await browser.newContext({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
+  const hostPage = await hostContext.newPage();
+  const fragment = await fs.readFile(path.join(extracted, 'gatherline/section.html'), 'utf8');
+  const hostFixture = path.join(output, 'gatherline-host.html');
+  await fs.writeFile(hostFixture, '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Existing host page</title><style>:root{--paper:#123456}</style><link rel="stylesheet" href="' + url('gatherline', 'styles.css') + '"><script>window.TEMPLATE_CONFIG={copy:{brand:"Unchanged host config"}};</script><script defer src="' + url('gatherline', 'config.js') + '"></script><script defer src="' + url('gatherline', 'script.js') + '"></script></head><body><h1 data-copy="headline">Existing host heading</h1><p data-copy="brand">Existing host brand</p>' + fragment + '</body></html>');
+  await hostPage.goto(new URL(`file://${hostFixture}`).href);
+  assert.equal(await hostPage.title(), 'Existing host page');
+  assert.equal(await hostPage.locator('h1').innerText(), 'Existing host heading');
+  assert.equal(await hostPage.locator('[data-copy="brand"]').innerText(), 'Existing host brand');
+  assert.equal(await hostPage.evaluate(() => window.TEMPLATE_CONFIG.copy.brand), 'Unchanged host config');
+  assert.equal(await hostPage.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--paper').trim()), '#123456');
+  assert.equal(await hostPage.locator('.gatherline').evaluate(element => getComputedStyle(element).backgroundColor), 'rgb(238, 230, 244)');
+  const hostedCalendar = hostPage.waitForEvent('download');
+  await hostPage.getByRole('button', { name: 'Save the date', exact: true }).click();
+  assert.equal((await hostedCalendar).suggestedFilename(), 'workshop.ics');
+  check('embedded Gatherline preserves host title, branding, configuration and theme while its calendar still works');
+  await hostContext.close();
 
   const nativeSizes = { gatherline: [1586, 992], porchlight: [1086, 1448], plainspoken: [1190, 1322] };
   for (const [slug, [width, height]] of Object.entries(nativeSizes)) {

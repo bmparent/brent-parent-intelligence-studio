@@ -11,8 +11,9 @@ one-time amounts; `commercialAvailability` stays `unavailable`.
 | Plainspoken | $59 | Consultant Home, Services and Contact | `plainspoken/index.html` |
 
 Open `index.html` for the review gallery. No backend or build is required to run
-the examples. Source previews use the sibling `shared/runtime.js`; clean ZIPs
-include their own local runtime. A static HTTP server is optional:
+the examples. Landing/site previews use `shared/runtime.js`; Gatherline owns its
+scoped `script.js`. Clean ZIPs include all required local scripts. A static HTTP
+server is optional:
 
 ```bash
 python3 -m http.server 4386

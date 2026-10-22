@@ -32,7 +32,8 @@ def main():
             if path.suffix == ".html":
                 data = data.replace(b'../shared/runtime.js', b'runtime.js')
             payload[relative] = data
-        payload["runtime.js"] = (SOURCE / "shared/runtime.js").read_bytes()
+        if slug != "gatherline":
+            payload["runtime.js"] = (SOURCE / "shared/runtime.js").read_bytes()
         manifest = {
             "productId": product["id"], "version": version,
             "status": "private draft; commercial availability unavailable",

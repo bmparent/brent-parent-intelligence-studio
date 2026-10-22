@@ -14,10 +14,12 @@ booking or ticketing system.
    equivalent to 15:00–17:00 UTC on that date. Use a new stable event UID for a
    different event. The downloader rejects invalid or reversed times.
 3. For an existing source website, copy the section in `section.html` into the
-   body. Link `styles.css`, then load `config.js` and `runtime.js` with `defer`.
+   body. Link `styles.css`, then load `config.js` and `script.js` with `defer`.
    Adapt paths to your own assets directory. Use this event section once per page.
    The CSS is scoped below `.gatherline`. Do not copy `demo.css` into your site;
-   that file resets only the standalone demonstration page.
+   that file resets only the standalone demonstration page. The event script uses
+   `window.GATHERLINE_CONFIG` and scopes DOM/theme edits to its own section; it
+   does not replace a host page title or a different template configuration.
 4. Keep the heading level appropriate to the host page. `section.html` uses `h2`.
    Change its heading and matching `aria-labelledby` together if necessary.
 5. In a browser, check the full date, location, disclosure and details. Click
@@ -37,8 +39,7 @@ To remove this section, remove its markup and its own styles/scripts only.
 There is no backend, tracking, AI request, remote font, required paid plugin or
 persistent visitor storage. All CSS, JavaScript and assets run locally. Keep all
 files together. Open `index.html` directly, or serve this folder with
-`python3 -m http.server 4386`. Source previews refer to the common runtime in the
-parent folder; the built ZIP contains its own local `runtime.js` and works alone.
+`python3 -m http.server 4386`. This section and its built ZIP use their own scoped `script.js` and work alone.
 
 The sample business is fictional. Before using this for a real business, replace
 all demonstration copy, dates, contact details and claims, review accessibility
