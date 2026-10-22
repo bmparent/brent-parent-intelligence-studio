@@ -28,6 +28,7 @@ jobs:
       - run: npm run build
       - name: Install isolated browser tools
         run: |
+          bash scripts/prepare-browser-apt.sh
           npm install --prefix "$RUNNER_TEMP/purchase-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/purchase-browser/node_modules/.bin/playwright" install --with-deps chromium webkit
       - name: Verify intercepted purchase flows without providers or deployment

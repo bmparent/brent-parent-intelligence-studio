@@ -109,3 +109,14 @@ paired PRs, separate from earlier dated account/provider acceptance.
 That backend revision is READY as `dpl_5pcFyLyuDSfB7ZbvfiomiSQfm7aX` on the
 existing acceptance branch. The frontend's exact-revision contract and preview
 relay now select this immutable backend; no production target was selected.
+
+The runner log also identifies `file:/etc/apt/apt-mirrors.txt`: editing only
+`sources.list` did not change its selected Azure mirror. GitHub's [image
+configuration](https://github.com/actions/runner-images/blob/main/images/ubuntu/scripts/build/configure-apt-sources.sh)
+uses a priority mirror list. The scoped browser jobs now share a helper that
+replaces only the Azure endpoint in direct, mirror-list and deb822 source files.
+Repository suites, existing priorities/security fallback, signed-package checks,
+pinned browser versions, time limits and required assertions are retained.
+This follow-through changes CI setup only; the deployed application bytes and
+backend revision above are unchanged. Exact final workflow receipts remain on
+PR139, separate from the observed 320px repair on deployment `30cd6f11`.

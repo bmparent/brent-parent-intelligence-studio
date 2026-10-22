@@ -61,6 +61,7 @@ jobs:
           node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8792 --output="$RUNNER_TEMP/works-paired-preview/recovery-http.json"
       - name: Install isolated account browser tools
         run: |
+          bash scripts/prepare-browser-apt.sh
           npm install --prefix "$RUNNER_TEMP/account-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/account-browser/node_modules/.bin/playwright" install --with-deps chromium
       - name: Real local password sessions and delayed cross-account project responses

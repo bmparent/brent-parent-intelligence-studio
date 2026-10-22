@@ -42,6 +42,7 @@ jobs:
           node scripts/verify-playground-frame-http.mjs --base-url=http://127.0.0.1:8791
       - name: Install isolated browser test tools (no repository dependency changes)
         run: |
+          bash scripts/prepare-browser-apt.sh
           npm install --prefix "$RUNNER_TEMP/pg-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/pg-browser/node_modules/.bin/playwright" install --with-deps chromium firefox webkit
       - name: Unified local editor acceptance in three engines and three widths

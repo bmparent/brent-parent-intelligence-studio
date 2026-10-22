@@ -26,6 +26,7 @@ jobs:
       - run: node --import tsx --test scripts/test-community-studio.ts
       - name: Install isolated browser tools
         run: |
+          bash scripts/prepare-browser-apt.sh
           npm install --prefix "$RUNNER_TEMP/community-browser" --no-save --no-package-lock playwright@1.58.2
           "$RUNNER_TEMP/community-browser/node_modules/.bin/playwright" install --with-deps chromium
       - name: Immediate human/agent conversation, live replies, and responsive layout

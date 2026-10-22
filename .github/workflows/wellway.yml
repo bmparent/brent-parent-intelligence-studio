@@ -27,8 +27,7 @@ jobs:
           git diff --exit-code -- public/demos/wellway/index.html
       - name: Use the primary Ubuntu archive for browser dependencies
         run: |
-          # The runner's Azure mirror timed out twice before any browser test ran.
-          sudo sed -i -E 's#https?://azure\.archive\.ubuntu\.com/ubuntu#https://archive.ubuntu.com/ubuntu#g' /etc/apt/sources.list
+          bash scripts/prepare-browser-apt.sh
       - name: Install isolated browser tooling
         run: |
           npm install --prefix "$RUNNER_TEMP/wellway-browser" --no-save --no-package-lock playwright@1.58.2
