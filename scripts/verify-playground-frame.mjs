@@ -24,6 +24,11 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
     const clickContactNavigation = async frame => {
       const toggle = frame.getByRole('button', { name: 'Toggle navigation', exact: true });
       if (await toggle.isVisible()) {
+        const menu = await toggle.boundingBox();
+        for (const toolbar of await frame.locator('.pg-node-toolbar').all()) {
+          const box = await toolbar.boundingBox();
+          assert.ok(!menu || !box || box.x + box.width <= menu.x || box.x >= menu.x + menu.width || box.y + box.height <= menu.y || box.y >= menu.y + menu.height, 'Floating editor controls must not cover the mobile page menu');
+        }
         if (await toggle.getAttribute('aria-expanded') !== 'true') await toggle.click();
         assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
       }
@@ -88,7 +93,9 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
       await frozen.getByRole('heading', { name: 'A working page preview' }).waitFor();
       await clickContactNavigation(frozen);
       assert.equal(await frozen.getByRole('main', { name: 'Start a Playground project' }).count(), 0);
-      const isolation = await page.frames().find(f => /\/playground-frame#/.test(f.url()) && f !== page.mainFrame()).evaluate(() => {
+      const frozenFrame = await (await page.locator('iframe[title="Frozen package preview"]').elementHandle()).contentFrame();
+      assert.ok(frozenFrame);
+      const isolation = await frozenFrame.evaluate(() => {
         let storageBlocked = false, parentBlocked = false;
         try { localStorage.getItem('test'); } catch { storageBlocked = true; }
         try { parent.document.title; } catch { parentBlocked = true; }

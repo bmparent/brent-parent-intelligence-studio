@@ -80,3 +80,32 @@ independent Agent Exchange pilot. Merge it into this held candidate, retaining
 both acceptance entries and every quality suite. Backend `77dc718` is unchanged.
 Final combined-source CI, hosted deployment identity and browser observations
 are recorded on PR139; no production release is inferred from this merge.
+
+The next run, `39868354375`, completed the frame flow at seven of nine
+engine/width combinations. Chromium/WebKit at 320px revealed a real editor
+overlap: the floating selected-container toolbar covered the header's Menu
+button. Its retained failure screenshots show the obstruction; this is not
+accepted as a passing mobile result. Toolbar placement now avoids the sticky
+header, with a focused geometry regression and an actual menu-overlap browser
+assertion. Frozen isolation is checked on the explicitly identified frozen
+frame. All other required editor sub-suites passed in that failed run; the
+final combined-source run must still pass before closing verification.
+
+Template run `39868354319` exhausted its unchanged 20-minute limit while
+downloading browser dependencies from the runner's Azure Ubuntu mirror; no
+browser assertion ran. Use the existing Wellway primary-archive correction
+for this job too, retaining signed packages, the security archive, Ubuntu
+22.04, pinned Playwright 1.58.0, all three engines and every assertion.
+
+The toolbar follow-up refreshes the exact backend vendor copies and the separate
+18-file delivery manifest at `49a53b2ea61f46d8a6ba61ec350c3a5c4d1d9eec`.
+Both shared inventories match. Standalone page/composition runtime bytes are
+unchanged; the updated literal is editor-only. Backend local typecheck, full
+JavaScript/181-TypeScript-test suites and production build pass. The acceptance
+preview retains its existing isolated database, accounts and TEST-only flags;
+only the source attestation is advanced. Final hosted/CI receipts remain on the
+paired PRs, separate from earlier dated account/provider acceptance.
+
+That backend revision is READY as `dpl_5pcFyLyuDSfB7ZbvfiomiSQfm7aX` on the
+existing acceptance branch. The frontend's exact-revision contract and preview
+relay now select this immutable backend; no production target was selected.

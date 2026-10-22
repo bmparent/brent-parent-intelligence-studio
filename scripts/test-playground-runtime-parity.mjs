@@ -91,6 +91,11 @@ test('narrow toolbar avoids top content and gesture focus lets Escape cancel bef
   window.dispatch('message', { source: parent, data: { type: 'playground-block-selection', channel: 'test', id: node.id } });
   const toolbar = elements.find(element => element.className === 'pg-node-toolbar');
   assert.equal(toolbar.style.top, '51px', 'room above keeps toolbar outside the selected block');
+  const header = new Element();
+  header.getBoundingClientRect = () => ({ left: 0, top: 10, right: 300, bottom: 90, width: 300, height: 80 });
+  document.querySelector = selector => selector === '.pg-header' ? header : null;
+  window.dispatch('resize');
+  assert.equal(toolbar.style.top, '205px', 'the floating toolbar cannot cover the sticky header or its mobile Menu control');
   node.getBoundingClientRect = () => ({ left: 0, top: 10, right: 300, bottom: 150, width: 300, height: 140 });
   window.dispatch('resize');
   assert.equal(toolbar.style.top, '155px', 'a near-top block gets its toolbar below, not over its text');
