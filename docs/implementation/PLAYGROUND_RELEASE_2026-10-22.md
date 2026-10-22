@@ -65,6 +65,28 @@ No paid AI, new LIVE commerce, Snapshot, increased allowance or production
 account-resume activation is claimed or configured here. Preserve all member,
 project/history, archive, entitlement and additive-schema records on rollback.
 
+## Recovery follow-through and browser dependency installation
+
+The requested recovery email was observed at 19:38:13Z on October 22, and its
+exact canonical isolated-preview fragment link opened the new-password form.
+After the user reported completing reset, reloading the previously authenticated
+account tab returned the anonymous account form. That old browser session is
+therefore no longer accepted. Password sign-in and the post-reset project list
+remain pending the user's password entry; no password is read or stored in this
+record. The reset and observations concern the deployed pair above, not a new
+production release.
+
+Wellway run 39835580117 and same-source retry job 120031490610 both exhausted
+the 15-minute job limit while downloading packages from the runner's
+`azure.archive.ubuntu.com` mirror, before browser assertions could run. The job
+now selects Ubuntu's primary `archive.ubuntu.com` over HTTPS in the Ubuntu 22.04
+APT source list before Playwright installs its dependencies. The security
+archive, signed-package verification, pinned Playwright 1.58.2, all three
+engines, every browser assertion and the job time limit are retained. This is
+an installer correction; a successful fresh hosted run is still required.
+Ubuntu documents the primary archive and pre-24.04 source-list location at
+https://ubuntu.com/project/docs/how-ubuntu-is-made/concepts/package-archive/.
+
 The separate security release is live: site PR138 at `53c25ba` passed production
 upload/provider/configuration and canonical-domain checks in
 [39829450614](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/39829450614).
