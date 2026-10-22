@@ -60,3 +60,23 @@ history, archive, entitlement, schema, credential or feature flag is changed.
 Paid AI, new LIVE commerce, external cloud integrations and new editor features
 remain deferred. Physical-device/accessibility acceptance and the separate
 paused DG owner login keep their existing scope.
+
+## Interrupted verification follow-through
+
+The first current-source editor run, `39854491459`, passed the failed-frame
+recovery check at all nine engine/width combinations and the entire new frame
+flow at 1440px in all three engines. Its new 390px/320px frame cases attempted
+to click the collapsed navigation before opening its Menu control. The other
+required editor sub-suites passed; later full-site stages were skipped after
+the frame suite failed. This is retained as failed acceptance, not a pass.
+
+The follow-through opens the actual navigation toggle when visible before
+clicking the same contact link in editing, visitor Preview and frozen review.
+All three engines, widths, isolation, reload, save/reopen and runtime-error
+assertions remain; header selection is now explicitly checked as well.
+
+Current public main `a76583d7ba195c2e22715552c1c858289f1d5f5c` adds the
+independent Agent Exchange pilot. Merge it into this held candidate, retaining
+both acceptance entries and every quality suite. Backend `77dc718` is unchanged.
+Final combined-source CI, hosted deployment identity and browser observations
+are recorded on PR139; no production release is inferred from this merge.

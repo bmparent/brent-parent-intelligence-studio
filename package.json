@@ -24,6 +24,8 @@
     "verify:prerender": "node scripts/verify-prerender.mjs",
     "verify:editorial": "node scripts/verify-editorial.mjs",
     "verify:community-browser": "node --import tsx scripts/verify-community-studio-browser.mjs",
+    "test:agent-exchange": "node --test scripts/test-agent-exchange-pilot.mjs",
+    "agent-exchange:report": "node scripts/agent-exchange-pilot.mjs",
     "verify:urls": "node scripts/verify-urls.mjs",
     "publish:check": "npm run publish:insight-run -- --slot=manual",
     "preview:cf": "npm run build && npx wrangler pages dev dist",

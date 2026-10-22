@@ -21,6 +21,14 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
       request.onerror = () => reject(request.error);
     }));
     const save = async () => { await page.locator('.pg-save-inline').click(); await page.waitForFunction(() => document.querySelector('.pg-save-inline')?.textContent.includes('Saved on this device')); return saved(); };
+    const clickContactNavigation = async frame => {
+      const toggle = frame.getByRole('button', { name: 'Toggle navigation', exact: true });
+      if (await toggle.isVisible()) {
+        if (await toggle.getAttribute('aria-expanded') !== 'true') await toggle.click();
+        assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+      }
+      await frame.getByRole('navigation', { name: 'Page navigation' }).getByRole('link', { name: 'Start a conversation', exact: true }).click();
+    };
     try {
       const localOnly = await guardLocalEditor(page);
       const response = await page.goto(base + '/playground/');
@@ -37,18 +45,21 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
       await page.getByRole('button', { name: 'Reload page preview', exact: true }).click();
       const frame = page.frameLocator('iframe[title="Your page preview"]');
       await frame.locator('body[data-editing="true"]').waitFor();
+      // The initial HTML runs before the editor sends its current command stamp.
+      // Wait for the working editor controls before exercising selection/menu input.
+      await frame.locator('.pg-node-toolbar').waitFor();
       const after = await saved(); assert.deepEqual(after.project, before.project); assert.equal(after.documentId, before.documentId);
       assert.equal(await page.getByRole('button', { name: 'Undo', exact: true }).isEnabled(), true);
       check('failed frame reload preserves the document, save and Undo history under enforced CSP');
 
-      const navigation = frame.getByRole('navigation', { name: 'Page navigation' });
-      await navigation.getByRole('link', { name: 'Start a conversation', exact: true }).click();
+      await clickContactNavigation(frame);
+      await frame.locator('.pg-header.pg-selected').waitFor({ state: 'attached' });
       assert.equal(await frame.getByRole('main', { name: 'Start a Playground project' }).count(), 0);
       assert.equal(await page.getByRole('button', { name: 'Reload page preview', exact: true }).count(), 0);
       assert.equal(await frame.locator('body').getAttribute('data-editing'), 'true');
       await page.getByRole('button', { name: 'Preview', exact: true }).click();
       await frame.locator('body[data-editing="false"]').waitFor();
-      await navigation.getByRole('link', { name: 'Start a conversation', exact: true }).click();
+      await clickContactNavigation(frame);
       assert.equal(await frame.getByRole('main', { name: 'Start a Playground project' }).count(), 0);
       await page.getByRole('button', { name: 'Edit page', exact: true }).click();
       await frame.locator('body[data-editing="true"]').waitFor();
@@ -71,10 +82,11 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
       await page.getByRole('button', { name: 'Finish', exact: true }).click();
       const review = page.getByRole('dialog', { name: 'Review this version.' });
       await review.getByRole('button', { name: 'Prepare current draft', exact: true }).click();
+      await review.getByRole('button', { name: width <= 640 ? 'Mobile' : 'Desktop', exact: true }).click();
       const frozen = page.frameLocator('iframe[title="Frozen package preview"]');
       await frozen.locator('body[data-editing="false"]').waitFor();
       await frozen.getByRole('heading', { name: 'A working page preview' }).waitFor();
-      await frozen.getByRole('navigation', { name: 'Page navigation' }).getByRole('link', { name: 'Start a conversation', exact: true }).click();
+      await clickContactNavigation(frozen);
       assert.equal(await frozen.getByRole('main', { name: 'Start a Playground project' }).count(), 0);
       const isolation = await page.frames().find(f => /\/playground-frame#/.test(f.url()) && f !== page.mainFrame()).evaluate(() => {
         let storageBlocked = false, parentBlocked = false;
