@@ -1,4 +1,5 @@
 import { CentralFloridaPage } from './components/CentralFloridaPage';
+import { CandlelightShowcase } from './components/CandlelightShowcase';
 import { lazy, Suspense, useSyncExternalStore } from 'react';
 const Playground = lazy(() => import('./playground/Playground'));
 import { Header } from './components/Header';
@@ -113,6 +114,7 @@ function routeFor(path: string) {
   if (path === '/services/storefront-access-systems') return <LegacyServicePage legacySlug="storefront-access-systems" />;
   if (path === '/services/dashboards-workflow-tools') return <LegacyServicePage legacySlug="dashboards-workflow-tools" />;
   if (path === '/work') return <ShowcasePage />;
+  if (path === '/work/candlelight-exclusive') return <CandlelightShowcase />;
   if (path === '/lab') return <LabPage />;
   if (
     path.startsWith('/work/') &&

@@ -1,5 +1,18 @@
 [
   {
+    "slug": "candlelight-exclusive",
+    "title": "Candlelight Exclusive",
+    "category": "Storefronts",
+    "sector": "Apparel · Interactive reconstruction",
+    "description": "The complete ivory-and-ink storefront, with a warm jacket arch, subtle candlelight, two fits, product inspection, and a temporary demo bag.",
+    "image": "/images/storefronts/candlelight-exclusive/men-front.webp",
+    "thumbnail": "/images/storefronts/candlelight-exclusive/men-front.webp",
+    "alt": "Candlelight Exclusive apparel storefront with a softly lit amber arch and concert-program typography.",
+    "date": "2026-10-22",
+    "previewLabel": "Interactive portfolio reconstruction · Data Graphics client-services work",
+    "url": "/work/candlelight-exclusive/"
+  },
+  {
     "slug": "fnbmd-employee-collection",
     "title": "First National Bank of Mount Dora",
     "category": "Storefronts",

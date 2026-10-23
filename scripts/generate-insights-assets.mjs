@@ -94,6 +94,7 @@ function wrapTitle(title) {
 
 function generateSitemap() {
   const staticPages = [
+    { loc: absolute('/work/candlelight-exclusive'), lastmod: '2026-10-22', priority: '0.7' },
     {
       loc: absolute('/work/nighttime-spectaculars'),
       lastmod: '2026-09-06',

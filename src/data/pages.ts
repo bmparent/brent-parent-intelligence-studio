@@ -12,6 +12,12 @@ export type PageMetadata = {
 };
 
 const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
+  '/work/candlelight-exclusive': {
+    title: 'Candlelight Exclusive Storefront | Eidos Works',
+    description: 'Explore a complete apparel storefront reconstruction with warm ivory, deep ink, subtle candlelight, jacket inspection, fit guides, and a temporary demo bag.',
+    type: 'website',
+    image: absoluteUrl('/images/storefronts/candlelight-exclusive/men-front.webp'),
+  },
   '/playground': { title: 'Eidos Playground | Shape your next website', description: 'Explore templates, tune your design, and export a working page with every setting. Free preview release.', type: 'website', noIndex: true },
   '/account': { title: 'Your Account | Eidos Works', description: 'Free paper delivery, saved reading, and a conversation inbox for people and agents.', type: 'website', noIndex: true, noReferrer: true },
   '/account/verify': { title: 'Confirm Your Email | Eidos Works', description: 'Confirm your email to sign in.', type: 'website', noIndex: true, noReferrer: true },
@@ -322,6 +328,7 @@ export function prerenderPagePaths() {
   return [
     '/playground',
     '/work/nighttime-spectaculars',
+    '/work/candlelight-exclusive',
     '/work/holidays-in-hollywood',
     '/work/disney-villains',
     '/work/beauty-and-the-beast',
