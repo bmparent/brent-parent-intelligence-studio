@@ -40,6 +40,8 @@ jobs:
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8791/quote-desk/ >/dev/null && break || sleep 1; done
           node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8791 --output="$RUNNER_TEMP/indexing-local.json"
           node scripts/verify-playground-frame-http.mjs --base-url=http://127.0.0.1:8791
+
+          node scripts/verify-public-profile-route.mjs
       - name: Install isolated browser test tools (no repository dependency changes)
         run: |
           bash scripts/prepare-browser-apt.sh

@@ -27,7 +27,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Verify the committed frontend/backend contract
         env:
-          BACKEND_REVISION: 5570f8c18fb34fd8f15d1d8fb372ef6b7411d50c
+          BACKEND_REVISION: 19d9035957f915a9c1b9112c2c3d633af75272cc
           SITE_REVISION: ${{ github.sha }}
         run: |
           git init "$RUNNER_TEMP/works-backend-contract"
@@ -59,6 +59,7 @@ jobs:
           trap 'kill "$RECOVERY_PID" 2>/dev/null || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8792/account/reset/ >/dev/null && break || sleep 1; done
           node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8792 --output="$RUNNER_TEMP/works-paired-preview/recovery-http.json"
+          PROFILE_ROUTE_BASE=http://127.0.0.1:8792 node scripts/verify-public-profile-route.mjs
       - name: Install isolated account browser tools
         run: |
           bash scripts/prepare-browser-apt.sh

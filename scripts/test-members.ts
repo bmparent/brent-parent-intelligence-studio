@@ -137,6 +137,65 @@ async function signup(
   return { cookie, token, headers: { cookie } };
 }
 
+await test('Public profiles use exact account ownership and expose only published posts/replies, even when new sign-in is disabled', async () => {
+  const { sql, env } = fixture();
+  await signup(env, 'alice');
+  await signup(env, 'bob');
+  const alice = sql.prepare("SELECT id FROM eidos_email_members WHERE username='alice'").get()!.id;
+  const bob = sql.prepare("SELECT id FROM eidos_email_members WHERE username='bob'").get()!.id;
+  const now = '2026-10-23T12:00:00.000Z';
+  const own = crypto.randomUUID(), other = crypto.randomUUID(), pending = crypto.randomUUID();
+  const thread = sql.prepare('INSERT INTO eidos_threads(id,title,body,category,author,author_type,owner_id,status,created_at) VALUES(?,?,?,\'build\',?,\'guest\',?,?,?)');
+  thread.run(own, 'Alice is building a useful gallery', 'Public work from Alice.', '@alice', alice, 'published', now);
+  thread.run(other, 'A different account is building', 'Bob uses a matching historical label.', '@alice', bob, 'published', now);
+  thread.run(pending, 'A private pending conversation', 'Must never leak.', '@alice', alice, 'pending', now);
+  thread.run(crypto.randomUUID(), 'A guest impersonated a display name', 'Must not attach to Alice.', '@alice', null, 'published', now);
+  const visibleReply = crypto.randomUUID();
+  const addReply = sql.prepare('INSERT INTO eidos_replies(id,thread_id,body,author,author_type,owner_id,status,created_at) VALUES(?,?,?,\'@alice\',\'guest\',?,?,?)');
+  addReply.run(visibleReply, other, 'Alice replies to Bob in public.', alice, 'published', now);
+  addReply.run(crypto.randomUUID(), own, 'Other account label collision.', bob, 'published', now);
+  addReply.run(crypto.randomUUID(), own, 'Rejected reply must stay hidden.', alice, 'rejected', now);
+  addReply.run(crypto.randomUUID(), pending, 'Public reply in pending parent must stay hidden.', alice, 'published', now);
+  const response = await directory(ctx({ ...env, EIDOS_LOCAL_TEST: 'false' }, '/api/members/directory?username=ALICE'));
+  assert.equal(response.status, 200, await response.clone().text());
+  assert.equal(response.headers.get('cache-control'), 'no-store');
+  const profile = await response.json();
+  assert.deepEqual(Object.keys(profile.member).sort(), ['created_at', 'kind', 'username']);
+  assert.equal(profile.member.username, 'alice');
+  assert.deepEqual(profile.posts.map((p: {id:string}) => p.id), [own]);
+  assert.deepEqual(profile.replies.map((r: {id:string}) => r.id), [visibleReply]);
+  assert.equal(profile.replies[0].thread_id, other);
+  const raw = JSON.stringify(profile);
+  for (const hidden of ['alice@example.test', String(alice), String(bob), 'newsletter', 'token_hash', 'owner_id', 'Must never leak', 'pending parent', 'label collision'])
+    assert.ok(!raw.includes(hidden), hidden);
+  sql.prepare("UPDATE eidos_email_members SET disabled=1 WHERE username='alice'").run();
+  assert.equal((await directory(ctx(env, '/api/members/directory?username=alice'))).status, 404);
+  sql.close();
+});
+
+await test('Public profile activity is bounded, independently paginated and stably ordered', async () => {
+  const { sql, env } = fixture();
+  await signup(env, 'alice');
+  const member = sql.prepare("SELECT id FROM eidos_email_members WHERE username='alice'").get()!.id;
+  const now = '2026-10-23T12:00:00.000Z';
+  const insert = sql.prepare("INSERT INTO eidos_threads(id,title,body,category,author,author_type,owner_id,status,created_at) VALUES(?,?,?,'design','@alice','guest',?,'published',?)");
+  const ids = Array.from({ length: 23 }, () => crypto.randomUUID()).sort().reverse();
+  for (const id of ids) insert.run(id, 'A published work update', 'x'.repeat(500), member, now);
+  const read = async (suffix = '') => (await directory(ctx(env, '/api/members/directory?username=alice' + suffix))).json();
+  const first = await read(), second = await read('&postsPage=1');
+  assert.equal(first.posts.length, 20); assert.equal(first.morePosts, true);
+  assert.equal(second.posts.length, 3); assert.equal(second.morePosts, false);
+  assert.deepEqual([...first.posts, ...second.posts].map(p => p.id), ids);
+  assert.equal(first.posts[0].excerpt.length, 400);
+  assert.equal(first.repliesPage, 0); assert.deepEqual(second.replies, []);
+  for (const invalid of ['-1', '501', '1.5', '1 OR 1=1'])
+    assert.equal((await directory(ctx(env, '/api/members/directory?username=alice&postsPage=' + encodeURIComponent(invalid)))).status, 400);
+  assert.equal((await directory(ctx(env, '/api/members/directory?username=not_registered'))).status, 404);
+  assert.equal((await directory(ctx(env, '/api/members/directory?username=alice%27%20OR%201=1'))).status, 404);
+  assert.equal((await directory(ctx({ ...env, EIDOS_DB: undefined }, '/api/members/directory?username=alice'))).status, 503);
+  sql.close();
+});
+
 await test('Email verification is required, single-use, expiring, and creates private hashed sessions', async () => {
   const { sql, env } = fixture();
   const request = await auth(

@@ -34,7 +34,12 @@
     byline.className = 'eyebrow';
     const kind = reply.author_type === 'eidos' ? 'Eidos · published-source suggestion' :
       reply.author_type === 'agent' ? 'AI agent' : reply.author.startsWith('@') ? 'Member account' : 'Guest · unverified name';
-    byline.textContent = reply.author + ' · ' + kind;
+    if (/^[a-z][a-z0-9_]{2,23}$/.test(reply.member_username || '')) {
+      const profile = document.createElement('a');
+      profile.href = '/members/' + reply.member_username;
+      profile.textContent = reply.author;
+      byline.append(profile, document.createTextNode(' · ' + kind));
+    } else byline.textContent = reply.author + ' · ' + kind;
     const body = document.createElement('div');
     body.className = 'body';
     // User content is always text; only public HTTP(S) links become anchors.

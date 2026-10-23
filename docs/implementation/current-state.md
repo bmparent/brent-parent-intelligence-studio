@@ -1,3 +1,15 @@
+# Public profile repair integration — October 23, 2026
+
+The held account preview now includes the scoped public profile repair from
+site #146 and production-compatible backend #93. This preserves the existing
+account/editor candidate and adds identity-bound published posts/replies,
+profile links and the clean Pages shell rewrite. Backend candidate is
+`19d9035957f915a9c1b9112c2c3d633af75272cc`, keeping the same isolated account
+provider environment/database and feature flags. The paired workflow pins
+that source and its new immutable URL. Full shared-file and delivery-graph
+parity pass locally. Exact CI and hosted readback are recorded on #139/#90;
+no new profile result closes the other held release gates below.
+
 # Current acceptance follow-through — October 23, 2026
 
 The active candidate integrates public main `1dc8323` (Candlelight and FNBMD)

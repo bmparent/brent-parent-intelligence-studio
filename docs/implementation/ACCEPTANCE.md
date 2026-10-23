@@ -6,6 +6,14 @@ actual device save/reopen and synthetic hosted account save, Browser
 reconnection dependency and remaining device/accessibility/activation gates.
 Earlier dated failures and provider observations below retain their scope.
 
+## October 23 public profiles repair
+
+The broken profile redirect and missing public activity are tracked in
+[PUBLIC_PROFILES_2026-10-23.md](PUBLIC_PROFILES_2026-10-23.md). This scoped
+site/backend pair preserves account IDs and all private project storage.
+Exact candidate CI, provider pairing and live route verification belong to
+the repair PRs; local tests alone do not establish publication.
+
 ## October 23 FNBMD concept disclosure
 
 Brent clarified that the FNBMD showcase is a concept and is not live. The
