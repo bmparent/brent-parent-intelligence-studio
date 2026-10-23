@@ -165,3 +165,16 @@ graph, inventory `f2f509e146d809161a22df6f1c7ddc97fda2241a3bbeced364cc532ae6fbd6
 Fresh exact-source browser/hosted results remain required on PR139. No account,
 project, archive, entitlement, budget, paid-provider mode or production flag is
 changed. Physical-device and assistive-technology acceptance remain separate.
+
+The row correction at `de4e4db` / tested merge `77e42e62` passed the controlled
+AI review journey in every engine/width case, including actual selection of the
+formerly covered paragraph and its stale-quote guard. Run `39888905810` retained
+artifact `12474049275`: 17 of 18 editor sub-suites passed and eight complete
+frame cases passed. Its one WebKit/1440 frame failure read `isVisible()` directly
+after sending Escape, before native dialog dismissal completed. The dedicated
+walkthrough suite already awaits hidden state and passed that same interaction
+across its full matrix. The frame regression now uses the same bounded hidden
+acknowledgement, retaining its visibility and unchanged-project assertions and
+original timeout. This child changes verification only; new exact-head CI is
+required. Seven companion workflows and exact hosted deployment `6f20ab34`
+passed on the preceding revision; they retain that source scope.

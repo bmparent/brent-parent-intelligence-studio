@@ -80,6 +80,9 @@ for (const engine of (process.env.PG_ENGINES || 'chromium,firefox,webkit').split
       await page.getByRole('button', { name: 'How it works' }).click();
       await page.getByRole('dialog', { name: 'How Playground works' }).waitFor();
       await page.keyboard.press('Escape');
+      // Native dialog dismissal and React's close effect complete after key
+      // delivery in WebKit. Require the visible result, as the tour suite does.
+      await page.getByRole('dialog', { name: 'How Playground works' }).waitFor({ state: 'hidden' });
       assert.equal(await page.getByRole('textbox', { name: 'Project name', exact: true }).inputValue(), titleBeforeTour);
       assert.equal(await page.getByRole('dialog', { name: 'How Playground works' }).isVisible(), false);
       check('canvas text editing works and the actual tutorial closes without replacing the project');
