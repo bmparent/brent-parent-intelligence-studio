@@ -69,7 +69,7 @@ try {
       assert.equal(await dialog.locator('.ew-site-page-picker').count(), 0, 'existing single-image concepts retain their presentation');
       await page.keyboard.press('Escape');
       await page.goto(base + '/');
-      assert.equal(await page.locator('#site-gallery .ew-site-card').first().getByRole('heading', { name: title }).count(), 1, 'FNBMD featured on homepage');
+      assert.equal(await page.locator('#site-gallery .ew-site-card').getByRole('heading', { name: title }).count(), 1, 'FNBMD retained among the six homepage features');
       assert.deepEqual(errors, [], 'no gallery runtime errors');
       console.log(`PASS FNBMD gallery at ${width}px: discovery, four images, full size, links, scroll reset, focus, concepts, homepage feature, no overflow`);
     } finally { await context.close(); }

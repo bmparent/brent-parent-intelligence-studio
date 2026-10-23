@@ -1,0 +1,52 @@
+name: Candlelight showcase
+on:
+  pull_request:
+    paths:
+      - 'src/components/Candlelight*'
+      - 'src/styles/candlelight*'
+      - 'src/data/candlelight.ts'
+      - 'src/components/SiteGallery.tsx'
+      - 'src/components/ShowcasePages.tsx'
+      - 'src/data/siteGallery.json'
+      - 'src/data/showcase.ts'
+      - 'src/data/pages.ts'
+      - 'src/App.tsx'
+      - 'public/images/storefronts/candlelight-exclusive/**'
+      - 'scripts/verify-candlelight-browser.mjs'
+      - '.github/workflows/candlelight-showcase.yml'
+permissions:
+  contents: read
+jobs:
+  storefront:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - name: Install the pinned isolated Chromium tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/candlelight-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/candlelight-browser/node_modules/.bin/playwright" install chromium
+      - name: Verify full storefront at desktop, tablet and phone widths
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/candlelight-browser/node_modules/playwright
+          PG_EVIDENCE_DIR: ${{ runner.temp }}/candlelight-evidence
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/candlelight-preview.log" 2>&1 &
+          PREVIEW_PID=$!
+          trap 'kill "$PREVIEW_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/work/candlelight-exclusive/ >/dev/null && break || sleep 1; done
+          node scripts/verify-candlelight-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: candlelight-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/candlelight-evidence
+            ${{ runner.temp }}/candlelight-preview.log
+          retention-days: 14

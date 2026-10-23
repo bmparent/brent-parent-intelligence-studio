@@ -1,6 +1,17 @@
 export const labUrl = 'https://eidos-sentinel-lab.vercel.app/';
 export const showcase = [
   {
+    slug: 'candlelight-exclusive',
+    title: 'Candlelight Exclusive',
+    category: 'Storefronts',
+    description: 'Warm ivory, deep ink, and a softly lit jacket arch: a complete apparel storefront with a quieter sense of occasion.',
+    image: '/images/storefronts/candlelight-exclusive/men-front.webp',
+    alt: 'Candlelight jacket in a warm amber arch beside concert-program typography.',
+    status: 'Interactive design reconstruction',
+    href: '/work/candlelight-exclusive',
+    details: ['Original concert-program layout and apparel artwork', 'Subtle candlelight with pause and reduced-motion support', 'Collection, product inspection, fit guides, and a temporary demo bag'],
+  },
+  {
     slug: 'nighttime-spectaculars',
     title: 'Nighttime Spectaculars',
     category: 'Storefronts',

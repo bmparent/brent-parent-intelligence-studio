@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import sites from '../data/siteGallery.json';
 import '../styles/site-gallery.css';
+import { CandlelightPreview } from './CandlelightPreview';
 
 const categories = ['All', 'Concepts', 'Games', 'Tools', 'Experiments', 'Storefronts'];
 type Site = (typeof sites)[number];
@@ -10,6 +11,7 @@ function destinationLabel(site: Site) {
 }
 
 function Thumbnail({ site }: { site: Site }) {
+  if (site.slug === 'candlelight-exclusive') return <CandlelightPreview />;
   const height = site.fullPage && site.imageWidth && site.imageHeight
     ? Math.round(640 * site.imageHeight / site.imageWidth)
     : 480;
@@ -79,14 +81,16 @@ export function SiteGallery({ compact = false }: { compact?: boolean }) {
       <div className="ew-site-grid">
         {visible.map((site) => (
           <article className={`ew-site-card${site.fullPage ? ' ew-site-card--concept' : ''}`} key={site.slug}>
-            {site.url && !site.fullPage ? <a className="ew-site-window" href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${site.title} (new tab)`}><Thumbnail site={site} /></a>
+            {site.slug === 'candlelight-exclusive' ? <a className="ew-site-window" href={site.url} aria-label={`Explore ${site.title}`}><Thumbnail site={site} /></a> : site.url && !site.fullPage ? <a className="ew-site-window" href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${site.title} (new tab)`}><Thumbnail site={site} /></a>
               : <button className="ew-site-window ew-site-reference" type="button" aria-label={`View image: ${site.title}`} aria-haspopup="dialog" onClick={() => openPreview(site)}><Thumbnail site={site} /></button>}
             <span className="ew-site-category">{site.fullPage ? `${site.sector} / ${site.category === 'Concepts' ? 'Fictional design concept' : 'Client storefront'}` : site.category}</span>
             <h3 className="ew-site-title">{site.title}</h3>
             {site.fullPage && <p className="ew-site-concept-summary">{site.description}</p>}
             <div className="ew-site-actions">
-              {site.url && <a href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`${destinationLabel(site)}: ${site.title} (new tab)`}>{destinationLabel(site)} ↗</a>}
-              <button className="ew-site-preview" type="button" aria-label={`Preview ${site.title}`} aria-haspopup="dialog" onClick={() => openPreview(site)}>{site.pages?.length ? 'Explore storefront' : site.fullPage ? 'Explore full page' : 'Preview'}</button>
+              {site.slug === 'candlelight-exclusive' ? <a href={site.url}>Explore full storefront ↗</a> : <>
+                {site.url && <a href={site.url} target="_blank" rel="noopener noreferrer" aria-label={`${destinationLabel(site)}: ${site.title} (new tab)`}>{destinationLabel(site)} ↗</a>}
+                <button className="ew-site-preview" type="button" aria-label={`Preview ${site.title}`} aria-haspopup="dialog" onClick={() => openPreview(site)}>{site.pages?.length ? 'Explore storefront' : site.fullPage ? 'Explore full page' : 'Preview'}</button>
+              </>}
             </div>
           </article>
         ))}

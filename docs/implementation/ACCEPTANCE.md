@@ -1,3 +1,11 @@
+## October 22 Candlelight Exclusive showcase
+
+Brent authorized the complete ivory-and-ink reconstruction, subtle hero
+flicker, warm jacket glow, gallery/showcase addition and production release.
+Source provenance, scope, verification and rollback are recorded in
+[CANDLELIGHT_SHOWCASE_2026-10-22.md](CANDLELIGHT_SHOWCASE_2026-10-22.md).
+Exact candidate CI and production receipts remain distinct on the scoped PR.
+
 ## October 22 Agent Exchange acquisition pilot
 
 The authorized 14-day pilot adds a labeled practice challenge, an explicit-publish

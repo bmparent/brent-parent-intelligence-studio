@@ -1,5 +1,13 @@
 # Site gallery
 
+Candlelight Exclusive leads the gallery and full Work showcase. Its composed
+ivory/amber preview opens `/work/candlelight-exclusive`, a working reconstruction
+of the finished concert-program design, including the warm jacket arch, subtle
+light flicker, full homepage, two fits, product inspection, saved guides and a
+temporary demo bag. This entry opens the interactive page directly; it is not
+labeled a saved screenshot or connected to the live catalog. Source and release
+evidence: [Candlelight showcase](implementation/CANDLELIGHT_SHOWCASE_2026-10-22.md).
+
 The Wellway member/advisor app is documented in [wellway-demo.md](./wellway-demo.md). Its Tools card uses genuine browser captures and opens `/demos/wellway/`. Source, evidence, simulated behavior and hosted AI configuration are documented separately.
 
 The homepage shows the first six records from `src/data/siteGallery.json`. The Work page shows the complete collection at `/work#site-gallery`, with category filters, search, and a larger image preview. Each image and “Open app” link launches the public app in a new tab; a separate Preview button opens the screenshot dialog. Add future Sites to that JSON file without changing the components.
