@@ -120,3 +120,22 @@ pinned browser versions, time limits and required assertions are retained.
 This follow-through changes CI setup only; the deployed application bytes and
 backend revision above are unchanged. Exact final workflow receipts remain on
 PR139, separate from the observed 320px repair on deployment `30cd6f11`.
+
+## Final editor check follow-through
+
+Run `39872676296` completed with all nine complete frame cases passing, including
+the 320px Menu obstruction regression. Its separate controlled AI review suite
+timed out at the selection acknowledgement after a manually mapped pointer
+click in all nine engine/width cases. Later full-site stages were skipped; this
+run is failed acceptance and does not authorize production.
+
+The AI harness now clicks the different text element through its actionable
+iframe locator, which performs scrolling, stability and obstruction checks
+together. It retains the exact selected-node, stale-quote, disabled-confirmation
+and saved-document assertions, every engine/width and the original timeout.
+The editor workflow runs this regression first so a failure is reported before
+the long editor matrix; every existing release check remains required. This
+follow-through changes verification only. Application/runtime bytes, the paired
+backend, provider settings, saved projects and frozen archives are unchanged.
+Fresh CI must establish whether the locator correction resolves the failure;
+its exact receipt and any remaining defects belong to PR139.

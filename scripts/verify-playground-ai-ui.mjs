@@ -69,14 +69,11 @@ for (const engine of engines) {
    await ask.getByRole('button',{name:'Discard proposal',exact:true}).click();await freshQuote('Select a different element while reviewing this quote.');await panel('Canvas');
    const frame=page.frameLocator('iframe[title="Your page preview"]'),otherNode=frame.locator(`[data-authoring] [data-node-type="text"]:not([id="${nodeId}"])`).first(),otherId=await otherNode.getAttribute('id');assert.ok(otherId);assert.notEqual(otherId,nodeId);
    const otherName=await otherNode.getAttribute('data-node-name');assert.ok(otherName);
-   // Browser automation can report unscaled child-frame coordinates. Map the
-   // visible text center through the actual preview transform and use a real
-   // pointer click; DOM dispatch would bypass the interaction being tested.
-   await otherNode.scrollIntoViewIfNeeded();
-   const point=await otherNode.evaluate(node=>{const r=node.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2};});
-   const viewport=await page.locator('iframe[title="Your page preview"]').evaluate(el=>{const r=el.getBoundingClientRect();return{left:r.left,top:r.top,scaleX:r.width/el.offsetWidth,scaleY:r.height/el.offsetHeight,borderX:el.clientLeft,borderY:el.clientTop,width:el.clientWidth,height:el.clientHeight};});
-   assert.ok(point.x>0&&point.x<viewport.width&&point.y>0&&point.y<viewport.height,'Selection target must be visible inside the preview');
-   await page.mouse.click(viewport.left+(viewport.borderX+point.x)*viewport.scaleX,viewport.top+(viewport.borderY+point.y)*viewport.scaleY);
+   // Use the real text's actionable locator so scrolling, iframe transforms
+   // and hit testing settle together before the pointer click. Separately
+   // sampled child/parent rectangles can move between those measurements.
+   // This does not dispatch a synthetic DOM event or bypass an obstruction.
+   await otherNode.locator(':scope > [data-node-text]').click();
    // Wait for React's selection acknowledgement before changing mobile panels.
    // This still fails if the canvas click is lost or selects the wrong element.
    await page.waitForFunction(name=>document.querySelector('.pg-breadcrumb [aria-current="location"]')?.textContent===name,otherName);
