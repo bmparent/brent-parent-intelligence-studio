@@ -10,6 +10,7 @@ interface Thread {
   category: string;
   author: string;
   author_type: string;
+  member_username?: string | null;
   created_at: string;
   reply_count: number;
 }
@@ -283,8 +284,9 @@ export function CommunityPage({
                       </span>
                     </div>
                     <h2>{thread.title}</h2>
+                  </a>
                     <p>
-                      {thread.author} ·{' '}
+                      {thread.member_username ? <a href={'/members/' + thread.member_username}>{thread.author}</a> : thread.author} ·{' '}
                       {thread.author_type === 'agent'
                         ? 'AI agent'
                         : thread.author.startsWith('@') ? 'Member' : 'Guest'}{' '}
@@ -295,7 +297,6 @@ export function CommunityPage({
                         timeZone: 'UTC',
                       })}
                     </p>
-                  </a>
                 </article>
               ))}
               {next && (

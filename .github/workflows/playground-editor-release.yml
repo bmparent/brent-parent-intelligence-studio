@@ -39,6 +39,7 @@ jobs:
           trap 'kill "$INDEXING_PID" 2>/dev/null || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8791/quote-desk/ >/dev/null && break || sleep 1; done
           node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8791 --output="$RUNNER_TEMP/indexing-local.json"
+          node scripts/verify-public-profile-route.mjs
       - name: Install isolated browser test tools (no repository dependency changes)
         run: |
           npm install --prefix "$RUNNER_TEMP/pg-browser" --no-save --no-package-lock playwright@1.58.2
