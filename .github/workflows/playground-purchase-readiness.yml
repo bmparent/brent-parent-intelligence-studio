@@ -1,0 +1,52 @@
+name: Playground purchase readiness
+on:
+  pull_request:
+    paths:
+      - 'src/playground/**'
+      - 'functions/**'
+      - 'migrations/**'
+      - 'scripts/*purchase*'
+      - 'scripts/verify-playground-starter-focus.mjs'
+      - 'scripts/test-project-delivery*'
+      - '.github/workflows/playground-purchase-readiness.yml'
+permissions:
+  contents: read
+jobs:
+  purchase-fixtures:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:playground
+      - run: npm run build
+      - name: Install isolated browser tools
+        run: |
+          bash scripts/prepare-browser-apt.sh
+          npm install --prefix "$RUNNER_TEMP/purchase-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/purchase-browser/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Verify intercepted purchase flows without providers or deployment
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/purchase-browser/node_modules/playwright
+          PG_BASE_URL: http://127.0.0.1:5184
+          PG_PURCHASE_EVIDENCE: ${{ runner.temp }}/purchase-evidence
+          PG_ENGINES: chromium
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 5184 > "$RUNNER_TEMP/purchase-preview.log" 2>&1 &
+          for attempt in $(seq 1 30); do curl --fail --silent http://127.0.0.1:5184/playground/ > /dev/null && break; sleep 1; done
+          node scripts/verify-playground-purchase-browser.mjs
+          node scripts/verify-playground-starter-focus.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playground-purchase-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/purchase-evidence
+            ${{ runner.temp }}/purchase-preview.log
+          retention-days: 14

@@ -1,0 +1,59 @@
+{
+  "engine": "chromium",
+  "width": 1440,
+  "name": "cancelled-checkout",
+  "checks": [
+    "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+    "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [],
+  "calls": [
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    }
+  ],
+  "unexpected": [],
+  "expectedHttpDenials": [],
+  "stubbedAssets": [
+    "fonts.googleapis.com",
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [
+    "Interception-only TEST checkout document"
+  ],
+  "serverFreeze": {
+    "id": "fixture-delivery",
+    "ownerId": "fixture-owner",
+    "documentId": "befcfd6d-4464-46ff-873e-9922c816403f",
+    "revision": 0,
+    "snapshotHash": "37ca7c50f298bbcc8d8e973f3196fbc940357670da1787ad583ad0a8a0850306",
+    "projectHash": "e8145ec72a64f6d99bc0ae1b210e58a0aa04f40340ea4647a351f3aee3e13d90",
+    "archiveSha256": "3b6a58f8224f58566a2d5450fe6d8153e371e204da27217180fcb980bb5efa9f",
+    "archiveBytes": 128360,
+    "mode": "test"
+  },
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5185/playground/"
+}

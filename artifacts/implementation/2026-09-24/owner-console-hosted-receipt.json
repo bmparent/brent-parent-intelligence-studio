@@ -1,0 +1,118 @@
+{
+  "checkedAtUtc": "2026-09-25T21:06:26Z",
+  "overallStatus": "private_owner_preview_accepted_public_release_no_go",
+  "source": {
+    "site": "7ec762eb296148a94c95b6e2ff956310c771bdf2",
+    "backend": "f690429fc29b59211e94a4e9b279c304693bb36d",
+    "pairedVendorParity": "76/76"
+  },
+  "cloudflareAccess": {
+    "organizationTeamSlug": "dg-promo-photos-bmparent",
+    "ownerApplicationId": "efab2526-89b6-4003-b4d0-cd41588481ed",
+    "ownerApplicationAudience": "4a0f61ee270280b396034e1905efac18cd91e0029e76bc83807ba6b17b02cf5a",
+    "ownerPolicyId": "c60182b6-6329-4124-af41-9cf1bc1b6067",
+    "ownerSubject": "b0c771ac-279f-57df-be7d-818d7e1de508",
+    "ownerEmail": "1brent.bm@gmail.com",
+    "independentMfaRequiredForOwnerApp": true,
+    "appLauncherId": "c3fb04ce-26bd-4bef-be7c-b3fe25d5a2c5",
+    "appLauncherOwnerOnlyPolicyId": "3b511b75-3181-4ea9-af2b-9657a18e2377",
+    "mfaEnrollment": "one_TOTP_authenticator_listed_2026-09-25",
+    "ownerAppPrimaryHost": "owner-preview.eidos-works.com",
+    "sharedTeamLoginDomainRetained": "dg-promo-photos-bmparent.cloudflareaccess.com",
+    "sharedLoginBrandingLimitation": "separate_Eidos_login_requires_separate_Cloudflare_account_and_zone_migration",
+    "otherAccessApplicationsModified": false
+  },
+  "deployments": {
+    "worker": {
+      "url": "https://owner-preview.eidos-works.com",
+      "versionId": "44efb107-4084-46bf-8c52-a8bdc856a7b8",
+      "environment": "preview",
+      "bindingNamesVerified": true,
+      "workersDevRouteEnabled": false,
+      "customDomainBindingVerified": true,
+      "lastWranglerExit": "zero_versions_upload_and_deploy_100_percent"
+    },
+    "backend": {
+      "url": "https://eidos-sentinel-irfdtg9wq-1brentbm-1876s-projects.vercel.app",
+      "deploymentId": "dpl_21aLSjr1CRpVdSghVyNFWi2kFzBJ",
+      "state": "READY",
+      "healthHttpStatus": 200,
+      "environment": "preview",
+      "sourceRevision": "f690429fc29b59211e94a4e9b279c304693bb36d",
+      "ownerOrigin": "https://owner-preview.eidos-works.com"
+    },
+    "site": {
+      "url": "https://62ad943a.eidosworks-candidate-20260923.pages.dev",
+      "deploymentId": "62ad943a-d1da-4d51-88d6-8cbd1d8c3c0f",
+      "state": "success",
+      "environment": "preview",
+      "rootHttpStatus": 200
+    },
+    "failedBackendAttempts": [
+      { "deploymentId": "dpl_3dBtXjTXc8KawmcPJ4PFBcQq6zbF", "state": "BLOCKED", "reason": "prior_commit_author_not_team_owner" },
+      { "deploymentId": "dpl_5pMV4UqiefJtfTUp2AaaypfoD5k5", "state": "ERROR", "reason": "CLI_upload_from_subdirectory_did_not_include_project_root" }
+    ]
+  },
+  "securityChecks": {
+    "anonymousHtml": "302_to_Cloudflare_Access",
+    "anonymousOperationsApi": "302_to_Cloudflare_Access",
+    "anonymousGithubApi": "302_to_Cloudflare_Access",
+    "missingAndForgedJwtLocalTests": "passed",
+    "differentSubjectLocalTest": "passed",
+    "validOwnerHostedBrowser": "passed_TOTP_authenticated_overview_and_private_API_reads",
+    "hostedControlledMutations": "passed_synthetic_accounts_and_work_item",
+    "hostedNegativeIdentityJwtCsrfStaleReplay": "local_tests_only_hosted_direct_negative_requests_unverified"
+  },
+  "hostedUiChecks": {
+    "overview": "passed_4_validation_members_8_open_work_test_store_mode_backend_f690429",
+    "accountSearchAndDetail": "passed_synthetic_A_exact_ID_0_projects_0_paid_entitlements",
+    "sessionRevoke": "hosted_action_success_and_audit_but_active_sessions_were_0_before_and_after_local_test_proves_row_deletion",
+    "suspendRestore": "passed_synthetic_A_blocked_then_healthy_audit_success",
+    "usernameUniqueness": "passed_synthetic_A_duplicate_B_username_denied_then_valid_change_and_baseline_restore",
+    "workQueueNoteAndStatus": "passed_controlled_item_created_note_saved_and_reopened_status_done_audit_success",
+    "auditHistory": "passed_hosted_success_events_visible_for_account_and_work_actions",
+    "mobileNavigation": "passed_390x844_visual_and_keyboard_Enter_menu",
+    "zoom200AndReducedMotion": "not_hosted_verified",
+    "ownershipPreservation": "synthetic_account_0_projects_0_paid_entitlements_real_purchase_ownership_not_hosted_tested"
+  },
+  "controlledValidationData": {
+    "syntheticMemberIds": ["owner-console-acceptance-a-20260924", "owner-console-acceptance-b-20260924"],
+    "memberRowsAfterSeed": 4,
+    "originalMemberRowsPreserved": 2,
+    "projectRowsPreserved": 2,
+    "playgroundOrderRows": 0,
+    "kitOrderRowsPreserved": 4,
+    "syntheticSessionRowsAdded": 2,
+    "paidOrdersCreated": 0
+  },
+  "checks": {
+    "siteBuild": "passed",
+    "siteLint": "passed",
+    "sitePlatformTests": "29_passed",
+    "siteAuditTests": "32_passed",
+    "sitePrerender": "passed",
+    "siteUrls": "passed",
+    "workerBuildAndTypecheck": "passed",
+    "workerConnectorAndAuthTests": "5_passed",
+    "backendLintAndBuild": "passed",
+    "backendOwnerAndStripeTests": "5_passed",
+    "backendFullTests": "70_passed",
+    "sitePrChecks": "five_passed_at_7ec762eb296148a94c95b6e2ff956310c771bdf2",
+    "backendPrChecks": "four_passed_at_f690429fc29b59211e94a4e9b279c304693bb36d",
+    "pairedVendorParity": "76_of_76_passed"
+  },
+  "sources": {
+    "worksValidationDatabase": "hosted_owner_read_and_controlled_writes_verified",
+    "githubPrAndWorkflow": "hosted_public_read_verified_exact_observed_PR_heads",
+    "deploymentAvailability": "hosted_exact_URL_HTTP_probes_verified_provider_metadata_unavailable",
+    "stripeTestProvider": "hosted_bounded_read_only_reconciliation_4_kit_orders_0_observed_mismatches",
+    "stripeWebhookDelivery": "unavailable_no_provider_delivery_receipt",
+    "inboxOrCrm": "worker_not_configured_no_server_side_read_grant_historical_2026_09_24_QA_message_observed_in_owner_Gmail_without_exact_preview_attribution",
+    "driveSheets": "not_configured_no_server_side_read_grant",
+    "ga4SearchConsole": "not_configured_no_server_side_read_grant",
+    "aiProviderUsage": "not_configured_no_usage_scope"
+  },
+  "productionChanged": false,
+  "livePaymentOrExternalMailSent": false,
+  "publicReleaseStatus": "NO_GO_existing_gates_remain"
+}

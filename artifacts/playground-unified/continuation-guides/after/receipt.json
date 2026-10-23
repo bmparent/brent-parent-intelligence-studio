@@ -1,0 +1,28 @@
+{
+  "source": "41f0d1e388220f62ca20d0c5930251276444c40c",
+  "timestamp": "2026-10-14T19:56:17.869Z",
+  "before": false,
+  "checks": [
+    "keyboard toggle exposes actual CSS-pixel dimensions, sibling spacing and parent alignment without saving changes",
+    "active resize automatically measures current frame; Escape removes guides and restores exact project",
+    "actual drag measures the destination container and its configured spacing without changing the project on cancellation",
+    "mobile canvas has legible guides without horizontal overflow",
+    "Preview excludes all guide chrome",
+    "export runtime contains no guide implementation"
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "width": 1203.21875,
+      "height": 33,
+      "gap": 32,
+      "pointerEvents": "none"
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "labelFont": 12
+    }
+  ],
+  "environment": "Actual Chromium pointer/keyboard controls, GPU disabled, reduced motion; not physical-device acceptance"
+}

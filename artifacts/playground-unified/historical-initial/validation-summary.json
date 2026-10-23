@@ -1,0 +1,37 @@
+{
+  "timestampUtc": "2026-10-14T19:29:05.445Z",
+  "scope": "Historical local source and compiled-runtime evidence; controlled commerce fixtures only. The final candidate revision is a reference, not the source identity of every older log. Per-receipt hashes, served-build manifests and final CI qualify exact tested source.",
+  "groups": {
+    "playground": {
+      "commandLog": "final-playground.log",
+      "tests": 73,
+      "passed": 73,
+      "failed": 0
+    },
+    "showcase": {
+      "commandLog": "final-showcase.log",
+      "tests": 37,
+      "passed": 37,
+      "failed": 0
+    },
+    "platform": {
+      "commandLog": "final-platform.log",
+      "tests": 36,
+      "passed": 36,
+      "failed": 0
+    },
+    "templateShop": {
+      "commandLog": "final-template-shop.log",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "previewGates": {
+      "commandLog": "preview-readiness/tests.log",
+      "tests": 8,
+      "passed": 8,
+      "failed": 0
+    }
+  },
+  "finalCandidateRevision": "a669fddccc6f6be77f6e24e36ccd3f103c518fc0"
+}

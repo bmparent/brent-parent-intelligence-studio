@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-10-14T20:00:09.998Z",
+  "base": "http://127.0.0.1:5184",
+  "source": "41f0d1e388220f62ca20d0c5930251276444c40c",
+  "environment": "win32/x64, Node v24.14.0; external Playwright; Browser plugin not available",
+  "limitations": [
+    "Browser viewport tests are not physical-device or unfamiliar-user acceptance.",
+    "Artwork is inserted as a bounded PNG; editable objects remain in the same project. Page-level arbitrary object positioning is not implied."
+  ],
+  "sourceFiles": {
+    "src/playground/UnifiedPanels.tsx": "65be902a5767ca0d0303e8fded3cf4398ea1e9ece02d73fdda7e00b678f9484d",
+    "src/playground/ArtworkStudio.tsx": "041bc0abdc5834f0cc783a16d7cb825dbe0783e6381e18d1f8dc14f45460ccf9",
+    "src/playground/artworkSchema.ts": "77b1a4af5baa6f6a87d7375d17c68e752be38de02e4864fbe1903dfb377da4e1",
+    "src/playground/artworkRenderer.ts": "5654bbf8c4597fc8d682798f0962ee6535d40fa5af7e5c1bd2fa6126bf1b0e40",
+    "scripts/verify-playground-integrated-artwork.mjs": "3dd9c0bcdb2e5ff80f598fd913165581db0771a55242cb33e71e5f53821f6bea"
+  },
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "asset tray opens editable poster with linked palette and bounded keyboard positioning/rotation/scale",
+        "Insert artwork embeds decoded 720×960 PNG directly in the same project without any download/re-upload",
+        "one Undo removes only insertion; Redo restores exact image and editable artwork",
+        "inserted decorative composition fits the mobile container without horizontal page overflow",
+        "reload/Continue preserves original image bytes, same project and editable artwork source",
+        "actual Finish ZIP retains exact artwork image/source and opens independently",
+        "no runtime errors, unintended downloads, AI/payment API calls or blank editor"
+      ],
+      "errors": [],
+      "downloads": 1,
+      "apiCalls": [],
+      "imageId": "node-db9c1f33-d636-4e05-aec0-fd663c0facab",
+      "mobileBounds": {
+        "left": 18,
+        "right": 372,
+        "width": 354,
+        "viewport": 390,
+        "overflow": false
+      },
+      "archive": {
+        "bytes": 342748,
+        "sha256": "ffb12c569430af95520ce41cad267cdd0b9857f021aa197af788aeea1f8c27a8"
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": [
+        "asset tray opens editable poster with linked palette and bounded keyboard positioning/rotation/scale",
+        "Insert artwork embeds decoded 720×960 PNG directly in the same project without any download/re-upload",
+        "one Undo removes only insertion; Redo restores exact image and editable artwork",
+        "inserted decorative composition fits the mobile container without horizontal page overflow",
+        "Chromium touch emulation scrolls the current canvas outside explicit handles without mutating the project",
+        "reload/Continue preserves original image bytes, same project and editable artwork source",
+        "actual Finish ZIP retains exact artwork image/source and opens independently",
+        "no runtime errors, unintended downloads, AI/payment API calls or blank editor"
+      ],
+      "errors": [],
+      "downloads": 1,
+      "apiCalls": [],
+      "imageId": "node-13dd77e3-fd86-4537-a9c8-e7d5eeed323a",
+      "mobileBounds": {
+        "left": 18,
+        "right": 372,
+        "width": 354,
+        "viewport": 390,
+        "overflow": false
+      },
+      "touchScroll": 210,
+      "archive": {
+        "bytes": 342748,
+        "sha256": "f9c1e7d139c4b0c9ac17b6d15e8a3d087819f91cb9f3d57d0eeef877914effb3"
+      }
+    }
+  ],
+  "completedAt": "2026-10-14T20:01:22.365Z"
+}

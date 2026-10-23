@@ -1,4 +1,4 @@
-import { launchOptions, guardLocalEditor } from './playground-local-browser-guard.mjs';
+import { launchOptions, guardLocalEditor, readLocalZip } from './playground-local-browser-guard.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
@@ -17,6 +17,9 @@ page.on('pageerror',error=>receipt.consoleErrors.push(error.message));
 page.on('dialog',dialog=>dialog.accept());
 const read=(key='current')=>page.evaluate(async key=>new Promise((resolve,reject)=>{const open=indexedDB.open('eidos-playground-v1',1);open.onupgradeneeded=()=>open.result.createObjectStore('workspace');open.onerror=()=>reject(open.error);open.onsuccess=()=>{const db=open.result,request=db.transaction('workspace').objectStore('workspace').get(key);request.onsuccess=()=>{resolve(request.result??null);db.close();};request.onerror=()=>reject(request.error);};}),key);
 const seed=value=>page.evaluate(async value=>new Promise((resolve,reject)=>{const open=indexedDB.open('eidos-playground-v1',1);open.onupgradeneeded=()=>open.result.createObjectStore('workspace');open.onsuccess=()=>{const db=open.result,tx=db.transaction('workspace','readwrite');tx.objectStore('workspace').put(value,'current');tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>reject(tx.error);};}),value);
+const put=(key,value)=>page.evaluate(async ({key,value})=>new Promise((resolve,reject)=>{const open=indexedDB.open('eidos-playground-v1',1);open.onsuccess=()=>{const db=open.result,tx=db.transaction('workspace','readwrite');tx.objectStore('workspace').put(value,key);tx.oncomplete=()=>{db.close();resolve();};tx.onabort=()=>reject(tx.error);};}),{key,value});
+const recovery=()=>page.evaluate(async()=>new Promise((resolve,reject)=>{const open=indexedDB.open('eidos-playground-v1',1);open.onsuccess=()=>{const db=open.result,request=db.transaction('workspace').objectStore('workspace').getAll(IDBKeyRange.bound('recovery:','recovery:\uffff'));request.onsuccess=()=>{db.close();resolve(request.result);};request.onerror=()=>reject(request.error);};}));
+const downloadedBytes=async download=>{const stream=await download.createReadStream(),chunks=[];for await(const chunk of stream)chunks.push(chunk);return Buffer.concat(chunks);};
 const saved=async()=>{await page.locator('.pg-save-inline').filter({hasText:'Saved on this device'}).waitFor({timeout:15000});return read();};
 async function check(name,run){try{await run();receipt.checks.push(name);console.log('PASS '+name);}catch(error){receipt.failures.push({name,error:error.message});await page.screenshot({path:out+'/failure-'+receipt.failures.length+'.png',fullPage:true});throw error;}}
 try {
@@ -63,6 +66,47 @@ try {
     await page.getByRole('textbox',{name:'Project name',exact:true}).fill('Continued manual work');
     await page.evaluate(()=>window.releaseSavedRead());const current=await saved();assert.equal(current.project.name,'Continued manual work');assert.notEqual(current.documentId,previous.documentId);
     await page.reload();await page.getByRole('button',{name:/Continue project/}).click();assert.equal(await page.getByRole('textbox',{name:'Project name',exact:true}).inputValue(),'Continued manual work');
+  });
+  await check('one malformed catalogue item and a missing date do not hide valid work',async()=>{
+    const before=await saved();await put('summary:malformed',null);await put('summary:undated',{documentId:'undated',name:'Undated project',savedAt:null});
+    await page.reload();await page.getByRole('button',{name:/Continue project/}).click();
+    assert.equal(await page.getByRole('textbox',{name:'Project name',exact:true}).inputValue(),before.project.name);
+    await page.getByRole('region',{name:'Project recovery'}).waitFor();assert.equal(await read('summary:malformed'),null);
+    await page.getByRole('textbox',{name:'Project name',exact:true}).fill('Valid work still saves');assert.equal((await saved()).project.name,'Valid work still saves');
+  });
+  await check('a malformed variation leaves valid variations editable and archives the exact original',async()=>{
+    const before=await saved(),raw={...before,snapshots:[{id:'good',name:'Good variation',project:before.project,savedAt:''},null,{project:{schemaVersion:999},marker:'keep-variation'}]};
+    await seed(raw);await page.reload();await page.getByRole('button',{name:/Continue project/}).click();
+    const next=await saved();assert.equal(next.snapshots.length,1);assert.equal(next.snapshots[0].name,'Good variation');
+    assert.ok((await recovery()).some(record=>record.key==='current'&&JSON.stringify(record.raw)===JSON.stringify(raw)));
+  });
+  await check('unreadable current data remains recoverable before and after starting fresh and reload',async()=>{
+    const raw={project:{schemaVersion:999},marker:'raw-current-preserved',snapshots:[null]};await seed(raw);await page.reload();
+    await page.getByRole('button',{name:'Download recovery data'}).waitFor();assert.equal(await page.getByRole('button',{name:/Continue project/}).count(),0);
+    const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Download recovery data'}).click();const backup=JSON.parse((await downloadedBytes(await pending)).toString());
+    assert.ok(backup.records.some(record=>record.key==='current'&&record.raw.marker===raw.marker));
+    await page.getByRole('button',{name:/Switchboard/}).click();await page.getByRole('button',{name:'Skip details',exact:true}).click();await saved();
+    assert.ok((await recovery()).some(record=>record.raw?.marker===raw.marker));
+    await page.reload();await page.getByRole('button',{name:/Continue project/}).click();await saved();await page.getByRole('button',{name:'Download recovery data'}).waitFor();
+  });
+  await check('write failure, account cancel, backup and retry preserve unsaved edits and Undo',async()=>{
+    const before=await saved();await page.evaluate(()=>{const transaction=IDBDatabase.prototype.transaction;IDBDatabase.prototype.transaction=function(...args){if(args[1]==='readwrite'&&window.failDeviceWrites)throw new DOMException('Injected quota failure','QuotaExceededError');return transaction.apply(this,args);};window.failDeviceWrites=true;});
+    await page.getByRole('textbox',{name:'Project name',exact:true}).fill('Keep unsaved customer work');await page.getByRole('region',{name:'Project recovery'}).getByRole('alert').waitFor();assert.equal((await read()).project.name,before.project.name);
+    await page.getByRole('button',{name:'Account / Sign in',exact:true}).click();await page.getByRole('dialog',{name:'Your account',exact:true}).waitFor();await page.keyboard.press('Escape');
+    assert.equal(await page.getByRole('textbox',{name:'Project name',exact:true}).inputValue(),'Keep unsaved customer work');assert.equal(await page.getByRole('button',{name:'Undo',exact:true}).isEnabled(),true);
+    const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Download project backup'}).click();assert.equal(JSON.parse((await downloadedBytes(await pending)).toString()).name,'Keep unsaved customer work');
+    await page.getByRole('button',{name:'Retry device saving'}).click();await page.getByRole('region',{name:'Project recovery'}).getByRole('alert').waitFor();
+    await page.evaluate(()=>{window.failDeviceWrites=false;});await page.getByRole('button',{name:'Retry device saving'}).click();assert.equal((await saved()).project.name,'Keep unsaved customer work');
+    assert.equal(await page.getByRole('region',{name:'Project recovery'}).getByRole('alert').count(),0);
+  });
+  await check('IndexedDB read failure retries the real saved project without writing a default',async()=>{
+    const before=await saved();await page.addInitScript(()=>{const open=IDBFactory.prototype.open;IDBFactory.prototype.open=function(...args){let fail=false;try{fail=sessionStorage.getItem('pg-fail-open')==='1';}catch{}if(fail)throw new DOMException('Injected open failure','SecurityError');return open.apply(this,args);};});
+    await page.evaluate(()=>sessionStorage.setItem('pg-fail-open','1'));await page.reload();await page.getByRole('button',{name:'Retry device saving'}).waitFor();assert.equal(await page.getByRole('button',{name:/Continue project/}).count(),0);
+    await page.evaluate(()=>sessionStorage.removeItem('pg-fail-open'));await page.getByRole('button',{name:'Retry device saving'}).click();await page.getByRole('button',{name:/Continue project/}).click();assert.equal((await saved()).documentId,before.documentId);
+  });
+  await check('asset-only ZIP contains unique image bytes and no project or page files',async()=>{
+    await page.getByRole('button',{name:'Assets',exact:true}).click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Download images & logos'}).click();
+    const files=readLocalZip(await downloadedBytes(await pending));assert.ok(files.length);assert.ok(files.every(file=>/^assets\/image-\d+\.(png|jpg|webp)$/.test(file.name)));assert.equal(new Set(files.map(file=>file.data.toString('base64'))).size,files.length);
   });
   await assertLocalOnly();await check('no app runtime errors or framework overlay',async()=>{assert.deepEqual(receipt.consoleErrors,[]);assert.equal(await page.locator('vite-error-overlay').count(),0);});
   await page.screenshot({path:out+'/continued-project.png',fullPage:true});

@@ -1,0 +1,9 @@
+{
+  "kind": "local fixture, not hosted integration",
+  "reads": 5,
+  "manualRefresh": "passed",
+  "failureRetainsLastSuccess": "passed",
+  "automaticRefresh": "passed",
+  "dailyCheckpointDisplay": "passed",
+  "mobileOverflow": "none at 390px"
+}

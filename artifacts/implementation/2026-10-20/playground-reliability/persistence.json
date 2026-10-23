@@ -1,0 +1,28 @@
+{
+  "kind": "chromium desktop browser; local candidate; no provider/cloud/payment acceptance",
+  "base": "http://127.0.0.1:4187/playground/",
+  "checks": [
+    "clean visit writes no unexplained starter",
+    "legacy schema 1 saved envelope opens and gets stable identity",
+    "legacy schema 1 file import preserves validator and history",
+    "legacy schema 2 saved envelope opens and gets stable identity",
+    "legacy schema 2 file import preserves validator and history",
+    "legacy schema 3 saved envelope opens and gets stable identity",
+    "legacy schema 3 file import preserves validator and history",
+    "legacy schema 4 saved envelope opens and gets stable identity",
+    "legacy schema 4 file import preserves validator and history",
+    "invalid imported JSON leaves project, identity and revision unchanged",
+    "explicit new project preserves previous editable document and assets",
+    "delayed saved-project read cannot overwrite continued manual edits",
+    "one malformed catalogue item and a missing date do not hide valid work",
+    "a malformed variation leaves valid variations editable and archives the exact original",
+    "unreadable current data remains recoverable before and after starting fresh and reload",
+    "write failure, account cancel, backup and retry preserve unsaved edits and Undo",
+    "IndexedDB read failure retries the real saved project without writing a default",
+    "asset-only ZIP contains unique image bytes and no project or page files",
+    "no app runtime errors or framework overlay"
+  ],
+  "failures": [],
+  "consoleErrors": [],
+  "timestamp": "2026-10-20T15:41:32.875Z"
+}

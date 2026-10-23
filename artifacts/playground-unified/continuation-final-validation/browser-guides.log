@@ -1,0 +1,6 @@
+PASS keyboard toggle exposes actual CSS-pixel dimensions, sibling spacing and parent alignment without saving changes
+PASS active resize automatically measures current frame; Escape removes guides and restores exact project
+PASS actual drag measures the destination container and its configured spacing without changing the project on cancellation
+PASS mobile canvas has legible guides without horizontal overflow
+PASS Preview excludes all guide chrome
+PASS export runtime contains no guide implementation

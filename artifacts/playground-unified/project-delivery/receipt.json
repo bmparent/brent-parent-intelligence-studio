@@ -1,0 +1,69 @@
+{
+  "notes": [
+    "Read source and metadata only in public route; no HTTP archive download.",
+    "Frozen archive reader returns original chunks, never regenerates.",
+    "Backend renderer mirror, hosted acceptance, and signed-order binding remain separate gates."
+  ],
+  "files": [
+    {
+      "sha256": "47f355d67e8d2d9cbb48a29ede2358dcc7eefd25848ba0cdd9bb5713b216208a",
+      "path": "functions/_shared/platform/projectDelivery.ts",
+      "bytes": 9736
+    },
+    {
+      "sha256": "ed27e6c37f2968e2d4a6825cee6eac328dd3d9d8eeff2ed2c44be55ef37aba66",
+      "path": "functions/_shared/platform/projectDeliveryRenderer.ts",
+      "bytes": 386
+    },
+    {
+      "sha256": "9ff3edfd777b43410d7499e6a2abb66625187b6b15f6bc889324c2b917913c4b",
+      "path": "functions/_shared/platform/projectDeliverySchema.ts",
+      "bytes": 1342
+    },
+    {
+      "sha256": "a7f745e2c8d48c141fae3eb94f5f9ba9d6c3a182d40be32ed9c64fc91f40b897",
+      "path": "functions/api/playground/delivery.ts",
+      "bytes": 1095
+    },
+    {
+      "sha256": "711faa1efc31c66ae37056c1eec51aca3f8ffeba975a4d9873b0282fc8c9ba43",
+      "path": "migrations/0006_project_delivery.sql",
+      "bytes": 1307
+    },
+    {
+      "sha256": "4968a2dbf4e64767cb88019e627d6ecd6a1dd8f8ba5bbb6695bb965bff90a2b2",
+      "path": "scripts/test-project-delivery.ts",
+      "bytes": 13542
+    },
+    {
+      "sha256": "1fc0707bcf40b44ffad1b35a86adda264b6c68660689141dbf3007d07d23ec0b",
+      "path": "docs/playground-project-delivery.md",
+      "bytes": 4656
+    }
+  ],
+  "hostedFlagEnabled": false,
+  "providerCalled": false,
+  "entitlementAcceptance": "not performed",
+  "independentReview": {
+    "reviewer": "backend_caps",
+    "scope": "Atomic snapshot quota and chunk transaction, ownership, original archive verification",
+    "materialFindings": 0
+  },
+  "paymentMade": false,
+  "tests": {
+    "passed": 8,
+    "command": "node --import tsx --test scripts/test-project-delivery.ts",
+    "failed": 0
+  },
+  "timestamp": "2026-10-14T18:18:30.4409271Z",
+  "limits": {
+    "ownerCount": 20,
+    "archiveBytes": 6000000,
+    "ownerArchiveBytes": 30000000,
+    "requestBytes": 1520000,
+    "snapshotBytes": 1500000
+  },
+  "kind": "controlled-local-project-delivery-validation",
+  "scopedEslint": "passed",
+  "typecheck": "passed"
+}

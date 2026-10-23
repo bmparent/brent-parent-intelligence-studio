@@ -1,0 +1,73 @@
+{
+  "timestamp_utc": "2026-10-11T03:00:49.202212+00:00",
+  "status": "graceful_owned_restart_complete",
+  "php_stop_method": "Windows Ctrl-C event after executable/PID/console membership verification; each console held only target PHP and stop helper",
+  "php_stops": [
+    {
+      "pid": 26688,
+      "graceful_ctrl_c_sent": true,
+      "console_process_count": 2
+    },
+    {
+      "pid": 24872,
+      "graceful_ctrl_c_sent": true,
+      "console_process_count": 2
+    },
+    {
+      "pid": 19096,
+      "graceful_ctrl_c_sent": true,
+      "console_process_count": 2
+    },
+    {
+      "pid": 26768,
+      "graceful_ctrl_c_sent": true,
+      "console_process_count": 2
+    }
+  ],
+  "mariadb_stop_method": "Authenticated mariadb-admin shutdown through private defaults file",
+  "mariadb_shutdown_exit_code": 0,
+  "old_mariadb_pid": 3440,
+  "new_mariadb_pid": 24068,
+  "sites": [
+    {
+      "product": "switchboard",
+      "old_php_pid": 26688,
+      "new_php_pid": 27240,
+      "url": "http://127.0.0.1:8971"
+    },
+    {
+      "product": "tideglass",
+      "old_php_pid": 24872,
+      "new_php_pid": 23344,
+      "url": "http://127.0.0.1:8972"
+    },
+    {
+      "product": "matter",
+      "old_php_pid": 19096,
+      "new_php_pid": 10068,
+      "url": "http://127.0.0.1:8973"
+    },
+    {
+      "product": "nightjar",
+      "old_php_pid": 26768,
+      "new_php_pid": 27800,
+      "url": "http://127.0.0.1:8974"
+    }
+  ],
+  "private_sql_export": {
+    "bytes": 310383,
+    "sha256": "bf3917e491002de89c10915ae2965479f9546d069e4abd15d2192160d80c62df",
+    "published": false
+  },
+  "data_directory_reused": true,
+  "databases_deleted_or_recreated": false,
+  "windows_services_created": false,
+  "force_termination_used": false,
+  "persistence_verification_pending": false,
+  "persistence_verified_products": [
+    "switchboard",
+    "tideglass",
+    "matter",
+    "nightjar"
+  ]
+}

@@ -1,0 +1,114 @@
+name: Works isolated paired preview
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [codex/works-paired-integration-20260927, codex/works-paired-recovery-20261006]
+permissions:
+  contents: read
+concurrency:
+  group: works-isolated-paired-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    if: >-
+      (github.event_name == 'push' && contains(github.event.head_commit.message, '[paired-preview]')) ||
+      (github.event_name == 'pull_request' && (github.head_ref == 'ops/works-paired-release-20261019' || github.head_ref == 'codex/playground-release-20261022') && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify the committed frontend/backend contract
+        env:
+          BACKEND_REVISION: 19d9035957f915a9c1b9112c2c3d633af75272cc
+          SITE_REVISION: ${{ github.sha }}
+        run: |
+          git init "$RUNNER_TEMP/works-backend-contract"
+          git -C "$RUNNER_TEMP/works-backend-contract" fetch --depth=1 https://github.com/bmparent/eidos.git "$BACKEND_REVISION"
+          git -C "$RUNNER_TEMP/works-backend-contract" checkout --detach FETCH_HEAD
+          node scripts/verify-paired-contract.mjs "$RUNNER_TEMP/works-backend-contract/apps/sentinel-lab" "$RUNNER_TEMP/works-paired-preview/contract.json"
+          node scripts/export-playground-delivery.mjs "$RUNNER_TEMP/works-backend-contract/apps/sentinel-lab"
+      - name: Verify the candidate before accessing deployment credentials
+        run: |
+          node --test scripts/test-works-paired-preview.mjs
+          npm run lint
+          npm run test:platform
+          npm run test:audit
+          npm run test:playground
+          npm run test:owner-console
+          npm run build
+          npm run build:functions
+          npm run verify:prerender
+          npm run verify:editorial
+          npm run validate:insights -- --skip-source-fetch
+          npm run validate:insights:dist
+          npm run verify:urls
+      - name: Verify static account recovery routes and privacy in the Pages runtime
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npx --no-install wrangler pages dev dist --ip 127.0.0.1 --port 8792 --compatibility-date 2026-06-10 --local >"$RUNNER_TEMP/works-recovery-pages.log" 2>&1 &
+          RECOVERY_PID=$!
+          trap 'kill "$RECOVERY_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8792/account/reset/ >/dev/null && break || sleep 1; done
+          node scripts/verify-indexing.mjs --base-url=http://127.0.0.1:8792 --output="$RUNNER_TEMP/works-paired-preview/recovery-http.json"
+          PROFILE_ROUTE_BASE=http://127.0.0.1:8792 node scripts/verify-public-profile-route.mjs
+      - name: Install isolated account browser tools
+        run: |
+          bash scripts/prepare-browser-apt.sh
+          npm install --prefix "$RUNNER_TEMP/account-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/account-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Real local password sessions and delayed cross-account project responses
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/account-browser/node_modules/playwright
+          PG_EVIDENCE_DIR: ${{ runner.temp }}/works-paired-preview/controlled-accounts
+        run: |
+          node --import tsx scripts/serve-works-account-fixture.ts "$RUNNER_TEMP/works-backend-contract/apps/sentinel-lab/lib/works/passwords.ts" >"$RUNNER_TEMP/account-fixture.log" 2>&1 &
+          ACCOUNT_PID=$!
+          trap 'kill "$ACCOUNT_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://localhost:4788/account/ >/dev/null && break || sleep 1; done
+          node --import tsx scripts/verify-works-accounts-controlled.mjs
+          PG_EVIDENCE_DIR="$RUNNER_TEMP/works-paired-preview/controlled-account-switch" node --import tsx scripts/verify-works-account-switch.mjs
+      - name: Verify isolation and reconcile only the existing preview relay URL
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/works-paired-preview.mjs preflight
+      - name: Upload this commit to the existing validation project only
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx --no-install wrangler pages deploy dist --project-name=eidosworks-test-20260923 --branch=codex/works-audit-implementation-20260921 --commit-hash="$GITHUB_SHA" --commit-message='Isolated paired Works acceptance preview' --commit-dirty=true
+      - name: Verify provider identity, exact assets and paired HTTP boundaries
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/works-paired-preview.mjs verify
+      - name: Verify hosted local export bytes and reload recovery
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/account-browser/node_modules/playwright
+          PG_REVIEW_URL: https://eidosworks-test-20260923.pages.dev/playground/
+          PG_REVIEW_EVIDENCE: ${{ runner.temp }}/works-paired-preview/hosted-frozen-review
+          PG_HOSTED_EVIDENCE_DIR: ${{ runner.temp }}/works-paired-preview/hosted-local
+        # A fresh, anonymous browser uses the deployed assets and synthetic
+        # device-only work. The existing guard blocks all API/provider writes;
+        # this does not replace the separate real-account acceptance record.
+        run: |
+          node --import tsx scripts/verify-playground-frozen-review.mjs
+          node --import tsx scripts/verify-playground-hosted-local.mjs
+      - name: Preserve sanitized preview evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: works-paired-preview-${{ github.sha }}
+          path: ${{ runner.temp }}/works-paired-preview
+          if-no-files-found: warn
+          retention-days: 14

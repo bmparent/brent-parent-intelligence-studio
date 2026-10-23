@@ -1,0 +1,112 @@
+{
+  "timestampUtc": "2026-10-14T18:56:38.348Z",
+  "source": "d1c7c1b4790e2519b395fa30367f1832b830dcac",
+  "sourceFiles": [
+    {
+      "path": "src/playground/PurchaseRecovery.tsx",
+      "sha256": "afd51326553613a934976b60bacd66cd110c0977a42baa44e73247ffc03e08f6"
+    },
+    {
+      "path": "src/playground/purchaseRecoveryClient.ts",
+      "sha256": "63402bd878c93bd57b608d2380473eddc32759b071a780750b3aae4b29398802"
+    },
+    {
+      "path": "src/playground/purchaseClient.ts",
+      "sha256": "b73b750a2524c610dd257284c7188df7f868a64c17668115b57b86190bdc5ed7"
+    },
+    {
+      "path": "src/playground/purchaseSnapshot.ts",
+      "sha256": "13bcf3dcb03441368cadf77d62bb34bf249163e92005418c22bcd5c52e922f5d"
+    },
+    {
+      "path": "src/playground/purchaseReviewStorage.ts",
+      "sha256": "4a344267a2441d7fded571551480cf7a12016c49fc3cb03eb843a6ba97e22b89"
+    },
+    {
+      "path": "src/playground/FinishPurchase.tsx",
+      "sha256": "11bf874bead78f2ad4f173c4acdbae9ed12b1e7b0b640bce2b1ba68bfbe46612"
+    },
+    {
+      "path": "src/playground/FinishReview.tsx",
+      "sha256": "79b4ebcd21c5c494a5e3851f153e9af6522f64997dcd3d168f9870b6d066187b"
+    },
+    {
+      "path": "src/playground/Playground.tsx",
+      "sha256": "c3a08070dd393b535741c9ea96f2d3b589399f037cd3c634430f3e847e25c4f3"
+    },
+    {
+      "path": "src/playground/useProject.ts",
+      "sha256": "4c89d2a5f408a913c2831d9e569166688e21a98f6ae8ed999eeee6e986195bf3"
+    },
+    {
+      "path": "scripts/verify-playground-purchase-browser.mjs",
+      "sha256": "d0995bfe24b94e50b87b238ca464a188b1528bdfbc467e2aafba33c3b112f349"
+    }
+  ],
+  "base": "http://127.0.0.1:5184",
+  "browserAvailability": "Browser plugin not available; Playwright fixture harness explicitly requested",
+  "flow": "Private return -> explicit authenticated fixture retrieval -> exact stored ZIP -> separate editable copy",
+  "fixtureOnly": true,
+  "actualPayment": false,
+  "actualEmail": false,
+  "hostedAcceptance": false,
+  "physicalDevice": false,
+  "fixtureArchive": {
+    "sha256": "8824661dcc9206456427e80cd27dd6ad465b1475ae112bb7884a124e56e9b657",
+    "bytes": 72208
+  },
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [
+        "manual create/review/approval makes no purchase API request"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+        }
+      ],
+      "calls": [
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery?capabilities=1",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/delivery",
+          "method": "POST"
+        }
+      ],
+      "unexpected": [],
+      "stubbedAssets": [
+        "fonts.googleapis.com"
+      ],
+      "browserFreeze": {
+        "kind": "eidos-local-package-receipt",
+        "snapshotHash": "6ae10544da17182025517d5619be6411a286d17a8c744a27e26602a65034973c",
+        "archiveSha256": "4129f405a8b5a381e9167971ab97a56e717b5e524a3645e6efacff060ff901ed",
+        "bytes": 133266,
+        "purchase": "not-performed"
+      },
+      "serverFreeze": {
+        "id": "fixture-delivery",
+        "ownerId": "fixture-owner",
+        "documentId": "29f7aab6-eb7d-4559-8520-18bee45ae2f8",
+        "revision": 0,
+        "snapshotHash": "6ae10544da17182025517d5619be6411a286d17a8c744a27e26602a65034973c",
+        "projectHash": "209256e51f51bba7087cd5be6f62194009df3e5c062cce7643c33b8a3f463646",
+        "archiveSha256": "a70a23ffc4fcff55ca22d930dc037cec78ddd02ee1469d2588d0107a4b30213c",
+        "archiveBytes": 134354,
+        "mode": "test"
+      },
+      "failure": "locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.pg-purchase-accepted') to be visible\u001b[22m\n\n    at C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:153:49\n    at async scenario (C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-purchase-browser.mjs:90:5)\n    at async file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-purchase-browser.mjs:143:3"
+    }
+  ]
+}

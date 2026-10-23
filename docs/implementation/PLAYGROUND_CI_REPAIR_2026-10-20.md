@@ -1,0 +1,20 @@
+# Playground purchase CI repair — October 20, 2026
+
+PR135 source `285d7dc8a1a7b44e40e8fcf2f09b66aa6bada42f` failed [purchase readiness run 39453436244](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/39453436244). The failed receipt and artifact digest remain in `artifacts/implementation/2026-10-20/playground-reliability/purchase-ci-failure.json`; the full original job log is preserved in the task workspace. This is a real regression in the new account entry, not a provider failure.
+
+Two failures reproduced against the built preview with provider/API interception:
+
+- At 390px, later unified-editor CSS overrode the equally specific account toolbar wrapping rule. Account remained visible, but Finish was outside the viewport. The fix increases the wrap rule's scope using the actual app classes, so compiled stylesheet order cannot disable it.
+- The closed account dialog mounted its signup form and verification widget. The purchase challenge scenario therefore saw an extra widget before any account action. Account controls now mount only while the dialog is open; the underlying editor, project and Undo history remain mounted.
+
+The original local account check inspected the Account button and dialog at 390px on the development server. It did not prove every toolbar control was reachable in the compiled CSS. Its replacement checks every visible toolbar button at 1440/390/320px, clicks Finish, opens/closes Account and checks keyboard focus against the built preview. It also asserts that the closed account dialog has no mounted access form. The existing purchase challenge token/reset assertions remain unchanged. Purchase receipts now fingerprint the account component and both relevant stylesheets.
+
+Only the affected built purchase, account and starter-focus browser flows, lint/type/build checks are rerun locally. The existing PR's required exact-head CI follows the pushed repair. Previous passing source receipts and the failed run remain historical evidence; no Stripe/provider operation, activation, deployment or production merge is part of this repair.
+
+The corrected built preview passes all intercepted purchase scenarios, including mobile Finish access and the unchanged single-widget/fresh-token retry assertions. The strengthened seven-check account suite and WebKit immediate-input focus check also pass, with no runtime errors or unexpected provider requests. Lint and the TypeScript/client/SSR/prerender build pass. The compact receipt, source fingerprints and per-scenario checks are retained in `artifacts/implementation/2026-10-20/playground-reliability/purchase-ci-repair.json`. Exact pushed-source CI results belong to the PR receipt rather than a claim of hosted acceptance.
+
+## Closed-dialog account read correction
+
+Purchase readiness passed on `0039db6`, but [editor run 39455913886](https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/39455913886) caught the same remaining account read in Chromium, Firefox and WebKit: creating/reloading/freezing a local project called `/api/members/account` without opening Account. The hook still lived in the persistent dialog wrapper after its form had been made lazy. The final correction moves the hook and controls together into an on-demand child; the dialog shell and underlying editor remain mounted. The frozen-review zero-request assertions remain unchanged, and the account test additionally requires zero startup account reads and one read after explicit opening. The failed source, artifact digest and original log are retained in `editor-ci-failure.json` and the task workspace.
+
+Local validation of that correction passes all 18 frozen-review checks across Chromium, Firefox and WebKit with empty API-request/error lists, all seven account checks including empty-device resume and 1440/390/320px toolbar/focus coverage, and the unchanged consumed-token/fresh-token challenge retry. Lint and TypeScript/client/SSR/prerender build pass. The source fingerprints and results are retained in `account-read-ci-repair.json`; no successful unrelated suite was manually restarted.

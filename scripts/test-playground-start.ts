@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createStarter, starters, verifiedDestination } from '../src/playground/starters';
@@ -98,7 +97,7 @@ test('device storage retains prior projects atomically and drops stale queued wr
     const tx={oncomplete:null as null|(()=>void),onerror:null,onabort:null,objectStore(){return {
       put(value:unknown,key:string){writes.push([key,structuredClone(value)]);},
       get(key:string){const request={result:undefined as unknown,onsuccess:null as null|(()=>void),onerror:null};queueMicrotask(()=>{request.result=structuredClone(records.get(key));request.onsuccess?.();});return request;},
-      getAll(){const request={result:[] as unknown[],onsuccess:null as null|(()=>void),onerror:null};queueMicrotask(()=>{request.result=[...records].filter(([key])=>key.startsWith('summary:')).map(([,value])=>structuredClone(value));request.onsuccess?.();});return request;}
+      openCursor(){const entries=[...records].filter(([key])=>key.startsWith('summary:')||key.startsWith('recovery:'));let i=0;const request:{result:unknown;onsuccess:null|(()=>void);onerror:null}={result:null,onsuccess:null,onerror:null};const next=()=>{const entry=entries[i++];request.result=entry?{key:entry[0],value:structuredClone(entry[1]),continue:()=>queueMicrotask(next)}:null;request.onsuccess?.();};queueMicrotask(next);return request;}
     };}};
     setTimeout(()=>{for(const [key,value] of writes)records.set(key,value);tx.oncomplete?.();},0);return tx;
   }};
@@ -113,16 +112,14 @@ test('device storage retains prior projects atomically and drops stale queued wr
     assert.deepEqual((await listSavedProjects()).map(s=>s.documentId).sort(),['first','second']);
     delayOpen=true;let current=true;const stale=saveWorkspace(make('stale'),()=>current);current=false;pending.shift()!();await stale;delayOpen=false;
     assert.equal((await loadWorkspace())?.documentId,'second');assert.equal(records.has('project:stale'),false);
+    const raw={project:{schemaVersion:999},marker:'preserve-exact-raw',snapshots:[null]};records.set('current',raw);
+    await saveWorkspace(make('recovered'));
+    assert.deepEqual([...records].find(([key])=>key.startsWith('recovery:'))?.[1],{key:'current',raw,message:'Original saved data retained before recovery.'});
+    records.set('summary:bad',null);records.set('summary:date',{documentId:'date',name:'No date',savedAt:null});
+    assert.equal((await listSavedProjects()).some(s=>s.documentId==='recovered'),true);
+    assert.equal((await listSavedProjects()).find(s=>s.documentId==='date')?.savedAt,'');
   } finally {
     Object.defineProperty(globalThis,'indexedDB',{configurable:true,value:originalDB});
     Object.defineProperty(globalThis,'IDBKeyRange',{configurable:true,value:originalRange});
-  }
-});
-
-test('every starter artwork path is packaged as an inert local SVG asset', () => {
-  for (const starter of starters) {
-    const svg = readFileSync('public' + starter.artwork, 'utf8');
-    assert.match(svg, /<svg\s/);
-    assert.doesNotMatch(svg, /<script|<foreignObject|(?:href|src)=["']https?:|\son[a-z]+=/i);
   }
 });

@@ -1,0 +1,54 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:platform
+> node --import tsx --test scripts/test-platform.ts scripts/test-members.ts scripts/test-relay.ts scripts/test-relay-runtime.mjs scripts/test-inquiries.ts scripts/test-thread-form.mjs scripts/test-community-studio.ts
+
+(node:20168) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Maintenance auth, feature switch, and start date fail before any identity or post is created (719.0376ms)
+✔ Repeated and overlapping runs publish one attributed prompt with no model or network call (314.4534ms)
+✔ Three weekly New York slots survive DST and skip missed slots without a catch-up burst (92.5978ms)
+✔ Revocation, unpublication, and queue exhaustion cannot manufacture more activity (58.2638ms)
+✔ Cleanup retains rejected studio receipts and never replies to studio-authored threads (85.0165ms)
+✔ The initial queue is bounded, distinct, and clearly disclosed (9.9168ms)
+✔ inquiry requires same origin and confirmed private-provider delivery (390.3042ms)
+✔ friction review keeps its label, useful context, and safe attribution (15.5074ms)
+✔ lab access requests receive a clearly labeled review brief (5.3506ms)
+✔ private mailer fixes destination, labels bounded inquiry types, enforces rate limit, and requires provider receipt (27.9752ms)
+(node:6440) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Email verification is required, single-use, expiring, and creates private hashed sessions (675.9193ms)
+✔ Mail sign-in fails honestly, preserves secure cookies in production, and hides unknown emails (131.816ms)
+✔ Account changes enforce ownership, same-origin writes, session revocation, and agent key scope (187.7727ms)
+✔ Mentions link people and agents immediately, without spoofing or cross-account inbox access (233.1695ms)
+✔ Verified sessions post without another CAPTCHA; guests and revoked sessions still require verification (71.1829ms)
+✔ A configured static feed avoids custom-domain challenges while email links stay canonical (86.639ms)
+✔ Opt-in delivery sends full papers once, normalizes dates, and supports private durable unsubscribe (87.8538ms)
+✔ Failed or uncertain mail never advances delivery or resends beyond the provider dedupe window (88.0699ms)
+(node:28004) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Atomic quotas cannot overspend under concurrent reservations (68.3618ms)
+✔ Published knowledge and legacy clients spend zero model tokens (251.3641ms)
+✔ AI is opt-in, capped globally, deduplicated, and fails closed without a database (269.0721ms)
+✔ Request boundaries reject oversized bodies and cross-origin writes (29.7783ms)
+✔ Questions and replies publish immediately, and requested Eidos suggestions remain capped (97.0768ms)
+✔ Agents can reply across communities; hourly quotas and removal still work (462.8812ms)
+✔ Untrusted thread HTML is escaped and unpublished content disappears (37.1856ms)
+✔ Proactive assistance respects opt-in, age, human identity, and the one-reply cap (56.8946ms)
+✔ Agents need registered revocable keys and cannot trigger bot loops (103.1872ms)
+✔ Turnstile cannot be bypassed on production hosts or with a mismatched hostname (58.6888ms)
+✔ Only matching signed paid events unlock a real ZIP; refunds revoke access, including out-of-order events (115.3257ms)
+✔ Checkout is disabled until configured and never trusts client pricing or redirects (35.2423ms)
+✔ Cloudflare runtime accepts the relay request options (10219.2794ms)
+✔ Playground billing is relayed with the signed-in session and no browser relay authority (427.0853ms)
+✔ Member relay forwards only the scoped session and accepts only the secure member cookie (17.533ms)
+✔ Relay preserves webhook body and signature, overwrites client claims, and never redirects secrets (24.6104ms)
+✔ Protected preview relay uses only the server-configured Vercel credential (3.2695ms)
+✔ Reply acknowledgement survives the next verification callback (187.457ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26389.7087

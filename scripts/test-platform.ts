@@ -9,7 +9,7 @@ import type {
   PlatformEnv,
   Context,
 } from '../functions/_shared/platform/core';
-import { hash, reserve } from '../functions/_shared/platform/core';
+import { guarded, HttpError, hash, reserve } from '../functions/_shared/platform/core';
 import { onRequestPost as assistant } from '../functions/api/assistant';
 import { onRequestPost as legacy } from '../functions/api/intelligence';
 import {
@@ -62,6 +62,8 @@ function setup(overrides: Partial<PlatformEnv> = {}) {
   sql.exec('PRAGMA foreign_keys=ON;');
   sql.exec(readFileSync('migrations/0001_eidos_platform.sql', 'utf8'));
   sql.exec(readFileSync('migrations/0002_members.sql', 'utf8'));
+  sql.exec(readFileSync('migrations/0006_member_credentials.sql', 'utf8'));
+  sql.exec(readFileSync('migrations/0004_paid_templates.sql', 'utf8'));
   const db: Database = {
     prepare: (q) => new SQLiteStatement(sql, q),
     batch: async (statements) => {
@@ -680,5 +682,18 @@ await test('Checkout is disabled until configured and never trusts client pricin
   } finally {
     globalThis.fetch = original;
     sql.close();
+  }
+});
+
+
+test('optional telemetry cannot replace an admission response or access unrelated route storage', async () => {
+  for (const path of ['/api/playground/projects', '/api/members/credentials']) {
+    let touches = 0;
+    const env = Object.defineProperty({}, 'EIDOS_DB', {get() { touches++; throw Error('Unavailable telemetry binding'); }}) as PlatformEnv;
+    const handler = guarded(async () => { throw new HttpError(409, 'Keep the local project backup.'); });
+    const response = await handler({env, request:new Request('https://eidos-works.com' + path)});
+    assert.equal(response.status, 409);
+    assert.equal((await response.json()).error, 'Keep the local project backup.');
+    assert.equal(touches, path === '/api/playground/projects' ? 0 : 1);
   }
 });

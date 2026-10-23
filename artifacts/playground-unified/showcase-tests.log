@@ -1,0 +1,49 @@
+
+> brent-parent-intelligence-studio@1.1.0 test:showcase
+> node --import tsx --test scripts/test-showcase-foundation.ts scripts/test-playground-studios.ts scripts/test-playground-header-export.ts scripts/test-template-configurator.ts scripts/test-buyer-derivative.ts scripts/test-prerender-preview.ts
+
+✔ trusted public pins contain hashes only and match the current frozen developer release (15.463ms)
+✔ four public synthetic family fixtures exercise deterministic adapters, preserving input and original notices (465.2049ms)
+✔ page/module pruning, contact-disabled fallback, schema migrations and exact new inventory (40.3626ms)
+✔ wrong hash, metadata, edition, missing source, malformed and unsupported archive paths refuse (101.1622ms)
+✔ bounded ZIP parser refuses duplicate paths, traversal, and symbolic links directly (0.9884ms)
+✔ trusted synthetic archive pin cannot conceal wrong edition prefix or an embedded file hash mismatch (30.7064ms)
+✔ private preview retains bounded native search and anchor context without changing exported family handlers (35.9283ms)
+✔ header installation example retains every default fragment target and saved page source (25.044ms)
+✔ arbitrary navigation IDs and responsive block destinations are preserved without fixed-target assumptions (14.6045ms)
+✔ missing/hidden custom targets receive honest installation-only placeholders while defaults omit hidden navigation (9.6177ms)
+✔ header example safely preserves literal replacement syntax and escaped user content (6.0586ms)
+✔ artwork source preserves stable IDs, linked colors and independent overrides through JSON reopen (18.4842ms)
+✔ artwork validation rejects malformed, excessive, unsafe and unsupported input without mutating source (3.6513ms)
+✔ SVG exports retain dimensions, transparent backgrounds, seamless edge wraps, selected repeat and safe text (30.0402ms)
+✔ wrapped artwork embeds uploaded bytes once and reuses stable shape references (1.5553ms)
+✔ selected half-drop export has a rectangular two-column period, with a distinct inspection proof (17.5653ms)
+✔ licensed font bytes and real variable axes are captured and embedded identically (57.2608ms)
+✔ motion keyframes interpolate, hold boundaries, preserve duration ratios and reopen exactly (3.888ms)
+✔ motion rejects stale format, duplicate time/identity, invalid properties and script injection stays inert (6.5962ms)
+✔ empty artwork and motion remain useful valid documents with independent outputs (6.6419ms)
+✔ preview serves actual built slashless route index while preserving query and HEAD (104.2026ms)
+✔ explicit studio migration preserves legacy renderer and imports all supported versions (23.827ms)
+✔ malformed future studio imports fail without changing current design (2.8642ms)
+✔ one long gesture is one undo entry; separate gestures, redo and restore remain distinct (3.5317ms)
+✔ bounded local operations reject stale document/revision and unsafe values (4.3276ms)
+✔ schema5 retains existing responsive authoring and independent glass outputs (20.5589ms)
+✔ schema3 spatial composition stays editable after a studio upgrade (2.4525ms)
+✔ account boundary rejects studio data before older validation can discard it (3.9765ms)
+✔ bounded text operations update the visible responsive block and retain legacy provenance (4.1501ms)
+✔ local studio operations validate actual glass/artwork/keyframes with common revision guard (10.9566ms)
+✔ each family uses its real current immutable developer identity without mutating the catalog (33.5845ms)
+✔ every supported page subset and compatible module selection exports exactly its advertised files (432.8033ms)
+✔ preview and standalone package share composition, styles, and supported feature logic (3.869ms)
+✔ unsupported platforms, stale versions, invalid modules, and malformed documents fail closed (2.8023ms)
+✔ incompatible options are removed by explicit UI reconciliation and do not silently enter imports (1.0561ms)
+✔ sample content is escaped and contact delivery is represented honestly (1.3924ms)
+✔ schema1 and schema2 migrate explicitly, PNG artwork survives source roundtrip and packages exact owned bytes (4.9438ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2439.4138

@@ -1,19 +1,16 @@
 import { CloudProjects as LegacyCloudProjects } from './CloudProjectsLegacy';
 import type { Project } from './model';
 import type { SaveTarget } from './workspace';
-import { CLOUD_FORMAT_NOTICE, supportsProductionCloud } from './releaseBoundary';
 
 export type LegacyCloudProps = {
   project: Project; target: SaveTarget | null; documentId: string; guard: () => () => boolean;
   load: (project: Project, target?: SaveTarget | null) => Promise<boolean>;
   acknowledge: (id: string, target: SaveTarget) => void; disabled: boolean;
+  canSave?: boolean;
 };
 
 export function CloudProjects(props: LegacyCloudProps) {
-  if (!supportsProductionCloud(props.project)) return <details className="pg-project-tools" open>
-    <summary>Account projects</summary>
-    <p role="status">{CLOUD_FORMAT_NOTICE}</p>
-    <p>Use Projects &amp; variations above for JSON backup, or Export for a standalone page. Account signup, Google sign-in and the new cloud editor are a separate release.</p>
-  </details>;
+  // Capability discovery is explicit inside this panel. Mounting it never
+  // enables new formats or makes a cloud request.
   return <LegacyCloudProjects {...props} />;
 }

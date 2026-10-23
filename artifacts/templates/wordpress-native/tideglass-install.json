@@ -1,0 +1,17 @@
+{
+  "product": "tideglass",
+  "wordpress": "6.6",
+  "php": "8.1.34",
+  "mariadb": "10.11.19",
+  "url": "http://127.0.0.1:8972",
+  "phase": "install",
+  "method": "Native PHP WordPress APIs; no fresh browser editor UI claim",
+  "archive_sha256": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d",
+  "archive_bytes": 31040,
+  "version": "1.0.2",
+  "update_uri": "https://eidos-works.com/shop/templates/tideglass/",
+  "theme_upgrader_install": true,
+  "activation": true,
+  "block_theme": true,
+  "active_plugins": []
+}

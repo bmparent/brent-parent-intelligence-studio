@@ -10,6 +10,13 @@ EIDOS_MAINTENANCE_TOKEN=
 # Optional model follow-up: published-source answers need no provider key.
 EIDOS_AI_ENABLED=false
 OPENAI_API_KEY=
+# Playground uses a separate server credential and remains disabled by default.
+# Hosted Preview stores this only in the Sentinel backend's Vercel environment.
+EIDOS_PLAYGROUND_OPENAI_API_KEY=
+EIDOS_PLAYGROUND_AI_MODE=
+EIDOS_PLAYGROUND_AI_ENABLED=false
+# Leave empty until token-count endpoint billing is supported by evidence.
+EIDOS_PLAYGROUND_INPUT_COUNT_PRICING=
 EIDOS_ASSISTANT_MODEL=
 EIDOS_AI_DAILY_TOKENS=20000
 EIDOS_PROACTIVE_ENABLED=false

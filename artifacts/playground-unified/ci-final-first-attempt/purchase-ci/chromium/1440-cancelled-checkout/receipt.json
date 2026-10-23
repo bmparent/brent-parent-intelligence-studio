@@ -1,0 +1,66 @@
+{
+  "engine": "chromium",
+  "width": 1440,
+  "name": "cancelled-checkout",
+  "checks": [
+    "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+    "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+  ],
+  "errors": [],
+  "console": [],
+  "calls": [
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/playground/delivery",
+      "method": "POST"
+    },
+    {
+      "path": "/api/playground/delivery?capabilities=1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/shop/checkout",
+      "method": "POST"
+    },
+    {
+      "path": "/api/shop/status",
+      "method": "POST"
+    }
+  ],
+  "unexpected": [],
+  "expectedHttpDenials": [],
+  "checkoutFixtures": [
+    {
+      "attempt": "c2d70c3d3263e32e27659709d1098f19b9dea0f35bf039a1d98fc4b97cc353bc",
+      "challenge": "local-test",
+      "deliveryId": "fixture-delivery"
+    }
+  ],
+  "stubbedAssets": [
+    "fonts.googleapis.com",
+    "fonts.googleapis.com"
+  ],
+  "fixtureNavigations": [
+    "Interception-only TEST checkout document"
+  ],
+  "serverFreeze": {
+    "id": "fixture-delivery",
+    "ownerId": "fixture-owner",
+    "documentId": "8ea560ca-3b51-4b22-a292-fe717919f8c5",
+    "revision": 0,
+    "snapshotHash": "9cc3fb533822607bba7ee3335d1473774ad8388f6f3dae03dad04e8696cbfda7",
+    "projectHash": "914663ef21382fa2dd0ca68a329aabb78ddbbb6d6ac24c093d6a9a8693c95234",
+    "archiveSha256": "75f3d973480359e9ce54a37159f87b6ad064e69b797c84d8b43303054ca2706e",
+    "archiveBytes": 128119,
+    "mode": "test"
+  },
+  "title": "Eidos Playground | Shape your next website",
+  "url": "http://127.0.0.1:5178/playground/"
+}

@@ -1,0 +1,313 @@
+{
+  "timestamp_utc": "2026-10-19T15:06:57.203Z",
+  "drive_copy_attempted": false,
+  "drive_copy_success": false,
+  "drive_root": null,
+  "drive_run_dir": null,
+  "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied.",
+  "files_considered": [
+    {
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.3.zip",
+      "bytes": 28560,
+      "sha256": "e956fc2aad4f76ed0ff2c9aff71cdd6cfc202b0701da71c9bf9604e5264b00d5"
+    },
+    {
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.3.zip",
+      "bytes": 30434,
+      "sha256": "32843f35f7529f52d7573cf7163e6011f32dbc4fa583db2876586ceb23d4c300"
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-developer-v1.0.2.zip",
+      "bytes": 28351,
+      "sha256": "fbc3cda145707d08b3bb51751bb0265144b23c82e0b0170d899af9ea6b8918b0"
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.3.zip",
+      "bytes": 31061,
+      "sha256": "9220458a87ee9c31ce3b4af37eb57737cb460a3cb2db803ae5d7adadc6d16ccb"
+    },
+    {
+      "path": "artifacts/templates/packages/matter-developer-v1.0.2.zip",
+      "bytes": 29047,
+      "sha256": "8bd61d302b173b6143dcb2cbf1d111f8b5b283c6e19880f8792e20879297678d"
+    },
+    {
+      "path": "artifacts/templates/packages/matter-wordpress-v1.0.3.zip",
+      "bytes": 31784,
+      "sha256": "9874a5fbe19e6990d167931d251be0b36c6c27e8301efbee77b634eeb8400c6b"
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.5.zip",
+      "bytes": 31207,
+      "sha256": "9ea6419f5b0398e517e0195205464c44fcd7521071f7ee420c8472a4dc85f870"
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.3.zip",
+      "bytes": 30781,
+      "sha256": "55ac5a87a1ee363390d7053e6579be9568703397199e9b16b95f38f4a2085534"
+    },
+    {
+      "path": "products/templates/release-manifest.json",
+      "bytes": 58355,
+      "sha256": "8ac5447d58e61ff3b8931189274b3512de777a776b485171943bed3f57461aff"
+    },
+    {
+      "path": "artifacts/templates/package-report.json",
+      "bytes": 3232,
+      "sha256": "f05689cf8033a587dd5571b9cdcd3483fe7367a9f74c6328b07443c60ddbc63e"
+    },
+    {
+      "path": "artifacts/templates/package-tests.json",
+      "bytes": 89027,
+      "sha256": "c0c10be24bb6afc325cb4e469d1fc27fbbc00ce2dec3644753a5ada5a5c08432"
+    },
+    {
+      "path": "artifacts/templates/package-tests.md",
+      "bytes": 473,
+      "sha256": "66161d71c66c4227806b837a1b94c362f6f507fdf5e777ff28527fb62e889232"
+    },
+    {
+      "path": "artifacts/templates/source-install-receipt.json",
+      "bytes": 4454,
+      "sha256": "b7f84b87330d1077a84e37c46b7571acc0d50550dcd12dbb9070b9f0f85412d8"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.json",
+      "bytes": 17630,
+      "sha256": "2ff2646d9b3726ecbb44f5b1a69c732a7373d1f2e824308074904ddbb1881a72"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.md",
+      "bytes": 2449,
+      "sha256": "3050f42cab9b249d38ef4ecd05cba5567f7dc75513c6cce6d8237517e6604047"
+    },
+    {
+      "path": "artifacts/templates/real-photo-content-receipt.json",
+      "bytes": 12263,
+      "sha256": "b501b150bc7956dbe6e9a78ce8f056b8c9126d89478587676845fd9afd78ebd7"
+    },
+    {
+      "path": "docs/paid-templates/platform-install-evidence.json",
+      "bytes": 45871,
+      "sha256": "d7b20330d8d4c2bab091bb68b0efb93be560bca9105e7758efb2b93dbd2ddc67"
+    },
+    {
+      "path": "docs/paid-templates/product-operations.md",
+      "bytes": 20539,
+      "sha256": "55a6a833ce35e0de32db77341ad53a4feede469e53a5b99fef912ec094756194"
+    },
+    {
+      "path": "docs/paid-templates/ACCEPTANCE.md",
+      "bytes": 31036,
+      "sha256": "01a92414e268258c7cb4ae0c41306e70988c7702872f11c45e49134ea91c2f89"
+    },
+    {
+      "path": "docs/paid-templates/security-review.md",
+      "bytes": 7602,
+      "sha256": "c1226cecb3fa3c7060f84a5d061271b37e966b7862ee0ed1a48b22161a96a5d6"
+    },
+    {
+      "path": "artifacts/templates/version-transition-receipt.json",
+      "bytes": 4271,
+      "sha256": "f35fb867acf9bfb2f2c4600a1a73645c04b32f9cb3d5c1a57233e7760006e0df"
+    },
+    {
+      "path": "artifacts/templates/generator-parity.json",
+      "bytes": 24799,
+      "sha256": "a690a2e178679ebde5bc9b5c3b7a91b149a14c20f132fef69bff3d667604015e"
+    },
+    {
+      "path": "artifacts/templates/switchboard-typography-fit.json",
+      "bytes": 72911,
+      "sha256": "b24d53ab1ad507cbc60855ece4c6acbae9f1857b402caebcdd42ffdce365d8b6"
+    },
+    {
+      "path": "artifacts/templates/nightjar-typography-fit.json",
+      "bytes": 16848,
+      "sha256": "e01d569df1b4a347dc04f70739d4bbaf0cb557e15c31272926b3d26afd93cfce"
+    },
+    {
+      "path": "artifacts/templates/nightjar-intermediate-width-fit.json",
+      "bytes": 16210,
+      "sha256": "a2671b41e14a6792dba5a27c9c7b3767bf42cd7743b7a0b534170d5512f2ab30"
+    },
+    {
+      "path": "artifacts/templates/nightjar-final-typography-fit.json",
+      "bytes": 54511,
+      "sha256": "229c4a4e391e2d72ac1ee0a90e1e71440d748c7eed30a183c7be8b48abc2f0ba"
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/baseline-native-ui-receipt.json",
+      "bytes": 7358,
+      "sha256": "fd6fef7e7ee4f5f39c919c11c68a5a8968dab73e994768a06676116402759135"
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/installation-receipt.json",
+      "bytes": 9442,
+      "sha256": "7eedf603401d319a42a0b58086c99148ee4de5b8685954e007196cf6b67ebae3"
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/final-metadata-receipt.json",
+      "bytes": 16030,
+      "sha256": "92107f49ef22317021d022cf697c9f6ee5ba46c17fd3b35ee3adc394a3223272"
+    },
+    {
+      "path": "artifacts/templates/wordpress-install-external/browser-ui-receipt.json",
+      "bytes": 22891,
+      "sha256": "565d2aa8f1d75502b048a4443ebcea9ff02ada497f3f6d897c573a0c6c6fd8bd"
+    },
+    {
+      "path": "artifacts/templates/wordpress-install-external/native-php-receipt.json",
+      "bytes": 22891,
+      "sha256": "565d2aa8f1d75502b048a4443ebcea9ff02ada497f3f6d897c573a0c6c6fd8bd"
+    },
+    {
+      "path": "artifacts/templates/ci-status.json",
+      "bytes": 4565,
+      "sha256": "39d97c0a0dfb5bbaa7e7617e2275c39c095ce932049ed4cee002c68855f5df44"
+    },
+    {
+      "path": "artifacts/templates/ci-provider-status.json",
+      "bytes": 1192,
+      "sha256": "4202c5be6b1cd47a334fed2b2eb06a1b034e5a536cf94f862ad989111c9965d4"
+    }
+  ],
+  "files_copied": [],
+  "files_skipped": [
+    {
+      "path": "artifacts/templates/packages/switchboard-developer-v1.0.3.zip",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.0.3.zip",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-developer-v1.0.2.zip",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.0.3.zip",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/matter-developer-v1.0.2.zip",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/matter-wordpress-v1.0.3.zip",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-developer-v1.0.5.zip",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.0.3.zip",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "products/templates/release-manifest.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/package-report.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/package-tests.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/package-tests.md",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/source-install-receipt.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.md",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/real-photo-content-receipt.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "docs/paid-templates/platform-install-evidence.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "docs/paid-templates/product-operations.md",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "docs/paid-templates/ACCEPTANCE.md",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "docs/paid-templates/security-review.md",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/version-transition-receipt.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/generator-parity.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/switchboard-typography-fit.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/nightjar-typography-fit.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/nightjar-intermediate-width-fit.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/nightjar-final-typography-fit.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/baseline-native-ui-receipt.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/installation-receipt.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/wordpress-browser/final-metadata-receipt.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/wordpress-install-external/browser-ui-receipt.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/wordpress-install-external/native-php-receipt.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/ci-status.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    },
+    {
+      "path": "artifacts/templates/ci-provider-status.json",
+      "reason": "EIDOS_PROOF_DRIVE_DIR and EIDOS_ARTIFACT_ROOT are not configured. No mirror files copied."
+    }
+  ],
+  "cloud_sync_confirmed": false,
+  "cloud_sync_note": "A verified mounted-folder copy does not establish remote cloud synchronization.",
+  "destinations_checked": []
+}

@@ -38,7 +38,7 @@ export async function guardLocalEditor(page) {
   // recorded without an event-emitter throw aborting later widths or engines.
   return async () => {
     assert.deepEqual(forbidden, [], 'Local editor attempted a forbidden cloud/provider request');
-    assert.equal(await page.getByRole('button', { name: /^(AI|AI assist|Generate with AI|Purchase.*|Recover purchase|Purchase recovery|Checkout)$/i }).count(), 0);
+    assert.equal(await page.getByRole('button', { name: /^(Get generation quote|Confirm.*generation|Generate with AI|Continue to .*checkout|Retry this .*checkout|Save reviewed page to my account)$/i }).and(page.locator(':enabled')).count(), 0, 'Unavailable providers cannot expose an enabled generation or checkout action');
   };
 }
 

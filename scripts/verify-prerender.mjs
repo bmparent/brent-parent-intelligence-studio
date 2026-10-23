@@ -28,6 +28,11 @@ for (const file of await htmlFiles(root)) {
       failures.push('kit-preview: missing noindex directive');
     continue;
   }
+  const demoPath = relative(root, file).replaceAll('\\', '/');
+  if (demoPath.startsWith('template-demos/')) {
+    if (matches(html, /<h1(?:\s|>)/gi).length !== 1 || !/<title>[^<]+<\/title>/i.test(html) || !/<meta name="description" content="[^"]+"/i.test(html)) failures.push(`${demoPath}: incomplete standalone product metadata`);
+    continue;
+  }
   const label = (relative(root, file) || 'index.html').replaceAll('\\', '/');
   const h1Count = matches(html, /<h1(?:\s|>)/gi).length;
   const privateShell = label === 'private-app.html';
@@ -65,6 +70,8 @@ for (const file of await htmlFiles(root)) {
   }
 
   const approvedPlatformPages = new Set([
+    // The studio About page now includes the service families and their platform evidence.
+    'about/index.html',
     'index.html', // The featured FNBMD gallery card links to the public InkSoft store.
     'work/index.html',
     'work/nighttime-spectaculars/index.html',
@@ -79,7 +86,7 @@ for (const file of await htmlFiles(root)) {
     'services/digital-experiences/index.html',
     'services/business-systems/index.html',
     'services/dashboards-workflow-tools/index.html',
-    'about/index.html',
+    'services/intelligent-systems/index.html',
   ]);
   // The gallery may link to this separately hosted calculator. Keep the
   // retired-host guard for every other reference and all canonical metadata.
@@ -111,6 +118,7 @@ for (const file of await htmlFiles(root)) {
     'private-app.html',
     'snapshot/success/index.html',
     'shop/success/index.html',
+    'shop/start/index.html',
     'community/moderate/index.html',
     'account/index.html',
     'account/verify/index.html',

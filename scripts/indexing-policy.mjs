@@ -19,6 +19,7 @@ export const REQUIRED_PUBLIC_PATHS = [
 export const EXCLUDED_PAGES = [
   { path: '/account', header: true },
   { path: '/account/verify', header: true },
+  { path: '/account/reset', header: true, privateCredentials: true },
   { path: '/account/unsubscribe', header: true },
   { path: '/shop/success', header: true },
   { path: '/snapshot/start' },
@@ -45,6 +46,15 @@ export function decodeEntities(value) {
 
 export function hasNoindex(value = '') {
   return /(?:^|[\s,:])(?:noindex|none)(?:$|[\s,;])/i.test(value);
+}
+
+// HTTP fields may combine the global and route-specific header values.
+// Match the browser's last recognized policy, not merely a substring:
+// https://www.w3.org/TR/referrer-policy/#parse-referrer-policy-from-header
+export function effectiveReferrerPolicy(value = '') {
+  const policies = new Set(['no-referrer', 'no-referrer-when-downgrade', 'same-origin',
+    'origin', 'strict-origin', 'origin-when-cross-origin', 'strict-origin-when-cross-origin', 'unsafe-url']);
+  return value.split(',').map((token) => token.trim()).filter((token) => policies.has(token)).at(-1) || '';
 }
 
 export function htmlMetadata(html) {

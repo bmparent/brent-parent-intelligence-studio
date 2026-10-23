@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-10-14T17:57:54.209Z",
+  "base": "http://127.0.0.1:5184",
+  "source": "3772075bb757bb372193cb5240e0ffa1820e00fb",
+  "environment": "Chromium headless, GPU disabled, Windows host; browser viewport is not a physical device",
+  "setup": "Valid reproducible project JSON imported through the visible Project controls. All tested mutations use actual pointer or keyboard controls. IndexedDB reads are evidence only.",
+  "checks": [
+    "canvas selection and Layers agree on stable photo ID"
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "The resource http://127.0.0.1:5184/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally."
+    }
+  ],
+  "metrics": [],
+  "limitations": [
+    "Physical-device and touch-device acceptance untested.",
+    "playground-gesture-paint measures pointer sample to animation-frame style update; actual display presentation latency is not directly instrumented.",
+    "Other builds and browser tests may share this host. These numbers are an engineering sample, not an isolated representative-device benchmark.",
+    "Pointercancel and lostpointercapture events are injected during real pointer gestures; Escape and pointer movements are actual browser input."
+  ],
+  "dragFeedback": {
+    "ghost": {
+      "x": 775.1297607421875,
+      "y": 1744.1646728515625,
+      "width": 462.078125,
+      "height": 220,
+      "opacity": "0.8",
+      "display": "block"
+    },
+    "image": {
+      "complete": true,
+      "naturalWidth": 320,
+      "width": 462.078125,
+      "height": 220
+    },
+    "imageFrame": {
+      "width": 462.078125,
+      "height": 220
+    },
+    "viewport": {
+      "width": 1280,
+      "height": 1136
+    }
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: drag ghost intersects the viewport at the real pointer destination\n    at file:///C:/Users/bmpar/codex-worktrees/playground-unified-site-20261014/scripts/verify-playground-unified-gestures.mjs:111:10",
+  "completedAt": "2026-10-14T17:58:04.436Z"
+}

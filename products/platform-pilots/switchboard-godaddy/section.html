@@ -1,0 +1,23 @@
+<!-- Switchboard 1.0.0 visual add-on. Replace the business name, copy, and all example.com links before publishing. -->
+<section id="eidos-switchboard-addon" aria-labelledby="ew-addon-heading">
+  <style>
+    #eidos-switchboard-addon{--ew-ink:#14302b;--ew-paper:#f6f6ee;--ew-accent:#d8f35f;box-sizing:border-box;background:var(--ew-paper);color:var(--ew-ink);font:17px/1.55 "Segoe UI",Arial,sans-serif;padding:clamp(24px,6vw,64px);max-width:1200px;margin:auto}
+    #eidos-switchboard-addon *{box-sizing:border-box}#eidos-switchboard-addon h2{font-size:clamp(32px,6vw,68px);line-height:1.04;letter-spacing:-.045em;margin:0 0 24px;max-width:12ch}#eidos-switchboard-addon p{max-width:58ch;margin:0 0 24px}#eidos-switchboard-addon .ew-layout{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start}#eidos-switchboard-addon details{border-top:1px solid #14302b66;padding:0}#eidos-switchboard-addon details:last-child{border-bottom:1px solid #14302b66}#eidos-switchboard-addon summary{font-weight:650;padding:20px 0;cursor:pointer;min-height:60px;list-style-position:inside}#eidos-switchboard-addon details p{padding:0 0 4px;margin:0 0 14px;font-size:16px}#eidos-switchboard-addon a{color:var(--ew-ink);text-underline-offset:4px}#eidos-switchboard-addon .ew-contact{display:inline-flex;justify-content:center;align-items:center;min-height:48px;padding:12px 22px;background:var(--ew-accent);font-weight:700;text-decoration:none;border:1px solid var(--ew-ink);border-radius:2px;margin:8px 0 24px}#eidos-switchboard-addon a:focus-visible,#eidos-switchboard-addon summary:focus-visible{outline:3px solid var(--ew-ink);outline-offset:5px}#eidos-switchboard-addon .ew-note{font-size:14px;color:#38574f;margin-top:24px}#eidos-switchboard-addon .ew-process{display:flex;gap:16px;list-style:none;padding:20px 0 0;border-top:1px solid #14302b66;margin:24px 0 0;font-size:14px}#eidos-switchboard-addon .ew-process li{flex:1}#eidos-switchboard-addon .ew-process strong{display:block;margin-bottom:6px}@media(max-width:680px){#eidos-switchboard-addon .ew-layout{grid-template-columns:1fr;gap:24px}#eidos-switchboard-addon .ew-process{flex-direction:column;gap:12px}#eidos-switchboard-addon h2{max-width:13ch}}@media(prefers-reduced-motion:reduce){#eidos-switchboard-addon *{scroll-behavior:auto;animation:none;transition:none}}
+  </style>
+  <div class="ew-layout">
+    <div>
+      <h2 id="ew-addon-heading">What needs a closer look?</h2>
+      <p>Switchboard Services helps you plan the next step. Choose the kind of work you have in mind, then tell our team about it.</p>
+      <p class="ew-note">Sample business and services. This selector helps route an inquiry; it provides no diagnosis, estimate, or booking.</p>
+    </div>
+    <div aria-label="Service inquiry options">
+      <details data-ew-service="repair" open><summary>Something needs repairing</summary><p>Tell us what changed, where the issue is, and when you first noticed it. Our team will discuss the appropriate service and next steps with you.</p><a class="ew-contact" href="https://example.com/contact/?service=repair" target="_blank" rel="noopener noreferrer">Discuss a repair</a></details>
+      <details data-ew-service="comfort"><summary>Make a space more comfortable</summary><p>Share how you use the space and what you would like to improve. We can explain the relevant service and what an assessment involves.</p><a class="ew-contact" href="https://example.com/contact/?service=comfort" target="_blank" rel="noopener noreferrer">Discuss your space</a></details>
+      <details data-ew-service="planning"><summary>Plan a project</summary><p>Bring your outline, timing, and questions. We will discuss the process before you make a decision.</p><a class="ew-contact" href="https://example.com/contact/?service=planning" target="_blank" rel="noopener noreferrer">Discuss a project</a></details>
+    </div>
+  </div>
+  <ol class="ew-process" aria-label="Inquiry process"><li><strong>1. Tell us</strong>Describe the work.</li><li><strong>2. Talk it through</strong>Understand the next step.</li><li><strong>3. Decide</strong>Choose whether to proceed.</li></ol>
+  <script>
+    (()=>{const root=document.getElementById('eidos-switchboard-addon');if(!root||root.dataset.enhanced)return;root.dataset.enhanced='true';const options=[...root.querySelectorAll('details[data-ew-service]')];options.forEach(option=>option.addEventListener('toggle',()=>{if(option.open)options.forEach(other=>{if(other!==option)other.open=false})}));})();
+  </script>
+</section>

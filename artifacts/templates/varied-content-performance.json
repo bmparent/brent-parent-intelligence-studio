@@ -1,0 +1,593 @@
+{
+  "scope": "Local final developer-source and shop acceptance; no provider transaction or installation claims",
+  "browser": "Chromium through installed Python Playwright",
+  "base": "http://127.0.0.1:5190",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "deviceScaleFactor": 1,
+    "isMobile": true,
+    "hasTouch": true
+  },
+  "throttle": {
+    "cpuSlowdownMultiplier": 4,
+    "latencyMs": 150,
+    "downloadBytesPerSecond": 200000,
+    "uploadBytesPerSecond": 75000,
+    "cacheDisabled": true
+  },
+  "metricsMeaning": "Single cold local lab observation per family, not field data, Lighthouse score, INP, an SLA, or a causal before/after comparison.",
+  "harnessCorrection": "Initial URL assertions raced asynchronous anchor navigation; rerun explicitly waits for navigation around Enter/tap. No product/source change.",
+  "checks": [
+    {
+      "product": "switchboard",
+      "status": "passed",
+      "coldLabMetrics": {
+        "domContentLoadedMs": 2796.199999999255,
+        "loadEventMs": 2891.699999999255,
+        "observedLcpMs": 2760,
+        "observedCls": 0,
+        "paint": [
+          {
+            "name": "first-paint",
+            "startTimeMs": 2760
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTimeMs": 2760
+          }
+        ],
+        "resourceTransferBytes": 19804,
+        "snapshotAtMs": 4507.399999999441,
+        "automationNavigationToActionVisibleMs": 4552,
+        "syntheticSignatureToAnimationFrameMs": 7.9
+      },
+      "keyboardPrimary": {
+        "tabSteps": 4,
+        "landedUrl": "http://127.0.0.1:5190/template-demos/switchboard/services.html"
+      },
+      "touchPrimary": "passed",
+      "missingHeroImage": {
+        "fallback": "passed",
+        "keyboardPrimary": {
+          "tabSteps": 4,
+          "landedUrl": "http://127.0.0.1:5190/template-demos/switchboard/services.html"
+        }
+      },
+      "longCopyOriginalImageFixtures": [
+        {
+          "aspect": "landscape",
+          "sourceDimensions": [
+            600,
+            400
+          ],
+          "headingRight": 370.5,
+          "introRight": 370.5,
+          "documentScrollWidth": 390,
+          "action": "visible"
+        },
+        {
+          "aspect": "portrait",
+          "sourceDimensions": [
+            240,
+            600
+          ],
+          "headingRight": 370.5,
+          "introRight": 370.5,
+          "documentScrollWidth": 390,
+          "action": "visible"
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "product": "tideglass",
+      "status": "passed",
+      "coldLabMetrics": {
+        "domContentLoadedMs": 2478.5999999996275,
+        "loadEventMs": 2614.399999999441,
+        "observedLcpMs": 2480,
+        "observedCls": 0,
+        "paint": [
+          {
+            "name": "first-paint",
+            "startTimeMs": 2480
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTimeMs": 2480
+          }
+        ],
+        "resourceTransferBytes": 21226,
+        "snapshotAtMs": 4313.399999999441,
+        "automationNavigationToActionVisibleMs": 4333,
+        "syntheticSignatureToAnimationFrameMs": 9.2
+      },
+      "keyboardPrimary": {
+        "tabSteps": 4,
+        "landedUrl": "http://127.0.0.1:5190/template-demos/tideglass/stays.html"
+      },
+      "touchPrimary": "passed",
+      "missingHeroImage": {
+        "fallback": "passed",
+        "keyboardPrimary": {
+          "tabSteps": 4,
+          "landedUrl": "http://127.0.0.1:5190/template-demos/tideglass/stays.html"
+        }
+      },
+      "longCopyOriginalImageFixtures": [
+        {
+          "aspect": "landscape",
+          "sourceDimensions": [
+            600,
+            400
+          ],
+          "headingRight": 370.5,
+          "introRight": 370.5,
+          "documentScrollWidth": 390,
+          "action": "visible"
+        },
+        {
+          "aspect": "portrait",
+          "sourceDimensions": [
+            240,
+            600
+          ],
+          "headingRight": 370.5,
+          "introRight": 370.5,
+          "documentScrollWidth": 390,
+          "action": "visible"
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "product": "matter",
+      "status": "passed",
+      "coldLabMetrics": {
+        "domContentLoadedMs": 2420.4000000003725,
+        "loadEventMs": 2490.5,
+        "observedLcpMs": 2404,
+        "observedCls": 0,
+        "paint": [
+          {
+            "name": "first-paint",
+            "startTimeMs": 2404
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTimeMs": 2404
+          }
+        ],
+        "resourceTransferBytes": 21197,
+        "snapshotAtMs": 3892.4000000003725,
+        "automationNavigationToActionVisibleMs": 3918,
+        "syntheticSignatureToAnimationFrameMs": 15.2
+      },
+      "keyboardPrimary": {
+        "tabSteps": 4,
+        "landedUrl": "http://127.0.0.1:5190/template-demos/matter/collection.html"
+      },
+      "touchPrimary": "passed",
+      "missingHeroImage": {
+        "fallback": "passed",
+        "keyboardPrimary": {
+          "tabSteps": 4,
+          "landedUrl": "http://127.0.0.1:5190/template-demos/matter/collection.html"
+        }
+      },
+      "longCopyOriginalImageFixtures": [
+        {
+          "aspect": "landscape",
+          "sourceDimensions": [
+            600,
+            400
+          ],
+          "headingRight": 370.5,
+          "introRight": 351.5625,
+          "documentScrollWidth": 390,
+          "action": "visible"
+        },
+        {
+          "aspect": "portrait",
+          "sourceDimensions": [
+            240,
+            600
+          ],
+          "headingRight": 370.5,
+          "introRight": 351.5625,
+          "documentScrollWidth": 390,
+          "action": "visible"
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "product": "nightjar",
+      "status": "passed",
+      "coldLabMetrics": {
+        "domContentLoadedMs": 2562.5999999996275,
+        "loadEventMs": 2728,
+        "observedLcpMs": 2520,
+        "observedCls": 0,
+        "paint": [
+          {
+            "name": "first-paint",
+            "startTimeMs": 2520
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTimeMs": 2520
+          }
+        ],
+        "resourceTransferBytes": 21197,
+        "snapshotAtMs": 4240.0999999996275,
+        "automationNavigationToActionVisibleMs": 4278,
+        "syntheticSignatureToAnimationFrameMs": 7.3
+      },
+      "keyboardPrimary": {
+        "tabSteps": 5,
+        "landedUrl": "http://127.0.0.1:5190/template-demos/nightjar/program.html"
+      },
+      "touchPrimary": "passed",
+      "missingHeroImage": {
+        "fallback": "passed",
+        "keyboardPrimary": {
+          "tabSteps": 5,
+          "landedUrl": "http://127.0.0.1:5190/template-demos/nightjar/program.html"
+        }
+      },
+      "longCopyOriginalImageFixtures": [
+        {
+          "aspect": "landscape",
+          "sourceDimensions": [
+            600,
+            400
+          ],
+          "headingRight": 370.5,
+          "introRight": 370.5,
+          "documentScrollWidth": 390,
+          "action": "visible"
+        },
+        {
+          "aspect": "portrait",
+          "sourceDimensions": [
+            240,
+            600
+          ],
+          "headingRight": 370.5,
+          "introRight": 370.5,
+          "documentScrollWidth": 390,
+          "action": "visible"
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "scope": "fresh mobile shop visual surface",
+      "route": "/shop",
+      "status": "passed",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "heading": {
+          "x": 20,
+          "y": 120,
+          "width": 350,
+          "height": 153.0625,
+          "top": 120,
+          "right": 370,
+          "bottom": 273.0625,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "text": "Menu\n+",
+            "height": 42.390625,
+            "width": 87.25,
+            "disabled": false
+          },
+          {
+            "text": "Cookie choices",
+            "height": 20.390625,
+            "width": 79.109375,
+            "disabled": false
+          },
+          {
+            "text": "\u2733\nAsk Eidos",
+            "height": 48,
+            "width": 116.015625,
+            "disabled": false
+          },
+          {
+            "text": "Essential only",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          },
+          {
+            "text": "Allow analytics",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "scope": "fresh mobile shop visual surface",
+      "route": "/shop/switchboard",
+      "status": "passed",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "heading": {
+          "x": 20,
+          "y": 189.59375,
+          "width": 350,
+          "height": 153.0625,
+          "top": 189.59375,
+          "right": 370,
+          "bottom": 342.65625,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "text": "Menu\n+",
+            "height": 42.390625,
+            "width": 87.25,
+            "disabled": false
+          },
+          {
+            "text": "Purchasing unavailable",
+            "height": 50,
+            "width": 300,
+            "disabled": true
+          },
+          {
+            "text": "Cookie choices",
+            "height": 20.390625,
+            "width": 79.109375,
+            "disabled": false
+          },
+          {
+            "text": "\u2733\nAsk Eidos",
+            "height": 48,
+            "width": 116.015625,
+            "disabled": false
+          },
+          {
+            "text": "Essential only",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          },
+          {
+            "text": "Allow analytics",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "scope": "fresh mobile shop visual surface",
+      "route": "/shop/tideglass",
+      "status": "passed",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "heading": {
+          "x": 20,
+          "y": 189.59375,
+          "width": 350,
+          "height": 153.0625,
+          "top": 189.59375,
+          "right": 370,
+          "bottom": 342.65625,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "text": "Menu\n+",
+            "height": 42.390625,
+            "width": 87.25,
+            "disabled": false
+          },
+          {
+            "text": "Purchasing unavailable",
+            "height": 50,
+            "width": 300,
+            "disabled": true
+          },
+          {
+            "text": "Cookie choices",
+            "height": 20.390625,
+            "width": 79.109375,
+            "disabled": false
+          },
+          {
+            "text": "\u2733\nAsk Eidos",
+            "height": 48,
+            "width": 116.015625,
+            "disabled": false
+          },
+          {
+            "text": "Essential only",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          },
+          {
+            "text": "Allow analytics",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "scope": "fresh mobile shop visual surface",
+      "route": "/shop/matter",
+      "status": "passed",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "heading": {
+          "x": 20,
+          "y": 189.59375,
+          "width": 350,
+          "height": 153.0625,
+          "top": 189.59375,
+          "right": 370,
+          "bottom": 342.65625,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "text": "Menu\n+",
+            "height": 42.390625,
+            "width": 87.25,
+            "disabled": false
+          },
+          {
+            "text": "Purchasing unavailable",
+            "height": 50,
+            "width": 300,
+            "disabled": true
+          },
+          {
+            "text": "Cookie choices",
+            "height": 20.390625,
+            "width": 79.109375,
+            "disabled": false
+          },
+          {
+            "text": "\u2733\nAsk Eidos",
+            "height": 48,
+            "width": 116.015625,
+            "disabled": false
+          },
+          {
+            "text": "Essential only",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          },
+          {
+            "text": "Allow analytics",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "scope": "fresh mobile shop visual surface",
+      "route": "/shop/nightjar",
+      "status": "passed",
+      "geometry": {
+        "viewport": 390,
+        "scroll": 390,
+        "heading": {
+          "x": 20,
+          "y": 189.59375,
+          "width": 350,
+          "height": 206.75,
+          "top": 189.59375,
+          "right": 370,
+          "bottom": 396.34375,
+          "left": 20
+        },
+        "buttons": [
+          {
+            "text": "Menu\n+",
+            "height": 42.390625,
+            "width": 87.25,
+            "disabled": false
+          },
+          {
+            "text": "Purchasing unavailable",
+            "height": 50,
+            "width": 300,
+            "disabled": true
+          },
+          {
+            "text": "Cookie choices",
+            "height": 20.390625,
+            "width": 79.109375,
+            "disabled": false
+          },
+          {
+            "text": "\u2733\nAsk Eidos",
+            "height": 48,
+            "width": 116.015625,
+            "disabled": false
+          },
+          {
+            "text": "Essential only",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          },
+          {
+            "text": "Allow analytics",
+            "height": 42,
+            "width": 157,
+            "disabled": false
+          }
+        ]
+      }
+    }
+  ],
+  "failures": [],
+  "screenshots": [
+    "E:\\CodexArtifacts\\paid-templates-20261010\\constrained-switchboard-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\missing-image-switchboard-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\varied-switchboard-landscape-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\varied-switchboard-portrait-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\constrained-tideglass-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\missing-image-tideglass-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\varied-tideglass-landscape-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\varied-tideglass-portrait-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\constrained-matter-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\missing-image-matter-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\varied-matter-landscape-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\varied-matter-portrait-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\constrained-nightjar-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\missing-image-nightjar-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\varied-nightjar-landscape-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\varied-nightjar-portrait-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\fresh-shop-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\fresh-shop-switchboard-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\fresh-shop-tideglass-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\fresh-shop-matter-390.jpg",
+    "E:\\CodexArtifacts\\paid-templates-20261010\\fresh-shop-nightjar-390.jpg"
+  ],
+  "limitations": [
+    "Host load and concurrent acceptance runs affect timings.",
+    "CDP throttling is a simulation, not a physical constrained phone or mobile carrier.",
+    "LCP and CLS are observed only until the recorded snapshot before interactions; no CrUX/field metrics.",
+    "Original raster/SVG fixture uses test-only DOM replacement; no purchased archive is personalized.",
+    "Contrast review is limited to sampled visible UI and screenshots, not an accessibility certification."
+  ],
+  "result": "passed",
+  "visualReview": "Fresh mobile screenshots and computed purchase-panel colors reviewed. Findings corrected by root and reverified; limited sampled inspection, not accessibility certification.",
+  "sourceAcceptance": "passed",
+  "shopVisualReview": {
+    "status": "passed within focused local mobile scope",
+    "actualIframeViewportPaint": "passed; collection and phone previews render when visible. Blank offscreen lazy iframe areas in full-page screenshots are a capture limitation.",
+    "purchaseHeadingPriceBodyLabels": "root fixes verified from fresh computed styles; sampled ratios15.1 and10.89",
+    "primaryButton": "root specific light foreground verified; raw contrast14.45, opacity-composited estimate6.04, disabled state retained",
+    "evidence": [
+      "E:/CodexArtifacts/paid-templates-20261010/shop-computed-contrast-final.json",
+      "E:/CodexArtifacts/paid-templates-20261010/shop-primary-button-final.json",
+      "E:/CodexArtifacts/paid-templates-20261010/purchase-button-final-390.jpg",
+      "E:/CodexArtifacts/paid-templates-20261010/fresh-collection-tile-viewport.jpg",
+      "E:/CodexArtifacts/paid-templates-20261010/fresh-phone-preview-viewport.jpg"
+    ]
+  }
+}

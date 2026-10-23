@@ -1,0 +1,270 @@
+{
+  "validatedWorkingTreeBasedOn": "285d7dc8a1a7b44e40e8fcf2f09b66aa6bada42f",
+  "timestampUtc": "2026-10-20T16:13:55.872Z",
+  "base": "http://127.0.0.1:4188",
+  "fixtureOnly": true,
+  "actualPayment": false,
+  "actualEmail": false,
+  "hostedAcceptance": false,
+  "sourceFiles": [
+    {
+      "path": "src/playground/PurchaseRecovery.tsx",
+      "sha256": "7e32cd50f3ced4caed94cf2a4b9d674702abf34d37c6da17f7c71f9d2a85422b"
+    },
+    {
+      "path": "src/playground/purchaseRecoveryClient.ts",
+      "sha256": "4a1a92d1d94df7263e441c828fdc5fbce7451648767a8c40a76b1a8b8de689ba"
+    },
+    {
+      "path": "src/playground/purchaseClient.ts",
+      "sha256": "5bd42b2f20e6975cf6efcd164c5eea0d485249343a5af71726a44a3371f322ab"
+    },
+    {
+      "path": "src/playground/purchaseSnapshot.ts",
+      "sha256": "314d0b8bafb6fcb9ec82d034ccc89cdadd38783eeaa4649047ab5d9b28d53a21"
+    },
+    {
+      "path": "src/playground/purchaseReviewStorage.ts",
+      "sha256": "88cbe4d1e61afe4b7fd723a69b7370f5f3f8fd159d2a18862f5be1a363ae8952"
+    },
+    {
+      "path": "src/playground/FinishPurchase.tsx",
+      "sha256": "ed5ff47aca29675dfac21fda6bfd570e0b206d35671b7308e9cf488ad95a41ec"
+    },
+    {
+      "path": "src/playground/FinishReview.tsx",
+      "sha256": "bda0328e71450c7c667a5ccd0bc17f752b7550e92eafe5088919a27eb31c9c34"
+    },
+    {
+      "path": "src/playground/Playground.tsx",
+      "sha256": "e6c1a57ea981f6df872a8f70f353df6383c330549c50c9ab080e3747de9b8ba5"
+    },
+    {
+      "path": "src/playground/PlaygroundAccount.tsx",
+      "sha256": "4048dea4c94aee90efb80a9b064564675bc899b9e26e27801247e8d740f68f4b"
+    },
+    {
+      "path": "src/playground/account.css",
+      "sha256": "36d35c38f2e716a254311efadac07cd18cdec01aa908b7e38cf248d61a7befe8"
+    },
+    {
+      "path": "src/playground/unifiedEditor.css",
+      "sha256": "fce654d9d7433d0f0ec8e673722baa145247ce89ed2fc307cb664a7cdca86a1a"
+    },
+    {
+      "path": "src/playground/useProject.ts",
+      "sha256": "9e75352804a716ca1c3fb8c3582c9ca39d5433cb5d216b33d13cab4de54c1813"
+    },
+    {
+      "path": "src/playground/renderer.ts",
+      "sha256": "f65b65b6d6fcf8d2e93143d3e4c486cb6d84f52f409c8753d2e8247e34f956c4"
+    },
+    {
+      "path": "src/playground/runtimeBundle.ts",
+      "sha256": "94867ef816ea634a0c9ba6817a821af2b3cc12433c3740920b4b269059277762"
+    },
+    {
+      "path": "src/playground/pageStyles.ts",
+      "sha256": "3214b1f1ea64d3da89b4564c3f85b6761ec236c9d23ca17cfcf87dc21ab5a4ba"
+    },
+    {
+      "path": "src/components/Turnstile.tsx",
+      "sha256": "ee28a41edfb180a1b30f305b380739551f588584184296d5782fbf6570f2184f"
+    },
+    {
+      "path": "scripts/verify-playground-purchase-browser.mjs",
+      "sha256": "1fc4adc4af937e5fd9c311179f0759ca03598015bf39a810fa9bb08b3d780494"
+    }
+  ],
+  "scenarios": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "unavailable-purchase-local-download",
+      "checks": [
+        "disabled purchase shows a contextual message, retains local ZIP download and makes no POST, checkout or payment request",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "unavailable-purchase-local-download",
+      "checks": [
+        "disabled purchase shows a contextual message, retains local ZIP download and makes no POST, checkout or payment request",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "fresh-recovery",
+      "checks": [
+        "empty browser offers explicit recovery without creating a draft or calling purchase APIs",
+        "paid recovery succeeds while current checkout capability is unavailable",
+        "download matches the originally stored complete ZIP hash",
+        "bundled-renderer stored package opens independently with its own runtime",
+        "recovery opens a distinct editable identity and retains the exact historical review",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "preserve-draft",
+      "checks": [
+        "recovered copy preserves the existing draft under its original identity",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-recovery",
+      "checks": [
+        "late recovery response after starting another project cannot open or replace the active draft",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "recovery-reauthorization",
+      "checks": [
+        "account switch after retrieval blocks opening a new editable copy",
+        "revocation after retrieval blocks opening a new editable copy",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "returned-checkout-price",
+      "checks": [
+        "returned attempt shows its original price and clears previous catalog-price acceptance before retry",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "name": "changed-checkout-price",
+      "checks": [
+        "changed displayed price blocks checkout, updates the price and requires renewed consent",
+        "explicit renewed consent permits exactly one intercepted checkout",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "cancelled-checkout",
+      "checks": [
+        "cancel return without a fragment retains the attempt and checks pending status while new checkout is unavailable",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "deferred-checkout",
+      "checks": [
+        "manual create/review/approval makes no purchase API request",
+        "revoking review approval during deferred preflight prevents checkout dispatch",
+        "late checkout response after closing review and editing does not navigate or replace the newer draft",
+        "account switch clears the previous owner accepted and paid display",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "name": "challenge-retry",
+      "checks": [
+        "failed dispatched checkout removes the consumed challenge and waits for a fresh verification token",
+        "retry keeps the immutable purchase attempt and dispatches only with the fresh token",
+        "page identity, no runtime overlay or unexpected console error, no outside network, no horizontal overflow"
+      ],
+      "errors": [],
+      "unexpected": [],
+      "failure": null
+    }
+  ],
+  "account": {
+    "base": "http://127.0.0.1:4188/playground/",
+    "environment": "Isolated Chromium; controlled local account responses; no real identity/provider/cloud acceptance",
+    "checks": [
+      "start-screen account mounts only on request; Escape returns focus",
+      "an empty device can resume an account project without saving an unexplained starter",
+      "password sign-in keeps local project and Undo history",
+      "missing owner and disabled resume capabilities fail closed without writes",
+      "session changes clear capability without losing the project",
+      "desktop, 390px and 320px toolbar controls and account dialog remain reachable",
+      "failed device saving offers backup before separate-tab Google sign-in"
+    ],
+    "errors": [],
+    "forbidden": [],
+    "timestamp": "2026-10-20T16:14:21.107Z"
+  },
+  "focus": {
+    "kind": "controlled WebKit deferred starter focus; no providers",
+    "diagnosticOnly": false,
+    "checks": [
+      "immediate WebKit name input survives starter focus and is saved exactly"
+    ],
+    "enteredValue": "Second project",
+    "focus": {
+      "held": 0,
+      "released": 0,
+      "activeTag": "INPUT",
+      "activeId": ""
+    },
+    "savedName": "Second project"
+  }
+}

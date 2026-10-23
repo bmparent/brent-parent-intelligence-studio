@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "timestamp_utc": "2026-10-11T00:29:01.630Z",
+  "command": "node --experimental-wasm-jspi scripts/verify-template-wordpress.mjs --tools=<temporary-tools-dir>",
+  "runtime": {
+    "node": "v24.18.0",
+    "playground_cli": "3.1.57",
+    "requested_wordpress": "7.1",
+    "requested_php": "8.3",
+    "database": "SQLite",
+    "execution": "PHP WebAssembly / WordPress Playground",
+    "wasm_jspi": true,
+    "workers": 6,
+    "startup_timeout_ms": 180000
+  },
+  "limitations": [
+    "Native PHP/MySQL hosting and WordPress.com are not tested.",
+    "Content/image edits use WordPress APIs and native block markup. Visual Site Editor editing is a separate manual acceptance gate.",
+    "No email, booking, checkout, or ticket service is connected by a theme.",
+    "Pinned Playground dependencies declare Node >=24.18.0/npm >=11.16.0; this host may be below that engine requirement."
+  ],
+  "themes": [
+    {
+      "product": "switchboard",
+      "edition": "switchboard-wordpress-v1",
+      "archive": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "status": "blocked",
+      "checks": {},
+      "archive_sha256": "4ad08d2b05681f916aca7de55a331616045eafee319c5bd459dd0fd4a2843437",
+      "archive_bytes": 29383,
+      "startup_elapsed_ms": 180240,
+      "reason": "Error: Playground failed to become ready within 180000ms; no theme installation occurred. Stop retries and inspect startup logs.\n    at Timeout.<anonymous> (file:///C:/Users/bmpar/codex-worktrees/paid-templates-site-20261010/scripts/verify-template-wordpress.mjs:71:103)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"
+    },
+    {
+      "product": "tideglass",
+      "edition": "tideglass-wordpress-v1",
+      "archive": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "archive_sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5",
+      "archive_bytes": 30016,
+      "status": "not_run",
+      "reason": "Shared Playground runtime startup failed; no additional identical retries.",
+      "checks": {}
+    },
+    {
+      "product": "matter",
+      "edition": "matter-wordpress-v1",
+      "archive": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "archive_sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8",
+      "archive_bytes": 30739,
+      "status": "not_run",
+      "reason": "Shared Playground runtime startup failed; no additional identical retries.",
+      "checks": {}
+    },
+    {
+      "product": "nightjar",
+      "edition": "nightjar-wordpress-v1",
+      "archive": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "archive_sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d",
+      "archive_bytes": 29728,
+      "status": "not_run",
+      "reason": "Shared Playground runtime startup failed; no additional identical retries.",
+      "checks": {}
+    }
+  ],
+  "status": "blocked"
+}

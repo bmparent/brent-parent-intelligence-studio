@@ -1,0 +1,1152 @@
+{
+  "base": "http://127.0.0.1:5192",
+  "scope": "rendered static/source and shop, no provider transactions",
+  "browserRoute": "Python Playwright fallback; in-app browser timed out at 30 seconds",
+  "checks": [
+    {
+      "browser": "chromium",
+      "product": "switchboard",
+      "viewport": 1440,
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "Good",
+          "lineFragments": 1
+        },
+        {
+          "word": "work",
+          "lineFragments": 1
+        },
+        {
+          "word": "starts",
+          "lineFragments": 1
+        },
+        {
+          "word": "with",
+          "lineFragments": 1
+        },
+        {
+          "word": "a",
+          "lineFragments": 1
+        },
+        {
+          "word": "clear",
+          "lineFragments": 1
+        },
+        {
+          "word": "conversation.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "switchboard",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "pages": 6,
+      "interaction": "passed",
+      "navigation": "passed",
+      "overflow": "passed",
+      "console": "passed"
+    },
+    {
+      "browser": "chromium",
+      "product": "tideglass",
+      "viewport": 1440,
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "A",
+          "lineFragments": 1
+        },
+        {
+          "word": "little",
+          "lineFragments": 1
+        },
+        {
+          "word": "closer",
+          "lineFragments": 1
+        },
+        {
+          "word": "to",
+          "lineFragments": 1
+        },
+        {
+          "word": "the",
+          "lineFragments": 1
+        },
+        {
+          "word": "horizon.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "tideglass",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "pages": 6,
+      "interaction": "passed",
+      "navigation": "passed",
+      "overflow": "passed",
+      "console": "passed"
+    },
+    {
+      "browser": "chromium",
+      "product": "matter",
+      "viewport": 1440,
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "Made",
+          "lineFragments": 1
+        },
+        {
+          "word": "slowly.",
+          "lineFragments": 1
+        },
+        {
+          "word": "Held",
+          "lineFragments": 1
+        },
+        {
+          "word": "onto.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "matter",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "pages": 6,
+      "interaction": "passed",
+      "navigation": "passed",
+      "overflow": "passed",
+      "console": "passed"
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": 1440,
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "A",
+          "lineFragments": 1
+        },
+        {
+          "word": "gathering",
+          "lineFragments": 1
+        },
+        {
+          "word": "of",
+          "lineFragments": 1
+        },
+        {
+          "word": "good",
+          "lineFragments": 1
+        },
+        {
+          "word": "noise.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": 1440,
+      "nightModeComputedTextContrast": "passed",
+      "samples": [
+        {
+          "text": "Nightjar Assembly",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "Home",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "Program",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "Event detail",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "About",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "Contact",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "Day mode",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "A gathering of good noise.",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(103, 75, 173)",
+          "ratio": 6.05809321834506,
+          "minimum": 3
+        },
+        {
+          "text": "Music, moving images, and conversations after dark. An independent cultural prog",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(103, 75, 173)",
+          "ratio": 6.05809321834506,
+          "minimum": 4.5
+        },
+        {
+          "text": "Listening room",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(62, 53, 91)",
+          "ratio": 10.350214315763818,
+          "minimum": 4.5
+        },
+        {
+          "text": "A close listening session followed by a conversation about sound, place, and mak",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(62, 53, 91)",
+          "ratio": 10.350214315763818,
+          "minimum": 4.5
+        },
+        {
+          "text": "Explore the session \u2197",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(62, 53, 91)",
+          "ratio": 10.350214315763818,
+          "minimum": 4.5
+        },
+        {
+          "text": "After the light",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(63, 86, 59)",
+          "ratio": 7.4088042450300895,
+          "minimum": 4.5
+        },
+        {
+          "text": "A screening format for short films and an open discussion with their makers. Run",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(63, 86, 59)",
+          "ratio": 7.4088042450300895,
+          "minimum": 4.5
+        },
+        {
+          "text": "Read the film notes \u2197",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(63, 86, 59)",
+          "ratio": 7.4088042450300895,
+          "minimum": 4.5
+        },
+        {
+          "text": "An open table",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(107, 60, 80)",
+          "ratio": 8.086208932767114,
+          "minimum": 4.5
+        },
+        {
+          "text": "A small-group conversation about the things a creative community can make possib",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(107, 60, 80)",
+          "ratio": 8.086208932767114,
+          "minimum": 4.5
+        },
+        {
+          "text": "Find out more \u2197",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(107, 60, 80)",
+          "ratio": 8.086208932767114,
+          "minimum": 4.5
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": 1440,
+      "posterLayerReveal": "passed",
+      "day": {
+        "layers": 3,
+        "overlap": "passed",
+        "allEventInformation": "passed",
+        "pressedState": "passed",
+        "ordinaryLinks": 3,
+        "input": "keyboard",
+        "reducedMotion": "passed"
+      },
+      "night": {
+        "layers": 3,
+        "overlap": "passed",
+        "allEventInformation": "passed",
+        "pressedState": "passed",
+        "ordinaryLinks": 3,
+        "input": "keyboard",
+        "reducedMotion": "passed"
+      }
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "pages": 6,
+      "interaction": "passed",
+      "navigation": "passed",
+      "overflow": "passed",
+      "console": "passed"
+    },
+    {
+      "browser": "chromium",
+      "product": "switchboard",
+      "viewport": 390,
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "Good",
+          "lineFragments": 1
+        },
+        {
+          "word": "work",
+          "lineFragments": 1
+        },
+        {
+          "word": "starts",
+          "lineFragments": 1
+        },
+        {
+          "word": "with",
+          "lineFragments": 1
+        },
+        {
+          "word": "a",
+          "lineFragments": 1
+        },
+        {
+          "word": "clear",
+          "lineFragments": 1
+        },
+        {
+          "word": "conversation.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "switchboard",
+      "viewport": [
+        390,
+        844
+      ],
+      "pages": 6,
+      "interaction": "passed",
+      "navigation": "passed",
+      "overflow": "passed",
+      "console": "passed"
+    },
+    {
+      "browser": "chromium",
+      "product": "tideglass",
+      "viewport": 390,
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "A",
+          "lineFragments": 1
+        },
+        {
+          "word": "little",
+          "lineFragments": 1
+        },
+        {
+          "word": "closer",
+          "lineFragments": 1
+        },
+        {
+          "word": "to",
+          "lineFragments": 1
+        },
+        {
+          "word": "the",
+          "lineFragments": 1
+        },
+        {
+          "word": "horizon.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "tideglass",
+      "viewport": [
+        390,
+        844
+      ],
+      "pages": 6,
+      "interaction": "passed",
+      "navigation": "passed",
+      "overflow": "passed",
+      "console": "passed"
+    },
+    {
+      "browser": "chromium",
+      "product": "matter",
+      "viewport": 390,
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "Made",
+          "lineFragments": 1
+        },
+        {
+          "word": "slowly.",
+          "lineFragments": 1
+        },
+        {
+          "word": "Held",
+          "lineFragments": 1
+        },
+        {
+          "word": "onto.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "matter",
+      "viewport": [
+        390,
+        844
+      ],
+      "pages": 6,
+      "interaction": "passed",
+      "navigation": "passed",
+      "overflow": "passed",
+      "console": "passed"
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": 390,
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "A",
+          "lineFragments": 1
+        },
+        {
+          "word": "gathering",
+          "lineFragments": 1
+        },
+        {
+          "word": "of",
+          "lineFragments": 1
+        },
+        {
+          "word": "good",
+          "lineFragments": 1
+        },
+        {
+          "word": "noise.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": 390,
+      "nightModeComputedTextContrast": "passed",
+      "samples": [
+        {
+          "text": "Nightjar Assembly",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "Menu",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "Day mode",
+          "foreground": "rgb(32, 30, 57)",
+          "background": "rgb(255, 245, 216)",
+          "ratio": 14.779089815229757,
+          "minimum": 4.5
+        },
+        {
+          "text": "A gathering of good noise.",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(103, 75, 173)",
+          "ratio": 6.05809321834506,
+          "minimum": 3
+        },
+        {
+          "text": "Music, moving images, and conversations after dark. An independent cultural prog",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(103, 75, 173)",
+          "ratio": 6.05809321834506,
+          "minimum": 4.5
+        },
+        {
+          "text": "Listening room",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(62, 53, 91)",
+          "ratio": 10.350214315763818,
+          "minimum": 4.5
+        },
+        {
+          "text": "A close listening session followed by a conversation about sound, place, and mak",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(62, 53, 91)",
+          "ratio": 10.350214315763818,
+          "minimum": 4.5
+        },
+        {
+          "text": "Explore the session \u2197",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(62, 53, 91)",
+          "ratio": 10.350214315763818,
+          "minimum": 4.5
+        },
+        {
+          "text": "After the light",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(63, 86, 59)",
+          "ratio": 7.4088042450300895,
+          "minimum": 4.5
+        },
+        {
+          "text": "A screening format for short films and an open discussion with their makers. Run",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(63, 86, 59)",
+          "ratio": 7.4088042450300895,
+          "minimum": 4.5
+        },
+        {
+          "text": "Read the film notes \u2197",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(63, 86, 59)",
+          "ratio": 7.4088042450300895,
+          "minimum": 4.5
+        },
+        {
+          "text": "An open table",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(107, 60, 80)",
+          "ratio": 8.086208932767114,
+          "minimum": 4.5
+        },
+        {
+          "text": "A small-group conversation about the things a creative community can make possib",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(107, 60, 80)",
+          "ratio": 8.086208932767114,
+          "minimum": 4.5
+        },
+        {
+          "text": "Find out more \u2197",
+          "foreground": "rgb(255, 245, 216)",
+          "background": "rgb(107, 60, 80)",
+          "ratio": 8.086208932767114,
+          "minimum": 4.5
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": 390,
+      "posterLayerReveal": "passed",
+      "day": {
+        "layers": 3,
+        "overlap": "passed",
+        "allEventInformation": "passed",
+        "pressedState": "passed",
+        "ordinaryLinks": 3,
+        "input": "keyboard",
+        "reducedMotion": "passed"
+      },
+      "night": {
+        "layers": 3,
+        "overlap": "passed",
+        "allEventInformation": "passed",
+        "pressedState": "passed",
+        "ordinaryLinks": 3,
+        "input": "keyboard",
+        "reducedMotion": "passed"
+      }
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": [
+        390,
+        844
+      ],
+      "pages": 6,
+      "interaction": "passed",
+      "navigation": "passed",
+      "overflow": "passed",
+      "console": "passed"
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": 641,
+      "scope": "immediate phone breakpoint",
+      "originalHeadlineWords": "passed",
+      "words": [
+        {
+          "word": "A",
+          "lineFragments": 1
+        },
+        {
+          "word": "gathering",
+          "lineFragments": 1
+        },
+        {
+          "word": "of",
+          "lineFragments": 1
+        },
+        {
+          "word": "good",
+          "lineFragments": 1
+        },
+        {
+          "word": "noise.",
+          "lineFragments": 1
+        }
+      ]
+    },
+    {
+      "browser": "chromium",
+      "product": "nightjar",
+      "viewport": 390,
+      "posterTouchReveal": "passed",
+      "details": {
+        "layers": 3,
+        "overlap": "passed",
+        "allEventInformation": "passed",
+        "pressedState": "passed",
+        "ordinaryLinks": 3,
+        "input": "touch",
+        "reducedMotion": "passed"
+      }
+    },
+    {
+      "product": "switchboard",
+      "noJavaScript": "passed",
+      "fivePageTraversal": [
+        "index.html",
+        "services.html",
+        "service-detail.html",
+        "process.html",
+        "contact.html"
+      ],
+      "contactEmail": "contact page linked from all designed pages; mailto visible on contact",
+      "posterFallback": null
+    },
+    {
+      "product": "tideglass",
+      "noJavaScript": "passed",
+      "fivePageTraversal": [
+        "index.html",
+        "stays.html",
+        "stay-detail.html",
+        "guide.html",
+        "contact.html"
+      ],
+      "contactEmail": "contact page linked from all designed pages; mailto visible on contact",
+      "posterFallback": null
+    },
+    {
+      "product": "matter",
+      "noJavaScript": "passed",
+      "fivePageTraversal": [
+        "index.html",
+        "collection.html",
+        "object.html",
+        "process.html",
+        "contact.html"
+      ],
+      "contactEmail": "contact page linked from all designed pages; mailto visible on contact",
+      "posterFallback": null
+    },
+    {
+      "product": "nightjar",
+      "noJavaScript": "passed",
+      "fivePageTraversal": [
+        "index.html",
+        "program.html",
+        "event.html",
+        "about.html",
+        "contact.html"
+      ],
+      "contactEmail": "contact page linked from all designed pages; mailto visible on contact",
+      "posterFallback": "all panels and links visible"
+    }
+  ],
+  "failures": [],
+  "performance": [
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 547,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/contact.html",
+      "navigationToHeadingMs": 156,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 110,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/legal.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/process.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/service-detail.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/services.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 156,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/contact.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/guide.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/legal.html",
+      "navigationToHeadingMs": 110,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/stay-detail.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/stays.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 156,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/collection.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/contact.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/legal.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/object.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/process.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 218,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/about.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/contact.html",
+      "navigationToHeadingMs": 79,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/event.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 79,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/legal.html",
+      "navigationToHeadingMs": 78,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/program.html",
+      "navigationToHeadingMs": 93,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 266,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/contact.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 78,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/legal.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/process.html",
+      "navigationToHeadingMs": 79,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/service-detail.html",
+      "navigationToHeadingMs": 78,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/services.html",
+      "navigationToHeadingMs": 78,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/contact.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/guide.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 79,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/legal.html",
+      "navigationToHeadingMs": 78,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/stay-detail.html",
+      "navigationToHeadingMs": 78,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/stays.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/collection.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/contact.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/legal.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/object.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/process.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 172,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/about.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/contact.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/event.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/legal.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/program.html",
+      "navigationToHeadingMs": 78,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 313,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/program.html",
+      "navigationToHeadingMs": 360,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 312,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/switchboard/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 140,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 93,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 110,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/tideglass/index.html",
+      "navigationToHeadingMs": 125,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 156,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 110,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 109,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/matter/index.html",
+      "navigationToHeadingMs": 110,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 157,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 78,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 110,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    },
+    {
+      "path": "/template-demos/nightjar/index.html",
+      "navigationToHeadingMs": 94,
+      "conditions": "local desktop, domcontentloaded + visible h1; not LCP/INP"
+    }
+  ],
+  "limitations": [
+    "Local lab only; no field metrics or certification."
+  ],
+  "result": "passed"
+}

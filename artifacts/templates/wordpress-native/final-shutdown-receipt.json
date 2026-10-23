@@ -1,0 +1,33 @@
+{
+  "action": "stop",
+  "timestamp_utc": "2026-10-11T03:09:12.138653+00:00",
+  "scope": "Only PID/executable-verified task-owned PHP and authenticated task-owned MariaDB; no deletion or service operations",
+  "sites": [
+    {
+      "product": "switchboard",
+      "pid": 27240,
+      "graceful_ctrl_c_sent": true
+    },
+    {
+      "product": "tideglass",
+      "pid": 23344,
+      "graceful_ctrl_c_sent": true
+    },
+    {
+      "product": "matter",
+      "pid": 10068,
+      "graceful_ctrl_c_sent": true
+    },
+    {
+      "product": "nightjar",
+      "pid": 27800,
+      "graceful_ctrl_c_sent": true
+    }
+  ],
+  "status": "stopped",
+  "mariadb_pid": 24068,
+  "mariadb_authenticated_shutdown_exit_code": 0,
+  "forced_termination": false,
+  "all_task_ports_closed": true,
+  "all_files_databases_credentials_exports_preserved": true
+}

@@ -1,0 +1,198 @@
+{
+  "timestamp": "2026-10-15T19:19:51.791Z",
+  "source": "4bce117514260a0280d8e554d9a42fc0f135704e",
+  "sourceFiles": {
+    "src/playground/AIAssist.tsx": "04d5a42d162ae871d907b57f54ee5a3918a9c75cf098359a0395f167e3c859ae",
+    "src/playground/aiClient.ts": "f72c01eef4a5562f218ef1bef62e5a8d2de7c86bacb91abf9aa4550d2d47f101",
+    "src/playground/aiOperations.ts": "f172a57aa92d5a63e98fc0acf4cd90d0e1f0fa656fe2ed6b6af616555c806268",
+    "src/playground/aiAssist.css": "1c8cc547c8547e173ccf972b238c6c0ed580a8999eef9505dab59da433563487",
+    "src/playground/Playground.tsx": "04eab2df82806ebaa7f63eef92c33b005657da1b4f81c32b41e1460c8ecba88d",
+    "src/lib/platform.ts": "e3bbe316dfbdb38c4e047ce424730aec6c8e7dc72fa4c29139ec686a5ac8357e",
+    "scripts/verify-playground-ai-ui.mjs": "570e3e8f9d8e2db7ab6888e273aed017dc676598018907dd0e1b41a60114fc56"
+  },
+  "fixture": true,
+  "targetedFinishOnly": false,
+  "providerCalls": 0,
+  "providerCost": 0,
+  "environment": "Actual React UI with controlled same-origin API fixtures; no provider transport, no real funds or payment; external Playwright fallback because Browser plugin unavailable.",
+  "limitations": [
+    "Fixtures establish UI behavior only, not hosted provider/authentication/cap enforcement.",
+    "Viewport emulation is not physical-device or unfamiliar-user acceptance."
+  ],
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "collapsed Eidos performs no AI account/quote/provider request",
+        "unavailable account/provider preview remains honestly gated with manual project intact",
+        "legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate",
+        "server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible",
+        "quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation",
+        "proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project",
+        "all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft",
+        "usable generation charges actual usage even when discarded and leaves manual project unchanged",
+        "Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit",
+        "a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions",
+        "delayed result cannot overwrite newer manual work; actual generated usage remains visible",
+        "selection and Brand changes retain the receipt but block stale confirmation",
+        "unknown/pending status keeps the action ID and reservation; status checks never retry generation",
+        "reload/Continue restores pending action status without resubmission or applying it to another revision",
+        "technical waiver is explicit while provider uncertainty remains an Eidos obligation"
+      ],
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "cancel"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/public-config",
+          "method": "GET"
+        },
+        {
+          "path": "/api/members/account",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "GET"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "quote"
+        },
+        {
+          "path": "/api/playground/ai",
+          "method": "POST",
+          "action": "generate"
+        }
+      ],
+      "generated": 5,
+      "abortIgnoredFixture": true,
+      "failure": "locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: 'Eidos assistance' }).getByRole('status').filter({ hasText: /Stopped waiting/ }) to be visible\u001b[22m\n\n    at C:\\Users\\bmpar\\codex-worktrees\\playground-unified-site-20261014\\scripts\\verify-playground-ai-ui.mjs:81:338"
+    }
+  ],
+  "completedAt": "2026-10-15T19:20:28.958Z",
+  "sourceFilesAtEnd": {
+    "src/playground/AIAssist.tsx": "04d5a42d162ae871d907b57f54ee5a3918a9c75cf098359a0395f167e3c859ae",
+    "src/playground/aiClient.ts": "f72c01eef4a5562f218ef1bef62e5a8d2de7c86bacb91abf9aa4550d2d47f101",
+    "src/playground/aiOperations.ts": "f172a57aa92d5a63e98fc0acf4cd90d0e1f0fa656fe2ed6b6af616555c806268",
+    "src/playground/aiAssist.css": "1c8cc547c8547e173ccf972b238c6c0ed580a8999eef9505dab59da433563487",
+    "src/playground/Playground.tsx": "04eab2df82806ebaa7f63eef92c33b005657da1b4f81c32b41e1460c8ecba88d",
+    "src/lib/platform.ts": "e3bbe316dfbdb38c4e047ce424730aec6c8e7dc72fa4c29139ec686a5ac8357e",
+    "scripts/verify-playground-ai-ui.mjs": "570e3e8f9d8e2db7ab6888e273aed017dc676598018907dd0e1b41a60114fc56"
+  },
+  "changedSourceFilesDuringRun": []
+}

@@ -96,6 +96,11 @@ function generateSitemap() {
   const staticPages = [
     { loc: absolute('/work/candlelight-exclusive'), lastmod: '2026-10-22', priority: '0.7' },
     {
+      loc: absolute('/work/signal-house'),
+      lastmod: '2026-10-13',
+      priority: '0.7',
+    },
+    {
       loc: absolute('/work/nighttime-spectaculars'),
       lastmod: '2026-09-06',
       priority: '0.7',

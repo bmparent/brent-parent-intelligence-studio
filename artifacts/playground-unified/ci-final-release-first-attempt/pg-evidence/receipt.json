@@ -1,0 +1,169 @@
+{
+  "timestamp": "2026-10-14T19:21:31.987Z",
+  "source": "948bf6dc135aae26de310b0983f84a56688db200",
+  "workingTreeDirty": true,
+  "base": "http://127.0.0.1:4173",
+  "browser": "Headless browsers; Chromium GPU disabled; viewport emulation is not physical-device evidence",
+  "records": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "documentId": "ba4d9fca-50bf-46bc-9819-f86a82786473",
+      "exportZip": "/home/runner/work/_temp/pg-evidence/chromium/1440-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:4173/playground/"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [],
+      "documentId": "9d6dadc0-cc51-4c2e-8f84-3fd242eb62aa",
+      "exportZip": "/home/runner/work/_temp/pg-evidence/chromium/390-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:4173/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 1440,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        }
+      ],
+      "documentId": "a9d519b7-40d3-44c2-bc7b-f8494150600c",
+      "exportZip": "/home/runner/work/_temp/pg-evidence/firefox/1440-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:4173/playground/"
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "[JavaScript Warning: \"Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content.\" {file: \"about:srcdoc\" line: 0}]"
+        }
+      ],
+      "documentId": "3a523768-b0ce-4ac8-b30b-b6ddf1f8a65c",
+      "exportZip": "/home/runner/work/_temp/pg-evidence/firefox/390-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:4173/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:4173/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:4173/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "documentId": "a7c94a0d-8479-4748-9189-4f50a15c7fd0",
+      "exportZip": "/home/runner/work/_temp/pg-evidence/webkit/1440-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:4173/playground/"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "checks": [
+        "clean start does not save or silently open a default project",
+        "goal and starter create real page; inline headline editing",
+        "uploaded image moves into columns and resizes through click/keyboard controls",
+        "global brand updates shared project",
+        "section reorder and exact shared Undo/Redo",
+        "reload explicitly continues exact content, IDs, assets and selection",
+        "invalid import preserves current work",
+        "Finish freezes and downloads actual standalone page ZIP",
+        "extracted output opens independently with exact editable project and all images",
+        "page identity, no blank/overlay/runtime error/horizontal overflow"
+      ],
+      "errors": [],
+      "console": [
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:4173/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        },
+        {
+          "type": "warning",
+          "text": "The resource http://127.0.0.1:4173/images/case-studies/production-dashboard.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it wasn't preloaded for nothing."
+        }
+      ],
+      "documentId": "1864aef6-568c-432a-b942-180563cfb01a",
+      "exportZip": "/home/runner/work/_temp/pg-evidence/webkit/390-page.zip",
+      "title": "Eidos Playground | Shape your next website",
+      "url": "http://127.0.0.1:4173/playground/"
+    }
+  ]
+}

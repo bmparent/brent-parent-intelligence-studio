@@ -35,9 +35,10 @@ export function useEffect(effect, dependencies) {
 `;
 const storage = `
 export const records = new Map();
-export const controls = { fail: false, delay: false, pending: [] };
-export async function loadWorkspace(id) { return structuredClone(records.get(id || 'current') || null); }
-export async function listSavedProjects() { return []; }
+export const controls = { fail: false, readFail: false, listFail: false, recordError: null, delay: false, pending: [] };
+export class WorkspaceRecordError extends Error { constructor(record) {super(record.message); this.record=record;} }
+export async function loadWorkspace(id) { if(controls.readFail)throw Error('Injected read failure'); if(controls.recordError)throw new WorkspaceRecordError(controls.recordError); return structuredClone(records.get(id || 'current') || null); }
+export async function readSavedProjects() { if(controls.listFail)throw Error('Injected list failure'); return {projects:[],recovery:[]}; }
 export async function saveWorkspace(value, stillCurrent = () => true) {
   if (controls.delay) await new Promise(resolve => controls.pending.push(resolve));
   if (!stillCurrent()) return;
@@ -47,15 +48,42 @@ export async function saveWorkspace(value, stillCurrent = () => true) {
 }
 `;
 const compiled = await build({
-  stdin: { contents: `export { useProject } from './src/playground/useProject'; export { createProject } from './src/playground/model'; export { mount, flush, dispose } from 'react'; export { records, controls } from './src/playground/storage';`, resolveDir: process.cwd() },
+  stdin: { contents: `export { useProject } from './src/playground/useProject'; export { CloudProjects as LegacyCloudProjects } from './src/playground/CloudProjectsLegacy'; export { createProject } from './src/playground/model'; export { mount, flush, dispose } from 'react'; export { records, controls } from './src/playground/storage'; export { switchAccount } from './src/lib/accountEpoch';`, resolveDir: process.cwd() },
   bundle: true, write: false, format: 'esm', platform: 'node',
   plugins: [{ name: 'document-switch-fixtures', setup(builder) {
     builder.onResolve({ filter: /^react$/ }, () => ({ path: 'hooks', namespace: 'fixture' }));
+    builder.onResolve({ filter: /^react\/jsx-runtime$/ }, () => ({ path: 'jsx', namespace: 'fixture' }));
+    builder.onResolve({ filter: /\/Purchases$/ }, () => ({ path: 'purchases', namespace: 'fixture' }));
+    builder.onResolve({ filter: /\/accountEpoch$/ }, () => ({ path: 'epoch', namespace: 'fixture' }));
     builder.onResolve({ filter: /\/storage$/ }, () => ({ path: 'storage', namespace: 'fixture' }));
-    builder.onLoad({ filter: /.*/, namespace: 'fixture' }, args => ({ contents: args.path === 'hooks' ? hooks : storage, loader: 'js' }));
+    builder.onLoad({ filter: /.*/, namespace: 'fixture' }, args => ({ contents: args.path === 'hooks' ? hooks : args.path === 'jsx' ? `export function jsx(type,props) {return {type,props};} export const jsxs=jsx; export const Fragment='fragment';` : args.path === 'purchases' ? `export function Purchases() { return null; }` : args.path === 'epoch' ? `let epoch = ''; const listeners = new Set(); export function accountEpoch() { return epoch; } export function subscribeAccountChanges(callback) { listeners.add(callback); return () => listeners.delete(callback); } export function switchAccount() { epoch = crypto.randomUUID(); listeners.forEach(callback => callback()); }` : storage, loader: 'js' }));
   } }],
 });
 let instance = 0;
+test('local legacy projects fetch account data only on explicit action and clear it on account changes', async t => {
+  const source = compiled.outputFiles[0].text + '\n// isolated cloud fixture ' + instance++;
+  const f = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+  const priorFetch = globalThis.fetch, priorLocation = globalThis.location, calls = [];
+  globalThis.location = { search: '' };
+  globalThis.fetch = async (url, options) => {
+    calls.push({url, method: options.method || 'GET'});
+    return new Response(JSON.stringify({ ownerId: 'fixture-owner', newFormatSaveEnabled: false, projects: [{id:'fixture-project', name:'Explicit account project', head:'fixture-head', updated_at:''}] }), {headers:{'content-type':'application/json'}});
+  };
+  t.after(() => { f.dispose(); globalThis.fetch = priorFetch; if (priorLocation === undefined) delete globalThis.location; else globalThis.location = priorLocation; });
+  const props = { project:f.createProject(), target:null, documentId:'local-document', guard:()=>()=>true, load:async()=>true, acknowledge:()=>{}, disabled:false };
+  const render = () => { const wrapper = f.LegacyCloudProjects(props); return wrapper.type(wrapper.props); };
+  const elements = node => !node || typeof node !== 'object' ? [] : Array.isArray(node) ? node.flatMap(elements) : [node, ...elements(node.props?.children)];
+  let tree = f.mount(render); await Promise.resolve(); tree = f.flush();
+  assert.deepEqual(calls, [], 'mounting a local project makes no account request');
+  f.switchAccount(); tree = f.flush(); assert.deepEqual(calls, [], 'session invalidation never opts into cloud access');
+  const refresh = elements(tree).find(node => node.type === 'button' && node.props.children === 'Refresh account projects');
+  assert.ok(refresh); refresh.props.onClick(); await new Promise(resolve => setImmediate(resolve)); tree = f.flush();
+  assert.deepEqual(calls, [{url:'/api/playground/projects', method:'GET'}]);
+  assert.ok(elements(tree).some(node => node.type === 'button' && node.props.children?.includes?.('Explicit account project')));
+  f.switchAccount(); tree = f.flush();
+  assert.equal(elements(tree).some(node => node.type === 'button' && node.props.children?.includes?.('Explicit account project')), false, 'the old account list is cleared');
+  assert.equal(calls.length, 1, 'clearing the old account does not fetch the next one');
+});
 async function fixture(t) {
   const source = compiled.outputFiles[0].text + '\n// isolated fixture ' + instance++;
   const api = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
@@ -162,4 +190,67 @@ test('invalid imports fail before persistence or identity changes', async t => {
   assert.equal(f.get().storageError, '');
   f.controls.fail = false;
   assert.equal(await f.get().replace(f.project('Valid retry')), true);
+});
+
+
+test('an account change invalidates cloud callbacks without discarding local edits', async t => {
+  const f = await fixture(t), before = f.get(), valid = before.guard();
+  assert.equal(valid(), true);
+  f.switchAccount();
+  assert.equal(valid(), false);
+  assert.equal(f.get().documentId, before.documentId);
+  assert.deepEqual(f.get().project, before.project);
+  assert.equal(f.get().guard()(), true);
+});
+
+test('an account change during outgoing persistence cancels a cloud replacement', async t => {
+  const f = await fixture(t), originalId = f.get().documentId;
+  f.get().edit(f.project('A-final-local-edit'));
+  f.controls.delay = true;
+  const pending = f.get().replace(f.project('B-from-earlier-account'), { id:'cloud-b', head:'head-b', owner:'earlier-owner', name:'B', saved:'' });
+  assert.equal(f.controls.pending.length, 1);
+  f.switchAccount();
+  f.controls.delay = false;
+  f.controls.pending.shift()();
+  assert.equal(await pending, false);
+  assert.equal(f.get().documentId, originalId);
+  assert.equal(f.get().project.name, 'A-final-local-edit');
+  assert.equal(f.records.get(originalId).project.name, 'A-final-local-edit');
+  assert.equal(f.get().target, null);
+  assert.equal(await f.get().replace(f.project('C-explicit-local-import')), true);
+});
+
+async function startupFixture(t, configure) {
+  const f = await import('data:text/javascript;base64,' + Buffer.from(compiled.outputFiles[0].text + '\n// startup ' + instance++).toString('base64'));
+  const previousWindow = globalThis.window;
+  globalThis.window = {addEventListener(){},removeEventListener(){}};
+  t.after(() => {f.dispose();if(previousWindow === undefined)delete globalThis.window;else globalThis.window=previousWindow;});
+  configure(f);
+  f.mount(f.useProject);
+  for(let i=0;i<8;i++)await Promise.resolve();
+  return {...f,get:()=>f.flush()};
+}
+test('a failed catalogue read does not discard a valid workspace or block saving', async t => {
+  const f = await startupFixture(t, f => {f.controls.listFail=true;f.records.set('current',{project:f.createProject(),documentId:'valid',editor:{},snapshots:[],revision:0,savedAt:''});});
+  assert.equal(f.get().hasSavedProject,true);assert.equal(f.get().documentId,'valid');assert.equal(f.get().storageError,'');assert.match(f.get().listError,/list could not/);
+  f.get().edit({...f.get().project,name:'Still editable'});assert.equal(await f.get().saveNow(),true);
+  f.controls.listFail=false;await f.get().retryStorage();assert.equal(f.get().listError,'');assert.equal(f.get().project.name,'Still editable');
+});
+test('unreadable current data is offered for recovery without claiming a write failure', async t => {
+  const raw={project:{schemaVersion:999},snapshots:['keep me']};
+  const f=await startupFixture(t,f=>{f.controls.recordError={key:'current',raw,message:'Record needs recovery'};});
+  assert.equal(f.get().ready,true);assert.equal(f.get().storageError,'');assert.deepEqual(f.get().recovery[0].raw,raw);
+  assert.equal(await f.get().startProject(f.createProject()),true);f.controls.recordError=null;
+  assert.equal(await f.get().saveNow(),true);assert.deepEqual(f.get().recovery[0].raw,raw,'saving does not dismiss unreadable data');
+});
+test('genuine read failure remains visible until successful retry and never replaces new edits', async t => {
+  const f=await startupFixture(t,f=>{f.controls.readFail=true;});assert.match(f.get().storageError,/could not be read/);
+  assert.equal(await f.get().startProject(f.createProject()),true);f.get().edit({...f.get().project,name:'New unsaved work'});
+  f.controls.fail=true;await f.get().retryStorage();assert.match(f.get().storageError,/Could not save/);assert.equal(f.get().project.name,'New unsaved work');
+  f.controls.readFail=false;f.controls.fail=false;await f.get().retryStorage();assert.equal(f.get().storageError,'');assert.equal(f.records.get('current').project.name,'New unsaved work');
+});
+test('the save indicator stays pending until the durable write resolves',async t=>{
+ const f=await fixture(t);f.get().edit(f.project('Awaiting commit'));f.controls.delay=true;
+ const pending=f.get().saveNow();assert.match(f.get().status,/^Saving/);assert.equal(f.records.get('current').project.name,'A-original');
+ f.controls.delay=false;f.controls.pending.shift()();assert.equal(await pending,true);assert.equal(f.get().status,'Saved on this device');assert.equal(f.records.get('current').project.name,'Awaiting commit');
 });

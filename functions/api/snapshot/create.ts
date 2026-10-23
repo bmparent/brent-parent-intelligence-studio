@@ -3,6 +3,7 @@ import { getSnapshotStore, isLocalDevelopmentRequest } from '../../_shared/snaps
 import { isStripeConfigured, snapshotPriceCents } from '../../_shared/snapshot/stripe'
 import type { PagesFunctionContext, SnapshotRecord } from '../../_shared/snapshot/types'
 import { validateSnapshotIntake } from '../../_shared/snapshot/validation'
+import { snapshotReady } from '../../_shared/snapshot/generation'
 
 function randomToken(byteLength: number) {
   const bytes = new Uint8Array(byteLength)
@@ -16,6 +17,7 @@ export const onRequestOptions = optionsResponse
 
 export const onRequestPost = async ({ request, env }: PagesFunctionContext) => {
   const localDevelopment = isLocalDevelopmentRequest(request)
+  if(!localDevelopment && !snapshotReady(env)) return publicFailure('Snapshot is not accepting new orders yet.',503)
   if (!localDevelopment && env.SNAPSHOT_PUBLIC_ENABLED?.trim().toLowerCase() !== 'true') {
     return publicFailure('Eidos Snapshot is not accepting public orders yet.', 503)
   }

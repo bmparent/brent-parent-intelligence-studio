@@ -1,0 +1,23 @@
+{
+  "timestampUtc": "2026-10-11T01:33:00.185Z",
+  "scope": "actual Stripe TEST expiration and signed candidate webhook ledger; no payment submitted",
+  "source": "58e4a60859c6bc590bc3c4ea5b2689256330066d",
+  "site": "https://eidosworks-templates-test-20261010.pages.dev",
+  "productId": "switchboard-developer-v1",
+  "editionId": "developer",
+  "version": "1.0.0",
+  "livemode": false,
+  "providerCheckoutStatus": "expired",
+  "providerPaymentStatus": "unpaid",
+  "orderId": "0a150434-1fb5-410e-83b5-a60c3945ba82",
+  "ledgerStatus": "pending",
+  "paymentState": "expired",
+  "downloadGranted": false,
+  "providerEventId": "evt_1UPBYRKC8pRG5Tr97L92pS4e",
+  "providerEventType": "checkout.session.expired",
+  "providerPendingWebhooksObserved": 1,
+  "candidateEventRecorded": true,
+  "checkoutSessionSha256": "da99845c771c44b618796a919ff90001da5b87c3399525af06ed918dec4cf6f6",
+  "paymentSubmitted": false,
+  "mailSent": false
+}

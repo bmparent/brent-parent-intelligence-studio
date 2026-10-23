@@ -46,6 +46,7 @@ jobs:
           PROFILE_ROUTE_BASE=http://127.0.0.1:8793 node scripts/verify-public-profile-route.mjs
       - name: Install isolated browser tools
         run: |
+          bash scripts/prepare-browser-apt.sh
           npm install --prefix "$RUNNER_TEMP/community-browser" --no-save --no-package-lock playwright@1.58.2
           # GitHub's Ubuntu runner already supplies Chrome's shared libraries.
           # Keep the exact pinned browser and assertions; avoid apt mirror stalls.

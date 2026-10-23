@@ -1,0 +1,21 @@
+{
+  "timestampUtc": "2026-10-15T18:50:46.902Z",
+  "deploymentId": "dpl_9AWWZ8Xo3bN3kjLLdvmQBXqNXJF9",
+  "url": "https://eidos-sentinel-k15xxdpx5-1brentbm-1876s-projects.vercel.app",
+  "authenticatedStatus": 200,
+  "cliExitCode": 0,
+  "flags": {
+    "communityReady": false,
+    "accountsReady": false,
+    "aiReady": false,
+    "playgroundAiReady": false,
+    "shopReady": false,
+    "localTest": false
+  },
+  "runtimeSourceRevision": "bbbfb9e77d373a29eb03e4f7836edce04bc8253b",
+  "runtimeBundleHash": "acdb2a1b505a1183e3645f3f6fbfd5127c6b7f4f6ca120195f709ff9751b313d",
+  "secretsPrinted": false,
+  "headerTransport": "stdin to native curl --header @-",
+  "providerCalls": 0,
+  "passed": true
+}

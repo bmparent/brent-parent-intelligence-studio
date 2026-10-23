@@ -1,0 +1,14 @@
+PASS canvas selection and Layers agree on stable photo ID
+PASS drag previews the named empty nested container; Escape restores exact state with no transient writes
+PASS pointercancel during actual drag leaves document intact
+PASS lostpointercapture during actual drag leaves document intact
+PASS actual canvas drop moves image across containers into the empty second column, preserving IDs
+PASS canvas cross-container drop: one Undo and Redo preserve the complete document
+PASS actual corner resize changes frame width/height and retains locked aspect ratio
+PASS frame resize: one Undo and Redo preserve the complete document
+PASS actual crop drag changes focal point while preserving frame geometry
+PASS crop drag: one Undo and Redo preserve the complete document
+PASS keyboard activated move and keyboard numeric resize provide alternatives to dragging
+PASS mobile explicitly inherits, overrides locally and resets without changing desktop geometry
+PASS Layers final-position move into empty container: one Undo and Redo preserve the complete document
+PASS canvas and Layers produce the same nested destination semantics

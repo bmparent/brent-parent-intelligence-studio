@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-11T02:52:15.222933+00:00",
+  "status": "passed",
+  "scope": "New immutable documentation patch versions; Nightjar source-only poster-layer requirement completion. All16 previously frozen ZIP hashes retained.",
+  "priorSourceHead": "85ced14b954194e013a47b50a511778f4daf7bfe",
+  "oldArchiveCount": 16,
+  "totalArchiveCount": 24,
+  "priorArchivesUnchanged": true,
+  "packages": [
+    {
+      "editionId": "switchboard-developer-v1",
+      "fromVersion": "1.0.1",
+      "version": "1.0.2",
+      "packagePath": "artifacts/templates/packages/switchboard-developer-v1.0.2.zip",
+      "sha256": "fdedca1246365fca69a0d8655c514c5c1dd5b7496dbf7e6f452d6a4ee4486f60",
+      "bytes": 28547,
+      "changedMembers": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json"
+      ]
+    },
+    {
+      "editionId": "switchboard-wordpress-v1",
+      "fromVersion": "1.0.1",
+      "version": "1.0.2",
+      "packagePath": "artifacts/templates/packages/switchboard-wordpress-v1.0.2.zip",
+      "sha256": "f74b4d15813df931620dba299a135799f49db552beb589e5a09eb9286b8a2f93",
+      "bytes": 30418,
+      "changedMembers": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "README.md",
+        "functions.php",
+        "style.css"
+      ]
+    },
+    {
+      "editionId": "tideglass-developer-v1",
+      "fromVersion": "1.0.0",
+      "version": "1.0.1",
+      "packagePath": "artifacts/templates/packages/tideglass-developer-v1.0.1.zip",
+      "sha256": "bb8e2b2527227b8a32275e962eb1879bb97c0ea6f05d84e5fc57adbb0d6df638",
+      "bytes": 28338,
+      "changedMembers": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json"
+      ]
+    },
+    {
+      "editionId": "tideglass-wordpress-v1",
+      "fromVersion": "1.0.1",
+      "version": "1.0.2",
+      "packagePath": "artifacts/templates/packages/tideglass-wordpress-v1.0.2.zip",
+      "sha256": "7cfcf61b4e52f5a8a1621a9cd49d336f44994651d8c8bdf4745632e56663b21d",
+      "bytes": 31040,
+      "changedMembers": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "README.md",
+        "functions.php",
+        "style.css"
+      ]
+    },
+    {
+      "editionId": "matter-developer-v1",
+      "fromVersion": "1.0.0",
+      "version": "1.0.1",
+      "packagePath": "artifacts/templates/packages/matter-developer-v1.0.1.zip",
+      "sha256": "e078512c70e741aa37cdbd4ecff3f37f8ff6e560e8ae8f4470fab38287e87779",
+      "bytes": 29031,
+      "changedMembers": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json"
+      ]
+    },
+    {
+      "editionId": "matter-wordpress-v1",
+      "fromVersion": "1.0.1",
+      "version": "1.0.2",
+      "packagePath": "artifacts/templates/packages/matter-wordpress-v1.0.2.zip",
+      "sha256": "21d930dafce8aa475e22147920fc7e2df83aa51f47a2f46028d52507ba85f87b",
+      "bytes": 31762,
+      "changedMembers": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "README.md",
+        "functions.php",
+        "style.css"
+      ]
+    },
+    {
+      "editionId": "nightjar-developer-v1",
+      "fromVersion": "1.0.3",
+      "version": "1.0.4",
+      "packagePath": "artifacts/templates/packages/nightjar-developer-v1.0.4.zip",
+      "sha256": "421ce16a8c023c113b0481f46ecc5d59cee937a5c9fe9033a30aed282d9bbaa1",
+      "bytes": 31190,
+      "changedMembers": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "index.html",
+        "program.html",
+        "script.js",
+        "styles.css"
+      ]
+    },
+    {
+      "editionId": "nightjar-wordpress-v1",
+      "fromVersion": "1.0.1",
+      "version": "1.0.2",
+      "packagePath": "artifacts/templates/packages/nightjar-wordpress-v1.0.2.zip",
+      "sha256": "d236a691b9f1ecf87a32ac4b8df31900beddc78ed9351a45192447c37bda8f96",
+      "bytes": 30759,
+      "changedMembers": [
+        "INSTALL.md",
+        "PACKAGE_MANIFEST.json",
+        "README.md",
+        "functions.php",
+        "style.css"
+      ]
+    }
+  ],
+  "focusedBrowser": {
+    "status": "passed",
+    "checks": 26,
+    "engines": [
+      "chromium"
+    ],
+    "sourceOnly": true,
+    "noJavaScriptFivePagesEach": true,
+    "posterKeyboardTouchDayNightReducedMotion": true
+  },
+  "sourceInstall": "passed4/4 exact new ZIPs; configuration fields, CTA and email-draft path",
+  "availability": "unavailable"
+}

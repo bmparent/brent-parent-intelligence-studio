@@ -1,0 +1,17 @@
+{
+  "kind": "local render fixture, not hosted integration",
+  "results": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "pageErrors": [],
+      "overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "pageErrors": [],
+      "overflow": false
+    }
+  ]
+}

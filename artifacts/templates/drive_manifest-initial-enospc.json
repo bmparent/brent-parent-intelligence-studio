@@ -1,0 +1,201 @@
+{
+  "timestamp_utc": "2026-10-11T01:00:19.185Z",
+  "drive_copy_attempted": true,
+  "drive_copy_success": false,
+  "drive_root": "G:\\My Drive",
+  "drive_run_dir": "G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292",
+  "reason": "Some mounted destination copies failed; original repo artifacts remain authoritative.",
+  "files_considered": [
+    {
+      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "bytes": 26816,
+      "sha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a"
+    },
+    {
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "bytes": 29391,
+      "sha256": "f816acf68aee776ea32b5fa1fd1acece21bbbc9435c8087134fa7adde8099846"
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "bytes": 26836,
+      "sha256": "34130b106526fa76a380efcdb2e2a1126bf3e05524c036246a227ce5d85f16a7"
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "bytes": 30016,
+      "sha256": "09ec833380b3e1238888ff54442e34de4b882649bbddc7cca4a41625dbe153a5"
+    },
+    {
+      "path": "artifacts/templates/packages/matter-developer-v1.zip",
+      "bytes": 27533,
+      "sha256": "f5083b4ffad9d99d9ffaf04f1d887f9feada6a4f4732f38aca19432b7ac515d6"
+    },
+    {
+      "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "bytes": 30739,
+      "sha256": "bd0bec696ce1980ed1e08d624fd5ed1179c8d9e32faa07cc5eadf8a4e90c2bc8"
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
+      "bytes": 26765,
+      "sha256": "d27d240bdab367b9b334ac574f9e68e75132701c93bc19422a200f77af53a1f8"
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "bytes": 29728,
+      "sha256": "30a53df74f2a939015fae48ef6ac12d7ee2328a57e2074fd57ee0348150bf36d"
+    },
+    {
+      "path": "products/templates/release-manifest.json",
+      "bytes": 43118,
+      "sha256": "3c1c04518253f2c357a48890ece219d58d1be10a5c2c4d4407cd8c0155a3cf12"
+    },
+    {
+      "path": "artifacts/templates/package-report.json",
+      "bytes": 3071,
+      "sha256": "efedfd1a7b196757a23c212e36a4fc53139ae5717d0d161ff109aefe8cf8e6d9"
+    },
+    {
+      "path": "artifacts/templates/package-tests.json",
+      "bytes": 86501,
+      "sha256": "be344012ae3a091491693e97b74669ec95ec27fc58eaa3bced7d6b5b8bb0394f"
+    },
+    {
+      "path": "artifacts/templates/package-tests.md",
+      "bytes": 484,
+      "sha256": "d40b87277dbc13569d0546a85698afe43f755eaaa5303447c26e90eea1ce1f35"
+    },
+    {
+      "path": "artifacts/templates/source-install-receipt.json",
+      "bytes": 1811,
+      "sha256": "780e36eafb8d4120b39532d1809449b0aef5c426e1f67a7ffefd24eb2807240a"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.json",
+      "bytes": 18223,
+      "sha256": "d8e334689236a77d68c68af24975b171c31be03330f9417c840c4d3b611f8cc4"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.md",
+      "bytes": 2481,
+      "sha256": "ba8d71ddcfb250087bedf959df358290ec6b26653ea75bd919aea970cfba597b"
+    },
+    {
+      "path": "docs/paid-templates/platform-install-evidence.json",
+      "bytes": 5638,
+      "sha256": "5c62814fea971595c2596f467ac3de6d69c242cb2e5f3912db62e3cba3183e83"
+    },
+    {
+      "path": "docs/paid-templates/product-operations.md",
+      "bytes": 16992,
+      "sha256": "6c63dd4569fd893bae2f3e28289b052ebb4aaeee281ad25a12614f396d47b651"
+    },
+    {
+      "path": "docs/paid-templates/ACCEPTANCE.md",
+      "bytes": 8583,
+      "sha256": "b875a74125abec6050b9e995046d562a30357bf7d5c4dd9031237c0d7f34a916"
+    },
+    {
+      "path": "docs/paid-templates/security-review.md",
+      "bytes": 2699,
+      "sha256": "6344e65f2a5a1a7fd05758084960ea2fdaff4d60c51a9d423507a9197048dcf7"
+    }
+  ],
+  "files_copied": [],
+  "files_skipped": [
+    {
+      "path": "artifacts/templates/real-photo-content-receipt.json",
+      "reason": "Optional proof document not present"
+    },
+    {
+      "path": "artifacts/templates/packages/switchboard-developer-v1.zip",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\packages\\switchboard-developer-v1.zip' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\packages\\switchboard-developer-v1.zip'"
+    },
+    {
+      "path": "artifacts/templates/packages/switchboard-wordpress-v1.zip",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\packages\\switchboard-wordpress-v1.zip' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\packages\\switchboard-wordpress-v1.zip'"
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-developer-v1.zip",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\packages\\tideglass-developer-v1.zip' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\packages\\tideglass-developer-v1.zip'"
+    },
+    {
+      "path": "artifacts/templates/packages/tideglass-wordpress-v1.zip",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\packages\\tideglass-wordpress-v1.zip' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\packages\\tideglass-wordpress-v1.zip'"
+    },
+    {
+      "path": "artifacts/templates/packages/matter-developer-v1.zip",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\packages\\matter-developer-v1.zip' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\packages\\matter-developer-v1.zip'"
+    },
+    {
+      "path": "artifacts/templates/packages/matter-wordpress-v1.zip",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\packages\\matter-wordpress-v1.zip' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\packages\\matter-wordpress-v1.zip'"
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-developer-v1.zip",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\packages\\nightjar-developer-v1.zip' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\packages\\nightjar-developer-v1.zip'"
+    },
+    {
+      "path": "artifacts/templates/packages/nightjar-wordpress-v1.zip",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\packages\\nightjar-wordpress-v1.zip' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\packages\\nightjar-wordpress-v1.zip'"
+    },
+    {
+      "path": "products/templates/release-manifest.json",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\products\\templates\\release-manifest.json' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\products\\templates\\release-manifest.json'"
+    },
+    {
+      "path": "artifacts/templates/package-report.json",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\package-report.json' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\package-report.json'"
+    },
+    {
+      "path": "artifacts/templates/package-tests.json",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\package-tests.json' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\package-tests.json'"
+    },
+    {
+      "path": "artifacts/templates/package-tests.md",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\package-tests.md' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\package-tests.md'"
+    },
+    {
+      "path": "artifacts/templates/source-install-receipt.json",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\source-install-receipt.json' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\source-install-receipt.json'"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.json",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\varied-content-performance.json' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\varied-content-performance.json'"
+    },
+    {
+      "path": "artifacts/templates/varied-content-performance.md",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\artifacts\\templates\\varied-content-performance.md' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\artifacts\\templates\\varied-content-performance.md'"
+    },
+    {
+      "path": "docs/paid-templates/platform-install-evidence.json",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\docs\\paid-templates\\platform-install-evidence.json' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\docs\\paid-templates\\platform-install-evidence.json'"
+    },
+    {
+      "path": "docs/paid-templates/product-operations.md",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\docs\\paid-templates\\product-operations.md' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\docs\\paid-templates\\product-operations.md'"
+    },
+    {
+      "path": "docs/paid-templates/ACCEPTANCE.md",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\docs\\paid-templates\\ACCEPTANCE.md' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\docs\\paid-templates\\ACCEPTANCE.md'"
+    },
+    {
+      "path": "docs/paid-templates/security-review.md",
+      "reason": "ENOSPC: no space left on device, copyfile 'E:\\CodexArtifacts\\paid-templates-20261010\\site-candidate\\docs\\paid-templates\\security-review.md' -> 'G:\\My Drive\\Eidos_Works_Paid_Templates\\2026-10-11\\2026-10-10.1-f40dc72a9292\\docs\\paid-templates\\security-review.md'"
+    }
+  ],
+  "cloud_sync_confirmed": false,
+  "cloud_sync_note": "A verified mounted-folder copy does not establish remote cloud synchronization.",
+  "destinations_checked": [
+    {
+      "variable": "EIDOS_PROOF_DRIVE_DIR",
+      "root": "G:\\My Drive",
+      "payload_bytes": 417425,
+      "free_bytes": 67903488,
+      "reserve_bytes": 67108864,
+      "required_free_bytes": 67526289,
+      "sufficient": true
+    }
+  ]
+}

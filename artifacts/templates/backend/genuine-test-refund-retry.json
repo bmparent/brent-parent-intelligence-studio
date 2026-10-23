@@ -1,0 +1,81 @@
+{
+  "timestampUtc": "2026-10-11T02:50:39.431Z",
+  "scope": "Single genuine provider retry of the original known refunded TEST event to the existing isolated candidate webhook; no synthetic or resigned event",
+  "sourceRevision": "9bb328b5b90b66fdbad4c3a70a7c9997accfd06f-bundle-75c0652872c9f8e9",
+  "cli": {
+    "version": "v1.53.1",
+    "officialRelease": "https://github.com/stripe/stripe-cli/releases/tag/v1.53.1",
+    "archiveUrl": "https://github.com/stripe/stripe-cli/releases/download/v1.53.1/stripe_1.53.1_windows_x86_64.zip",
+    "archiveSha256": "fa159ae2774d62dcfd0db8f7f8675e3274223ae3e92fae4d182f4c9cfb58fa23",
+    "publishedWindowsChecksumVerified": true,
+    "githubAssetDigestVerified": true,
+    "isolatedExternalInstall": "E:/CodexArtifacts/paid-templates-20261010/tools/stripe-1.53.1"
+  },
+  "eligibility": {
+    "eventId": "evt_3UPBqYKC8pRG5Tr912bS756V",
+    "type": "charge.refunded",
+    "livemode": false,
+    "eventCreatedUtc": "2026-10-11T01:49:30.000Z",
+    "ageSecondsAtCheck": 3525,
+    "providerLimitDays": 30,
+    "endpointId": "we_1UPAlBKC8pRG5Tr9zQ7h8O5A",
+    "endpointUrl": "https://eidosworks-templates-test-20261010.pages.dev/api/shop/webhook",
+    "endpointEnabled": true,
+    "endpointLivemode": false,
+    "apiVersion": "2025-06-30.basil"
+  },
+  "retry": {
+    "startedUtc": "2026-10-11T02:49:19.209Z",
+    "attemptCount": 1,
+    "command": "stripe events resend <known_TEST_refund_event> --webhook-endpoint <existing_candidate_endpoint> --confirm",
+    "credentialTransport": "existing authorized sk_test binding passed only in child STRIPE_API_KEY environment; no credential argument/output",
+    "exitCode": 0,
+    "returnedSameEventId": true,
+    "returnedType": "charge.refunded",
+    "returnedLivemode": false,
+    "pendingWebhooksBefore": 2,
+    "pendingWebhooksAfter": 3,
+    "providerRetryAcknowledged": true
+  },
+  "before": {
+    "status": "refunded",
+    "fulfillmentStatus": "revoked",
+    "version": "1.0.0",
+    "downloadTokenGranted": false
+  },
+  "after": {
+    "http": 200,
+    "status": "refunded",
+    "fulfillmentStatus": "revoked",
+    "version": "1.0.0",
+    "orderId": "8852085b-9a42-45a6-8a30-123b774d772f",
+    "downloadTokenGranted": false,
+    "originalDownloadHttp": 403,
+    "mailStatus": "failed",
+    "durableValidationDbConfirmed": true,
+    "paymentIntentMatchesOriginalProviderEvent": true,
+    "paidAtPreserved": true,
+    "archiveKey": "templates/switchboard/1.0.0/developer.zip",
+    "archiveSha256": "e56450de9adbac6320d9e2315601e1804d281fcf1b87dc0f95cef5ef8ae45e2a"
+  },
+  "limits": [
+    "Cause and timing of the already-revoked side state are unknown; no earlier provider-delivery record was available in this audit.",
+    "Side fulfillment was already revoked at the fresh pre-retry observation; this retry cannot be credited with its initial reconciliation.",
+    "CLI acknowledged a genuine retry of the unchanged original provider event. No endpoint-specific delivery response was returned; candidate runtime log tool returned no records, so no distinct target HTTP-success claim is made.",
+    "The original retained ten-minute token is now expired; original actual refund receipt separately proves403 while that token was unexpired.",
+    "Receipt/recovery inbox delivery remains blocked by missing candidate RESEND_API_KEY."
+  ],
+  "safety": {
+    "newTransaction": false,
+    "newWebhook": false,
+    "existingWebhookChanged": false,
+    "productionChanged": false,
+    "liveRequest": false,
+    "forgedOrResignedEvent": false,
+    "secretsPrinted": false
+  },
+  "sources": [
+    "https://docs.stripe.com/cli/events/resend",
+    "https://github.com/stripe/stripe-cli/releases/tag/v1.53.1"
+  ]
+}

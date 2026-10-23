@@ -1,6 +1,7 @@
 import {applyBlockOperation, type BlockOperation} from './authoring';
 import {flattenNodes} from './authoringSchema';
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { SandboxFrame } from './SandboxFrame';
 import type { Project } from "./model";
 import { pageDocument, pageMarkup, runtimeConfig, tokensCss, renderedStyles } from "./renderer";
 import { applyCompositionOperation, type CompositionOperation } from './composition';
@@ -51,8 +52,9 @@ export function Preview({
   const revision = useRef(0);
   const sent = useRef<{ stamp: string; valid: () => boolean; consumed: boolean } | null>(null);
   const [channel] = useState(() => crypto.randomUUID());
-  const [source] = useState(() => pageDocument(project, { editing, selected, bridge: true, channel }));
-  const [loaded, setLoaded] = useState(false);
+  // Large embedded images are serialized only when the frame opens or retries.
+  const source = useCallback(() => pageDocument(project, { editing, bridge: true, channel }), [project, editing, channel]);
+  const [loaded, setLoaded] = useState(0);
   useLayoutEffect(() => {
     revision.current++;
     sent.current = null;
@@ -62,7 +64,7 @@ export function Preview({
       if (event.source !== frame.current?.contentWindow || !event.data || typeof event.data !== 'object') return;
       const data = event.data;
       if (data.channel !== channel) return;
-      if (data.type === "playground-ready") setLoaded(true);
+      if (data.type === "playground-ready") setLoaded(value => value + 1);
       if (data.type === "playground-select" && project.sections.some(s => s.id === data.id)) onSelect(data.id);
       if (data.type === "playground-link" && typeof data.href === "string") onLink(data.href);
       if (data.type === 'playground-block' && editing && edit && guard && project.schemaVersion >= 4) {
@@ -153,6 +155,6 @@ export function Preview({
   },[loaded,selectedNode,project,channel]);
   useEffect(()=>{if(loaded)frame.current?.contentWindow?.postMessage({type:'playground-cancel',channel,scale},'*');},[mobile,scale,channel,loaded]);
   return <div ref={viewport} style={{position:'relative',width:'100%',height:'100%',overflow:'hidden'}} data-preview-width={logicalWidth} data-preview-scale={scale}>
-    <iframe ref={frame} onLoad={() => setLoaded(true)} title="Your page preview" className={mobile ? "pg-preview mobile" : "pg-preview"} style={{position:'absolute',left:Math.max(0,(bounds.width-logicalWidth*scale)/2),top:0,width:logicalWidth,height:bounds.height?bounds.height/scale:'100%',maxWidth:'none',transform:`scale(${scale})`,transformOrigin:'top left'}} sandbox="allow-scripts" srcDoc={source} />
+    <SandboxFrame ref={frame} channel={channel} title="Your page preview" className={mobile ? "pg-preview mobile" : "pg-preview"} style={{position:'absolute',left:Math.max(0,(bounds.width-logicalWidth*scale)/2),top:0,width:logicalWidth,height:bounds.height?bounds.height/scale:'100%',maxWidth:'none',transform:`scale(${scale})`,transformOrigin:'top left'}} markup={source} />
   </div>;
 }

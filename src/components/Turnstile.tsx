@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePublicConfig } from '../lib/platform';
 declare global {
   interface Window {
@@ -43,6 +43,8 @@ export function Turnstile({
   const config = usePublicConfig();
   const ref = useRef<HTMLDivElement>(null);
   const onTokenRef = useRef(onToken);
+  const [issue, setIssue] = useState('');
+  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     onTokenRef.current = onToken;
   }, [onToken]);
@@ -58,16 +60,19 @@ export function Turnstile({
           action,
           theme: 'light',
           size: 'flexible',
-          callback: (token: string) => onTokenRef.current(token),
-          'expired-callback': () => onTokenRef.current(''),
-          'error-callback': () => onTokenRef.current(''),
+          callback: (token: string) => { if (active) { setIssue(''); onTokenRef.current(token); } },
+          'expired-callback': () => { if (active) { onTokenRef.current(''); setIssue('Verification expired. Retry verification to continue.'); } },
+          'error-callback': () => { if (active) { onTokenRef.current(''); setIssue('Verification could not finish. Retry verification or try again later.'); } },
         });
       })
-      .catch(() => onTokenRef.current(''));
+      .catch(() => { if (active) { onTokenRef.current(''); setIssue('Verification could not load. Retry verification or try again later.'); } });
     return () => {
       active = false;
       if (widget) window.turnstile?.remove(widget);
     };
-  }, [config, action, resetKey]);
-  return <div ref={ref} className="ew-turnstile" />;
+  }, [config, action, resetKey, attempt]);
+  return <><div ref={ref} className="ew-turnstile" />{issue && <>
+    <p role="status">{issue}</p>
+    <button type="button" className="ew-button ew-button--secondary" onClick={() => { setIssue(''); onTokenRef.current(''); setAttempt(n => n + 1); }}>Retry verification</button>
+  </>}</>;
 }

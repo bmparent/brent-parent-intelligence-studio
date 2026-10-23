@@ -6,12 +6,13 @@ interface RelayContext {
   next(): Promise<Response>;
 }
 const routes = new Set([
-  '/api/assistant', '/api/public-config',
-  '/api/playground/projects', '/api/playground/checkout', '/api/playground/purchases', '/api/playground/webhook',
-  '/api/members/auth', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
+  '/api/assistant', '/api/public-config', '/api/playground/delivery', '/api/shop/catalog', '/api/shop/recover', '/api/shop/redeem',
+  '/api/operations/readiness', '/api/operations/audit',
+  '/api/playground/ai', '/api/playground/projects', '/api/playground/checkout', '/api/playground/purchases', '/api/playground/webhook',
+  '/api/members/auth', '/api/members/credentials', '/api/members/google', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
   '/api/community/moderate', '/api/community/maintenance',
-  '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook',
+  '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook', '/api/shop/purchases',
   '/community/feed', '/community/sitemap.xml',
 ]);
 
@@ -19,6 +20,17 @@ const routes = new Set([
 export async function onRequest({ request, env, next }: RelayContext) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, '');
+  // Identity acceptance uses the single configured validation origin. Pages
+  // deployment/branch aliases are not account or OAuth origins; move the page
+  // before it can issue requests or collect credentials on an untrusted alias.
+  if (['GET', 'HEAD'].includes(request.method) &&
+    /^https:\/\/[a-z0-9-]+\.eidosworks-test-20260923\.pages\.dev$/.test(url.origin) &&
+    (path === '/account' || path.startsWith('/account/') || path === '/playground')) {
+    const canonical = new URL(url.pathname + url.search, 'https://eidosworks-test-20260923.pages.dev');
+    return new Response(null, { status: 307, headers: {
+      location: canonical.href, 'cache-control': 'no-store', 'referrer-policy': 'no-referrer',
+    } });
+  }
   if (!routes.has(path) && !/^\/community\/thread\/[a-zA-Z0-9-]+$/.test(path)) return next();
   if (!env.EIDOS_PLATFORM_URL) return next();
   try {
@@ -37,29 +49,42 @@ export async function onRequest({ request, env, next }: RelayContext) {
       const value = request.headers.get(name);
       if (value) headers.set(name, value);
     }
-    const session = (request.headers.get('cookie') || '').split(';').map(s=>s.trim()).find(s=>/^__Host-eidos_session=[a-f0-9]{64}$/.test(s));
-    if (session) headers.set('cookie',session);
+    if (path.startsWith('/api/operations/') || path === '/api/community/moderate' || path === '/api/community/maintenance') {
+      const assertion = request.headers.get('cf-access-jwt-assertion');
+      if (assertion) headers.set('cf-access-jwt-assertion', assertion);
+    }
+    const cookies = (request.headers.get('cookie') || '').split(';').map(s=>s.trim()).filter(s=>/^__Host-eidos_(session|oauth|onboard)=[a-f0-9]{64}$/.test(s));
+    if (cookies.length) headers.set('cookie', cookies.join('; '));
     headers.set('x-eidos-platform-token', env.EIDOS_PLATFORM_TOKEN);
     // Optional project-scoped Vercel automation credential, configured only on Pages previews.
     if (env.EIDOS_PLATFORM_PREVIEW_BYPASS) headers.set('x-vercel-protection-bypass', env.EIDOS_PLATFORM_PREVIEW_BYPASS);
     headers.set('x-eidos-site-origin', url.origin);
     headers.set('x-eidos-client-ip', request.headers.get('CF-Connecting-IP') || 'unknown');
     const payload = ['GET', 'HEAD'].includes(request.method) ? undefined :
-      await readText(request, path === '/api/playground/projects' ? 2_020_000 : ['/api/shop/webhook','/api/playground/webhook'].includes(path) ? 64000 : 12000);
+      await readText(request, path === '/api/playground/projects' ? 2_020_000 : path === '/api/playground/delivery' ? 1_520_000 : path === '/api/playground/ai' ? 110000 : ['/api/shop/webhook','/api/playground/webhook'].includes(path) ? 64000 : 12000);
     const response = await fetch(target, {
       method: request.method, headers, body: payload,
-      redirect: 'manual', signal: AbortSignal.timeout(24000),
+      redirect: 'manual', signal: AbortSignal.timeout(path === '/api/playground/ai' ? 105000 : 24000),
     });
     // Workers supports manual/follow only. Reject redirects before returning any
     // Location header or forwarding credentials to a second host.
-    if (response.status >= 300 && response.status < 400) {
+    const oauthRedirect = path === '/api/members/google' && request.method === 'GET' && response.status === 303 &&
+      /^\/account\?oauth=(success|choose-username|link-required|signup-required|collision|error)$/.test((response.headers.get('location') || '').replace(url.origin, '')) &&
+      (response.headers.get('location') || '').startsWith(url.origin + '/account?');
+    if (response.status >= 300 && response.status < 400 && !oauthRedirect) {
       await response.body?.cancel();
       throw new HttpError(503, 'The studio connection is temporarily unavailable.');
     }
     const output = new Headers(response.headers);
-    const setCookie = output.get('set-cookie');
+    const setCookies = output.getSetCookie();
     output.delete('set-cookie');
-    if (['/api/members/auth','/api/members/account'].includes(path) && setCookie && /^__Host-eidos_session=(?:[a-f0-9]{64})?; Path=\/; HttpOnly; SameSite=Lax; Max-Age=(?:0|2592000); Secure$/.test(setCookie)) output.set('set-cookie',setCookie);
+    if (['/api/members/auth','/api/members/credentials','/api/members/google','/api/members/account'].includes(path)) {
+      for (const cookie of setCookies) {
+        const session = /^__Host-eidos_session=(?:[a-f0-9]{64})?; Path=\/; HttpOnly; SameSite=Lax; Max-Age=(?:0|2592000); Secure$/.test(cookie);
+        const flow = path === '/api/members/google' && /^__Host-eidos_(?:oauth|onboard)=(?:[a-f0-9]{64})?; Path=\/; HttpOnly; SameSite=Lax; Max-Age=(?:0|600); Secure$/.test(cookie);
+        if (session || flow) output.append('set-cookie', cookie);
+      }
+    }
     output.set('cache-control', 'no-store');
     output.set('x-content-type-options', 'nosniff');
     return new Response(response.body, { status: response.status, headers: output });

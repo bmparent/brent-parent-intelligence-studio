@@ -1,0 +1,31 @@
+{
+  "timestampUtc": "2026-10-11T02:10:00.007Z",
+  "sha": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6",
+  "bundleHash": "060fa5b52b945059d43362bc6c4a0f7c7b0c0fdd530f63bfb107bbacc41d6832",
+  "sourceRevision": "823b61bb9e7ee74aa89b0a5b2fd5e93e4a9c19e6-bundle-060fa5b52b945059",
+  "manifestFiles": 134,
+  "trackedRuntimeFiles": 119,
+  "trackedRuntimeMatchesHead": true,
+  "comparison": "Every uploaded tracked file was SHA256/size checked against the frozen bundle manifest, then git hash-object --path --stdin applied repository clean filters and its blob ID was compared with git ls-tree HEAD. CRLF normalization follows repository Git rules.",
+  "privateArchiveFiles": 15,
+  "privateArchives": "Ignored paid ZIPs are intentionally outside Git; all15 were hash/size checked by import and deployment manifest, including retained versions.",
+  "remainingDirtyPaths": [
+    {
+      "status": " M",
+      "path": "artifacts/paid-templates-20261010/acceptance-status.json",
+      "category": "evidence-only"
+    },
+    {
+      "status": " M",
+      "path": "artifacts/paid-templates-20261010/backend-source-preview.json",
+      "category": "evidence-only"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/paid-templates-20261010/actual-paid-ledger.json",
+      "category": "evidence-only"
+    }
+  ],
+  "dirtyFlagMeaning": "Preview helper records whole-worktree Git status; proof artifact changes and an untracked sanitized ledger receipt set dirty:true. No bundled tracked runtime/source file differs from committed823b.",
+  "noRuntimeDirtyPaths": true
+}

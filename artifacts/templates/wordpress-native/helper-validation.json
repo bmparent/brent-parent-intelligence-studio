@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "python_ast_files": 8,
+  "php_syntax_files": 4,
+  "actual_generated_credential_scan_files": 43,
+  "actual_generated_credentials_found": 0,
+  "runtime_stop_exercised": true,
+  "managed_start_branch_exercised": false,
+  "native_full_runtime_receipt": "../wordpress-install-external/native-php-receipt.json"
+}

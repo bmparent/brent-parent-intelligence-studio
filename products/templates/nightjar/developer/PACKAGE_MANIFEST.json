@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "editionId": "nightjar-developer-v1",
+  "product": "nightjar",
+  "version": "1.0.5",
+  "catalogVersion": "2026-10-10.1",
+  "availability": "unavailable",
+  "status": "candidate",
+  "distribution": "private-fulfillment-package",
+  "files": [
+    {
+      "path": "ASSETS.md",
+      "bytes": 726,
+      "sha256": "7e3f2b966702b1316085bf3d0266cd634474fb2005c9b3e85aa6bd7c63cf403c"
+    },
+    {
+      "path": "INSTALL.md",
+      "bytes": 10342,
+      "sha256": "c850f7f45230471726cd99ecd1997e59d58905d8d307bb918cadd86ccf8e8e67"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 1553,
+      "sha256": "b87f104993e56a56d36873daf621edb47bdb3c4bd4e4042307146f38ef0a17fb"
+    },
+    {
+      "path": "README.md",
+      "bytes": 464,
+      "sha256": "3c7c5856c0eb433c77be6d858d38a29065f2a0d1f0a7458b44672eb2c1f0ff65"
+    },
+    {
+      "path": "SUPPORT.md",
+      "bytes": 1432,
+      "sha256": "96dd512b35ad43e7161ed43fcb889168b670c624c91f0ebf04fb8292103bd14d"
+    },
+    {
+      "path": "about.html",
+      "bytes": 5158,
+      "sha256": "5a87ea5498a0a3e61623c989ee6ff6913bfcbc09473ffade7b582840504ae32a"
+    },
+    {
+      "path": "assets/poster.svg",
+      "bytes": 1078,
+      "sha256": "f97123c0ea0fe2b06550f3ddddd863638c8b5baefd03b8e877af6469df970118"
+    },
+    {
+      "path": "contact.html",
+      "bytes": 6072,
+      "sha256": "af8addbfed39a2cabb389ee41d4f1c1ec7880cf1e4a4c86557dd7827afe024b3"
+    },
+    {
+      "path": "event.html",
+      "bytes": 5402,
+      "sha256": "e86e78342b1326c62a4b56c11fded5f855219e45c28ea5a7909b57f634a27f3f"
+    },
+    {
+      "path": "index.html",
+      "bytes": 9878,
+      "sha256": "1979277fbc06cc2c93c90bed472d4d0a5a61504b0b0e70e4169c261f274e54cc"
+    },
+    {
+      "path": "legal.html",
+      "bytes": 4715,
+      "sha256": "19306b9a9a57b5ee1a736d6ffd0a9b13fdf7983cfe395b2abdd519ed8f63b536"
+    },
+    {
+      "path": "program.html",
+      "bytes": 9410,
+      "sha256": "f03269f5cb9c5aa88775fce3544807c5c609ab877670b5d2f0e53aca77ea7459"
+    },
+    {
+      "path": "script.js",
+      "bytes": 8924,
+      "sha256": "6057e5d9d33c5ba12b639b3820f520b1197ad0342d78a6fc8ccc5fcb0fa3d7ed"
+    },
+    {
+      "path": "site-config.js",
+      "bytes": 830,
+      "sha256": "29525bb0d638313d475eedddfec6c7a6372f364cba855c05dc616cd63583cdea"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 12325,
+      "sha256": "ce6a13d209ad6e2ebac71aec129b451f5c81a5734fe04081ae39c251518fd243"
+    }
+  ],
+  "license": "Eidos Works Commercial Template License 1.0",
+  "integrations": "No live form server, booking engine, payment processing, ticket inventory, analytics, or proprietary Eidos service included."
+}

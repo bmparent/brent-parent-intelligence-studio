@@ -1,0 +1,120 @@
+PASS chromium/1440 collapsed Eidos performs no AI account/quote/provider request
+PASS chromium/1440 unavailable account/provider preview remains honestly gated with manual project intact
+PASS chromium/1440 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+PASS chromium/1440 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+PASS chromium/1440 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+PASS chromium/1440 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+PASS chromium/1440 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+PASS chromium/1440 usable generation charges actual usage even when discarded and leaves manual project unchanged
+PASS chromium/1440 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+PASS chromium/1440 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+PASS chromium/1440 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+PASS chromium/1440 selection and Brand changes retain the receipt but block stale confirmation
+PASS chromium/1440 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+PASS chromium/1440 reload/Continue restores pending action status without resubmission or applying it to another revision
+PASS chromium/1440 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+PASS chromium/1440 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+PASS chromium/1440 account changes clear the previous owner receipt and proposal without replacing local manual work
+PASS chromium/1440 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+PASS chromium/1440 a malformed monetary receipt cannot create a confirmation control or provider execution
+PASS chromium/1440 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+PASS chromium/390 collapsed Eidos performs no AI account/quote/provider request
+PASS chromium/390 unavailable account/provider preview remains honestly gated with manual project intact
+PASS chromium/390 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+PASS chromium/390 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+PASS chromium/390 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+PASS chromium/390 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+PASS chromium/390 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+PASS chromium/390 usable generation charges actual usage even when discarded and leaves manual project unchanged
+PASS chromium/390 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+PASS chromium/390 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+PASS chromium/390 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+PASS chromium/390 selection and Brand changes retain the receipt but block stale confirmation
+PASS chromium/390 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+PASS chromium/390 reload/Continue restores pending action status without resubmission or applying it to another revision
+PASS chromium/390 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+PASS chromium/390 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+PASS chromium/390 account changes clear the previous owner receipt and proposal without replacing local manual work
+PASS chromium/390 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+PASS chromium/390 a malformed monetary receipt cannot create a confirmation control or provider execution
+PASS chromium/390 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+PASS firefox/1440 collapsed Eidos performs no AI account/quote/provider request
+PASS firefox/1440 unavailable account/provider preview remains honestly gated with manual project intact
+PASS firefox/1440 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+PASS firefox/1440 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+PASS firefox/1440 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+PASS firefox/1440 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+PASS firefox/1440 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+PASS firefox/1440 usable generation charges actual usage even when discarded and leaves manual project unchanged
+PASS firefox/1440 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+PASS firefox/1440 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+PASS firefox/1440 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+PASS firefox/1440 selection and Brand changes retain the receipt but block stale confirmation
+PASS firefox/1440 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+PASS firefox/1440 reload/Continue restores pending action status without resubmission or applying it to another revision
+PASS firefox/1440 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+PASS firefox/1440 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+PASS firefox/1440 account changes clear the previous owner receipt and proposal without replacing local manual work
+PASS firefox/1440 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+PASS firefox/1440 a malformed monetary receipt cannot create a confirmation control or provider execution
+PASS firefox/1440 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+PASS firefox/390 collapsed Eidos performs no AI account/quote/provider request
+PASS firefox/390 unavailable account/provider preview remains honestly gated with manual project intact
+PASS firefox/390 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+PASS firefox/390 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+PASS firefox/390 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+PASS firefox/390 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+PASS firefox/390 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+PASS firefox/390 usable generation charges actual usage even when discarded and leaves manual project unchanged
+PASS firefox/390 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+PASS firefox/390 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+PASS firefox/390 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+PASS firefox/390 selection and Brand changes retain the receipt but block stale confirmation
+PASS firefox/390 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+PASS firefox/390 reload/Continue restores pending action status without resubmission or applying it to another revision
+PASS firefox/390 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+PASS firefox/390 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+PASS firefox/390 account changes clear the previous owner receipt and proposal without replacing local manual work
+PASS firefox/390 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+PASS firefox/390 a malformed monetary receipt cannot create a confirmation control or provider execution
+PASS firefox/390 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+PASS webkit/1440 collapsed Eidos performs no AI account/quote/provider request
+PASS webkit/1440 unavailable account/provider preview remains honestly gated with manual project intact
+PASS webkit/1440 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+PASS webkit/1440 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+PASS webkit/1440 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+PASS webkit/1440 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+PASS webkit/1440 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+PASS webkit/1440 usable generation charges actual usage even when discarded and leaves manual project unchanged
+PASS webkit/1440 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+PASS webkit/1440 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+PASS webkit/1440 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+PASS webkit/1440 selection and Brand changes retain the receipt but block stale confirmation
+PASS webkit/1440 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+PASS webkit/1440 reload/Continue restores pending action status without resubmission or applying it to another revision
+PASS webkit/1440 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+PASS webkit/1440 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+PASS webkit/1440 account changes clear the previous owner receipt and proposal without replacing local manual work
+PASS webkit/1440 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+PASS webkit/1440 a malformed monetary receipt cannot create a confirmation control or provider execution
+PASS webkit/1440 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow
+PASS webkit/390 collapsed Eidos performs no AI account/quote/provider request
+PASS webkit/390 unavailable account/provider preview remains honestly gated with manual project intact
+PASS webkit/390 legacy aiReady cannot enable Playground; dedicated flag, account and ledger gates remain separate
+PASS webkit/390 server-derived included/purchased balances, usage, reservation, monthly cap and exact reset are visible
+PASS webkit/390 quote shows exact scope, estimate, maximum and discard charging disclosure before explicit confirmation
+PASS webkit/390 proposed/current visual comparison uses the shared renderer read-only and does not mutate the actual project
+PASS webkit/390 all Finish entry points are disabled for an unapplied proposal and restored for the actual current draft
+PASS webkit/390 usable generation charges actual usage even when discarded and leaves manual project unchanged
+PASS webkit/390 Apply preserves project identity, adds no provider call and is one exact shared Undo/Redo edit
+PASS webkit/390 a manual edit invalidates an unsubmitted quote and cancellation adds zero provider executions
+PASS webkit/390 delayed result cannot overwrite newer manual work; actual generated usage remains visible
+PASS webkit/390 selection and Brand changes retain the receipt but block stale confirmation
+PASS webkit/390 unknown/pending status keeps the action ID and reservation; status checks never retry generation
+PASS webkit/390 reload/Continue restores pending action status without resubmission or applying it to another revision
+PASS webkit/390 technical waiver is explicit while provider uncertainty remains an Eidos obligation
+PASS webkit/390 Stop waiting latches unknown submission, disables repeat confirmation and checks only the existing action
+PASS webkit/390 account changes clear the previous owner receipt and proposal without replacing local manual work
+PASS webkit/390 explicit cap lowering preserves existing commitments and never triggers funding, generation or automatic cap increases
+PASS webkit/390 a malformed monetary receipt cannot create a confirmation control or provider execution
+PASS webkit/390 manual draft and source identity survive all fixture paths with no runtime errors or horizontal overflow

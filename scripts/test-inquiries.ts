@@ -1,15 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequestPost } from '../functions/api/project-inquiries';
+import type { Database } from '../functions/_shared/platform/core';
+import { withInquiryTurnstile } from './mock-inquiry-turnstile';
 // @ts-expect-error Plain Worker module is intentionally shared with Cloudflare unchanged.
 import mailer from '../ops/inquiry-mailer/worker.mjs';
 
 const input = { projectType: 'build', problem: 'Clearly labeled release validation inquiry.', name: 'Release test', email: 'test@example.com' };
-const request = (origin = 'https://eidos-works.com', body = input) => new Request('https://eidos-works.com/api/project-inquiries', { method: 'POST', headers: { origin, 'content-type': 'application/json', 'cf-connecting-ip': '192.0.2.1' }, body: JSON.stringify(body) });
+const request = (origin = 'https://eidos-works.com', body = input) => new Request('https://eidos-works.com/api/project-inquiries', { method: 'POST', headers: { origin, 'content-type': 'application/json', 'cf-connecting-ip': '192.0.2.1' }, body: JSON.stringify({ challenge: 'verified-local-token', ...body }) });
+const protectedEnv = {
+  EIDOS_PLATFORM_TOKEN: 'test-only-inquiry-hmac-key-long-enough',
+  TURNSTILE_SECRET_KEY: 'test-only',
+  EIDOS_GROWTH_DB: { prepare: () => ({ bind() { return this; }, first: async () => ({ used: 1 }) }) } as unknown as Database,
+};
 
-test('inquiry requires same origin and confirmed private-provider delivery', async () => {
+test('inquiry requires same origin and confirmed private-provider delivery', () => withInquiryTurnstile(async () => {
   let sends = 0;
-  const env = { EIDOS_INQUIRY_MAILER: { fetch: (async (url: string | URL | Request, init?: RequestInit) => {
+  const env = { ...protectedEnv, EIDOS_INQUIRY_MAILER: { fetch: (async (url: string | URL | Request, init?: RequestInit) => {
     assert.equal(String(url), 'https://inquiry.internal/inquiry');
     assert.equal(new Headers(init?.headers).get('x-eidos-inquiry-client'), '192.0.2.1');
     sends++;
@@ -25,9 +32,9 @@ test('inquiry requires same origin and confirmed private-provider delivery', asy
   assert.equal((await onRequestPost({ request: request(), env })).status, 502);
   const fallback = await (await onRequestPost({ request: request(), env: {} })).json();
   assert.equal(fallback.submitted, false);
-});
+}));
 
-test('friction review keeps its label, useful context, and safe attribution', async () => {
+test('friction review keeps its label, useful context, and safe attribution', () => withInquiryTurnstile(async () => {
   let forwardedBrief = '';
   const friction = {
     inquiryKind: 'friction-review',
@@ -47,7 +54,7 @@ test('friction review keeps its label, useful context, and safe attribution', as
     email: 'test@example.com',
     company: 'Example Co',
   };
-  const env = { EIDOS_INQUIRY_MAILER: { fetch: (async (_url: string | URL | Request, init?: RequestInit) => {
+  const env = { ...protectedEnv, EIDOS_INQUIRY_MAILER: { fetch: (async (_url: string | URL | Request, init?: RequestInit) => {
     const body = JSON.parse(String(init?.body)) as { brief: string; email: string };
     forwardedBrief = body.brief;
     assert.equal(body.email, friction.email);
@@ -66,7 +73,7 @@ test('friction review keeps its label, useful context, and safe attribution', as
   assert.match(forwardedBrief, /utm_source: linkedin/);
   assert.match(forwardedBrief, /Referrer: https:\/\/www\.linkedin\.com\/feed\//);
   assert.match(decodeURIComponent(body.mailto), /subject=Eidos Works Friction Review/);
-});
+}));
 
 test('lab access requests receive a clearly labeled review brief', async () => {
   const response = await onRequestPost({

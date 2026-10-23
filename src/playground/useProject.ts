@@ -1,6 +1,7 @@
+import { accountEpoch } from '../lib/accountEpoch';
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { createProject, validateProject, type Project } from './model';
-import { loadWorkspace, saveWorkspace, listSavedProjects, type Saved, type SavedProjectSummary, type Snapshot } from './storage';
+import { loadWorkspace, saveWorkspace, readSavedProjects, WorkspaceRecordError, type RecoveryRecord, type Saved, type SavedProjectSummary, type Snapshot } from './storage';
 import { editorSelection, workspace, workspaceReducer, type EditorSelection, type SaveTarget } from './workspace';
 
 const EMPTY_SNAPSHOTS: Snapshot[] = [];
@@ -11,10 +12,12 @@ export function useProject() {
   const gesture = useRef<string | undefined>(undefined);
   const [editVersion, bumpEditVersion] = useReducer((v: number, reset?: number) => reset ?? v + 1, 0);
   // This identity stays stable: Preview uses it to avoid rebuilding during a drag.
-  const guard = useCallback(() => { const captured = generation.current; return () => captured === generation.current; }, []);
+  const guard = useCallback(() => { const captured = generation.current, epoch = accountEpoch(); return () => captured === generation.current && epoch === accountEpoch(); }, []);
   const [ready, setReady] = useState(false), [started, setStarted] = useState(false), [hasSavedProject, setHasSavedProject] = useState(false);
   const [snapshotsByDocument, setSnapshotsByDocument] = useState<Record<string, Snapshot[]>>({}), [savedProjects, setSavedProjects] = useState<SavedProjectSummary[]>([]);
   const [savedState, setSavedState] = useState<Saved | null>(null), [storageError, setStorageError] = useState('');
+  const [recovery, setRecovery] = useState<RecoveryRecord[]>([]), [listError, setListError] = useState('');
+  const addRecovery = (records: RecoveryRecord[]) => setRecovery(items => [...items.filter(item => !records.some(next => next.key === item.key)), ...records]);
   const { project, documentId, editor } = state.current;
   const snapshots = snapshotsByDocument[documentId] || EMPTY_SNAPSHOTS;
   const savedValue = (): Saved => ({ project, documentId, editor, snapshots, revision: editVersion, savedAt: new Date().toISOString() });
@@ -25,15 +28,21 @@ export function useProject() {
   }
   useEffect(() => {
     let cancelled = false;
-    Promise.all([loadWorkspace(), listSavedProjects()]).then(([saved, projects]) => {
+    Promise.allSettled([loadWorkspace(), readSavedProjects()]).then(([current, catalogue]) => {
       if (cancelled) return;
+      const saved = current.status === 'fulfilled' ? current.value : null;
       if (saved) {
         dispatch({type:'load',project:saved.project,documentId:saved.documentId,editor:saved.editor});
         setSnapshotsByDocument(values => ({...values, [saved.documentId]: saved.snapshots})); bumpEditVersion(saved.revision); setSavedState(saved); setHasSavedProject(true);
       }
-      setSavedProjects(projects); setReady(true);
-    }).catch(() => {
-      if (!cancelled) { setReady(true); setStorageError('Device saving is unavailable. Download project JSON to keep your work.'); }
+      if (saved?.recovery) addRecovery(saved.recovery);
+      if (current.status === 'rejected') {
+        if (current.reason instanceof WorkspaceRecordError) addRecovery([current.reason.record]);
+        else setStorageError('Your last project could not be read on this device. Retry, or download a backup before leaving.');
+      }
+      if (catalogue.status === 'fulfilled') { setSavedProjects(catalogue.value.projects); addRecovery(catalogue.value.recovery); }
+      else setListError('The saved-project list could not be read. Your open project is unchanged. Retry to check it again.');
+      setReady(true);
     });
     return () => { cancelled = true; };
   }, []);
@@ -45,12 +54,12 @@ export function useProject() {
     const stillCurrent = () => !cancelled && captured === persistenceGeneration.current;
     const value: Saved = {project,documentId,editor,snapshots,revision:editVersion,savedAt:new Date().toISOString()};
     const timer = setTimeout(() => {
-      saveWorkspace(value, stillCurrent).then(() => {
-        if (stillCurrent()) {
+      saveWorkspace(value, stillCurrent).then(saved => {
+        if (saved !== false && stillCurrent()) {
           setSavedState(value);
           setSavedProjects(items => [{documentId,name:project.name,savedAt:value.savedAt}, ...items.filter(item => item.documentId !== documentId)]);
         }
-      }).catch(() => { if (stillCurrent()) setStorageError('Could not save on this device. Download project JSON before closing.'); });
+      }).catch(() => { if (stillCurrent()) setStorageError('Could not save on this device. Retry saving or download a backup before leaving.'); });
     }, 350);
     return () => { cancelled = true; clearTimeout(timer); };
   }, [project, documentId, editor, snapshots, ready, hasSavedProject, storageError, editVersion]);
@@ -65,13 +74,35 @@ export function useProject() {
     if (!ready || !hasSavedProject) return false;
     const captured = persistenceGeneration.current, value = savedValue();
     try {
-      await saveWorkspace(value, () => captured === persistenceGeneration.current);
-      if (captured !== persistenceGeneration.current) return false;
+      const saved = await saveWorkspace(value, () => captured === persistenceGeneration.current);
+      if (saved === false || captured !== persistenceGeneration.current) return false;
       setStorageError(''); remember(value); return true;
     } catch {
-      if (captured === persistenceGeneration.current) setStorageError('Could not save on this device. Download project JSON before closing.');
+      if (captured === persistenceGeneration.current) setStorageError('Could not save on this device. Retry saving or download a backup before leaving.');
       return false;
     }
+  }
+  async function retryStorage() {
+    // Never replace in-memory edits during a retry or an account transition.
+    const captured = generation.current;
+    if (hasSavedProject) await saveNow();
+    else {
+      try {
+        const saved = await loadWorkspace();
+        if (captured !== generation.current) return;
+        if (saved) {
+          dispatch({type:'load',project:saved.project,documentId:saved.documentId,editor:saved.editor});
+          setSnapshotsByDocument(values => ({...values,[saved.documentId]:saved.snapshots})); bumpEditVersion(saved.revision); remember(saved);
+          if (saved.recovery) addRecovery(saved.recovery);
+        }
+        setStorageError('');
+      } catch (error) {
+        if (error instanceof WorkspaceRecordError) addRecovery([error.record]);
+        else setStorageError('Your last project could not be read on this device. Retry, or download a backup before leaving.');
+      }
+    }
+    try { const result = await readSavedProjects(); setSavedProjects(result.projects); addRecovery(result.recovery); setListError(''); }
+    catch { setListError('The saved-project list could not be read. Your open project is unchanged. Retry to check it again.'); }
   }
   async function activate(next: Project, saved?: Saved, newIdentity?: string) {
     if (!ready || switching.current) return false;
@@ -105,8 +136,11 @@ export function useProject() {
         const saved = await loadWorkspace(id);
         if (captured !== generation.current) return false;
         return saved ? await activate(saved.project,saved) : false;
-      } catch {
-        if (captured === generation.current) setStorageError('This saved project could not be opened. Your current design is unchanged.');
+      } catch (error) {
+        if (captured === generation.current) {
+          if (error instanceof WorkspaceRecordError) addRecovery([error.record]);
+          setListError('This saved project could not be opened. Your current design is unchanged.');
+        }
         return false;
       }
     },
@@ -117,16 +151,16 @@ export function useProject() {
     },
     revision: editVersion, saveNow, snapshots,
     status: storageError || (!ready ? 'Opening workspace…' : !hasSavedProject ? 'Choose a starting point' : dirty ? 'Saving…' : 'Saved on this device'),
-    storageError, target: state.current.target, documentId, guard,
+    storageError, listError, recovery, retryStorage, dirty, target: state.current.target, documentId, guard,
     replace: async (next: Project, target?: SaveTarget | null) => {
       if (!ready || switching.current) return false;
-      const valid = validateProject(next), captured = generation.current;
+      const valid = validateProject(next), captured = generation.current, epoch = accountEpoch();
       switching.current = true;
       try {
         // Import/restore creates a new identity, but must persist the outgoing
         // document first. Undo is a convenience, not its only durable backup.
         if (hasSavedProject && !await saveNow()) return false;
-        if (captured !== generation.current) return false;
+        if (captured !== generation.current || epoch !== accountEpoch()) return false;
         const identity = crypto.randomUUID();
         changed(); gesture.current = undefined; setHasSavedProject(true); setStarted(true);
         setSnapshotsByDocument(values => ({...values, [identity]: []}));

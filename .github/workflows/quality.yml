@@ -22,17 +22,24 @@ jobs:
           npm run playground:glass
           git diff --exit-code -- src/playground/glassBundle.ts functions/_shared/platform/playgroundSchema.ts
       - run: npm run lint
+      - run: npm run test:templates
       - run: npm run test:platform
+      - run: npm run test:audit
+      - run: npm run test:owner-console
+      - run: npm run test:showcase
       - run: npm run test:agent-exchange
       - run: npm run test:playground
       - run: npm run test:growth
+      - run: npm run test:growth-team
       - run: npm run test:indexing
       - run: npm run test:analytics
       - run: npm run test:glass
       - run: npm run test:snapshot
+      - run: npm run typecheck:snapshot-worker
       - run: npm run build
       - run: npm run verify:indexing
       - run: npm run verify:prerender
+      - run: npm run verify:templates
       - run: npm run verify:editorial
       - run: npm run validate:insights -- --skip-source-fetch
       - run: npm run validate:insights:dist

@@ -1,0 +1,27 @@
+{
+  "source": "285d7dc8a1a7b44e40e8fcf2f09b66aa6bada42f",
+  "testedMerge": "907e37cb217a33de885a43e3f77ade9b37a9adc4",
+  "run": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/39453436244",
+  "jobId": 118733988581,
+  "state": "failed; retained historical receipt",
+  "artifact": "https://github.com/bmparent/brent-parent-intelligence-studio/actions/runs/39453436244/artifacts/12279593639",
+  "artifactSha256": "032ee5039f76b68750de5de80c2d2611fac8d377e8430aa3f96a216f50d0dc9a",
+  "failedChecks": [
+    "390px unavailable-purchase-local-download: Finish button outside viewport",
+    "390px fresh-recovery: Finish button outside viewport",
+    "390px returned-checkout-price: Finish button outside viewport",
+    "390px changed-checkout-price: Finish button outside viewport",
+    "1440px challenge-retry: unexpected extra verification widget"
+  ],
+  "localReproduction": "Built preview reproduces both mobile Finish timeout and challenge widget assertion failure with intercepted API/provider traffic.",
+  "causes": [
+    "Later unified editor CSS overrides the equally specific mobile toolbar wrap declaration in the production bundle.",
+    "The closed account dialog mounts AccountAccess and its verification widget before any account action."
+  ],
+  "fix": [
+    "Scope the mobile wrap rule with the actual pg-app and pg-unified classes so it wins independent of stylesheet order.",
+    "Mount account controls only while the account dialog is open, preserving the mounted project/editor."
+  ],
+  "providerOperations": false,
+  "testAssertionsWeakened": false
+}

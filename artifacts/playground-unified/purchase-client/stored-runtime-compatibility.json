@@ -1,0 +1,11 @@
+{
+  "timestampUtc": "2026-10-14T19:00:07.840Z",
+  "input": "artifacts/playground-unified/frozen-review/revision-a.zip",
+  "retainedArchiveSha256": "11cdc84b2ea5f7ea5d681898cecc210667069cc65b2d8fd5a79462ceec5972e5",
+  "retainedBytes": 77693,
+  "currentRendererArchiveSha256": "6813131ddda253f8a71ed8aa4131b9c356f23bb7d8dd6e63dfb5837c2691925f",
+  "sameSnapshotHash": true,
+  "storedReaderPreservesOriginalBytes": true,
+  "newCheckoutMustRejectOldCompiledArchiveMismatch": true,
+  "providerCalls": 0
+}

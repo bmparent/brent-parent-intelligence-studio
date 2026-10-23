@@ -25,6 +25,9 @@ jobs:
         run: |
           node scripts/update-wellway-demo.mjs
           git diff --exit-code -- public/demos/wellway/index.html
+      - name: Use the primary Ubuntu archive for browser dependencies
+        run: |
+          bash scripts/prepare-browser-apt.sh
       - name: Install isolated browser tooling
         run: |
           npm install --prefix "$RUNNER_TEMP/wellway-browser" --no-save --no-package-lock playwright@1.58.2

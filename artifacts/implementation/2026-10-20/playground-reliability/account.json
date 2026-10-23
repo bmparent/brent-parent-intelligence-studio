@@ -1,0 +1,16 @@
+{
+  "base": "http://127.0.0.1:4187/playground/",
+  "environment": "Isolated Chromium; controlled local account responses; no real identity/provider/cloud acceptance",
+  "checks": [
+    "start-screen account is keyboard reachable and Escape returns focus",
+    "an empty device can resume an account project without saving an unexplained starter",
+    "password sign-in keeps local project and Undo history",
+    "missing owner and disabled resume capabilities fail closed without writes",
+    "session changes clear capability without losing the project",
+    "desktop and 390px account entry/dialog fit and return keyboard focus",
+    "failed device saving offers backup before separate-tab Google sign-in"
+  ],
+  "errors": [],
+  "forbidden": [],
+  "timestamp": "2026-10-20T15:47:06.575Z"
+}

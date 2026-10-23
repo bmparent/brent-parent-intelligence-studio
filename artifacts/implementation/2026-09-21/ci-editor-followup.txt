@@ -1,0 +1,130 @@
+local-editor	Actual React editor acceptance in three engines and two widths	﻿2026-09-22T00:18:04.3628052Z ##[group]Run npm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3628795Z [36;1mnpm run preview -- --host 127.0.0.1 --port 4173 >"$RUNNER_TEMP/pg-preview.log" 2>&1 &[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3629249Z [36;1mSERVER_PID=$![0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3629563Z [36;1mtrap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3630156Z [36;1mfor i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/playground/ >/dev/null && break || sleep 1; done[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3630742Z [36;1mnode scripts/verify-playground-editor-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3631128Z [36;1mnode scripts/verify-hero-browser.mjs[0m
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3669958Z shell: /usr/bin/bash -e {0}
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3670241Z env:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3670610Z   PLAYWRIGHT_MODULE: /home/runner/work/_temp/pg-browser/node_modules/playwright
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3671110Z   PG_EVIDENCE_DIR: /home/runner/work/_temp/pg-evidence
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3671438Z ##[endgroup]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:04.3835023Z curl: (7) Failed to connect to 127.0.0.1 port 4173 after 0 ms: Couldn't connect to server
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:06.9172876Z chromium-1440: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.0753776Z chromium-1440: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.3063444Z chromium-1440: FAIL locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.3065466Z     1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.3067351Z     2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.3067979Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.3068137Z Call log:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.3069242Z   - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.3070088Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:07.3070926Z     at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.3402114Z chromium-390: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.5047413Z chromium-390: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.7387529Z chromium-390: FAIL locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.7388954Z     1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.7389936Z     2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.7390525Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.7390674Z Call log:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.7391539Z   - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.7392067Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:08.7392841Z     at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:10.9883013Z firefox-1440: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.1775280Z firefox-1440: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.4699857Z firefox-1440: FAIL locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.4701155Z     1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.4702413Z     2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.4702887Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.4703038Z Call log:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.4704077Z   - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.4704943Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:11.4705875Z     at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:12.7294891Z firefox-390: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:12.9422642Z firefox-390: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:13.2709534Z firefox-390: FAIL locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:13.2710984Z     1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:13.2712089Z     2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:13.2712535Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:13.2712638Z Call log:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:13.2713716Z   - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:13.2714602Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:13.2715534Z     at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:24.9401472Z webkit-1440: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:25.8964851Z webkit-1440: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:26.4860144Z webkit-1440: FAIL locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:26.4862357Z     1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:26.4864288Z     2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:26.4865099Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:26.4865359Z Call log:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:26.4866190Z   - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:26.4867296Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:26.4868010Z     at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:29.4478163Z webkit-390: PASS page identity, nonblank React app, release marker, no framework overlay, existing project unmodified
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:29.6622551Z webkit-390: PASS visible entry enables composition explicitly
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.0191885Z webkit-390: FAIL locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.0194212Z     1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.0202279Z     2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.0202994Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.0203277Z Call log:
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.0204407Z   - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.0205377Z 
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.0206562Z     at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2754328Z [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2754728Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2755081Z     "name": "chromium-1440",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2755537Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2758782Z     "failure": "locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:\n    1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })\n    2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })\n\nCall log:\n  - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')\n\n    at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2761225Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2761763Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2762428Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2762776Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2762995Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2763215Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2763433Z     "name": "chromium-390",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2763716Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2766879Z     "failure": "locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:\n    1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })\n    2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })\n\nCall log:\n  - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')\n\n    at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2770474Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2771017Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2771639Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2771986Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2772185Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2772416Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2772656Z     "name": "firefox-1440",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2772941Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2775734Z     "failure": "locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:\n    1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })\n    2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })\n\nCall log:\n  - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')\n\n    at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2778398Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2779026Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2779776Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2780162Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2780425Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2780666Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2780915Z     "name": "firefox-390",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2781198Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2784062Z     "failure": "locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:\n    1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })\n    2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })\n\nCall log:\n  - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')\n\n    at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2786954Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2787499Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2788103Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2788458Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2788664Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2788884Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2789116Z     "name": "webkit-1440",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2789405Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2792225Z     "failure": "locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:\n    1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })\n    2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })\n\nCall log:\n  - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')\n\n    at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2794871Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2795433Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2796047Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2796554Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2796787Z   },
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2796993Z   {
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2797238Z     "name": "webkit-390",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2797523Z     "passed": false,
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2800334Z     "failure": "locator.click: Error: strict mode violation: locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary') resolved to 2 elements:\n    1) <summary>Account projects</summary> aka getByText('Account projects', { exact: true })\n    2) <summary>Purchase history</summary> aka getByText('Purchase history', { exact: true })\n\nCall log:\n  - waiting for locator('details.pg-project-tools').filter({ has: locator('summary').filter({ hasText: /^Account projects$/ }) }).locator('summary')\n\n    at /home/runner/work/brent-parent-intelligence-studio/brent-parent-intelligence-studio/scripts/verify-playground-editor-browser.mjs:89:47",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2802748Z     "checks": [
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2803291Z       "page identity, nonblank React app, release marker, no framework overlay, existing project unmodified",
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2803913Z       "visible entry enables composition explicitly"
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2804251Z     ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2804476Z   }
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2804676Z ]
+local-editor	Actual React editor acceptance in three engines and two widths	2026-09-22T00:18:30.2973137Z ##[error]Process completed with exit code 1.

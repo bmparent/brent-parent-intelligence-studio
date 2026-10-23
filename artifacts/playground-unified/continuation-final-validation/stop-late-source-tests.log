@@ -1,0 +1,30 @@
+✔ USD limit parsing uses integer cents without automatic funding or floating point accumulation (4.4624ms)
+✔ balance receipts reject unknown units, inconsistent usage and invalid money (6.331ms)
+✔ action receipts bind explicit scope and cannot hide charges above the approved maximum (2.0002ms)
+✔ status and cancellation receipts must retain every frozen quote identity field (0.7412ms)
+✔ generation sends only the server-quoted maximum and one request with same-origin credentials (92.2655ms)
+✔ network uncertainty never retries generation and existing-status reads use the saved action ID (2.7622ms)
+✔ HTTP and malformed receipt failures remain explicit and do not manufacture a usable proposal (7.4183ms)
+✔ scoped projection preserves target IDs and strips asset bytes, source filenames and standalone studio data (32.5443ms)
+✔ element proposal changes one stable node in full source, preserving manual content and assets (12.9167ms)
+✔ scope boundaries, locks and executable links reject the entire proposal without mutations (6.5481ms)
+✔ mobile container repair is explicit and leaves desktop geometry and siblings intact (7.0806ms)
+✔ brand/page proposals preserve content and obey common model bounds (7.592ms)
+✔ no-op, duplicate fields and unsafe context assets cannot become usable proposals (5.4639ms)
+✔ whole-page structure preserves identities, section data and permanent positions (8.0792ms)
+✔ explicit visibility changes preserve hidden content and reject removing permanent/all content (7.0852ms)
+✔ Legacy projects stay legacy and component exports require explicit upgrade (32.2744ms)
+✔ all starter projects round trip and reject incompatible versions (9.0639ms)
+✔ untrusted copy and links never become executable markup (1.5024ms)
+✔ exports use identical markup and package uploaded image bytes (6.1338ms)
+✔ stored ZIP carries central directory and correct file count (11.6101ms)
+✔ contrast and visibility produce accessible baseline content (2.9188ms)
+✔ imports reject malformed base64 and mismatched image signatures (7.0859ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1020.8762

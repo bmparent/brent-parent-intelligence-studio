@@ -1,4 +1,6 @@
 import { CentralFloridaPage } from './components/CentralFloridaPage';
+import {LocalPerformance} from './components/LocalPerformance';
+
 import { CandlelightShowcase } from './components/CandlelightShowcase';
 import { lazy, Suspense, useSyncExternalStore } from 'react';
 const Playground = lazy(() => import('./playground/Playground'));
@@ -41,11 +43,17 @@ import { PrivacyControls } from './components/PrivacyControls';
 import { CommunityPage, AgentGuide } from './components/CommunityPages';
 import { ModerationPage } from './components/ModerationPage';
 import { StarterPage, PurchaseSuccess } from './components/ShopPages';
+import { TemplateCollection, TemplateDetail, TemplateChooser, TemplateStart, TemplateTerms } from './components/TemplateShop';
+import { templateProduct } from './data/templateCatalog';
+import { TemplateInstallGuide } from './components/TemplateInstallGuide';
+import { TemplateConfigurator } from './components/TemplateConfigurator';
+import { SignalHouseCaseStudy } from './components/SignalHouseCaseStudy';
 import { PolicyPage } from './components/PolicyPages';
 import { normalizePath } from './data/pages';
 import { storefrontThemes } from './data/storefrontDemo';
 import { AccountPage, VerifyAccountPage, UnsubscribePage } from './components/MemberPages';
 import { MemberProfile } from './components/MemberProfile';
+import { ResetPasswordPage } from './components/AccountAccess';
 import { LabAccessRequest } from './components/LabAccessRequest';
 
 const subscribeToClient = () => () => {};
@@ -87,7 +95,9 @@ function NotFoundPage() {
 }
 
 function routeFor(path: string) {
+  if (/^\/templates\/guides\/[a-z-]+\/(developer|wordpress)$/.test(path)) return <TemplateInstallGuide path={path} />;
   if (path === '/account') return <AccountPage />;
+  if (path === '/account/reset') return <ResetPasswordPage />;
   if (path === '/account/verify') return <VerifyAccountPage />;
   if (path === '/account/unsubscribe') return <UnsubscribePage />;
   if (/^\/members\/[a-z][a-z0-9_]{2,23}$/.test(path)) return <MemberProfile key={path} username={path.slice('/members/'.length)} />;
@@ -104,6 +114,12 @@ function routeFor(path: string) {
   if (path === '/terms') return <PolicyPage kind="terms" />;
   if (path === '/shop/cinematic-starter') return <StarterPage />;
   if (path === '/shop/success') return <PurchaseSuccess />;
+  if (path === '/shop') return <TemplateCollection />;
+  if (path === '/shop/configure') return <TemplateConfigurator />;
+  if (path === '/shop/choose') return <TemplateChooser />;
+  if (path === '/shop/template-terms') return <TemplateTerms />;
+  if (path === '/shop/start') return <TemplateStart />;
+  if (path.startsWith('/shop/') && templateProduct(path.slice('/shop/'.length))) return <TemplateDetail slug={path.slice('/shop/'.length)} />;
   if (path === '/snapshot') return <SnapshotLandingPage />;
   if (path === '/snapshot/start') return <SnapshotStartPage />;
   if (path === '/snapshot/success') return <SnapshotSuccessPage />;
@@ -115,6 +131,8 @@ function routeFor(path: string) {
   if (path === '/services/storefront-access-systems') return <LegacyServicePage legacySlug="storefront-access-systems" />;
   if (path === '/services/dashboards-workflow-tools') return <LegacyServicePage legacySlug="dashboards-workflow-tools" />;
   if (path === '/work') return <ShowcasePage />;
+  if (path === '/work/signal-house') return <SignalHouseCaseStudy />;
+
   if (path === '/work/candlelight-exclusive') return <CandlelightShowcase />;
   if (path === '/lab') return <LabPage />;
   if (
@@ -167,6 +185,7 @@ function App({ requestPath }: AppProps) {
       <EidosAssistant />
       <PrivacyControls />
       <ConversionTracking />
+      <LocalPerformance />
     </>
   );
 }

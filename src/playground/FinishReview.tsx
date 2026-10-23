@@ -3,7 +3,9 @@ import { download } from './export';
 import { projectWarnings, type Project } from './model';
 import { buildFrozenPackage, createProjectSnapshot, decodeSnapshotImages, frozenPreviewDocument, isCurrentReview, parentEditions, type FrozenPackage } from './purchaseSnapshot';
 import { loadFrozenReview, saveFrozenReview } from './purchaseReviewStorage';
+import { FinishPurchase } from './FinishPurchase';
 import './finish-review.css';
+import { SandboxFrame } from './SandboxFrame';
 
 type Props = { project: Project; documentId: string; revision: number; open: boolean; onClose(): void };
 function FrozenPreview({ markup, mobile }: { markup: string; mobile: boolean }) {
@@ -14,7 +16,7 @@ function FrozenPreview({ markup, mobile }: { markup: string; mobile: boolean }) 
     return () => observer.disconnect();
   }, []);
   const width = mobile ? 390 : 1280, scale = Math.min(1, size.width / width);
-  return <div ref={frame} className="pg-finish-frame" data-mobile={mobile}><iframe title="Frozen package preview" sandbox="allow-scripts" srcDoc={markup} style={{ width, height: Math.ceil(size.height / scale), transform: `scale(${scale})`, transformOrigin: 'top left' }} /></div>;
+  return <div ref={frame} className="pg-finish-frame" data-mobile={mobile}><SandboxFrame title="Frozen package preview" markup={markup} style={{ width, height: Math.ceil(size.height / scale), transform: `scale(${scale})`, transformOrigin: 'top left' }} /></div>;
 }
 export function FinishReview({ project, documentId, revision, open, onClose }: Props) {
   const dialog = useRef<HTMLDialogElement>(null), operation = useRef(0);
@@ -72,11 +74,12 @@ export function FinishReview({ project, documentId, revision, open, onClose }: P
       <span className="pg-finish-type">Developer source · single page</span>
       <h3>{value ? value.snapshot.project.name : project.name}</h3>
       <p>HTML, CSS, JavaScript, images, and project JSON. Open the page independently or import the JSON to keep editing.</p>
-      {value && <p className={`pg-finish-state ${isCurrent ? '' : 'changed'}`} role="status">{isCurrent ? `This review matches draft revision ${revision}.` : value.snapshot.documentId !== documentId ? `This is a new editable copy. The saved review keeps its original identity and revision ${value.snapshot.revision}.` : `Your draft is now revision ${revision}. This review keeps revision ${value.snapshot.revision}.`}</p>}
+      {value && <p className={`pg-finish-state ${isCurrent ? '' : 'changed'}`} role="status">{isCurrent ? `This review matches draft revision ${revision}.` : value.snapshot.documentId !== documentId ? `This is a new editable copy. The purchased review keeps its original identity and revision ${value.snapshot.revision}.` : `Your draft is now revision ${revision}. This review keeps revision ${value.snapshot.revision}.`}</p>}
       <details className="pg-finish-parent"><summary>Parent edition reference (optional)</summary><p>This records an existing source edition reference only. It does not add its archive or establish a purchase or license.</p><label>Developer edition<select aria-label="Parent developer edition" value={parentId} disabled={busy} onChange={event => setParentId(event.target.value)}><option value="">No parent edition reference</option>{parentEditions.map(parent => <option key={parent.editionId} value={parent.editionId}>{parent.family} · {parent.version}</option>)}</select></label>{value && <small>Frozen reference: {value.snapshot.parent ? `${value.snapshot.parent.family} ${value.snapshot.parent.version}` : 'none'}. Change the selection and prepare again to replace this review.</small>}</details>
       <button className="pg-button-secondary pg-finish-prepare" disabled={busy || loading} onClick={() => void prepare()}>{busy ? 'Preparing exact page files…' : loading ? 'Loading saved review…' : value ? 'Prepare current draft again' : 'Prepare current draft'}</button>
       {error && <p role="alert" className="pg-finish-error">{error}</p>}{storageNote && <p role="status" className="pg-finish-error">{storageNote}</p>}
       {value && <><details className="pg-finish-checks" open={notes.length > 0}><summary>Review before publishing{notes.length ? ` (${notes.length})` : ''}</summary>{notes.length ? <ul>{notes.map(note => <li key={note}>{note}</li>)}</ul> : <p>Check content, links, image rights, and both preview sizes before using the page.</p>}</details><label className="pg-finish-approval"><input type="checkbox" checked={approved} onChange={event => setApproval(event.target.checked ? value.snapshot.snapshotHash : '')} /><span>I reviewed this frozen version for my local download.</span></label><button className="pg-primary pg-finish-download" disabled={!approved || busy} onClick={downloadPackage}>Download page package <span aria-hidden="true">↗</span></button><div className="pg-finish-links"><button onClick={() => download(JSON.stringify(value.receipt, null, 2), 'local-package-receipt.json', 'application/json')}>Download hash receipt</button><button onClick={() => download(value.files.find(file => file.name === 'project.json')!.data, 'reviewed-project.json', 'application/json')}>Editable source</button></div><details className="pg-finish-integrity"><summary>Package identity & file hashes</summary><p>Local integrity only; no purchase is verified.</p><code>{value.snapshot.snapshotHash}</code><ul>{value.manifest.files.map(file => <li key={file.path}><span>{file.path} · {file.bytes.toLocaleString()} bytes</span><code>{file.sha256}</code></li>)}</ul></details></>}
+      {value ? <FinishPurchase key={value.snapshot.snapshotHash} frozen={value} approved={approved} current={isCurrent} open={open} draftVersion={`${documentId}:${revision}`} /> : <div className="pg-finish-purchase"><button disabled>Purchase unavailable</button><small>Prepare and review a local page before checking account purchase availability. Hosting, domains, and form services are separate.</small></div>}
     </section></div>
   </dialog>;
 }

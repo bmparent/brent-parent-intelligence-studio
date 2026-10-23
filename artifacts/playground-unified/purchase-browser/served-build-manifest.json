@@ -1,0 +1,47 @@
+{
+  "capturedUtc": "2026-10-14T19:13:24.4129409Z",
+  "servedBase": "http://127.0.0.1:5185",
+  "scope": "Exact dist bytes used by the21-scenario matrix before final challenge/CSS repairs",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 42596,
+      "sha256": "f369c99543e14e5a151272b9fe87c97922b4efe79cc845cde28039f533d32d70"
+    },
+    {
+      "path": "assets/index-BtUgcVsh.css",
+      "bytes": 220406,
+      "sha256": "f68409fed53073148316025ced5f5b447c302cf67c691d22a5a2c67738f86d16"
+    },
+    {
+      "path": "assets/index-DJXGmvV6.js",
+      "bytes": 844522,
+      "sha256": "18ef5f6af07d93a10ba0022f42b344ee1ad24be290476fb2671e414b41cca427"
+    },
+    {
+      "path": "assets/Playground-BNdabu0H.css",
+      "bytes": 62657,
+      "sha256": "9fc4bf237d1c3ea1334a5628d46d6cee7f314c26ec12775e439741fede8dd9a3"
+    },
+    {
+      "path": "assets/Playground-D54GKQEg.js",
+      "bytes": 307640,
+      "sha256": "a3f1684e21b1a0d0c86421a455af2c2df48ead985eaab74e0df741db6dc914af"
+    },
+    {
+      "path": "assets/purchaseClient-B4lv4sYr.js",
+      "bytes": 23036,
+      "sha256": "dc782cf76c57b25eb710226cb5f69c6b13f59e261f88bcec043b9ba5f56a4fa6"
+    },
+    {
+      "path": "assets/react-vendor-P0Lkgw2L.js",
+      "bytes": 190214,
+      "sha256": "d7915cfac74caf83c2fe234696e3f0d9fcb989ca3ff720203e895e1e1a144be6"
+    },
+    {
+      "path": "assets/rolldown-runtime-D9-fqq9M.js",
+      "bytes": 86,
+      "sha256": "a2b9cf4b963756dc2cae1ebdd1c0e51ef5780dd5bf64a55b90e21679c2b2434f"
+    }
+  ]
+}

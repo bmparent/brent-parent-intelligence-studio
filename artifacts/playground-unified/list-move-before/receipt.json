@@ -1,0 +1,37 @@
+{
+  "kind": "real pointer input, isolated list harness",
+  "checks": [
+    "Escape creates no mutation"
+  ],
+  "failures": [
+    {
+      "name": "final nested position",
+      "error": "Expected values to be strictly equal:\n\n0 !== 1\n",
+      "observed": null
+    },
+    {
+      "name": "cross-container final position",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   before: 'empty-stack',\n-   before: '',\n    id: 'a',\n+   parent: undefined\n-   parent: 'nested'\n  }\n",
+      "observed": {
+        "id": "a",
+        "before": "empty-stack"
+      }
+    },
+    {
+      "name": "empty container",
+      "error": "Expected values to be strictly equal:\n\n1 !== 2\n",
+      "observed": {
+        "id": "a",
+        "before": "empty-stack"
+      }
+    },
+    {
+      "name": "before first sibling",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n    before: 'a',\n    id: 'b',\n+   parent: undefined\n-   parent: 'root'\n  }\n",
+      "observed": {
+        "id": "b",
+        "before": "a"
+      }
+    }
+  ]
+}

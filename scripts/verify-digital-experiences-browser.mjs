@@ -141,6 +141,14 @@ for (const width of [1440, 768, 390, 320]) {
     await overflow();
     await page.getByRole('link', { name: /Explore Digital Experiences/ }).click();
     await page.getByRole('heading', { name: /Custom websites.*Unmistakable experiences/ }).waitFor();
+    const initialFeatured = page.locator('.dx-stage > a');
+    if ((await initialFeatured.getAttribute('href')) === '/work/signal-house') {
+      assert.equal(await initialFeatured.locator('img[src="/images/case-studies/signal-house.svg"]').count(), 1, 'Signal House retains its own artwork when first in the selector');
+      assert.equal(await initialFeatured.locator('svg.sd-art').count(), 0, 'Holidays composition does not replace another project');
+    }
+    await page.getByRole('button', { name: /^Holidays in Hollywood/ }).click();
+    assert.match(await page.locator('.dx-stage > a').getAttribute('href'), /holidays-in-hollywood/, 'explicit Holidays selection drives the affected flow');
+    assert.equal(await page.locator('.dx-stage svg.sd-art').count(), 2, 'Holidays selection shows both composed pairs');
     await capture('service-thumbnail', page.locator('.dx-stage'));
     await page.locator('.dx-stage > a').click();
     await page.locator('.sd-demo.sd-holiday').waitFor();
