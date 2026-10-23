@@ -42,6 +42,20 @@ jobs:
           trap 'kill "$PREVIEW_PID" 2>/dev/null || true' EXIT
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/work/candlelight-exclusive/ >/dev/null && break || sleep 1; done
           node scripts/verify-candlelight-browser.mjs
+      - name: Describe a failed hydration boundary with development diagnostics
+        if: failure()
+        env:
+          NODE_ENV: development
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/candlelight-browser/node_modules/playwright
+          PG_EVIDENCE_DIR: ${{ runner.temp }}/candlelight-diagnostics
+          PG_BASE_URL: http://127.0.0.1:4174
+        run: |
+          npm run build >"$RUNNER_TEMP/candlelight-diagnostic-build.log" 2>&1
+          npm run preview -- --host 127.0.0.1 --port 4174 >"$RUNNER_TEMP/candlelight-diagnostic-preview.log" 2>&1 &
+          DIAGNOSTIC_PID=$!
+          trap 'kill "$DIAGNOSTIC_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4174/work/candlelight-exclusive/ >/dev/null && break || sleep 1; done
+          node scripts/verify-candlelight-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -49,4 +63,6 @@ jobs:
           path: |
             ${{ runner.temp }}/candlelight-evidence
             ${{ runner.temp }}/candlelight-preview.log
+            ${{ runner.temp }}/candlelight-diagnostics
+            ${{ runner.temp }}/candlelight-diagnostic-*.log
           retention-days: 14

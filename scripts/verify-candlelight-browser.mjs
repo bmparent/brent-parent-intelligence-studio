@@ -12,7 +12,8 @@ try {
     const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: 'reduce' });
     const page = await context.newPage();
     const errors = [], commerceRequests = [];
-    page.on('pageerror', error => errors.push(error.message));
+    page.on('pageerror', error => { const message = `${page.url()}: ${error.message}`; errors.push(message); console.error(message); });
+    page.on('console', message => { if (message.type() === 'error') console.error(`${page.url()}: ${message.text()}`); });
     page.on('request', request => { if (/stores\.inksoft\.com/.test(request.url())) commerceRequests.push(request.url()); });
     try {
       await page.goto(base + '/work/');
