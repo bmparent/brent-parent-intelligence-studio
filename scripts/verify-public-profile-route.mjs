@@ -8,7 +8,8 @@ for (const path of ['/members/qa_person', '/members/qa_person/']) {
   assert.equal(response.headers.get('location'), null, 'Profile URL must not change to /private-app');
   const html = await response.text();
   assert.match(html, /<script[^>]+type="module"/);
-  assert.ok(!html.includes('That page does not exist.'), 'Must not serve the prerendered 404');
+  const root = html.match(/<div id="root">([\s\S]*?)<\/div>/)?.[1];
+  assert.equal(root, '', 'Must serve the empty client shell rather than the prerendered 404');
   assert.match(response.headers.get('x-robots-tag') || '', /noindex/);
 }
 console.log('Built Pages profiles preserve the original URL, return the client shell and retain profile indexing policy.');
