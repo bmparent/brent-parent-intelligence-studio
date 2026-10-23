@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-10-19T14:32:37.607Z",
+  "generated_at_utc": "2026-10-23T23:04:26.031Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "website-careful-what-it-asks-you-notice",
+      "canonical_url": "https://eidos-works.com/insights/website-careful-what-it-asks-you-notice",
+      "og_image": "/insights-og/website-careful-what-it-asks-you-notice.svg"
+    },
     {
       "slug": "reduced-motion-without-reduced-experience",
       "canonical_url": "https://eidos-works.com/insights/reduced-motion-without-reduced-experience",
@@ -108,6 +113,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/website-careful-what-it-asks-you-notice.svg",
     "public/insights-og/reduced-motion-without-reduced-experience.svg",
     "public/insights-og/after-submit-website-tell-truth-about-waiting.svg",
     "public/insights-og/good-website-does-not-ask-you-remember-everything.svg",

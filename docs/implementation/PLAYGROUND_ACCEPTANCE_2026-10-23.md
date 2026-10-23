@@ -4,6 +4,66 @@ This record separates verified Playground save/recovery and editor behavior
 from the remaining browser, device and activation gates, while preserving the
 current public portfolio releases.
 
+## Evening follow-through — current evidence
+
+This section supersedes the earlier Browser-reconnection dependency below;
+it does not relabel historical observations or close untested device gates.
+
+- Source tested in actual connected Chrome: site PR139 `37a0fa6871f6d9740496afb03dcecdecb90d0522`,
+  backend PR90 `19d9035957f915a9c1b9112c2c3d633af75272cc`, canonical isolated
+  account origin `https://eidosworks-test-20260923.pages.dev`. Backend deployment
+  `dpl_3wdJC98cqLDJaa2bRPzDHSYtGEQq` is read back READY with that source.
+- All ten workflows on that site head now finish successfully except the
+  intentionally skipped optional paid-TEST workflow: nine successes, one skip.
+  This includes editor run `40017172802` and exact hosted pair `40017172939`.
+- Current public main `2c7dcf3cd6a01d88f23eb1da5d45e876d956f8f9` is integrated
+  into the held branch, preserving the new attention essay, Candlelight,
+  FNBMD disclosure and profile repair. The only merge conflict is the generated
+  Insights report timestamp; it is regenerated. `src/playground`, `functions`
+  and `src/lib` have no differences from the manually tested starting head.
+  Exact successor CI/provider receipts belong on PR139; this is not a new
+  production publication.
+
+| Requirement | Observation / scope | State |
+| --- | --- | --- |
+| Existing QA project cloud reopen | Observed before the October 23, 23:13:43 UTC checkpoint: fresh tab in the same connected browser/profile opened the existing synthetic `Eidos QA 2026-10-23 · saved` from the real account list | pass, hosted account |
+| Save a new revision | Renamed only that synthetic project to `Eidos QA 2026-10-23 · revision follow-through`; UI confirmed `Saved to your account.` | pass, hosted account |
+| Preview and recover history | History contained the new revision `124d65fb` and original `728cd225`. Preview retained the current name; explicit restore recovered the old name locally, then Save created a new head while retaining history | pass, hosted account |
+| Reload and fresh account reopen | Reload, Continue, explicit account refresh and Open returned the restored QA name and original controlled headline/paragraph | pass, hosted account |
+| Frozen review | Prepared local revision 15; visible package identity `0071dbbb9ab530e87d98da1370d4e8f4a4fd2e38f80216cd4b02a7c7898c96b5`, editable source, image and file hashes appear | pass, hosted UI |
+| Actual ZIP bytes in this connected browser | Clicked the approved download; Browser did not report its download event. Application console had no errors. Chrome's downloads-manager URL is disallowed by Browser policy; no workaround was attempted | not established; separate hosted download gate added |
+| Desktop keyboard | Account opens with Enter; Tab remains in its modal; Escape returns to Account / Sign in. Finish Escape returns to Finish | pass, connected Chrome |
+| Editor mobile preview | Actual preview iframe is 375 CSS pixels; document scrollWidth is 375, preserving the recovered content | pass, preview only |
+| Phone-width outer UI / reflow | Browser viewport override reported no error but actual width stayed 1482. New isolated hosted acceptance checks 1440, 720, 390 and 320 widths with measured bounds | pending exact CI; not a physical-device result |
+| Actual 200% browser zoom | Browser shortcut produced no observed scale/viewport change. A 720-pixel viewport checks reflow only | not tested |
+| Physical iOS/Android and screen reader | No actual device or assistive-technology session was available in this task | not tested |
+
+The paired-preview workflow now runs the existing frozen-review suite against
+the deployed canonical assets, then an additional hosted four-viewport check.
+Both use fresh anonymous browser contexts and synthetic device-only projects.
+The existing guard controls config/account reads and blocks every cloud,
+payment, mail and AI mutation. The added check downloads the ZIP and separate
+hash receipt, independently compares SHA-256/length, reads the ZIP entries and
+project name, then compares exact archive bytes after reload. It also checks
+keyboard dialog entry/return and outer page/dialog bounds. These observations
+are explicitly separate from real-account cloud acceptance above. Screenshots,
+receipts and synthetic ZIPs are preserved with the existing CI artifact.
+
+Fresh successor local checks pass: lockfile install, source Insights validation,
+lint (existing Wellway Fast Refresh warning), 46 platform cases, 179 Playground
+cases, audit suite, seven preview-boundary cases, TypeScript/client/SSR build,
+Functions compilation, prerender, editorial, built Insights and URL checks.
+Final source/deployed identities and hosted check outcomes are recorded on
+PR139 after the branch upload. No failure or assertion is waived.
+
+Account storage still enforces 20 projects, 100 revisions per project,
+40,000,000 stored image bytes and 20,000,000 document-history bytes per owner;
+these are application limits, not a measurement of provider-wide free space.
+No storage allowance, retention/deletion rule, feature flag, paid-provider
+budget, LIVE transaction or production binding changes in this follow-through.
+Keep the physical-device, screen-reader and actual-zoom gates open, together
+with any failed successor CI check. DG owner authentication stays paused.
+
 ## Candidate and retained production
 
 - The starting frontend is PR139 `838ab7028e6e38c99b9612207079ee2f6b50b9fd`,

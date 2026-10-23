@@ -2171,5 +2171,85 @@
       "href": "/friction-review"
     },
     "ogImage": "/insights-og/reduced-motion-without-reduced-experience.svg"
+  },
+  {
+    "title": "A Website Should Be Careful With What It Asks You to Notice",
+    "slug": "website-careful-what-it-asks-you-notice",
+    "description": "Why attention is not free inventory—and why a useful website treats a visitor's focus as something to protect, not harvest.",
+    "dek": "Every badge, banner, interruption, and invitation makes a small claim on a person's day. Good digital work begins by deciding which claims are worth making.",
+    "category": "Website Strategy",
+    "publishedAt": "2026-10-23T18:08:10-04:00",
+    "updatedAt": "2026-10-23T18:08:10-04:00",
+    "author": "Eidos Works Editorial",
+    "byline": "Eidos Works Editorial",
+    "readingTimeMinutes": 6,
+    "tags": [
+      "Attention",
+      "Content design",
+      "Decision-making",
+      "Digital trust"
+    ],
+    "canonicalPath": "/insights/website-careful-what-it-asks-you-notice",
+    "excerpt": "A useful website does not measure its seriousness by how many things it can put in front of a visitor. It measures it by how faithfully it protects the decision that brought them there.",
+    "pillar": "Website strategy, information architecture, and content design",
+    "slot": "evening",
+    "format": "essay",
+    "searchIntent": "Explore why thoughtful website design protects a visitor's attention instead of treating every moment as an opportunity to interrupt.",
+    "featured": false,
+    "draft": false,
+    "thesis": "Attention is not empty space waiting to be filled. A trustworthy website treats it as a finite part of a person's life and makes each request for it answerable to the decision they came to make.",
+    "sources": [],
+    "takeaways": [],
+    "relatedSlugs": [
+      "good-website-does-not-ask-you-remember-everything",
+      "mobile-hierarchy-over-desktop-polish",
+      "reduced-motion-without-reduced-experience"
+    ],
+    "body": [
+      {
+        "heading": "The hand reaches for the phone before the thought is finished",
+        "paragraphs": [
+          "A person can open a browser while waiting for a kettle, standing beside a car, or sitting in the last quiet minutes before the day begins. They are not arriving as a blank audience. They bring a question, a little uncertainty, and whatever else is already asking for their mind.",
+          "Then the page begins making claims. A bar asks for an email address. A chat bubble rises. A discount appears before the product. A video moves at the edge of vision. A banner explains something unrelated to the reason the person came. None of these gestures is large by itself. Together, they teach a visitor that the site will take whatever attention it can get.",
+          "That is the ordinary moral question beneath interface design: not whether a page can create more engagement, but whether it has earned the next second of someone’s focus. Attention is not empty space waiting to be filled. It is a finite part of a person’s life."
+        ]
+      },
+      {
+        "heading": "A page can be busy without being generous",
+        "paragraphs": [
+          "There is a familiar anxiety behind digital clutter. If the promotion is not visible immediately, it may be missed. If the newsletter invitation is not repeated, it may be forgotten. If every service is not named at once, someone may leave without seeing the full range of work. The fear is understandable: a business has real needs, and a page has only a brief chance to speak.",
+          "But a page that asks for everything at once does not become more persuasive. It often makes the visitor do the sorting that the business declined to do. Which message matters? Which button is for this moment? Is the pop-up more urgent than the task that brought me here? The person has to spend attention interpreting the page before they can spend it on the decision.",
+          "Care is visible in what a site refuses to demand. It appears in a heading that names the real choice, in a product path that does not disguise itself as a maze, and in a form that asks only for what is needed now. These are not merely aesthetic preferences. They are small ways of returning a person to their own purpose."
+        ]
+      },
+      {
+        "heading": "The work of leaving room",
+        "paragraphs": [
+          "Good editing has always involved omission. A sentence gains force when the unnecessary word leaves. A room becomes usable when it is not filled to every edge. A conversation becomes trustworthy when one person does not mistake every pause for an invitation to speak. Digital systems need the same discipline, especially because they can add another prompt, card, animation, or alert so cheaply.",
+          "Eidos Works applies that discipline by beginning a page or storefront review with the decision a person needs to make. The hierarchy, calls to action, product context, and motion should serve that decision before they serve the urge to display every capability at once. A secondary offer may still belong on the page. It simply should not be allowed to impersonate the primary task.",
+          "This is a practical design choice with a philosophical edge. When a system gives a visitor room to compare, read, hesitate, and return, it admits that the visitor is not raw material for the system’s goals. They are a person deciding whether this place deserves their trust."
+        ]
+      },
+      {
+        "heading": "The quieter test",
+        "paragraphs": [
+          "One way to review a page is to remove something before adding anything. Hide the interruption. Shorten the announcement. Delay the invitation until it is relevant. Let the product detail, service explanation, or next step stand on its own for a moment. Then ask whether the page has become less useful—or merely less insistent.",
+          "The answer will not always be restraint. Some information needs prominence because it changes the decision: an ordering deadline, an accessibility need, an unavailable option, a required next step. Care is not silence. It is proportion. The page should be clear about what matters without making urgency its default language.",
+          "A visitor may never name this quality. They may simply feel that the site was easier to use, that the choice became clearer, that they were not hurried into becoming someone else’s metric. That feeling is not a trick of polish. It is the result of a system choosing not to confuse attention with permission."
+        ]
+      },
+      {
+        "heading": "What remains after the asking stops",
+        "paragraphs": [
+          "The most useful pages leave a little room around the decision. Not emptiness for its own sake, and not a minimalist pose, but enough quiet for a person to recognize what they came for and decide in their own time.",
+          "That may be the real measure of digital hospitality: when the page has said what it needs to say, can it let the visitor hear themselves think?"
+        ]
+      }
+    ],
+    "cta": {
+      "label": "Review a high-stakes customer path",
+      "href": "/friction-review"
+    },
+    "ogImage": "/insights-og/website-careful-what-it-asks-you-notice.svg"
   }
 ]

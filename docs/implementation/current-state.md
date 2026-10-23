@@ -1,3 +1,18 @@
+# Playground evening follow-through — October 23, 2026
+
+Real hosted cloud reopen, new revision, explicit historical recovery, save and
+reopen after reload now pass in the existing connected browser/account and
+synthetic QA project on site `37a0fa6` / backend `19d9035`. Desktop keyboard
+dialog focus and the 375-pixel editor preview also pass. The held site is
+reconciled with public main `2c7dcf3`, retaining the attention essay and all
+portfolio/profile releases; editor/platform application source is unchanged.
+The paired workflow adds hosted ZIP/receipt-byte, reload and four-viewport
+acceptance using synthetic local-only projects and blocked API writes.
+[The updated evidence ledger](PLAYGROUND_ACCEPTANCE_2026-10-23.md) separates
+these checks, final CI/provider receipts, the connected Browser download/zoom
+limits, and untested physical-device/screen-reader/actual-zoom gates. The broader
+production release remains held while those acceptance gates are open.
+
 # Public profile repair integration — October 23, 2026
 
 The held account preview now includes the scoped public profile repair from

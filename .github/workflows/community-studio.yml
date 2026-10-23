@@ -24,11 +24,33 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: node --import tsx --test scripts/test-community-studio.ts
+      - name: Build and validate the scoped public community release
+        run: |
+          npm run lint
+          npm run test:platform
+          npm run build
+          npm run verify:prerender
+          npm run verify:editorial
+          npm run validate:insights -- --skip-source-fetch
+          npm run validate:insights:dist
+          npm run verify:urls
+          npm run build:functions
+      - name: Verify profile routing in the built Pages asset router
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npx --no-install wrangler pages dev dist --ip 127.0.0.1 --port 8793 --compatibility-date 2026-06-10 --local >"$RUNNER_TEMP/community-pages.log" 2>&1 &
+          PROFILE_PAGES_PID=$!
+          trap 'kill "$PROFILE_PAGES_PID" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8793/ >/dev/null && break || sleep 1; done
+          PROFILE_ROUTE_BASE=http://127.0.0.1:8793 node scripts/verify-public-profile-route.mjs
       - name: Install isolated browser tools
         run: |
           bash scripts/prepare-browser-apt.sh
           npm install --prefix "$RUNNER_TEMP/community-browser" --no-save --no-package-lock playwright@1.58.2
-          "$RUNNER_TEMP/community-browser/node_modules/.bin/playwright" install --with-deps chromium
+          # GitHub's Ubuntu runner already supplies Chrome's shared libraries.
+          # Keep the exact pinned browser and assertions; avoid apt mirror stalls.
+          "$RUNNER_TEMP/community-browser/node_modules/.bin/playwright" install chromium
       - name: Immediate human/agent conversation, live replies, and responsive layout
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/community-browser/node_modules/playwright
@@ -68,3 +90,17 @@ jobs:
           console.log(JSON.stringify({ deployment: project.canonical_deployment.id, siteRevision: project.canonical_deployment.deployment_trigger.metadata.commit_hash,
             relayType: relay?.type, relayOrigin, changed: false }));
           JS
+      - name: Publish only a deliberately selected public profile repair on current main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[public-profiles]')
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          GH_TOKEN: ${{ github.token }}
+          EIDOS_RELEASE_PROBE_ORIGIN: https://eidosworks.pages.dev
+        run: |
+          CURRENT_MAIN=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')
+          test "$CURRENT_MAIN" = "$GITHUB_SHA"
+          node scripts/playground-pages-release.mjs preflight
+          npx --no-install wrangler pages deploy dist --project-name=eidosworks --branch=main --commit-hash="$GITHUB_SHA" --commit-message='Verified public profile repair' --commit-dirty=true
+          node scripts/playground-pages-release.mjs verify
+          PROFILE_ROUTE_BASE=https://eidosworks.pages.dev node scripts/verify-public-profile-route.mjs

@@ -53,6 +53,15 @@ candidates. Record the exact paired deployments and live direct-link/refresh
 observations on the PRs. A member that exists only in the isolated acceptance
 database does not thereby exist in production.
 
+The public-profile source does not change the Playground runtime, cloud-save
+contract, account authentication or paid authoring. Added styles are scoped to
+profiles. The existing community workflow now runs all site publication gates,
+the built Pages router and actual profile/community Chromium checks before a
+deliberate `[public-profiles]` main commit can publish. It checks current main,
+preserves the provider configuration fingerprint and reads back exact deployed
+assets/routes. This scoped path does not waive or claim the separate full
+Playground browser suite; that existing workflow continues independently.
+
 Rollback restores the preceding Pages deployment and relay target, plus the
 backend baseline as needed. Accounts, posts, replies, projects and entitlements
 remain intact; there are no data deletions or reverse migrations.

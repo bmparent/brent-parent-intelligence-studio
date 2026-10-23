@@ -2,8 +2,10 @@
 
 [The current evidence record](PLAYGROUND_ACCEPTANCE_2026-10-23.md) records the
 passing final starting-source editor matrix, current public-main integration,
-actual device save/reopen and synthetic hosted account save, Browser
-reconnection dependency and remaining device/accessibility/activation gates.
+actual device save/reopen and synthetic hosted account save. Its evening
+follow-through closes fresh cloud reopen/revision recovery on the real isolated
+account, adds hosted ZIP-byte/reload/responsive checks, and preserves the actual
+physical-device, screen-reader and browser-zoom gates.
 Earlier dated failures and provider observations below retain their scope.
 
 ## October 23 public profiles repair
