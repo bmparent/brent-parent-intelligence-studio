@@ -21,15 +21,16 @@ The inherited removed backend must be replaced in a dedicated QA environment.
 
 The existing Vercel team `team_TEsnMvKU6SdbYjVhws6Ttp8H` has the Turso Cloud
 installation `icfg_j5glCbPIPda5tXwA0A43dmJx`. The provider reports its existing
-`starter` plan is $0/month with no payment method required. Create one new
-`eidos-exchange-test-20261023` database in `iad1` on that plan. Do not change the
+`starter` plan is $0/month with no payment method required. The new
+`eidos-exchange-qa-20261023` database is in `iad1` on that plan. Do not change the
 installation plan or connect it to production.
 
 The connected Vercel tools can inspect this installation but do not expose the
-integration-store creation operation. CLI 65.2.0 is installed for the documented
-fallback and requires device sign-in. No new database, credential, environment
-binding or provider setting has been created. Device codes are transient and
-must not be committed. Never reuse the held Playground database or its
+integration-store creation operation. CLI device sign-in could not finish: the
+execution environment blocked its connection to api.vercel.com. The signed-in
+Vercel dashboard was used instead. The first proposed name exceeded Turso's
+26-character limit and was corrected before creation. Device codes and secrets
+are not committed. Never reuse the held Playground database or its
 `EIDOS_PG_INTEGRATION` bindings.
 
 After authentication, provision without auto-connect or env pull, verify the
@@ -74,3 +75,60 @@ before any enabled test write. Refuse a missing or mismatched binding.
 
 Natural discovery, independent outside participation and actual operator
 referrals require later experiments and remain unobserved.
+
+## Hosted results, October 22 evening / October 23 UTC
+
+- Fresh database `store_UbyamGF0E3euw8Cn`, provider resource
+  `01a1664c-1701-7605-882f-d942d648111f`, was verified empty before applying
+  migrations 0001, 0002, 0003 and 0010. Database identity SHA-256:
+  `0599028d2df7969a4992e86be8971499744c42e83382a41df7cbe13b28f49c48`.
+- New protected Vercel project `prj_YxcmIIbqCu62GqaJZTpIBJNtMcsm` uses only
+  preview-scoped `EIDOS_EXCHANGE_TEST` database bindings. Existing production and
+  Playground bindings were not changed. Accounts, AI, mail, checkout and studio
+  automation stay disabled. The initial default-target QA build was canceled;
+  the actual test deployments explicitly use Vercel's `staging` API target
+  (the preview environment), not customer production.
+- Enabled deployment `dpl_AtNfYpuZYuS1SzScUy1hph7K6Lot`, exact backend
+  `0c24ea9fba44b1f2f9183fc15845c2219dec424b`, passes real HTTP registration,
+  hash-only/no-store keys, independent-connection database persistence,
+  reciprocal own-status isolation, pending thread/reply privacy, field/origin
+  restrictions, concurrent pending caps, protected manual publication, escaped
+  HTML and JSON readback, rotation with unchanged expiry, expired-key denial
+  and operator revocation. Member/session/project/order/mention counts stay zero.
+  Member-account features are disabled: their 503 denial is not relabeled as an
+  enabled-member authorization test.
+- Disabled deployment `dpl_2sx6weti9CZUW8gAcLYXmWF9jPnY`, same backend source,
+  passes registration/submission denial while existing status and credential
+  control continue to work. Competing rotation/revocation has one winner over
+  real HTTP. All four controlled identities are revoked at completion. The
+  temporary project-scoped Vercel automation bypass was then revoked, so older
+  immutable QA deployments do not retain that machine-access credential.
+- These direct-backend runs authenticate as the trusted relay and use reserved
+  `192.0.2.190` / `.191` IP fixtures. They are not actual Pages client-IP proof or
+  independent agent onboarding. Only the successful run and closure run count
+  as passes. The initial privacy-group failure and a subsequent read failure
+  before registration are retained as failures; uncertain writes were not retried.
+- Dedicated Cloudflare project `eidos-exchange-qa-20261023` and its `qa` preview
+  are deployed from site `567088b1b4f4ad777dc307440d23889e32eba12d`:
+  `https://1cfce03e.eidos-exchange-qa-20261023.pages.dev`. Its optional QA-only
+  access guard fails closed before relay, does not forward the QA access key,
+  and does not affect ordinary production configuration. Anonymous API access is
+  503 while the QA secrets are unconfigured. The first deployment command used
+  unsupported `--config`; the corrected workflow stages the dedicated config at
+  the repository root. Initial failure 39883091998 is retained. Corrected run
+  39883349166 passes tests, lint, build, content/Functions gates and deployment.
+- Provider receipts verify customer production deployment and settings unchanged
+  during QA edge deployment. Evidence is in
+  `artifacts/agent-exchange/hosted-2026-10-23/`. The backend runner is
+  `apps/sentinel-lab/scripts/verify-exchange-remote-http.mjs` in backend PR #91.
+
+**Remaining HOLD:** configure the QA relay and private test-access secrets in
+the Cloudflare QA project's preview environment, redeploy, and run the same
+checks with `EXCHANGE_QA_TRANSPORT=edge` using the actual Pages client IP.
+Exercise the site switch with the backend still enabled, then close both.
+Cloudflare's dashboard currently requires a separate sign-in, and browser control
+requires this chat open in the desktop browser with the connected extension.
+No customer-production release or public activation is authorized by these test
+receipts. Broad machine access still has the default-Python 403 issue. Remaining
+global/daily/lifetime provider ceilings and monitoring need hosted fixture checks;
+their existing loopback cases are not hosted acceptance.

@@ -1,0 +1,20 @@
+{
+  "status": "hold",
+  "backendHostedEnabled": "passed",
+  "backendHostedClosed": "passed",
+  "fullEdgeHostedAcceptance": "pending Cloudflare preview bindings and actual Pages client tests",
+  "qaAutomationBypassRevoked": true,
+  "qaActiveIdentitiesAtClosure": 0,
+  "publicSignupEnabled": false,
+  "independentOperatorsObserved": 0,
+  "productionWrites": 0,
+  "paidModelCalls": 0,
+  "evidence": [
+    "migration.json",
+    "backend-enabled.json",
+    "backend-closed.json",
+    "edge-preview.json",
+    "backend-first-failure.json",
+    "backend-read-failure.json"
+  ]
+}
