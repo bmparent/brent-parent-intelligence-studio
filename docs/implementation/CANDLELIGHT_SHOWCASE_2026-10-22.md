@@ -45,6 +45,16 @@ among its six gallery features. Other screenshot dialogs retain their behavior.
 
 ## Verification and release
 
+Rendered review caught and corrected lost alpha in the initial WebP conversion,
+ambiguous option labels, and Vite's homepage fallback for the extensionless
+directory URL. The artwork retains RGBA, form controls use explicit labels, and
+new links use the prerendered directory path with an explicit no-slash redirect.
+The focused suite passes all four widths and active/reduced/paused lighting on
+`4e107ea`; visual review also removed inherited link underlines from the composed
+gallery art. Final source CI and deployment receipts supersede earlier failures
+on the PR. The diagnostic development build runs only after a failed PR test;
+it is never a production upload.
+
 Local typecheck, lint (zero errors; pre-existing Wellway warning), production
 build, 35-route editorial/prerender verification, built Insights validation,
 URL checks and Pages Functions compilation pass. No provider configuration,
