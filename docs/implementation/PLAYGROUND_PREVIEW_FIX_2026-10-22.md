@@ -139,3 +139,29 @@ follow-through changes verification only. Application/runtime bytes, the paired
 backend, provider settings, saved projects and frozen archives are unchanged.
 Fresh CI must establish whether the locator correction resolves the failure;
 its exact receipt and any remaining defects belong to PR139.
+
+The actionable test in `39887514904` reproduced a genuine obstruction in all
+nine cases: Headline's floating toolbar intercepted the Introduction paragraph
+with its Duplicate/Remove controls. This disproves the theory that correcting
+coordinate sampling alone was sufficient. The retained artifact is
+`12473022857`; seven other workflows passed, including paired deployment
+`12586479`. The failed run remains failed acceptance.
+
+Editor controls now occupy a reserved row above the authored page. The page's
+sticky header is offset by that row, and a ResizeObserver maintains clearance
+as scaled controls change height. The row and its reserved space are removed
+when editing stops or the runtime is replaced. Gesture focus/cancellation and
+44px scaled targets remain. The actionable paragraph click, exact selection,
+stale quote guard, all engines and all widths remain required.
+
+This editor-only runtime correction is paired with backend
+`5570f8c18fb34fd8f15d1d8fb372ef6b7411d50c`, tree
+`11aaf30dc1df5b4456826a5f65e264a55eded228`. Local 179 Playground tests,
+typecheck/lint/build/Functions/prerender and backend 20 JavaScript plus 181
+TypeScript tests/typecheck/build pass. Both standalone page/composition runtime
+literals are byte-identical to the preceding candidate; the changed literal is
+authoring only. Shared parity is 108 platform files plus the separate 18-file
+graph, inventory `f2f509e146d809161a22df6f1c7ddc97fda2241a3bbeced364cc532ae6fbd69f`.
+Fresh exact-source browser/hosted results remain required on PR139. No account,
+project, archive, entitlement, budget, paid-provider mode or production flag is
+changed. Physical-device and assistive-technology acceptance remain separate.

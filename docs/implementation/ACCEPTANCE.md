@@ -6,6 +6,13 @@ preview and remaining user/hosted gates are recorded in
 Earlier dated passes and the separate DG owner-authentication pause are retained.
 The security update is live; the Playground runtime remains a held candidate.
 
+The [preview correction and current failed-run follow-through](PLAYGROUND_PREVIEW_FIX_2026-10-22.md)
+records nonce-isolated frames, misleading nested storage warnings and the
+reproduced toolbar obstruction. The latest editor controls reserve their own
+row instead of covering adjacent elements. Exact source, fresh CI/hosted
+receipts and the release decision are on PR139 paired with backend PR90;
+historical passes do not close current physical-device/accessibility gates.
+
 ## October 22 Agent Exchange acquisition pilot
 
 The authorized 14-day pilot adds a labeled practice challenge, an explicit-publish

@@ -48,14 +48,14 @@ test('browser development, minified browser, tsx-like and server builds produce 
 // A focused-parent fixture models engines where preventDefault on pointerdown
 // does not transfer focus into the iframe. Real-engine acceptance remains in
 // verify-playground-guides.mjs (Save, drag, Escape, release, exact project).
-test('narrow toolbar avoids top content and gesture focus lets Escape cancel before release', async () => {
+test('toolbar reserves a separate editing row and gesture focus lets Escape cancel before release', async () => {
   const { runInNewContext } = await import('node:vm');
   const result = await build({ entryPoints: ['src/playground/authoringRuntime.ts'], bundle: true, write: false, format: 'iife', globalName: 'Authoring', platform: 'browser' });
   let focused = null;
   const messages = [], elements = [];
   class Element {
     constructor() {
-      this.listeners = {}; this.children = []; this.attributes = {}; this.dataset = {}; this.style = { removeProperty() {} };
+      this.listeners = {}; this.children = []; this.attributes = {}; this.dataset = {}; this.style = { removeProperty(key) { delete this[key]; }, setProperty(key, value) { this[key] = value; } };
       this.classList = { add() {}, remove() {}, toggle() {}, contains() { return false; } };
       this.offsetWidth = 100; this.offsetHeight = 44; elements.push(this);
     }
@@ -79,7 +79,7 @@ test('narrow toolbar avoids top content and gesture focus lets Escape cancel bef
   node.id = 'heading'; node.dataset = { nodeType: 'heading', nodeName: 'Heading' }; node.parentElement = root;
   root.querySelectorAll = () => [node];
   const document = new Element(), window = new Element(), parent = { postMessage(message) { messages.push(message); } };
-  document.head = new Element(); document.body = new Element();
+  document.head = new Element(); document.body = new Element(); document.documentElement = new Element();
   document.createElement = () => new Element();
   document.querySelectorAll = () => [root];
   document.getElementById = id => id === node.id ? node : null;
@@ -90,23 +90,27 @@ test('narrow toolbar avoids top content and gesture focus lets Escape cancel bef
   runInNewContext(result.outputFiles[0].text + ';Authoring.authoringRuntime({bridge:true,editing:true,channel:"test",compositionStamp:"one"});', environment);
   window.dispatch('message', { source: parent, data: { type: 'playground-block-selection', channel: 'test', id: node.id } });
   const toolbar = elements.find(element => element.className === 'pg-node-toolbar');
-  assert.equal(toolbar.style.top, '51px', 'room above keeps toolbar outside the selected block');
+  assert.equal(toolbar.style.top, '6px');
+  assert.equal(document.documentElement.style['--pg-toolbar-space'], '56px', 'the whole control row has reserved space before page content');
+  assert.equal(toolbar.parentElement.className, 'pg-node-toolbar-dock');
   const header = new Element();
   header.getBoundingClientRect = () => ({ left: 0, top: 10, right: 300, bottom: 90, width: 300, height: 80 });
   document.querySelector = selector => selector === '.pg-header' ? header : null;
   window.dispatch('resize');
-  assert.equal(toolbar.style.top, '205px', 'the floating toolbar cannot cover the sticky header or its mobile Menu control');
+  assert.equal(toolbar.style.top, '6px', 'the page header cannot move the toolbar onto another element');
   node.getBoundingClientRect = () => ({ left: 0, top: 10, right: 300, bottom: 150, width: 300, height: 140 });
   window.dispatch('resize');
-  assert.equal(toolbar.style.top, '155px', 'a near-top block gets its toolbar below, not over its text');
+  assert.equal(toolbar.style.top, '6px', 'near-top content keeps the same separate control row');
   node.getBoundingClientRect = () => ({ left: 0, top: 10, right: 300, bottom: 1000, width: 300, height: 990 });
   window.dispatch('resize');
-  assert.equal(toolbar.style.top, '750px', 'a viewport-spanning container docks at the bottom');
+  assert.equal(toolbar.style.top, '6px', 'viewport-spanning containers do not cover their descendants with controls');
   const chromeCss = document.head.children[0].textContent;
   assert.match(chromeCss, /flex-wrap:nowrap/);
   assert.match(chromeCss, /overflow-x:auto/);
   assert.match(chromeCss, /\.pg-node-toolbar>\*\{flex-shrink:0\}/);
   assert.match(chromeCss, /min-height:calc\(44 \* var\(--pg-chrome-unit,1px\)\)/);
+  assert.match(chromeCss, /body\[data-editing="true"\]\{padding-top:var\(--pg-toolbar-space,0px\)\}/);
+  assert.match(chromeCss, /body\[data-editing="true"\] \.pg-header\{top:var\(--pg-toolbar-space,0px\)\}/);
   for (const label of ['Drag selected block', 'Resize block width']) {
     const handle = elements.find(element => element.attributes['aria-label'] === label);
     assert.ok(handle);
