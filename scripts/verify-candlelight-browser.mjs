@@ -26,6 +26,9 @@ try {
       await gallery.locator('.ew-site-card').screenshot({ path: path.join(evidence, `candlelight-gallery-${width}.png`) });
       await gallery.getByRole('link', { name: 'Explore full storefront', exact: false }).click();
       await page.waitForURL(/\/work\/candlelight-exclusive\/?$/);
+      const delivered = await page.request.get(base + '/work/candlelight-exclusive/');
+      assert.equal(delivered.ok(), true);
+      assert.match(await delivered.text(), /clex-case-intro/, 'directory URL delivers the actual prerendered storefront');
       const root = page.locator('#clex-demo');
       assert.equal(await root.count(), 1);
       assert.equal(await page.locator('h1').count(), 1);
@@ -84,7 +87,7 @@ try {
   }
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'no-preference' });
   const page = await context.newPage();
-  await page.goto(base + '/work/candlelight-exclusive');
+  await page.goto(base + '/work/candlelight-exclusive/');
   const feature = page.locator('.clex-feature');
   await feature.scrollIntoViewIfNeeded();
   await page.waitForFunction(() => document.querySelector('#clex-demo').dataset.lightingVisible === 'true');

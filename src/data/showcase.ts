@@ -8,7 +8,7 @@ export const showcase = [
     image: '/images/storefronts/candlelight-exclusive/men-front.webp',
     alt: 'Candlelight jacket in a warm amber arch beside concert-program typography.',
     status: 'Interactive design reconstruction',
-    href: '/work/candlelight-exclusive',
+    href: '/work/candlelight-exclusive/',
     details: ['Original concert-program layout and apparel artwork', 'Subtle candlelight with pause and reduced-motion support', 'Collection, product inspection, fit guides, and a temporary demo bag'],
   },
   {
