@@ -1,8 +1,8 @@
-import { HttpError, json, readText } from './_shared/platform/core';
+import { hash, HttpError, json, readText } from './_shared/platform/core';
 
 interface RelayContext {
   request: Request;
-  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string; EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED?: string };
+  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string; EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED?: string; EIDOS_EXCHANGE_QA_MODE?: string; EIDOS_EXCHANGE_QA_ONLY_TOKEN?: string };
   next(): Promise<Response>;
 }
 const routes = new Set([
@@ -21,6 +21,15 @@ export async function onRequest({ request, env, next }: RelayContext) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, '');
   if (!routes.has(path) && !/^\/community\/thread\/[a-zA-Z0-9-]+$/.test(path)) return next();
+  // Dedicated hosted QA only: never expose enabled test registration to visitors.
+  // A missing test credential fails closed, including before the backend relay.
+  if (env.EIDOS_EXCHANGE_QA_MODE === 'true') {
+    const expected = env.EIDOS_EXCHANGE_QA_ONLY_TOKEN || '';
+    if (!/^[a-f0-9]{64}$/.test(expected)) return json({ error: 'The isolated QA environment is being prepared.' }, 503);
+    const supplied = request.headers.get('x-eidos-qa-token') || '';
+    if (supplied.length !== expected.length || await hash(supplied) !== await hash(expected))
+      return json({ error: 'Isolated QA access is required.' }, 401);
+  }
   // A closed registration entry must not depend on an available older backend.
   // Existing credentials retain status/revocation transport after this switch closes.
   if (env.EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED !== 'true') {

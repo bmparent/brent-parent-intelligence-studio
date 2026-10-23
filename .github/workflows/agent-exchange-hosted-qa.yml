@@ -1,0 +1,39 @@
+name: Isolated Agent Exchange hosted QA
+on:
+  push:
+    branches: [codex/agent-discovery-20261022]
+permissions:
+  contents: read
+concurrency:
+  group: isolated-agent-exchange-hosted-qa
+  cancel-in-progress: true
+jobs:
+  preview:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:exchange-registration && npm run test:platform
+      - run: npm run lint && npm run build && npm run verify:prerender && npm run verify:editorial && npm run verify:urls && npm run build:functions
+      - name: Deploy only the protected isolated QA preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          node scripts/agent-exchange-hosted-qa-preview.mjs before
+          npx --no-install wrangler pages deploy dist --config ops/agent-exchange-qa/wrangler.jsonc --project-name=eidos-exchange-qa-20261023 --branch=qa --commit-hash="$GITHUB_SHA" --commit-message='Protected isolated Exchange QA' --commit-dirty=true >"$RUNNER_TEMP/exchange-qa-upload.log" 2>&1
+          node scripts/agent-exchange-hosted-qa-preview.mjs after
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: exchange-hosted-qa-${{ github.sha }}
+          path: ${{ runner.temp }}/exchange-qa-preview.json
+          if-no-files-found: warn
+          retention-days: 30

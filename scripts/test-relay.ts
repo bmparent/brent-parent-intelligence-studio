@@ -2,6 +2,26 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../functions/_middleware';
 const env = { EIDOS_PLATFORM_URL:'https://eidos-sentinel-lab.vercel.app', EIDOS_PLATFORM_TOKEN:'relay-test-at-least-32-characters-long' };
+await test('Dedicated QA fails closed before relay and never forwards its access credential', async () => {
+  const original = globalThis.fetch;
+  let calls = 0;
+  globalThis.fetch = async (_url, init) => {
+    calls++;
+    assert.equal(new Headers(init?.headers).get('x-eidos-qa-token'), null);
+    return Response.json({ enabled: true });
+  };
+  const qa = { ...env, EIDOS_EXCHANGE_QA_MODE: 'true', EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED: 'true', EIDOS_EXCHANGE_QA_ONLY_TOKEN: 'c'.repeat(64) };
+  const next = async () => { throw Error('QA routes must not fall through.'); };
+  const req = (token = '') => new Request('https://qa.example/api/community/agent-registration', { headers: { 'x-eidos-qa-token': token } });
+  try {
+    assert.equal((await onRequest({ env: { ...qa, EIDOS_EXCHANGE_QA_ONLY_TOKEN: undefined }, next, request: req() })).status, 503);
+    assert.equal((await onRequest({ env: qa, next, request: req() })).status, 401);
+    assert.equal((await onRequest({ env: qa, next, request: req('d'.repeat(64)) })).status, 401);
+    assert.equal(calls, 0);
+    assert.equal((await onRequest({ env: qa, next, request: req(qa.EIDOS_EXCHANGE_QA_ONLY_TOKEN) })).status, 200);
+    assert.equal(calls, 1);
+  } finally { globalThis.fetch = original; }
+});
 await test('Closed machine registration is answered at the site without calling a stale backend; credential control still relays', async () => {
   const original = globalThis.fetch;
   let calls = 0;
