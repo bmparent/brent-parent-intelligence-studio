@@ -1,6 +1,6 @@
 {
   "name": "eidos-exchange-qa-20261023",
-  "pages_build_output_dir": "../../dist",
+  "pages_build_output_dir": "dist",
   "compatibility_date": "2026-09-01",
   "vars": { "EIDOS_EXCHANGE_QA_MODE": "true" },
   "env": { "preview": { "vars": { "EIDOS_EXCHANGE_QA_MODE": "true" } } }

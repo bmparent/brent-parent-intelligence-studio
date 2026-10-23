@@ -28,7 +28,8 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           node scripts/agent-exchange-hosted-qa-preview.mjs before
-          npx --no-install wrangler pages deploy dist --config ops/agent-exchange-qa/wrangler.jsonc --project-name=eidos-exchange-qa-20261023 --branch=qa --commit-hash="$GITHUB_SHA" --commit-message='Protected isolated Exchange QA' --commit-dirty=true >"$RUNNER_TEMP/exchange-qa-upload.log" 2>&1
+          cp ops/agent-exchange-qa/wrangler.jsonc wrangler.jsonc
+          npx --no-install wrangler pages deploy dist --project-name=eidos-exchange-qa-20261023 --branch=qa --commit-hash="$GITHUB_SHA" --commit-message='Protected isolated Exchange QA' --commit-dirty=true >"$RUNNER_TEMP/exchange-qa-upload.log" 2>&1
           node scripts/agent-exchange-hosted-qa-preview.mjs after
       - uses: actions/upload-artifact@v4
         if: always()
