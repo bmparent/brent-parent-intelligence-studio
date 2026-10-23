@@ -3,7 +3,7 @@
 User authorization: Brent asked to run the isolated hosted tests on October 22.
 This gate uses site PR #142 and backend PR #91. Public signup stays disabled.
 
-## Current result
+## Reading preview and initial preflight
 
 The reading preview is `https://0ab62130.eidosworks.pages.dev`, built from site
 `ce2c95cdf10f9875f7174816ff234599e90bbcf2`. Backend candidate is
@@ -122,13 +122,66 @@ referrals require later experiments and remain unobserved.
   `artifacts/agent-exchange/hosted-2026-10-23/`. The backend runner is
   `apps/sentinel-lab/scripts/verify-exchange-remote-http.mjs` in backend PR #91.
 
-**Remaining HOLD:** configure the QA relay and private test-access secrets in
-the Cloudflare QA project's preview environment, redeploy, and run the same
-checks with `EXCHANGE_QA_TRANSPORT=edge` using the actual Pages client IP.
-Exercise the site switch with the backend still enabled, then close both.
-Cloudflare's dashboard currently requires a separate sign-in, and browser control
-requires this chat open in the desktop browser with the connected extension.
-No customer-production release or public activation is authorized by these test
-receipts. Broad machine access still has the default-Python 403 issue. Remaining
-global/daily/lifetime provider ceilings and monitoring need hosted fixture checks;
-their existing loopback cases are not hosted acceptance.
+## Actual Pages transport results, October 23 UTC
+
+Cloudflare authentication is complete. The preview-only encrypted relay/access
+bindings were configured on the dedicated QA project. Enabled Pages deployment
+`d5bc156f-3eb5-4018-b565-d43a61af3d15` and closed deployment
+`57c508df-ac9a-47e6-8f98-7eb94a11f948` use site source
+`3dc3b6bc921c82287a2416290c08eee21a31d9d5`. Both provider receipts verify
+customer production deployment and configuration unchanged. Their workflow is
+39884428634, attempts 2 and 3. Backend runtime source is
+`01737925e2ba8455b4368a8f7955789f3be405a0` (handler bytes unchanged from 0c24).
+
+Actual Pages signup created three identities without supplying client-IP headers.
+The first runner incorrectly assumed stable egress and expected the third call
+to return 429; it returned 201. Readback showed two actual IP fingerprint buckets,
+used 2 and 1. The first two identities were revoked by the runner; the unexpected
+third was independently found and revoked. A later signup attempt returned 429.
+Both failed runner receipts are retained. The runner now avoids a false same-IP
+claim on rotating egress and revokes an unexpected third success in direct mode.
+No actual edge quota counter was cleared to retry registration.
+
+To finish the remaining checks within that allowance, two explicitly labeled
+reserved-IP trusted-relay signup fixtures were used. Every subsequent lifecycle
+request used actual Pages transport. That run passes private pending thread/reply
+persistence, reciprocal own-status isolation, anonymous/selector/origin/privilege
+denials, concurrent pending caps, manual publication, escaped/unclaimed HTML and
+JSON readback, rotation preserving expiry, expired-key denial and revocation.
+This is **not** an uninterrupted lifecycle of either original edge-registered
+identity; the receipt states the registration fixture transport separately.
+
+The site switch was deployed off while the backend stayed enabled. Independent
+readback showed edge enabled=false and backend enabled=true. New registration
+and submissions returned 503 while existing status, rotation and self-revocation
+continued; competing rotate/revoke had one winner. All retained QA identities
+were then revoked.
+
+Additional actual hosted backend HTTP checks used explicit database fixtures for
+the 200/day global and 10/hour per-IP attempt ceilings, 20/day global signup cap,
+100-identity lifetime cap including revoked identities (concurrent boundary:
+one 201, one 409), 3/day identity and 20/day global contribution ceilings, and
+50-total pending queue (concurrent boundary: one 201, one 429). These are provider
+fixtures, not public acquisition. All temporary fixture identities/threads were
+removed, and the exact pre-fixture quota rows were restored and compared. The
+retained runner later batches cleanup and removes rows by its unique fixture
+prefix as well; syntax checks pass. Those cleanup-only improvements were made
+after the hosted limit run; no application handler changed.
+
+Final disabled backend `dpl_DyjRg1fxHGVAdcSoqvc7GH82FzJv` uses the same 017379
+source. Its availability is false and registration returns 503. The QA Pages
+preview binding now targets this disabled backend, with its own switch false.
+The temporary Vercel bypass was revoked; the old enabled immutable backend now
+returns a 302 to Vercel authentication, without following that redirect. Final
+readback: 9 retained controlled identities, 0 active, 0 temporary limit fixtures,
+0 published threads, and 0 member/session/member-key/order/project/mention rows.
+No paid model, mail or payment service was enabled.
+
+**Remaining HOLD:** identified clients read `/skill.md` (200), but default Python
+still receives Cloudflare 403. Anonymous and wrong-QA-key API requests return
+401. Repeat an uninterrupted actual edge signup-to-lifecycle run with a fresh
+actual client allowance, then review monitoring and release readiness before
+public activation. This test work does not authorize a production release.
+Natural discovery, independent participants and operator referrals remain
+unobserved. Sanitized receipts, including failures, are retained beside this
+report in `artifacts/agent-exchange/hosted-2026-10-23/`.

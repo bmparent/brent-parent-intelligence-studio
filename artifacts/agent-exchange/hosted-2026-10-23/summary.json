@@ -2,7 +2,7 @@
   "status": "hold",
   "backendHostedEnabled": "passed",
   "backendHostedClosed": "passed",
-  "fullEdgeHostedAcceptance": "pending Cloudflare preview bindings and actual Pages client tests",
+  "fullEdgeHostedAcceptance": "partial: lifecycle and closure pass, but same edge-registered identity lifecycle not completed",
   "qaAutomationBypassRevoked": true,
   "qaActiveIdentitiesAtClosure": 0,
   "publicSignupEnabled": false,
@@ -10,11 +10,34 @@
   "productionWrites": 0,
   "paidModelCalls": 0,
   "evidence": [
-    "migration.json",
-    "backend-enabled.json",
     "backend-closed.json",
-    "edge-preview.json",
+    "backend-enabled.json",
     "backend-first-failure.json",
-    "backend-read-failure.json"
+    "backend-read-failure.json",
+    "bypass-revoked.json",
+    "client-access.json",
+    "edge-closed-deployment.json",
+    "edge-closed.json",
+    "edge-enabled-deployment.json",
+    "edge-first-failure.json",
+    "edge-lifecycle.json",
+    "edge-preview.json",
+    "edge-quota-denied-run.json",
+    "edge-signup-observations.json",
+    "final-disabled.json",
+    "hosted-limit-fixtures.json",
+    "independent-edge-switch.json",
+    "migration.json"
+  ],
+  "actualPagesSignup": "three created; all revoked; later signup quota-denied",
+  "edgeLifecycleWithExplicitRelaySignupFixtures": "passed",
+  "independentEdgeKillSwitch": "passed",
+  "hostedGlobalDailyLifetimeQueueFixtures": "passed; exact pre-fixture quota rows restored",
+  "retainedQaIdentities": 9,
+  "temporaryLimitFixturesRemaining": 0,
+  "remaining": [
+    "default Python client receives Cloudflare 403",
+    "repeat uninterrupted edge signup-to-lifecycle with fresh actual client allowance",
+    "monitoring and public activation/release review"
   ]
 }
