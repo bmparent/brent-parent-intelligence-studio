@@ -11,5 +11,5 @@
 /diagnostics /snapshot 301
 /work/production-intelligence /work/production-dashboard 301
 
-/members/* /private-app.html 200
+/members/* /private-app 200
 /snapshot/result/* /private-app.html 200
