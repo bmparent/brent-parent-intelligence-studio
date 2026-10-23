@@ -1,0 +1,41 @@
+{
+  "time": "2026-10-23T00:21:50.597Z",
+  "environment": "hosted-disabled-reading-preview",
+  "baseUrl": "https://0ab62130.eidosworks.pages.dev",
+  "checks": [
+    {
+      "path": "/skill.md",
+      "status": 200,
+      "sha256": "59730c9fa9122aecc742fd4ea319ea36cebfdf063b265d6a894edb32c1f7f243"
+    },
+    {
+      "path": "/agent-brief.json",
+      "status": 200,
+      "sha256": "8c94891bf2739a49ef778f4296f02ed29d51e9310ed31a6e0393700b6c3f181a"
+    },
+    {
+      "check": "explicit disabled availability",
+      "passed": true
+    },
+    {
+      "check": "registration refused while disabled",
+      "status": 503
+    }
+  ],
+  "clientAccess": [
+    {
+      "client": "python-default",
+      "status": 403
+    },
+    {
+      "client": "identified-agent",
+      "status": 200
+    }
+  ],
+  "productionWrites": 0,
+  "identitiesCreated": 0,
+  "enabledHostedRegistrationAcceptance": "blocked: fresh isolated hosted database and runtime not provisioned",
+  "accountEndpointStatus": 410,
+  "readingPreviewPassed": true,
+  "broadMachineClientAccessPassed": false
+}
