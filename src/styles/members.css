@@ -251,6 +251,7 @@
 .ew-public-profile .ew-member-heading { margin-bottom: 28px; }
 .ew-profile-note { color: #536773; max-width: 760px; line-height: 1.7; margin-bottom: 28px; }
 .ew-public-profile .ew-member-dashboard { align-items: start; }
+.ew-public-profile h2 { scroll-margin-top: 130px; }
 .ew-profile-activity { list-style: none; margin: 0; padding: 0; }
 .ew-profile-activity li { border-top: 1px solid #dce6eb; padding-block: 24px; min-width: 0; }
 .ew-profile-activity h3 { font-size: 22px; font-weight: 500; line-height: 1.35; margin: 10px 0; overflow-wrap: anywhere; }

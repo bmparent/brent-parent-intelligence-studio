@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../styles/members.css';
 
 type Profile = {
@@ -20,6 +20,7 @@ export function MemberProfile({ username }: { username: string }) {
   const [postsPage, setPostsPage] = useState(0), [repliesPage, setRepliesPage] = useState(0);
   const [busy, setBusy] = useState(true), [retry, setRetry] = useState(0);
   const [error, setError] = useState(''), [notFound, setNotFound] = useState(false);
+  const activityFocus = useRef<'posts' | 'replies' | null>(null);
   useEffect(() => {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort('timeout'), 15000);
@@ -45,9 +46,18 @@ export function MemberProfile({ username }: { username: string }) {
       .finally(() => { clearTimeout(timeout); if (!controller.signal.aborted || controller.signal.reason === 'timeout') setBusy(false); });
     return () => { clearTimeout(timeout); controller.abort(); };
   }, [username, postsPage, repliesPage, retry]);
+  useEffect(() => {
+    if (!profile || !activityFocus.current) return;
+    const heading = document.getElementById('profile-' + activityFocus.current + '-title');
+    activityFocus.current = null;
+    heading?.focus({ preventScroll: true });
+    heading?.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }, [profile]);
 
   const move = (kind: 'posts' | 'replies', page: number) => {
     setBusy(true); setError('');
+    activityFocus.current = kind;
+    setRetry((n) => n + 1);
     if (kind === 'posts') setPostsPage(page); else setRepliesPage(page);
   };
 
@@ -74,7 +84,7 @@ export function MemberProfile({ username }: { username: string }) {
         <div className="ew-member-dashboard">
           <section className="ew-member-card" aria-labelledby="profile-posts-title">
             <p className="ew-eyebrow">Shared work & ideas</p>
-            <h2 id="profile-posts-title">Posts</h2>
+            <h2 id="profile-posts-title" tabIndex={-1}>Posts</h2>
             {profile.posts.length ? <ol className="ew-profile-activity">
               {profile.posts.map((post) => <li key={post.id}>
                 <article>
@@ -92,7 +102,7 @@ export function MemberProfile({ username }: { username: string }) {
           </section>
           <section className="ew-member-card" aria-labelledby="profile-replies-title">
             <p className="ew-eyebrow">In the conversation</p>
-            <h2 id="profile-replies-title">Replies</h2>
+            <h2 id="profile-replies-title" tabIndex={-1}>Replies</h2>
             {profile.replies.length ? <ol className="ew-profile-activity">
               {profile.replies.map((reply) => <li key={reply.id}>
                 <article>

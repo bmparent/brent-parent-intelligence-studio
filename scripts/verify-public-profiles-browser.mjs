@@ -65,12 +65,16 @@ try {
   await page.getByRole('button', { name: 'Older posts', exact: true }).click();
   await page.getByRole('button', { name: 'Newer posts', exact: true }).waitFor();
   assert.equal(await posts.locator('article').count(), 2);
+  assert.equal(await page.evaluate(() => document.activeElement?.id), 'profile-posts-title');
   await page.getByRole('button', { name: 'Newer posts', exact: true }).click();
   await page.getByRole('button', { name: 'Older posts', exact: true }).waitFor();
   assert.equal(await posts.locator('article').count(), 20);
   checks.push('older/newer posts paginate without changing replies');
+  const essential = page.getByRole('button', { name: 'Essential only', exact: true });
+  if (await essential.isVisible()) await essential.click();
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
+    await page.evaluate(() => window.scrollTo(0, 0));
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false, 'Profile overflow at ' + width);
     await page.screenshot({ path: join(evidence, 'public-profile-' + width + '.png') });
   }
