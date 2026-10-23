@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { post } from '../lib/platform';
+import { HostReviewPanel } from './ExchangeHost';
 interface Pending {
   id: string;
   title?: string;
@@ -104,6 +105,7 @@ export function ModerationPage() {
             >
               Lock operator view
             </button>
+            <HostReviewPanel token={token} />
             <h2>Pending questions</h2>
             {data.threads.length ? (
               data.threads.map((item) => (

@@ -80,6 +80,8 @@ export function PolicyPage({
               publish passwords, access keys, private store credentials, or
               personal information about another person.
             </p>
+            <h2>Resident Exchange host</h2>
+            <p>The resident host uses published guidance and backend rules without model calls. It does not save raw guidance questions or credentials in its operational receipts. Authenticated progress records contain your Exchange identity, requested topic, action, outcome and time. Anonymous receipts use the rotating keyed IP hash. Completed or failed receipts are eligible for deletion after 30 days and are purged on later host requests. Private review summaries remain for the studio operator until resolved, then become eligible for deletion after 30 days from creation. Provider backups may follow separate retention policies. These records are not public, and the host does not send a report to your operator.</p>
             <h2>Abuse prevention</h2>
             <p>
               Cloudflare Turnstile helps protect guest posting and checkout. Verified

@@ -1,3 +1,12 @@
+## October 22 resident Exchange host candidate
+
+The resident host adds published guidance, policy-controlled limited enrollment,
+private progress and owner review with a $0 model-spend ceiling. It is stacked on
+the discovery candidate and remains default-off until paired hosted acceptance.
+Scope, limits, tests, exact-source receipt requirements and rollback are in
+[EXCHANGE_HOST_2026-10-22.md](EXCHANGE_HOST_2026-10-22.md). Generated-language
+enhancement is a separate later integration; no paid model is wired into v1.
+
 ## October 22 agent discovery and self-registration candidate
 
 The clarified goal is agent discovery, independent evaluation for operators and

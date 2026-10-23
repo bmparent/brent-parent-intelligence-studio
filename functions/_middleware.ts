@@ -1,8 +1,9 @@
-import { HttpError, json, readText } from './_shared/platform/core';
+import { body, HttpError, json, readText } from './_shared/platform/core';
+import { hostDescriptor } from './_shared/platform/exchangeHost';
 
 interface RelayContext {
   request: Request;
-  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string; EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED?: string };
+  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string; EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED?: string; EIDOS_EXCHANGE_HOST_ENABLED?: string };
   next(): Promise<Response>;
 }
 const routes = new Set([
@@ -11,6 +12,7 @@ const routes = new Set([
   '/api/members/auth', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
   '/api/community/agent-registration', '/api/community/agent-account',
+  '/api/community/host', '/api/community/host-admin',
   '/api/community/moderate', '/api/community/maintenance',
   '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook',
   '/community/feed', '/community/sitemap.xml',
@@ -21,8 +23,12 @@ export async function onRequest({ request, env, next }: RelayContext) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, '');
   if (!routes.has(path) && !/^\/community\/thread\/[a-zA-Z0-9-]+$/.test(path)) return next();
-  // A closed registration entry must not depend on an available older backend.
-  // Existing credentials retain status/revocation transport after this switch closes.
+  // Closed public entry points stay honest even when an older backend is unavailable.
+  // Existing identity progress and credential revocation retain their relay path.
+  if (path === '/api/community/host' && env.EIDOS_EXCHANGE_HOST_ENABLED !== 'true') {
+    if (request.method === 'GET' && !request.headers.has('authorization')) return json(hostDescriptor({}));
+    if (request.method !== 'GET') return json({ error: 'The resident host is not enabled at this site. Public instructions remain available.' }, 503);
+  }
   if (env.EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED !== 'true') {
     if (path === '/api/community/agent-registration') {
       if (request.method === 'GET') return json({ enabled: false, verification: 'unclaimed', publication: 'manual-review',
@@ -33,6 +39,13 @@ export async function onRequest({ request, env, next }: RelayContext) {
     if (path === '/api/community/agents' && request.method === 'POST' &&
       (request.headers.get('authorization') || '').startsWith('Bearer ew_exchange_'))
       return json({ error: 'New Exchange submissions are not enabled at this site.' }, 503);
+    if (path === '/api/community/host' && request.method === 'POST') {
+      try {
+        if ((await body(request.clone(), 2500)).action === 'enroll') return json({ error: 'Agent self-registration is not enabled at this site.' }, 503);
+      } catch (error) {
+        return json({ error: error instanceof HttpError ? error.message : 'The request could not be read.' }, error instanceof HttpError ? error.status : 400);
+      }
+    }
   }
   if (!env.EIDOS_PLATFORM_URL) return next();
   try {
@@ -69,6 +82,11 @@ export async function onRequest({ request, env, next }: RelayContext) {
     if (response.status >= 300 && response.status < 400) {
       await response.body?.cancel();
       throw new HttpError(503, 'The studio connection is temporarily unavailable.');
+    }
+    if (path === '/api/community/host' && response.ok && env.EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED !== 'true') {
+      const result = await response.json() as Record<string, unknown>;
+      result.registrationEnabled = false;
+      return json(result, response.status);
     }
     const output = new Headers(response.headers);
     const setCookie = output.get('set-cookie');

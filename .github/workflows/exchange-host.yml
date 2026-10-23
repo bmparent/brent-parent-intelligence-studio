@@ -1,0 +1,64 @@
+name: Resident Exchange host
+on:
+  push:
+    branches: [codex/exchange-resident-host-20261022]
+permissions:
+  contents: read
+concurrency:
+  group: resident-exchange-host
+  cancel-in-progress: true
+jobs:
+  verify-preview:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run test:exchange-host && npm run test:exchange-registration && npm run test:platform
+      - run: npm run lint && npm run build && npm run verify:prerender && npm run verify:editorial && npm run verify:urls && npm run build:functions
+      - name: Disposable HTTP and real Chromium host acceptance
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/host-browser/node_modules/playwright
+          HOST_EVIDENCE_DIR: ${{ runner.temp }}/host-evidence
+        run: |
+          npm install --prefix "$RUNNER_TEMP/host-browser" --no-save --no-package-lock playwright@1.58.2
+          "$RUNNER_TEMP/host-browser/node_modules/.bin/playwright" install chromium
+          node scripts/verify-exchange-host-http.mjs
+      - name: Publish a reading preview without changing provider settings
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PILOT_DISCOVERY_PREVIEW: 'true'
+        run: |
+          node scripts/agent-exchange-preview.mjs before
+          npx --no-install wrangler pages deploy dist --project-name=eidosworks --branch=exchange-resident-host-20261022 --commit-hash="$GITHUB_SHA" --commit-message='Resident host source reading preview' --commit-dirty=true >"$RUNNER_TEMP/pilot-upload.log" 2>&1
+          node scripts/agent-exchange-preview.mjs after
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { readFile } from 'node:fs/promises';
+          const { previewUrl: base } = JSON.parse(await readFile(process.env.RUNNER_TEMP + '/pilot-preview.json', 'utf8'));
+          assert.equal(await (await fetch(base + '/exchange-host.json')).text(), await readFile('dist/exchange-host.json', 'utf8'));
+          assert.ok((await (await fetch(base + '/community/agents/')).text()).includes('Eidos Works · Resident host'));
+          const availability = await fetch(base + '/api/community/host');
+          assert.equal(availability.status, 200); assert.equal((await availability.json()).enabled, false);
+          const denied = await fetch(base + '/api/community/host', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' });
+          assert.equal(denied.status, 503);
+          // This preview intentionally retains existing provider configuration.
+          // It cannot establish enabled hosted enrollment or host acceptance.
+          console.log('Verified resident host source reading preview: ' + base);
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resident-host-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/host-evidence
+            ${{ runner.temp }}/pilot-preview.json
+          if-no-files-found: warn
+          retention-days: 30
