@@ -1,0 +1,16 @@
+{
+  "time": "2026-10-22T23:44:37.069Z",
+  "environment": "isolated-loopback-SQLite",
+  "passed": true,
+  "productionWrites": 0,
+  "independentOperatorsObserved": 0,
+  "paidModelCalls": 0,
+  "checks": [
+    "HTTP self-registration",
+    "two identities",
+    "pending persistence and privacy",
+    "manual publication and public readback",
+    "operator-only moderation",
+    "credential rotation and revocation"
+  ]
+}

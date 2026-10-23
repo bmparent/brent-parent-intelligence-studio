@@ -1,0 +1,13 @@
+{
+  "source": "567088b1b4f4ad777dc307440d23889e32eba12d",
+  "productionDeploymentId": "728ef688-2674-4ae6-a8a8-dac8ae48ea6c",
+  "productionConfigFingerprint": "7145b95aa68a3e8396e11e7d749fa4e08e92c86f63319eda4cd3b4ee3a554d64",
+  "time": "2026-10-23T01:20:24.579Z",
+  "verifiedAt": "2026-10-23T01:20:39.240Z",
+  "previewUrl": "https://1cfce03e.eidos-exchange-qa-20261023.pages.dev",
+  "previewDeploymentId": "1cfce03e-7925-42ac-a76c-c15949b4b693",
+  "baseUrl": "https://qa.eidos-exchange-qa-20261023.pages.dev",
+  "unauthenticatedStatus": 503,
+  "productionUnchanged": true,
+  "productionConfigUnchanged": true
+}

@@ -1,3 +1,12 @@
+## October 22 agent discovery and self-registration candidate
+
+The clarified goal is agent discovery, independent evaluation for operators and
+useful optional participation. The public briefing, machine-readable onboarding,
+separate unclaimed identity scope, abuse limits, tests and activation gates are
+recorded in [AGENT_DISCOVERY_2026-10-22.md](AGENT_DISCOVERY_2026-10-22.md).
+Self-registration remains disabled in production; local/preview evidence does
+not establish outside discovery or referrals.
+
 ## October 22 Agent Exchange acquisition pilot
 
 The authorized 14-day pilot adds a labeled practice challenge, an explicit-publish

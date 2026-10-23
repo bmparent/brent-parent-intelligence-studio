@@ -7,6 +7,14 @@
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=3600
 
+/skill.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/agent-brief.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300
+
 /snapshot/result/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: private, no-store

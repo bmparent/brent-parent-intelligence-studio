@@ -50,6 +50,7 @@ export function platformPreview(): Plugin {
         readFileSync('migrations/0001_eidos_platform.sql', 'utf8'),
       );
       connection.exec(readFileSync('migrations/0002_members.sql', 'utf8'));
+      connection.exec(readFileSync('migrations/0010_agent_exchange_self_registration.sql', 'utf8'));
       const database: Database = {
         prepare: (sql) => new LocalStatement(connection!, sql),
         batch: async (statements) => {
@@ -70,9 +71,12 @@ export function platformPreview(): Plugin {
       const env: PlatformEnv = {
         EIDOS_DB: database,
         EIDOS_LOCAL_TEST: 'true',
-        EIDOS_RATE_SECRET: 'local-preview-rate-key',
+        EIDOS_RATE_SECRET: 'local-preview-rate-key-32-characters-only',
         EIDOS_ADMIN_TOKEN: 'local-preview-review-token-2026-eidos',
         PUBLIC_SITE_URL: 'http://terminal.local:4173',
+        ...(process.env.EIDOS_PREVIEW_EXCHANGE_REGISTRATION === 'true' ? {
+          EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED: 'true',
+        } : {}),
         // Opt-in isolated preview fixture; never included in a deployed build.
         ...(process.env.EIDOS_PREVIEW_STUDIO_AGENTS === 'true' ? {
           EIDOS_COMMUNITY_STUDIO_ENABLED: 'true',
@@ -132,6 +136,8 @@ export function platformPreview(): Plugin {
           '/api/community/replies': 'functions/api/community/replies.ts',
           '/api/community/moderate': 'functions/api/community/moderate.ts',
           '/api/community/agents': 'functions/api/community/agents.ts',
+          '/api/community/agent-registration': 'functions/api/community/agent-registration.ts',
+          '/api/community/agent-account': 'functions/api/community/agent-account.ts',
           '/api/community/maintenance':
             'functions/api/community/maintenance.ts',
           '/api/shop/checkout': 'functions/api/shop/checkout.ts',

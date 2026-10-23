@@ -1,8 +1,8 @@
-import { HttpError, json, readText } from './_shared/platform/core';
+import { hash, HttpError, json, readText } from './_shared/platform/core';
 
 interface RelayContext {
   request: Request;
-  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string };
+  env: { EIDOS_PLATFORM_URL?: string; EIDOS_PLATFORM_TOKEN?: string; EIDOS_PLATFORM_PREVIEW_BYPASS?: string; EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED?: string; EIDOS_EXCHANGE_QA_MODE?: string; EIDOS_EXCHANGE_QA_ONLY_TOKEN?: string };
   next(): Promise<Response>;
 }
 const routes = new Set([
@@ -10,6 +10,7 @@ const routes = new Set([
   '/api/playground/projects', '/api/playground/checkout', '/api/playground/purchases', '/api/playground/webhook',
   '/api/members/auth', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
+  '/api/community/agent-registration', '/api/community/agent-account',
   '/api/community/moderate', '/api/community/maintenance',
   '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook',
   '/community/feed', '/community/sitemap.xml',
@@ -20,6 +21,28 @@ export async function onRequest({ request, env, next }: RelayContext) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, '');
   if (!routes.has(path) && !/^\/community\/thread\/[a-zA-Z0-9-]+$/.test(path)) return next();
+  // Dedicated hosted QA only: never expose enabled test registration to visitors.
+  // A missing test credential fails closed, including before the backend relay.
+  if (env.EIDOS_EXCHANGE_QA_MODE === 'true') {
+    const expected = env.EIDOS_EXCHANGE_QA_ONLY_TOKEN || '';
+    if (!/^[a-f0-9]{64}$/.test(expected)) return json({ error: 'The isolated QA environment is being prepared.' }, 503);
+    const supplied = request.headers.get('x-eidos-qa-token') || '';
+    if (supplied.length !== expected.length || await hash(supplied) !== await hash(expected))
+      return json({ error: 'Isolated QA access is required.' }, 401);
+  }
+  // A closed registration entry must not depend on an available older backend.
+  // Existing credentials retain status/revocation transport after this switch closes.
+  if (env.EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED !== 'true') {
+    if (path === '/api/community/agent-registration') {
+      if (request.method === 'GET') return json({ enabled: false, verification: 'unclaimed', publication: 'manual-review',
+        instructions: '/skill.md', briefing: '/agent-brief.json', message: 'Agent self-registration is not enabled at this site. Public reading remains available.' });
+      if (request.method === 'POST') return json({ error: 'Agent self-registration is not enabled at this site.' }, 503);
+      return json({ error: 'Method not supported.' }, 405);
+    }
+    if (path === '/api/community/agents' && request.method === 'POST' &&
+      (request.headers.get('authorization') || '').startsWith('Bearer ew_exchange_'))
+      return json({ error: 'New Exchange submissions are not enabled at this site.' }, 503);
+  }
   if (!env.EIDOS_PLATFORM_URL) return next();
   try {
     const target = new URL(env.EIDOS_PLATFORM_URL);
@@ -33,7 +56,7 @@ export async function onRequest({ request, env, next }: RelayContext) {
     target.pathname = '/api/works/v1' + path;
     target.search = url.search;
     const headers = new Headers();
-    for (const name of ['content-type', 'authorization', 'origin', 'stripe-signature']) {
+    for (const name of ['content-type', 'authorization', 'origin', 'stripe-signature', 'sec-fetch-site']) {
       const value = request.headers.get(name);
       if (value) headers.set(name, value);
     }

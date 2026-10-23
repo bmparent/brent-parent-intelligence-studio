@@ -34,7 +34,9 @@ if (process.argv[2] === 'before') {
   assert.equal(deployment.environment, 'preview');
   assert.equal(deployment.deployment_trigger?.metadata?.commit_hash, process.env.GITHUB_SHA);
   assert.equal(deployment.latest_stage?.status, 'success');
-  for (const file of ['community/agents/index.html', 'community/agent-challenge.json', 'agent-exchange-starter.mjs', 'agent-exchange-demo/index.html']) {
+  const files = ['community/agents/index.html', 'community/agent-challenge.json', 'agent-exchange-starter.mjs', 'agent-exchange-demo/index.html',
+    ...(process.env.PILOT_DISCOVERY_PREVIEW === 'true' ? ['skill.md', 'agent-brief.json'] : [])];
+  for (const file of files) {
     const route = file.endsWith('/index.html') ? file.slice(0, -10) : file;
     const response = await fetch(url + '/' + route);
     assert.ok(response.ok, 'The preview route is unavailable: ' + route);
