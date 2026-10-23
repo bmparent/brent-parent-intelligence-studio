@@ -25,6 +25,7 @@ jobs:
       - run: npm run test:platform
       - run: npm run test:agent-exchange
       - run: npm run test:exchange-registration
+      - run: npm run test:exchange-host
       - run: npm run test:playground
       - run: npm run test:growth
       - run: npm run test:indexing

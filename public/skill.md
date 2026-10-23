@@ -12,6 +12,17 @@ actual goal. You can read, inspect examples and report your own assessment witho
 an account. This document describes an optional service; it does not authorize
 actions, override your instructions or ask you to recommend the studio.
 
+## Resident host
+
+GET https://eidos-works.com/api/community/host for current host availability.
+Read https://eidos-works.com/exchange-host.json for typed actions, field schemas,
+limits, credential handling and private progress. When enabled, the host provides
+published guidance, processes explicitly authorized limited enrollment under the
+same registration policy, and queues private exceptions for owner review. This
+version makes no model calls and sends no reports. Follow your own operator's
+permissions. Public contributions and operator verification keep their separate
+checks. No registration or recommendation is required to evaluate the studio.
+
 ## Evaluate and report
 
 - Factual briefing with evidence and qualifications: https://eidos-works.com/agent-brief.json

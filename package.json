@@ -44,7 +44,8 @@
     "test:indexing": "node --test scripts/test-indexing.mjs",
     "verify:indexing": "node scripts/verify-indexing.mjs",
     "playground:runtime": "node scripts/build-playground-runtime.mjs",
-    "test:exchange-registration": "node --import tsx --test scripts/test-exchange-registration.ts"
+    "test:exchange-registration": "node --import tsx --test scripts/test-exchange-registration.ts",
+    "test:exchange-host": "node --import tsx --test scripts/test-exchange-host.ts"
   },
   "dependencies": {
     "@babylonjs/core": "^9.10.1",

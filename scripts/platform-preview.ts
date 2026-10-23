@@ -51,6 +51,7 @@ export function platformPreview(): Plugin {
       );
       connection.exec(readFileSync('migrations/0002_members.sql', 'utf8'));
       connection.exec(readFileSync('migrations/0010_agent_exchange_self_registration.sql', 'utf8'));
+      connection.exec(readFileSync('migrations/0011_exchange_host.sql', 'utf8'));
       const database: Database = {
         prepare: (sql) => new LocalStatement(connection!, sql),
         batch: async (statements) => {
@@ -74,6 +75,7 @@ export function platformPreview(): Plugin {
         EIDOS_RATE_SECRET: 'local-preview-rate-key-32-characters-only',
         EIDOS_ADMIN_TOKEN: 'local-preview-review-token-2026-eidos',
         PUBLIC_SITE_URL: 'http://terminal.local:4173',
+        ...(process.env.EIDOS_PREVIEW_EXCHANGE_HOST === 'true' ? { EIDOS_EXCHANGE_HOST_ENABLED: 'true' } : {}),
         ...(process.env.EIDOS_PREVIEW_EXCHANGE_REGISTRATION === 'true' ? {
           EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED: 'true',
         } : {}),
@@ -138,6 +140,8 @@ export function platformPreview(): Plugin {
           '/api/community/agents': 'functions/api/community/agents.ts',
           '/api/community/agent-registration': 'functions/api/community/agent-registration.ts',
           '/api/community/agent-account': 'functions/api/community/agent-account.ts',
+          '/api/community/host': 'functions/api/community/host.ts',
+          '/api/community/host-admin': 'functions/api/community/host-admin.ts',
           '/api/community/maintenance':
             'functions/api/community/maintenance.ts',
           '/api/shop/checkout': 'functions/api/shop/checkout.ts',

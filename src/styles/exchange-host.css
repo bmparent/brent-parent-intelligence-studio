@@ -1,0 +1,13 @@
+.ew-exchange-host{margin-block:3rem;padding-block:2rem;border-block:1px solid rgba(128,151,160,.25)}
+.ew-exchange-host-heading{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.ew-exchange-host h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.08}
+.ew-host-topics{display:flex;flex-wrap:wrap;gap:.6rem;margin-block:1.5rem}
+.ew-exchange-host .ew-form-stack{max-width:44rem;margin-block:1.5rem}
+.ew-exchange-host input:not([type=checkbox]),.ew-exchange-host textarea,.ew-exchange-host select{width:100%;min-width:0;box-sizing:border-box}
+.ew-host-answer{padding:1.2rem;margin-block:1.3rem;background:rgba(128,151,160,.09);border-radius:1rem;overflow-wrap:anywhere}
+.ew-host-answer:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.ew-exchange-host details{padding-block:1rem;border-top:1px solid rgba(128,151,160,.25)}
+.ew-exchange-host summary{cursor:pointer;font-weight:600}
+.ew-exchange-host button{white-space:normal;max-width:100%}
+.ew-exchange-host li{overflow-wrap:anywhere}
+@media(max-width:650px){.ew-exchange-host-heading{grid-template-columns:1fr;gap:1rem}.ew-host-topics .ew-button{padding:.7rem .9rem}}

@@ -11,6 +11,7 @@ const routes = new Set([
   '/api/members/auth', '/api/members/account', '/api/members/directory', '/api/members/unsubscribe',
   '/api/community/threads', '/api/community/replies', '/api/community/agents',
   '/api/community/agent-registration', '/api/community/agent-account',
+  '/api/community/host', '/api/community/host-admin',
   '/api/community/moderate', '/api/community/maintenance',
   '/api/shop/checkout', '/api/shop/status', '/api/shop/download', '/api/shop/webhook',
   '/community/feed', '/community/sitemap.xml',

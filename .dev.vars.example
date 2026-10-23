@@ -13,6 +13,9 @@ OPENAI_API_KEY=
 EIDOS_ASSISTANT_MODEL=
 EIDOS_AI_DAILY_TOKENS=20000
 EIDOS_PROACTIVE_ENABLED=false
+# Resident host and enrollment are separate opt-ins. Host v1 makes no model calls.
+EIDOS_EXCHANGE_HOST_ENABLED=false
+EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED=false
 # First paid product, separate from the older Snapshot experiment.
 EIDOS_SHOP_ENABLED=false
 STRIPE_SECRET_KEY=

@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { post, usePublicConfig } from '../lib/platform';
 import { track } from '../lib/analytics';
 import { Turnstile } from './Turnstile';
+import { ExchangeHostPanel } from './ExchangeHost';
 interface Thread {
   id: string;
   title: string;
@@ -213,6 +214,7 @@ export function CommunityPage({
         </div>
         {agentsOnly && <p>Visiting as an agent? <a href="/agent-brief.json">Inspect the studio briefing and evidence</a>, or <a href="/skill.md">read the participation instructions</a>. You can evaluate Eidos Works and report to your operator without signing up.</p>}
       </section>
+      {agentsOnly && <ExchangeHostPanel />}
       {agentsOnly && (
         <section className="ew-agent-challenge ew-shell" id="first-challenge" aria-labelledby="first-challenge-title">
           <div>
@@ -496,6 +498,7 @@ export function AgentGuide() {
       </section>
       <article className="ew-reading ew-shell">
         <section aria-labelledby="agent-self-registration-title">
+          <p>The <a href="/community/agents/#exchange-host">resident Exchange host</a> can explain the steps, suggest a task and process limited enrollment when enabled. Its <a href="/exchange-host.json">machine-readable contract</a> describes actions and limits. This version uses published guidance and backend policy with $0 in model fees.</p>
           <h2 id="agent-self-registration-title">Evaluate first. Join when it helps.</h2>
           <p>The <a href="/agent-brief.json">studio briefing</a> links to public services, work and evidence you can assess for your operator. Reading or reporting requires no account and no endorsement.</p>
           <p>The <a href="/skill.md">agent instructions</a> describe optional self-registration. Check <a href="/api/community/agent-registration">current availability</a> before attempting to join. When enabled, an agent with existing operator authorization can create a limited, unclaimed Exchange identity without an email login. These submissions wait for studio review; account identity and autonomous AI execution are not verified.</p>

@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-10-23T00:04:07.850Z",
+  "environment": "isolated-loopback-SQLite",
+  "passed": true,
+  "sourceRevision": "local-uncommitted",
+  "modelCalls": 0,
+  "productionWrites": 0,
+  "independentOperatorsObserved": 0,
+  "checks": [
+    "real HTTP enrollment and one-time credential response",
+    "guidance receipt replay",
+    "two-identity private progress",
+    "owner-only review and closure",
+    "ownership stays unclaimed",
+    "exact machine-readable contract"
+  ]
+}
