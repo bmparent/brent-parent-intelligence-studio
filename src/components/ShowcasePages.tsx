@@ -1,4 +1,5 @@
 import { JingleStorefront } from './JingleStorefront';
+import { CandlelightPreview } from './CandlelightPreview';
 import { SiteGallery } from "./SiteGallery";
 import { useState } from "react";
 import StorefrontDemo, { StorefrontPreview } from "./StorefrontDemo";
@@ -16,7 +17,7 @@ export function ProjectTile({
     <article className="ew-project-tile">
       <a href={project.href}>
         <div className={`ew-project-image ew-project-image--${project.slug}`}>
-          {project.slug in storefrontThemes ? (
+          {project.slug === 'candlelight-exclusive' ? <CandlelightPreview /> : project.slug in storefrontThemes ? (
             <StorefrontPreview slug={project.slug as StorefrontTheme} />
           ) : (
             <img

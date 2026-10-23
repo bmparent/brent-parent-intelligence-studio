@@ -36,7 +36,7 @@ try {
         await image.evaluate(el => el.decode());
         assert.equal(await image.evaluate(el => el.naturalWidth), 1346, 'real capture decodes');
         assert.equal(await scroll.evaluate(el => el.scrollTop), 0, 'each page starts at its top');
-        const destination = await dialog.getByRole('link', { name: /Open this page in the live store/ }).getAttribute('href');
+        const destination = await dialog.getByRole('link', { name: /Open this concept page/ }).getAttribute('href');
         assert.ok(destination.startsWith('https://stores.inksoft.com/fnbmd/shop/'), 'page-specific public link');
         if (label === 'Homepage') {
           assert.equal(await image.evaluate(el => el.naturalHeight), 2907, 'entire homepage retained');
@@ -69,7 +69,7 @@ try {
       assert.equal(await dialog.locator('.ew-site-page-picker').count(), 0, 'existing single-image concepts retain their presentation');
       await page.keyboard.press('Escape');
       await page.goto(base + '/');
-      assert.equal(await page.locator('#site-gallery .ew-site-card').first().getByRole('heading', { name: title }).count(), 1, 'FNBMD featured on homepage');
+      assert.equal(await page.locator('#site-gallery .ew-site-card').getByRole('heading', { name: title }).count(), 1, 'FNBMD retained among the six homepage features');
       assert.deepEqual(errors, [], 'no gallery runtime errors');
       console.log(`PASS FNBMD gallery at ${width}px: discovery, four images, full size, links, scroll reset, focus, concepts, homepage feature, no overflow`);
     } finally { await context.close(); }

@@ -75,6 +75,7 @@ for (const file of await htmlFiles(root)) {
     'index.html', // The featured FNBMD gallery card links to the public InkSoft store.
     'work/index.html',
     'work/nighttime-spectaculars/index.html',
+    'work/candlelight-exclusive/index.html',
     'work/holidays-in-hollywood/index.html',
     'work/disney-villains/index.html',
     'work/beauty-and-the-beast/index.html',

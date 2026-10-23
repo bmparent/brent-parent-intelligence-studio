@@ -34,6 +34,7 @@ const requiredRoutes = [
   '/terms',
   '/shop/cinematic-starter',
   '/work/nighttime-spectaculars',
+  '/work/candlelight-exclusive',
   '/work/holidays-in-hollywood',
   '/work/disney-villains',
   '/work/beauty-and-the-beast',

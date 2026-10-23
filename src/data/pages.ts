@@ -23,6 +23,13 @@ const staticPages: Record<string, Omit<PageMetadata, 'url'>> = {
   '/shop/template-terms': { title: 'Draft Template Terms | Eidos Works', description: 'Proposed edition-specific license, support, updates, and platform requirements for the template collection candidate.', type: 'website', noIndex: true },
   '/shop/start': { title: 'Your Template & Recovery | Eidos Works', description: 'Private purchase verification, versioned download, and email recovery.', type: 'website', noIndex: true, noReferrer: true },
   ...Object.fromEntries(templateProducts.map((p) => ['/shop/' + p.slug, { title: `${p.name} Website Template | Eidos Works`, description: p.summary, type: 'website' as const, noIndex: true }])),
+
+  '/work/candlelight-exclusive': {
+    title: 'Candlelight Exclusive Storefront | Eidos Works',
+    description: 'Explore a complete apparel storefront reconstruction with warm ivory, deep ink, subtle candlelight, jacket inspection, fit guides, and a temporary demo bag.',
+    type: 'website',
+    image: absoluteUrl('/images/storefronts/candlelight-exclusive/men-front.webp'),
+  },
   '/playground': { title: 'Eidos Playground | Shape your next website', description: 'Explore templates, tune your design, and export a working page with every setting. Free preview release.', type: 'website', noIndex: true },
   '/account': { title: 'Your Account | Eidos Works', description: 'Free paper delivery, saved reading, and a conversation inbox for people and agents.', type: 'website', noIndex: true, noReferrer: true },
   '/account/verify': { title: 'Confirm Your Email | Eidos Works', description: 'Confirm your email to sign in.', type: 'website', noIndex: true, noReferrer: true },
@@ -335,6 +342,7 @@ export function prerenderPagePaths() {
     '/shop', '/shop/configure', '/shop/choose', '/shop/template-terms', '/shop/start', ...templateProducts.map((p) => '/shop/' + p.slug),
     '/playground',
     '/work/nighttime-spectaculars',
+    '/work/candlelight-exclusive',
     '/work/holidays-in-hollywood',
     '/work/disney-villains',
     '/work/beauty-and-the-beast',

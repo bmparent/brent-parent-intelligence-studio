@@ -1,3 +1,30 @@
+## October 23 current acceptance follow-through
+
+[The current evidence record](PLAYGROUND_ACCEPTANCE_2026-10-23.md) records the
+passing final starting-source editor matrix, current public-main integration,
+actual device save/reopen and synthetic hosted account save, Browser
+reconnection dependency and remaining device/accessibility/activation gates.
+Earlier dated failures and provider observations below retain their scope.
+
+## October 23 FNBMD concept disclosure
+
+Brent clarified that the FNBMD showcase is a concept and is not live. The
+homepage and Work gallery cards show a small “Concept for FNBMD · Not live.”
+note, repeated in the expanded preview. Concept labels and links replace the
+earlier live-store wording for this entry. The saved captures and Data Graphics
+attribution remain. This scoped frontend change starts at public main
+`e1780c1738b1f7e15f19b25830aa0a6b1563817d`; no backend or provider changes apply.
+Validation and exact release/readback receipts are recorded on the scoped PR.
+Rollback is a revert of this change through the existing release workflow.
+
+## October 22 Candlelight Exclusive showcase
+
+Brent authorized the complete ivory-and-ink reconstruction, subtle hero
+flicker, warm jacket glow, gallery/showcase addition and production release.
+Source provenance, scope, verification and rollback are recorded in
+[CANDLELIGHT_SHOWCASE_2026-10-22.md](CANDLELIGHT_SHOWCASE_2026-10-22.md).
+Exact candidate CI and production receipts remain distinct on the scoped PR.
+
 # Playground release integration — October 22, 2026
 
 The current patched pair, reset-route correction, local checks, selected isolated

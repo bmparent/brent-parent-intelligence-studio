@@ -1,5 +1,13 @@
 # Site gallery
 
+Candlelight Exclusive leads the gallery and full Work showcase. Its composed
+ivory/amber preview opens `/work/candlelight-exclusive`, a working reconstruction
+of the finished concert-program design, including the warm jacket arch, subtle
+light flicker, full homepage, two fits, product inspection, saved guides and a
+temporary demo bag. This entry opens the interactive page directly; it is not
+labeled a saved screenshot or connected to the live catalog. Source and release
+evidence: [Candlelight showcase](implementation/CANDLELIGHT_SHOWCASE_2026-10-22.md).
+
 The Wellway member/advisor app is documented in [wellway-demo.md](./wellway-demo.md). Its Tools card uses genuine browser captures and opens `/demos/wellway/`. Source, evidence, simulated behavior and hosted AI configuration are documented separately.
 
 The homepage shows the first six records from `src/data/siteGallery.json`. The Work page shows the complete collection at `/work#site-gallery`, with category filters, search, and a larger image preview. Each image and “Open app” link launches the public app in a new tab; a separate Preview button opens the screenshot dialog. Add future Sites to that JSON file without changing the components.
@@ -40,7 +48,7 @@ Preserve the existing platform bindings, runtime variables, backend relay, and p
 
 Five InkSoft homepage references sit alongside the published apps: Liberty Christian Prep, Liberty Christian Early Learning, MDCA Uniforms, Disney Junior, and YMCA Employee Uniforms. Liberty Christian Prep, MDCA and Disney Junior now use complete October 1, 2026 browser captures, stored as versioned local WebP files with 640-pixel-wide uncropped thumbnails. Their cards open the full-page reading dialog; separate links open the current storefront. `capturedAt` records the screenshot date rather than inventing an original project date. Client-services attribution and the Disney Junior cast-member ordering context are retained. The remaining Early Learning and YMCA entries retain their saved Cloudinary images and reference-preview behavior.
 
-`fullPage` controls image presentation independently of provenance. Only records in the Concepts category receive fictional/AI-generated wording. Real storefront captures receive client-storefront labels, dated capture notes and live-store links. See [the October 1 refresh record](implementation/STOREFRONT_GALLERY_2026-10-01.md) for sources, dimensions and verification.
+`fullPage` controls image presentation independently of provenance. Only records in the Concepts category receive fictional/AI-generated wording. Real storefront captures receive client-storefront labels, dated capture notes and live-store links. A `conceptNotice` marks a real-business storefront concept: its card and preview disclose its status, and its labels and links use concept wording. FNBMD displays “Concept for FNBMD · Not live.” per Brent's October 23 clarification. See [the October 1 refresh record](implementation/STOREFRONT_GALLERY_2026-10-01.md) for sources, dimensions and verification.
 
 Three full interactive reconstructions are also available in the Work collection: `/work/disney-villains`, `/work/beauty-and-the-beast`, and `/work/jingle-bell-jingle-bam`. They use saved project artwork and illustrative catalog labels/options. These pages are separate from the historical screenshots in the gallery.
 
@@ -54,15 +62,16 @@ The older embroiderycalc-pro Cloudflare project retains its June 10 Printavo/AI 
 
 ## FNBMD employee storefront — October 20, 2026
 
-First National Bank of Mount Dora is the first gallery record, appearing in the
+First National Bank of Mount Dora appears in the gallery, including the
 homepage's six featured previews and the Work page's Storefronts filter. The
 full 1346 × 2907 homepage capture is accompanied by category, polo, and woven
 shirt detail captures. Optional `pages` records provide native page-selection
 buttons in the existing reading dialog; each includes its own image dimensions,
-caption, thumbnail, alternative text, and verified live destination. Selecting a
+caption, thumbnail, alternative text, and concept preview destination. Selecting a
 page resets zoom and image scroll. Existing one-image previews retain their
 presentation. All views remain saved captures; product prices, availability,
-and ordering eligibility remain with the client.
+and ordering eligibility remain with the client. Per Brent's October 23 update,
+this is a concept for FNBMD and is not live; its card and preview say so.
 
 The capture and acceptance ledger is
 [ FNBMD gallery acceptance ](implementation/FNBMD_GALLERY_2026-10-20.md).

@@ -1,3 +1,14 @@
+# Current acceptance follow-through — October 23, 2026
+
+The active candidate integrates public main `1dc8323` (Candlelight and FNBMD)
+with Playground PR139 and backend PR90 `5570f8c`. Final starting-source CI is
+passing; current connected-browser device save/reopen, adjacent selection,
+Undo/Redo, tour dismissal and a synthetic account save passed. Browser context
+was lost before the fresh cloud reopen/revision/export follow-through.
+[Current evidence and remaining gates](PLAYGROUND_ACCEPTANCE_2026-10-23.md)
+separate those observations from physical-device/screen-reader and production
+acceptance. Dated records below remain history, not the current checklist.
+
 # Patched Playground integration — October 22, 2026
 
 The held account/recovery source is reconciled with production security release
