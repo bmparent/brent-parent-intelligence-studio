@@ -155,6 +155,12 @@
   font-size: 15px;
   color: #607b70;
 }
+.ew-site-notice {
+  margin-top: 8px;
+  color: #526c64;
+  font-size: 12px;
+  line-height: 1.5;
+}
 .ew-site-gallery button:focus-visible,
 .ew-site-gallery input:focus-visible,
 .ew-site-gallery a:focus-visible {

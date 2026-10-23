@@ -1,3 +1,14 @@
+## October 23 FNBMD concept disclosure
+
+Brent clarified that the FNBMD showcase is a concept and is not live. The
+homepage and Work gallery cards show a small “Concept for FNBMD · Not live.”
+note, repeated in the expanded preview. Concept labels and links replace the
+earlier live-store wording for this entry. The saved captures and Data Graphics
+attribution remain. This scoped frontend change starts at public main
+`e1780c1738b1f7e15f19b25830aa0a6b1563817d`; no backend or provider changes apply.
+Validation and exact release/readback receipts are recorded on the scoped PR.
+Rollback is a revert of this change through the existing release workflow.
+
 ## October 22 Candlelight Exclusive showcase
 
 Brent authorized the complete ivory-and-ink reconstruction, subtle hero

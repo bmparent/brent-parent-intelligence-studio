@@ -36,7 +36,7 @@ try {
         await image.evaluate(el => el.decode());
         assert.equal(await image.evaluate(el => el.naturalWidth), 1346, 'real capture decodes');
         assert.equal(await scroll.evaluate(el => el.scrollTop), 0, 'each page starts at its top');
-        const destination = await dialog.getByRole('link', { name: /Open this page in the live store/ }).getAttribute('href');
+        const destination = await dialog.getByRole('link', { name: /Open this concept page/ }).getAttribute('href');
         assert.ok(destination.startsWith('https://stores.inksoft.com/fnbmd/shop/'), 'page-specific public link');
         if (label === 'Homepage') {
           assert.equal(await image.evaluate(el => el.naturalHeight), 2907, 'entire homepage retained');
