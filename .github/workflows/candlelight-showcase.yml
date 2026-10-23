@@ -18,7 +18,7 @@ permissions:
   contents: read
 jobs:
   storefront:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
       - name: Install the pinned isolated Chromium tools
         run: |
           npm install --prefix "$RUNNER_TEMP/candlelight-browser" --no-save --no-package-lock playwright@1.58.2
-          "$RUNNER_TEMP/candlelight-browser/node_modules/.bin/playwright" install chromium
+          "$RUNNER_TEMP/candlelight-browser/node_modules/.bin/playwright" install --with-deps chromium
       - name: Verify full storefront at desktop, tablet and phone widths
         env:
           PLAYWRIGHT_MODULE: ${{ runner.temp }}/candlelight-browser/node_modules/playwright

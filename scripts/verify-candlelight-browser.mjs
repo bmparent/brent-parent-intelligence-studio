@@ -22,6 +22,7 @@ try {
       await gallery.getByRole('button', { name: 'Storefronts', exact: true }).click();
       await gallery.getByRole('searchbox').fill('candlelight');
       assert.equal(await gallery.locator('.ew-site-card').count(), 1);
+      await gallery.locator('.ew-site-card').screenshot({ path: path.join(evidence, `candlelight-gallery-${width}.png`) });
       await gallery.getByRole('link', { name: 'Explore full storefront', exact: false }).click();
       await page.waitForURL(/\/work\/candlelight-exclusive\/?$/);
       const root = page.locator('#clex-demo');
