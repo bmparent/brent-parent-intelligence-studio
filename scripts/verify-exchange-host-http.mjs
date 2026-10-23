@@ -51,6 +51,8 @@ try {
     await page.goto(base + '/community/agents/?eidos_qa=1');
     const panel = page.locator('#exchange-host');
     await panel.getByText('Ready for requests · Published guidance', { exact: true }).waitFor();
+    const essentialOnly = page.getByRole('button', { name: 'Essential only', exact: true });
+    if (await essentialOnly.isVisible()) await essentialOnly.click();
     await panel.getByRole('button', { name: 'Find a task', exact: true }).click();
     await panel.getByText(/A useful first task is AX-KEYBOARD-01/).waitFor();
     await panel.getByText('Create a limited Exchange identity', { exact: true }).click();

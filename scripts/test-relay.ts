@@ -2,6 +2,49 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequest } from '../functions/_middleware';
 const env = { EIDOS_PLATFORM_URL:'https://eidos-sentinel-lab.vercel.app', EIDOS_PLATFORM_TOKEN:'relay-test-at-least-32-characters-long' };
+await test('Closed host stays available without a backend; enrollment cannot bypass the independent site registration switch', async () => {
+  const original = globalThis.fetch; let calls = 0;
+  const next = async () => { throw Error('Protected routes must not fall through.'); };
+  const request = (data?: unknown, key?: string) => new Request('https://eidos-works.com/api/community/host', {
+    method: data ? 'POST' : 'GET', headers: { 'content-type': 'application/json', ...(key ? { authorization: 'Bearer ' + key } : {}) }, body: data ? JSON.stringify(data) : undefined,
+  });
+  try {
+    globalThis.fetch = async () => { calls++; return Response.json({ error: 'upstream unavailable' }, { status: 503 }); };
+    const closed = await onRequest({ env, next, request: request() }); assert.equal(closed.status, 200); assert.equal((await closed.json()).enabled, false);
+    assert.equal((await onRequest({ env, next, request: request({ action: 'guide' }) })).status, 503); assert.equal(calls, 0);
+    assert.equal((await onRequest({ env, next, request: request(undefined, 'ew_exchange_' + 'a'.repeat(64)) })).status, 503); assert.equal(calls, 1);
+    const openHost = { ...env, EIDOS_EXCHANGE_HOST_ENABLED: 'true' };
+    assert.equal((await onRequest({ env: openHost, next, request: request({ action: 'enroll' }) })).status, 503); assert.equal(calls, 1);
+    assert.equal((await onRequest({ env: openHost, next, request: request({ action: 'guide' }) })).status, 503); assert.equal(calls, 2);
+    const both = { ...openHost, EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED: 'true' };
+    assert.equal((await onRequest({ env: both, next, request: request({ action: 'enroll' }) })).status, 503); assert.equal(calls, 3);
+    globalThis.fetch = async () => Response.json({ enabled: true, registrationEnabled: true });
+    const guarded = await onRequest({ env: openHost, next, request: request() });
+    assert.equal((await guarded.json()).registrationEnabled, false, 'Backend registration cannot advertise availability through a closed site gate.');
+  } finally { globalThis.fetch = original; }
+});
+await test('Closed machine registration is answered at the site without calling a stale backend; credential control still relays', async () => {
+  const original = globalThis.fetch;
+  let calls = 0;
+  const next = async () => { throw Error('The protected route must not fall through.'); };
+  const request = (path: string, method = 'GET', key = '') => new Request('https://eidos-works.com' + path, {
+    method, headers: key ? { authorization: 'Bearer ' + key } : {},
+  });
+  try {
+    globalThis.fetch = async () => { calls++; return Response.json({ error: 'upstream unavailable' }, { status: 503 }); };
+    const closed = await onRequest({ env, next, request: request('/api/community/agent-registration') });
+    assert.equal(closed.status, 200); assert.equal((await closed.json()).enabled, false);
+    assert.equal((await onRequest({ env, next, request: request('/api/community/agent-registration', 'POST') })).status, 503);
+    assert.equal((await onRequest({ env, next, request: request('/api/community/agent-registration', 'DELETE') })).status, 405);
+    assert.equal((await onRequest({ env, next, request: request('/api/community/agents', 'POST', 'ew_exchange_' + 'a'.repeat(64)) })).status, 503);
+    assert.equal(calls, 0);
+    assert.equal((await onRequest({ env, next, request: request('/api/community/agent-account', 'POST', 'ew_exchange_' + 'a'.repeat(64)) })).status, 503);
+    assert.equal(calls, 1, 'Revocation transport must remain available when the site registration switch is off.');
+    const open = { ...env, EIDOS_EXCHANGE_SELF_REGISTRATION_ENABLED: 'true' };
+    assert.equal((await onRequest({ env: open, next, request: request('/api/community/agent-registration') })).status, 503);
+    assert.equal(calls, 2, 'An enabled site must report its actual backend unavailability.');
+  } finally { globalThis.fetch = original; }
+});
 await test('Member relay forwards only the scoped session and accepts only the secure member cookie', async () => {
   const original = globalThis.fetch;
   const token = 'a'.repeat(64), cookie = `__Host-eidos_session=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000; Secure`;

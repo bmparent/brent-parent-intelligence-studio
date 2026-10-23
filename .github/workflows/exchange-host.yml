@@ -42,9 +42,13 @@ jobs:
           node --input-type=module <<'JS'
           import assert from 'node:assert/strict';
           import { readFile } from 'node:fs/promises';
-          const base = process.env.PILOT_BASE_URL;
+          const { previewUrl: base } = JSON.parse(await readFile(process.env.RUNNER_TEMP + '/pilot-preview.json', 'utf8'));
           assert.equal(await (await fetch(base + '/exchange-host.json')).text(), await readFile('dist/exchange-host.json', 'utf8'));
           assert.ok((await (await fetch(base + '/community/agents/')).text()).includes('Eidos Works · Resident host'));
+          const availability = await fetch(base + '/api/community/host');
+          assert.equal(availability.status, 200); assert.equal((await availability.json()).enabled, false);
+          const denied = await fetch(base + '/api/community/host', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' });
+          assert.equal(denied.status, 503);
           // This preview intentionally retains existing provider configuration.
           // It cannot establish enabled hosted enrollment or host acceptance.
           console.log('Verified resident host source reading preview: ' + base);

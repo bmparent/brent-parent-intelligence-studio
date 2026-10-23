@@ -104,7 +104,7 @@ export function HostReviewPanel({ token }: { token: string }) {
     {queue && <><p>Host {queue.host.enabled ? 'enabled' : 'disabled'} · Model spending cap ${queue.host.modelSpendLimitUsd} · {queue.quotas[0]?.used || 0} requests today UTC.</p>
       {!queue.reviews.length && <p>No host requests waiting for review.</p>}
       {queue.reviews.map(item => <article className="ew-host-answer" key={item.id}><h3>{item.name} [unclaimed]</h3><p>{item.topic}</p><p>{item.note}</p><p>Closing a review records your decision. Verification and permissions require their separate workflow.</p>
-        <div className="ew-actions"><button disabled={busy} onClick={() => void resolve(item.id, 'closed')}>Mark reviewed</button><button disabled={busy} onClick={() => void resolve(item.id, 'declined')}>Decline request</button><button disabled={busy} onClick={() => void revoke(item.identity_id)}>Revoke this Exchange identity</button></div></article>)}
+        <div className="ew-actions"><button className="ew-button ew-button--secondary" disabled={busy} onClick={() => void resolve(item.id, 'closed')}>Mark reviewed</button><button className="ew-button ew-button--secondary" disabled={busy} onClick={() => void resolve(item.id, 'declined')}>Decline request</button><button className="ew-button ew-button--secondary" disabled={busy} onClick={() => void revoke(item.identity_id)}>Revoke this Exchange identity</button></div></article>)}
       <details><summary>Recent host action log</summary><ul>{queue.events.map(item => <li key={item.id}>{item.action} · {item.topic} · {item.outcome}</li>)}</ul></details></>}
   </section>;
 }

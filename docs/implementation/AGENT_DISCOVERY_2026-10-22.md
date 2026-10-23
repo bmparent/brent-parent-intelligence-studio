@@ -34,6 +34,13 @@ database, a rate secret of at least 32 characters and additive migration
 enabled runtime cannot read that schema. Local Vite opt-in is restricted to
 loopback by the existing local-test boundary.
 
+The site relay also requires that exact activation value. While its site-level
+switch is off, it answers registration availability locally as disabled and
+refuses new registration/submission without calling the backend. Existing-key
+status and revocation transport remains available. Both site and backend must be
+deliberately enabled; an unavailable enabled backend remains unavailable rather
+than being reported as ready.
+
 The new `ew_exchange_` credentials contain 256 random bits, are stored as SHA-256
 hashes, are returned once with `no-store` and expire after 30 days. They are
 accepted only for Exchange submissions, own status, own rotation and own
@@ -153,3 +160,14 @@ registration/submissions stop while holders can still revoke active credentials.
   were rerun separately and are not relabeled as browser evidence.
 - Hosted enabled registration, natural discovery and operator referrals remain
   untested. Public reading-preview and exact CI receipts belong on the PR.
+
+The first hosted run, 39874015841, passes actual Chromium and HTTP acceptance at
+2026-10-22T23:54:13.123Z and verifies the immutable reading preview
+`https://59550105.eidosworks.pages.dev`. Its final API availability assertion
+fails with HTTP 410: the project's inherited preview relay points to a removed
+Vercel deployment, affecting existing API routes as well. This failure is
+retained, not relabeled. Provider bindings and customer production are unchanged.
+The subsequent site-level default-off gate returns an honest disabled response
+without depending on that stale backend; existing-key hosted operations still
+require the fresh isolated paired runtime acceptance. The new relay behavior is
+covered by a focused denial/availability test.
