@@ -61,7 +61,7 @@ textarea { min-height:160px; resize:vertical; }
 /* User-entered names and copy must reflow, including a single long word. */
 header > *, .hero > *, .contact-layout > * { min-width:0; }
 header { flex-wrap:wrap; }
-.brand { max-width:100%; }
+.brand { max-width:100%; min-width:0; overflow-wrap:anywhere; }
 nav { max-width:100%; flex-shrink:0; }
 h1,h2,h3,p,a,button,summary { overflow-wrap:anywhere; }
 [data-inquiry-fields] { min-inline-size:0; border:0; padding:0; margin:0; }
