@@ -3,7 +3,10 @@
 Brent requested adding his personal LinkedIn profile by his portrait so visitors
 can identify and interact with him. This frontend-only change starts from public
 main `6a1c50cfc3a8fd951432f2ca87fc0512d78f3615` on
-`codex/about-linkedin-20261024`. Existing feature and editorial PRs are separate.
+`codex/about-linkedin-20261024`. It incorporates the concurrently merged essay
+main `9104465e6f38c9202ec1d5e731e5ea9bc3eacc1f`, preserving the essay and both
+acceptance entries; the only merge conflict was in the shared acceptance notes.
+Existing feature PRs are separate.
 
 ## Scope and provenance
 
@@ -23,7 +26,7 @@ read instead. No backend, identity, provider, billing or account change applies.
 ## Validation and release
 
 Local lint (zero errors; one existing Wellway Fast Refresh warning), production
-build/typecheck, prerender, editorial (35 routes), URL and Pages Functions
+build/typecheck, prerender, editorial, URL and Pages Functions
 checks pass. Inspect the resulting profile section in the available browser
 and verify the exact link destination. Exact candidate CI, merged
 source and production deployment/readback evidence are retained on the PR;

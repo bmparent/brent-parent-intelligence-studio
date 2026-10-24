@@ -1,7 +1,12 @@
 {
-  "generated_at_utc": "2026-10-24T04:12:46.727Z",
+  "generated_at_utc": "2026-10-24T04:32:14.904Z",
   "site_url": "https://eidos-works.com",
   "articles": [
+    {
+      "slug": "investing-in-ai-without-outsourcing-yourself",
+      "canonical_url": "https://eidos-works.com/insights/investing-in-ai-without-outsourcing-yourself",
+      "og_image": "/insights-og/investing-in-ai-without-outsourcing-yourself.svg"
+    },
     {
       "slug": "website-careful-what-it-asks-you-notice",
       "canonical_url": "https://eidos-works.com/insights/website-careful-what-it-asks-you-notice",
@@ -113,6 +118,7 @@
     "public/feed.xml",
     "public/insights-feed.json",
     "public/llms.txt",
+    "public/insights-og/investing-in-ai-without-outsourcing-yourself.svg",
     "public/insights-og/website-careful-what-it-asks-you-notice.svg",
     "public/insights-og/reduced-motion-without-reduced-experience.svg",
     "public/insights-og/after-submit-website-tell-truth-about-waiting.svg",
