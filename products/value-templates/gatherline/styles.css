@@ -20,3 +20,7 @@
 .gatherline .gl-footer { display:flex; justify-content:space-between; gap:20px; margin-top:clamp(30px,4.8vw,76px); padding-top:24px; border-top:1px solid var(--ink); font-size:clamp(14px,1.35vw,20px); }
 .gatherline :focus-visible { outline:3px solid var(--ink); outline-offset:6px; }
 @media(max-width:760px) { .gatherline .gl-layout { grid-template-columns:1fr; } .gatherline h2 { font-size:clamp(43px,9.7vw,74px); margin-bottom:28px; } .gatherline .gl-description { font-size:24px; } .gatherline .gl-ticket { width:min(100%,390px); } .gatherline .gl-number { font-size:138px; } .gatherline .gl-month { font-size:25px; } .gatherline .gl-ticket p { font-size:21px; } .gatherline .gl-actions { align-items:flex-start; } .gatherline .gl-footer { flex-direction:column; } }
+
+.gatherline .gl-layout > * { min-width:0; }
+.gatherline h2,.gatherline p,.gatherline span,.gatherline button,.gatherline summary { overflow-wrap:anywhere; }
+.gatherline button:disabled { cursor:default; opacity:.65; }

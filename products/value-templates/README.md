@@ -48,3 +48,13 @@ See each package README, `docs/value-templates/DESIGN.md` and
 `docs/value-templates/RELEASE_2026-10-22.md`. Native builder compatibility,
 physical-device and screen-reader acceptance, final terms, pricing economics
 and the paid fulfillment/recovery/refund path remain release gates.
+
+
+## October 24 usability candidate
+
+Private draft version 0.1.1 adds an offline `START-HERE.html` configuration editor
+inside each package. It downloads a replacement config file and explains the
+remaining source/metadata/hosting steps. Inquiry forms fail closed when scripts
+are unavailable, service choices follow configured names, and long custom names
+and headings reflow. Read the release evidence and remaining customer acceptance
+in `docs/value-templates/QUALITY_2026-10-24.md`. No price or sale is activated.

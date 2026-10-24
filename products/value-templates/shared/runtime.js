@@ -59,4 +59,9 @@
     form.querySelector('select, input, textarea').focus();
   });
   form.addEventListener('input', () => { result.hidden = true; });
+  // The static fieldset stays disabled if this script is missing or fails.
+  // Enable it only after the local-only submission handler is installed.
+  form.querySelector('[data-inquiry-fields]').disabled = false;
+  form.removeAttribute('aria-describedby');
+  document.querySelector('[data-inquiry-unavailable]').hidden = true;
 })();
