@@ -19,7 +19,7 @@ await new Promise((resolve, reject) => { unzip.on('exit', code => code === 0 ? r
 
 // Exact buyer packages are opened directly, without a server or repository siblings.
 const browser = await chromium.launch({ headless: true });
-const receipt = { engine: 'Chromium', input: 'exact extracted draft ZIPs via file://', checks: [], screenshots: [] };
+const receipt = { engine: 'Chromium', input: 'exact extracted draft ZIPs via file://', result: 'incomplete', checks: [], screenshots: [] };
 const check = (name, detail = {}) => receipt.checks.push({ name, state: 'pass', ...detail });
 const url = (slug, page = 'index.html') => new URL(`file://${path.join(extracted, slug, page)}`).href;
 const screenshots = [];
@@ -178,19 +178,23 @@ try {
 
   // A failed runtime download must preserve the same safe, honest fallback.
   for (const slug of ['porchlight', 'plainspoken']) {
-    const script = path.join(extracted, slug, 'runtime.js');
-    await fs.rename(script, script + '.unavailable');
+    const broken = path.join(output, 'missing-script', slug);
+    await fs.mkdir(path.dirname(broken), { recursive: true });
+    await fs.cp(path.join(extracted, slug), broken, { recursive: true });
+    await fs.unlink(path.join(broken, 'runtime.js'));
     const context = await browser.newContext();
     try {
       const failed = await context.newPage();
-      await failed.goto(url(slug, slug === 'plainspoken' ? 'contact.html' : 'index.html'));
-      assert.equal(await failed.locator('[data-inquiry-fields]').isDisabled(), true);
+      await failed.goto(pathToFileURL(path.join(broken, slug === 'plainspoken' ? 'contact.html' : 'index.html')).href);
+      assert.equal(await failed.locator('[data-inquiry-fields]').evaluate(element => element.hasAttribute('disabled')), true);
+      for (const control of await failed.locator('[data-inquiry-form] input, [data-inquiry-form] select, [data-inquiry-form] textarea, [data-inquiry-form] button').all()) {
+        assert.equal(await control.isDisabled(), true, 'Missing runtime must keep the actual input and submit controls disabled');
+      }
       assert.equal(await failed.locator('[data-inquiry-unavailable]').isVisible(), true);
       assert.equal(new URL(failed.url()).search, '');
       check('missing runtime file keeps inquiry disabled and never reports a sent message', { slug });
     } finally {
       await context.close();
-      await fs.rename(script + '.unavailable', script);
     }
   }
 
@@ -209,7 +213,8 @@ try {
     setup.on('request', request => { if (/^https?:/.test(request.url())) remote.push(request.url()); });
     await setup.goto(buyerUrl('START-HERE.html'));
     assert.match(await setup.title(), /Set up /);
-    assert.equal(await setup.locator('[data-setup-fields]').isDisabled(), false);
+    assert.equal(await setup.locator('[data-setup-fields]').evaluate(element => element.hasAttribute('disabled')), false);
+    assert.equal(await setup.getByRole('button', { name: 'Download config.js', exact: true }).isEnabled(), true);
     assert.equal(await setup.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
     const brand = 'Café & Craft "a useful place"';
     const headline = 'Make something useful.\nBring your own ideas.';
@@ -256,6 +261,9 @@ try {
     assert.equal(await setup.locator(`[${marker}="headline"]`).innerText(), headline);
     const colorRoot = slug === 'gatherline' ? setup.locator('.gatherline') : setup.locator('html');
     assert.equal(await colorRoot.evaluate(element => getComputedStyle(element).backgroundColor), 'rgb(248, 245, 238)');
+    const customizedShot = `${slug}-customized-390.png`;
+    await setup.screenshot({ path: path.join(output, customizedShot), fullPage: true });
+    screenshots.push(customizedShot);
     if (slug === 'gatherline') {
       const calendar = setup.waitForEvent('download');
       await setup.getByRole('button', { name: 'Save the date', exact: true }).click();
@@ -367,6 +375,11 @@ try {
   screenshots.push('portable-preview.png');
   check('portable review switches products/pages, composes and downloads locally, and preserves service context/phone width');
   await viewerContext.close();
+  receipt.result = 'pass';
+} catch (error) {
+  receipt.result = 'fail';
+  receipt.failure = String(error.stack || error);
+  throw error;
 } finally {
   receipt.screenshots = screenshots;
   await fs.writeFile(path.join(output, 'browser-receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
