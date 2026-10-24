@@ -38,7 +38,7 @@ test('release manifest joins exactly eight unchanged private buyer archives', ()
   }
 });
 
-test('catalog presentation records retain prior UI strings and public prices remain drafts', () => {
+test('catalog presentation records retain UI strings and approved pilot or draft prices', () => {
   const expected = {
     switchboard: ['Services', 'Crisp & practical', 'A clearer path to the next inquiry.', 'A useful place to start.'],
     tideglass: ['Hospitality', 'Quiet & atmospheric', 'Room to slow down. A clear way to stay.', 'Stay a little longer.'],
@@ -49,7 +49,7 @@ test('catalog presentation records retain prior UI strings and public prices rem
   for (const product of catalog.products) {
     assert.deepEqual([product.market, product.visualStyle, product.tagline, product.designDirection.artCaption], expected[product.slug]);
     for (const field of ['structure', 'typography', 'visualLanguage', 'navigation', 'interaction']) assert.ok(product.designDirection[field]);
-    for (const edition of product.editions) assert.equal(edition.draftPriceCents, edition.platform === 'developer' ? 9900 : edition.platform === 'wordpress' ? 12900 : 2900);
+    for (const edition of product.editions) assert.equal(edition.draftPriceCents, edition.platform === 'developer' ? (product.slug === 'switchboard' ? 2500 : 9900) : edition.platform === 'wordpress' ? 12900 : 2900);
   }
   assert.equal(manifest.saleEnabled, false);
   for (const edition of manifest.products.flatMap(product => product.editions)) {
