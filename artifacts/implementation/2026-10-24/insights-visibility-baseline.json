@@ -1,0 +1,578 @@
+{
+  "checkedAt": "2026-10-24T04:09:42.710890+00:00",
+  "baseUrl": "https://eidos-works.com",
+  "publishedArticleCount": 21,
+  "sitemapArticleCount": 21,
+  "sitemapHubLastmod": "2026-07-10",
+  "latestArticleModified": "2026-10-23",
+  "hubIndexable": true,
+  "results": [
+    {
+      "path": "/insights/agentic-seo-small-business-websites",
+      "finalUrl": "https://eidos-works.com/insights/agentic-seo-small-business-websites/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/structure-website-people-ai-assistants-understand",
+      "finalUrl": "https://eidos-works.com/insights/structure-website-people-ai-assistants-understand/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/storefront-ux-find-right-product-faster",
+      "finalUrl": "https://eidos-works.com/insights/storefront-ux-find-right-product-faster/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/spreadsheet-chaos-operational-dashboards",
+      "finalUrl": "https://eidos-works.com/insights/spreadsheet-chaos-operational-dashboards/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/website-snapshot-before-redesign",
+      "finalUrl": "https://eidos-works.com/insights/website-snapshot-before-redesign/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/mobile-hierarchy-over-desktop-polish",
+      "finalUrl": "https://eidos-works.com/insights/mobile-hierarchy-over-desktop-polish/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/eidos-brain-sentinel-small-business-intelligence",
+      "finalUrl": "https://eidos-works.com/insights/eidos-brain-sentinel-small-business-intelligence/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/baseline-2026-browser-support-design-system-decision",
+      "finalUrl": "https://eidos-works.com/insights/baseline-2026-browser-support-design-system-decision/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/practical-source-map-ai-ready-service-pages",
+      "finalUrl": "https://eidos-works.com/insights/practical-source-map-ai-ready-service-pages/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/storefront-proof-loop-ux-assets-operations",
+      "finalUrl": "https://eidos-works.com/insights/storefront-proof-loop-ux-assets-operations/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/bing-ai-citations-measure-business-value",
+      "finalUrl": "https://eidos-works.com/insights/bing-ai-citations-measure-business-value/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/accessible-quote-form-errors-recovery",
+      "finalUrl": "https://eidos-works.com/insights/accessible-quote-form-errors-recovery/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/ai-agent-permissions-before-pilot",
+      "finalUrl": "https://eidos-works.com/insights/ai-agent-permissions-before-pilot/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/storefront-size-guide-inline-dialog-page",
+      "finalUrl": "https://eidos-works.com/insights/storefront-size-guide-inline-dialog-page/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/ai-prototype-production-pilot-evidence",
+      "finalUrl": "https://eidos-works.com/insights/ai-prototype-production-pilot-evidence/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/indexnow-changing-business-pages",
+      "finalUrl": "https://eidos-works.com/insights/indexnow-changing-business-pages/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/mobile-storefront-filters-safe-reversible-choices",
+      "finalUrl": "https://eidos-works.com/insights/mobile-storefront-filters-safe-reversible-choices/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/good-website-does-not-ask-you-remember-everything",
+      "finalUrl": "https://eidos-works.com/insights/good-website-does-not-ask-you-remember-everything/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/after-submit-website-tell-truth-about-waiting",
+      "finalUrl": "https://eidos-works.com/insights/after-submit-website-tell-truth-about-waiting/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/reduced-motion-without-reduced-experience",
+      "finalUrl": "https://eidos-works.com/insights/reduced-motion-without-reduced-experience/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "path": "/insights/website-careful-what-it-asks-you-notice",
+      "finalUrl": "https://eidos-works.com/insights/website-careful-what-it-asks-you-notice/",
+      "status": 200,
+      "checks": {
+        "http200": true,
+        "canonical": true,
+        "noNoindex": true,
+        "robotsAllowed": true,
+        "sitemap": true,
+        "rss": true,
+        "hubLink": true,
+        "title": true,
+        "description": true,
+        "h1": true,
+        "articleSchema": true,
+        "prerenderedBody": true
+      },
+      "failed": [],
+      "schemaTypes": [
+        "Organization",
+        "Person",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList"
+      ]
+    }
+  ]
+}

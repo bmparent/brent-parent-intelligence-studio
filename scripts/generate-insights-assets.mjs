@@ -93,6 +93,9 @@ function wrapTitle(title) {
 }
 
 function generateSitemap() {
+  // The hub changes when a published article is added or updated. Use the
+  // actual content dates so ordinary rebuilds do not imply fresh content.
+  const insightsLastModified = articles.map(lastModified).sort().at(-1) ?? '2026-07-10';
   const staticPages = [
     { loc: absolute('/work/candlelight-exclusive'), lastmod: '2026-10-22', priority: '0.7' },
     {
@@ -206,7 +209,7 @@ function generateSitemap() {
       priority: '0.5',
     },
     { loc: absolute('/snapshot'), lastmod: '2026-07-10', priority: '0.9' },
-    { loc: absolute('/insights'), lastmod: '2026-07-10', priority: '0.9' },
+    { loc: absolute('/insights'), lastmod: insightsLastModified, priority: '0.9' },
     {
       loc: absolute('/editorial-policy'),
       lastmod: '2026-07-10',
