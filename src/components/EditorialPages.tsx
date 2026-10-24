@@ -250,7 +250,12 @@ export function AboutPage() {
           <p>That background sits beside UI/UX, React and frontend development, Google Cloud Platform, Google Apps Script, reporting, and focused automation. Data Graphics contributed substantial practical knowledge, but it did not solely inspire or define Eidos Works.</p>
           <p>Eidos Works can collaborate with client teams, specialists, platforms, automation, AI-assisted workflows, and other technical resources appropriate to the project. Brent leads the studio and contributes directly without claiming to perform every discipline or implementation task alone.</p>
           <p>Eidos Works is also exploring how AI can help people recognize patterns and make better decisions without hiding how an answer was reached. Eidos Brain is that proof-stage research initiative; Sentinel is a monitoring concept within it, not the primary identity of the studio.</p>
-          <a className="ew-button ew-button--primary" href="/contact">Discuss a project</a>
+          <div className="ew-actions">
+            <a className="ew-button ew-button--primary" href="/contact">Discuss a project</a>
+            <a className="ew-button ew-button--secondary" href="https://www.linkedin.com/in/brent-parent-9115771b/" target="_blank" rel="noopener noreferrer">
+              Connect with Brent on LinkedIn <span aria-hidden="true">↗</span><span className="ew-sr-only"> (opens in a new tab)</span>
+            </a>
+          </div>
         </div>
       </section>
       <ServiceFamiliesSection />
