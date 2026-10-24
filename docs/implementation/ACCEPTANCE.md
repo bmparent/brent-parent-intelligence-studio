@@ -1,3 +1,29 @@
+## October 24 AI investment essay
+
+Brent authorized revising and publishing “Investing in AI Without Outsourcing
+Yourself” without a review step. The complete October 16 unpublished draft was
+read before revision. The 1,769-word essay preserves its opening, humane account
+of delegation/rest and closing invitation, while making the distinction between
+output and lasting capability explicit and adding illustrative everyday examples.
+It uses the Eidos Works Editorial byline and makes no research, neuroscience,
+product-performance or invented autobiographical claims; `sources: []` is
+appropriate under the essay policy. The original draft remains preserved.
+
+The content-only candidate starts from public main
+`2c7dcf3cd6a01d88f23eb1da5d45e876d956f8f9`. Generated metadata, RSS, JSON feed,
+sitemap, discovery text, growth route and OG card include the new stable URL.
+All prior article records are unchanged. The initial publication runner could
+not resolve existing external research hosts in this environment (EAI_AGAIN).
+The supported source-fetch opt-out passed for all 22 articles; this new
+reflective essay has no external sources to retrieve. Lint (one existing
+Wellway warning), typecheck/client/SSR build, prerender, editorial verification,
+built Insights validation, URL checks and Functions compilation passed.
+
+Exact candidate CI, merge, deployment and production readback are recorded on
+the scoped publishing PR. This record alone is not evidence of publication.
+Rollback is a revert of this content-only change through the existing workflow.
+No backend, configuration, account, payment or Playground changes are included.
+
 ## October 24 Insights search visibility
 
 The live 21-article inventory passed crawl eligibility, metadata, structured-data,
