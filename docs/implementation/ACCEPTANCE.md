@@ -1,3 +1,11 @@
+## October 24 About LinkedIn link
+
+Brent requested a personal LinkedIn link by his portrait and biography. The
+About profile section now includes “Connect with Brent on LinkedIn” beside
+the existing project contact action. Scope, profile provenance, validation,
+release evidence and rollback are tracked in
+[ABOUT_LINKEDIN_2026-10-24.md](ABOUT_LINKEDIN_2026-10-24.md).
+
 ## October 24 AI investment essay
 
 Brent authorized revising and publishing “Investing in AI Without Outsourcing
