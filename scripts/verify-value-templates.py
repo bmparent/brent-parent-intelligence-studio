@@ -80,7 +80,7 @@ def main():
             assert hashlib.sha256(actual).hexdigest() == item["sha256"]
             assert len(actual) == item["bytes"]
         behavior_file = "script.js" if slug == "gatherline" else "runtime.js"
-        assert all(name in payload for name in ["README.md", "LICENSE-DRAFT.txt", "config.js", behavior_file, "styles.css"])
+        assert all(name in payload for name in ["README.md", "LICENSE-DRAFT.txt", "config.js", behavior_file, "styles.css", "START-HERE.html", "setup.js"])
         documents = {}
         for name, data in payload.items():
             if name.endswith(".html"):

@@ -1,3 +1,17 @@
+# October 24 template usability candidate
+
+The three affordable private drafts now have a local setup/configuration editor,
+safe unavailable-script form behavior, synchronized service choices and custom
+text reflow. Application source `855107d2d5c92e7294c8af765ed478427d8bdeef`
+passes 51 extracted-package browser checks and Site quality. Exact source,
+independently verified archive identities, failed-run history, screenshots and
+remaining customer/hosting/accessibility/commerce gates are recorded in
+[template quality acceptance](../value-templates/QUALITY_2026-10-24.md).
+This is a successor to affordable-draft PR141, not a production or sales release.
+Premium archives, pricing, provider configuration and held account/editor work
+are unchanged. Observed novice publishing and actual destination acceptance
+remain required before a beginner-ready claim.
+
 ## October 22 PHP and dependency security review
 
 The scoped PHP exposure check and dependency updates are recorded in

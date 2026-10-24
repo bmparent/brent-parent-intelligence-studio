@@ -68,5 +68,6 @@
       status.textContent = 'The calendar date needs attention. Check the event times in config.js.';
     }
   });
+  if (calendarButton) calendarButton.disabled = false;
 
 })();

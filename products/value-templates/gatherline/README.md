@@ -3,6 +3,23 @@
 Draft $12 USD, one-time source product. One event announcement, not an event
 booking or ticketing system.
 
+## Start with the local setup page
+
+The extracted package now includes `START-HERE.html`. Open it in your browser
+from the same folder as `config.js` and `setup.js`. Edit the supported business,
+copy and color fields, download the replacement `config.js`, replace your working
+copy with that exact filename, then refresh `index.html`. Reopening the setup page
+reads that replaced file. Unsaved field changes disappear when the page closes.
+No account, network request, AI, subscription or installation is required.
+
+This edits configuration only. Follow the file map below to update static HTML
+fallbacks, page titles/descriptions, other page copy, images and links. Source
+editing is still required; the helper is not a complete no-code site editor or
+native builder importer. Check text contrast after changing colors. For an event,
+keep the displayed local date/time consistent with the downloaded UTC calendar.
+Retain the setup page, setup.js, backups and license with your working copy;
+upload only the required site/section files to your chosen compatible host.
+
 ## Customize and install
 
 1. Open `index.html` for the full standalone example. Edit `config.js` to change
@@ -57,7 +74,7 @@ security policy. Test the exact real destination before promising compatibility.
 
 ## Support and commercial status
 
-Private version 0.1.0. Price, one-site license and support/refund terms are draft
+Private version 0.1.1. Price, one-site license and support/refund terms are draft
 proposals for owner review. There is no active checkout or included installation,
 hosting or customization service. A source package alone does not establish paid
 fulfillment, physical-device testing or native builder acceptance.

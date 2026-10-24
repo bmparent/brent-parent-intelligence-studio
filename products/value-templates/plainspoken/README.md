@@ -3,6 +3,23 @@
 Draft $59 USD, one-time source product. Home, Services and Contact, with a local
 project-brief composer. It is not a native CMS theme or a server-delivered form.
 
+## Start with the local setup page
+
+The extracted package now includes `START-HERE.html`. Open it in your browser
+from the same folder as `config.js` and `setup.js`. Edit the supported business,
+copy and color fields, download the replacement `config.js`, replace your working
+copy with that exact filename, then refresh `index.html`. Reopening the setup page
+reads that replaced file. Unsaved field changes disappear when the page closes.
+No account, network request, AI, subscription or installation is required.
+
+This edits configuration only. Follow the file map below to update static HTML
+fallbacks, page titles/descriptions, other page copy, images and links. Source
+editing is still required; the helper is not a complete no-code site editor or
+native builder importer. Check text contrast after changing colors. For an event,
+keep the displayed local date/time consistent with the downloaded UTC calendar.
+Retain the setup page, setup.js, backups and license with your working copy;
+upload only the required site/section files to your chosen compatible host.
+
 ## Customize and install
 
 1. Edit `config.js` for brand, homepage headline/body, shared service titles and
@@ -54,7 +71,16 @@ security policy. Test the exact real destination before promising compatibility.
 
 ## Support and commercial status
 
-Private version 0.1.0. Price, one-site license and support/refund terms are draft
+Private version 0.1.1. Price, one-site license and support/refund terms are draft
 proposals for owner review. There is no active checkout or included installation,
 hosting or customization service. A source package alone does not establish paid
 fulfillment, physical-device testing or native builder acceptance.
+
+## If scripts do not load
+
+The inquiry fields and prepare button stay disabled until the complete local
+composer is installed. This prevents a normal form submission from placing the
+visitor's entries in a URL or server log. The page shows an unavailable note;
+restore its runtime file or provide your actual static contact details. No sent
+message or booking confirmation is implied. Renamed service titles stay matched
+to their inquiry choices. Editing fields after preparation invalidates the draft.

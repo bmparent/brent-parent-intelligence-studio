@@ -42,3 +42,12 @@ footer p { font-size:16px; margin:0; }
 .skip:focus { transform:none; }
 @media(max-width:1000px) { .wrap { width:calc(100% - 72px); } nav { gap:22px; } .hero { gap:30px; } h1 { font-size:clamp(44px,6.2vw,65px); } .hero p { font-size:22px; } .brand { font-size:34px; } .service-row h3 { font-size:29px; } }
 @media(max-width:760px) { .wrap { width:calc(100% - 40px); } header { flex-wrap:wrap; gap:18px; padding-block:24px; } nav { gap:22px; font-size:17px; } .button.outline { display:none; } .hero { grid-template-columns:1fr; gap:30px; padding-bottom:32px; } h1 { font-size:clamp(48px,9.4vw,68px); margin-bottom:24px; } .hero p { font-size:22px; max-width:32ch; margin-bottom:26px; } .hero img { aspect-ratio:5/4; } h2 { font-size:37px; } .service-row { grid-template-columns:1fr; gap:9px; padding:20px 0; } .service-row h3 { font-size:28px; } .service-row p { font-size:19px; } .form-grid { grid-template-columns:1fr; gap:22px; } .button,button { font-size:21px; } footer { align-items:flex-start; flex-direction:column; gap:14px; } }
+
+/* User-entered names and copy must reflow, including a single long word. */
+header > *, .hero > *, .contact-layout > * { min-width:0; }
+header { flex-wrap:wrap; }
+.brand { max-width:100%; min-width:0; overflow-wrap:anywhere; }
+nav { max-width:100%; flex-shrink:0; }
+h1,h2,h3,p,a,button,summary { overflow-wrap:anywhere; }
+[data-inquiry-fields] { min-inline-size:0; border:0; padding:0; margin:0; }
+button:disabled { cursor:default; opacity:.65; }

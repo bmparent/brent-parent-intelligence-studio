@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build deterministic private draft ZIPs without touching paid-template archives."""
 import hashlib
+import html
 import json
 from pathlib import Path
 import zipfile
@@ -34,6 +35,13 @@ def main():
             payload[relative] = data
         if slug != "gatherline":
             payload["runtime.js"] = (SOURCE / "shared/runtime.js").read_bytes()
+        # Buyer-only setup companion. It reads the actual local configuration;
+        # no duplicated defaults, network service or code editor is required
+        # for the supported configuration fields.
+        setup = (SOURCE / "shared/START-HERE.html").read_text()
+        setup = setup.replace("__TEMPLATE_NAME__", html.escape(product["name"]))
+        payload["START-HERE.html"] = setup.encode()
+        payload["setup.js"] = (SOURCE / "shared/setup.js").read_bytes()
         manifest = {
             "productId": product["id"], "version": version,
             "status": "private draft; commercial availability unavailable",
