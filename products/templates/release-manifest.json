@@ -6,7 +6,7 @@
   "catalog": {
     "path": "products/templates/catalog.json",
     "bytes": 12569,
-    "sha256": "8303e6dab7cdd7db07fd4786182aa202ed84e87323606514ea5a44e8cb91dfd2"
+    "sha256": "3b16f7075abfb131b255b237b7ddf579d8ef815fb871bc5ddf4dd55090865272"
   },
   "generation": {
     "command": "node scripts/build-template-release-manifest.mjs",
@@ -45,7 +45,7 @@
           "status": "candidate",
           "releaseStatus": "unavailable",
           "commercialAvailability": "unavailable",
-          "draftPriceCents": 9900,
+          "draftPriceCents": 2500,
           "currency": "USD",
           "priceIds": null,
           "priceIdsReason": "Provider price IDs and charged amounts belong to the server-owned commerce contract. Public draft prices are not payment authority.",

@@ -6,6 +6,10 @@ services, new subscriptions, or an automatic release schedule. Provider-backed
 sales, costs, margins, conversion, and demand are unknown until measured and
 reconciled. TEST payments are evidence, not revenue.
 
+## October 23 approved pilot
+
+Brent approved Switchboard Developer 1.0.3 at **$25 USD, one time** for new purchases after release acceptance, with a learning target of **4–8 paid customer transactions per month**. This replaces its proposed $99 price. The one-time price is not a subscription or an automatic no-code service. Customer ownership, clear setup, useful feedback and retention guide the pilot. The exact offer, beginner publishing acceptance and operating boundaries are in [Accessible website pilot](ACCESSIBLE_PILOT_2026-10-23.md). Costs and margins remain unmeasured, and sales are not activated by this decision.
+
 ## Offer and proposed prices
 
 The authoritative candidate records are in
@@ -18,7 +22,8 @@ installation and commerce gates are accepted.
 | Offer | Price | Deliverable and boundary |
 | --- | ---: | --- |
 | Existing Cinematic Starter | $29 USD, one time | Preserve its existing header-and-hero product, URL, buyers, files, one-website license, and approved terms |
-| Switchboard, Tideglass, Matter, Nightjar developer source | Draft $99 USD each, one time | Complete five-page static site plus legal-notes page, original art, source/configuration, and guides; code editing required |
+| Switchboard developer source | Approved pilot $25 USD, one time | Complete five-page static site plus legal notes, original art, source/configuration and guides; code editing required; availability remains gated |
+| Tideglass, Matter, Nightjar developer source | Draft $99 USD each, one time | Complete five-page static site plus legal-notes page, original art, source/configuration, and guides; code editing required |
 | Each family's native WordPress edition | Draft $129 USD each, one time | Editable core-block theme/templates/patterns/styles; release individually after exact clean-install acceptance |
 | Squarespace 7.1 existing-site kit | Draft $29 USD each, one time | Manual section/style recipe and optional supported code; Switchboard pilot, remaining families unavailable |
 | GoDaddy Websites + Marketing visual add-on | Draft $29 USD each, one time | Embedded visual section; native navigation/contact/booking stay outside; Switchboard pilot, remaining families unavailable |
@@ -38,7 +43,7 @@ contract. TEST transactions do not measure real settlement fees.
 
 | Input | Current value | Required measurement |
 | --- | --- | --- |
-| `P`: price excluding collected tax | Draft $99 / $129 / $29; Cinematic unchanged $29 | Server-owned price and actual order/settlement receipt |
+| `P`: price excluding collected tax | Approved pilot $25; other drafts $99 / $129 / $29; Cinematic unchanged $29 | Server-owned price and actual order/settlement receipt |
 | `f`: proportional provider/platform fee | Unknown | Actual provider balance transaction and applicable contract |
 | `b`: fixed payment cost per original charge | Unknown | Actual fee receipt, including what is retained after refund |
 | `q`: fraction of original revenue refunded | Unknown | Product/version refund ledger including partial refunds |

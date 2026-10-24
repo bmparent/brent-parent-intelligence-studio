@@ -66,7 +66,7 @@ async function fixture(mode: 'test' | 'live' = 'test') {
     throw Error('Unexpected real network request: ' + url);
   };
   const context = (path: string, payload: unknown, owner = 'alice'): Context => ({ env, request: new Request(origin + path, { method: 'POST', headers: { origin, 'content-type': 'application/json', ...(owner ? { cookie: (mode === 'live' ? '__Host-eidos_session=' : 'eidos_session_local=') + (owner === 'alice' ? 'a' : 'b').repeat(64) } : {}) }, body: JSON.stringify(payload) }) });
-  const begin = (attempt: string, deliveryId: unknown = delivery.id, owner = 'alice') => checkout(context('/api/shop/checkout', { productId: 'switchboard-developer-v1', editionId: 'developer', acceptTerms: true, challenge: 'controlled-verification', reviewedPriceCents: 9900, attempt, ...(deliveryId === undefined ? {} : { deliveryId }) }, owner));
+  const begin = (attempt: string, deliveryId: unknown = delivery.id, owner = 'alice') => checkout(context('/api/shop/checkout', { productId: 'switchboard-developer-v1', editionId: 'developer', acceptTerms: true, challenge: 'controlled-verification', reviewedPriceCents: 2500, attempt, ...(deliveryId === undefined ? {} : { deliveryId }) }, owner));
   const getOrder = async (attempt: string) => sql.prepare('SELECT o.*,t.* FROM eidos_orders o JOIN eidos_template_orders t ON t.order_id=o.id WHERE receipt_hash=?').get(await hash(attempt))!;
   const event = async (attempt: string, id: string, type = 'checkout.session.completed', overrides: Record<string, unknown> = {}, signature = true) => {
     const row = await getOrder(attempt), session = sessions.find(values => values.get('client_reference_id') === row.id)!;
@@ -85,7 +85,7 @@ test('capability and checkout bind server parent, owner and frozen bytes before 
   try {
     const request = new Request(origin + '/api/playground/delivery?capabilities=1', { headers: { cookie: 'eidos_session_local=' + 'a'.repeat(64) } });
     const cap = (await ok(await capabilities({ env: f.env, request }))).capabilities;
-    assert.equal(cap.available, true); assert.equal(cap.ownerId, 'alice'); assert.equal(cap.products[0].priceCents, 9900); assert.equal(cap.products[0].parentArchiveSha256, originalHash);
+    assert.equal(cap.available, true); assert.equal(cap.ownerId, 'alice'); assert.equal(cap.products[0].priceCents, 2500); assert.equal(cap.products[0].parentArchiveSha256, originalHash);
     assert.equal((await f.begin('1'.repeat(64), f.delivery.id, 'bob')).status, 404);
     assert.equal((await f.begin('2'.repeat(64), f.delivery.id, '')).status, 401); assert.equal(f.sessions.length, 0);
     const attempt = '3'.repeat(64); await ok(await f.begin(attempt));
@@ -269,7 +269,7 @@ test('retained LIVE checkout price must match explicit review even after catalog
   try {
     await ok(await f.begin(attempt));
     const checked = await ok(await status(f.context('/api/shop/status', { receipt: attempt })));
-    assert.equal(checked.priceCents, 9900); assert.equal(checked.currency, 'usd');
+    assert.equal(checked.priceCents, 2500); assert.equal(checked.currency, 'usd');
     const retry = (reviewedPriceCents: number) => checkout(f.context('/api/shop/checkout', { productId: 'switchboard-developer-v1', editionId: 'developer', acceptTerms: true, challenge: 'fixture', attempt, deliveryId: f.delivery.id, reviewedPriceCents }));
     assert.equal((await retry(8900)).status, 409); assert.equal(f.sessions.length, 1);
     await ok(await retry(checked.priceCents)); assert.equal(f.sessions.length, 1);
