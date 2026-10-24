@@ -18,6 +18,14 @@
       for (const key of path.slice(0, -1)) target = target[key];
       target[path.at(-1)] = input.type === 'checkbox' ? input.checked : input.value;
     }
+    if (Object.hasOwn(next, 'contactEmail')) {
+      next.contactEmail = next.contactEmail.trim();
+      if (next.contactEmail && !/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(next.contactEmail)) {
+        status.textContent = 'Use a public email address with a full domain, for example owner@example.com, or leave it blank for local downloads only.';
+        controls.find(control => control.path.join('.') === 'contactEmail')?.input.focus();
+        return;
+      }
+    }
     if (next.event && !validEvent(next.event)) {
       status.textContent = 'Check the calendar times: use valid UTC dates, and make the end later than the start.';
       controls.find(control => control.path.join('.') === 'event.startUtc')?.input.focus();

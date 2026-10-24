@@ -240,6 +240,10 @@ try {
       await setup.getByRole('button', { name: 'Download config.js', exact: true }).click();
       assert.equal(await setup.locator('#setup-contactEmail').evaluate(element => element.checkValidity()), false);
       assert.equal(setupDownloads, 0, 'Invalid recipient must not produce a replacement config');
+      await setup.locator('#setup-contactEmail').fill('owner@localhost');
+      await setup.getByRole('button', { name: 'Download config.js', exact: true }).click();
+      assert.match(await setup.locator('[data-setup-status]').innerText(), /public email address with a full domain/);
+      assert.equal(setupDownloads, 0, 'Setup must not accept a recipient that the actual inquiry composer cannot use');
       await setup.locator('#setup-contactEmail').fill('owner@example.invalid');
       const serviceKey = slug === 'porchlight' ? 'gardenTitle' : 'planTitle';
       await setup.locator('#setup-copy-' + serviceKey).fill('A service made for your team');
@@ -306,7 +310,15 @@ try {
     assert.equal(await setup.locator('img[src="x"]').count(), 0);
     for (const width of [1440, 768, 390, 320]) {
       await setup.setViewportSize({ width, height: 1000 });
-      assert.equal(await setup.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false, `${slug} configured content overflow at ${width}`);
+      const bounds = await setup.evaluate(() => ({
+        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        scrollWidth: document.documentElement.scrollWidth, width: innerWidth,
+        outside: [...document.querySelectorAll('header,nav,a,h1,h2,h3,p,button')].filter(element => {
+          const rect = element.getBoundingClientRect();
+          return rect.width > 0 && (rect.left < -1 || rect.right > innerWidth + 1);
+        }).map(element => ({ tag: element.tagName, text: element.textContent.slice(0, 60), right: element.getBoundingClientRect().right }))
+      }));
+      assert.equal(bounds.overflow, false, `${slug} configured content overflow at ${width}: ${JSON.stringify(bounds)}`);
     }
     assert.deepEqual(errors, []);
     assert.deepEqual(remote, []);
