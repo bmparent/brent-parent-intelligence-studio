@@ -49,7 +49,7 @@
     "verify:indexing": "node scripts/verify-indexing.mjs",
     "playground:runtime": "node scripts/build-playground-runtime.mjs",
     "templates:build": "node scripts/build-template-packages.mjs && node scripts/build-template-guides.mjs && node scripts/build-template-release-manifest.mjs",
-    "test:templates": "npm run templates:build && node scripts/test-template-packages.mjs && node --test scripts/test-template-release-manifest.mjs && node --import tsx --test scripts/test-template-shop.ts",
+    "test:templates": "npm run templates:build && node scripts/test-template-packages.mjs && node --test scripts/test-template-release-manifest.mjs && node --import tsx --test scripts/test-template-shop.ts && node --test scripts/test-template-pilot-price.mjs",
     "verify:templates": "node scripts/verify-template-shop.mjs",
     "verify:templates:browser": "python scripts/verify-template-browser.py",
     "verify:templates:wordpress": "node scripts/verify-template-wordpress.mjs",
