@@ -17,3 +17,6 @@ coverage
 ops/growth-team/private/
 
 ops/growth-team/runs/
+
+# New value-template private draft builds; source and guides stay tracked.
+artifacts/value-templates/

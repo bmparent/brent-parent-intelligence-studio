@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "batch": "2026-10-22",
+  "currency": "USD",
+  "pricingStatus": "proposed; not activated",
+  "commercialAvailability": "unavailable",
+  "products": [
+    {
+      "id": "gatherline-section-v1",
+      "slug": "gatherline",
+      "name": "Gatherline",
+      "version": "0.1.0",
+      "kind": "section",
+      "draftPriceCents": 1200,
+      "audience": "Workshops, classes, pop-ups and community events",
+      "summary": "A reusable event announcement with a local calendar download.",
+      "pages": ["index.html"],
+      "entry": "gatherline/index.html",
+      "sourcePath": "products/value-templates/gatherline",
+      "includes": ["Reusable HTML section", "Scoped stylesheet", "Calendar file download", "Editable configuration", "Standalone example and install guide"],
+      "excludes": ["Booking or RSVP system", "Payments", "Hosting", "Installation service"],
+      "status": "draft",
+      "commercialAvailability": "unavailable"
+    },
+    {
+      "id": "porchlight-landing-v1",
+      "slug": "porchlight",
+      "name": "Porchlight",
+      "version": "0.1.0",
+      "kind": "landing-page",
+      "draftPriceCents": 2900,
+      "audience": "Independent home and garden service businesses",
+      "summary": "A complete service landing page with an original garden photograph and local inquiry draft.",
+      "pages": ["index.html"],
+      "entry": "porchlight/index.html",
+      "sourcePath": "products/value-templates/porchlight",
+      "includes": ["Complete responsive landing page", "Original generated garden photograph", "Editable services", "Local inquiry composer and text download", "Configuration and install guide"],
+      "excludes": ["Backend form delivery", "Appointment booking", "Hosting", "Customization service"],
+      "status": "draft",
+      "commercialAvailability": "unavailable"
+    },
+    {
+      "id": "plainspoken-site-v1",
+      "slug": "plainspoken",
+      "name": "Plainspoken",
+      "version": "0.1.0",
+      "kind": "compact-website",
+      "draftPriceCents": 5900,
+      "audience": "Independent consultants and small service studios",
+      "summary": "A compact three-page website for explaining services and preparing a useful project brief.",
+      "pages": ["index.html", "services.html", "contact.html"],
+      "entry": "plainspoken/index.html",
+      "sourcePath": "products/value-templates/plainspoken",
+      "includes": ["Home, Services and Contact pages", "Linked service inquiry paths", "Local brief composer and text download", "Shared editable configuration", "Install guide"],
+      "excludes": ["CMS or native builder theme", "Backend delivery", "Hosting", "Ongoing consulting or template customization"],
+      "status": "draft",
+      "commercialAvailability": "unavailable"
+    }
+  ]
+}
