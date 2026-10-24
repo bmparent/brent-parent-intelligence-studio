@@ -1,3 +1,13 @@
+## October 24 Insights search visibility
+
+The live 21-article inventory passed crawl eligibility, metadata, structured-data,
+sitemap, RSS and internal-link checks. Public search results already contain
+several Insights articles. The Insights hub's stale sitemap date and Google
+Search Console ownership setup are tracked in
+[INSIGHTS_SEARCH_2026-10-24.md](INSIGHTS_SEARCH_2026-10-24.md).
+Exact CI, deployment, ownership-verification and sitemap-submission receipts
+belong to the scoped PR; eligibility alone does not confirm every URL is indexed.
+
 ## October 23 public profiles repair
 
 The broken profile redirect and missing public activity are tracked in

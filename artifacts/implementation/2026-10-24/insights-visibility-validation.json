@@ -1,0 +1,97 @@
+{
+  "baseCommit": "2c7dcf3cd6a01d88f23eb1da5d45e876d956f8f9",
+  "scope": "Insights discovery metadata and owner Search Console verification; article content unchanged",
+  "commands": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "validate:insights",
+        "--",
+        "--skip-source-fetch"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "seconds": 12.7
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 9.5
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "verify:prerender"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "verify:editorial"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "validate:insights:dist"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "verify:urls"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build:functions"
+      ],
+      "exitCode": 0,
+      "seconds": 5.2
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "verify:indexing"
+      ],
+      "exitCode": 0,
+      "seconds": 0.3
+    }
+  ],
+  "indexingTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "builtHubLastmod": "2026-10-23",
+  "builtHomepageVerificationTag": true,
+  "normalSourceRetrieval": "blocked by environment DNS EAI_AGAIN; no article claims or source records changed",
+  "productionVerified": false
+}

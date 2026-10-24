@@ -1,0 +1,56 @@
+{
+  "run_id": "2026-10-24T04-12-09-manual",
+  "slot": "manual",
+  "started_at_utc": "2026-10-24T04:12:09.688Z",
+  "cwd": "/workspace/scratch/152322b76d68/visibility-site",
+  "git_commit_before": "2c7dcf3cd6a01d88f23eb1da5d45e876d956f8f9",
+  "dependency_preflight": {
+    "status": "passed",
+    "scope": "Local entry-file presence only; the subsequent gates verify the installed tools and application.",
+    "required_files": [
+      "node_modules/eslint/bin/eslint.js",
+      "node_modules/typescript/bin/tsc",
+      "node_modules/typescript/lib/typescript.js",
+      "node_modules/vite/bin/vite.js",
+      "node_modules/@vitejs/plugin-react/dist/index.js",
+      "node_modules/tsx/dist/cli.mjs",
+      "node_modules/wrangler/bin/wrangler.js",
+      "node_modules/esbuild/bin/esbuild",
+      "node_modules/esbuild/lib/main.js",
+      "node_modules/react/index.js",
+      "node_modules/react-dom/client.js",
+      "node_modules/react-dom/server.node.js",
+      "node_modules/@babylonjs/core/index.js",
+      "node_modules/gsap/index.js"
+    ],
+    "missing_files": [],
+    "repair_command": "npm ci --no-audit --no-fund"
+  },
+  "active_command": null,
+  "commands": [
+    {
+      "command": "npm run content:generate",
+      "code": 0,
+      "status": "passed",
+      "started_at_utc": "2026-10-24T04:12:09.699Z",
+      "finished_at_utc": "2026-10-24T04:12:09.903Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 content:generate\n> node scripts/generate-insights-assets.mjs\n\nGenerated sitemap, feed, llms.txt, and 21 article OG images for https://eidos-works.com.\n",
+      "stderr": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n",
+      "signal": null
+    },
+    {
+      "command": "npm run validate:insights",
+      "code": 1,
+      "status": "failed",
+      "started_at_utc": "2026-10-24T04:12:09.905Z",
+      "finished_at_utc": "2026-10-24T04:12:10.122Z",
+      "stdout": "\n> brent-parent-intelligence-studio@1.1.0 validate:insights\n> node scripts/validate-insights.mjs\n\n",
+      "stderr": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\nInsights validation failed:\n- reduced-motion-without-reduced-experience: source fetch failed for https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion (getaddrinfo EAI_AGAIN www.w3.org).\n- reduced-motion-without-reduced-experience: source fetch failed for https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html (getaddrinfo EAI_AGAIN www.w3.org).\n- reduced-motion-without-reduced-experience: source fetch failed for https://www.w3.org/WAI/ARIA/apg/patterns/carousel/ (getaddrinfo EAI_AGAIN www.w3.org).\n- mobile-storefront-filters-safe-reversible-choices: source fetch failed for https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html (getaddrinfo EAI_AGAIN www.w3.org).\n- mobile-storefront-filters-safe-reversible-choices: source fetch failed for https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/ (getaddrinfo EAI_AGAIN www.w3.org).\n- mobile-storefront-filters-safe-reversible-choices: source fetch failed for https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/ (getaddrinfo EAI_AGAIN www.w3.org).\n- indexnow-changing-business-pages: source fetch failed for https://www.indexnow.org/documentation (getaddrinfo EAI_AGAIN www.indexnow.org).\n- indexnow-changing-business-pages: source fetch failed for https://www.indexnow.org/faq (getaddrinfo EAI_AGAIN www.indexnow.org).\n- indexnow-changing-business-pages: source fetch failed for https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl (getaddrinfo EAI_AGAIN developers.google.com).\n- indexnow-changing-business-pages: source fetch failed for https://developers.google.com/search/docs/appearance/ai-features (getaddrinfo EAI_AGAIN developers.google.com).\n- ai-prototype-production-pilot-evidence: source fetch failed for https://developers.openai.com/api/docs/guides/model-selection (getaddrinfo EAI_AGAIN developers.openai.com).\n- ai-prototype-production-pilot-evidence: source fetch failed for https://developers.openai.com/api/docs/guides/production-best-practices (getaddrinfo EAI_AGAIN developers.openai.com).\n- ai-prototype-production-pilot-evidence: source fetch failed for https://airc.nist.gov/airmf-resources/airmf/5-sec-core/ (getaddrinfo EAI_AGAIN airc.nist.gov).\n- storefront-size-guide-inline-dialog-page: source fetch failed for https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/ (getaddrinfo EAI_AGAIN www.w3.org).\n- storefront-size-guide-inline-dialog-page: source fetch failed for https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element (getaddrinfo EAI_AGAIN html.spec.whatwg.org).\n- storefront-size-guide-inline-dialog-page: source fetch failed for https://www.w3.org/WAI/WCAG22/Understanding/reflow.html (getaddrinfo EAI_AGAIN www.w3.org).\n- storefront-size-guide-inline-dialog-page: source fetch failed for https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html (getaddrinfo EAI_AGAIN www.w3.org).\n- ai-agent-permissions-before-pilot: source fetch failed for https://www.anthropic.com/engineering/building-effective-agents (getaddrinfo EAI_AGAIN www.anthropic.com).\n- ai-agent-permissions-before-pilot: source fetch failed for https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents (getaddrinfo EAI_AGAIN www.anthropic.com).\n- accessible-quote-form-errors-recovery: source fetch failed for https://www.w3.org/WAI/tutorials/forms/labels/ (getaddrinfo EAI_AGAIN www.w3.org).\n- accessible-quote-form-errors-recovery: source fetch failed for https://www.w3.org/WAI/tutorials/forms/validation/ (getaddrinfo EAI_AGAIN www.w3.org).\n- accessible-quote-form-errors-recovery: source fetch failed for https://www.w3.org/WAI/tutorials/forms/notifications/ (getaddrinfo EAI_AGAIN www.w3.org).\n- bing-ai-citations-measure-business-value: source fetch failed for https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview (getaddrinfo EAI_AGAIN blogs.bing.com).\n- bing-ai-citations-measure-business-value: source fetch failed for https://developers.google.com/search/docs/appearance/ai-features (getaddrinfo EAI_AGAIN developers.google.com).\n- bing-ai-citations-measure-business-value: source fetch failed for https://developers.openai.com/api/docs/bots (getaddrinfo EAI_AGAIN developers.openai.com).\n- storefront-proof-loop-ux-assets-operations: source fetch failed for https://cloudinary.com/documentation/image_optimization (getaddrinfo EAI_AGAIN cloudinary.com).\n- storefront-proof-loop-ux-assets-operations: source fetch failed for https://cloudinary.com/documentation/responsive_images (getaddrinfo EAI_AGAIN cloudinary.com).\n- storefront-proof-loop-ux-assets-operations: source fetch failed for https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap (getaddrinfo EAI_AGAIN developers.google.com).\n- practical-source-map-ai-ready-service-pages: source fetch failed for https://developers.google.com/search/docs/fundamentals/ai-optimization-guide (getaddrinfo EAI_AGAIN developers.google.com).\n- practical-source-map-ai-ready-service-pages: source fetch failed for https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data (getaddrinfo EAI_AGAIN developers.google.com).\n- practical-source-map-ai-ready-service-pages: source fetch failed for https://schema.org/BlogPosting (getaddrinfo EAI_AGAIN schema.org).\n- agentic-seo-small-business-websites: source fetch failed for https://developers.google.com/search/docs/fundamentals/ai-optimization-guide (getaddrinfo EAI_AGAIN developers.google.com).\n- agentic-seo-small-business-websites: source fetch failed for https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap (getaddrinfo EAI_AGAIN developers.google.com).\n- structure-website-people-ai-assistants-understand: source fetch failed for https://developers.google.com/search/docs/fundamentals/ai-optimization-guide (getaddrinfo EAI_AGAIN developers.google.com).\n- structure-website-people-ai-assistants-understand: source fetch failed for https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data (getaddrinfo EAI_AGAIN developers.google.com).\n- structure-website-people-ai-assistants-understand: source fetch failed for https://schema.org/BlogPosting (getaddrinfo EAI_AGAIN schema.org).\n- storefront-ux-find-right-product-faster: source fetch failed for https://www.w3.org/TR/WCAG22/ (getaddrinfo EAI_AGAIN www.w3.org).\n- spreadsheet-chaos-operational-dashboards: source fetch failed for https://help.tableau.com/current/pro/desktop/en-us/dashboards_best_practices.htm (getaddrinfo EAI_AGAIN help.tableau.com).\n- website-snapshot-before-redesign: source fetch failed for https://developers.google.com/search/docs/fundamentals/creating-helpful-content (getaddrinfo EAI_AGAIN developers.google.com).\n- website-snapshot-before-redesign: source fetch failed for https://www.w3.org/TR/WCAG22/ (getaddrinfo EAI_AGAIN www.w3.org).\n- mobile-hierarchy-over-desktop-polish: source fetch failed for https://web.dev/articles/responsive-web-design-basics (getaddrinfo EAI_AGAIN web.dev).\n- mobile-hierarchy-over-desktop-polish: source fetch failed for https://www.w3.org/TR/WCAG22/ (getaddrinfo EAI_AGAIN www.w3.org).\n- baseline-2026-browser-support-design-system-decision: source fetch failed for https://web.dev/baseline/2026 (getaddrinfo EAI_AGAIN web.dev).\n- baseline-2026-browser-support-design-system-decision: source fetch failed for https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility (getaddrinfo EAI_AGAIN developer.mozilla.org).\n- baseline-2026-browser-support-design-system-decision: source fetch failed for https://www.w3.org/TR/WCAG22/ (getaddrinfo EAI_AGAIN www.w3.org).\n",
+      "signal": null
+    }
+  ],
+  "status": "failed",
+  "failure": "npm run validate:insights exited with 1",
+  "git_status_after": "M artifacts/insights/latest-generation-report.json\n M index.html\n M public/sitemap.xml\n M scripts/generate-insights-assets.mjs\n?? artifacts/insights/runs/2026-10-24T04-12-09-manual/",
+  "finished_at_utc": "2026-10-24T04:12:10.132Z"
+}
